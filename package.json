@@ -1,0 +1,26 @@
+{
+  "name": "relo-network",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run --workspace=askrelo dev",
+    "build": "npm run --workspace=askrelo build", 
+    "start": "npm run --workspace=askrelo start",
+    "lint": "npm run --workspace=askrelo lint",
+    "typecheck": "npm run --workspace=askrelo type-check",
+    "db:setup": "node scripts/setup-db-simple.js",
+    "db:seed": "cd apps/askrelo && npx ts-node ../../database/seed.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "prettier": "^3.0.0",
+    "eslint": "^8.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+
+
+}
