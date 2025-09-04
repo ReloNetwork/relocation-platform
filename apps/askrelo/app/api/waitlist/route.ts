@@ -3,15 +3,13 @@ import { createServiceSupabase } from '@/lib/supabase';
 import { waitlistSchema } from '@/lib/validations';
 
 // Minimal row type for what you return
-type WaitlistRow = {
-  id: string;         // uuid in most schemas
+type WaitlistRow = { id: string; email: string };
+type WaitlistInsert = {
   email: string;
-  // add other columns if you want them typed:
   full_name?: string | null;
   source?: string | null;
   current_location?: string | null;
   target_location?: string | null;
-  created_at?: string;
 };
 
 export async function POST(request: NextRequest) {
@@ -39,32 +37,26 @@ export async function POST(request: NextRequest) {
     
     // Insert new waitlist entry
     const { data, error } = await supabase
-      .from<WaitlistRow>('waitlist')
-      .insert([{               // array form is safest with the types
-        email: validatedData.email,
-        full_name: validatedData.full_name ?? null,
-        source: validatedData.source ?? null,
-        current_location: validatedData.current_location ?? null,
-        target_location: validatedData.target_location ?? null,
-      }])
+      .from('waitlist')                            // ⬅️ no generic here
+      .insert<WaitlistInsert>([                    // type the insert payload instead
+        {
+          email: validatedData.email,
+          full_name: validatedData.full_name ?? null,
+          source: validatedData.source ?? null,
+          current_location: validatedData.current_location ?? null,
+          target_location: validatedData.target_location ?? null,
+        },
+      ])
       .select('id,email')
       .single();
     
     if (error) {
-      console.error('Supabase error:', error);
-      return NextResponse.json(
-        { error: 'Failed to join waitlist' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
     
-    // TODO: Send welcome email via Resend
-    
+    const row = data as WaitlistRow;
     return NextResponse.json(
-      { 
-        message: 'Successfully joined waitlist',
-        data: { id: data!.id, email: data!.email }
-      },
+      { message: 'Successfully joined waitlist', data: { id: row.id, email: row.email } },
       { status: 201 }
     );
     
