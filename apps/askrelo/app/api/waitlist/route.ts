@@ -39,9 +39,10 @@ export async function POST(request: NextRequest) {
       ...(validatedData.target_location ? { target_location: validatedData.target_location } : {}),
     };
 
-    const { data, error } = await supabase
-      .from('waitlist')
-      .insert<WaitlistInsert>([payload])   // 👈 generic avoids "values: never"
+    const { data, error } = await (
+      supabase.from('waitlist') as any // <-- temporary cast to bypass `never`
+    )
+      .insert([payload])
       .select('id,email')
       .single();
     
