@@ -13,7 +13,7 @@ export async function GET() {
   if (!key) return NextResponse.json({ ok: false, error: 'STRIPE_SECRET_KEY missing' }, { status: 500 });
 
   try {
-    const stripe = new Stripe(key, { apiVersion: '2024-06-20' });
+    const stripe = new Stripe(key, { apiVersion: '2023-10-16' });
     const prices = await stripe.prices.list({ limit: 1 });
     return NextResponse.json({ ok: true, prices: prices.data.length });
   } catch (e: any) {

@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
 
   let event: Stripe.Event;
   try {
-    const stripe = new Stripe(sk, { apiVersion: '2024-06-20' });
+    const stripe = new Stripe(sk, { apiVersion: '2023-10-16' });
     event = stripe.webhooks.constructEvent(body, sig, whsec);
 
     if (event.type === 'checkout.session.completed') {

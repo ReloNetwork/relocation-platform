@@ -11,7 +11,7 @@ if (!stripeKey) {
   process.exit(1);
 }
 
-const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
+const stripe = new Stripe(stripeKey, { apiVersion: '2023-10-16' });
 
 const PLANS = {
   starter: { name: 'Starter', monthly: 39500, annual: 395000 }, // £395/mo, £3950/yr (in pence)

@@ -39,7 +39,7 @@ export async function GET() {
     out.stripe.configured = true;
     try {
       if (!/^sk_(test|live)_/.test(SK!)) throw new Error('Use a Secret key starting with sk_');
-      const stripe = new Stripe(SK!, { apiVersion: '2024-06-20' });
+      const stripe = new Stripe(SK!, { apiVersion: '2023-10-16' });
       await stripe.prices.list({ limit:1 });
       out.stripe.ok = true; out.stripe.detail = 'reachable';
     } catch (e:any) { out.stripe.detail = e?.message ?? 'error'; }
