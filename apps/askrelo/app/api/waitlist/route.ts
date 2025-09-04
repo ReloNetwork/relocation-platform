@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     const { data, error } = await supabase
       .from('waitlist')
-      .insert([payload])           // array form is safest
+      .insert<WaitlistInsert>([payload])   // 👈 generic avoids "values: never"
       .select('id,email')
       .single();
     
