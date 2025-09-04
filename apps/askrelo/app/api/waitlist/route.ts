@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     // Insert new waitlist entry
     const { data, error } = await supabase
       .from('waitlist')
-      .insert(validatedData)
+      .insert([validatedData] as any)   // note the array and cast
       .select()
       .single();
     
