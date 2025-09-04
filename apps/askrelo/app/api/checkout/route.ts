@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 export async function POST(req: NextRequest) {
   try {
     if (!stripeKey) return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });
-    const stripe = new Stripe(stripeKey, { apiVersion: "2024-06-20" });
+    const stripe = new Stripe(stripeKey, { apiVersion: '2023-10-16' });
 
     const { plan, cadence, email } = await req.json();
     if (!["starter", "featured", "sponsored"].includes(plan)) {
