@@ -1,16 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceSupabase } from '@/lib/supabase';
+import type { Database } from '@/lib/supabase';
 import { waitlistSchema } from '@/lib/validations';
 
-// Minimal row type for what you return
-type WaitlistRow = { id: string; email: string };
-type WaitlistInsert = {
-  email: string;
-  full_name?: string | null;
-  source?: string | null;
-  current_location?: string | null;
-  target_location?: string | null;
-};
+type WaitlistInsert = Database['public']['Tables']['waitlist']['Insert'];
+type WaitlistRow    = Database['public']['Tables']['waitlist']['Row'];
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,7 +30,7 @@ export async function POST(request: NextRequest) {
     }
     
     // Insert new waitlist entry
-    const payload = {
+    const payload: WaitlistInsert = {
       email: validatedData.email,
       full_name: validatedData.full_name ?? null,
       source: validatedData.source ?? null,
@@ -45,8 +39,8 @@ export async function POST(request: NextRequest) {
     };
 
     const { data, error } = await supabase
-      .from('waitlist')
-      .insert([payload as any])   // temporary cast
+      .from('waitlist')        // no generic
+      .insert([payload])       // array form
       .select('id,email')
       .single();
     
@@ -54,7 +48,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
     
-    const row = data as WaitlistRow;
+    const row = data as Pick<WaitlistRow, 'id' | 'email'>;
     return NextResponse.json(
       { message: 'Successfully joined waitlist', data: { id: row.id, email: row.email } },
       { status: 201 }
