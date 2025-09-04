@@ -36,17 +36,17 @@ export async function POST(request: NextRequest) {
     }
     
     // Insert new waitlist entry
+    const payload = {
+      email: validatedData.email,
+      full_name: validatedData.full_name ?? null,
+      source: validatedData.source ?? null,
+      current_location: validatedData.current_location ?? null,
+      target_location: validatedData.target_location ?? null,
+    };
+
     const { data, error } = await supabase
-      .from('waitlist')                            // ⬅️ no generic here
-      .insert<WaitlistInsert>([                    // type the insert payload instead
-        {
-          email: validatedData.email,
-          full_name: validatedData.full_name ?? null,
-          source: validatedData.source ?? null,
-          current_location: validatedData.current_location ?? null,
-          target_location: validatedData.target_location ?? null,
-        },
-      ])
+      .from('waitlist')
+      .insert([payload as any])   // temporary cast
       .select('id,email')
       .single();
     
