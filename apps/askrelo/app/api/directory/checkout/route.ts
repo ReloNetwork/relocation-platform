@@ -6,20 +6,28 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 })
 
 const PRICE_MAP = {
-  'price_basic_partner': process.env.STRIPE_PRICE_BASIC_PARTNER!,
-  'price_featured_partner': process.env.STRIPE_PRICE_FEATURED_PARTNER!,
-  'price_exclusive_partner': process.env.STRIPE_PRICE_EXCLUSIVE_PARTNER!
+  'basic_access': null, // Free plan
+  'premium_directory': process.env.STRIPE_PRICE_PREMIUM_DIRECTORY!,
+  'vip_concierge': process.env.STRIPE_PRICE_VIP_CONCIERGE!
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const { priceId } = await request.json()
+    const { plan } = await request.json()
 
-    const stripePriceId = PRICE_MAP[priceId as keyof typeof PRICE_MAP]
+    // Handle free plan
+    if (plan === 'basic_access' || plan === 'free') {
+      return NextResponse.json({ 
+        url: '/account?trial=directory',
+        message: 'Free access activated'
+      })
+    }
+
+    const stripePriceId = PRICE_MAP[plan as keyof typeof PRICE_MAP]
     
     if (!stripePriceId) {
       return NextResponse.json(
-        { error: 'Invalid price ID' },
+        { error: 'Invalid plan' },
         { status: 400 }
       )
     }
@@ -33,16 +41,16 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: 'subscription',
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/account?success=partner&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/partners`,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/account?success=directory&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/directory`,
       metadata: {
-        product_type: 'partner_subscription',
-        plan: priceId
+        product_type: 'directory_access',
+        plan: plan
       },
       subscription_data: {
         metadata: {
-          product_type: 'partner_subscription',
-          plan: priceId
+          product_type: 'directory_access',
+          plan: plan
         }
       },
       allow_promotion_codes: true,
@@ -52,7 +60,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ url: session.url })
   } catch (error) {
-    console.error('Partner checkout error:', error)
+    console.error('Directory checkout error:', error)
     return NextResponse.json(
       { error: 'Failed to create checkout session' },
       { status: 500 }

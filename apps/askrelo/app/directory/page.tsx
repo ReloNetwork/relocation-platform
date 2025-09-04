@@ -1,226 +1,423 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { Button } from '@/ui/components/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/components/card';
-import { Badge } from '@/ui/components/badge';
+import { useState } from 'react'
+import { Lock, Eye, Star, ArrowRight, Users, Shield, Crown } from 'lucide-react'
+import { Button } from '@/ui/components/button'
 
-const categories = [
-  'All',
-  'Movers',
-  'Housing', 
-  'Local Expert',
-  'Visa',
-  'Legal',
-  'Financial'
-];
+const BlurredSupplierCard = ({ name, category, description, rating, isSponsored = false }: {
+  name: string
+  category: string
+  description: string
+  rating: number
+  isSponsored?: boolean
+}) => (
+  <div className="relative">
+    {/* Blur overlay */}
+    <div className="absolute inset-0 backdrop-blur-sm bg-white/70 z-10 rounded-2xl flex items-center justify-center">
+      <div className="text-center">
+        <Lock className="h-8 w-8 text-[#C9A24A] mx-auto mb-3" />
+        <p className="text-sm font-medium text-[#0B1B2B]">Login Required</p>
+      </div>
+    </div>
+    
+    <div className="rounded-2xl border bg-white p-8 shadow-lg opacity-60">
+      {isSponsored && (
+        <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-3 py-1 mb-4">
+          <Crown className="h-3 w-3 text-[#C9A24A] mr-1" />
+          <span className="text-[#C9A24A] text-xs font-medium">SPONSORED</span>
+        </div>
+      )}
+      
+      <div className="flex items-start gap-4 mb-6">
+        <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+          <span className="text-sm font-medium text-gray-600">
+            {name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase()}
+          </span>
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-[#0B1B2B] mb-2">{name}</h3>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="inline-flex items-center px-2 py-1 bg-gray-100 text-xs text-gray-700 rounded">
+              {category}
+            </span>
+            <div className="flex items-center gap-1 text-xs text-gray-600">
+              <Star className="h-3 w-3 fill-current text-yellow-400" />
+              <span>{rating}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+        {description}
+      </p>
+      
+      <div className="flex gap-3">
+        <Button size="sm" className="flex-1 bg-gray-200 text-gray-500 cursor-not-allowed">
+          View Details
+        </Button>
+        <Button variant="outline" size="sm" className="border-gray-200 text-gray-500 cursor-not-allowed">
+          Contact
+        </Button>
+      </div>
+    </div>
+  </div>
+)
 
-const suppliers = [
-  {
-    id: '1',
-    name: 'Cadogan Tate',
-    category: 'Movers',
-    description: 'International fine art and luxury goods moving specialists',
-    rating: 4.8,
-    coverage: ['London', 'New York', 'Paris', 'Geneva'],
-    insurance: '£10M',
-    memberships: ['FIDI', 'BAR', 'IAM'],
-    status: 'sponsored',
-    website: 'https://cadogantate.com'
-  },
-  {
-    id: '2',
-    name: 'Cheval Collection',
-    category: 'Housing',
-    description: 'Luxury serviced apartments in prime London locations',
-    rating: 4.9,
-    coverage: ['Mayfair', 'Knightsbridge', 'South Kensington', 'Chelsea'],
-    status: 'sponsored',
-    website: 'https://chevalcollection.com'
-  },
-  {
-    id: '3',
-    name: 'Black Brick Property Solutions',
-    category: 'Local Expert',
-    description: 'Prime Central London property search and acquisition specialists',
-    rating: 4.9,
-    coverage: ['Prime Central London', 'Marylebone', 'Mayfair', 'Belgravia'],
-    status: 'featured',
-    website: 'https://black-brick.com'
-  },
-  {
-    id: '4',
-    name: 'Ward Thomas Removals',
-    category: 'Movers',
-    description: 'Master Removers Group member specializing in international relocations',
-    rating: 4.7,
-    coverage: ['London', 'Surrey', 'International'],
-    insurance: '£5M',
-    memberships: ['Master Removers Group', 'BAR'],
-    status: 'approved',
-    website: 'https://wardthomas.co.uk'
-  },
-  {
-    id: '5',
-    name: 'Blueground',
-    category: 'Housing',
-    description: 'Move-in ready furnished apartments for flexible living',
-    rating: 4.6,
-    coverage: ['Central London', 'Canary Wharf', 'King\'s Cross'],
-    status: 'approved',
-    website: 'https://theblueground.com'
-  },
-  {
-    id: '6',
-    name: 'INHOUS Relocation',
-    category: 'Local Expert',
-    description: 'Comprehensive relocation services and London area expertise',
-    rating: 4.7,
-    coverage: ['Greater London', 'Home Counties'],
-    status: 'approved',
-    website: 'https://inhous.co.uk'
-  }
-];
+const StatCard = ({ icon: Icon, number, label }: { 
+  icon: any
+  number: string
+  label: string
+}) => (
+  <div className="text-center bg-white rounded-lg p-6 shadow-sm border">
+    <Icon className="h-8 w-8 text-[#C9A24A] mx-auto mb-3" />
+    <div className="text-2xl font-bold text-[#0B1B2B] mb-1">{number}</div>
+    <div className="text-gray-600 text-sm">{label}</div>
+  </div>
+)
+
+const PricingTier = ({ 
+  name, 
+  price, 
+  description, 
+  features, 
+  isPopular = false,
+  onSelect 
+}: {
+  name: string
+  price: string
+  description: string
+  features: string[]
+  isPopular?: boolean
+  onSelect: () => void
+}) => (
+  <div className={`relative rounded-2xl border ${isPopular ? 'border-[#C9A24A] ring-2 ring-[#C9A24A]/20' : 'border-gray-200'} bg-white p-6 shadow-lg`}>
+    {isPopular && (
+      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+        <div className="bg-[#C9A24A] text-white px-3 py-1 rounded-full text-xs font-semibold">
+          MOST POPULAR
+        </div>
+      </div>
+    )}
+    
+    <div className="text-center mb-6">
+      <h3 className="text-xl font-bold text-[#0B1B2B]">{name}</h3>
+      <p className="text-gray-600 text-sm mt-1">{description}</p>
+      
+      <div className="mt-4">
+        <div className="text-3xl font-bold text-[#0B1B2B]">
+          {price === 'Free' ? 'Free' : `£${price}`}
+          {price !== 'Free' && <span className="text-lg text-gray-600">/mo</span>}
+        </div>
+      </div>
+
+      <Button 
+        onClick={onSelect}
+        className={`w-full mt-6 ${isPopular ? 'bg-[#C9A24A] hover:bg-[#B8923D]' : 'bg-[#0B1B2B] hover:bg-[#1A2B3B]'} text-white`}
+      >
+        {price === 'Free' ? 'Sign Up Free' : 'Subscribe'} <ArrowRight className="ml-2 h-4 w-4" />
+      </Button>
+    </div>
+
+    <div>
+      <h4 className="font-semibold text-[#0B1B2B] mb-3 text-sm">Includes:</h4>
+      <ul className="space-y-2">
+        {features.map((feature, index) => (
+          <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
+            <div className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+            </div>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+)
 
 export default function DirectoryPage() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  
-  const filteredSuppliers = selectedCategory === 'All' 
-    ? suppliers
-    : suppliers.filter(s => s.category === selectedCategory);
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [loading, setLoading] = useState(false)
 
+  const handleSubscribe = async (plan: string) => {
+    setLoading(true)
+    try {
+      if (plan === 'free') {
+        // Redirect to signup
+        window.location.href = '/account'
+      } else {
+        // Handle paid subscription
+        const response = await fetch('/api/directory/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plan })
+        })
+        
+        const { url } = await response.json()
+        if (url) {
+          window.location.href = url
+        }
+      }
+    } catch (error) {
+      console.error('Subscription error:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const categories = ['All', 'Movers', 'Housing', 'Local Expert', 'Visa', 'Legal', 'Financial']
+
+  const previewSuppliers = [
+    {
+      name: 'Cadogan Tate',
+      category: 'Movers',
+      description: 'International fine art and luxury goods moving specialists',
+      rating: 4.8,
+      isSponsored: true
+    },
+    {
+      name: 'Cheval Collection',
+      category: 'Housing',
+      description: 'Luxury serviced apartments in prime London locations',
+      rating: 4.9,
+      isSponsored: true
+    },
+    {
+      name: 'Black Brick Property Solutions',
+      category: 'Local Expert',
+      description: 'Prime Central London property search and acquisition specialists',
+      rating: 4.9
+    },
+    {
+      name: 'Ward Thomas Removals',
+      category: 'Movers',
+      description: 'Master Removers Group member specializing in international relocations',
+      rating: 4.7
+    }
+  ]
+
+  const pricingTiers = [
+    {
+      name: 'Basic Access',
+      price: 'Free',
+      description: 'Limited directory preview',
+      features: [
+        'View 3 suppliers per month',
+        'Basic contact information',
+        'Standard support'
+      ]
+    },
+    {
+      name: 'Premium Directory',
+      price: '47',
+      description: 'Full directory access',
+      isPopular: true,
+      features: [
+        'Unlimited supplier access',
+        'Direct contact details',
+        'Detailed reviews & ratings',
+        'Advanced filtering options',
+        'Priority email support',
+        'Exclusive member events'
+      ]
+    },
+    {
+      name: 'VIP Concierge',
+      price: '147',
+      description: 'White-glove service',
+      features: [
+        'Everything in Premium',
+        'Personal concierge matching',
+        'Negotiation assistance',
+        'Priority booking support',
+        'Phone consultation included',
+        'Dedicated account manager'
+      ]
+    }
+  ]
 
   return (
-    <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className="border-b border-gray-100 bg-surface/80 backdrop-blur-sm sticky top-0 z-40">
-        <div className="container flex justify-between items-center py-4">
-          <div className="font-display text-2xl font-bold text-ink">Relo Network</div>
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" asChild>
-              <a href="/">Home</a>
-            </Button>
-            <Button variant="ghost" size="sm" asChild>
-              <a href="/concierge">Concierge</a>
-            </Button>
-            <Button variant="outline" size="sm">Sign In</Button>
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      {/* Hero Section */}
+      <div className="bg-[#0B1B2B] text-white">
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <div className="text-center">
+            <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
+              <Shield className="h-4 w-4 text-[#C9A24A] mr-2" />
+              <span className="text-[#C9A24A] text-sm font-medium">Premium Network</span>
+            </div>
+            
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6">
+              Access London's <span className="text-[#C9A24A]">Premier</span> Relocation Network
+            </h1>
+            
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+              Exclusive directory of vetted, premium service providers. Every partner is personally screened, continuously monitored, and guaranteed to deliver exceptional service for your London relocation.
+            </p>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+              <StatCard icon={Users} number="150+" label="Vetted Partners" />
+              <StatCard icon={Star} number="4.8/5" label="Avg Rating" />
+              <StatCard icon={Shield} number="100%" label="Verified" />
+              <StatCard icon={Eye} number="2.3K+" label="Monthly Searches" />
+            </div>
+
+            <div className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full inline-block text-sm font-semibold">
+              🔒 Exclusive Access • Premium Partners Only
+            </div>
           </div>
         </div>
-      </nav>
+      </div>
 
-      <main className="section-padding">
-        <div className="container">
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="mb-6">Vetted London Partners</h1>
-            <p className="text-xl mb-8">
-              Every service provider has been personally vetted and continuously monitored for excellence.
+      {/* Preview Section */}
+      <div className="max-w-6xl mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">
+            Directory Preview
+          </h2>
+          <p className="text-gray-600 text-lg">
+            Get a glimpse of our premium partner network
+          </p>
+        </div>
+
+        {/* Category Filter Preview */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((category) => (
+            <Button
+              key={category}
+              variant={selectedCategory === category ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setSelectedCategory(category)}
+              className={selectedCategory === category ? 'bg-[#C9A24A] hover:bg-[#B8923D] text-white' : ''}
+            >
+              {category}
+            </Button>
+          ))}
+        </div>
+
+        {/* Blurred Suppliers Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+          {previewSuppliers.map((supplier, index) => (
+            <BlurredSupplierCard key={index} {...supplier} />
+          ))}
+        </div>
+
+        {/* Access Required Notice */}
+        <div className="bg-gradient-to-br from-[#C9A24A]/10 to-[#C9A24A]/5 rounded-2xl p-8 border border-[#C9A24A]/20 text-center">
+          <Lock className="h-12 w-12 text-[#C9A24A] mx-auto mb-4" />
+          <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4">
+            Login Required to View Full Directory
+          </h3>
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Access detailed profiles, contact information, reviews, and direct booking for 150+ verified London relocation partners.
+          </p>
+          <Button 
+            onClick={() => handleSubscribe('free')}
+            size="lg"
+            className="bg-[#C9A24A] hover:bg-[#B8923D] text-white"
+          >
+            Sign Up for Free Preview <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Pricing Section */}
+      <div className="bg-gray-50 py-20">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">
+              Choose Your Access Level
+            </h2>
+            <p className="text-gray-600 text-lg">
+              From basic preview to VIP concierge service
             </p>
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Button>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {pricingTiers.map((tier) => (
+              <PricingTier 
+                key={tier.name}
+                {...tier}
+                onSelect={() => handleSubscribe(tier.name.toLowerCase().replace(' ', '_'))}
+              />
             ))}
           </div>
-
-          {/* Suppliers Grid */}
-          <div className="grid lg:grid-cols-2 gap-6 mb-16">
-            {filteredSuppliers.map((supplier) => {
-              const initials = supplier.name
-                .split(' ')
-                .map(word => word[0])
-                .join('')
-                .substring(0, 2)
-                .toUpperCase();
-              
-              return (
-                <div key={supplier.id} className="card-luxury p-8">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-sm font-medium text-ink">{initials}</span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-medium text-ink">{supplier.name}</h3>
-                        {supplier.status === 'sponsored' && (
-                          <Badge className="bg-accent text-primary text-xs">Sponsor</Badge>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <Badge variant="outline" className="text-xs">{supplier.category}</Badge>
-                        <div className="flex items-center gap-1 text-xs text-muted">
-                          <span className="text-accent">⭐</span>
-                          <span>{supplier.rating}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <p className="text-sm text-muted mb-4 leading-relaxed">
-                    {supplier.description}
-                  </p>
-                  
-                  <div className="space-y-3 mb-6">
-                    <div>
-                      <div className="text-xs text-muted mb-2">Areas</div>
-                      <div className="flex flex-wrap gap-1">
-                        {supplier.coverage.map((area, index) => (
-                          <span key={index} className="inline-flex items-center px-2 py-1 bg-gray-50 text-xs text-ink rounded">
-                            {area}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {supplier.memberships && (
-                      <div>
-                        <div className="text-xs text-muted mb-2">Memberships</div>
-                        <div className="flex flex-wrap gap-1">
-                          {supplier.memberships.map((membership, index) => (
-                            <span key={index} className="inline-flex items-center px-2 py-1 bg-gray-50 text-xs text-ink rounded">
-                              {membership}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className="flex gap-3">
-                    <Button size="sm" className="flex-1">Shortlist</Button>
-                    <Button variant="outline" size="sm" asChild>
-                      <a href={supplier.website} target="_blank" rel="noopener noreferrer">
-                        View
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Partner Application CTA */}
-          <section className="text-center card-luxury p-12">
-            <h2 className="mb-6">Become a Relo Network Partner</h2>
-            <p className="text-xl text-muted mb-8 max-w-2xl mx-auto">
-              Join our exclusive network of vetted service providers and connect with high-quality clients relocating to London.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">Apply to Join</Button>
-              <Button variant="outline" size="lg">Partner Benefits</Button>
-            </div>
-          </section>
         </div>
-      </main>
+      </div>
+
+      {/* Exclusive Benefits */}
+      <div className="py-20">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4">
+              Why Our Directory is Different
+            </h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                1
+              </div>
+              <h4 className="font-semibold text-[#0B1B2B] mb-2">Personally Vetted</h4>
+              <p className="text-gray-600">Every partner undergoes rigorous screening including background checks, insurance verification, and quality assessments.</p>
+            </div>
+            
+            <div className="text-center p-6">
+              <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                2
+              </div>
+              <h4 className="font-semibold text-[#0B1B2B] mb-2">Continuously Monitored</h4>
+              <p className="text-gray-600">Real-time performance tracking and client feedback ensure consistent, exceptional service quality.</p>
+            </div>
+            
+            <div className="text-center p-6">
+              <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                3
+              </div>
+              <h4 className="font-semibold text-[#0B1B2B] mb-2">Exclusive Access</h4>
+              <p className="text-gray-600">Many partners offer special rates and priority service exclusively to Relo Network members.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Final CTA */}
+      <div className="bg-[#C9A24A] text-white py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h3 className="text-3xl font-bold mb-4">
+            Ready to Access London's Premier Network?
+          </h3>
+          <p className="text-lg mb-8 text-white/90">
+            Join thousands of satisfied clients who've found their perfect London relocation partners
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              onClick={() => handleSubscribe('premium_directory')}
+              size="lg"
+              className="bg-white text-[#C9A24A] hover:bg-gray-100"
+              disabled={loading}
+            >
+              {loading ? 'Processing...' : 'Get Full Access'} <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            <Button 
+              onClick={() => handleSubscribe('free')}
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-[#C9A24A]"
+              disabled={loading}
+            >
+              Try Free Preview
+            </Button>
+          </div>
+          
+          <p className="text-sm text-white/80 mt-4">
+            🔐 Secure access • 💎 Premium partners • 🎯 Instant activation
+          </p>
+        </div>
+      </div>
     </div>
-  );
+  )
 }

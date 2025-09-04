@@ -247,23 +247,209 @@ export function createSupplierApprovedEmail(
         
         <a href="https://therelonetwork.com/partners/dashboard" class="button">Access Partner Dashboard</a>
         
-        <p><strong>What's Next:</strong></p>
-        <ul>
-          <li>Complete your partner profile with additional details</li>
-          <li>Upload your company logo and portfolio images</li>
-          <li>Review our partner guidelines and best practices</li>
-          <li>Start receiving and responding to client inquiries</li>
-        </ul>
-        
-        <p>Our partner success team is here to help you make the most of your Relo Network membership. If you have any questions, don't hesitate to reach out.</p>
-        
-        <p>Welcome to the network!</p>
-        
         <p>Best regards,<br>
-        The Relo Network Partner Team</p>
+        The Relo Network Team</p>
       </div>
     ` })
-  };
+  }
+}
+
+// Partner subscription confirmation
+export function createPartnerSubscriptionEmail(
+  email: string,
+  planName: string,
+  amount: number
+): EmailTemplate {
+  return {
+    to: [email],
+    subject: `Welcome to Relo Network ${planName} - Let's Get You Started! 🚀`,
+    html: EmailWrapper({ children: `
+      <div class="content">
+        <h2>Welcome to the Relo Network Partner Program! 🎉</h2>
+        <p>Thank you for subscribing to our <strong>${planName}</strong> plan. You're now part of London's most exclusive relocation network.</p>
+        
+        <div style="background: #F0F9FF; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #C9A24A;">
+          <h3 style="margin-top: 0; color: #0B1B2B;">Your Subscription Details</h3>
+          <p><strong>Plan:</strong> ${planName}</p>
+          <p><strong>Monthly Amount:</strong> £${amount}</p>
+          <p><strong>Status:</strong> Active</p>
+          <p><strong>Billing:</strong> Monthly on the same date</p>
+        </div>
+        
+        <h3>What happens next?</h3>
+        <ul>
+          <li><strong>Profile Setup:</strong> Complete your partner profile within 24 hours</li>
+          <li><strong>Lead Generation:</strong> Start receiving qualified leads immediately</li>
+          <li><strong>Priority Support:</strong> Access to dedicated partner success team</li>
+          <li><strong>Exclusive Events:</strong> Invites to networking and training events</li>
+        </ul>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="https://therelonetwork.com/partners/setup" class="button">Complete Profile Setup</a>
+        </div>
+        
+        <div style="background: #FFF7ED; padding: 16px; border-radius: 6px; margin: 20px 0;">
+          <h4 style="margin-top: 0; color: #C9A24A;">🎯 Pro Tip for Success</h4>
+          <p>Partners who complete their profile setup within 24 hours receive 3x more leads in their first month!</p>
+        </div>
+        
+        <p>Questions? Reply to this email or call our partner success team at +44 20 7123 4567.</p>
+        
+        <p>Best regards,<br>
+        The Relo Network Team</p>
+      </div>
+    ` })
+  }
+}
+
+// Voice agent subscription confirmation
+export function createVoiceSubscriptionEmail(
+  email: string,
+  planName: string,
+  amount: number
+): EmailTemplate {
+  return {
+    to: [email],
+    subject: `Your Ask Relo ${planName} Plan is Active - Start Chatting! 🤖`,
+    html: EmailWrapper({ children: `
+      <div class="content">
+        <h2>Welcome to Ask Relo ${planName}! 🎉</h2>
+        <p>Your AI voice assistant is now active and ready to help you navigate your London relocation journey.</p>
+        
+        <div style="background: #F0F9FF; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #C9A24A;">
+          <h3 style="margin-top: 0; color: #0B1B2B;">Your Plan Details</h3>
+          <p><strong>Plan:</strong> ${planName}</p>
+          <p><strong>Monthly Amount:</strong> £${amount}</p>
+          <p><strong>Usage:</strong> ${planName === 'Professional' ? '120 minutes/month' : 'Unlimited'}</p>
+          <p><strong>Features:</strong> ${planName === 'Professional' ? 'Voice AI + Property Search' : 'Everything + Human Support'}</p>
+        </div>
+        
+        <h3>Ready to start your London journey?</h3>
+        <ul>
+          <li><strong>Voice Chat:</strong> Ask anything about London neighborhoods, transport, or properties</li>
+          <li><strong>Property Search:</strong> Get real-time property recommendations</li>
+          <li><strong>Commute Analysis:</strong> Optimize your location based on work/lifestyle</li>
+          ${planName === 'Concierge' ? '<li><strong>Human Backup:</strong> Escalate to expert concierges anytime</li>' : ''}
+        </ul>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="https://therelonetwork.com/ask" class="button">Start Voice Chat Now</a>
+        </div>
+        
+        <div style="background: #FFF7ED; padding: 16px; border-radius: 6px; margin: 20px 0;">
+          <h4 style="margin-top: 0; color: #C9A24A;">💡 Getting Started Tips</h4>
+          <ul style="margin: 10px 0;">
+            <li>Try: "Find me a 2-bed flat near Canary Wharf under £3000/month"</li>
+            <li>Ask: "What's the best area for families with good schools?"</li>
+            <li>Say: "I work in Tech City, where should I live?"</li>
+          </ul>
+        </div>
+        
+        <p>Need help? Our support team is available 24/7 at support@therelonetwork.com</p>
+        
+        <p>Best regards,<br>
+        The Relo Network Team</p>
+      </div>
+    ` })
+  }
+}
+
+// Directory access confirmation
+export function createDirectorySubscriptionEmail(
+  email: string,
+  planName: string,
+  amount: number
+): EmailTemplate {
+  return {
+    to: [email],
+    subject: `Directory Access Activated - Explore London's Premier Network! 🔓`,
+    html: EmailWrapper({ children: `
+      <div class="content">
+        <h2>Your Premium Directory Access is Active! 🔓</h2>
+        <p>Welcome to London's most exclusive relocation service directory. You now have ${planName === 'Basic Access' ? 'limited preview' : 'full'} access to our vetted partner network.</p>
+        
+        <div style="background: #F0F9FF; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #C9A24A;">
+          <h3 style="margin-top: 0; color: #0B1B2B;">Your Access Level</h3>
+          <p><strong>Plan:</strong> ${planName}</p>
+          ${amount > 0 ? `<p><strong>Monthly Amount:</strong> £${amount}</p>` : '<p><strong>Cost:</strong> Free Preview</p>'}
+          <p><strong>Partners Available:</strong> ${planName === 'Basic Access' ? '3 per month' : '150+ unlimited'}</p>
+        </div>
+        
+        <h3>What you can access:</h3>
+        <ul>
+          ${planName === 'Basic Access' ? 
+            '<li>Preview of 3 verified partners per month</li><li>Basic contact information</li><li>Standard customer support</li>' :
+            '<li>Full access to 150+ verified partners</li><li>Direct contact details and booking</li><li>Detailed reviews and ratings</li><li>Advanced filtering and search</li><li>Priority customer support</li>'
+          }
+          ${planName === 'VIP Concierge' ? '<li>Personal concierge matching service</li><li>Negotiation assistance</li><li>Dedicated account manager</li>' : ''}
+        </ul>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="https://therelonetwork.com/directory" class="button">Browse Directory Now</a>
+        </div>
+        
+        <div style="background: #FFF7ED; padding: 16px; border-radius: 6px; margin: 20px 0;">
+          <h4 style="margin-top: 0; color: #C9A24A;">🏆 Featured This Month</h4>
+          <p>Check out our top-rated moving companies, luxury housing providers, and visa specialists - all with exclusive member pricing!</p>
+        </div>
+        
+        <p>Questions about any of our partners? Our team personally knows each provider and can make recommendations.</p>
+        
+        <p>Best regards,<br>
+        The Relo Network Team</p>
+      </div>
+    ` })
+  }
+}
+
+// Corporate inquiry confirmation
+export function createCorporateInquiryEmail(
+  email: string,
+  companyName: string,
+  employeeCount: number
+): EmailTemplate {
+  return {
+    to: [email],
+    subject: `Corporate Relocation Demo Requested - Let's Transform Your Global Mobility`,
+    html: EmailWrapper({ children: `
+      <div class="content">
+        <h2>Thank you for your corporate relocation inquiry! 🏢</h2>
+        <p>We've received your request for a corporate demo and our enterprise team will be in touch within 24 hours.</p>
+        
+        <div style="background: #F0F9FF; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #C9A24A;">
+          <h3 style="margin-top: 0; color: #0B1B2B;">Your Inquiry Details</h3>
+          <p><strong>Company:</strong> ${companyName}</p>
+          <p><strong>Estimated Employees:</strong> ${employeeCount}</p>
+          <p><strong>Potential Savings:</strong> £${(employeeCount * 15000).toLocaleString()}/year</p>
+        </div>
+        
+        <h3>What to expect in your demo:</h3>
+        <ul>
+          <li><strong>ROI Analysis:</strong> Detailed breakdown of cost savings vs internal handling</li>
+          <li><strong>Success Stories:</strong> Case studies from similar companies</li>
+          <li><strong>Custom Solution:</strong> Tailored approach for your specific needs</li>
+          <li><strong>Implementation Plan:</strong> 30-day setup timeline and milestones</li>
+        </ul>
+        
+        <div style="background: #FFF7ED; padding: 16px; border-radius: 6px; margin: 20px 0;">
+          <h4 style="margin-top: 0; color: #C9A24A;">📊 Did You Know?</h4>
+          <p>Companies using our managed service reduce relocation costs by 73% and improve employee satisfaction by 89% compared to internal handling.</p>
+        </div>
+        
+        <p>In the meantime, feel free to review our corporate brochure and case studies:</p>
+        <div style="text-align: center; margin: 20px 0;">
+          <a href="https://therelonetwork.com/corporate/resources" class="button">View Resources</a>
+        </div>
+        
+        <p>Questions before our call? Contact our enterprise team directly at corporate@therelonetwork.com or +44 20 7123 4567.</p>
+        
+        <p>Best regards,<br>
+        Sarah Chen<br>
+        Head of Enterprise Solutions<br>
+        The Relo Network</p>
+      </div>
+    ` })
+  }
 }
 
 // Export the send email function

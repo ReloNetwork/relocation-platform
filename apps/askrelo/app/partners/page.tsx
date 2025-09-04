@@ -1,101 +1,322 @@
-"use client";
-import { useState } from "react";
+'use client'
 
-type PlanKey = "starter" | "featured" | "sponsored";
+import { useState, useEffect } from 'react'
+import { Check, Star, ArrowRight, Users, Clock, Zap } from 'lucide-react'
+import { Button } from '@/ui/components/button'
 
-const PLANS: Record<PlanKey, { name: string; monthly: number; annual: number; features: string[] }> = {
-  starter:  { name: "Starter",  monthly: 395,  annual: 3950,  features: ["Directory profile", "Concierge referrals"] },
-  featured: { name: "Featured", monthly: 795,  annual: 7950,  features: ["Corridor features", "Editorial inclusion", "Lead alerts"] },
-  sponsored:{ name: "Sponsored",monthly: 1495, annual: 14950, features: ["Homepage modules", "Concierge priority", "Quarterly review"] },
-};
+const PricingTier = ({ 
+  name, 
+  price, 
+  originalPrice, 
+  description, 
+  features, 
+  isPopular = false, 
+  priceId,
+  onSelect 
+}: {
+  name: string
+  price: string
+  originalPrice: string
+  description: string
+  features: string[]
+  isPopular?: boolean
+  priceId: string
+  onSelect: (priceId: string) => void
+}) => (
+  <div className={`relative rounded-2xl border ${isPopular ? 'border-[#C9A24A] ring-2 ring-[#C9A24A]/20' : 'border-gray-200'} bg-white p-8 shadow-lg`}>
+    {isPopular && (
+      <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+        <div className="bg-[#C9A24A] text-white px-4 py-2 rounded-full text-sm font-semibold">
+          MOST POPULAR
+        </div>
+      </div>
+    )}
+    
+    <div className="text-center">
+      <h3 className="text-2xl font-bold text-[#0B1B2B]">{name}</h3>
+      <p className="text-gray-600 mt-2">{description}</p>
+      
+      <div className="mt-6">
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-gray-400 line-through text-lg">£{originalPrice}/mo</span>
+          <span className="bg-red-100 text-red-800 px-2 py-1 rounded text-sm font-semibold">50% OFF</span>
+        </div>
+        <div className="text-4xl font-bold text-[#0B1B2B] mt-2">
+          £{price}<span className="text-lg text-gray-600">/mo</span>
+        </div>
+        <p className="text-sm text-gray-500 mt-1">Founding Partner Rate</p>
+      </div>
+
+      <Button 
+        onClick={() => onSelect(priceId)}
+        className={`w-full mt-8 ${isPopular ? 'bg-[#C9A24A] hover:bg-[#B8923D]' : 'bg-[#0B1B2B] hover:bg-[#1A2B3B]'} text-white`}
+        size="lg"
+      >
+        Start Earning Today <ArrowRight className="ml-2 h-4 w-4" />
+      </Button>
+    </div>
+
+    <div className="mt-8">
+      <h4 className="font-semibold text-[#0B1B2B] mb-4">What's included:</h4>
+      <ul className="space-y-3">
+        {features.map((feature, index) => (
+          <li key={index} className="flex items-start gap-3">
+            <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+            <span className="text-gray-700">{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+)
+
+const StatCard = ({ icon: Icon, number, label }: { icon: any, number: string, label: string }) => (
+  <div className="text-center">
+    <Icon className="h-8 w-8 text-[#C9A24A] mx-auto mb-3" />
+    <div className="text-2xl font-bold text-[#0B1B2B]">{number}</div>
+    <div className="text-gray-600">{label}</div>
+  </div>
+)
+
+const CountdownTimer = () => {
+  const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 14, minutes: 32, seconds: 45 })
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 }
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
+        } else if (prev.hours > 0) {
+          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
+        } else if (prev.days > 0) {
+          return { days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 }
+        }
+        return prev
+      })
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <div className="flex gap-4 justify-center">
+      {[
+        { value: timeLeft.days, label: 'Days' },
+        { value: timeLeft.hours, label: 'Hours' },
+        { value: timeLeft.minutes, label: 'Minutes' },
+        { value: timeLeft.seconds, label: 'Seconds' }
+      ].map((item, index) => (
+        <div key={index} className="text-center">
+          <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-lg flex items-center justify-center text-xl font-bold">
+            {String(item.value).padStart(2, '0')}
+          </div>
+          <div className="text-sm text-gray-600 mt-1">{item.label}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export default function PartnersPage() {
-  const [cadence, setCadence] = useState<"monthly" | "annual">("monthly");
-  const [loading, setLoading] = useState<string>("");
+  const [loading, setLoading] = useState(false)
 
-  async function go(plan: PlanKey) {
+  const handleCheckout = async (priceId: string) => {
+    setLoading(true)
     try {
-      setLoading(plan);
-      const email = ""; // optional prefill from session if logged in
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan, cadence, email }),
-      });
-      const data = await res.json();
-      if (data?.url) window.location.href = data.url;
-      else alert(data?.error || "Could not create checkout session");
+      const response = await fetch('/api/suppliers/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId })
+      })
+      
+      const { url } = await response.json()
+      if (url) {
+        window.location.href = url
+      }
+    } catch (error) {
+      console.error('Checkout error:', error)
     } finally {
-      setLoading("");
+      setLoading(false)
     }
   }
 
+  const pricingTiers = [
+    {
+      name: 'Basic Partner',
+      price: '125',
+      originalPrice: '250',
+      description: 'Perfect for growing service providers',
+      priceId: 'price_basic_partner',
+      features: [
+        'Standard directory listing',
+        'Client lead notifications',
+        'Basic analytics dashboard',
+        'Email support',
+        'Partner resource library',
+        'Monthly networking events'
+      ]
+    },
+    {
+      name: 'Featured Partner',
+      price: '375',
+      originalPrice: '750',
+      description: 'Enhanced visibility and priority access',
+      isPopular: true,
+      priceId: 'price_featured_partner',
+      features: [
+        'Featured directory placement',
+        'Priority lead distribution',
+        'Advanced analytics & reporting',
+        'Phone + email support',
+        'Custom partner profile page',
+        'Weekly networking events',
+        'Exclusive client referrals',
+        'Marketing co-op opportunities'
+      ]
+    },
+    {
+      name: 'Exclusive Partner',
+      price: '875',
+      originalPrice: '1750',
+      description: 'Maximum exposure and exclusive benefits',
+      priceId: 'price_exclusive_partner',
+      features: [
+        'Exclusive category ownership',
+        'Top directory placement',
+        'Dedicated account manager',
+        '24/7 priority support',
+        'Custom integration options',
+        'White-label opportunities',
+        'Exclusive enterprise referrals',
+        'Revenue sharing programs',
+        'Advisory board participation'
+      ]
+    }
+  ]
+
   return (
-    <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className="border-b border-gray-100 bg-surface/80 backdrop-blur-sm sticky top-0 z-40">
-        <div className="container flex justify-between items-center py-4">
-          <a href="/" className="font-display text-2xl font-bold text-ink hover:text-[var(--primary)] transition">
-            Relo Network
-          </a>
-          <div className="flex items-center space-x-4">
-            <a href="/directory" className="text-sm text-[var(--muted)] hover:text-ink transition">Directory</a>
-            <a href="/concierge" className="text-sm text-[var(--muted)] hover:text-ink transition">Concierge</a>
-            <a href="/" className="text-sm text-[var(--muted)] hover:text-ink transition">Home</a>
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      {/* Hero Section */}
+      <div className="bg-[#0B1B2B] text-white">
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <div className="text-center">
+            <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
+              <Star className="h-4 w-4 text-[#C9A24A] mr-2" />
+              <span className="text-[#C9A24A] text-sm font-medium">Founding Partner Program</span>
+            </div>
+            
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6">
+              Join London's Most <span className="text-[#C9A24A]">Exclusive</span> Relocation Network
+            </h1>
+            
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Connect with high-value clients relocating to London. Premium leads, verified opportunities, and exclusive partnerships that drive real revenue.
+            </p>
+
+            {/* Social Proof */}
+            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-12">
+              <StatCard icon={Users} number="47" label="Partners Joined" />
+              <StatCard icon={Zap} number="£2.3M" label="Revenue Generated" />
+              <StatCard icon={Clock} number="30" label="Days Active" />
+            </div>
+
+            {/* Urgency Timer */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto">
+              <div className="text-[#C9A24A] font-semibold mb-2">⚡ Founding Rates Expire In:</div>
+              <CountdownTimer />
+              <div className="text-sm text-gray-300 mt-2">Limited to first 100 partners only</div>
+            </div>
           </div>
         </div>
-      </nav>
-
-      <main className="mx-auto max-w-6xl px-6 pt-16 pb-16">
-        <h1 className="font-serif text-4xl text-center">Get Listed on The Relo Network</h1>
-        <p className="mt-3 text-center text-[var(--muted)]">Join a vetted directory used by high-intent clients.</p>
-
-      <div className="mt-6 flex items-center justify-center gap-3">
-        <button
-          onClick={() => setCadence("monthly")}
-          className={`px-4 py-2 rounded-md border ${cadence === "monthly" ? "bg-[var(--primary)] text-white" : "bg-white text-[var(--ink)]"}`}
-        >
-          Monthly
-        </button>
-        <button
-          onClick={() => setCadence("annual")}
-          className={`px-4 py-2 rounded-md border ${cadence === "annual" ? "bg-[var(--primary)] text-white" : "bg-white text-[var(--ink)]"}`}
-        >
-          Annual
-        </button>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {(Object.keys(PLANS) as PlanKey[]).map((k) => {
-          const p = PLANS[k];
-          const price = cadence === "monthly" ? p.monthly : p.annual;
-          const suffix = cadence === "monthly" ? "/mo" : "/yr";
-          return (
-            <div key={k} className="rounded-2xl border bg-white p-6 shadow-sm flex flex-col">
-              <div className="flex-1">
-                <h3 className="text-xl font-medium">{p.name}</h3>
-                <p className="mt-1 text-sm text-[var(--muted)]">{p.features[0]}</p>
-                <div className="mt-4 text-3xl font-semibold">£{price.toLocaleString()}<span className="text-base font-normal text-[var(--muted)]">{suffix}</span></div>
-                <ul className="mt-4 space-y-2 text-sm">
-                  {p.features.map((f) => <li key={f}>• {f}</li>)}
-                </ul>
+      {/* Pricing Section */}
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">
+            Choose Your Partnership Level
+          </h2>
+          <p className="text-gray-600 text-lg">
+            All plans include our 50% founding partner discount
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {pricingTiers.map((tier) => (
+            <PricingTier 
+              key={tier.name}
+              {...tier}
+              onSelect={handleCheckout}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Trust Indicators */}
+      <div className="bg-gray-50 py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4">
+              Why London's Top Service Providers Choose Us
+            </h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                1
               </div>
-              <button
-                onClick={() => go(k)}
-                disabled={loading === k}
-                className="mt-6 inline-flex items-center justify-center rounded-md px-4 py-2 border border-[var(--primary)] text-[var(--primary)] bg-white hover:bg-[color-mix(in_srgb,var(--primary)_6%,white)] transition focus-ring"
-              >
-                {loading === k ? "Preparing…" : "Get listed"}
-              </button>
+              <h4 className="font-semibold text-[#0B1B2B] mb-2">Pre-Qualified Leads</h4>
+              <p className="text-gray-600">Every client is verified and ready to spend. No tire-kickers, only serious relocations.</p>
             </div>
-          );
-        })}
+            
+            <div className="text-center p-6">
+              <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                2
+              </div>
+              <h4 className="font-semibold text-[#0B1B2B] mb-2">Exclusive Territory</h4>
+              <p className="text-gray-600">Limited partners per category ensures you get maximum opportunities without oversaturation.</p>
+            </div>
+            
+            <div className="text-center p-6">
+              <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                3
+              </div>
+              <h4 className="font-semibold text-[#0B1B2B] mb-2">Premium Clients</h4>
+              <p className="text-gray-600">Corporate relocations, high-net-worth individuals, and international professionals.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <p className="mt-6 text-xs text-center text-[var(--muted)]">
-        You'll be taken to Stripe Checkout. Sponsored plans may require manual approval and KYC.
-        </p>
-      </main>
+      {/* Final CTA */}
+      <div className="bg-[#C9A24A] text-white py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h3 className="text-3xl font-bold mb-4">
+            Start Earning Premium Commissions Today
+          </h3>
+          <p className="text-lg mb-8 text-white/90">
+            Join the exclusive network that's transforming London relocations. Limited founding partner spots available.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              onClick={() => handleCheckout('price_featured_partner')}
+              size="lg"
+              className="bg-white text-[#C9A24A] hover:bg-gray-100"
+              disabled={loading}
+            >
+              {loading ? 'Processing...' : 'Join as Featured Partner'} <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+          
+          <p className="text-sm text-white/80 mt-4">
+            ⚡ Founding rates expire Friday • No setup fees • Cancel anytime
+          </p>
+        </div>
+      </div>
     </div>
-  );
+  )
 }

@@ -6,14 +6,22 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 })
 
 const PRICE_MAP = {
-  'price_basic_partner': process.env.STRIPE_PRICE_BASIC_PARTNER!,
-  'price_featured_partner': process.env.STRIPE_PRICE_FEATURED_PARTNER!,
-  'price_exclusive_partner': process.env.STRIPE_PRICE_EXCLUSIVE_PARTNER!
+  'free_trial': null, // Free trial - no Stripe needed
+  'price_professional_voice': process.env.STRIPE_PRICE_PROFESSIONAL_VOICE!,
+  'price_concierge_voice': process.env.STRIPE_PRICE_CONCIERGE_VOICE!
 }
 
 export async function POST(request: NextRequest) {
   try {
     const { priceId } = await request.json()
+
+    // Handle free trial
+    if (priceId === 'free_trial') {
+      return NextResponse.json({ 
+        url: '/account?trial=voice',
+        message: 'Free trial activated'
+      })
+    }
 
     const stripePriceId = PRICE_MAP[priceId as keyof typeof PRICE_MAP]
     
@@ -33,15 +41,15 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: 'subscription',
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/account?success=partner&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/partners`,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/account?success=voice&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/ask-relo-pricing`,
       metadata: {
-        product_type: 'partner_subscription',
+        product_type: 'voice_agent',
         plan: priceId
       },
       subscription_data: {
         metadata: {
-          product_type: 'partner_subscription',
+          product_type: 'voice_agent',
           plan: priceId
         }
       },
@@ -52,7 +60,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ url: session.url })
   } catch (error) {
-    console.error('Partner checkout error:', error)
+    console.error('Voice agent checkout error:', error)
     return NextResponse.json(
       { error: 'Failed to create checkout session' },
       { status: 500 }
