@@ -30,17 +30,18 @@ export async function POST(request: NextRequest) {
     }
     
     // Insert new waitlist entry
+    // build payload by omitting empty values
     const payload: WaitlistInsert = {
       email: validatedData.email,
-      full_name: validatedData.full_name ?? null,
-      source: validatedData.source ?? null,
-      current_location: validatedData.current_location ?? null,
-      target_location: validatedData.target_location ?? null,
+      ...(validatedData.full_name ? { full_name: validatedData.full_name } : {}),
+      ...(validatedData.source ? { source: validatedData.source } : {}),
+      ...(validatedData.current_location ? { current_location: validatedData.current_location } : {}),
+      ...(validatedData.target_location ? { target_location: validatedData.target_location } : {}),
     };
 
     const { data, error } = await supabase
-      .from('waitlist')        // no generic
-      .insert([payload])       // array form
+      .from('waitlist')
+      .insert([payload])           // array form is safest
       .select('id,email')
       .single();
     
