@@ -104,7 +104,7 @@ export function createWaitlistWelcomeEmail(email: string, name?: string): EmailT
   return {
     to: [email],
     subject: 'Welcome to Relo Network - You\'re on the list! ✨',
-    html: EmailWrapper(`
+    html: EmailWrapper({ children: `
       <div class="content">
         <h2>Welcome ${displayName}!</h2>
         <p>Thank you for joining the Relo Network waiting list. You're now part of an exclusive group preparing for effortless London relocation.</p>
@@ -125,7 +125,7 @@ export function createWaitlistWelcomeEmail(email: string, name?: string): EmailT
         
         <p><em>P.S. Know someone else planning a London move? Share the love and have them join our waiting list too!</em></p>
       </div>
-    `)
+    ` })
   };
 }
 
@@ -141,7 +141,7 @@ export function createTaskAssignedEmail(
   return {
     to: [email],
     subject: `New Task Assigned: ${taskTitle}`,
-    html: EmailWrapper(`
+    html: EmailWrapper({ children: `
       <div class="content">
         <h2>You have a new task! 📋</h2>
         <p>A new task has been assigned to you for your London relocation case.</p>
@@ -160,7 +160,7 @@ export function createTaskAssignedEmail(
         <p>Best regards,<br>
         Your Relo Network Team</p>
       </div>
-    `)
+    ` })
   };
 }
 
@@ -182,7 +182,7 @@ export function createAppointmentBookedEmail(
   return {
     to: [email],
     subject: `Appointment Confirmed: ${appointmentTitle}`,
-    html: EmailWrapper(`
+    html: EmailWrapper({ children: `
       <div class="content">
         <h2>Your appointment is confirmed! 📅</h2>
         <p>We're looking forward to speaking with you about your London relocation.</p>
@@ -222,7 +222,7 @@ export function createAppointmentBookedEmail(
         <p>Best regards,<br>
         Your Relo Network Team</p>
       </div>
-    `)
+    ` })
   };
 }
 
@@ -235,7 +235,7 @@ export function createSupplierApprovedEmail(
   return {
     to: [email],
     subject: `Welcome to Relo Network Partners! Your ${supplierName} listing is now live`,
-    html: EmailWrapper(`
+    html: EmailWrapper({ children: `
       <div class="content">
         <h2>Congratulations! You're now a Relo Network Partner 🎉</h2>
         <p>Your supplier listing for <strong>${supplierName}</strong> has been approved and is now live on our platform.</p>
@@ -262,7 +262,7 @@ export function createSupplierApprovedEmail(
         <p>Best regards,<br>
         The Relo Network Partner Team</p>
       </div>
-    `)
+    ` })
   };
 }
 

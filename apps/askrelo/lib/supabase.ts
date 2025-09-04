@@ -204,6 +204,43 @@ export type Database = {
           status?: 'active' | 'converted' | 'unsubscribed';
         };
       };
+      appointments: {
+        Row: {
+          id: string;
+          case_id: string;
+          title: string;
+          description: string | null;
+          starts_at: string;
+          ends_at: string;
+          location: string | null;
+          cal_external_id: string | null;
+          created_by: string | null;
+          attendees_json: any;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          case_id: string;
+          title: string;
+          description?: string;
+          starts_at: string;
+          ends_at: string;
+          location?: string;
+          cal_external_id?: string;
+          created_by?: string;
+          attendees_json?: any;
+        };
+        Update: {
+          title?: string;
+          description?: string;
+          starts_at?: string;
+          ends_at?: string;
+          location?: string;
+          cal_external_id?: string;
+          created_by?: string;
+          attendees_json?: any;
+        };
+      };
     };
   };
 };
