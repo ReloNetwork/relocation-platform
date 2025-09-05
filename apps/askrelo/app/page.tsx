@@ -4,141 +4,132 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/ui/components/button'
 import { Calendar, ChevronRight, Star, Shield, Mic, Play, Volume2, ArrowRight, Clock, Users, Award, Eye, Building2 } from 'lucide-react'
 
-// Custom CSS for glassmorphic effects and animations
+// Enhanced CSS with refined design system
 const customStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
   
   * {
     font-family: 'Inter', sans-serif;
   }
   
+  :root {
+    --accent-blue: #3B82F6;
+    --accent-blue-light: #60A5FA;
+    --accent-blue-dark: #2563EB;
+    --accent-blue-ultra: #1E40AF;
+  }
+  
   .glass-primary {
     backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
   
-  .glass-secondary {
-    backdrop-filter: blur(16px);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  }
-  
-  .glass-content {
-    backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  .glass-hero {
+    backdrop-filter: blur(24px);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
   }
   
   .glass-card {
     backdrop-filter: blur(16px);
-    background: rgba(255, 255, 255, 0.85);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
   }
   
-  .text-glass {
-    color: white;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  .glass-countdown {
+    backdrop-filter: blur(12px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  
+  .blue-gradient-primary {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
+  }
+  
+  .blue-gradient-light {
+    background: linear-gradient(135deg, var(--accent-blue-light) 0%, var(--accent-blue) 100%);
+  }
+  
+  .blue-gradient-bg {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(96, 165, 250, 0.02) 100%);
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(59, 130, 246, 0.1) 30%,
+      rgba(0, 0, 0, 0.4) 70%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
   }
   
   .gallery-image {
-    transition: opacity 2s ease-in-out;
-    filter: brightness(0.65) contrast(1.15) saturate(0.9) sepia(0.1);
+    transition: all 4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.75) contrast(1.1) saturate(1.1);
     object-fit: cover;
     object-position: center;
   }
   
-  .gallery-image.fade-out {
-    opacity: 0;
-  }
-  
-  .gallery-image.fade-in {
-    opacity: 1;
-  }
-  
-  .countdown-digit {
-    backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  .floating-animation {
-    animation: float 8s ease-in-out infinite;
-  }
-  
-  .floating-delayed {
-    animation: float 8s ease-in-out infinite 3s;
+  .gallery-image.active {
+    transform: scale(1.05);
   }
   
   .floating-slow {
-    animation: float 10s ease-in-out infinite 1s;
+    animation: floatSlow 12s ease-in-out infinite;
   }
   
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotateZ(0deg); }
-    25% { transform: translateY(-8px) rotateZ(0.5deg); }
-    50% { transform: translateY(-12px) rotateZ(0deg); }
-    75% { transform: translateY(-6px) rotateZ(-0.5deg); }
+  .floating-medium {
+    animation: floatMedium 8s ease-in-out infinite 2s;
   }
   
-  .premium-glow {
-    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.25);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  .floating-fast {
+    animation: floatFast 6s ease-in-out infinite 1s;
   }
   
-  .premium-glow:hover {
-    box-shadow: 0 12px 48px rgba(99, 102, 241, 0.35);
-    transform: translateY(-2px) scale(1.02);
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(0.5deg); }
+    50% { transform: translateY(-12px) rotate(0deg); }
+    75% { transform: translateY(-6px) rotate(-0.5deg); }
   }
   
-  .hero-overlay {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.3) 0%,
-      rgba(0, 0, 0, 0.1) 30%,
-      rgba(0, 0, 0, 0.2) 70%,
-      rgba(0, 0, 0, 0.4) 100%
-    );
+  @keyframes floatMedium {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-10px) scale(1.02); }
   }
   
-  .accent-gradient {
-    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 50%, #4338CA 100%);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  @keyframes floatFast {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
   }
   
-  .accent-gradient:hover {
-    background: linear-gradient(135deg, #4F46E5 0%, #4338CA 50%, #3730A3 100%);
-    transform: translateY(-1px);
-  }
-  
-  .accent-secondary {
-    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-  }
-  
-  .accent-secondary:hover {
-    background: linear-gradient(135deg, #059669 0%, #047857 100%);
-  }
-  
-  .pulse-glow {
-    animation: pulseGlow 3s ease-in-out infinite;
-  }
-  
-  @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(99, 102, 241, 0.5); }
-  }
-  
-  .slide-in {
-    animation: slideIn 0.8s ease-out forwards;
+  .slide-up-elegant {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(60px) scale(0.95);
+    animation: slideUpElegant 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
   
-  @keyframes slideIn {
+  @keyframes slideUpElegant {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 1.2s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
     to {
       opacity: 1;
       transform: translateY(0);
@@ -146,37 +137,190 @@ const customStyles = `
   }
   
   .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-  
-  .image-navigation {
-    backdrop-filter: blur(8px);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
+  .stagger-2 { animation-delay: 0.3s; }
+  .stagger-3 { animation-delay: 0.5s; }
+  .stagger-4 { animation-delay: 0.7s; }
+  .stagger-5 { animation-delay: 0.9s; }
   
   .nav-dot {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .nav-dot::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-light));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .nav-dot.active {
+    background: var(--accent-blue);
+    transform: scale(1.5);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  }
+  
+  .nav-dot.active::before {
+    opacity: 0.2;
+  }
+  
+  .text-display {
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-accent {
+    background: linear-gradient(135deg, var(--accent-blue-light) 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 12px;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-blue-light) 0%, var(--accent-blue) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .btn-primary:hover::before {
+    opacity: 1;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 48px rgba(59, 130, 246, 0.4);
+  }
+  
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     cursor: pointer;
   }
   
-  .nav-dot.active {
-    background: #6366F1;
-    transform: scale(1.2);
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+  }
+  
+  .service-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(96, 165, 250, 0.01) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .service-card:hover::before {
+    opacity: 1;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(59, 130, 246, 0.15);
+  }
+  
+  .service-header {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .service-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transition: left 0.8s ease;
+  }
+  
+  .service-card:hover .service-header::before {
+    left: 100%;
+  }
+  
+  .pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+  }
+  
+  .text-shadow-elegant {
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .editorial-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  @media (max-width: 768px) {
+    .editorial-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
 `
 
-// London Image Gallery Component  
+// Enhanced London Image Gallery Component with sophisticated transitions
 const LondonGallery = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const londonImages = [
-    'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80', // London City
+    'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80', // London Skyline
     'https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80', // Tower Bridge
     'https://images.unsplash.com/photo-1520637736862-4d197d17c92a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80', // Big Ben
     'https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80', // London Eye
@@ -188,7 +332,7 @@ const LondonGallery = () => {
       setCurrentImageIndex((prev) => (prev + 1) % londonImages.length)
     }
     
-    const interval = setInterval(rotateImages, 4000)
+    const interval = setInterval(rotateImages, 6000)
     return () => clearInterval(interval)
   }, [])
 
@@ -204,14 +348,14 @@ const LondonGallery = () => {
           src={image}
           alt={`London View ${index + 1}`}
           className={`gallery-image absolute inset-0 w-full h-full ${
-            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            index === currentImageIndex ? 'opacity-100 active' : 'opacity-0'
           }`}
         />
       ))}
       
-      {/* Image Navigation Dots */}
+      {/* Enhanced Gallery Navigation */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="image-navigation rounded-full px-4 py-2 flex space-x-3">
+        <div className="glass-primary rounded-full px-6 py-3 flex space-x-4">
           {londonImages.map((_, index) => (
             <div
               key={index}
@@ -264,11 +408,15 @@ const CountdownTimer = () => {
         { value: timeLeft.minutes, label: 'Minutes' },
         { value: timeLeft.seconds, label: 'Seconds' }
       ].map((item, index) => (
-        <div key={index} className="countdown-digit rounded-2xl p-6 text-center">
-          <div className="text-4xl font-bold text-glass">
+        <div 
+          key={index} 
+          className={`glass-countdown rounded-2xl p-6 text-center floating-fast`}
+          style={{ animationDelay: `${index * 0.5}s` }}
+        >
+          <div className="text-3xl font-bold text-white text-shadow-elegant">
             {String(item.value).padStart(2, '0')}
           </div>
-          <div className="text-glass/70 text-sm font-medium mt-2">{item.label}</div>
+          <div className="text-white/70 text-sm font-medium mt-2">{item.label}</div>
         </div>
       ))}
     </>
@@ -284,224 +432,209 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="bg-white text-gray-900 overflow-x-hidden">
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
-      {/* Hero Section with Rotating London Gallery */}
+      {/* Hero Section with Editorial Layout */}
       <div className="relative min-h-screen overflow-hidden">
-        {/* Background Image Gallery */}
+        {/* Background Gallery */}
         <LondonGallery />
         
-        {/* Hero Overlay */}
-        <div className="hero-overlay absolute inset-0 z-10"></div>
+        {/* Hero Gradient Overlay */}
+        <div className="hero-gradient absolute inset-0 z-10"></div>
 
         {/* Header */}
-        <header className="glass-secondary relative z-20 px-6 py-5">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="flex items-center space-x-4 slide-in">
-              <div className="w-12 h-12 rounded-xl accent-gradient flex items-center justify-center pulse-glow">
+        <header className="glass-hero relative z-20 py-6">
+          <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
+            <div className="flex items-center space-x-4 fade-in-up stagger-1">
+              <div className="w-12 h-12 blue-gradient-primary rounded-xl flex items-center justify-center pulse-glow">
                 <span className="text-white font-bold text-xl">R</span>
               </div>
-              <span className="text-glass text-2xl font-semibold">Relo Network</span>
+              <span className="text-white text-2xl font-bold text-shadow-elegant">Relo Network</span>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#services" className="text-glass/90 hover:text-white transition-all duration-300 font-medium">Services</a>
-              <a href="#partners" className="text-glass/90 hover:text-white transition-all duration-300 font-medium">Partners</a>
-              <a href="#about" className="text-glass/90 hover:text-white transition-all duration-300 font-medium">About</a>
-              <button className="accent-gradient px-8 py-3 rounded-xl text-white font-semibold hover:scale-105 transition-all duration-300 premium-glow">
+              <a href="#services" className="text-white/80 hover:text-white transition-all duration-300 font-medium relative group">
+                Services
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#about" className="text-white/80 hover:text-white transition-all duration-300 font-medium relative group">
+                About
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#contact" className="text-white/80 hover:text-white transition-all duration-300 font-medium relative group">
+                Contact
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <button className="btn-primary relative z-10">
                 Sign In
               </button>
             </nav>
           </div>
         </header>
-        
-        {/* Launch Announcement */}
-        <div className="relative z-20 px-6 py-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="glass-primary rounded-2xl px-8 py-4 text-center slide-in stagger-1">
-              <span className="text-glass text-base font-medium">
-                Official Launch: Monday, September 15th • Founding Members get 50% off • Limited to 100 Members
-              </span>
-            </div>
-          </div>
-        </div>
 
-        {/* Hero Content */}
-        <div className="relative z-20 px-6 pt-16 pb-24">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Column */}
-            <div className="space-y-10">
-              {/* Founding Member Badge */}
-              <div className="glass-primary rounded-2xl px-8 py-4 inline-flex items-center space-x-4 floating-animation slide-in stagger-2">
-                <div className="w-8 h-8 accent-gradient rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">★</span>
-                </div>
-                <span className="text-glass font-semibold text-lg">Founding Member Exclusive</span>
-              </div>
-              
-              {/* Main Headline */}
-              <div className="space-y-6 slide-in stagger-3">
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-glass leading-tight">
-                  Relocate to 
-                  <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-300 bg-clip-text text-transparent">
-                    London
-                  </span>
-                </h1>
-                <h2 className="text-4xl md:text-5xl font-light text-glass/90">
-                  Effortlessly.
-                </h2>
-              </div>
-              
-              {/* Description */}
-              <p className="text-xl text-glass/90 leading-relaxed max-w-xl slide-in stagger-4">
-                Join London's most exclusive relocation network. AI-powered guidance, vetted partners, and white-glove service for discerning professionals.
-              </p>
-              
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-6 slide-in stagger-4">
-                <button 
-                  onClick={scrollToWaitlist}
-                  className="accent-gradient px-10 py-5 rounded-2xl text-white font-semibold text-xl hover:scale-105 transition-all duration-300 premium-glow"
-                >
-                  Join Waiting List
-                </button>
-                <button 
-                  onClick={() => window.location.href = '/ask'}
-                  className="glass-primary px-10 py-5 rounded-2xl text-glass font-semibold text-xl hover:bg-white/15 transition-all duration-300"
-                >
-                  Meet Ask Relo
-                </button>
-              </div>
-              
-              {/* Social Proof */}
-              <div className="flex items-center space-x-8 pt-6 slide-in stagger-4">
-                <div className="flex -space-x-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-3 border-white/30 backdrop-blur-sm"></div>
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500 border-3 border-white/30 backdrop-blur-sm"></div>
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 border-3 border-white/30 backdrop-blur-sm"></div>
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 border-3 border-white/30 backdrop-blur-sm"></div>
-                </div>
-                <span className="text-glass/80 text-base font-medium">47 partners joined this month</span>
-              </div>
-            </div>
-            
-            {/* Right Column */}
-            <div className="space-y-8">
-              {/* Countdown Timer */}
-              <div className="glass-primary rounded-3xl p-10 floating-delayed slide-in stagger-3">
-                <h3 className="text-3xl font-bold text-glass text-center mb-8">Launch Countdown</h3>
-                <div className="grid grid-cols-4 gap-6 mb-6">
-                  <CountdownTimer />
-                </div>
-                <p className="text-glass/80 text-center font-medium">Until Official Launch • September 15th, 2025</p>
-              </div>
-              
-              {/* Ask Relo AI Demo */}
-              <div className="glass-primary rounded-3xl p-10 floating-slow slide-in stagger-4">
-                <div className="flex items-center space-x-4 mb-8">
-                  <h3 className="text-2xl font-bold text-glass">Ask Relo AI</h3>
-                  <div className="w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+        {/* Hero Content with Editorial Layout */}
+        <div className="relative z-20 flex items-center min-h-screen pt-32 pb-16">
+          <div className="max-w-7xl mx-auto px-8">
+            <div className="editorial-layout">
+              {/* Left Column - Editorial Content */}
+              <div className="space-y-10">
+                {/* Founding Badge */}
+                <div className="glass-primary rounded-2xl px-8 py-4 inline-flex items-center space-x-4 floating-slow slide-up-elegant stagger-1">
+                  <div className="w-6 h-6 blue-gradient-primary rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">★</span>
+                  </div>
+                  <span className="text-white font-semibold text-shadow-elegant">Founding Member Exclusive</span>
                 </div>
                 
-                <div className="space-y-6 mb-8">
-                  <div className="glass-secondary rounded-2xl p-4 ml-6">
-                    <p className="text-glass/90 font-medium">"Find me a 2BR flat in Marylebone under £4k/month"</p>
-                  </div>
-                  <div className="bg-indigo-500/20 border border-indigo-400/30 rounded-2xl p-4 mr-6">
-                    <p className="text-glass/90 font-medium">"I found 12 verified properties matching your criteria. The closest to Hyde Park is a gorgeous Victorian conversion at £3,800/month. Would you like me to schedule a viewing?"</p>
-                  </div>
+                {/* Main Headline */}
+                <div className="space-y-6 slide-up-elegant stagger-2">
+                  <h1 className="text-display text-shadow-elegant">
+                    Relocate to <span className="text-accent">London</span>
+                  </h1>
+                  <h2 className="text-4xl md:text-5xl font-light text-white/95 text-shadow-elegant">
+                    Effortlessly.
+                  </h2>
                 </div>
                 
-                <button 
-                  onClick={() => window.location.href = '/ask'}
-                  className="accent-gradient w-full py-4 rounded-2xl text-white font-semibold text-lg hover:scale-105 transition-all duration-300"
-                >
-                  Try Ask Relo Free
-                </button>
+                {/* Description */}
+                <p className="text-xl text-white/85 leading-relaxed max-w-lg text-shadow-elegant slide-up-elegant stagger-3">
+                  London's most exclusive relocation network. AI-powered guidance, vetted partners, and white-glove service for discerning professionals.
+                </p>
+                
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-6 slide-up-elegant stagger-4">
+                  <button 
+                    onClick={scrollToWaitlist}
+                    className="btn-primary relative z-10"
+                  >
+                    Join Waiting List
+                  </button>
+                  <button 
+                    onClick={() => window.location.href = '/ask'}
+                    className="btn-secondary"
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
+              
+              {/* Right Column - Countdown */}
+              <div className="slide-up-elegant stagger-5 floating-medium">
+                <div className="glass-primary rounded-3xl p-10">
+                  <h3 className="text-3xl font-bold text-white text-center mb-8 text-shadow-elegant">Launch Countdown</h3>
+                  <div className="grid grid-cols-4 gap-4 mb-6">
+                    <CountdownTimer />
+                  </div>
+                  <p className="text-white/80 text-center font-medium text-shadow-elegant">September 15th, 2025</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
+      {/* Launch Announcement */}
+      <section className="bg-gradient-to-r from-gray-900 to-black py-4">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="text-center">
+            <p className="text-white font-medium">
+              Official Launch Monday, September 15th • Founding Members 50% Off • Limited to 100 Members
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Services Section */}
-      <section id="services" className="py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20 slide-in">
+      <section id="services" className="py-24 blue-gradient-bg">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="text-center mb-20 fade-in-up stagger-1">
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">The London Standard</h2>
-            <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">Premium relocation services designed for London's most discerning professionals</p>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Premium relocation services designed for London's most discerning professionals
+            </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-10">
-            {/* AI Concierge Card */}
-            <div className="group hover:scale-105 transition-all duration-500 slide-in stagger-1">
-              <div className="glass-card rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
-                <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-12 text-center">
-                  <div className="text-7xl font-bold text-white mb-4">AI</div>
-                  <h3 className="text-2xl font-semibold text-white">Concierge</h3>
-                </div>
-                <div className="p-10">
-                  <p className="text-gray-700 text-lg mb-8 leading-relaxed">24/7 AI-powered guidance for every aspect of your London relocation. From property search to school admissions.</p>
-                  <a href="#" className="text-indigo-600 font-semibold text-lg hover:text-indigo-700 transition-colors">Learn More →</a>
-                </div>
+            {/* AI Concierge */}
+            <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-2">
+              <div className="service-header p-10 text-center relative">
+                <div className="text-5xl font-bold text-white mb-4 relative z-10">AI</div>
+                <h3 className="text-2xl font-semibold text-white relative z-10">Concierge</h3>
+              </div>
+              <div className="p-10">
+                <p className="text-gray-700 text-lg mb-8 leading-relaxed">
+                  24/7 AI-powered guidance for every aspect of your London relocation. From property search to school admissions.
+                </p>
+                <a href="#" className="text-blue-600 font-semibold text-lg hover:text-blue-700 transition-colors relative group">
+                  Learn More 
+                  <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                </a>
               </div>
             </div>
             
-            {/* Vetted Network Card */}
-            <div className="group hover:scale-105 transition-all duration-500 slide-in stagger-2">
-              <div className="glass-card rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
-                <div className="bg-gradient-to-br from-emerald-400 to-teal-500 p-12 text-center">
-                  <div className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center">
-                    <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-semibold text-white">Vetted Network</h3>
+            {/* Vetted Network */}
+            <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-3">
+              <div className="service-header p-10 text-center relative">
+                <div className="w-16 h-16 mx-auto mb-6 blue-gradient-primary rounded-2xl flex items-center justify-center relative z-10">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                  </svg>
                 </div>
-                <div className="p-10">
-                  <p className="text-gray-700 text-lg mb-8 leading-relaxed">Curated network of London's finest service providers. All verified, all exceptional, all ready to serve you.</p>
-                  <a href="#" className="text-emerald-600 font-semibold text-lg hover:text-emerald-700 transition-colors">Explore Partners →</a>
-                </div>
+                <h3 className="text-2xl font-semibold text-white relative z-10">Vetted Network</h3>
+              </div>
+              <div className="p-10">
+                <p className="text-gray-700 text-lg mb-8 leading-relaxed">
+                  Curated network of London's finest service providers. All verified, all exceptional, all ready to serve you.
+                </p>
+                <a href="#" className="text-blue-600 font-semibold text-lg hover:text-blue-700 transition-colors relative group">
+                  Explore Partners 
+                  <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                </a>
               </div>
             </div>
             
-            {/* Executive Service Card */}
-            <div className="group hover:scale-105 transition-all duration-500 slide-in stagger-3">
-              <div className="glass-card rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
-                <div className="bg-gradient-to-br from-purple-500 to-pink-500 p-12 text-center">
-                  <div className="text-3xl font-bold text-white mb-6">White Glove</div>
-                  <h3 className="text-2xl font-semibold text-white">Executive Service</h3>
-                </div>
-                <div className="p-10">
-                  <p className="text-gray-700 text-lg mb-8 leading-relaxed">Bespoke relocation management for C-suite executives. Complete coordination, absolute discretion.</p>
-                  <a href="#" className="text-purple-600 font-semibold text-lg hover:text-purple-700 transition-colors">Request Consultation →</a>
-                </div>
+            {/* Executive Service */}
+            <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-4">
+              <div className="service-header p-10 text-center relative">
+                <div className="text-2xl font-bold text-white mb-6 relative z-10">White Glove</div>
+                <h3 className="text-2xl font-semibold text-white relative z-10">Executive Service</h3>
+              </div>
+              <div className="p-10">
+                <p className="text-gray-700 text-lg mb-8 leading-relaxed">
+                  Bespoke relocation management for C-suite executives. Complete coordination, absolute discretion.
+                </p>
+                <a href="#" className="text-blue-600 font-semibold text-lg hover:text-blue-700 transition-colors relative group">
+                  Request Consultation 
+                  <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-32 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <div className="glass-card rounded-3xl p-16 mx-auto max-w-3xl slide-in">
-            <div className="w-20 h-20 mx-auto mb-8 accent-gradient rounded-2xl flex items-center justify-center pulse-glow">
+      {/* Final CTA */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-8 text-center">
+          <div className="glass-card rounded-3xl p-16 max-w-4xl mx-auto fade-in-up floating-slow">
+            <div className="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-gray-900 to-black rounded-2xl flex items-center justify-center pulse-glow">
               <span className="text-white text-3xl font-bold">★</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Invitation Only</h2>
-            <p className="text-2xl text-gray-700 mb-4 font-medium">Limited Founding Members</p>
-            <p className="text-xl text-gray-600 mb-12 leading-relaxed">Join London's most exclusive relocation network. Only <strong>100 Founding Members</strong> will receive lifetime benefits and priority access to our premium services.</p>
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Invitation Only</h2>
+            <p className="text-3xl font-light text-gray-700 mb-4">Limited Founding Members</p>
+            <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+              Join London's most exclusive relocation network. Only 100 Founding Members will receive lifetime benefits and priority access to our premium services.
+            </p>
             
-            <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button 
                 onClick={scrollToWaitlist}
-                className="accent-gradient w-full py-5 rounded-2xl text-white font-semibold text-xl hover:scale-105 transition-all duration-300 premium-glow"
+                className="btn-primary bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-800"
               >
                 Request Invitation
               </button>
-              <button className="glass-secondary w-full py-5 rounded-2xl text-gray-700 font-semibold text-lg hover:bg-white/40 transition-all duration-300">
-                Learn More About Membership
+              <button className="bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 px-8 py-4 rounded-xl font-semibold transition-all">
+                Learn More
               </button>
             </div>
           </div>
