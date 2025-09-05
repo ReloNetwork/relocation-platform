@@ -715,24 +715,24 @@ export default function HomePage() {
             </p>
 
             {/* Urgency Timer */}
-            <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 mb-8 max-w-md mx-auto">
-              <div className="text-orange-800 font-semibold mb-3">⏰ Founding rates expire in:</div>
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-md mx-auto">
+              <div className="text-blue-800 font-semibold mb-3">⏰ Founding rates expire in:</div>
               <div className="grid grid-cols-4 gap-2">
                 <div className="text-center">
-                  <div className="text-xl font-bold text-orange-900">09</div>
-                  <div className="text-xs text-orange-700">Days</div>
+                  <div className="text-xl font-bold text-blue-900">09</div>
+                  <div className="text-xs text-blue-700">Days</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-bold text-orange-900">13</div>
-                  <div className="text-xs text-orange-700">Hours</div>
+                  <div className="text-xl font-bold text-blue-900">13</div>
+                  <div className="text-xs text-blue-700">Hours</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-bold text-orange-900">51</div>
-                  <div className="text-xs text-orange-700">Minutes</div>
+                  <div className="text-xl font-bold text-blue-900">51</div>
+                  <div className="text-xs text-blue-700">Minutes</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-bold text-orange-900">32</div>
-                  <div className="text-xs text-orange-700">Seconds</div>
+                  <div className="text-xl font-bold text-blue-900">32</div>
+                  <div className="text-xs text-blue-700">Seconds</div>
                 </div>
               </div>
             </div>
