@@ -497,9 +497,9 @@ export default function HomePage() {
         <div className="fixed inset-0 bg-gray-900/80 flex items-center justify-center p-4 z-50 backdrop-blur-lg">
           <div className="backdrop-blur-xl bg-white/90 border border-white/30 max-w-lg w-full rounded-3xl p-10 shadow-3xl">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 backdrop-blur-md bg-yellow-400/20 border border-yellow-300/30 rounded-full px-6 py-3 mb-6">
-                <Star className="w-5 h-5 text-yellow-600 fill-current" />
-                <span className="text-yellow-800 font-bold text-sm">✨ Founding Member Invitation</span>
+              <div className="inline-flex items-center gap-2 backdrop-blur-xl bg-emerald-500/20 border border-emerald-400/30 rounded-full px-6 py-3 mb-6">
+                <Star className="w-5 h-5 text-emerald-600 fill-current" />
+                <span className="text-emerald-800 font-bold text-sm">✨ Founding Member Invitation</span>
               </div>
               <h3 className="font-serif text-3xl font-bold text-gray-900 mb-3">
                 Join the Waiting List
@@ -513,12 +513,12 @@ export default function HomePage() {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none backdrop-blur-sm bg-white/70 font-medium"
+                className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-emerald-400 focus:border-transparent outline-none backdrop-blur-sm bg-white/80 font-medium"
               />
               <input
                 type="text"
                 placeholder="Full name"
-                className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none backdrop-blur-sm bg-white/70 font-medium"
+                className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-emerald-400 focus:border-transparent outline-none backdrop-blur-sm bg-white/80 font-medium"
               />
               <select className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none backdrop-blur-sm bg-white/70 font-medium">
                 <option value="">When are you planning to move?</option>
@@ -531,7 +531,7 @@ export default function HomePage() {
             
             <div className="flex gap-4">
               <Button 
-                className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white py-4 font-bold shadow-2xl transform hover:scale-105 transition-all duration-300"
+                className="flex-1 bg-gradient-to-r from-emerald-500 to-blue-600 hover:from-emerald-600 hover:to-blue-700 text-white py-4 font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 border border-white/20"
                 onClick={() => {
                   // Handle form submission
                   setShowWaitlist(false)
@@ -541,7 +541,7 @@ export default function HomePage() {
               </Button>
               <Button 
                 onClick={() => setShowWaitlist(false)}
-                className="backdrop-blur-sm bg-white/20 border border-white/30 text-gray-600 hover:bg-white/40 py-4 font-semibold transition-all duration-300"
+                className="backdrop-blur-xl bg-white/25 border border-white/30 text-gray-600 hover:bg-white/40 py-4 font-semibold transition-all duration-300"
               >
                 Cancel
               </Button>
@@ -558,8 +558,8 @@ export default function HomePage() {
       <div className="fixed bottom-6 right-6 z-40">
         <a
           href="/ask"
-          className="inline-flex items-center justify-center rounded-full px-6 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-2xl border-2 border-white font-bold text-sm transform hover:scale-110"
-          style={{ boxShadow: '0 15px 35px rgba(251, 191, 36, 0.4)' }}
+          className="inline-flex items-center justify-center rounded-full px-6 py-4 bg-gradient-to-r from-emerald-500 to-blue-600 text-white hover:from-emerald-600 hover:to-blue-700 transition-all duration-300 shadow-2xl border-2 border-white font-bold text-sm transform hover:scale-110"
+          style={{ boxShadow: '0 15px 35px rgba(16, 185, 129, 0.4)' }}
         >
           <Mic className="w-4 h-4 mr-2" />
           Ask Relo
