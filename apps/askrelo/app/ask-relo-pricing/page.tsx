@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Play, Mic, Volume2, Check, ArrowRight, BarChart3, Clock, Shield, Zap } from 'lucide-react'
+import { Play, Mic, Volume2, Check, ArrowRight, BarChart3, Clock, Shield, Zap, AlertTriangle, PartyPopper, Target } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 
@@ -124,7 +124,8 @@ const UsageCard = ({ title, current, limit, upgrade }: {
         
         {isNearLimit && (
           <p className="text-red-600 text-sm font-medium">
-            ⚠️ Approaching limit - upgrade to continue service
+            <AlertTriangle className="w-4 h-4 inline mr-1" />
+            Approaching limit - upgrade to continue service
           </p>
         )}
       </div>
@@ -336,7 +337,7 @@ export default function AskReloPricingPage() {
             </div>
 
             <div className="bg-green-100 text-green-800 px-4 py-2 rounded-full inline-block text-sm font-semibold mb-8">
-              🎉 First Month 50% Off - Limited Time!
+              First Month 50% Off - Limited Time!
             </div>
           </div>
         </div>
@@ -461,7 +462,7 @@ export default function AskReloPricingPage() {
           </div>
           
           <p className="text-sm text-white/80 mt-4">
-            🎯 No credit card required for trial • Cancel anytime • 50% off first month
+            No credit card required for trial • Cancel anytime • 50% off first month
           </p>
         </div>
       </div>

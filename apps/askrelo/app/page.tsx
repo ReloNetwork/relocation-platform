@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from '@/ui/components/button'
-import { Calendar, ChevronRight, Star, Shield, Mic, Play, Volume2, ArrowRight, Clock, Users, Award, Eye, Building2 } from 'lucide-react'
+import { Calendar, ChevronRight, Star, Shield, Mic, Play, Volume2, ArrowRight, Clock, Users, Award, Eye, Building2, Rocket, Timer } from 'lucide-react'
 import Layout from '../components/Layout'
 
 // Enhanced CSS with refined design system
@@ -577,7 +577,9 @@ export default function HomePage() {
             {/* AI Voice Agent */}
             <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-2">
               <div className="service-header p-10 text-center relative">
-                <div className="text-5xl mb-4 relative z-10">🎙️</div>
+                <div className="mb-4 relative z-10">
+                  <Mic className="w-12 h-12 text-white mx-auto" />
+                </div>
                 <h3 className="text-2xl font-semibold text-white relative z-10">Ask Relo AI</h3>
                 <p className="text-white/80 text-sm mt-2 relative z-10">24/7 Voice Concierge</p>
               </div>
@@ -629,7 +631,9 @@ export default function HomePage() {
             {/* Corporate Solutions */}
             <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-4">
               <div className="service-header p-10 text-center relative">
-                <div className="text-5xl mb-4 relative z-10">🏢</div>
+                <div className="mb-4 relative z-10">
+                  <Building2 className="w-12 h-12 text-white mx-auto" />
+                </div>
                 <h3 className="text-2xl font-semibold text-white relative z-10">Corporate</h3>
                 <p className="text-white/80 text-sm mt-2 relative z-10">Enterprise Solutions</p>
               </div>
@@ -678,7 +682,7 @@ export default function HomePage() {
 
           <div className="glass-card rounded-3xl p-16 max-w-4xl mx-auto fade-in-up floating-slow">
             <div className="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-gray-900 to-black rounded-2xl flex items-center justify-center pulse-glow">
-              <span className="text-white text-3xl font-bold">🚀</span>
+              <Rocket className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Ready to Monetize?</h2>
             <p className="text-3xl font-light text-gray-700 mb-4">Start Generating Revenue Today</p>
@@ -688,7 +692,10 @@ export default function HomePage() {
 
             {/* Urgency Timer */}
             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-md mx-auto">
-              <div className="text-blue-800 font-semibold mb-3">⏰ Founding rates expire in:</div>
+              <div className="text-blue-800 font-semibold mb-3 flex items-center justify-center gap-2">
+                <Timer className="w-4 h-4" />
+                Founding rates expire in:
+              </div>
               <div className="grid grid-cols-4 gap-2">
                 <div className="text-center">
                   <div className="text-xl font-bold text-blue-900">09</div>
@@ -795,7 +802,7 @@ export default function HomePage() {
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-2 bg-yellow-400/20 border border-yellow-300/30 rounded-full px-6 py-3 mb-6">
                 <Star className="w-5 h-5 text-yellow-600 fill-current" />
-                <span className="text-yellow-800 font-bold text-sm">✨ Founding Member Invitation</span>
+                <span className="text-yellow-800 font-bold text-sm">Founding Member Invitation</span>
               </div>
               <h3 className="font-serif text-3xl font-bold text-gray-900 mb-3">
                 Join the Waiting List

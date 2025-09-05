@@ -265,7 +265,7 @@ export default function DirectoryPage() {
             </div>
 
             <div className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full inline-block text-sm font-semibold">
-              🔒 Exclusive Access • Premium Partners Only
+              Exclusive Access • Premium Partners Only
             </div>
           </div>
         </div>
@@ -415,7 +415,7 @@ export default function DirectoryPage() {
           </div>
           
           <p className="text-sm text-white/80 mt-4">
-            🔐 Secure access • 💎 Premium partners • 🎯 Instant activation
+            Secure access • Premium partners • Instant activation
           </p>
         </div>
       </div>

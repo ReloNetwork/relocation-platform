@@ -4,6 +4,7 @@ import { Button } from '@/ui/components/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/components/card';
 import { Badge } from '@/ui/components/badge';
 import { Timeline } from '@/ui/components/timeline';
+import { MessageCircle, Phone } from 'lucide-react';
 
 // Mock data for demo
 const mockCase = {
@@ -220,10 +221,12 @@ export default function AccountPage() {
                   href="/ask"
                   className="inline-flex items-center justify-start w-full rounded-md px-4 py-2 border border-gray-300 text-[var(--ink)] bg-white hover:bg-gray-50 transition focus-ring"
                 >
-                  💬 Ask Relo AI
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Ask Relo AI
                 </a>
                 <Button variant="outline" className="w-full justify-start">
-                  📞 Emergency Contact
+                  <Phone className="w-4 h-4 mr-2" />
+                  Emergency Contact
                 </Button>
               </CardContent>
             </Card>

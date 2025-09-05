@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Check, Star, ArrowRight, Users, Clock, Zap } from 'lucide-react'
+import { Check, Star, ArrowRight, Users, Clock, Zap, Timer } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 
@@ -225,7 +225,10 @@ export default function PartnersPage() {
 
             {/* Urgency Timer */}
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto">
-              <div className="text-[#C9A24A] font-semibold mb-2">⚡ Founding Rates Expire In:</div>
+              <div className="text-[#C9A24A] font-semibold mb-2 flex items-center justify-center gap-2">
+                <Zap className="w-4 h-4" />
+                Founding Rates Expire In:
+              </div>
               <CountdownTimer />
               <div className="text-sm text-gray-300 mt-2">Limited to first 100 partners only</div>
             </div>
@@ -314,7 +317,7 @@ export default function PartnersPage() {
           </div>
           
           <p className="text-sm text-white/80 mt-4">
-            ⚡ Founding rates expire Friday • No setup fees • Cancel anytime
+            Founding rates expire Friday • No setup fees • Cancel anytime
           </p>
         </div>
       </div>

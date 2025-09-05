@@ -341,7 +341,7 @@ export default function CorporatePage() {
             </Button>
             
             <p className="text-sm text-gray-400 mt-4">
-              ⚡ Book a 30-minute consultation • No commitment required
+              Book a 30-minute consultation • No commitment required
             </p>
           </div>
         </div>
@@ -473,7 +473,7 @@ export default function CorporatePage() {
           </div>
           
           <p className="text-sm text-white/80 mt-6">
-            🏢 Trusted by 200+ global companies • 🎯 30-day setup • 💼 Dedicated account management
+            Trusted by 200+ global companies • 30-day setup • Dedicated account management
           </p>
         </div>
       </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Mic, Play, Volume2, Square, MessageCircle, ArrowRight, Sparkles, Clock, Check } from 'lucide-react'
+import { Mic, Play, Volume2, Square, MessageCircle, ArrowRight, Sparkles, Clock, Check, User, Home, Phone, Target, MessageSquare } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 
@@ -40,7 +40,7 @@ const ConversationMessage = ({
     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
       isAI ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-600'
     }`}>
-      {isAI ? <Sparkles className="h-4 w-4" /> : '👤'}
+      {isAI ? <Sparkles className="h-4 w-4" /> : <User className="h-4 w-4" />}
     </div>
     <div className={`max-w-xs lg:max-w-md ${isAI ? 'text-right' : 'text-left'}`}>
       <div className={`rounded-2xl px-4 py-3 ${
@@ -110,7 +110,7 @@ export default function DemoPage() {
     },
     {
       speaker: "Ask Relo AI",
-      message: "Excellent choice! I've found 12 properties in Greenwich matching your criteria. Here are the top 3: \n\n🏠 2-bed flat near Cutty Sark - £3,200/month\n🏠 Modern apartment by Greenwich Park - £3,500/month  \n🏠 Riverside flat with balcony - £3,800/month\n\nShall I book viewings for this weekend?",
+      message: "Excellent choice! I've found 12 properties in Greenwich matching your criteria. Here are the top 3: \n\n• 2-bed flat near Cutty Sark - £3,200/month\n• Modern apartment by Greenwich Park - £3,500/month  \n• Riverside flat with balcony - £3,800/month\n\nShall I book viewings for this weekend?",
       timestamp: "12s ago",
       isAI: true
     }
@@ -182,7 +182,7 @@ export default function DemoPage() {
           </p>
           
           <div className="bg-blue-500/20 text-blue-100 px-6 py-3 rounded-full inline-block text-sm font-semibold border border-blue-400/30 mb-8">
-            🎙️ Voice Enabled • 🤖 AI Powered • 🏠 Real Properties
+            Voice Enabled • AI Powered • Real Properties
           </div>
         </div>
       </div>
@@ -358,7 +358,7 @@ export default function DemoPage() {
           </Button>
           
           <p className="text-sm text-blue-200 mt-6">
-            📞 15-minute consultation • 🎯 Personalized demo • 💬 Ask any questions
+            15-minute consultation • Personalized demo • Ask any questions
           </p>
         </div>
       </div>
