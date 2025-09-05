@@ -20,6 +20,49 @@ const customStyles = `
     --accent-blue-ultra: #1E40AF;
   }
   
+  .countdown-banner {
+    backdrop-filter: blur(20px);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+    animation: slideDownBanner 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform: translateY(-100%);
+  }
+  
+  .banner-pulse {
+    animation: bannerPulse 2s ease-in-out infinite;
+  }
+  
+  .number-flip {
+    animation: numberFlip 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  @keyframes slideDownBanner {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes bannerPulse {
+    0%, 100% { 
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+    }
+    50% { 
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.2) 100%);
+      box-shadow: 0 4px 25px rgba(59, 130, 246, 0.3);
+    }
+  }
+  
+  @keyframes numberFlip {
+    0% { transform: rotateX(0); }
+    50% { transform: rotateX(-90deg); }
+    100% { transform: rotateX(0); }
+  }
+  
   .glass-primary {
     backdrop-filter: blur(20px);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
@@ -313,7 +356,7 @@ const customStyles = `
   
   .editorial-layout {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 3fr 1fr;
     gap: 4rem;
     align-items: center;
   }
@@ -453,6 +496,37 @@ export default function HomePage() {
     <Layout className="bg-white text-gray-900 overflow-x-hidden">
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
+      {/* Animated Countdown Banner */}
+      <div className="countdown-banner border-b border-white/20 banner-pulse fixed top-0 left-0 right-0 z-50">
+        <div className="container-custom py-3">
+          <div className="flex items-center justify-center text-center">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <Timer className="w-4 h-4 text-white" />
+                <span className="text-white font-semibold text-sm">Launch Countdown:</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="text-center">
+                  <div className="text-white font-bold number-flip">09</div>
+                  <div className="text-white/70 text-xs">Days</div>
+                </div>
+                <span className="text-white/70">:</span>
+                <div className="text-center">
+                  <div className="text-white font-bold number-flip">13</div>
+                  <div className="text-white/70 text-xs">Hours</div>
+                </div>
+                <span className="text-white/70">:</span>
+                <div className="text-center">
+                  <div className="text-white font-bold number-flip">51</div>
+                  <div className="text-white/70 text-xs">Min</div>
+                </div>
+              </div>
+              <span className="text-white/90 text-sm font-medium">September 15th • Founding Members 50% Off</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       {/* Hero Section with Editorial Layout */}
       <div className="relative min-h-screen overflow-hidden">
         {/* Background Gallery */}
@@ -462,7 +536,7 @@ export default function HomePage() {
         <div className="hero-gradient absolute inset-0 z-10"></div>
 
         {/* Hero Content with Editorial Layout */}
-        <div className="relative z-20 flex items-center min-h-screen pt-32 pb-16">
+        <div className="relative z-20 flex items-center min-h-screen pt-40 pb-16">
           <div className="container-custom">
             <div className="editorial-layout">
               {/* Left Column - Editorial Content */}
@@ -476,75 +550,46 @@ export default function HomePage() {
                 </div>
                 
                 {/* Main Headline */}
-                <div className="space-y-6 slide-up-elegant stagger-2">
-                  <h1 className="text-display text-shadow-elegant">
-                    Relocate to <span className="text-accent">London</span>
+                <div className="space-y-8 slide-up-elegant stagger-2">
+                  <h1 className="text-display text-shadow-elegant leading-none">
+                    Relocate to <span className="text-accent">London</span><br />
+                    <span className="text-5xl md:text-6xl font-light text-white/95">Effortlessly.</span>
                   </h1>
-                  <h2 className="text-4xl md:text-5xl font-light text-white/95 text-shadow-elegant">
-                    Effortlessly.
-                  </h2>
                 </div>
                 
-                {/* Description */}
-                <p className="text-xl text-white/85 leading-relaxed max-w-lg text-shadow-elegant slide-up-elegant stagger-3">
-                  London's most exclusive relocation network. AI-powered guidance, vetted partners, and white-glove service for discerning professionals.
-                </p>
+                {/* Enhanced Description */}
+                <div className="space-y-4 slide-up-elegant stagger-3">
+                  <p className="text-2xl text-white/90 leading-relaxed font-medium text-shadow-elegant">
+                    London's most exclusive relocation network.
+                  </p>
+                  <p className="text-xl text-white/80 leading-relaxed max-w-2xl text-shadow-elegant">
+                    AI-powered guidance, vetted partners, and white-glove service for discerning professionals moving to Britain's capital.
+                  </p>
+                </div>
                 
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-6 slide-up-elegant stagger-4">
+                {/* Primary CTA */}
+                <div className="space-y-4 slide-up-elegant stagger-4">
                   <button 
                     onClick={() => window.location.href = '/demo'}
-                    className="btn-primary relative z-10"
+                    className="btn-primary relative z-10 text-lg px-10 py-5"
                   >
-                    Try Voice Demo Free
+                    Try Ask Relo AI Free
+                    <ArrowRight className="ml-3 h-5 w-5" />
                   </button>
-                  <button 
-                    onClick={() => window.location.href = '/corporate'}
-                    className="btn-secondary"
-                  >
-                    Corporate Solutions
-                  </button>
+                  <p className="text-white/60 text-sm">
+                    5-minute free trial • No credit card required • Instant access
+                  </p>
                 </div>
               </div>
               
-              {/* Right Column - Interactive Elements */}
+              {/* Right Column - Compact Countdown Timer */}
               <div className="space-y-6">
-                {/* Compact Countdown Timer */}
                 <div className="glass-primary rounded-2xl p-6 slide-up-elegant stagger-5 floating-medium">
                   <h3 className="text-xl font-bold text-white text-center mb-4 text-shadow-elegant">Launch Countdown</h3>
                   <div className="grid grid-cols-4 gap-3 mb-3">
                     <CountdownTimer />
                   </div>
                   <p className="text-white/80 text-center text-sm font-medium text-shadow-elegant">September 15th, 2025</p>
-                </div>
-                
-                {/* Ask Relo AI Demo */}
-                <div className="glass-primary rounded-2xl p-6 slide-up-elegant stagger-5 floating-slow">
-                  <div className="flex items-center space-x-3 mb-6">
-                    <h3 className="text-xl font-bold text-white text-shadow-elegant">Ask Relo AI</h3>
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                  </div>
-                  
-                  <div className="space-y-4 mb-6">
-                    <div className="glass-countdown rounded-xl p-4">
-                      <p className="text-white/90 text-sm font-medium">"Find me a 2BR flat in Marylebone under £4k/month"</p>
-                    </div>
-                    <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4">
-                      <p className="text-white/90 text-sm font-medium">"I found 12 verified properties matching your criteria. The closest to Hyde Park is a gorgeous Victorian conversion at £3,800/month. Would you like me to schedule a viewing?"</p>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <button 
-                      onClick={() => window.location.href = '/demo'}
-                      className="btn-primary w-full text-sm py-3"
-                    >
-                      Start Free Trial
-                    </button>
-                    <p className="text-white/60 text-xs text-center">
-                      5 minutes free • No credit card required
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -559,6 +604,78 @@ export default function HomePage() {
             <p className="text-white font-medium">
               Official Launch Monday, September 15th • Founding Members 50% Off • Limited to 100 Members
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Ask Relo AI Demo Section */}
+      <section className="section-spacing bg-gradient-to-br from-blue-900 to-indigo-900">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Demo Content */}
+            <div className="space-y-8">
+              <div className="inline-flex items-center bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-2">
+                <Mic className="h-4 w-4 text-blue-300 mr-2" />
+                <span className="text-blue-300 text-sm font-medium">AI-Powered Assistant</span>
+              </div>
+              
+              <h2 className="text-5xl font-bold text-white">
+                Meet Ask Relo AI
+              </h2>
+              
+              <p className="text-xl text-white/80 leading-relaxed">
+                Your 24/7 London relocation expert. Simply speak naturally and get instant, intelligent responses about properties, neighborhoods, and everything you need for your London move.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="glass-primary rounded-xl p-4">
+                  <p className="text-white/90 font-medium">"Find me a 2BR flat in Marylebone under £4k/month"</p>
+                </div>
+                <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4">
+                  <p className="text-white/90 font-medium">"I found 12 verified properties matching your criteria. The closest to Hyde Park is a gorgeous Victorian conversion at £3,800/month. Would you like me to schedule a viewing?"</p>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button 
+                  onClick={() => window.location.href = '/demo'}
+                  className="btn-primary"
+                >
+                  Try Voice Demo Free
+                </button>
+                <button 
+                  onClick={() => window.location.href = '/ask-relo-pricing'}
+                  className="btn-secondary"
+                >
+                  View Pricing
+                </button>
+              </div>
+            </div>
+            
+            {/* Demo Interface */}
+            <div className="glass-primary rounded-3xl p-8 space-y-6">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-white mb-4">Interactive Demo</h3>
+                <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 pulse-glow">
+                  <Mic className="w-8 h-8 text-white" />
+                </div>
+                <p className="text-white/80 mb-6">Click to start speaking with Ask Relo AI</p>
+                
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                  <div className="flex items-center justify-center gap-2 text-green-800 text-sm font-medium">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    AI Assistant Ready
+                  </div>
+                </div>
+                
+                <button 
+                  onClick={() => window.location.href = '/demo'}
+                  className="btn-primary w-full"
+                >
+                  Start 5-Minute Free Trial
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
