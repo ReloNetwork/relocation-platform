@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Calculator, Building, Users, TrendingUp, ArrowRight, Calendar, Shield, Award, Clock } from 'lucide-react'
 import { Button } from '@/ui/components/button'
+import Layout from '../../components/Layout'
 
 const ROICalculator = () => {
   const [employees, setEmployees] = useState(10)
@@ -292,7 +293,7 @@ export default function CorporatePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <Layout className="bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
       <div className="bg-[#0B1B2B] text-white">
         <div className="max-w-6xl mx-auto px-4 py-20">
@@ -476,6 +477,6 @@ export default function CorporatePage() {
           </p>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }

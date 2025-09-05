@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Play, Mic, Volume2, Check, ArrowRight, BarChart3, Clock, Shield, Zap } from 'lucide-react'
 import { Button } from '@/ui/components/button'
+import Layout from '../../components/Layout'
 
 const VoiceDemoWidget = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -296,7 +297,7 @@ export default function AskReloPricingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <Layout className="bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
       <div className="bg-[#0B1B2B] text-white">
         <div className="max-w-6xl mx-auto px-4 py-16">
@@ -464,6 +465,6 @@ export default function AskReloPricingPage() {
           </p>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }

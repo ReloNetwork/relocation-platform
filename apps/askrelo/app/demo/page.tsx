@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Mic, Play, Volume2, Square, MessageCircle, ArrowRight, Sparkles, Clock, Check } from 'lucide-react'
 import { Button } from '@/ui/components/button'
+import Layout from '../../components/Layout'
 
 const VoiceWaveform = ({ isActive }: { isActive: boolean }) => (
   <div className="flex items-center justify-center gap-1 h-8">
@@ -163,7 +164,7 @@ export default function DemoPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <Layout className="bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-900 to-indigo-900 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
@@ -368,6 +369,6 @@ export default function DemoPage() {
           50% { transform: scaleY(1); }
         }
       `}</style>
-    </div>
+    </Layout>
   )
 }

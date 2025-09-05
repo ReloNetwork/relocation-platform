@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/ui/components/button'
 import { Calendar, ChevronRight, Star, Shield, Mic, Play, Volume2, ArrowRight, Clock, Users, Award, Eye, Building2 } from 'lucide-react'
+import Layout from '../components/Layout'
 
 // Enhanced CSS with refined design system
 const customStyles = `
@@ -449,7 +450,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="bg-white text-gray-900 overflow-x-hidden">
+    <Layout className="bg-white text-gray-900 overflow-x-hidden">
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
       {/* Hero Section with Editorial Layout */}
@@ -459,35 +460,6 @@ export default function HomePage() {
         
         {/* Hero Gradient Overlay */}
         <div className="hero-gradient absolute inset-0 z-10"></div>
-
-        {/* Header */}
-        <header className="glass-hero relative z-20 py-6">
-          <div className="container-custom flex items-center justify-between">
-            <div className="flex items-center space-x-4 fade-in-up stagger-1">
-              <div className="w-12 h-12 blue-gradient-primary rounded-xl flex items-center justify-center pulse-glow">
-                <span className="text-white font-bold text-xl">R</span>
-              </div>
-              <span className="text-white text-2xl font-bold text-shadow-elegant">Relo Network</span>
-            </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <a href="#services" className="text-white/80 hover:text-white transition-all duration-300 font-medium relative group">
-                Services
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <a href="#about" className="text-white/80 hover:text-white transition-all duration-300 font-medium relative group">
-                About
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <a href="#contact" className="text-white/80 hover:text-white transition-all duration-300 font-medium relative group">
-                Contact
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <button className="btn-primary relative z-10">
-                Sign In
-              </button>
-            </nav>
-          </div>
-        </header>
 
         {/* Hero Content with Editorial Layout */}
         <div className="relative z-20 flex items-center min-h-screen pt-32 pb-16">
@@ -888,6 +860,6 @@ export default function HomePage() {
           Ask Relo
         </a>
       </div>
-    </div>
+    </Layout>
   )
 }

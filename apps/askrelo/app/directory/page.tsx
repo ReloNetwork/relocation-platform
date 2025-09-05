@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Lock, Eye, Star, ArrowRight, Users, Shield, Crown } from 'lucide-react'
 import { Button } from '@/ui/components/button'
+import Layout from '../../components/Layout'
 
 const BlurredSupplierCard = ({ name, category, description, rating, isSponsored = false }: {
   name: string
@@ -237,7 +238,7 @@ export default function DirectoryPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <Layout className="bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
       <div className="bg-[#0B1B2B] text-white">
         <div className="max-w-6xl mx-auto px-4 py-16">
@@ -418,6 +419,6 @@ export default function DirectoryPage() {
           </p>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
