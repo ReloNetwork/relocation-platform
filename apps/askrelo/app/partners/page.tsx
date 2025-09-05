@@ -125,7 +125,7 @@ export default function PartnersPage() {
   const handleCheckout = async (priceId: string) => {
     setLoading(true)
     try {
-      const response = await fetch('/api/suppliers/checkout', {
+      const response = await fetch('/api/partners/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ priceId })

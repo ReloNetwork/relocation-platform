@@ -521,16 +521,16 @@ export default function HomePage() {
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row gap-6 slide-up-elegant stagger-4">
                   <button 
-                    onClick={scrollToWaitlist}
+                    onClick={() => window.location.href = '/demo'}
                     className="btn-primary relative z-10"
                   >
-                    Join Waiting List
+                    Try Voice Demo Free
                   </button>
                   <button 
-                    onClick={() => window.location.href = '/ask'}
+                    onClick={() => window.location.href = '/corporate'}
                     className="btn-secondary"
                   >
-                    Learn More
+                    Corporate Solutions
                   </button>
                 </div>
               </div>
@@ -562,12 +562,17 @@ export default function HomePage() {
                     </div>
                   </div>
                   
-                  <button 
-                    onClick={() => window.location.href = '/ask'}
-                    className="btn-primary w-full text-sm py-3"
-                  >
-                    Try Ask Relo Free
-                  </button>
+                  <div className="space-y-3">
+                    <button 
+                      onClick={() => window.location.href = '/demo'}
+                      className="btn-primary w-full text-sm py-3"
+                    >
+                      Start Free Trial
+                    </button>
+                    <p className="text-white/60 text-xs text-center">
+                      5 minutes free • No credit card required
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -586,35 +591,42 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Revenue Solutions Section */}
       <section id="services" className="section-spacing blue-gradient-bg">
         <div className="container-custom">
           <div className="text-center mb-20 fade-in-up stagger-1">
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">The London Standard</h2>
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Choose Your Solution</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Premium relocation services designed for London's most discerning professionals
+              Premium relocation services for individuals, partners, and enterprises
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-10">
-            {/* AI Concierge */}
+            {/* AI Voice Agent */}
             <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-2">
               <div className="service-header p-10 text-center relative">
-                <div className="text-5xl font-bold text-white mb-4 relative z-10">AI</div>
-                <h3 className="text-2xl font-semibold text-white relative z-10">Concierge</h3>
+                <div className="text-5xl mb-4 relative z-10">🎙️</div>
+                <h3 className="text-2xl font-semibold text-white relative z-10">Ask Relo AI</h3>
+                <p className="text-white/80 text-sm mt-2 relative z-10">24/7 Voice Concierge</p>
               </div>
               <div className="p-10">
-                <p className="text-gray-700 text-lg mb-8 leading-relaxed">
-                  24/7 AI-powered guidance for every aspect of your London relocation. From property search to school admissions.
+                <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                  Your personal London relocation expert available anytime. From property search to supplier connections.
                 </p>
-                <a href="#" className="text-blue-600 font-semibold text-lg hover:text-blue-700 transition-colors relative group">
-                  Learn More 
-                  <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
-                </a>
+                <div className="mb-6">
+                  <div className="text-2xl font-bold text-gray-900 mb-2">From £295/month</div>
+                  <div className="text-sm text-gray-600">Start with 5-minute free trial</div>
+                </div>
+                <button 
+                  onClick={() => window.location.href = '/ask-relo-pricing'}
+                  className="btn-primary w-full text-center"
+                >
+                  View Pricing
+                </button>
               </div>
             </div>
             
-            {/* Vetted Network */}
+            {/* Partner Network */}
             <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-3">
               <div className="service-header p-10 text-center relative">
                 <div className="w-16 h-16 mx-auto mb-6 blue-gradient-primary rounded-2xl flex items-center justify-center relative z-10">
@@ -622,62 +634,126 @@ export default function HomePage() {
                     <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold text-white relative z-10">Vetted Network</h3>
+                <h3 className="text-2xl font-semibold text-white relative z-10">Partner Network</h3>
+                <p className="text-white/80 text-sm mt-2 relative z-10">For Service Providers</p>
               </div>
               <div className="p-10">
-                <p className="text-gray-700 text-lg mb-8 leading-relaxed">
-                  Curated network of London's finest service providers. All verified, all exceptional, all ready to serve you.
+                <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                  Join London's most exclusive relocation network. Access high-value clients and premium opportunities.
                 </p>
-                <a href="#" className="text-blue-600 font-semibold text-lg hover:text-blue-700 transition-colors relative group">
-                  Explore Partners 
-                  <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
-                </a>
+                <div className="mb-6">
+                  <div className="text-2xl font-bold text-gray-900 mb-2">From £250/month</div>
+                  <div className="text-sm text-gray-600">50% off founding partner rates</div>
+                </div>
+                <button 
+                  onClick={() => window.location.href = '/partners'}
+                  className="btn-primary w-full text-center"
+                >
+                  Join Network
+                </button>
               </div>
             </div>
             
-            {/* Executive Service */}
+            {/* Corporate Solutions */}
             <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-4">
               <div className="service-header p-10 text-center relative">
-                <div className="text-2xl font-bold text-white mb-6 relative z-10">White Glove</div>
-                <h3 className="text-2xl font-semibold text-white relative z-10">Executive Service</h3>
+                <div className="text-5xl mb-4 relative z-10">🏢</div>
+                <h3 className="text-2xl font-semibold text-white relative z-10">Corporate</h3>
+                <p className="text-white/80 text-sm mt-2 relative z-10">Enterprise Solutions</p>
               </div>
               <div className="p-10">
-                <p className="text-gray-700 text-lg mb-8 leading-relaxed">
-                  Bespoke relocation management for C-suite executives. Complete coordination, absolute discretion.
+                <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                  Complete employee relocation management for investment banks, consulting firms, and tech companies.
                 </p>
-                <a href="#" className="text-blue-600 font-semibold text-lg hover:text-blue-700 transition-colors relative group">
-                  Request Consultation 
-                  <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
-                </a>
+                <div className="mb-6">
+                  <div className="text-2xl font-bold text-gray-900 mb-2">£8,500+ per employee</div>
+                  <div className="text-sm text-gray-600">96% success rate guarantee</div>
+                </div>
+                <button 
+                  onClick={() => window.location.href = '/corporate'}
+                  className="btn-primary w-full text-center"
+                >
+                  Request Demo
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* Final CTA with Social Proof */}
       <section className="section-spacing bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container-custom text-center">
+          {/* Social Proof Bar */}
+          <div className="mb-12 fade-in-up">
+            <div className="glass-primary rounded-2xl p-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-3 gap-8 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-white mb-2">150+</div>
+                  <div className="text-white/80 text-sm">Vetted Partners</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-white mb-2">47</div>
+                  <div className="text-white/80 text-sm">Partners This Month</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-white mb-2">96%</div>
+                  <div className="text-white/80 text-sm">Success Rate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="glass-card rounded-3xl p-16 max-w-4xl mx-auto fade-in-up floating-slow">
             <div className="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-gray-900 to-black rounded-2xl flex items-center justify-center pulse-glow">
-              <span className="text-white text-3xl font-bold">★</span>
+              <span className="text-white text-3xl font-bold">🚀</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Invitation Only</h2>
-            <p className="text-3xl font-light text-gray-700 mb-4">Limited Founding Members</p>
-            <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join London's most exclusive relocation network. Only 100 Founding Members will receive lifetime benefits and priority access to our premium services.
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Ready to Monetize?</h2>
+            <p className="text-3xl font-light text-gray-700 mb-4">Start Generating Revenue Today</p>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Choose your revenue path: AI voice subscriptions, partner network fees, or corporate contracts.
             </p>
+
+            {/* Urgency Timer */}
+            <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 mb-8 max-w-md mx-auto">
+              <div className="text-orange-800 font-semibold mb-3">⏰ Founding rates expire in:</div>
+              <div className="grid grid-cols-4 gap-2">
+                <div className="text-center">
+                  <div className="text-xl font-bold text-orange-900">09</div>
+                  <div className="text-xs text-orange-700">Days</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-orange-900">13</div>
+                  <div className="text-xs text-orange-700">Hours</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-orange-900">51</div>
+                  <div className="text-xs text-orange-700">Minutes</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-orange-900">32</div>
+                  <div className="text-xs text-orange-700">Seconds</div>
+                </div>
+              </div>
+            </div>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button 
-                onClick={scrollToWaitlist}
+                onClick={() => window.location.href = '/demo'}
                 className="btn-primary bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-800"
               >
-                Request Invitation
+                Start Free Demo
               </button>
-              <button className="bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 px-8 py-4 rounded-xl font-semibold transition-all">
-                Learn More
+              <button 
+                onClick={() => window.location.href = '/directory'}
+                className="bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 px-8 py-4 rounded-xl font-semibold transition-all"
+              >
+                View Directory
               </button>
+            </div>
+
+            <div className="mt-8 text-sm text-gray-600">
+              Trusted by investment banks and consulting firms across London
             </div>
           </div>
         </div>

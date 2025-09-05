@@ -222,7 +222,7 @@ export default function AskReloPricingPage() {
   const handleCheckout = async (priceId: string) => {
     setLoading(true)
     try {
-      const response = await fetch('/api/voice-agent/checkout', {
+      const response = await fetch('/api/ask-relo/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ priceId })
