@@ -300,6 +300,16 @@ const customStyles = `
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
   
+  .section-spacing {
+    padding: 6rem 0;
+  }
+  
+  .container-custom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
   .editorial-layout {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -311,6 +321,14 @@ const customStyles = `
     .editorial-layout {
       grid-template-columns: 1fr;
       gap: 2rem;
+    }
+    
+    .container-custom {
+      padding: 0 1rem;
+    }
+    
+    .section-spacing {
+      padding: 4rem 0;
     }
   }
 `
@@ -410,13 +428,12 @@ const CountdownTimer = () => {
       ].map((item, index) => (
         <div 
           key={index} 
-          className={`glass-countdown rounded-2xl p-6 text-center floating-fast`}
-          style={{ animationDelay: `${index * 0.5}s` }}
+          className="glass-countdown rounded-xl p-3 text-center"
         >
-          <div className="text-3xl font-bold text-white text-shadow-elegant">
+          <div className="text-xl font-bold text-white text-shadow-elegant">
             {String(item.value).padStart(2, '0')}
           </div>
-          <div className="text-white/70 text-sm font-medium mt-2">{item.label}</div>
+          <div className="text-white/70 text-xs font-medium">{item.label}</div>
         </div>
       ))}
     </>
@@ -445,7 +462,7 @@ export default function HomePage() {
 
         {/* Header */}
         <header className="glass-hero relative z-20 py-6">
-          <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
+          <div className="container-custom flex items-center justify-between">
             <div className="flex items-center space-x-4 fade-in-up stagger-1">
               <div className="w-12 h-12 blue-gradient-primary rounded-xl flex items-center justify-center pulse-glow">
                 <span className="text-white font-bold text-xl">R</span>
@@ -474,7 +491,7 @@ export default function HomePage() {
 
         {/* Hero Content with Editorial Layout */}
         <div className="relative z-20 flex items-center min-h-screen pt-32 pb-16">
-          <div className="max-w-7xl mx-auto px-8">
+          <div className="container-custom">
             <div className="editorial-layout">
               {/* Left Column - Editorial Content */}
               <div className="space-y-10">
@@ -518,14 +535,39 @@ export default function HomePage() {
                 </div>
               </div>
               
-              {/* Right Column - Countdown */}
-              <div className="slide-up-elegant stagger-5 floating-medium">
-                <div className="glass-primary rounded-3xl p-10">
-                  <h3 className="text-3xl font-bold text-white text-center mb-8 text-shadow-elegant">Launch Countdown</h3>
-                  <div className="grid grid-cols-4 gap-4 mb-6">
+              {/* Right Column - Interactive Elements */}
+              <div className="space-y-6">
+                {/* Compact Countdown Timer */}
+                <div className="glass-primary rounded-2xl p-6 slide-up-elegant stagger-5 floating-medium">
+                  <h3 className="text-xl font-bold text-white text-center mb-4 text-shadow-elegant">Launch Countdown</h3>
+                  <div className="grid grid-cols-4 gap-3 mb-3">
                     <CountdownTimer />
                   </div>
-                  <p className="text-white/80 text-center font-medium text-shadow-elegant">September 15th, 2025</p>
+                  <p className="text-white/80 text-center text-sm font-medium text-shadow-elegant">September 15th, 2025</p>
+                </div>
+                
+                {/* Ask Relo AI Demo */}
+                <div className="glass-primary rounded-2xl p-6 slide-up-elegant stagger-5 floating-slow">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <h3 className="text-xl font-bold text-white text-shadow-elegant">Ask Relo AI</h3>
+                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  </div>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="glass-countdown rounded-xl p-4">
+                      <p className="text-white/90 text-sm font-medium">"Find me a 2BR flat in Marylebone under £4k/month"</p>
+                    </div>
+                    <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4">
+                      <p className="text-white/90 text-sm font-medium">"I found 12 verified properties matching your criteria. The closest to Hyde Park is a gorgeous Victorian conversion at £3,800/month. Would you like me to schedule a viewing?"</p>
+                    </div>
+                  </div>
+                  
+                  <button 
+                    onClick={() => window.location.href = '/ask'}
+                    className="btn-primary w-full text-sm py-3"
+                  >
+                    Try Ask Relo Free
+                  </button>
                 </div>
               </div>
             </div>
@@ -535,7 +577,7 @@ export default function HomePage() {
       
       {/* Launch Announcement */}
       <section className="bg-gradient-to-r from-gray-900 to-black py-4">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-custom">
           <div className="text-center">
             <p className="text-white font-medium">
               Official Launch Monday, September 15th • Founding Members 50% Off • Limited to 100 Members
@@ -545,8 +587,8 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 blue-gradient-bg">
-        <div className="max-w-7xl mx-auto px-8">
+      <section id="services" className="section-spacing blue-gradient-bg">
+        <div className="container-custom">
           <div className="text-center mb-20 fade-in-up stagger-1">
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">The London Standard</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -614,8 +656,8 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-8 text-center">
+      <section className="section-spacing bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container-custom text-center">
           <div className="glass-card rounded-3xl p-16 max-w-4xl mx-auto fade-in-up floating-slow">
             <div className="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-gray-900 to-black rounded-2xl flex items-center justify-center pulse-glow">
               <span className="text-white text-3xl font-bold">★</span>
