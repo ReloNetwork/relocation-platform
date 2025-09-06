@@ -575,7 +575,7 @@ export default function HomePage() {
       </div>
       
       {/* Hero Section with Editorial Layout */}
-      <div className="relative min-h-screen overflow-hidden -mt-12">
+      <div className="relative min-h-screen overflow-hidden" style={{ marginTop: '-60px' }}>
         {/* Background Gallery */}
         <LondonGallery />
         

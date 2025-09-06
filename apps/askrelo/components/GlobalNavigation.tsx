@@ -43,17 +43,18 @@ export default function GlobalNavigation() {
   return (
     <>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap');
         
         .brand-logo {
-          font-family: 'Space Grotesk', sans-serif;
-          font-weight: 600;
-          letter-spacing: -0.02em;
-          font-size: 1.35rem;
-          background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #2563EB 100%);
+          font-family: 'Lexend', sans-serif;
+          font-weight: 500;
+          letter-spacing: -0.01em;
+          font-size: 1.4rem;
+          background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 50%, #1E3A8A 100%);
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .glass-nav {
@@ -152,30 +153,30 @@ export default function GlobalNavigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3">
+            <Link href="/" className="flex items-center space-x-3 group">
               <div className="w-10 h-10 flex items-center justify-center">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#60A5FA" />
-                      <stop offset="50%" stopColor="#3B82F6" />
-                      <stop offset="100%" stopColor="#2563EB" />
+                      <stop offset="0%" stopColor="#3B82F6" />
+                      <stop offset="50%" stopColor="#1E40AF" />
+                      <stop offset="100%" stopColor="#1E3A8A" />
                     </linearGradient>
+                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="rgba(0,0,0,0.1)" />
+                    </filter>
                   </defs>
-                  {/* Network nodes and connections */}
-                  <circle cx="12" cy="12" r="3" fill="url(#logoGradient)" />
-                  <circle cx="28" cy="12" r="3" fill="url(#logoGradient)" />
-                  <circle cx="20" cy="28" r="3" fill="url(#logoGradient)" />
-                  {/* Connecting lines with arrow suggestion */}
-                  <path d="M15 12 L25 12" stroke="url(#logoGradient)" strokeWidth="2" strokeLinecap="round" />
-                  <path d="M26 14 L22 26" stroke="url(#logoGradient)" strokeWidth="2" strokeLinecap="round" />
-                  <path d="M14 14 L18 26" stroke="url(#logoGradient)" strokeWidth="2" strokeLinecap="round" />
-                  {/* Subtle directional indicators */}
-                  <polygon points="24,11 27,12 24,13" fill="url(#logoGradient)" />
-                  <polygon points="21,25 20,28 19,25" fill="url(#logoGradient)" />
+                  {/* Hexagonal container for premium feel */}
+                  <path d="M18 2 L28 8 L28 20 L18 26 L8 20 L8 8 Z" fill="url(#logoGradient)" fillOpacity="0.1" stroke="url(#logoGradient)" strokeWidth="1.5" filter="url(#shadow)" />
+                  {/* Stylized "R" with modern geometric approach */}
+                  <path d="M12 10 L12 22 M12 10 L20 10 Q22 10 22 12 Q22 14 20 14 L12 14 M17 14 L22 22" stroke="url(#logoGradient)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  {/* Subtle movement indicator */}
+                  <circle cx="24" cy="18" r="1.5" fill="url(#logoGradient)" opacity="0.8">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+                  </circle>
                 </svg>
               </div>
-              <span className="brand-logo hidden sm:block">Relo Network</span>
+              <span className="brand-logo hidden sm:block group-hover:scale-105 transition-transform duration-200">Relo Network</span>
             </Link>
             
             {/* Desktop Navigation */}
