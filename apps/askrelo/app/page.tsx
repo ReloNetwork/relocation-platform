@@ -22,11 +22,11 @@ const customStyles = `
   
   .countdown-banner {
     backdrop-filter: blur(20px);
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(37, 99, 235, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.12) 100%);
     animation: slideDownBanner 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transform: translateY(-100%);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
   }
   
   .banner-pulse {
@@ -50,12 +50,12 @@ const customStyles = `
   
   @keyframes bannerPulse {
     0%, 100% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(37, 99, 235, 0.08) 100%);
-      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.12) 100%);
+      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
     }
     50% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(37, 99, 235, 0.12) 100%);
-      box-shadow: 0 8px 40px rgba(59, 130, 246, 0.25);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.22) 0%, rgba(37, 99, 235, 0.18) 100%);
+      box-shadow: 0 8px 40px rgba(59, 130, 246, 0.3);
     }
   }
   
@@ -562,8 +562,8 @@ export default function HomePage() {
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
       {/* Animated Countdown Banner */}
-      <div className="countdown-banner border-b border-white/20 banner-pulse relative z-20">
-        <div className="container-custom py-2">
+      <div className="countdown-banner border-b border-white/20 banner-pulse w-full z-40 bg-opacity-90 mt-20">
+        <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-center text-center">
             <CountdownBanner />
           </div>
@@ -571,7 +571,7 @@ export default function HomePage() {
       </div>
       
       {/* Hero Section with Editorial Layout */}
-      <div className="relative min-h-screen overflow-hidden">
+      <div className="relative min-h-screen overflow-hidden -mt-0">
         {/* Background Gallery */}
         <LondonGallery />
         
