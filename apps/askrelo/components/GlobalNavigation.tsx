@@ -43,6 +43,19 @@ export default function GlobalNavigation() {
   return (
     <>
       <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        
+        .brand-logo {
+          font-family: 'Space Grotesk', sans-serif;
+          font-weight: 600;
+          letter-spacing: -0.02em;
+          font-size: 1.35rem;
+          background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #2563EB 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        
         .glass-nav {
           backdrop-filter: blur(20px);
           background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
@@ -63,6 +76,7 @@ export default function GlobalNavigation() {
           transition: all 0.3s ease;
           padding: 0.5rem 1rem;
           border-radius: 0.5rem;
+          border: 1px solid rgba(96, 165, 250, 0.2);
         }
         
         .nav-link:hover {
@@ -139,10 +153,29 @@ export default function GlobalNavigation() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 nav-logo rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">R</span>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#60A5FA" />
+                      <stop offset="50%" stopColor="#3B82F6" />
+                      <stop offset="100%" stopColor="#2563EB" />
+                    </linearGradient>
+                  </defs>
+                  {/* Network nodes and connections */}
+                  <circle cx="12" cy="12" r="3" fill="url(#logoGradient)" />
+                  <circle cx="28" cy="12" r="3" fill="url(#logoGradient)" />
+                  <circle cx="20" cy="28" r="3" fill="url(#logoGradient)" />
+                  {/* Connecting lines with arrow suggestion */}
+                  <path d="M15 12 L25 12" stroke="url(#logoGradient)" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M26 14 L22 26" stroke="url(#logoGradient)" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M14 14 L18 26" stroke="url(#logoGradient)" strokeWidth="2" strokeLinecap="round" />
+                  {/* Subtle directional indicators */}
+                  <polygon points="24,11 27,12 24,13" fill="url(#logoGradient)" />
+                  <polygon points="21,25 20,28 19,25" fill="url(#logoGradient)" />
+                </svg>
               </div>
-              <span className="text-blue-300 text-xl font-bold hidden sm:block">Relo Network</span>
+              <span className="brand-logo hidden sm:block">Relo Network</span>
             </Link>
             
             {/* Desktop Navigation */}
