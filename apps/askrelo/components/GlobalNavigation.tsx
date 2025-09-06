@@ -45,17 +45,17 @@ export default function GlobalNavigation() {
       <style jsx global>{`
         .glass-nav {
           backdrop-filter: blur(20px);
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 100%);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .glass-nav.scrolled {
           backdrop-filter: blur(24px);
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%);
           border: 1px solid rgba(255, 255, 255, 0.15);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         }
         
         .nav-link {

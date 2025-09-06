@@ -576,7 +576,7 @@ export default function HomePage() {
       </div>
       
       {/* Hero Section with Editorial Layout */}
-      <div className="relative min-h-screen overflow-hidden -mt-0">
+      <div className="relative min-h-screen overflow-hidden -mt-16">
         {/* Background Gallery */}
         <LondonGallery />
         
