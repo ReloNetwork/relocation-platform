@@ -22,13 +22,15 @@ const customStyles = `
   
   .countdown-banner {
     backdrop-filter: blur(20px);
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(37, 99, 235, 0.08) 100%);
     animation: slideDownBanner 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transform: translateY(-100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
   }
   
   .banner-pulse {
-    animation: bannerPulse 2s ease-in-out infinite;
+    animation: bannerPulse 3s ease-in-out infinite;
   }
   
   .number-flip {
@@ -48,12 +50,12 @@ const customStyles = `
   
   @keyframes bannerPulse {
     0%, 100% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(37, 99, 235, 0.08) 100%);
+      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
     }
     50% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.2) 100%);
-      box-shadow: 0 4px 25px rgba(59, 130, 246, 0.3);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(37, 99, 235, 0.12) 100%);
+      box-shadow: 0 8px 40px rgba(59, 130, 246, 0.25);
     }
   }
   
@@ -484,6 +486,69 @@ const CountdownTimer = () => {
   )
 }
 
+const CountdownBanner = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  })
+
+  useEffect(() => {
+    const targetDate = new Date('2025-09-15T00:00:00').getTime()
+    
+    const updateCountdown = () => {
+      const now = new Date().getTime()
+      const timeLeft = targetDate - now
+      
+      if (timeLeft > 0) {
+        setTimeLeft({
+          days: Math.floor(timeLeft / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((timeLeft % (1000 * 60)) / 1000)
+        })
+      }
+    }
+    
+    updateCountdown() // Initial call
+    const timer = setInterval(updateCountdown, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <div className="flex items-center gap-4">
+      <span className="text-white font-semibold text-sm">Limited Time: 50% Off for Founding Members</span>
+      <div className="flex items-center gap-2">
+        <div className="text-center">
+          <div className="text-white font-bold number-flip text-sm">
+            {String(timeLeft.days).padStart(2, '0')}
+          </div>
+        </div>
+        <span className="text-white/70 text-xs">:</span>
+        <div className="text-center">
+          <div className="text-white font-bold number-flip text-sm">
+            {String(timeLeft.hours).padStart(2, '0')}
+          </div>
+        </div>
+        <span className="text-white/70 text-xs">:</span>
+        <div className="text-center">
+          <div className="text-white font-bold number-flip text-sm">
+            {String(timeLeft.minutes).padStart(2, '0')}
+          </div>
+        </div>
+        <span className="text-white/70 text-xs">:</span>
+        <div className="text-center">
+          <div className="text-white font-bold number-flip text-sm">
+            {String(timeLeft.seconds).padStart(2, '0')}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 
 export default function HomePage() {
   const [showWaitlist, setShowWaitlist] = useState(false)
@@ -497,32 +562,10 @@ export default function HomePage() {
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
       {/* Animated Countdown Banner */}
-      <div className="countdown-banner border-b border-white/20 banner-pulse fixed top-0 left-0 right-0 z-50">
-        <div className="container-custom py-3">
+      <div className="countdown-banner border-b border-white/20 banner-pulse relative z-20">
+        <div className="container-custom py-2">
           <div className="flex items-center justify-center text-center">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <Timer className="w-4 h-4 text-white" />
-                <span className="text-white font-semibold text-sm">Launch Countdown:</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="text-center">
-                  <div className="text-white font-bold number-flip">09</div>
-                  <div className="text-white/70 text-xs">Days</div>
-                </div>
-                <span className="text-white/70">:</span>
-                <div className="text-center">
-                  <div className="text-white font-bold number-flip">13</div>
-                  <div className="text-white/70 text-xs">Hours</div>
-                </div>
-                <span className="text-white/70">:</span>
-                <div className="text-center">
-                  <div className="text-white font-bold number-flip">51</div>
-                  <div className="text-white/70 text-xs">Min</div>
-                </div>
-              </div>
-              <span className="text-white/90 text-sm font-medium">September 15th • Founding Members 50% Off</span>
-            </div>
+            <CountdownBanner />
           </div>
         </div>
       </div>
@@ -536,7 +579,7 @@ export default function HomePage() {
         <div className="hero-gradient absolute inset-0 z-10"></div>
 
         {/* Hero Content with Editorial Layout */}
-        <div className="relative z-20 flex items-center min-h-screen pt-40 pb-16">
+        <div className="relative z-20 flex items-center min-h-screen pt-20 pb-16">
           <div className="container-custom">
             <div className="editorial-layout">
               {/* Left Column - Editorial Content */}
