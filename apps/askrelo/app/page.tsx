@@ -22,11 +22,11 @@ const customStyles = `
   
   .countdown-banner {
     backdrop-filter: blur(20px);
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.12) 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.20) 100%);
     animation: slideDownBanner 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transform: translateY(-100%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
   }
   
   .banner-pulse {
@@ -50,12 +50,12 @@ const customStyles = `
   
   @keyframes bannerPulse {
     0%, 100% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.12) 100%);
-      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.20) 100%);
+      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
     }
     50% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.22) 0%, rgba(37, 99, 235, 0.18) 100%);
-      box-shadow: 0 8px 40px rgba(59, 130, 246, 0.3);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.35) 0%, rgba(37, 99, 235, 0.28) 100%);
+      box-shadow: 0 12px 48px rgba(59, 130, 246, 0.4);
     }
   }
   
@@ -518,33 +518,38 @@ const CountdownBanner = () => {
   }, [])
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center justify-center gap-6">
       <span className="text-white font-semibold text-sm">Limited Time: 50% Off for Founding Members</span>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <div className="text-center">
-          <div className="text-white font-bold number-flip text-sm">
+          <div className="text-white font-bold number-flip text-lg">
             {String(timeLeft.days).padStart(2, '0')}
           </div>
+          <div className="text-white/80 text-xs font-medium">Days</div>
         </div>
-        <span className="text-white/70 text-xs">:</span>
+        <span className="text-white/70 text-sm">:</span>
         <div className="text-center">
-          <div className="text-white font-bold number-flip text-sm">
+          <div className="text-white font-bold number-flip text-lg">
             {String(timeLeft.hours).padStart(2, '0')}
           </div>
+          <div className="text-white/80 text-xs font-medium">Hours</div>
         </div>
-        <span className="text-white/70 text-xs">:</span>
+        <span className="text-white/70 text-sm">:</span>
         <div className="text-center">
-          <div className="text-white font-bold number-flip text-sm">
+          <div className="text-white font-bold number-flip text-lg">
             {String(timeLeft.minutes).padStart(2, '0')}
           </div>
+          <div className="text-white/80 text-xs font-medium">Mins</div>
         </div>
-        <span className="text-white/70 text-xs">:</span>
+        <span className="text-white/70 text-sm">:</span>
         <div className="text-center">
-          <div className="text-white font-bold number-flip text-sm">
+          <div className="text-white font-bold number-flip text-lg">
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
+          <div className="text-white/80 text-xs font-medium">Secs</div>
         </div>
       </div>
+      <span className="text-white/90 text-sm font-medium">Monday, September 15th 2025</span>
     </div>
   )
 }
@@ -625,15 +630,9 @@ export default function HomePage() {
                 </div>
               </div>
               
-              {/* Right Column - Compact Countdown Timer */}
+              {/* Right Column - Available for future content */}
               <div className="space-y-6">
-                <div className="glass-primary rounded-2xl p-6 slide-up-elegant stagger-5 floating-medium">
-                  <h3 className="text-xl font-bold text-white text-center mb-4 text-shadow-elegant">Launch Countdown</h3>
-                  <div className="grid grid-cols-4 gap-3 mb-3">
-                    <CountdownTimer />
-                  </div>
-                  <p className="text-white/80 text-center text-sm font-medium text-shadow-elegant">September 15th, 2025</p>
-                </div>
+                {/* Removed duplicate countdown timer - now only showing in banner above */}
               </div>
             </div>
           </div>
