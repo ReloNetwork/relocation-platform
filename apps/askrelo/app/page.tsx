@@ -567,7 +567,7 @@ export default function HomePage() {
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
       {/* Animated Countdown Banner */}
-      <div className="countdown-banner border-b border-white/20 banner-pulse w-full z-40 bg-opacity-90 mt-20">
+      <div className="countdown-banner border-b border-white/20 banner-pulse w-full z-40 mt-20">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-center text-center">
             <CountdownBanner />
