@@ -45,22 +45,20 @@ export default function GlobalNavigation() {
       <style jsx global>{`
         .glass-nav {
           backdrop-filter: blur(20px);
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 100%);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .glass-nav.scrolled {
           backdrop-filter: blur(24px);
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
         
         .nav-link {
           position: relative;
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(96, 165, 250, 0.9);
           font-weight: 500;
           transition: all 0.3s ease;
           padding: 0.5rem 1rem;
@@ -68,15 +66,14 @@ export default function GlobalNavigation() {
         }
         
         .nav-link:hover {
-          color: white;
-          background: rgba(255, 255, 255, 0.1);
+          color: rgb(96, 165, 250);
+          background: rgba(96, 165, 250, 0.1);
           backdrop-filter: blur(8px);
         }
         
         .nav-link.active {
-          color: white;
+          color: rgb(59, 130, 246);
           background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
-          border: 1px solid rgba(59, 130, 246, 0.3);
           box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
         }
         
@@ -145,7 +142,7 @@ export default function GlobalNavigation() {
               <div className="w-10 h-10 nav-logo rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">R</span>
               </div>
-              <span className="text-white text-xl font-bold hidden sm:block">Relo Network</span>
+              <span className="text-blue-300 text-xl font-bold hidden sm:block">Relo Network</span>
             </Link>
             
             {/* Desktop Navigation */}
@@ -168,7 +165,7 @@ export default function GlobalNavigation() {
               </button>
               
               {/* Mobile Menu Button */}
-              <button className="md:hidden text-white p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <button className="md:hidden text-blue-300 p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>

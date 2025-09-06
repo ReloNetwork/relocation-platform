@@ -25,7 +25,6 @@ const customStyles = `
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(37, 99, 235, 0.7) 100%);
     animation: slideDownBanner 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transform: translateY(-100%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
   }
   
@@ -567,7 +566,7 @@ export default function HomePage() {
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
       {/* Animated Countdown Banner */}
-      <div className="countdown-banner border-b border-white/20 banner-pulse w-full z-40 mt-20">
+      <div className="countdown-banner banner-pulse w-full z-40 mt-20">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-center text-center">
             <CountdownBanner />
