@@ -566,7 +566,7 @@ export default function HomePage() {
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
       {/* Animated Countdown Banner */}
-      <div className="countdown-banner banner-pulse w-full z-40 mt-20">
+      <div className="countdown-banner banner-pulse w-full z-40 mt-16">
         <div className="w-full py-3">
           <div className="flex items-center justify-center text-center">
             <CountdownBanner />
@@ -575,7 +575,7 @@ export default function HomePage() {
       </div>
       
       {/* Hero Section with Editorial Layout */}
-      <div className="relative min-h-screen overflow-hidden -mt-16">
+      <div className="relative min-h-screen overflow-hidden -mt-3">
         {/* Background Gallery */}
         <LondonGallery />
         
