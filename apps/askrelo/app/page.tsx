@@ -22,11 +22,11 @@ const customStyles = `
   
   .countdown-banner {
     backdrop-filter: blur(20px);
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.20) 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(37, 99, 235, 0.7) 100%);
     animation: slideDownBanner 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transform: translateY(-100%);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
   }
   
   .banner-pulse {
@@ -38,11 +38,11 @@ const customStyles = `
   }
   
   @keyframes slideDownBanner {
-    from {
+    0% {
       transform: translateY(-100%);
       opacity: 0;
     }
-    to {
+    100% {
       transform: translateY(0);
       opacity: 1;
     }
@@ -50,12 +50,12 @@ const customStyles = `
   
   @keyframes bannerPulse {
     0%, 100% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.20) 100%);
-      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(37, 99, 235, 0.7) 100%);
+      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
     }
     50% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.35) 0%, rgba(37, 99, 235, 0.28) 100%);
-      box-shadow: 0 12px 48px rgba(59, 130, 246, 0.4);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(37, 99, 235, 0.8) 100%);
+      box-shadow: 0 12px 48px rgba(59, 130, 246, 0.5);
     }
   }
   
