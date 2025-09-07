@@ -955,17 +955,17 @@ export default function HomePage() {
 
       {/* Waitlist Modal */}
       {showWaitlist && (
-        <div className="fixed inset-0 bg-gray-900/80 flex items-center justify-center p-4 z-50 backdrop-blur-lg">
-          <div className="backdrop-blur-xl bg-white/90 border border-white/30 max-w-lg w-full rounded-3xl p-10 shadow-3xl">
+        <div className="fixed inset-0 bg-[#0B1B2B]/90 flex items-center justify-center p-4 z-50 backdrop-blur-lg">
+          <div className="bg-white max-w-lg w-full rounded-md border border-[#0B1B2B]/10 shadow-xl p-8">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 bg-yellow-400/20 border border-yellow-300/30 rounded-full px-6 py-3 mb-6">
-                <Star className="w-5 h-5 text-yellow-600 fill-current" />
-                <span className="text-yellow-800 font-bold text-sm">Founding Member Invitation</span>
+              <div className="inline-flex items-center gap-2 bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
+                <Star className="w-4 h-4 text-[#C9A24A] fill-current" />
+                <span className="text-[#C9A24A] font-medium text-sm">Founding Member Invitation</span>
               </div>
-              <h3 className="font-serif text-3xl font-bold text-gray-900 mb-3">
-                Join the Waiting List
+              <h3 className="text-3xl font-bold text-[#0B1220] mb-3" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Join the Waitlist
               </h3>
-              <p className="text-gray-700 font-medium">
+              <p className="text-[#6B7280] font-medium">
                 Secure your spot as one of our first 100 Founding Members and get 50% off launch rates.
               </p>
             </div>
@@ -974,14 +974,14 @@ export default function HomePage() {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none backdrop-blur-sm bg-white/80 font-medium"
+                className="w-full px-3 py-3 border border-[#E5E7EB] rounded-md focus:ring-2 focus:ring-[#C9A24A] focus:border-[#C9A24A] outline-none bg-white text-[#0B1220] placeholder-[#9CA3AF] font-medium"
               />
               <input
                 type="text"
                 placeholder="Full name"
-                className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none backdrop-blur-sm bg-white/80 font-medium"
+                className="w-full px-3 py-3 border border-[#E5E7EB] rounded-md focus:ring-2 focus:ring-[#C9A24A] focus:border-[#C9A24A] outline-none bg-white text-[#0B1220] placeholder-[#9CA3AF] font-medium"
               />
-              <select className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none backdrop-blur-sm bg-white/80 font-medium">
+              <select className="w-full px-3 py-3 border border-[#E5E7EB] rounded-md focus:ring-2 focus:ring-[#C9A24A] focus:border-[#C9A24A] outline-none bg-white text-[#0B1220] font-medium">
                 <option value="">When are you planning to move?</option>
                 <option value="1-3 months">1-3 months</option>
                 <option value="3-6 months">3-6 months</option>
@@ -992,23 +992,23 @@ export default function HomePage() {
             
             <div className="flex gap-4">
               <Button 
-                className="flex-1 accent-gradient text-white py-4 font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 premium-glow"
+                className="flex-1 bg-[#C9A24A] hover:bg-[#B8923D] text-white py-3 font-bold rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => {
                   // Handle form submission
                   setShowWaitlist(false)
                 }}
               >
-                Join Waiting List
+                Join Waitlist
               </Button>
               <Button 
                 onClick={() => setShowWaitlist(false)}
-                className="backdrop-blur-xl bg-white/25 border border-white/30 text-gray-600 hover:bg-white/40 py-4 font-semibold transition-all duration-300"
+                className="border border-[#E5E7EB] text-[#6B7280] hover:bg-[#F9FAFB] py-3 font-semibold rounded-md transition-all duration-300"
               >
                 Cancel
               </Button>
             </div>
             
-            <p className="text-xs text-center text-gray-600 mt-6 font-medium">
+            <p className="text-xs text-center text-[#6B7280] mt-6 font-medium">
               By joining, you'll receive exclusive updates about our September 15th launch and founding member benefits.
             </p>
           </div>

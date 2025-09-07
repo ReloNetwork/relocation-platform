@@ -17,7 +17,7 @@ export default function Hero({ variant = 'split' }: { variant?: Variant }) {
           Ask Relo
         </a>
         <a href="/join-waitlist" className="inline-flex items-center justify-center rounded-md px-5 py-3 border border-[var(--primary)] text-[var(--primary)] bg-white hover:bg-[color-mix(in_srgb,var(--primary) 5%,white)] transition focus-ring">
-          Join Waiting List
+          Join Waitlist
         </a>
       </div>
       <p className="mt-3 text-sm text-[var(--muted)]">

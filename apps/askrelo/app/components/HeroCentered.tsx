@@ -26,7 +26,7 @@ export default function HeroCentered(){
               className="inline-flex items-center justify-center rounded-md px-5 py-3 border border-gray-300 text-[var(--ink)] bg-white hover:bg-gray-50 transition focus-ring"
               data-testid="cta-join-waitlist"
             >
-              Join Waiting List
+              Join Waitlist
             </a>
           </div>
 
