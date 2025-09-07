@@ -34,23 +34,23 @@ const PricingTier = ({
     )}
     
     <div className="text-center">
-      <h3 className="text-2xl font-bold text-[#0B1B2B]">{name}</h3>
-      <p className="text-gray-600 mt-2">{description}</p>
+      <h3 className="text-2xl font-bold text-[#0B1B2B]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>{name}</h3>
+      <p className="text-[#6B7280] mt-2">{description}</p>
       
       <div className="mt-6">
         <div className="flex items-center justify-center gap-2">
-          <span className="text-gray-400 line-through text-lg">£{originalPrice}/mo</span>
+          <span className="text-[#9CA3AF] line-through text-lg">£{originalPrice}/mo</span>
           <span className="bg-red-100 text-red-800 px-2 py-1 rounded text-sm font-semibold">50% OFF</span>
         </div>
-        <div className="text-4xl font-bold text-[#0B1B2B] mt-2">
-          £{price}<span className="text-lg text-gray-600">/mo</span>
+        <div className="text-4xl font-bold text-[#0B1220] mt-2">
+          £{price}<span className="text-lg text-[#6B7280]">/mo</span>
         </div>
-        <p className="text-sm text-gray-500 mt-1">Founding Partner Rate</p>
+        <p className="text-sm text-[#6B7280] mt-1">Founding Partner Rate</p>
       </div>
 
       <Button 
         onClick={() => onSelect(priceId)}
-        className={`w-full mt-8 ${isPopular ? 'bg-[#C9A24A] hover:bg-[#B8923D]' : 'bg-[#0B1B2B] hover:bg-[#1A2B3B]'} text-white`}
+        className={`w-full mt-8 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all ${isPopular ? 'bg-[#C9A24A] hover:bg-[#B8923D]' : 'bg-[#0B1B2B] hover:bg-[#0B1B2B]/90'} text-white`}
         size="lg"
       >
         Start Earning Today <ArrowRight className="ml-2 h-4 w-4" />
@@ -58,12 +58,12 @@ const PricingTier = ({
     </div>
 
     <div className="mt-8">
-      <h4 className="font-semibold text-[#0B1B2B] mb-4">What's included:</h4>
+      <h4 className="font-semibold text-[#0B1220] mb-4">What's included:</h4>
       <ul className="space-y-3">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
             <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-            <span className="text-gray-700">{feature}</span>
+            <span className="text-[#6B7280]">{feature}</span>
           </li>
         ))}
       </ul>
@@ -74,8 +74,8 @@ const PricingTier = ({
 const StatCard = ({ icon: Icon, number, label }: { icon: any, number: string, label: string }) => (
   <div className="text-center">
     <Icon className="h-8 w-8 text-[#C9A24A] mx-auto mb-3" />
-    <div className="text-2xl font-bold text-[#0B1B2B]">{number}</div>
-    <div className="text-gray-600">{label}</div>
+    <div className="text-2xl font-bold text-white">{number}</div>
+    <div className="text-white/70">{label}</div>
   </div>
 )
 
@@ -113,7 +113,7 @@ const CountdownTimer = () => {
           <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-lg flex items-center justify-center text-xl font-bold">
             {String(item.value).padStart(2, '0')}
           </div>
-          <div className="text-sm text-gray-600 mt-1">{item.label}</div>
+          <div className="text-sm text-[#6B7280] mt-1">{item.label}</div>
         </div>
       ))}
     </div>
@@ -198,7 +198,7 @@ export default function PartnersPage() {
   ]
 
   return (
-    <Layout className="bg-gradient-to-b from-white to-gray-50">
+    <Layout className="bg-[#FAFAF9]">
       {/* Hero Section */}
       <div className="bg-[#0B1B2B] text-white">
         <div className="max-w-6xl mx-auto px-4 py-16">
@@ -208,11 +208,11 @@ export default function PartnersPage() {
               <span className="text-[#C9A24A] text-sm font-medium">Founding Partner Program</span>
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Join London's Most <span className="text-[#C9A24A]">Exclusive</span> Relocation Network
             </h1>
             
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
               Connect with high-value clients relocating to London. Premium leads, verified opportunities, and exclusive partnerships that drive real revenue.
             </p>
 
@@ -230,7 +230,7 @@ export default function PartnersPage() {
                 Founding Rates Expire In:
               </div>
               <CountdownTimer />
-              <div className="text-sm text-gray-300 mt-2">Limited to first 100 partners only</div>
+              <div className="text-sm text-white/70 mt-2">Limited to first 100 partners only</div>
             </div>
           </div>
         </div>
@@ -239,10 +239,10 @@ export default function PartnersPage() {
       {/* Pricing Section */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">
+          <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Choose Your Partnership Level
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-[#6B7280] text-lg">
             All plans include our 50% founding partner discount
           </p>
         </div>
@@ -259,10 +259,10 @@ export default function PartnersPage() {
       </div>
 
       {/* Trust Indicators */}
-      <div className="bg-gray-50 py-16">
+      <div className="bg-white py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4">
+            <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Why London's Top Service Providers Choose Us
             </h3>
           </div>
@@ -272,24 +272,24 @@ export default function PartnersPage() {
               <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                 1
               </div>
-              <h4 className="font-semibold text-[#0B1B2B] mb-2">Pre-Qualified Leads</h4>
-              <p className="text-gray-600">Every client is verified and ready to spend. No tire-kickers, only serious relocations.</p>
+              <h4 className="font-semibold text-[#0B1220] mb-2">Pre-Qualified Leads</h4>
+              <p className="text-[#6B7280]">Every client is verified and ready to spend. No tire-kickers, only serious relocations.</p>
             </div>
             
             <div className="text-center p-6">
               <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                 2
               </div>
-              <h4 className="font-semibold text-[#0B1B2B] mb-2">Exclusive Territory</h4>
-              <p className="text-gray-600">Limited partners per category ensures you get maximum opportunities without oversaturation.</p>
+              <h4 className="font-semibold text-[#0B1220] mb-2">Exclusive Territory</h4>
+              <p className="text-[#6B7280]">Limited partners per category ensures you get maximum opportunities without oversaturation.</p>
             </div>
             
             <div className="text-center p-6">
               <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                 3
               </div>
-              <h4 className="font-semibold text-[#0B1B2B] mb-2">Premium Clients</h4>
-              <p className="text-gray-600">Corporate relocations, high-net-worth individuals, and international professionals.</p>
+              <h4 className="font-semibold text-[#0B1220] mb-2">Premium Clients</h4>
+              <p className="text-[#6B7280]">Corporate relocations, high-net-worth individuals, and international professionals.</p>
             </div>
           </div>
         </div>
@@ -298,7 +298,7 @@ export default function PartnersPage() {
       {/* Final CTA */}
       <div className="bg-[#C9A24A] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold mb-4">
+          <h3 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Start Earning Premium Commissions Today
           </h3>
           <p className="text-lg mb-8 text-white/90">
@@ -309,7 +309,7 @@ export default function PartnersPage() {
             <Button 
               onClick={() => handleCheckout('price_featured_partner')}
               size="lg"
-              className="bg-white text-[#C9A24A] hover:bg-gray-100"
+              className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
               disabled={loading}
             >
               {loading ? 'Processing...' : 'Join as Featured Partner'} <ArrowRight className="ml-2 h-4 w-4" />

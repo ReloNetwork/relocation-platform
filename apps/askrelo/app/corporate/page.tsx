@@ -25,17 +25,17 @@ const ROICalculator = () => {
   const savings = totalWithoutService - totalWithService
 
   return (
-    <div className="bg-white rounded-2xl border p-8 shadow-lg">
+    <div className="bg-white rounded-md border border-[#0B1B2B]/10 shadow-sm p-8">
       <div className="flex items-center gap-3 mb-6">
         <Calculator className="h-6 w-6 text-[#C9A24A]" />
-        <h3 className="text-2xl font-bold text-[#0B1B2B]">ROI Calculator</h3>
+        <h3 className="text-2xl font-bold text-[#0B1B2B]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>ROI Calculator</h3>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Inputs */}
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-[#0B1220] mb-2">
               Number of Employees Relocating
             </label>
             <input
@@ -44,9 +44,9 @@ const ROICalculator = () => {
               max="100"
               value={employees}
               onChange={(e) => setEmployees(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+              className="w-full h-2 bg-[#E5E7EB] rounded-lg appearance-none cursor-pointer slider"
             />
-            <div className="flex justify-between text-sm text-gray-600 mt-1">
+            <div className="flex justify-between text-sm text-[#6B7280] mt-1">
               <span>1</span>
               <span className="font-semibold">{employees}</span>
               <span>100+</span>
@@ -54,7 +54,7 @@ const ROICalculator = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-[#0B1220] mb-2">
               Average Employee Salary
             </label>
             <input
@@ -64,17 +64,17 @@ const ROICalculator = () => {
               step="5000"
               value={avgSalary}
               onChange={(e) => setAvgSalary(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+              className="w-full h-2 bg-[#E5E7EB] rounded-lg appearance-none cursor-pointer slider"
             />
-            <div className="flex justify-between text-sm text-gray-600 mt-1">
+            <div className="flex justify-between text-sm text-[#6B7280] mt-1">
               <span>£40k</span>
               <span className="font-semibold">£{(avgSalary / 1000).toFixed(0)}k</span>
               <span>£200k+</span>
             </div>
           </div>
 
-          <div className="bg-gray-50 rounded-lg p-4">
-            <h4 className="font-semibold text-[#0B1B2B] mb-3">Compare Scenarios</h4>
+          <div className="bg-[#FAFAF9] rounded-md p-4">
+            <h4 className="font-semibold text-[#0B1220] mb-3">Compare Scenarios</h4>
             <div className="space-y-2">
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -145,10 +145,10 @@ const ROICalculator = () => {
               <div className="text-3xl font-bold text-[#C9A24A] mb-2">
                 £{Math.abs(savings).toLocaleString()}
               </div>
-              <div className="text-sm font-semibold text-gray-700">
+              <div className="text-sm font-semibold text-[#0B1220]">
                 {savings > 0 ? 'TOTAL SAVINGS' : 'ADDITIONAL COST'}
               </div>
-              <div className="text-xs text-gray-600 mt-2">
+              <div className="text-xs text-[#6B7280] mt-2">
                 {savings > 0 ? `${((savings / totalWithoutService) * 100).toFixed(0)}% cost reduction` : 'Premium service investment'}
               </div>
             </div>
@@ -186,19 +186,19 @@ const ServiceTier = ({
     )}
     
     <div className="text-center mb-8">
-      <h3 className="text-2xl font-bold text-[#0B1B2B]">{name}</h3>
-      <p className="text-gray-600 mt-2">{description}</p>
+      <h3 className="text-2xl font-bold text-[#0B1B2B]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>{name}</h3>
+      <p className="text-[#6B7280] mt-2">{description}</p>
       
       <div className="mt-6">
-        <div className="text-4xl font-bold text-[#0B1B2B]">
+        <div className="text-4xl font-bold text-[#0B1220]">
           {price.includes('£') ? price : `From £${price}`}
         </div>
-        <p className="text-sm text-gray-500 mt-1">per employee relocation</p>
+        <p className="text-sm text-[#6B7280] mt-1">per employee relocation</p>
       </div>
 
       <Button 
         onClick={() => onSelect(priceId)}
-        className={`w-full mt-8 ${isPopular ? 'bg-[#C9A24A] hover:bg-[#B8923D]' : 'bg-[#0B1B2B] hover:bg-[#1A2B3B]'} text-white`}
+        className={`w-full mt-8 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all ${isPopular ? 'bg-[#C9A24A] hover:bg-[#B8923D]' : 'bg-[#0B1B2B] hover:bg-[#0B1B2B]/90'} text-white`}
         size="lg"
       >
         Request Demo <ArrowRight className="ml-2 h-4 w-4" />
@@ -206,14 +206,14 @@ const ServiceTier = ({
     </div>
 
     <div>
-      <h4 className="font-semibold text-[#0B1B2B] mb-4">Service includes:</h4>
+      <h4 className="font-semibold text-[#0B1220] mb-4">Service includes:</h4>
       <ul className="space-y-3">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
             <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5 flex-shrink-0">
               <div className="w-2 h-2 rounded-full bg-green-500"></div>
             </div>
-            <span className="text-gray-700">{feature}</span>
+            <span className="text-[#6B7280]">{feature}</span>
           </li>
         ))}
       </ul>
@@ -227,11 +227,11 @@ const StatCard = ({ icon: Icon, number, label, sublabel }: {
   label: string
   sublabel?: string
 }) => (
-  <div className="text-center bg-white rounded-lg p-6 shadow-md">
+  <div className="text-center bg-white rounded-md p-6 border border-[#0B1B2B]/10 shadow-sm">
     <Icon className="h-10 w-10 text-[#C9A24A] mx-auto mb-4" />
-    <div className="text-3xl font-bold text-[#0B1B2B] mb-2">{number}</div>
-    <div className="text-gray-600 font-medium">{label}</div>
-    {sublabel && <div className="text-gray-500 text-sm mt-1">{sublabel}</div>}
+    <div className="text-3xl font-bold text-[#0B1220] mb-2">{number}</div>
+    <div className="text-[#6B7280] font-medium">{label}</div>
+    {sublabel && <div className="text-[#6B7280] text-sm mt-1">{sublabel}</div>}
   </div>
 )
 
@@ -293,7 +293,7 @@ export default function CorporatePage() {
   ]
 
   return (
-    <Layout className="bg-gradient-to-b from-white to-gray-50">
+    <Layout className="bg-[#FAFAF9]">
       {/* Hero Section */}
       <div className="bg-[#0B1B2B] text-white">
         <div className="max-w-6xl mx-auto px-4 py-20">
@@ -303,11 +303,11 @@ export default function CorporatePage() {
               <span className="text-[#C9A24A] text-sm font-medium">Corporate Relocation</span>
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Relocate Your Global Talent. <span className="text-[#C9A24A]">Effortlessly.</span>
             </h1>
             
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-12">
               End the stress of employee relocations with our white-glove service. We handle everything from home finding to school placement, ensuring your talent arrives ready to perform.
             </p>
 
@@ -315,32 +315,32 @@ export default function CorporatePage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#C9A24A]">95%</div>
-                <div className="text-gray-300 text-sm">Success Rate</div>
+                <div className="text-white/70 text-sm">Success Rate</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#C9A24A]">30</div>
-                <div className="text-gray-300 text-sm">Days Average</div>
+                <div className="text-white/70 text-sm">Days Average</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#C9A24A]">500+</div>
-                <div className="text-gray-300 text-sm">Families Moved</div>
+                <div className="text-white/70 text-sm">Families Moved</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#C9A24A]">£2.8M</div>
-                <div className="text-gray-300 text-sm">Client Savings</div>
+                <div className="text-white/70 text-sm">Client Savings</div>
               </div>
             </div>
 
             <Button 
               onClick={() => handleBookDemo('enterprise')}
               size="lg"
-              className="bg-[#C9A24A] hover:bg-[#B8923D] text-white text-lg px-8 py-4"
+              className="bg-[#C9A24A] hover:bg-[#B8923D] text-white text-lg px-8 py-4 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
               disabled={loading}
             >
               {loading ? 'Loading...' : 'Request Corporate Demo'} <Calendar className="ml-2 h-5 w-5" />
             </Button>
             
-            <p className="text-sm text-gray-400 mt-4">
+            <p className="text-sm text-white/60 mt-4">
               Book a 30-minute consultation • No commitment required
             </p>
           </div>
@@ -350,10 +350,10 @@ export default function CorporatePage() {
       {/* ROI Calculator Section */}
       <div className="max-w-6xl mx-auto px-4 py-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">
+          <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Calculate Your ROI
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-[#6B7280] text-lg max-w-2xl mx-auto">
             See how much you could save with our managed relocation service vs. handling it internally
           </p>
         </div>
@@ -362,13 +362,13 @@ export default function CorporatePage() {
       </div>
 
       {/* Service Tiers */}
-      <div className="bg-gray-50 py-20">
+      <div className="bg-white py-20">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">
+            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Choose Your Service Level
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-[#6B7280] text-lg">
               Tailored solutions for every relocation need and budget
             </p>
           </div>
@@ -389,7 +389,7 @@ export default function CorporatePage() {
       <div className="py-20">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4">
+            <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Why Global Companies Choose Relo Network
             </h3>
           </div>
@@ -435,7 +435,7 @@ export default function CorporatePage() {
               <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
               <div className="text-left">
                 <div className="font-semibold">Sarah Chen</div>
-                <div className="text-gray-400">Head of People, TechCorp Global</div>
+                <div className="text-white/60">Head of People, TechCorp Global</div>
               </div>
             </div>
           </div>
@@ -445,7 +445,7 @@ export default function CorporatePage() {
       {/* Final CTA */}
       <div className="bg-[#C9A24A] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold mb-4">
+          <h3 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Ready to Transform Your Global Mobility?
           </h3>
           <p className="text-lg mb-8 text-white/90">
@@ -456,7 +456,7 @@ export default function CorporatePage() {
             <Button 
               onClick={() => handleBookDemo('enterprise')}
               size="lg"
-              className="bg-white text-[#C9A24A] hover:bg-gray-100"
+              className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
               disabled={loading}
             >
               {loading ? 'Loading...' : 'Book Enterprise Demo'} <Calendar className="ml-2 h-4 w-4" />
@@ -465,7 +465,7 @@ export default function CorporatePage() {
               onClick={() => handleBookDemo('managed')}
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-[#C9A24A]"
+              className="border-white text-white hover:bg-white hover:text-[#C9A24A] rounded-md hover:scale-105 transition-all"
               disabled={loading}
             >
               Start with Managed Service

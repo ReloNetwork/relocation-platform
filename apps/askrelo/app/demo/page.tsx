@@ -11,7 +11,7 @@ const VoiceWaveform = ({ isActive }: { isActive: boolean }) => (
       <div
         key={i}
         className={`w-1 rounded-full transition-all duration-150 ${
-          isActive ? 'bg-blue-500' : 'bg-gray-300'
+          isActive ? 'bg-[#C9A24A]' : 'bg-gray-300'
         }`}
         style={{
           height: isActive 
@@ -38,19 +38,19 @@ const ConversationMessage = ({
 }) => (
   <div className={`flex gap-3 ${isAI ? 'flex-row-reverse' : 'flex-row'} mb-4`}>
     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-      isAI ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-600'
+      isAI ? 'bg-[#C9A24A]/10 text-[#C9A24A]' : 'bg-gray-100 text-[#6B7280]'
     }`}>
       {isAI ? <Sparkles className="h-4 w-4" /> : <User className="h-4 w-4" />}
     </div>
     <div className={`max-w-xs lg:max-w-md ${isAI ? 'text-right' : 'text-left'}`}>
       <div className={`rounded-2xl px-4 py-3 ${
         isAI 
-          ? 'bg-blue-500 text-white' 
-          : 'bg-gray-100 text-gray-900'
+          ? 'bg-[#0B1B2B] text-white' 
+          : 'bg-gray-100 text-[#0B1220]'
       }`}>
         <p className="text-sm">{message}</p>
       </div>
-      <p className="text-xs text-gray-500 mt-1">{speaker} • {timestamp}</p>
+      <p className="text-xs text-[#6B7280] mt-1">{speaker} • {timestamp}</p>
     </div>
   </div>
 )
@@ -64,10 +64,10 @@ const FeatureHighlight = ({
   description: string
   icon: any
 }) => (
-  <div className="bg-white rounded-lg p-6 border shadow-sm">
-    <Icon className="h-8 w-8 text-blue-600 mb-3" />
-    <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
-    <p className="text-gray-600 text-sm">{description}</p>
+  <div className="bg-white rounded-md p-6 border border-[#0B1B2B]/10 shadow-sm">
+    <Icon className="h-8 w-8 text-[#C9A24A] mb-3" />
+    <h3 className="font-semibold text-[#0B1220] mb-2">{title}</h3>
+    <p className="text-[#6B7280] text-sm">{description}</p>
   </div>
 )
 
@@ -164,24 +164,24 @@ export default function DemoPage() {
   ]
 
   return (
-    <Layout className="bg-gradient-to-b from-white to-gray-50">
+    <Layout className="bg-[#FAFAF9]">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-900 to-indigo-900 text-white py-20">
+      <div className="bg-[#0B1B2B] text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-2 mb-6">
-            <Play className="h-4 w-4 text-blue-300 mr-2" />
-            <span className="text-blue-300 text-sm font-medium">Interactive Demo</span>
+          <div className="inline-flex items-center bg-[#C9A24A]/20 border border-[#C9A24A]/30 rounded-full px-4 py-2 mb-6">
+            <Play className="h-4 w-4 text-[#C9A24A] mr-2" />
+            <span className="text-[#C9A24A] text-sm font-medium">Interactive Demo</span>
           </div>
           
-          <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-            Try <span className="text-blue-300">Ask Relo</span> Live Demo
+          <h1 className="text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            Try <span className="text-[#C9A24A]">Ask Relo</span> Live Demo
           </h1>
           
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl text-white/80 mb-8">
             Experience our AI-powered relocation assistant in action. Speak naturally and get instant, intelligent responses about London properties and neighborhoods.
           </p>
           
-          <div className="bg-blue-500/20 text-blue-100 px-6 py-3 rounded-full inline-block text-sm font-semibold border border-blue-400/30 mb-8">
+          <div className="bg-[#C9A24A]/20 text-[#C9A24A] px-6 py-3 rounded-full inline-block text-sm font-semibold border border-[#C9A24A]/30 mb-8">
             Voice Enabled • AI Powered • Real Properties
           </div>
         </div>
@@ -191,20 +191,20 @@ export default function DemoPage() {
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Voice Interface */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 border">
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-[#0B1B2B]/10">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Voice Demo Interface</h2>
-              <p className="text-gray-600">Click the microphone and start speaking</p>
+              <h2 className="text-2xl font-bold text-[#0B1220] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Voice Demo Interface</h2>
+              <p className="text-[#6B7280]">Click the microphone and start speaking</p>
             </div>
             
             {/* Voice Control */}
             <div className="text-center mb-8">
               <button
                 onClick={toggleRecording}
-                className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 transition-all ${
+                className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 transition-all hover:scale-105 ${
                   isRecording 
-                    ? 'bg-red-500 hover:bg-red-600 text-white' 
-                    : 'bg-blue-500 hover:bg-blue-600 text-white'
+                    ? 'bg-[#DC2626] hover:bg-[#DC2626]/90 text-white shadow-lg' 
+                    : 'bg-[#C9A24A] hover:bg-[#C9A24A]/90 text-white shadow-lg'
                 }`}
               >
                 {isRecording ? (
@@ -218,7 +218,7 @@ export default function DemoPage() {
                 <VoiceWaveform isActive={isRecording} />
               </div>
               
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-[#6B7280]">
                 {!hasStarted ? 'Click to start demo conversation' :
                  isRecording ? 'Listening...' : 
                  isProcessing ? 'Processing your request...' : 
@@ -238,12 +238,12 @@ export default function DemoPage() {
           </div>
 
           {/* Conversation Display */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 border">
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-[#0B1B2B]/10">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Live Conversation</h2>
+              <h2 className="text-2xl font-bold text-[#0B1220]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Live Conversation</h2>
               {hasStarted && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="flex items-center gap-2 text-sm text-[#6B7280]">
+                  <div className="w-2 h-2 bg-[#16A34A] rounded-full"></div>
                   Connected
                 </div>
               )}
@@ -255,8 +255,8 @@ export default function DemoPage() {
                   <ConversationMessage key={index} {...msg} />
                 ))
               ) : (
-                <div className="text-center text-gray-500 mt-20">
-                  <MessageCircle className="h-16 w-16 mx-auto mb-4 text-gray-300" />
+                <div className="text-center text-[#6B7280] mt-20">
+                  <MessageCircle className="h-16 w-16 mx-auto mb-4 text-[#6B7280]/50" />
                   <p className="text-lg font-medium">Ready for Demo</p>
                   <p className="text-sm">Click the microphone to start your conversation</p>
                 </div>
@@ -265,7 +265,7 @@ export default function DemoPage() {
 
             {/* Typing indicator when AI is responding */}
             {hasStarted && currentStep < demoScript.length - 1 && currentStep % 2 === 0 && (
-              <div className="flex items-center gap-2 text-blue-600 text-sm">
+              <div className="flex items-center gap-2 text-[#C9A24A] text-sm">
                 <Sparkles className="h-4 w-4 animate-pulse" />
                 Ask Relo AI is typing...
               </div>
@@ -275,13 +275,13 @@ export default function DemoPage() {
       </div>
 
       {/* Features Section */}
-      <div className="bg-gray-50 py-20">
+      <div className="bg-white py-20">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-[#0B1220] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Experience These Features Live
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-[#6B7280] text-lg">
               Our demo showcases real AI capabilities you'll use for your London relocation
             </p>
           </div>
@@ -295,12 +295,12 @@ export default function DemoPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="py-20">
+      <div className="py-20 bg-[#FAFAF9]">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-[#0B1220] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Ready to Get Full Access?
           </h2>
-          <p className="text-gray-600 text-lg mb-8">
+          <p className="text-[#6B7280] text-lg mb-8">
             This demo shows just a taste of Ask Relo's capabilities. Get unlimited access with our full service.
           </p>
           
@@ -308,15 +308,15 @@ export default function DemoPage() {
             <Button 
               onClick={() => window.location.href = '/ask-relo-pricing'}
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
             >
               View Pricing Plans <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button 
-              onClick={() => window.location.href = '/ask-relo-pricing'}
+              onClick={() => window.location.href = '/join-waitlist'}
               size="lg"
               variant="outline"
-              className="border-blue-600 text-blue-600 hover:bg-blue-50"
+              className="border-[#C9A24A] text-[#C9A24A] hover:bg-[#C9A24A]/10 rounded-md hover:scale-105 transition-all"
             >
               Start Free Trial
             </Button>
