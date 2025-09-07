@@ -43,53 +43,50 @@ export default function GlobalNavigation() {
   return (
     <>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
         
         .brand-logo {
-          font-family: 'Lexend', sans-serif;
-          font-weight: 500;
+          font-family: 'Playfair Display', Georgia, serif;
+          font-weight: 600;
           letter-spacing: -0.01em;
-          font-size: 1.4rem;
-          background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 50%, #1E3A8A 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+          font-size: 1.5rem;
+          color: #0B1B2B;
         }
         
         .glass-nav {
           backdrop-filter: blur(20px);
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          background: rgba(250, 250, 249, 0.95);
+          border-bottom: 1px solid rgba(11, 27, 43, 0.1);
+          box-shadow: 0 4px 16px rgba(11, 27, 43, 0.08);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .glass-nav.scrolled {
           backdrop-filter: blur(24px);
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          background: rgba(255, 255, 255, 0.98);
+          box-shadow: 0 8px 24px rgba(11, 27, 43, 0.12);
         }
         
         .nav-link {
           position: relative;
-          color: rgba(96, 165, 250, 0.9);
+          color: #6B7280;
           font-weight: 500;
           transition: all 0.3s ease;
           padding: 0.5rem 1rem;
-          border-radius: 0.5rem;
-          border: 1px solid rgba(96, 165, 250, 0.2);
+          border-radius: 0.375rem;
+          border: 1px solid transparent;
         }
         
         .nav-link:hover {
-          color: rgb(96, 165, 250);
-          background: rgba(96, 165, 250, 0.1);
-          backdrop-filter: blur(8px);
+          color: #0B1B2B;
+          background: rgba(201, 162, 74, 0.1);
+          border-color: rgba(201, 162, 74, 0.2);
         }
         
         .nav-link.active {
-          color: rgb(59, 130, 246);
-          background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
-          box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+          color: #0B1B2B;
+          background: rgba(201, 162, 74, 0.1);
+          border-color: #C9A24A;
         }
         
         .nav-logo {
@@ -104,15 +101,15 @@ export default function GlobalNavigation() {
         }
         
         .btn-nav {
-          background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+          background: #0B1B2B;
           color: white;
           font-weight: 600;
           padding: 0.75rem 1.5rem;
-          border-radius: 0.75rem;
+          border-radius: 0.375rem;
           border: none;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           cursor: pointer;
-          box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+          box-shadow: 0 4px 16px rgba(11, 27, 43, 0.2);
           position: relative;
           overflow: hidden;
         }
@@ -131,8 +128,8 @@ export default function GlobalNavigation() {
         }
         
         .btn-nav:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
+          transform: translateY(-1px) scale(1.02);
+          box-shadow: 0 8px 24px rgba(11, 27, 43, 0.3);
         }
         
         .mobile-menu {
@@ -154,29 +151,10 @@ export default function GlobalNavigation() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 flex items-center justify-center">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#3B82F6" />
-                      <stop offset="50%" stopColor="#1E40AF" />
-                      <stop offset="100%" stopColor="#1E3A8A" />
-                    </linearGradient>
-                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="rgba(0,0,0,0.1)" />
-                    </filter>
-                  </defs>
-                  {/* Hexagonal container for premium feel */}
-                  <path d="M18 2 L28 8 L28 20 L18 26 L8 20 L8 8 Z" fill="url(#logoGradient)" fillOpacity="0.1" stroke="url(#logoGradient)" strokeWidth="1.5" filter="url(#shadow)" />
-                  {/* Stylized "R" with modern geometric approach */}
-                  <path d="M12 10 L12 22 M12 10 L20 10 Q22 10 22 12 Q22 14 20 14 L12 14 M17 14 L22 22" stroke="url(#logoGradient)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                  {/* Subtle movement indicator */}
-                  <circle cx="24" cy="18" r="1.5" fill="url(#logoGradient)" opacity="0.8">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
-                  </circle>
-                </svg>
+              <div className="w-10 h-10 bg-[#0B1B2B] rounded-lg flex items-center justify-center group-hover:bg-[#C9A24A] transition-colors duration-300">
+                <span className="text-[#C9A24A] font-bold text-xl group-hover:text-white transition-colors duration-300">R</span>
               </div>
-              <span className="brand-logo hidden sm:block group-hover:scale-105 transition-transform duration-200">Relo Network</span>
+              <span className="brand-logo hidden sm:block group-hover:text-[#C9A24A] transition-colors duration-200">Relo Network</span>
             </Link>
             
             {/* Desktop Navigation */}
@@ -199,7 +177,7 @@ export default function GlobalNavigation() {
               </button>
               
               {/* Mobile Menu Button */}
-              <button className="md:hidden text-blue-300 p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <button className="md:hidden text-[#6B7280] hover:text-[#0B1B2B] p-2 transition-colors" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>

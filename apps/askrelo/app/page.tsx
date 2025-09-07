@@ -5,27 +5,31 @@ import { Button } from '@/ui/components/button'
 import { Calendar, ChevronRight, Star, Shield, Mic, Play, Volume2, ArrowRight, Clock, Users, Award, Eye, Building2, Rocket, Timer } from 'lucide-react'
 import Layout from '../components/Layout'
 
-// Enhanced CSS with refined design system
+// Premium Contemporary Luxury Design System
 const customStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
   
   * {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
   
   :root {
-    --accent-blue: #3B82F6;
-    --accent-blue-light: #60A5FA;
-    --accent-blue-dark: #2563EB;
-    --accent-blue-ultra: #1E40AF;
+    --color-bg: #FAFAF9;
+    --color-card: #FFFFFF;
+    --color-text: #0B1220;
+    --color-muted: #6B7280;
+    --color-primary: #0B1B2B;
+    --color-accent: #C9A24A;
+    --color-success: #16A34A;
+    --color-warning: #F59E0B;
+    --color-danger: #DC2626;
   }
   
   .countdown-banner {
-    backdrop-filter: blur(20px);
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(37, 99, 235, 0.7) 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, rgba(11, 27, 43, 0.9) 100%);
     animation: slideDownBanner 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transform: translateY(-100%);
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 8px 32px rgba(11, 27, 43, 0.2);
   }
   
   .banner-pulse {
@@ -49,12 +53,12 @@ const customStyles = `
   
   @keyframes bannerPulse {
     0%, 100% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(37, 99, 235, 0.7) 100%);
-      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
+      background: linear-gradient(135deg, var(--color-primary) 0%, rgba(11, 27, 43, 0.9) 100%);
+      box-shadow: 0 8px 32px rgba(11, 27, 43, 0.2);
     }
     50% { 
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(37, 99, 235, 0.8) 100%);
-      box-shadow: 0 12px 48px rgba(59, 130, 246, 0.5);
+      background: linear-gradient(135deg, rgba(11, 27, 43, 0.95) 0%, rgba(11, 27, 43, 0.85) 100%);
+      box-shadow: 0 12px 48px rgba(201, 162, 74, 0.1);
     }
   }
   
@@ -218,34 +222,30 @@ const customStyles = `
   }
   
   .text-display {
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(3.5rem, 8vw, 6.5rem);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.05;
-    letter-spacing: -0.03em;
-    background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
   }
   
   .text-accent {
-    background: linear-gradient(135deg, var(--accent-blue-light) 0%, var(--accent-blue) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--color-accent);
+    font-style: italic;
   }
   
   .btn-primary {
-    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
+    background: var(--color-primary);
     color: white;
     font-weight: 600;
     font-size: 1.1rem;
     padding: 1rem 2.5rem;
-    border-radius: 12px;
+    border-radius: 0.375rem;
     border: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 16px rgba(11, 27, 43, 0.2);
     position: relative;
     overflow: hidden;
   }
@@ -264,8 +264,8 @@ const customStyles = `
   }
   
   .btn-primary:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 12px 48px rgba(59, 130, 246, 0.4);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(11, 27, 43, 0.3);
   }
   
   .btn-secondary {
@@ -562,7 +562,7 @@ export default function HomePage() {
   }
 
   return (
-    <Layout className="bg-white text-gray-900 overflow-x-hidden">
+    <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden">
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
       {/* Animated Countdown Banner */}
@@ -575,12 +575,12 @@ export default function HomePage() {
       </div>
       
       {/* Hero Section with Editorial Layout */}
-      <div className="relative min-h-screen overflow-hidden" style={{ marginTop: '-60px' }}>
+      <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10" style={{ marginTop: '-60px' }}>
         {/* Background Gallery */}
         <LondonGallery />
         
         {/* Hero Gradient Overlay */}
-        <div className="hero-gradient absolute inset-0 z-10"></div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-br from-white/90 via-white/70 to-white/50"></div>
 
         {/* Hero Content with Editorial Layout */}
         <div className="relative z-20 flex items-center min-h-screen pt-20 pb-16">
@@ -589,27 +589,27 @@ export default function HomePage() {
               {/* Left Column - Editorial Content */}
               <div className="space-y-10">
                 {/* Founding Badge */}
-                <div className="glass-primary rounded-2xl px-8 py-4 inline-flex items-center space-x-4 floating-slow slide-up-elegant stagger-1">
-                  <div className="w-6 h-6 blue-gradient-primary rounded-full flex items-center justify-center">
+                <div className="bg-gradient-to-r from-[#C9A24A]/10 to-[#C9A24A]/5 rounded-2xl px-8 py-4 inline-flex items-center space-x-4 border border-[#C9A24A]/20 slide-up-elegant stagger-1">
+                  <div className="w-6 h-6 bg-[#C9A24A] rounded-full flex items-center justify-center">
                     <span className="text-white text-xs font-bold">★</span>
                   </div>
-                  <span className="text-white font-semibold text-shadow-elegant">Founding Member Exclusive</span>
+                  <span className="text-[#0B1B2B] font-semibold">Founding Member Exclusive</span>
                 </div>
                 
                 {/* Main Headline */}
                 <div className="space-y-8 slide-up-elegant stagger-2">
-                  <h1 className="text-display text-shadow-elegant leading-none">
+                  <h1 className="text-display leading-none">
                     Relocate to <span className="text-accent">London</span><br />
-                    <span className="text-5xl md:text-6xl font-light text-white/95">Effortlessly.</span>
+                    <span className="text-5xl md:text-6xl font-light text-[#6B7280]">Effortlessly.</span>
                   </h1>
                 </div>
                 
                 {/* Enhanced Description */}
                 <div className="space-y-4 slide-up-elegant stagger-3">
-                  <p className="text-2xl text-white/90 leading-relaxed font-medium text-shadow-elegant">
+                  <p className="text-2xl text-[#0B1B2B] leading-relaxed font-medium">
                     London's most exclusive relocation network.
                   </p>
-                  <p className="text-xl text-white/80 leading-relaxed max-w-2xl text-shadow-elegant">
+                  <p className="text-xl text-[#6B7280] leading-relaxed max-w-2xl">
                     AI-powered guidance, vetted partners, and white-glove service for discerning professionals moving to Britain's capital.
                   </p>
                 </div>
@@ -623,8 +623,8 @@ export default function HomePage() {
                     Join Waitlist
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </button>
-                  <p className="text-white/60 text-sm">
-                    5-minute free trial • No credit card required • Instant access
+                  <p className="text-[#6B7280] text-sm">
+                    Join our exclusive founding member programme • Limited to 100 members
                   </p>
                 </div>
               </div>
