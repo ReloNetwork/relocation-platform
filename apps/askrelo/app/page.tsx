@@ -617,10 +617,10 @@ export default function HomePage() {
                 {/* Primary CTA */}
                 <div className="space-y-4 slide-up-elegant stagger-4">
                   <button 
-                    onClick={() => window.location.href = '/demo'}
+                    onClick={scrollToWaitlist}
                     className="btn-primary relative z-10 text-lg px-10 py-5"
                   >
-                    Try Ask Relo AI Free
+                    Join Waitlist
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </button>
                   <p className="text-white/60 text-sm">
