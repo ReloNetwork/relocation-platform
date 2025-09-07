@@ -639,7 +639,7 @@ export default function HomePage() {
       </div>
       
       {/* Launch Announcement */}
-      <section className="bg-gradient-to-r from-gray-900 to-black py-4">
+      <section className="bg-[#0B1B2B] py-4">
         <div className="container-custom">
           <div className="text-center">
             <p className="text-white font-medium">
@@ -650,30 +650,30 @@ export default function HomePage() {
       </section>
 
       {/* Ask Relo AI Demo Section */}
-      <section className="section-spacing bg-gradient-to-br from-blue-900 to-indigo-900">
+      <section className="section-spacing bg-[#FAFAF9]">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Demo Content */}
             <div className="space-y-8">
-              <div className="inline-flex items-center bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-2">
-                <Mic className="h-4 w-4 text-blue-300 mr-2" />
-                <span className="text-blue-300 text-sm font-medium">AI-Powered Assistant</span>
+              <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2">
+                <Mic className="h-4 w-4 text-[#C9A24A] mr-2" />
+                <span className="text-[#0B1B2B] text-sm font-medium">AI-Powered Assistant</span>
               </div>
               
-              <h2 className="text-5xl font-bold text-white">
+              <h2 className="text-5xl font-bold text-[#0B1B2B]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                 Meet Ask Relo AI
               </h2>
               
-              <p className="text-xl text-white/80 leading-relaxed">
+              <p className="text-xl text-[#6B7280] leading-relaxed">
                 Your 24/7 London relocation expert. Simply speak naturally and get instant, intelligent responses about properties, neighborhoods, and everything you need for your London move.
               </p>
               
               <div className="space-y-4">
-                <div className="glass-primary rounded-xl p-4">
-                  <p className="text-white/90 font-medium">"Find me a 2BR flat in Marylebone under £4k/month"</p>
+                <div className="bg-white border border-[#0B1B2B]/10 rounded-xl p-4 shadow-sm">
+                  <p className="text-[#0B1B2B] font-medium">"Find me a 2BR flat in Marylebone under £4k/month"</p>
                 </div>
-                <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4">
-                  <p className="text-white/90 font-medium">"I found 12 verified properties matching your criteria. The closest to Hyde Park is a gorgeous Victorian conversion at £3,800/month. Would you like me to schedule a viewing?"</p>
+                <div className="bg-[#C9A24A]/5 border border-[#C9A24A]/20 rounded-xl p-4">
+                  <p className="text-[#0B1B2B] font-medium">"I found 12 verified properties matching your criteria. The closest to Hyde Park is a gorgeous Victorian conversion at £3,800/month. Would you like me to schedule a viewing?"</p>
                 </div>
               </div>
               
@@ -694,15 +694,15 @@ export default function HomePage() {
             </div>
             
             {/* Demo Interface */}
-            <div className="glass-primary rounded-3xl p-8 space-y-6">
+            <div className="bg-white border border-[#0B1B2B]/10 rounded-3xl p-8 space-y-6 shadow-sm">
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-4">Interactive Demo</h3>
-                <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 pulse-glow">
+                <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Interactive Demo</h3>
+                <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto mb-6 hover:scale-105 transition-transform cursor-pointer">
                   <Mic className="w-8 h-8 text-white" />
                 </div>
-                <p className="text-white/80 mb-6">Click to start speaking with Ask Relo AI</p>
+                <p className="text-[#6B7280] mb-6">Click to start speaking with Ask Relo AI</p>
                 
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                <div className="bg-green-50 border border-green-200 rounded-md p-4 mb-6">
                   <div className="flex items-center justify-center gap-2 text-green-800 text-sm font-medium">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                     AI Assistant Ready
@@ -722,32 +722,32 @@ export default function HomePage() {
       </section>
 
       {/* Revenue Solutions Section */}
-      <section id="services" className="section-spacing blue-gradient-bg">
+      <section id="services" className="section-spacing bg-white">
         <div className="container-custom">
           <div className="text-center mb-20 fade-in-up stagger-1">
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Choose Your Solution</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-5xl md:text-6xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Choose Your Solution</h2>
+            <p className="text-xl text-[#6B7280] max-w-3xl mx-auto leading-relaxed">
               Premium relocation services for individuals, partners, and enterprises
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-10">
             {/* AI Voice Agent */}
-            <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-2">
-              <div className="service-header p-10 text-center relative">
+            <div className="bg-white border border-[#0B1B2B]/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow fade-in-up stagger-2">
+              <div className="bg-[#0B1B2B] p-10 text-center relative">
                 <div className="mb-4 relative z-10">
-                  <Mic className="w-12 h-12 text-white mx-auto" />
+                  <Mic className="w-12 h-12 text-[#C9A24A] mx-auto" />
                 </div>
-                <h3 className="text-2xl font-semibold text-white relative z-10">Ask Relo AI</h3>
+                <h3 className="text-2xl font-semibold text-white relative z-10" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Ask Relo AI</h3>
                 <p className="text-white/80 text-sm mt-2 relative z-10">24/7 Voice Concierge</p>
               </div>
               <div className="p-10">
-                <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                <p className="text-[#6B7280] text-lg mb-6 leading-relaxed">
                   Your personal London relocation expert available anytime. From property search to supplier connections.
                 </p>
                 <div className="mb-6">
-                  <div className="text-2xl font-bold text-gray-900 mb-2">From £295/month</div>
-                  <div className="text-sm text-gray-600">Start with 5-minute free trial</div>
+                  <div className="text-2xl font-bold text-[#0B1B2B] mb-2">From £295/month</div>
+                  <div className="text-sm text-[#6B7280]">Start with 5-minute free trial</div>
                 </div>
                 <button 
                   onClick={() => window.location.href = '/ask-relo-pricing'}
@@ -759,23 +759,23 @@ export default function HomePage() {
             </div>
             
             {/* Partner Network */}
-            <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-3">
-              <div className="service-header p-10 text-center relative">
-                <div className="w-16 h-16 mx-auto mb-6 blue-gradient-primary rounded-2xl flex items-center justify-center relative z-10">
+            <div className="bg-white border border-[#0B1B2B]/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow fade-in-up stagger-3">
+              <div className="bg-[#0B1B2B] p-10 text-center relative">
+                <div className="w-16 h-16 mx-auto mb-6 bg-[#C9A24A] rounded-2xl flex items-center justify-center relative z-10">
                   <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold text-white relative z-10">Partner Network</h3>
+                <h3 className="text-2xl font-semibold text-white relative z-10" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Partner Network</h3>
                 <p className="text-white/80 text-sm mt-2 relative z-10">For Service Providers</p>
               </div>
               <div className="p-10">
-                <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                <p className="text-[#6B7280] text-lg mb-6 leading-relaxed">
                   Join London's most exclusive relocation network. Access high-value clients and premium opportunities.
                 </p>
                 <div className="mb-6">
-                  <div className="text-2xl font-bold text-gray-900 mb-2">From £250/month</div>
-                  <div className="text-sm text-gray-600">50% off founding partner rates</div>
+                  <div className="text-2xl font-bold text-[#0B1B2B] mb-2">From £250/month</div>
+                  <div className="text-sm text-[#6B7280]">50% off founding partner rates</div>
                 </div>
                 <button 
                   onClick={() => window.location.href = '/partners'}
@@ -787,21 +787,21 @@ export default function HomePage() {
             </div>
             
             {/* Corporate Solutions */}
-            <div className="glass-card rounded-3xl overflow-hidden service-card fade-in-up stagger-4">
-              <div className="service-header p-10 text-center relative">
+            <div className="bg-white border border-[#0B1B2B]/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow fade-in-up stagger-4">
+              <div className="bg-[#0B1B2B] p-10 text-center relative">
                 <div className="mb-4 relative z-10">
-                  <Building2 className="w-12 h-12 text-white mx-auto" />
+                  <Building2 className="w-12 h-12 text-[#C9A24A] mx-auto" />
                 </div>
-                <h3 className="text-2xl font-semibold text-white relative z-10">Corporate</h3>
+                <h3 className="text-2xl font-semibold text-white relative z-10" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Corporate</h3>
                 <p className="text-white/80 text-sm mt-2 relative z-10">Enterprise Solutions</p>
               </div>
               <div className="p-10">
-                <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                <p className="text-[#6B7280] text-lg mb-6 leading-relaxed">
                   Complete employee relocation management for investment banks, consulting firms, and tech companies.
                 </p>
                 <div className="mb-6">
-                  <div className="text-2xl font-bold text-gray-900 mb-2">£8,500+ per employee</div>
-                  <div className="text-sm text-gray-600">96% success rate guarantee</div>
+                  <div className="text-2xl font-bold text-[#0B1B2B] mb-2">£8,500+ per employee</div>
+                  <div className="text-sm text-[#6B7280]">96% success rate guarantee</div>
                 </div>
                 <button 
                   onClick={() => window.location.href = '/corporate'}
@@ -816,80 +816,80 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA with Social Proof */}
-      <section className="section-spacing bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="section-spacing bg-[#FAFAF9]">
         <div className="container-custom text-center">
           {/* Social Proof Bar */}
           <div className="mb-12 fade-in-up">
-            <div className="glass-primary rounded-2xl p-6 max-w-4xl mx-auto">
+            <div className="bg-white border border-[#0B1B2B]/10 rounded-2xl p-6 max-w-4xl mx-auto shadow-sm">
               <div className="grid grid-cols-3 gap-8 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-white mb-2">150+</div>
-                  <div className="text-white/80 text-sm">Vetted Partners</div>
+                  <div className="text-3xl font-bold text-[#0B1B2B] mb-2">150+</div>
+                  <div className="text-[#6B7280] text-sm">Vetted Partners</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-white mb-2">47</div>
-                  <div className="text-white/80 text-sm">Partners This Month</div>
+                  <div className="text-3xl font-bold text-[#0B1B2B] mb-2">47</div>
+                  <div className="text-[#6B7280] text-sm">Partners This Month</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-white mb-2">96%</div>
-                  <div className="text-white/80 text-sm">Success Rate</div>
+                  <div className="text-3xl font-bold text-[#0B1B2B] mb-2">96%</div>
+                  <div className="text-[#6B7280] text-sm">Success Rate</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="glass-card rounded-3xl p-16 max-w-4xl mx-auto fade-in-up floating-slow">
-            <div className="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-gray-900 to-black rounded-2xl flex items-center justify-center pulse-glow">
+          <div className="bg-white border border-[#0B1B2B]/10 rounded-3xl p-16 max-w-4xl mx-auto fade-in-up shadow-sm">
+            <div className="w-20 h-20 mx-auto mb-8 bg-[#C9A24A] rounded-2xl flex items-center justify-center hover:scale-105 transition-transform">
               <Rocket className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Ready to Monetize?</h2>
-            <p className="text-3xl font-light text-gray-700 mb-4">Start Generating Revenue Today</p>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Choose your revenue path: AI voice subscriptions, partner network fees, or corporate contracts.
+            <h2 className="text-5xl md:text-6xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Join Waitlist</h2>
+            <p className="text-3xl font-light text-[#6B7280] mb-4">Exclusive Founding Member Access</p>
+            <p className="text-xl text-[#6B7280] mb-8 max-w-2xl mx-auto leading-relaxed">
+              Join our exclusive founding member programme and secure 50% off launch rates.
             </p>
 
             {/* Urgency Timer */}
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-md mx-auto">
-              <div className="text-blue-800 font-semibold mb-3 flex items-center justify-center gap-2">
+            <div className="bg-[#C9A24A]/5 border border-[#C9A24A]/20 rounded-md p-4 mb-8 max-w-md mx-auto">
+              <div className="text-[#0B1B2B] font-semibold mb-3 flex items-center justify-center gap-2">
                 <Timer className="w-4 h-4" />
                 Founding rates expire in:
               </div>
               <div className="grid grid-cols-4 gap-2">
                 <div className="text-center">
-                  <div className="text-xl font-bold text-blue-900">09</div>
-                  <div className="text-xs text-blue-700">Days</div>
+                  <div className="text-xl font-bold text-[#0B1B2B]">09</div>
+                  <div className="text-xs text-[#6B7280]">Days</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-bold text-blue-900">13</div>
-                  <div className="text-xs text-blue-700">Hours</div>
+                  <div className="text-xl font-bold text-[#0B1B2B]">13</div>
+                  <div className="text-xs text-[#6B7280]">Hours</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-bold text-blue-900">51</div>
-                  <div className="text-xs text-blue-700">Minutes</div>
+                  <div className="text-xl font-bold text-[#0B1B2B]">51</div>
+                  <div className="text-xs text-[#6B7280]">Minutes</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-bold text-blue-900">32</div>
-                  <div className="text-xs text-blue-700">Seconds</div>
+                  <div className="text-xl font-bold text-[#0B1B2B]">32</div>
+                  <div className="text-xs text-[#6B7280]">Seconds</div>
                 </div>
               </div>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button 
-                onClick={() => window.location.href = '/demo'}
-                className="btn-primary bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-800"
+                onClick={scrollToWaitlist}
+                className="btn-primary"
               >
-                Start Free Demo
+                Join Waitlist
               </button>
               <button 
                 onClick={() => window.location.href = '/directory'}
-                className="bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 px-8 py-4 rounded-xl font-semibold transition-all"
+                className="bg-white text-[#6B7280] border border-[#0B1B2B]/20 hover:bg-[#FAFAF9] hover:text-[#0B1B2B] hover:border-[#0B1B2B]/30 px-8 py-4 rounded-md font-semibold transition-all"
               >
                 View Directory
               </button>
             </div>
 
-            <div className="mt-8 text-sm text-gray-600">
+            <div className="mt-8 text-sm text-[#6B7280]">
               Trusted by investment banks and consulting firms across London
             </div>
           </div>
@@ -897,57 +897,57 @@ export default function HomePage() {
       </section>
 
       {/* Premium Footer */}
-      <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+      <footer className="bg-[#0B1B2B] text-white relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-40 h-40 border border-white/10 rounded-full"></div>
-          <div className="absolute bottom-10 right-10 w-32 h-32 border border-white/10 rounded-full"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-yellow-400/5 to-yellow-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 left-10 w-40 h-40 border border-[#C9A24A]/20 rounded-full"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 border border-[#C9A24A]/20 rounded-full"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-[#C9A24A]/5 to-[#C9A24A]/10 rounded-full blur-3xl"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 py-20 relative">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div>
-              <div className="font-serif text-3xl font-bold mb-4 text-white">Relo Network</div>
-              <p className="text-gray-300 mb-6 font-medium">
+              <div className="text-3xl font-bold mb-4 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Relo Network</div>
+              <p className="text-white/70 mb-6 font-medium">
                 Relocate to London, Effortlessly.
               </p>
-              <div className="flex items-center gap-4 text-sm text-yellow-400 font-semibold">
+              <div className="flex items-center gap-4 text-sm text-[#C9A24A] font-semibold">
                 <span>BAR</span> • <span>FIDI</span> • <span>ARP</span> • <span>GDPR</span>
               </div>
             </div>
             
             <div>
               <h4 className="font-bold mb-6 text-white">Services</h4>
-              <ul className="space-y-3 text-gray-300">
-                <li><a href="/directory" className="hover:text-yellow-400 transition font-medium">Premium Directory</a></li>
-                <li><a href="/ask" className="hover:text-yellow-400 transition font-medium">Ask Relo AI</a></li>
-                <li><a href="/concierge" className="hover:text-yellow-400 transition font-medium">Concierge Service</a></li>
-                <li><a href="/corporate" className="hover:text-yellow-400 transition font-medium">Corporate Solutions</a></li>
+              <ul className="space-y-3 text-white/70">
+                <li><a href="/directory" className="hover:text-[#C9A24A] transition font-medium">Premium Directory</a></li>
+                <li><a href="/ask" className="hover:text-[#C9A24A] transition font-medium">Ask Relo AI</a></li>
+                <li><a href="/concierge" className="hover:text-[#C9A24A] transition font-medium">Concierge Service</a></li>
+                <li><a href="/corporate" className="hover:text-[#C9A24A] transition font-medium">Corporate Solutions</a></li>
               </ul>
             </div>
             
             <div>
               <h4 className="font-bold mb-6 text-white">Partners</h4>
-              <ul className="space-y-3 text-gray-300">
-                <li><a href="/partners" className="hover:text-yellow-400 transition font-medium">Join Network</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition font-medium">Partner Benefits</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition font-medium">Success Stories</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition font-medium">Resources</a></li>
+              <ul className="space-y-3 text-white/70">
+                <li><a href="/partners" className="hover:text-[#C9A24A] transition font-medium">Join Network</a></li>
+                <li><a href="#" className="hover:text-[#C9A24A] transition font-medium">Partner Benefits</a></li>
+                <li><a href="#" className="hover:text-[#C9A24A] transition font-medium">Success Stories</a></li>
+                <li><a href="#" className="hover:text-[#C9A24A] transition font-medium">Resources</a></li>
               </ul>
             </div>
             
             <div>
               <h4 className="font-bold mb-6 text-white">Company</h4>
-              <ul className="space-y-3 text-gray-300">
-                <li><a href="#" className="hover:text-yellow-400 transition font-medium">About Us</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition font-medium">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition font-medium">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition font-medium">Contact</a></li>
+              <ul className="space-y-3 text-white/70">
+                <li><a href="#" className="hover:text-[#C9A24A] transition font-medium">About Us</a></li>
+                <li><a href="#" className="hover:text-[#C9A24A] transition font-medium">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-[#C9A24A] transition font-medium">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-[#C9A24A] transition font-medium">Contact</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-white/20 pt-8 text-center text-gray-300">
+          <div className="border-t border-white/20 pt-8 text-center text-white/70">
             <p className="font-medium">&copy; 2024 Relo Network Ltd. All rights reserved. London, United Kingdom.</p>
           </div>
         </div>
