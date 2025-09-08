@@ -171,7 +171,10 @@ export default function GlobalNavigation() {
             
             {/* CTA Button */}
             <div className="flex items-center space-x-4">
-              <button className="btn-nav relative z-10">
+              <button 
+                className="btn-nav relative z-10"
+                onClick={() => window.location.href = '/join-waitlist'}
+              >
                 <span className="relative z-10">Sign In</span>
               </button>
               

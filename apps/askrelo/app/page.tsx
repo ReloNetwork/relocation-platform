@@ -68,6 +68,21 @@ const customStyles = `
     100% { transform: rotateX(0); }
   }
   
+  @keyframes pulseButton {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 4px 20px rgba(201, 162, 74, 0.3);
+    }
+    50% { 
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(201, 162, 74, 0.5);
+    }
+  }
+  
+  .animate-pulse-slow {
+    animation: pulseButton 2.5s ease-in-out infinite;
+  }
+  
   .glass-primary {
     backdrop-filter: blur(20px);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
@@ -618,10 +633,9 @@ export default function HomePage() {
                 <div className="space-y-4 slide-up-elegant stagger-4">
                   <button 
                     onClick={scrollToWaitlist}
-                    className="btn-primary relative z-10 text-lg px-10 py-5"
+                    className="btn-primary relative z-10 text-lg px-10 py-5 animate-pulse-slow"
                   >
                     Join Waitlist
-                    <ArrowRight className="ml-3 h-5 w-5" />
                   </button>
                   <p className="text-[#6B7280] text-sm">
                     Join our exclusive founding member programme • Limited to 100 members
@@ -1015,16 +1029,6 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Sticky Ask Relo Button */}
-      <div className="fixed bottom-6 right-6 z-40">
-        <a
-          href="/ask"
-          className="inline-flex items-center justify-center rounded-full px-6 py-4 accent-gradient text-white transition-all duration-300 shadow-2xl border-2 border-white font-bold text-sm transform hover:scale-110 premium-glow"
-        >
-          <Mic className="w-4 h-4 mr-2" />
-          Ask Relo
-        </a>
-      </div>
     </Layout>
   )
 }
