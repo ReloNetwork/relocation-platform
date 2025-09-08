@@ -178,14 +178,14 @@ export default function PageSEO({
   )
 }
 
-// Enhanced schemas for AI citation optimization
-import { 
-  enhancedOrganizationSchema,
-  enhancedFAQSchema,
-  enhancedServiceSchema,
-  expertAuthorSchemas,
-  aboutPageSchema
-} from '../../lib/seo/enhanced-schemas'
+// Enhanced schemas for AI citation optimization - temporarily disabled for build
+// import { 
+//   enhancedOrganizationSchema,
+//   enhancedFAQSchema,
+//   enhancedServiceSchema,
+//   expertAuthorSchemas,
+//   aboutPageSchema
+// } from '../../lib/seo/enhanced-schemas'
 
 // Specialized SEO components for different page types
 export function HomeSEO({ children }: { children?: React.ReactNode }) {
@@ -193,21 +193,21 @@ export function HomeSEO({ children }: { children?: React.ReactNode }) {
     { name: 'Home', url: BRAND_CONFIG.url }
   ]
 
-  // Enhanced schemas for homepage AI citation optimization
-  const enhancedSchemas = [
-    enhancedOrganizationSchema,
-    enhancedFAQSchema,
-    enhancedServiceSchema,
-    ...expertAuthorSchemas,
-    aboutPageSchema
-  ]
+  // Enhanced schemas for homepage AI citation optimization - temporarily disabled
+  // const enhancedSchemas = [
+  //   enhancedOrganizationSchema,
+  //   enhancedFAQSchema,
+  //   enhancedServiceSchema,
+  //   ...expertAuthorSchemas,
+  //   aboutPageSchema
+  // ]
 
   return (
     <PageSEO 
       page="home" 
       path="/" 
       breadcrumbs={breadcrumbs}
-      schema={enhancedSchemas}
+      // schema={enhancedSchemas}
     >
       {children}
     </PageSEO>
