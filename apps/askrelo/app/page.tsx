@@ -500,6 +500,56 @@ const CountdownTimer = () => {
   )
 }
 
+const WaitlistCountdown = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  })
+
+  useEffect(() => {
+    const targetDate = new Date('2025-09-15T14:00:00Z').getTime() // Monday, September 15th 2025, 14:00 GMT
+    
+    const updateCountdown = () => {
+      const now = new Date().getTime()
+      const timeLeft = targetDate - now
+      
+      if (timeLeft > 0) {
+        setTimeLeft({
+          days: Math.floor(timeLeft / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((timeLeft % (1000 * 60)) / 1000)
+        })
+      }
+    }
+    
+    updateCountdown() // Initial call
+    const timer = setInterval(updateCountdown, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <div className="grid grid-cols-4 gap-2">
+      {[
+        { value: timeLeft.days, label: 'Days' },
+        { value: timeLeft.hours, label: 'Hours' },
+        { value: timeLeft.minutes, label: 'Minutes' },
+        { value: timeLeft.seconds, label: 'Seconds' }
+      ].map((item, index) => (
+        <div key={index} className="text-center">
+          <div className="text-xl font-bold text-[#0B1B2B]">
+            {String(item.value).padStart(2, '0')}
+          </div>
+          <div className="text-xs text-[#6B7280]">{item.label}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 const CountdownBanner = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -868,23 +918,9 @@ export default function HomePage() {
                 <Timer className="w-4 h-4" />
                 Founding rates expire in:
               </div>
-              <div className="grid grid-cols-4 gap-2">
-                <div className="text-center">
-                  <div className="text-xl font-bold text-[#0B1B2B]">09</div>
-                  <div className="text-xs text-[#6B7280]">Days</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold text-[#0B1B2B]">13</div>
-                  <div className="text-xs text-[#6B7280]">Hours</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold text-[#0B1B2B]">51</div>
-                  <div className="text-xs text-[#6B7280]">Minutes</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold text-[#0B1B2B]">32</div>
-                  <div className="text-xs text-[#6B7280]">Seconds</div>
-                </div>
+              <WaitlistCountdown />
+              <div className="text-center mt-3">
+                <div className="text-sm text-[#0B1B2B] font-medium">Monday, September 15th 2025</div>
               </div>
             </div>
             
