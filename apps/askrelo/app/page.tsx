@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/ui/components/button'
 import { Calendar, ChevronRight, Star, Shield, Mic, Play, Volume2, ArrowRight, Clock, Users, Award, Eye, Building2, Rocket, Timer } from 'lucide-react'
 import Layout from '../components/Layout'
+import { HomeSEO } from '../components/SEO/PageSEO'
 
 // Premium Contemporary Luxury Design System
 const customStyles = `
@@ -632,8 +633,9 @@ export default function HomePage() {
   }
 
   return (
-    <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden">
-      <style dangerouslySetInnerHTML={{ __html: customStyles }} />
+    <HomeSEO>
+      <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden">
+        <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       
       {/* Animated Countdown Banner */}
       <div className="countdown-banner banner-pulse w-full z-40 mt-16">
@@ -1071,5 +1073,6 @@ export default function HomePage() {
       )}
 
     </Layout>
+    </HomeSEO>
   )
 }
