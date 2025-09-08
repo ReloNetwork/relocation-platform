@@ -953,7 +953,7 @@ export default function HomePage() {
         </div>
       </footer>
 
-      {/* Waitlist Modal */}
+      {/* Waitlist Modal - Luxury Brand */}
       {showWaitlist && (
         <div className="fixed inset-0 bg-[#0B1B2B]/90 flex items-center justify-center p-4 z-50 backdrop-blur-lg">
           <div className="bg-white max-w-lg w-full rounded-md border border-[#0B1B2B]/10 shadow-xl p-8">
