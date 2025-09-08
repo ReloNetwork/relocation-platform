@@ -398,11 +398,10 @@ const LondonGallery = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const londonImages = [
-    'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80', // London Skyline
-    'https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80', // Tower Bridge
-    'https://images.unsplash.com/photo-1520637736862-4d197d17c92a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80', // Big Ben
-    'https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80', // London Eye
-    'https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80'  // Financial District
+    'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=85', // London Skyline
+    'https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=85', // Tower Bridge
+    'https://images.unsplash.com/photo-1520637736862-4d197d17c92a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=85', // Big Ben
+    'https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=85'  // London Eye (removed Financial District)
   ]
 
   useEffect(() => {
@@ -428,6 +427,12 @@ const LondonGallery = () => {
           className={`gallery-image absolute inset-0 w-full h-full ${
             index === currentImageIndex ? 'opacity-100 active' : 'opacity-0'
           }`}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.style.display = 'none';
+            console.warn(`Failed to load image: ${image}`);
+          }}
+          loading="lazy"
         />
       ))}
       
