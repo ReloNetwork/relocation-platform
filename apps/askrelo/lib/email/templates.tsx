@@ -103,7 +103,7 @@ export function createWaitlistWelcomeEmail(email: string, name?: string): EmailT
   
   return {
     to: [email],
-    subject: 'Welcome to Relo Network - You\'re on the list! ✨',
+    subject: 'Welcome to Relo Network - You\'re on the list!',
     html: EmailWrapper({ children: `
       <div class="content">
         <h2>Welcome ${displayName}!</h2>
@@ -237,7 +237,7 @@ export function createSupplierApprovedEmail(
     subject: `Welcome to Relo Network Partners! Your ${supplierName} listing is now live`,
     html: EmailWrapper({ children: `
       <div class="content">
-        <h2>Congratulations! You're now a Relo Network Partner 🎉</h2>
+        <h2>Congratulations! You're now a Relo Network Partner</h2>
         <p>Your supplier listing for <strong>${supplierName}</strong> has been approved and is now live on our platform.</p>
         
         <div style="background: #F0F9FF; padding: 16px; border-radius: 6px; margin: 16px 0; border-left: 4px solid #C9A24A;">
@@ -262,10 +262,10 @@ export function createPartnerSubscriptionEmail(
 ): EmailTemplate {
   return {
     to: [email],
-    subject: `Welcome to Relo Network ${planName} - Let's Get You Started! 🚀`,
+    subject: `Welcome to Relo Network ${planName} - Let's Get You Started!`,
     html: EmailWrapper({ children: `
       <div class="content">
-        <h2>Welcome to the Relo Network Partner Program! 🎉</h2>
+        <h2>Welcome to the Relo Network Partner Program!</h2>
         <p>Thank you for subscribing to our <strong>${planName}</strong> plan. You're now part of London's most exclusive relocation network.</p>
         
         <div style="background: #F0F9FF; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #C9A24A;">
@@ -289,7 +289,7 @@ export function createPartnerSubscriptionEmail(
         </div>
         
         <div style="background: #FFF7ED; padding: 16px; border-radius: 6px; margin: 20px 0;">
-          <h4 style="margin-top: 0; color: #C9A24A;">🎯 Pro Tip for Success</h4>
+          <h4 style="margin-top: 0; color: #C9A24A;">Pro Tip for Success</h4>
           <p>Partners who complete their profile setup within 24 hours receive 3x more leads in their first month!</p>
         </div>
         
@@ -310,10 +310,10 @@ export function createVoiceSubscriptionEmail(
 ): EmailTemplate {
   return {
     to: [email],
-    subject: `Your Ask Relo ${planName} Plan is Active - Start Chatting! 🤖`,
+    subject: `Your Ask Relo ${planName} Plan is Active - Start Chatting!`,
     html: EmailWrapper({ children: `
       <div class="content">
-        <h2>Welcome to Ask Relo ${planName}! 🎉</h2>
+        <h2>Welcome to Ask Relo ${planName}!</h2>
         <p>Your AI voice assistant is now active and ready to help you navigate your London relocation journey.</p>
         
         <div style="background: #F0F9FF; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #C9A24A;">
@@ -389,7 +389,7 @@ export function createDirectorySubscriptionEmail(
         </div>
         
         <div style="background: #FFF7ED; padding: 16px; border-radius: 6px; margin: 20px 0;">
-          <h4 style="margin-top: 0; color: #C9A24A;">🏆 Featured This Month</h4>
+          <h4 style="margin-top: 0; color: #C9A24A;">Featured This Month</h4>
           <p>Check out our top-rated moving companies, luxury housing providers, and visa specialists - all with exclusive member pricing!</p>
         </div>
         
@@ -413,7 +413,7 @@ export function createCorporateInquiryEmail(
     subject: `Corporate Relocation Demo Requested - Let's Transform Your Global Mobility`,
     html: EmailWrapper({ children: `
       <div class="content">
-        <h2>Thank you for your corporate relocation inquiry! 🏢</h2>
+        <h2>Thank you for your corporate relocation inquiry!</h2>
         <p>We've received your request for a corporate demo and our enterprise team will be in touch within 24 hours.</p>
         
         <div style="background: #F0F9FF; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #C9A24A;">
@@ -432,7 +432,7 @@ export function createCorporateInquiryEmail(
         </ul>
         
         <div style="background: #FFF7ED; padding: 16px; border-radius: 6px; margin: 20px 0;">
-          <h4 style="margin-top: 0; color: #C9A24A;">📊 Did You Know?</h4>
+          <h4 style="margin-top: 0; color: #C9A24A;">Did You Know?</h4>
           <p>Companies using our managed service reduce relocation costs by 73% and improve employee satisfaction by 89% compared to internal handling.</p>
         </div>
         

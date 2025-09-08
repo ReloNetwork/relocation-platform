@@ -427,7 +427,23 @@ export default function CorporatePage() {
       <div className="bg-[#0B1B2B] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="mb-8">
-            <div className="text-4xl text-[#C9A24A] mb-4">★★★★★</div>
+            <div className="text-4xl text-[#C9A24A] mb-4 flex items-center justify-center gap-1">
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+              </svg>
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+              </svg>
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+              </svg>
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+              </svg>
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+              </svg>
+            </div>
             <blockquote className="text-xl italic mb-6">
               "Relo Network transformed our global mobility program. What used to take our HR team 6 months now happens in 30 days, and our employees actually enjoy the relocation process."
             </blockquote>
