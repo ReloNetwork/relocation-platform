@@ -5,6 +5,9 @@ import { DefaultSeo } from 'next-seo';
 import { Analytics } from '@vercel/analytics/react';
 import { DEFAULT_SEO } from '../lib/seo/config';
 
+// Force dynamic rendering for all pages to prevent export issues
+export const dynamic = 'force-dynamic';
+
 const inter = Inter({ 
   subsets: ['latin'], 
   variable: '--font-inter',
