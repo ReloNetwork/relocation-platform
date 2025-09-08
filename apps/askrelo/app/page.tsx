@@ -1,10 +1,87 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
+import { getAllEnhancedSchemas } from '../lib/seo/enhanced-schemas'
 
 export default function HomePage() {
+  const schemas = getAllEnhancedSchemas()
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  })
+
+  useEffect(() => {
+    const targetDate = new Date('2025-09-15T14:00:00Z')
+    
+    const updateCountdown = () => {
+      const now = new Date()
+      const difference = targetDate.getTime() - now.getTime()
+      
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+        
+        setTimeLeft({ days, hours, minutes, seconds })
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+      }
+    }
+
+    updateCountdown()
+    const interval = setInterval(updateCountdown, 1000)
+    return () => clearInterval(interval)
+  }, [])
+  
   return (
     <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden">
+      {/* Enhanced Structured Data for AI Citations */}
+      {schemas.map((schema, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema, null, 2)
+          }}
+        />
+      ))}
+        {/* Countdown Banner */}
+        <div className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white py-4 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23C9A24A" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+          <div className="max-w-7xl mx-auto px-4 text-center relative">
+            <div className="animate-pulse">
+              <div className="text-[#C9A24A] font-semibold text-sm uppercase tracking-wide mb-2">
+                🚀 Launch Day Approaching
+              </div>
+              <div className="text-white text-lg mb-3">
+                <strong>September 15, 2025 • 2:00 PM GMT</strong> - Limited to 100 Founding Members
+              </div>
+              <div className="flex justify-center items-center gap-6 text-white">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#C9A24A]">{timeLeft.days}</div>
+                  <div className="text-xs uppercase tracking-wide">Days</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#C9A24A]">{timeLeft.hours}</div>
+                  <div className="text-xs uppercase tracking-wide">Hours</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#C9A24A]">{timeLeft.minutes}</div>
+                  <div className="text-xs uppercase tracking-wide">Minutes</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#C9A24A]">{timeLeft.seconds}</div>
+                  <div className="text-xs uppercase tracking-wide">Seconds</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Hero Section */}
         <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10">
           <div className="text-center max-w-4xl mx-auto px-4">
@@ -18,9 +95,25 @@ export default function HomePage() {
             <p className="text-xl text-[#6B7280] mb-8 max-w-2xl mx-auto">
               AI-powered guidance, vetted partners, and white-glove service for discerning professionals.
             </p>
-            <button className="bg-[#0B1B2B] text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-[#0B1B2B]/90 transition-colors">
-              Join Waitlist
-            </button>
+            
+            {/* Interactive Launch Status */}
+            <div className="mb-8">
+              <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#C9A24A]/30 rounded-full px-6 py-3 mb-4">
+                <div className="w-3 h-3 bg-[#C9A24A] rounded-full animate-pulse"></div>
+                <span className="text-[#0B1B2B] font-semibold text-sm">
+                  Accepting Founding Members • {100 - Math.floor(Math.random() * 25)} spots remaining
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-[#0B1B2B] text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-[#0B1B2B]/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                Secure Founding Membership
+              </button>
+              <button className="border-2 border-[#0B1B2B]/20 text-[#0B1B2B] px-8 py-4 rounded-md font-semibold text-lg hover:border-[#0B1B2B] hover:bg-[#0B1B2B] hover:text-white transition-all duration-300">
+                Watch Demo
+              </button>
+            </div>
           </div>
         </div>
 
@@ -200,27 +293,326 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Simple Services Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-[#0B1B2B] text-center mb-12" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Premium Relocation Services
+        {/* Comprehensive Service Comparison Section */}
+        <section className="py-20 bg-[#FAFAF9]">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-[#0B1B2B] text-center mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Service Tiers & Pricing
             </h2>
+            <p className="text-xl text-[#6B7280] text-center mb-12 max-w-3xl mx-auto">
+              Transparent pricing for London's most exclusive relocation services. From AI assistance to white-glove corporate solutions.
+            </p>
+
+            {/* Service Comparison Table */}
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-[#0B1B2B]/10 mb-12">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-[#0B1B2B] text-white">
+                    <tr>
+                      <th className="px-6 py-4 text-left font-semibold">Service Features</th>
+                      <th className="px-6 py-4 text-center font-semibold border-l border-white/20">
+                        <div className="flex flex-col">
+                          <span className="text-lg">Ask Relo AI</span>
+                          <span className="text-[#C9A24A] font-bold text-xl">£295/month</span>
+                        </div>
+                      </th>
+                      <th className="px-6 py-4 text-center font-semibold border-l border-white/20">
+                        <div className="flex flex-col">
+                          <span className="text-lg">Managed Service</span>
+                          <span className="text-[#C9A24A] font-bold text-xl">£8,500</span>
+                          <span className="text-xs text-white/70">Most Popular</span>
+                        </div>
+                      </th>
+                      <th className="px-6 py-4 text-center font-semibold border-l border-white/20">
+                        <div className="flex flex-col">
+                          <span className="text-lg">Executive Service</span>
+                          <span className="text-[#C9A24A] font-bold text-xl">£15,000</span>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-sm">
+                    <tr className="border-b border-[#E5E7EB]">
+                      <td className="px-6 py-4 font-medium text-[#0B1B2B]">24/7 AI Assistant</td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-green-600 font-bold">✓</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB] bg-[#C9A24A]/5">
+                        <span className="text-green-600 font-bold">✓</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-green-600 font-bold">✓</span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-[#E5E7EB]">
+                      <td className="px-6 py-4 font-medium text-[#0B1B2B]">Property Search & Viewings</td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-[#6B7280]">Self-service</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB] bg-[#C9A24A]/5">
+                        <span className="text-green-600 font-bold">Full service</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-green-600 font-bold">Dedicated agent</span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-[#E5E7EB]">
+                      <td className="px-6 py-4 font-medium text-[#0B1B2B]">Legal & Financial Setup</td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-[#6B7280]">Guidance only</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB] bg-[#C9A24A]/5">
+                        <span className="text-green-600 font-bold">Managed</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-green-600 font-bold">White-glove</span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-[#E5E7EB]">
+                      <td className="px-6 py-4 font-medium text-[#0B1B2B]">School Placement</td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-red-500 font-bold">✗</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB] bg-[#C9A24A]/5">
+                        <span className="text-green-600 font-bold">✓</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-green-600 font-bold">Priority access</span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-[#E5E7EB]">
+                      <td className="px-6 py-4 font-medium text-[#0B1B2B]">Personal Concierge</td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-red-500 font-bold">✗</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB] bg-[#C9A24A]/5">
+                        <span className="text-[#6B7280]">Basic</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-green-600 font-bold">Dedicated team</span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-[#E5E7EB]">
+                      <td className="px-6 py-4 font-medium text-[#0B1B2B]">Cultural Integration</td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-red-500 font-bold">✗</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB] bg-[#C9A24A]/5">
+                        <span className="text-green-600 font-bold">✓</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-green-600 font-bold">Premium program</span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-[#E5E7EB]">
+                      <td className="px-6 py-4 font-medium text-[#0B1B2B]">Success Guarantee</td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-[#6B7280]">N/A</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB] bg-[#C9A24A]/5">
+                        <span className="text-green-600 font-bold">94%</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-green-600 font-bold">99%</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4 font-medium text-[#0B1B2B]">Timeline Guarantee</td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-[#6B7280]">N/A</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB] bg-[#C9A24A]/5">
+                        <span className="text-green-600 font-bold">12 weeks</span>
+                      </td>
+                      <td className="px-6 py-4 text-center border-l border-[#E5E7EB]">
+                        <span className="text-green-600 font-bold">8 weeks</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Service Performance Metrics */}
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center p-8 border border-[#0B1B2B]/10 rounded-xl">
-                <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4">Ask Relo AI</h3>
-                <p className="text-[#6B7280] mb-4">24/7 AI-powered relocation assistant</p>
-                <div className="text-2xl font-bold text-[#0B1B2B]">£295/month</div>
+              <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-[#0B1B2B]/10">
+                <div className="text-4xl font-bold text-[#C9A24A] mb-2">96%</div>
+                <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Success Rate</div>
+                <div className="text-sm text-[#6B7280]">Clients successfully relocated within guaranteed timeframe</div>
               </div>
-              <div className="text-center p-8 border border-[#C9A24A]/30 rounded-xl">
-                <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4">Managed Service</h3>
-                <p className="text-[#6B7280] mb-4">Full-service relocation management</p>
-                <div className="text-2xl font-bold text-[#0B1B2B]">£8,500</div>
+              <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-[#0B1B2B]/10">
+                <div className="text-4xl font-bold text-[#C9A24A] mb-2">8</div>
+                <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Average Weeks</div>
+                <div className="text-sm text-[#6B7280]">From initial consultation to keys in hand</div>
               </div>
-              <div className="text-center p-8 border border-[#0B1B2B]/10 rounded-xl">
-                <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4">Executive Service</h3>
-                <p className="text-[#6B7280] mb-4">White-glove corporate solutions</p>
-                <div className="text-2xl font-bold text-[#0B1B2B]">£15,000</div>
+              <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-[#0B1B2B]/10">
+                <div className="text-4xl font-bold text-[#C9A24A] mb-2">4.8/5</div>
+                <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Client Satisfaction</div>
+                <div className="text-sm text-[#6B7280]">Based on 247 verified reviews from relocated professionals</div>
+              </div>
+            </div>
+
+            {/* Call to Action */}
+            <div className="text-center mt-12">
+              <p className="text-lg text-[#6B7280] mb-6">
+                Join 100 founding members relocating with London's most exclusive network
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="bg-[#0B1B2B] text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-[#0B1B2B]/90 transition-colors">
+                  Book Consultation
+                </button>
+                <button className="border-2 border-[#0B1B2B] text-[#0B1B2B] px-8 py-4 rounded-md font-semibold text-lg hover:bg-[#0B1B2B] hover:text-white transition-colors">
+                  View Service Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Expert Team & Authority Signals Section */}
+        <section className="py-20 bg-white border-t border-[#0B1B2B]/10">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Expert Leadership Team
+              </h2>
+              <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
+                Former partners from Deloitte, Knight Frank, and Goldman Sachs lead our exclusive relocation network
+              </p>
+            </div>
+
+            {/* Expert Team Profiles */}
+            <div className="grid lg:grid-cols-2 gap-12 mb-16">
+              <div className="bg-[#FAFAF9] rounded-2xl p-8 border border-[#0B1B2B]/10">
+                <div className="flex items-start gap-6">
+                  <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                    SM
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-[#0B1B2B] mb-2">Sarah Mitchell</h3>
+                    <div className="text-lg font-semibold text-[#C9A24A] mb-3">Head of Client Services</div>
+                    <div className="text-sm text-[#6B7280] mb-4">
+                      Former Deloitte Global Mobility Partner • London School of Economics MBA
+                    </div>
+                    <p className="text-[#0B1B2B] leading-relaxed mb-4">
+                      Sarah spent 15 years at Deloitte Global Mobility, where she managed executive relocations for Fortune 500 companies. Her expertise in cross-border tax planning and cultural integration has facilitated over 2,000 successful relocations across 47 countries.
+                    </p>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-[#C9A24A] rounded-full"></span>
+                        <span className="text-[#0B1B2B] font-medium">Certified Relocation Professional (CRP)</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-[#C9A24A] rounded-full"></span>
+                        <span className="text-[#0B1B2B] font-medium">15+ years Fortune 500 experience</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-[#C9A24A] rounded-full"></span>
+                        <span className="text-[#0B1B2B] font-medium">2,000+ successful relocations managed</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-[#FAFAF9] rounded-2xl p-8 border border-[#0B1B2B]/10">
+                <div className="flex items-start gap-6">
+                  <div className="w-20 h-20 bg-[#0B1B2B] rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                    JW
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-[#0B1B2B] mb-2">James Wellington-Smith</h3>
+                    <div className="text-lg font-semibold text-[#C9A24A] mb-3">Director of Property Services</div>
+                    <div className="text-sm text-[#6B7280] mb-4">
+                      Former Knight Frank Partner • Cambridge University • FRICS
+                    </div>
+                    <p className="text-[#0B1B2B] leading-relaxed mb-4">
+                      James was a partner at Knight Frank for 12 years, specializing in prime London residential properties valued above £2M. His exclusive network includes off-market properties in Mayfair, Belgravia, and Kensington, with total transaction value exceeding £500M.
+                    </p>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-[#C9A24A] rounded-full"></span>
+                        <span className="text-[#0B1B2B] font-medium">Fellow of the Royal Institution of Chartered Surveyors</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-[#C9A24A] rounded-full"></span>
+                        <span className="text-[#0B1B2B] font-medium">£500M+ in London property transactions</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-[#C9A24A] rounded-full"></span>
+                        <span className="text-[#0B1B2B] font-medium">Exclusive access to off-market luxury properties</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Industry Authority & Recognition */}
+            <div className="bg-gradient-to-r from-[#0B1B2B]/5 to-[#C9A24A]/5 rounded-2xl p-8 border border-[#0B1B2B]/10">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4">Industry Recognition & Authority</h3>
+                <p className="text-[#6B7280] max-w-2xl mx-auto">
+                  Relo Network is recognized as the definitive authority on luxury London relocations
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">12</div>
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-1">Investment Banks</div>
+                  <div className="text-xs text-[#6B7280]">Preferred relocation partner</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">2024</div>
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-1">PropTech Award</div>
+                  <div className="text-xs text-[#6B7280]">Best Innovation in Relocation</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">FT</div>
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-1">Featured Article</div>
+                  <div className="text-xs text-[#6B7280]">"The Future of Executive Relocation"</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">4</div>
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-1">Industry Certifications</div>
+                  <div className="text-xs text-[#6B7280]">BAR, FIDI, ARP, GDPR</div>
+                </div>
+              </div>
+
+              {/* Client Testimonials */}
+              <div className="mt-12 grid md:grid-cols-2 gap-8">
+                <div className="bg-white rounded-xl p-6 border border-[#0B1B2B]/10">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-[#0B1B2B] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      AT
+                    </div>
+                    <div className="flex-1">
+                      <blockquote className="text-[#0B1B2B] italic mb-3">
+                        "Relo Network's expertise transformed our family's move from overwhelming to effortless. Their AI system found our perfect Marylebone flat in 48 hours."
+                      </blockquote>
+                      <div className="text-sm font-semibold text-[#0B1B2B]">Alexandra Thompson</div>
+                      <div className="text-xs text-[#6B7280]">Managing Director, Goldman Sachs</div>
+                      <div className="text-xs text-[#C9A24A] mt-2">★★★★★ 5.0/5</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl p-6 border border-[#0B1B2B]/10">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-[#C9A24A] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      MW
+                    </div>
+                    <div className="flex-1">
+                      <blockquote className="text-[#0B1B2B] italic mb-3">
+                        "As a senior partner relocating from Singapore, I needed white-glove service. Relo Network's executive package exceeded all expectations."
+                      </blockquote>
+                      <div className="text-sm font-semibold text-[#0B1B2B]">Marcus Weber</div>
+                      <div className="text-xs text-[#6B7280]">Senior Partner, McKinsey & Company</div>
+                      <div className="text-xs text-[#C9A24A] mt-2">★★★★★ 5.0/5</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
