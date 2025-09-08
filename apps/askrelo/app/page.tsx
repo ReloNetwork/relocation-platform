@@ -456,7 +456,7 @@ const CountdownTimer = () => {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2025-09-15T00:00:00').getTime()
+    const targetDate = new Date('2025-09-15T14:00:00Z').getTime() // Monday, September 15th 2025, 14:00 GMT
     
     const updateCountdown = () => {
       const now = new Date().getTime()
@@ -509,7 +509,7 @@ const CountdownBanner = () => {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2025-09-15T00:00:00').getTime()
+    const targetDate = new Date('2025-09-15T14:00:00Z').getTime() // Monday, September 15th 2025, 14:00 GMT
     
     const updateCountdown = () => {
       const now = new Date().getTime()

@@ -80,23 +80,32 @@ const StatCard = ({ icon: Icon, number, label }: { icon: any, number: string, la
 )
 
 const CountdownTimer = () => {
-  const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 14, minutes: 32, seconds: 45 })
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  })
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 }
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
-        } else if (prev.hours > 0) {
-          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
-        } else if (prev.days > 0) {
-          return { days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 }
-        }
-        return prev
-      })
-    }, 1000)
+    const targetDate = new Date('2025-09-15T14:00:00Z').getTime() // Monday, September 15th 2025, 14:00 GMT
+    
+    const updateCountdown = () => {
+      const now = new Date().getTime()
+      const timeLeft = targetDate - now
+      
+      if (timeLeft > 0) {
+        setTimeLeft({
+          days: Math.floor(timeLeft / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((timeLeft % (1000 * 60)) / 1000)
+        })
+      }
+    }
+    
+    updateCountdown() // Initial call
+    const timer = setInterval(updateCountdown, 1000)
 
     return () => clearInterval(timer)
   }, [])
@@ -230,7 +239,8 @@ export default function PartnersPage() {
                 Founding Rates Expire In:
               </div>
               <CountdownTimer />
-              <div className="text-sm text-white/70 mt-2">Limited to first 100 partners only</div>
+              <div className="text-sm text-white/90 mt-3 font-medium">Monday, September 15th 2025</div>
+              <div className="text-sm text-white/70 mt-1">Limited to first 100 partners only</div>
             </div>
           </div>
         </div>
