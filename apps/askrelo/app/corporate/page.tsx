@@ -303,7 +303,7 @@ export default function CorporatePage() {
               <span className="text-[#C9A24A] text-sm font-medium">Corporate Relocation</span>
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Relocate Your Global Talent. <span className="text-[#C9A24A]">Effortlessly.</span>
             </h1>
             

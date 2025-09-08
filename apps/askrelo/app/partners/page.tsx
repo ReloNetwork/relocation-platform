@@ -208,7 +208,7 @@ export default function PartnersPage() {
               <span className="text-[#C9A24A] text-sm font-medium">Founding Partner Program</span>
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Join London's Most <span className="text-[#C9A24A]">Exclusive</span> Relocation Network
             </h1>
             

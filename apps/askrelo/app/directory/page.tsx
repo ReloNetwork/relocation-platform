@@ -248,7 +248,7 @@ export default function DirectoryPage() {
               <span className="text-[#C9A24A] text-sm font-medium">Premium Network</span>
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Access London's <span className="text-[#C9A24A]">Premier</span> Relocation Network
             </h1>
             
