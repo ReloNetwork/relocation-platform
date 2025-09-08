@@ -33,8 +33,7 @@ export default function GlobalNavigation() {
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/demo', label: 'Demo' },
-    { href: '/ask-relo-pricing', label: 'AI Pricing' },
+    { href: '/concierge', label: 'Concierge' },
     { href: '/partners', label: 'Partners' },
     { href: '/corporate', label: 'Corporate' },
     { href: '/directory', label: 'Directory' }
