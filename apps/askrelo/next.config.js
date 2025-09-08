@@ -6,7 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   // Basic configuration only
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true,  // Disable this as it requires critters
     scrollRestoration: true,
   },
   

@@ -1,12 +1,10 @@
 'use client'
 
 import Layout from '../components/Layout'
-import { HomeSEO } from '../components/SEO/PageSEO'
 
 export default function HomePage() {
   return (
-    <HomeSEO>
-      <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden">
+    <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden">
         {/* Hero Section */}
         <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10">
           <div className="text-center max-w-4xl mx-auto px-4">
@@ -67,6 +65,5 @@ export default function HomePage() {
           </div>
         </footer>
       </Layout>
-    </HomeSEO>
   )
 }
