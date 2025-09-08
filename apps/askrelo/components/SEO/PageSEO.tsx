@@ -19,7 +19,7 @@ interface PageSEOProps {
   path: string
   breadcrumbs?: Array<{name: string, url: string}>
   noIndex?: boolean
-  schema?: WithContext<Thing>[]
+  schema?: any[]
   children?: React.ReactNode
 }
 
@@ -178,10 +178,28 @@ export default function PageSEO({
   )
 }
 
+// Enhanced schemas for AI citation optimization
+import { 
+  enhancedOrganizationSchema,
+  enhancedFAQSchema,
+  enhancedServiceSchema,
+  expertAuthorSchemas,
+  aboutPageSchema
+} from '../../lib/seo/enhanced-schemas'
+
 // Specialized SEO components for different page types
 export function HomeSEO({ children }: { children?: React.ReactNode }) {
   const breadcrumbs = [
     { name: 'Home', url: BRAND_CONFIG.url }
+  ]
+
+  // Enhanced schemas for homepage AI citation optimization
+  const enhancedSchemas = [
+    enhancedOrganizationSchema,
+    enhancedFAQSchema,
+    enhancedServiceSchema,
+    ...expertAuthorSchemas,
+    aboutPageSchema
   ]
 
   return (
@@ -189,6 +207,7 @@ export function HomeSEO({ children }: { children?: React.ReactNode }) {
       page="home" 
       path="/" 
       breadcrumbs={breadcrumbs}
+      schema={enhancedSchemas}
     >
       {children}
     </PageSEO>

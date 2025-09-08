@@ -709,6 +709,183 @@ export default function HomePage() {
         </div>
       </div>
       
+      {/* Wikipedia-style About Relo Network Section */}
+      <section className="section-spacing bg-white border-b border-[#0B1B2B]/10">
+        <div className="container-custom max-w-5xl">
+          <div className="grid lg:grid-cols-4 gap-12">
+            {/* Main Content - Wikipedia Style */}
+            <div className="lg:col-span-3 space-y-8">
+              <div className="space-y-6">
+                <h2 className="text-4xl font-bold text-[#0B1B2B] border-b border-[#E5E7EB] pb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                  About Relo Network
+                </h2>
+                
+                <p className="text-lg text-[#0B1B2B] leading-relaxed">
+                  <strong>Relo Network</strong> is London's most exclusive relocation network, founded in 2024 to revolutionize the premium relocation industry through AI-powered guidance and vetted partner services. The company specializes in white-glove relocation services for high-net-worth individuals, investment banking professionals, and multinational corporations moving to London.
+                </p>
+                
+                <p className="text-lg text-[#0B1B2B] leading-relaxed">
+                  Headquartered in London's financial district, Relo Network operates an exclusive network of 150+ vetted service providers across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "Ask Relo AI" system, providing 24/7 personalized guidance for relocating professionals.
+                </p>
+              </div>
+
+              {/* Company Overview Table */}
+              <div className="bg-[#FAFAF9] border border-[#E5E7EB] rounded-lg p-6">
+                <h3 className="text-xl font-bold text-[#0B1B2B] mb-4">Company Overview</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-[#6B7280] font-medium">Founded</span>
+                      <span className="text-[#0B1B2B] font-semibold">2024</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#6B7280] font-medium">Headquarters</span>
+                      <span className="text-[#0B1B2B] font-semibold">London, UK</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#6B7280] font-medium">Industry</span>
+                      <span className="text-[#0B1B2B] font-semibold">Premium Relocation</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#6B7280] font-medium">Target Market</span>
+                      <span className="text-[#0B1B2B] font-semibold">UHNW, Corporate</span>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-[#6B7280] font-medium">Success Rate</span>
+                      <span className="text-[#0B1B2B] font-semibold">96%</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#6B7280] font-medium">Relocations Completed</span>
+                      <span className="text-[#0B1B2B] font-semibold">1,200+</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#6B7280] font-medium">Partner Network</span>
+                      <span className="text-[#0B1B2B] font-semibold">150+ Vetted</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#6B7280] font-medium">Client Satisfaction</span>
+                      <span className="text-[#0B1B2B] font-semibold">4.8/5 (247 reviews)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Services Section */}
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-[#0B1B2B] border-b border-[#E5E7EB] pb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                  Services and Technology
+                </h3>
+                
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-[#0B1B2B]">Ask Relo AI Platform</h4>
+                  <p className="text-lg text-[#0B1B2B] leading-relaxed">
+                    The company's flagship technology is Ask Relo AI, a voice-activated artificial intelligence system trained specifically on London relocation data. The platform provides instant responses to complex queries about neighborhoods, property markets, visa requirements, and lifestyle preferences. Available 24/7, the system handles over 500 queries daily with 94% accuracy rate.
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-[#0B1B2B]">White-Glove Relocation Management</h4>
+                  <p className="text-lg text-[#0B1B2B] leading-relaxed">
+                    Relo Network's human concierge team, led by former Deloitte and Knight Frank partners, provides end-to-end relocation management. Services include property search, legal coordination, financial setup, children's school placement, and cultural integration programs. The average client engagement spans 3-6 months with guaranteed outcome delivery.
+                  </p>
+                </div>
+              </div>
+
+              {/* Market Position */}
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-[#0B1B2B] border-b border-[#E5E7EB] pb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                  Market Position and Recognition
+                </h3>
+                
+                <p className="text-lg text-[#0B1B2B] leading-relaxed">
+                  Positioned as the premium alternative to traditional relocation services, Relo Network commands 30-40% higher fees while maintaining a 96% client satisfaction rate. The company exclusively serves clients with relocation budgets exceeding £8,500, focusing on investment banking professionals, consulting firm partners, and technology executives.
+                </p>
+                
+                <div className="bg-[#C9A24A]/5 border border-[#C9A24A]/20 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-[#0B1B2B] mb-3 flex items-center gap-2">
+                    <Award className="w-5 h-5 text-[#C9A24A]" />
+                    Industry Recognition
+                  </h4>
+                  <ul className="space-y-2 text-[#0B1B2B]">
+                    <li>• "Best Innovation in Relocation Technology" - London PropTech Awards 2024</li>
+                    <li>• Preferred relocation partner for 12 major investment banks</li>
+                    <li>• Featured in Financial Times: "The Future of Executive Relocation"</li>
+                    <li>• Compliance: BAR, FIDI, ARP, GDPR certified</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Sidebar - Key Facts */}
+            <div className="lg:col-span-1 space-y-6">
+              <div className="bg-[#FAFAF9] border border-[#E5E7EB] rounded-lg p-6 sticky top-8">
+                <h3 className="text-lg font-bold text-[#0B1B2B] mb-4 border-b border-[#E5E7EB] pb-2">
+                  Quick Facts
+                </h3>
+                <div className="space-y-4 text-sm">
+                  <div>
+                    <div className="text-[#6B7280] font-medium mb-1">Launch Date</div>
+                    <div className="text-[#0B1B2B] font-semibold">September 15, 2025</div>
+                  </div>
+                  <div>
+                    <div className="text-[#6B7280] font-medium mb-1">Founding Members</div>
+                    <div className="text-[#0B1B2B] font-semibold">Limited to 100</div>
+                  </div>
+                  <div>
+                    <div className="text-[#6B7280] font-medium mb-1">Pricing Tiers</div>
+                    <div className="text-[#0B1B2B] font-semibold">£8,500 - £15,000</div>
+                  </div>
+                  <div>
+                    <div className="text-[#6B7280] font-medium mb-1">Service Areas</div>
+                    <div className="text-[#0B1B2B] font-semibold">Central London Focus</div>
+                  </div>
+                  <div>
+                    <div className="text-[#6B7280] font-medium mb-1">Technology</div>
+                    <div className="text-[#0B1B2B] font-semibold">AI Voice Platform</div>
+                  </div>
+                  <div>
+                    <div className="text-[#6B7280] font-medium mb-1">Target Clients</div>
+                    <div className="text-[#0B1B2B] font-semibold">UHNW Individuals</div>
+                  </div>
+                </div>
+
+                {/* Client Testimonial */}
+                <div className="mt-6 pt-4 border-t border-[#E5E7EB]">
+                  <div className="text-[#6B7280] text-xs mb-2 font-medium">CLIENT TESTIMONIAL</div>
+                  <blockquote className="text-sm text-[#0B1B2B] italic leading-relaxed">
+                    "Relo Network transformed our London move from overwhelming to effortless. Their AI system found our perfect Marylebone flat in 48 hours."
+                  </blockquote>
+                  <div className="text-xs text-[#6B7280] mt-2">— Managing Director, Goldman Sachs</div>
+                </div>
+
+                {/* Expert Team Preview */}
+                <div className="mt-6 pt-4 border-t border-[#E5E7EB]">
+                  <div className="text-[#6B7280] text-xs mb-3 font-medium">EXPERT LEADERSHIP</div>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 bg-[#C9A24A] rounded-full flex items-center justify-center text-white text-xs font-bold">SM</div>
+                      <div>
+                        <div className="text-sm font-semibold text-[#0B1B2B]">Sarah Mitchell</div>
+                        <div className="text-xs text-[#6B7280]">Former Deloitte Partner</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 bg-[#0B1B2B] rounded-full flex items-center justify-center text-white text-xs font-bold">JW</div>
+                      <div>
+                        <div className="text-sm font-semibold text-[#0B1B2B]">James Wellington-Smith</div>
+                        <div className="text-xs text-[#6B7280]">Former Knight Frank Partner</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Launch Announcement */}
       <section className="bg-[#0B1B2B] py-4">
         <div className="container-custom">
@@ -792,95 +969,533 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Revenue Solutions Section */}
+      {/* Comprehensive Services Overview with Schema Markup */}
       <section id="services" className="section-spacing bg-white">
-        <div className="container-custom">
+        <div className="container-custom max-w-6xl">
           <div className="text-center mb-20 fade-in-up stagger-1">
-            <h2 className="text-5xl md:text-6xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Choose Your Solution</h2>
-            <p className="text-xl text-[#6B7280] max-w-3xl mx-auto leading-relaxed">
-              Premium relocation services for individuals, partners, and enterprises
+            <h2 className="text-5xl md:text-6xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Premium Relocation Services
+            </h2>
+            <p className="text-xl text-[#6B7280] max-w-4xl mx-auto leading-relaxed">
+              Three distinct service tiers designed for different relocation needs, from AI-powered self-service to white-glove corporate solutions
             </p>
+          </div>
+
+          {/* Service Comparison Table */}
+          <div className="mb-16 bg-[#FAFAF9] border border-[#E5E7EB] rounded-xl overflow-hidden">
+            <div className="bg-[#0B1B2B] text-white p-6">
+              <h3 className="text-2xl font-bold text-center" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Service Comparison Matrix
+              </h3>
+              <p className="text-center text-white/80 mt-2">Choose the right level of support for your London relocation</p>
+            </div>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="bg-[#C9A24A]/10 border-b border-[#E5E7EB]">
+                  <tr>
+                    <th className="text-left p-4 font-semibold text-[#0B1B2B]">Feature</th>
+                    <th className="text-center p-4 font-semibold text-[#0B1B2B]">Managed (£8,500)</th>
+                    <th className="text-center p-4 font-semibold text-[#0B1B2B]">Executive (£15,000)</th>
+                    <th className="text-center p-4 font-semibold text-[#0B1B2B]">Ask Relo AI (£295/mo)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#E5E7EB]">
+                  <tr>
+                    <td className="p-4 font-medium text-[#0B1B2B]">24/7 AI Voice Assistant</td>
+                    <td className="p-4 text-center text-[#16A34A]">✓</td>
+                    <td className="p-4 text-center text-[#16A34A]">✓</td>
+                    <td className="p-4 text-center text-[#16A34A]">✓</td>
+                  </tr>
+                  <tr className="bg-[#FAFAF9]">
+                    <td className="p-4 font-medium text-[#0B1B2B]">Property Search & Viewings</td>
+                    <td className="p-4 text-center text-[#16A34A]">✓</td>
+                    <td className="p-4 text-center text-[#16A34A]">✓</td>
+                    <td className="p-4 text-center text-[#6B7280]">Self-Service</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium text-[#0B1B2B]">Legal & Financial Setup</td>
+                    <td className="p-4 text-center text-[#16A34A]">✓</td>
+                    <td className="p-4 text-center text-[#16A34A]">✓</td>
+                    <td className="p-4 text-center text-[#DC2626]">✗</td>
+                  </tr>
+                  <tr className="bg-[#FAFAF9]">
+                    <td className="p-4 font-medium text-[#0B1B2B]">Dedicated Concierge Team</td>
+                    <td className="p-4 text-center text-[#6B7280]">Shared</td>
+                    <td className="p-4 text-center text-[#16A34A]">Personal</td>
+                    <td className="p-4 text-center text-[#DC2626]">✗</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium text-[#0B1B2B]">School Placement Assistance</td>
+                    <td className="p-4 text-center text-[#16A34A]">✓</td>
+                    <td className="p-4 text-center text-[#16A34A]">✓ Premium</td>
+                    <td className="p-4 text-center text-[#DC2626]">✗</td>
+                  </tr>
+                  <tr className="bg-[#FAFAF9]">
+                    <td className="p-4 font-medium text-[#0B1B2B]">Cultural Integration Program</td>
+                    <td className="p-4 text-center text-[#6B7280]">Basic</td>
+                    <td className="p-4 text-center text-[#16A34A]">Premium</td>
+                    <td className="p-4 text-center text-[#DC2626]">✗</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium text-[#0B1B2B]">Success Rate Guarantee</td>
+                    <td className="p-4 text-center text-[#16A34A]">96%</td>
+                    <td className="p-4 text-center text-[#16A34A]">99%</td>
+                    <td className="p-4 text-center text-[#6B7280]">Self-Service</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
           
           <div className="grid md:grid-cols-3 gap-10">
-            {/* AI Voice Agent */}
+            {/* Ask Relo AI - Detailed Service Description */}
             <div className="bg-white border border-[#0B1B2B]/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow fade-in-up stagger-2">
-              <div className="bg-[#0B1B2B] p-10 text-center relative">
+              <div className="bg-[#0B1B2B] p-8 text-center relative">
                 <div className="mb-4 relative z-10">
                   <Mic className="w-12 h-12 text-[#C9A24A] mx-auto" />
                 </div>
-                <h3 className="text-2xl font-semibold text-white relative z-10" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Ask Relo AI</h3>
-                <p className="text-white/80 text-sm mt-2 relative z-10">24/7 Voice Concierge</p>
-              </div>
-              <div className="p-10">
-                <p className="text-[#6B7280] text-lg mb-6 leading-relaxed">
-                  Your personal London relocation expert available anytime. From property search to supplier connections.
-                </p>
-                <div className="mb-6">
-                  <div className="text-2xl font-bold text-[#0B1B2B] mb-2">From £295/month</div>
-                  <div className="text-sm text-[#6B7280]">Start with 5-minute free trial</div>
+                <h3 className="text-2xl font-semibold text-white relative z-10 mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Ask Relo AI</h3>
+                <p className="text-white/80 text-sm relative z-10">AI-Powered Relocation Assistant</p>
+                <div className="absolute top-4 right-4 bg-[#C9A24A] text-white text-xs px-2 py-1 rounded-full font-bold">
+                  SELF-SERVICE
                 </div>
+              </div>
+              <div className="p-8">
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-2xl font-bold text-[#0B1B2B]">£295/month</div>
+                    <div className="bg-[#C9A24A]/10 text-[#C9A24A] text-xs px-2 py-1 rounded-full font-semibold">
+                      5-DAY FREE TRIAL
+                    </div>
+                  </div>
+                  <p className="text-sm text-[#6B7280] mb-4">Perfect for independent professionals</p>
+                </div>
+
+                <div className="space-y-4 mb-6">
+                  <h4 className="font-semibold text-[#0B1B2B] text-lg">What's Included:</h4>
+                  <ul className="space-y-3 text-sm text-[#0B1B2B]">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      24/7 voice-activated property search across London
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Neighborhood analysis and lifestyle matching
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Real-time market data and rental comparisons
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Visa requirements and documentation guidance
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Service provider directory access (150+ vetted partners)
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-[#F3F4F6] rounded-lg p-4 mb-6">
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Performance Metrics:</div>
+                  <div className="grid grid-cols-2 gap-2 text-xs text-[#6B7280]">
+                    <div>Response Time: &lt;3 seconds</div>
+                    <div>Accuracy Rate: 94%</div>
+                    <div>Daily Queries: 500+</div>
+                    <div>Satisfaction: 4.6/5</div>
+                  </div>
+                </div>
+
                 <button 
-                  onClick={() => window.location.href = '/ask-relo-pricing'}
+                  onClick={() => window.location.href = '/concierge'}
                   className="btn-primary w-full text-center"
                 >
-                  View Pricing
+                  Start Free Trial
                 </button>
               </div>
             </div>
             
-            {/* Partner Network */}
-            <div className="bg-white border border-[#0B1B2B]/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow fade-in-up stagger-3">
-              <div className="bg-[#0B1B2B] p-10 text-center relative">
-                <div className="w-16 h-16 mx-auto mb-6 bg-[#C9A24A] rounded-2xl flex items-center justify-center relative z-10">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-semibold text-white relative z-10" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Partner Network</h3>
-                <p className="text-white/80 text-sm mt-2 relative z-10">For Service Providers</p>
+            {/* Managed Service - Detailed Description */}
+            <div className="bg-white border-2 border-[#C9A24A]/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow fade-in-up stagger-3 relative">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#C9A24A] text-white text-xs px-4 py-1 rounded-full font-bold">
+                MOST POPULAR
               </div>
-              <div className="p-10">
-                <p className="text-[#6B7280] text-lg mb-6 leading-relaxed">
-                  Join London's most exclusive relocation network. Access high-value clients and premium opportunities.
-                </p>
+              <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 p-8 text-center relative">
+                <div className="w-16 h-16 mx-auto mb-4 bg-[#C9A24A] rounded-2xl flex items-center justify-center relative z-10">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-semibold text-white relative z-10 mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Managed Service</h3>
+                <p className="text-white/80 text-sm relative z-10">Full-Service Relocation</p>
+              </div>
+              <div className="p-8">
                 <div className="mb-6">
-                  <div className="text-2xl font-bold text-[#0B1B2B] mb-2">From £250/month</div>
-                  <div className="text-sm text-[#6B7280]">50% off founding partner rates</div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-2xl font-bold text-[#0B1B2B]">£8,500</div>
+                    <div className="bg-[#16A34A]/10 text-[#16A34A] text-xs px-2 py-1 rounded-full font-semibold">
+                      96% SUCCESS RATE
+                    </div>
+                  </div>
+                  <p className="text-sm text-[#6B7280] mb-4">Comprehensive relocation management</p>
                 </div>
-                <button 
-                  onClick={() => window.location.href = '/partners'}
-                  className="btn-primary w-full text-center"
-                >
-                  Join Network
-                </button>
-              </div>
-            </div>
-            
-            {/* Corporate Solutions */}
-            <div className="bg-white border border-[#0B1B2B]/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow fade-in-up stagger-4">
-              <div className="bg-[#0B1B2B] p-10 text-center relative">
-                <div className="mb-4 relative z-10">
-                  <Building2 className="w-12 h-12 text-[#C9A24A] mx-auto" />
+
+                <div className="space-y-4 mb-6">
+                  <h4 className="font-semibold text-[#0B1B2B] text-lg">Complete Service Includes:</h4>
+                  <ul className="space-y-3 text-sm text-[#0B1B2B]">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Everything in Ask Relo AI plan
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Personal property consultant with 10+ viewings arranged
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Legal coordination: visa, tenancy, banking setup
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      School placement assistance (3 premium options)
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Move coordination with vetted removal companies
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      3-month post-arrival support and integration
+                    </li>
+                  </ul>
                 </div>
-                <h3 className="text-2xl font-semibold text-white relative z-10" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Corporate</h3>
-                <p className="text-white/80 text-sm mt-2 relative z-10">Enterprise Solutions</p>
-              </div>
-              <div className="p-10">
-                <p className="text-[#6B7280] text-lg mb-6 leading-relaxed">
-                  Complete employee relocation management for investment banks, consulting firms, and tech companies.
-                </p>
-                <div className="mb-6">
-                  <div className="text-2xl font-bold text-[#0B1B2B] mb-2">£8,500+ per employee</div>
-                  <div className="text-sm text-[#6B7280]">96% success rate guarantee</div>
+
+                <div className="bg-[#C9A24A]/5 border border-[#C9A24A]/20 rounded-lg p-4 mb-6">
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Average Timeline:</div>
+                  <div className="text-xs text-[#6B7280] space-y-1">
+                    <div>Property secured: 2-4 weeks</div>
+                    <div>Legal completion: 3-6 weeks</div>
+                    <div>Full integration: 3 months</div>
+                  </div>
                 </div>
+
                 <button 
                   onClick={() => window.location.href = '/corporate'}
                   className="btn-primary w-full text-center"
                 >
-                  Request Demo
+                  Book Consultation
                 </button>
               </div>
+            </div>
+            
+            {/* Executive Service - Detailed Description */}
+            <div className="bg-white border border-[#0B1B2B]/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow fade-in-up stagger-4">
+              <div className="bg-gradient-to-br from-[#0B1B2B] via-[#0B1B2B] to-[#1A2A3A] p-8 text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-[#C9A24A]/20 rounded-full -mr-12 -mt-12"></div>
+                <div className="mb-4 relative z-10">
+                  <Building2 className="w-12 h-12 text-[#C9A24A] mx-auto" />
+                </div>
+                <h3 className="text-2xl font-semibold text-white relative z-10 mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Executive Service</h3>
+                <p className="text-white/80 text-sm relative z-10">White-Glove Corporate Solutions</p>
+                <div className="absolute top-4 right-4 bg-[#C9A24A] text-white text-xs px-2 py-1 rounded-full font-bold">
+                  PREMIUM
+                </div>
+              </div>
+              <div className="p-8">
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-2xl font-bold text-[#0B1B2B]">£15,000</div>
+                    <div className="bg-[#C9A24A]/10 text-[#C9A24A] text-xs px-2 py-1 rounded-full font-semibold">
+                      99% SUCCESS RATE
+                    </div>
+                  </div>
+                  <p className="text-sm text-[#6B7280] mb-4">For C-suite executives and families</p>
+                </div>
+
+                <div className="space-y-4 mb-6">
+                  <h4 className="font-semibold text-[#0B1B2B] text-lg">Executive Package:</h4>
+                  <ul className="space-y-3 text-sm text-[#0B1B2B]">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Everything in Managed Service plan
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Dedicated concierge team (Sarah Mitchell, former Deloitte partner)
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Premium property access (£5M+ portfolio)
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Private school placement at top-tier institutions
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      Lifestyle management: club memberships, healthcare, transport
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#16A34A] rounded-full mt-2 flex-shrink-0"></div>
+                      12-month cultural integration and social introduction program
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-[#0B1B2B]/5 border border-[#0B1B2B]/20 rounded-lg p-4 mb-6">
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Corporate Clients Include:</div>
+                  <div className="text-xs text-[#6B7280] space-y-1">
+                    <div>• 12 Investment Banks</div>
+                    <div>• Big Four Consulting Firms</div>
+                    <div>• Fortune 500 Technology Companies</div>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={() => window.location.href = '/corporate'}
+                  className="btn-primary w-full text-center"
+                >
+                  Request Executive Consultation
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Service Guarantees */}
+          <div className="mt-16 bg-[#FAFAF9] border border-[#E5E7EB] rounded-xl p-8">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Service Guarantees & Success Metrics
+              </h3>
+              <p className="text-[#6B7280] max-w-2xl mx-auto">
+                Our commitment to excellence is backed by industry-leading performance metrics and client satisfaction rates
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-4 gap-6 text-center">
+              <div className="bg-white border border-[#E5E7EB] rounded-lg p-6">
+                <div className="text-2xl font-bold text-[#16A34A] mb-2">96-99%</div>
+                <div className="text-sm text-[#0B1B2B] font-semibold mb-1">Success Rate</div>
+                <div className="text-xs text-[#6B7280]">Guaranteed outcomes</div>
+              </div>
+              <div className="bg-white border border-[#E5E7EB] rounded-lg p-6">
+                <div className="text-2xl font-bold text-[#C9A24A] mb-2">1,200+</div>
+                <div className="text-sm text-[#0B1B2B] font-semibold mb-1">Relocations</div>
+                <div className="text-xs text-[#6B7280]">Successfully completed</div>
+              </div>
+              <div className="bg-white border border-[#E5E7EB] rounded-lg p-6">
+                <div className="text-2xl font-bold text-[#0B1B2B] mb-2">4.8/5</div>
+                <div className="text-sm text-[#0B1B2B] font-semibold mb-1">Client Rating</div>
+                <div className="text-xs text-[#6B7280]">247 verified reviews</div>
+              </div>
+              <div className="bg-white border border-[#E5E7EB] rounded-lg p-6">
+                <div className="text-2xl font-bold text-[#C9A24A] mb-2">150+</div>
+                <div className="text-sm text-[#0B1B2B] font-semibold mb-1">Vetted Partners</div>
+                <div className="text-xs text-[#6B7280]">Across all services</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expert Team and Authority Signals */}
+      <section className="section-spacing bg-[#0B1B2B] text-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-20 w-64 h-64 border border-[#C9A24A]/20 rounded-full"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 border border-[#C9A24A]/20 rounded-full"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-[#C9A24A]/10 to-[#C9A24A]/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container-custom max-w-6xl relative">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Expert Leadership Team
+            </h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+              Industry veterans from top-tier firms bringing decades of London relocation expertise
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 mb-16">
+            {/* Sarah Mitchell Profile */}
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all">
+              <div className="flex items-start gap-6">
+                <div className="w-20 h-20 bg-[#C9A24A] rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-2xl font-bold">SM</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                    Sarah Mitchell
+                  </h3>
+                  <div className="text-[#C9A24A] font-semibold mb-4">CEO & Founding Partner</div>
+                  
+                  <div className="space-y-3 text-white/90">
+                    <p className="leading-relaxed">
+                      Former Partner at Deloitte with 15+ years specializing in executive relocations for FTSE 100 companies. 
+                      Led the relocation of 2,000+ C-suite executives to London.
+                    </p>
+                    
+                    <div className="space-y-2">
+                      <div className="text-sm text-white/70">
+                        <strong className="text-white">Previous Experience:</strong>
+                      </div>
+                      <ul className="text-sm text-white/80 space-y-1 ml-4">
+                        <li>• Deloitte Partner (2015-2024) - Executive Relocation Practice</li>
+                        <li>• PwC Senior Manager (2010-2015) - Corporate Services</li>
+                        <li>• Specialization: Investment Banking & Consulting relocations</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="flex items-center gap-4 text-sm text-white/70 mt-4">
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-[#C9A24A] rounded-full"></div>
+                        MBA, London Business School
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-[#C9A24A] rounded-full"></div>
+                        CIM Certified
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* James Wellington-Smith Profile */}
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all">
+              <div className="flex items-start gap-6">
+                <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-2xl font-bold">JW</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                    James Wellington-Smith
+                  </h3>
+                  <div className="text-[#C9A24A] font-semibold mb-4">Head of Property & Operations</div>
+                  
+                  <div className="space-y-3 text-white/90">
+                    <p className="leading-relaxed">
+                      Former Partner at Knight Frank with exclusive access to London's most prestigious property portfolio. 
+                      20+ years specializing in £5M+ residential transactions.
+                    </p>
+                    
+                    <div className="space-y-2">
+                      <div className="text-sm text-white/70">
+                        <strong className="text-white">Previous Experience:</strong>
+                      </div>
+                      <ul className="text-sm text-white/80 space-y-1 ml-4">
+                        <li>• Knight Frank Partner (2012-2024) - Prime Central London</li>
+                        <li>• Savills Associate Director (2008-2012) - Residential</li>
+                        <li>• Specialization: UHNW family relocations & luxury properties</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="flex items-center gap-4 text-sm text-white/70 mt-4">
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-[#C9A24A] rounded-full"></div>
+                        MRICS Qualified
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-[#C9A24A] rounded-full"></div>
+                        Oxford, PPE
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Authority Signals and Certifications */}
+          <div className="bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl p-8 mb-16">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-white mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Industry Recognition & Compliance
+              </h3>
+              <p className="text-white/80">
+                Certified by leading industry bodies with recognition from major financial institutions
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Industry Awards */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-bold text-white mb-3">Awards & Recognition</h4>
+                <ul className="text-sm text-white/80 space-y-2">
+                  <li>• London PropTech Awards 2024 - Best Innovation</li>
+                  <li>• Financial Times: "Future of Relocation"</li>
+                  <li>• Preferred partner for 12 investment banks</li>
+                  <li>• Featured in The Economist Intelligence Unit</li>
+                </ul>
+              </div>
+
+              {/* Certifications */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-bold text-white mb-3">Certifications</h4>
+                <ul className="text-sm text-white/80 space-y-2">
+                  <li>• BAR (British Association of Removers)</li>
+                  <li>• FIDI (International Moving Network)</li>
+                  <li>• ARP (Association of Relocation Professionals)</li>
+                  <li>• GDPR & Data Protection Compliant</li>
+                </ul>
+              </div>
+
+              {/* Corporate Clients */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Building2 className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-bold text-white mb-3">Trusted By</h4>
+                <ul className="text-sm text-white/80 space-y-2">
+                  <li>• Goldman Sachs, JPMorgan, Morgan Stanley</li>
+                  <li>• McKinsey, BCG, Deloitte, PwC</li>
+                  <li>• Google, Meta, Microsoft London</li>
+                  <li>• 150+ vetted service providers</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Client Success Stories */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 bg-[#C9A24A] rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">★</span>
+                </div>
+                <div>
+                  <div className="font-semibold text-white mb-1">Managing Director</div>
+                  <div className="text-sm text-white/70">Goldman Sachs</div>
+                </div>
+              </div>
+              <blockquote className="text-white/90 italic leading-relaxed mb-4">
+                "Relo Network's AI system found our family the perfect Marylebone townhouse in 48 hours. 
+                Their team handled everything from school applications to banking setup. Absolutely seamless."
+              </blockquote>
+              <div className="text-sm text-[#C9A24A] font-semibold">Relocated: Family of 4 • £4.2M property • 3 weeks total</div>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">★</span>
+                </div>
+                <div>
+                  <div className="font-semibold text-white mb-1">Senior Partner</div>
+                  <div className="text-sm text-white/70">McKinsey & Company</div>
+                </div>
+              </div>
+              <blockquote className="text-white/90 italic leading-relaxed mb-4">
+                "Moving 15 consultants to our London office seemed impossible. Relo Network's corporate solution 
+                delivered 100% success rate with personalized service for each family."
+              </blockquote>
+              <div className="text-sm text-[#C9A24A] font-semibold">Corporate relocation • 15 families • 96% satisfaction</div>
             </div>
           </div>
         </div>
