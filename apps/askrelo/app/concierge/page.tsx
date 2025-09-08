@@ -151,7 +151,7 @@ const PricingTier = ({
         {originalPrice && (
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="text-[#9CA3AF] line-through text-lg">£{originalPrice}/mo</span>
-            <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-semibold">50% OFF</span>
+            <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-semibold">LAUNCH PRICE</span>
           </div>
         )}
         <div className="text-4xl font-bold text-[#0B1220]">
@@ -271,53 +271,49 @@ export default function ConciergePage() {
       name: 'Free Trial',
       price: '0',
       description: 'Experience Ask Relo risk-free',
-      usage: '5 minutes total • 1 conversation',
+      usage: '3 minutes total • 1 conversation',
+      afterLaunch: '3 minutes total • 1 conversation',
       isTrial: true,
       priceId: 'free_trial',
       features: [
         'Voice AI conversation',
         'Basic London insights',
-        'Property search demo',
         'Transport advice',
         'No credit card required'
       ]
     },
     {
       name: 'Professional',
-      price: '147',
-      originalPrice: '295',
+      price: '295',
+      originalPrice: '395',
       description: 'Perfect for active home hunters',
-      usage: '120 minutes/month • Unlimited conversations',
+      usage: 'Unlimited voice consultations • Advanced features',
       isPopular: true,
       priceId: 'price_professional_voice',
       features: [
-        'Unlimited voice conversations',
-        'Real-time property search',
-        'Neighborhood analysis',
-        'Commute optimization',
-        'School district info',
-        'Market trend insights',
-        'SMS property alerts',
-        'Calendar booking integration'
+        'Voice AI consultations (unlimited)',
+        'Property search and matching',
+        'Neighbourhood analysis',
+        'Transport optimisation',
+        'Market insights',
+        'SMS alerts',
+        'Basic supplier introductions'
       ]
     },
     {
       name: 'Concierge',
-      price: '747',
-      originalPrice: '1495',
+      price: '1495',
+      originalPrice: '1995',
       description: 'White-glove relocation service',
-      usage: 'Unlimited everything • Human backup',
+      usage: 'Everything + Human concierge support',
       priceId: 'price_concierge_voice',
       features: [
         'Everything in Professional',
-        'Unlimited usage',
         'Human concierge escalation',
-        'Property viewing coordination',
-        'Contract negotiation support',
-        'Moving services booking',
-        'Utility connection assistance',
-        'Priority customer support',
-        'Dedicated account manager'
+        'Property viewing coordination (up to 10 properties)',
+        'Supplier relationship management',
+        'Basic contract review',
+        'Priority support'
       ]
     }
   ]
@@ -362,7 +358,7 @@ export default function ConciergePage() {
             </div>
 
             <div className="bg-green-100 text-green-800 px-4 py-2 rounded-full inline-block text-sm font-semibold mb-8">
-              First Month 50% Off - Limited Time!
+              Launch Pricing - Limited Time Only!
             </div>
           </div>
         </div>
@@ -470,8 +466,8 @@ export default function ConciergePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <UsageCard 
             title="Voice Minutes" 
-            current={4} 
-            limit={5} 
+            current={2} 
+            limit={3} 
             upgrade={() => handleCheckout('price_professional_voice')}
           />
           <UsageCard 
@@ -566,7 +562,7 @@ export default function ConciergePage() {
               className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
               disabled={loading}
             >
-              {loading ? 'Loading...' : 'Try Free for 5 Minutes'} <ArrowRight className="ml-2 h-4 w-4" />
+              {loading ? 'Loading...' : 'Try Free for 3 Minutes'} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button 
               onClick={() => handleCheckout('price_professional_voice')}
@@ -580,7 +576,7 @@ export default function ConciergePage() {
           </div>
           
           <p className="text-sm text-white/80 mt-4">
-            No credit card required for trial • Cancel anytime • 50% off first month
+            No credit card required for trial • Cancel anytime • Launch pricing available
           </p>
         </div>
       </div>
