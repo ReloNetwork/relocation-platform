@@ -11,7 +11,10 @@
     "stripe:seed": "node scripts/stripe-seed.js",
     "sitemap": "next-sitemap --config next-sitemap.config.js",
     "analyze": "ANALYZE=true next build",
-    "seo:validate": "node scripts/validate-seo.js"
+    "seo:validate": "node scripts/validate-seo.js",
+    "luxury:validate": "node scripts/luxury-seo-validator.js",
+    "luxury:build": "npm run luxury:validate && npm run build",
+    "luxury:deploy": "npm run luxury:validate && npm run sitemap && npm run build"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^15.5.2",

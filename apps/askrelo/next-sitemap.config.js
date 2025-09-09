@@ -44,8 +44,8 @@ module.exports = {
       }
     ],
     additionalSitemaps: [
-      'https://relocation-platform.vercel.app/sitemap-blog.xml', // Future blog sitemap
-      'https://relocation-platform.vercel.app/sitemap-areas.xml'  // Future London areas sitemap
+      'https://relo-network.vercel.app/sitemap-blog.xml', // Future blog sitemap
+      'https://relo-network.vercel.app/sitemap-areas.xml'  // Future London areas sitemap
     ]
   },
   changefreq: 'weekly',

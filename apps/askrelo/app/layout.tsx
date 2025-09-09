@@ -2,6 +2,8 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import StickyAsk from './components/StickyAsk';
 import { Analytics } from '@vercel/analytics/react';
+import { DefaultSeo } from 'next-seo';
+import { DEFAULT_SEO } from '../lib/seo/config';
 
 // Force dynamic rendering for all pages to prevent export issues
 export const dynamic = 'force-dynamic';
@@ -103,6 +105,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#0B1B2B" />
       </head>
       <body className="font-sans antialiased">
+        <DefaultSeo {...DEFAULT_SEO} />
         {children}
         <StickyAsk />
         <Analytics />
