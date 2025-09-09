@@ -5,20 +5,20 @@
 
 type SchemaType = any;
 
-// Partnership Service Schema
+// Partnership Service Schema - Updated for Lead Machine & Market Dominator
 export const partnershipServiceSchema: SchemaType = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  '@id': 'https://relocation-platform.vercel.app/partners#partnership-service',
+  '@id': 'https://askrelo.com/partners#partnership-service',
   name: 'Relo Network Partnership Program',
-  description: 'London\'s most exclusive relocation partner network offering three tiers of partnership: Starter (£395/mo), Featured (£795/mo), and Sponsored (£1,495/mo). Join 150+ vetted service providers generating £2.3M+ in verified client revenue.',
+  description: 'London\'s most exclusive relocation partner network offering two revolutionary tiers: Lead Machine (£497/mo) for authority building with guaranteed leads, and Market Dominator (£1,497/mo) for complete market domination with citation insurance. Over £2.3M+ in verified partner revenue generated.',
   provider: {
     '@type': 'Organization',
     name: 'Relo Network',
-    url: 'https://relocation-platform.vercel.app'
+    url: 'https://askrelo.com'
   },
-  serviceType: 'Business Partnership Program',
-  category: ['Professional Services', 'Business Partnership', 'Relocation Services'],
+  serviceType: 'Premium Partnership Program',
+  category: ['Professional Services', 'Authority Building', 'Market Domination', 'Relocation Services'],
   areaServed: {
     '@type': 'City',
     name: 'London',
@@ -30,75 +30,58 @@ export const partnershipServiceSchema: SchemaType = {
     itemListElement: [
       {
         '@type': 'Offer',
-        name: 'Starter Partnership',
-        description: 'Entry-level luxury partnership with AI visibility guarantee and premium lead access',
-        price: '395',
+        name: 'Lead Machine Partnership',
+        description: 'Authority building partnership with 8-15 guaranteed qualified leads monthly and AI expert positioning',
+        price: '497',
         priceCurrency: 'GBP',
         priceValidUntil: '2025-09-15',
         availability: 'InStock',
-        category: 'Partnership Program',
+        category: 'Authority Building Program',
         includesObject: [
-          'AI directory visibility guarantee',
-          'Premium lead notifications',
-          'Basic analytics dashboard',
-          'Partner resource library access',
-          'Monthly networking events',
-          'Email support system'
+          '8-15 guaranteed qualified leads monthly',
+          'AI concierge mentions you by name for expertise',
+          'Premium directory placement (top 3 position)',
+          'Authority content collaboration & co-creation',
+          'Expert positioning in your service category',
+          'Performance dashboard with lead analytics',
+          'Email list inclusion (25k+ luxury subscribers)',
+          'Social media authority features & mentions',
+          'EXCLUSIVE territory protection rights',
+          'Client testimonial & case study development'
         ],
         eligibleQuantity: {
           '@type': 'QuantitativeValue',
           maxValue: 100,
-          unitText: 'partnerships available'
+          unitText: 'lead machine partnerships available'
         }
       },
       {
         '@type': 'Offer',
-        name: 'Featured Partnership',
-        description: 'Authority-building partnership with enhanced visibility and expert positioning',
-        price: '795',
+        name: 'Market Dominator Partnership',
+        description: 'Complete market domination with exclusive category ownership, citation insurance, and 15% revenue sharing',
+        price: '1497',
         priceCurrency: 'GBP',
         priceValidUntil: '2025-09-15',
         availability: 'InStock',
-        category: 'Partnership Program',
+        category: 'Market Domination Program',
         includesObject: [
-          'Featured directory placement',
-          'Authority content collaboration',
-          'Advanced analytics & ROI tracking',
-          'Priority lead distribution',
-          'Custom partner profile page',
-          'Weekly networking events',
-          'Marketing co-op opportunities',
-          'Phone + email support'
+          'Everything in Lead Machine tier',
+          'EXCLUSIVE category ownership (no competitors)',
+          'AI citations as "preferred industry partner"',
+          'Citation insurance against competitor mentions',
+          'Co-branded luxury marketing content creation',
+          'White-label platform integration options',
+          'Priority Concierge tier client recommendations',
+          '15% revenue sharing on all closed deals',
+          'Quarterly strategic business reviews with CEO',
+          'Industry thought leadership positioning',
+          'Premium press mention opportunities',
+          'Executive networking event access'
         ],
         eligibleQuantity: {
           '@type': 'QuantitativeValue',
-          maxValue: 50,
-          unitText: 'featured partnerships available'
-        }
-      },
-      {
-        '@type': 'Offer',
-        name: 'Sponsored Partnership',
-        description: 'Market domination tier with citation insurance and exclusive category ownership',
-        price: '1495',
-        priceCurrency: 'GBP',
-        priceValidUntil: '2025-09-15',
-        availability: 'InStock',
-        category: 'Partnership Program',
-        includesObject: [
-          'Exclusive category ownership',
-          'Citation insurance guarantee',
-          'Dedicated account manager',
-          'Custom integration options',
-          'White-label opportunities',
-          'Revenue sharing programs',
-          'Advisory board participation',
-          '24/7 priority support'
-        ],
-        eligibleQuantity: {
-          '@type': 'QuantitativeValue',
-          maxValue: 20,
-          unitText: 'sponsored partnerships available'
+          maxValue: 25,
+          unitText: 'market dominator partnerships available'
         }
       }
     ]
@@ -106,24 +89,36 @@ export const partnershipServiceSchema: SchemaType = {
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: 4.9,
-    reviewCount: 127,
+    reviewCount: 150,
     bestRating: 5,
     worstRating: 1
   }
 }
 
-// Partnership FAQ Schema
+// Partnership FAQ Schema - Updated for Lead Machine & Market Dominator
 export const partnershipFAQSchema: SchemaType = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  '@id': 'https://relocation-platform.vercel.app/partners#faq',
+  '@id': 'https://askrelo.com/partners#faq',
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What ROI can partners expect from Relo Network?',
+      name: 'What makes Lead Machine the ideal authority building platform?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Relo Network partners report average ROI of 340% within the first 6 months. Featured partners generate an average of £12,400 in client revenue monthly, while Sponsored partners average £28,500 monthly. Our vetting process ensures only high-value relocations worth £8,500+ are distributed to partners.',
+        text: 'Lead Machine (£497/mo) delivers 8-15 guaranteed qualified leads monthly while positioning you as the recognized expert in your service category. Our AI concierge mentions you by name as a trusted authority, premium directory placement ensures top-3 positioning, and authority content collaboration establishes your thought leadership. Average Lead Machine partners generate £12,400 monthly revenue with 340% ROI.',
+        author: {
+          '@type': 'Organization',
+          name: 'Relo Network'
+        }
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Market Dominator ensure complete citation insurance?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Market Dominator (£1,497/mo) provides exclusive category ownership by eliminating all competitor mentions and securing AI "preferred partner" status. You become THE definitive authority in your service category with citation insurance protecting against any competitor recommendations. Plus 15% revenue sharing on all deals closed through the platform.',
         author: {
           '@type': 'Organization',
           name: 'Relo Network'
@@ -147,7 +142,7 @@ export const partnershipFAQSchema: SchemaType = {
       name: 'What makes Relo Network different from other referral networks?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Relo Network is the only luxury relocation network with AI-powered client matching, guaranteed exclusive territories, and comprehensive citation insurance. We focus exclusively on relocations worth £8,500+, serve only UHNW individuals and Fortune 500 corporations, and maintain a 96% client satisfaction rate.',
+        text: 'Relo Network is the only luxury relocation network with AI-powered client matching, guaranteed exclusive territories, and comprehensive citation insurance. We focus exclusively on relocations worth £8,500+, serve only UHNW individuals and Fortune 500 corporations, and maintain a 96% client satisfaction rate with verified performance tracking.',
         author: {
           '@type': 'Organization',
           name: 'Relo Network'
@@ -159,7 +154,7 @@ export const partnershipFAQSchema: SchemaType = {
       name: 'How quickly do partners start receiving leads?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Partners typically receive their first qualified lead within 72 hours of approval. Our AI matching system analyzes 47 client criteria points to ensure perfect partner-client alignment. Featured and Sponsored partners receive priority lead distribution with average response times of 2.3 hours.',
+        text: 'Partners typically receive their first qualified lead within 72 hours of approval. Our AI matching system analyzes 47 client criteria points to ensure perfect partner-client alignment. Lead Machine and Market Dominator partners receive priority lead distribution with average response times of 2.3 hours, guaranteeing first access to premium opportunities.',
         author: {
           '@type': 'Organization',
           name: 'Relo Network'
@@ -171,7 +166,19 @@ export const partnershipFAQSchema: SchemaType = {
       name: 'What geographic coverage does Relo Network provide?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Relo Network covers all 33 London boroughs with concentrated focus on Zones 1-3 for maximum relocation density. We maintain exclusive partnerships in Mayfair, Belgravia, Kensington, Canary Wharf, and other premium areas. International reach spans 47 countries for inbound relocations.',
+        text: 'Relo Network covers all 33 London boroughs with concentrated focus on Zones 1-3 for maximum relocation density. We maintain exclusive partnerships in Mayfair, Belgravia, Kensington, Canary Wharf, and other premium areas. International reach spans 47 countries for inbound relocations, with particular strength in North America, Europe, and Asia-Pacific markets.',
+        author: {
+          '@type': 'Organization',
+          name: 'Relo Network'
+        }
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What support do partners receive?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Partners receive comprehensive support including dedicated account management (Lead Machine/Market Dominator tiers), marketing co-op opportunities, advanced analytics dashboards, and access to our exclusive partner resource library. Market Dominator partners receive 24/7 priority support and participate in our revenue sharing program (up to 15% additional commission).',
         author: {
           '@type': 'Organization',
           name: 'Relo Network'
@@ -252,14 +259,14 @@ export const partnerReviewsSchema: SchemaType = {
   }
 }
 
-// Local Business Schema for Contact
+// Local Business Schema for Contact - Updated URLs
 export const partnershipContactSchema: SchemaType = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': 'https://relocation-platform.vercel.app/partners#contact',
+  '@id': 'https://askrelo.com/partners#contact',
   name: 'Relo Network Partnership Department',
-  description: 'Dedicated partnership team managing London\'s most exclusive relocation service provider network.',
-  url: 'https://relocation-platform.vercel.app/partners',
+  description: 'Dedicated partnership team managing London\'s most exclusive relocation service provider network with Lead Machine and Market Dominator programs.',
+  url: 'https://askrelo.com/partners',
   telephone: '+44-20-7946-0960',
   email: 'partners@relo-network.com',
   address: {
@@ -295,8 +302,8 @@ export const partnershipContactSchema: SchemaType = {
     {
       '@type': 'ContactPoint',
       telephone: '+44-20-7946-0961',
-      contactType: 'Sponsored Partner Support',
-      email: 'sponsored@relo-network.com',
+      contactType: 'Market Dominator Support',
+      email: 'dominator@relo-network.com',
       hoursAvailable: {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: [

@@ -199,39 +199,47 @@ export default function PartnersPage() {
       name: 'Lead Machine',
       price: '497',
       originalPrice: '997',
-      description: '8-15 guaranteed qualified leads every month',
+      description: 'Authority building with guaranteed lead generation',
       isPopular: true,
       priceId: 'lead_machine',
       roiData: { monthlyRevenue: '£12,400', roi: '340%', clients: '8-15' },
       redirectUrl: '/partners/lead-machine',
+      authorityFocus: 'Expert Positioning & Lead Generation',
       features: [
         '8-15 guaranteed qualified leads/month',
-        'AI concierge mentions you by name',
-        'Premium directory placement (top 3)',
-        'Automated lead nurturing system',
-        'Performance dashboard & analytics',
-        'Email list inclusion (25k+ subscribers)',
-        'Social media features & mentions',
-        'EXCLUSIVE territory rights'
+        'AI concierge mentions you by name for expertise',
+        'Premium directory placement (top 3 position)',
+        'Authority content collaboration & co-creation',
+        'Expert positioning in your service category',
+        'Performance dashboard with lead analytics',
+        'Email list inclusion (25k+ luxury subscribers)',
+        'Social media authority features & mentions',
+        'EXCLUSIVE territory protection rights',
+        'Client testimonial & case study development'
       ]
     },
     {
       name: 'Market Dominator',
       price: '1,497',
       originalPrice: '2,997',
-      description: 'Own your category. Eliminate competition.',
+      description: 'Complete market domination with citation insurance',
       priceId: 'market_dominator',
       roiData: { monthlyRevenue: '£37,500', roi: '650%', clients: '15+' },
       redirectUrl: '/partners/market-dominator',
+      authorityFocus: 'Market Domination & Citation Insurance',
       features: [
-        'Everything in Lead Machine',
-        'EXCLUSIVE category ownership',
-        'AI mentions you as "preferred partner"',
-        'Co-branded content creation',
-        'White-label integration options',
-        'Priority Concierge tier recommendations',
-        '15% revenue sharing on closed deals',
-        'Quarterly business reviews with CEO'
+        'Everything in Lead Machine tier',
+        'EXCLUSIVE category ownership (no competitors)',
+        'AI citations as "preferred industry partner"',
+        'Citation insurance against competitor mentions',
+        'Co-branded luxury marketing content creation',
+        'White-label platform integration options',
+        'Priority Concierge tier client recommendations',
+        '15% revenue sharing on all closed deals',
+        'Quarterly strategic business reviews with CEO',
+        'Industry thought leadership positioning',
+        'Premium press mention opportunities',
+        'Executive networking event access'
       ]
     }
   ]
@@ -473,6 +481,100 @@ export default function PartnersPage() {
           ))}
         </div>
 
+        {/* Detailed Tier Authority Comparison */}
+        <div className="mt-16 bg-white rounded-2xl p-8 border border-[#0B1B2B]/10">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Authority Building vs Market Domination
+            </h3>
+            <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
+              Choose your path to becoming London's recognized expert in luxury relocations
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Lead Machine Authority Focus */}
+            <div className="bg-[#FAFAF9] rounded-xl p-8 border border-[#C9A24A]/20">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-[#C9A24A] text-white rounded-full flex items-center justify-center">
+                  <Trophy className="h-8 w-8" />
+                </div>
+                <div>
+                  <h4 className="text-2xl font-bold text-[#0B1B2B]">Lead Machine</h4>
+                  <p className="text-[#C9A24A] font-semibold">Expert Positioning & Authority Building</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="border-l-4 border-[#C9A24A] pl-4">
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Authority Strategy</h5>
+                  <p className="text-[#6B7280] text-sm">Build recognized expertise through consistent lead generation and thought leadership positioning in your service category.</p>
+                </div>
+                
+                <div className="border-l-4 border-[#C9A24A] pl-4">
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">AI Positioning</h5>
+                  <p className="text-[#6B7280] text-sm">Our AI concierge mentions you by name as a trusted expert, building your reputation with every client interaction.</p>
+                </div>
+                
+                <div className="border-l-4 border-[#C9A24A] pl-4">
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Content Authority</h5>
+                  <p className="text-[#6B7280] text-sm">Collaborate on premium content creation, case studies, and testimonials that establish your expertise.</p>
+                </div>
+
+                <div className="bg-[#C9A24A]/10 rounded-lg p-4 mt-6">
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-2">Perfect For:</div>
+                  <ul className="text-xs text-[#6B7280] space-y-1">
+                    <li>• Service providers building market presence</li>
+                    <li>• Businesses seeking steady lead generation</li>
+                    <li>• Companies wanting expert recognition</li>
+                    <li>• Partners focused on consistent growth</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Market Dominator Authority Focus */}
+            <div className="bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/5 rounded-xl p-8 border-2 border-[#C9A24A]">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-[#0B1B2B] text-white rounded-full flex items-center justify-center">
+                  <Target className="h-8 w-8" />
+                </div>
+                <div>
+                  <h4 className="text-2xl font-bold text-[#0B1B2B]">Market Dominator</h4>
+                  <p className="text-[#C9A24A] font-semibold">Complete Market Control & Citation Insurance</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="border-l-4 border-[#0B1B2B] pl-4">
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Market Domination Strategy</h5>
+                  <p className="text-[#6B7280] text-sm">Achieve complete category ownership by eliminating competitor mentions and securing exclusive AI recommendation status.</p>
+                </div>
+                
+                <div className="border-l-4 border-[#0B1B2B] pl-4">
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Citation Insurance</h5>
+                  <p className="text-[#6B7280] text-sm">Guaranteed protection against competitor mentions. You become THE definitive authority in your service category.</p>
+                </div>
+                
+                <div className="border-l-4 border-[#0B1B2B] pl-4">
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Premium Authority</h5>
+                  <p className="text-[#6B7280] text-sm">Co-branded content, press mentions, and thought leadership positioning that establishes market-leading authority.</p>
+                </div>
+
+                <div className="bg-[#0B1B2B]/10 rounded-lg p-4 mt-6">
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-2">Perfect For:</div>
+                  <ul className="text-xs text-[#6B7280] space-y-1">
+                    <li>• Market leaders seeking complete dominance</li>
+                    <li>• Premium service providers (£500k+ revenue)</li>
+                    <li>• Companies wanting zero competition</li>
+                    <li>• Partners focused on industry leadership</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* ROI Calculator */}
         <div className="mt-16 bg-[#FAFAF9] rounded-2xl p-8">
           <div className="text-center mb-8">
@@ -710,24 +812,56 @@ export default function PartnersPage() {
 
           <div className="space-y-8">
             <div className="border border-[#E5E7EB] rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What ROI can partners expect from Relo Network?</h3>
+              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What makes Lead Machine the ideal authority building platform?</h3>
               <p className="text-[#6B7280] leading-relaxed mb-4">
-                Relo Network partners report average ROI of 340% within the first 6 months. Featured partners generate an average of £12,400 in client revenue monthly, while Sponsored partners average £28,500 monthly. Our vetting process ensures only high-value relocations worth £8,500+ are distributed to partners, maintaining consistent revenue quality.
+                Lead Machine (£497/mo) delivers 8-15 guaranteed qualified leads monthly while positioning you as the recognized expert in your service category. Our AI concierge mentions you by name as a trusted authority, premium directory placement ensures top-3 positioning, and authority content collaboration establishes your thought leadership. Average Lead Machine partners generate £12,400 monthly revenue with 340% ROI.
               </p>
               <div className="bg-[#FAFAF9] rounded-lg p-4 border border-[#E5E7EB]">
-                <div className="text-sm font-medium text-[#0B1B2B] mb-2">ROI Performance by Tier (6-month average):</div>
-                <div className="grid grid-cols-3 gap-4 text-xs">
+                <div className="text-sm font-medium text-[#0B1B2B] mb-2">Lead Machine Authority Benefits:</div>
+                <div className="grid grid-cols-2 gap-4 text-xs">
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Starter: 280% ROI</div>
-                    <div className="text-[#6B7280]">£8,400/mo avg revenue</div>
+                    <div className="font-semibold text-[#C9A24A]">Expert Positioning</div>
+                    <div className="text-[#6B7280]">AI mentions you by name as trusted authority</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Featured: 340% ROI</div>
-                    <div className="text-[#6B7280]">£12,400/mo avg revenue</div>
+                    <div className="font-semibold text-[#C9A24A]">Premium Placement</div>
+                    <div className="text-[#6B7280]">Top-3 directory position guaranteed</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Sponsored: 420% ROI</div>
-                    <div className="text-[#6B7280]">£28,500/mo avg revenue</div>
+                    <div className="font-semibold text-[#C9A24A]">Content Collaboration</div>
+                    <div className="text-[#6B7280]">Authority building case studies & testimonials</div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-[#C9A24A]">340% ROI Performance</div>
+                    <div className="text-[#6B7280]">£12,400/mo average revenue generation</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="border border-[#E5E7EB] rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">How does Market Dominator ensure complete citation insurance?</h3>
+              <p className="text-[#6B7280] leading-relaxed mb-4">
+                Market Dominator (£1,497/mo) provides exclusive category ownership by eliminating all competitor mentions and securing AI "preferred partner" status. You become THE definitive authority in your service category with citation insurance protecting against any competitor recommendations. Plus 15% revenue sharing on all deals closed through the platform.
+              </p>
+              <div className="bg-[#FAFAF9] rounded-lg p-4 border border-[#E5E7EB]">
+                <div className="text-sm font-medium text-[#0B1B2B] mb-2">Market Dominator Exclusivity Features:</div>
+                <div className="grid grid-cols-2 gap-4 text-xs">
+                  <div>
+                    <div className="font-semibold text-[#C9A24A]">Category Ownership</div>
+                    <div className="text-[#6B7280]">Complete elimination of competitor mentions</div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-[#C9A24A]">Citation Insurance</div>
+                    <div className="text-[#6B7280]">Guaranteed protection against competition</div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-[#C9A24A]">Preferred Partner Status</div>
+                    <div className="text-[#6B7280]">AI specifically recommends you as preferred choice</div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-[#C9A24A]">Revenue Sharing</div>
+                    <div className="text-[#6B7280]">15% additional commission on all deals</div>
                   </div>
                 </div>
               </div>
