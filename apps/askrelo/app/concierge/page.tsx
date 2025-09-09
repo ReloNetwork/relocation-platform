@@ -130,7 +130,7 @@ const PricingTier = ({
   <div className={`relative rounded-md border ${isPopular ? 'border-[#C9A24A] ring-2 ring-[#C9A24A]/20' : 'border-[#E5E7EB]'} bg-white p-8 shadow-sm`}>
     {isPopular && (
       <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-        <div className="bg-[#C9A24A] text-white px-4 py-2 rounded-full text-sm font-semibold">
+        <div className="bg-[#C9A24A] text-white px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap">
           MOST POPULAR
         </div>
       </div>
