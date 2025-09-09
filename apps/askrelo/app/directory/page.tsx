@@ -486,7 +486,7 @@ export default function DirectoryPage() {
   ]
 
   return (
-    <Layout className="bg-[#FAFAF9]">
+    <Layout className="bg-[#FAFAF9]" showFooter={false}>
       {/* Enhanced Structured Data for Directory Authority */}
       {schemas.map((schema, index) => (
         <script
@@ -915,7 +915,7 @@ export default function DirectoryPage() {
       {/* Final CTA */}
       <div className="bg-[#0B1B2B] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h3 className="text-4xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+          <h3 className="text-4xl font-bold mb-4 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Access London's Premier Service Directory
           </h3>
           <p className="text-xl mb-8 text-white/90">
@@ -925,7 +925,7 @@ export default function DirectoryPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button 
               size="lg"
-              className="bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md hover:scale-105 shadow-xl"
+              className="bg-[#C9A24A] hover:bg-[#B8923D] !text-white rounded-md hover:scale-105 shadow-xl"
               onClick={() => handleSubscribe('premium')}
             >
               <Search className="mr-2 h-5 w-5" />
@@ -934,14 +934,14 @@ export default function DirectoryPage() {
             <Button 
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
+              className="border-white text-white bg-transparent hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
               onClick={() => handleSubscribe('free')}
             >
               Start Free Access
             </Button>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-white/80">
             <div>✓ 200+ Service Providers</div>
             <div>✓ All London Areas</div>
             <div>✓ Instant Access</div>
