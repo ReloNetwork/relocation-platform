@@ -692,7 +692,7 @@ export default function CorporatePage() {
       </section>
 
       {/* Final Emergency CTA */}
-      <div className="bg-red-600 text-white py-16">
+      <div className="bg-[#C9A24A] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h3 className="text-4xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Executive Relocation Crisis?
@@ -705,7 +705,7 @@ export default function CorporatePage() {
             <Button 
               onClick={() => window.open('tel:+442079460958')}
               size="lg"
-              className="bg-white text-red-600 hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
+              className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
             >
               <Phone className="mr-2 h-5 w-5" />
               Emergency Hotline: +44 20 7946 0958
@@ -714,7 +714,7 @@ export default function CorporatePage() {
               onClick={() => document.getElementById('emergency-form')?.scrollIntoView({behavior: 'smooth'})}
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-red-600 rounded-md hover:scale-105 transition-all"
+              className="border-white text-white hover:bg-white hover:text-[#C9A24A] rounded-md hover:scale-105 transition-all"
             >
               Book Emergency Consultation
             </Button>
@@ -730,18 +730,18 @@ export default function CorporatePage() {
       </div>
 
       {/* Mobile CTA Sticky */}
-      <div className="fixed bottom-0 left-0 right-0 bg-red-600 text-white p-4 shadow-lg md:hidden z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#0B1B2B] text-white p-4 shadow-lg md:hidden z-50">
         <div className="flex gap-2">
           <Button 
             onClick={() => window.open('tel:+442079460958')}
-            className="flex-1 bg-white text-red-600 hover:bg-gray-100 rounded-md"
+            className="flex-1 bg-[#C9A24A] text-white hover:bg-[#B8923D] rounded-md"
           >
             <Phone className="mr-2 h-4 w-4" />
             Call Now
           </Button>
           <Button 
             onClick={() => document.getElementById('emergency-form')?.scrollIntoView({behavior: 'smooth'})}
-            className="flex-1 bg-red-700 hover:bg-red-800 text-white rounded-md"
+            className="flex-1 bg-white text-[#0B1B2B] hover:bg-gray-100 rounded-md"
           >
             Book Emergency
           </Button>
