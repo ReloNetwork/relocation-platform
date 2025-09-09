@@ -348,7 +348,7 @@ export default function HomePage() {
               </div>
               <div className="p-8">
                 <p className="text-[#0B1B2B] leading-relaxed mb-6">
-                  Based on our analysis of 100s of successful relocations, these areas consistently rank highest for international professionals:
+                  Based on our analyses of 100s of successful relocations, these areas consistently rank highest for international professionals:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div className="space-y-4">
@@ -386,7 +386,7 @@ export default function HomePage() {
                 </div>
                 <div className="bg-[#0B1B2B]/5 rounded-lg p-4">
                   <p className="text-sm text-[#0B1B2B]">
-                    <strong>Our AI concierge analyzes 150+ data points</strong> including commute times, school ratings, lifestyle preferences, and requirements to recommend the optimal area for each client.
+                    <strong>Our AI concierge analyses 150+ data points</strong> including commute times, school ratings, lifestyle preferences, and requirements to recommend the optimal area for each client.
                   </p>
                 </div>
               </div>
@@ -407,7 +407,7 @@ export default function HomePage() {
                 </h2>
                 
                 <p className="text-lg text-[#0B1B2B] leading-relaxed">
-                  <strong>Relo Network</strong> is London's most exclusive relocation network, founded in <strong>January 2024</strong> to revolutionize the premium relocation industry through AI-powered guidance and vetted partner services. The company specializes in white-glove relocation services for high-net-worth individuals, investment banking professionals, and multinational corporations moving to London, achieving a <strong>96% client satisfaction rate</strong> with <strong>100s of successful relocations</strong> completed.
+                  <strong>Relo Network</strong> is London's most exclusive relocation network, founded in <strong>January 2024</strong> to revolutionise the premium relocation industry through AI-powered guidance and vetted partner services. The company specialises in white-glove relocation services for high-net-worth individuals, investment banking professionals, and multinational corporations moving to London, achieving a <strong>96% client satisfaction rate</strong> with <strong>100s of successful relocations</strong> completed.
                 </p>
                 
                 <p className="text-lg text-[#0B1B2B] leading-relaxed">
@@ -417,7 +417,7 @@ export default function HomePage() {
                 <div className="bg-[#F8F9FA] border-l-4 border-[#C9A24A] p-4 rounded-r-lg">
                   <h4 className="text-lg font-bold text-[#0B1B2B] mb-2">Geographic Coverage</h4>
                   <p className="text-[#0B1B2B] leading-relaxed">
-                    Relo Network provides comprehensive relocation services across <strong>all 33 London boroughs</strong>, with specialized expertise in prime areas including Marylebone, Kensington, Canary Wharf, Greenwich, and Shoreditch. Our service area extends to Home Counties including Surrey, Hertfordshire, and Buckinghamshire for clients seeking suburban alternatives.
+                    Relo Network provides comprehensive relocation services across <strong>all 33 London boroughs</strong>, with specialised expertise in prime areas including Marylebone, Kensington, Canary Wharf, Greenwich, and Shoreditch. Our service area extends to Home Counties including Surrey, Hertfordshire, and Buckinghamshire for clients seeking suburban alternatives.
                   </p>
                 </div>
               </div>

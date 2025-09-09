@@ -380,13 +380,13 @@ export default function CorporatePage() {
     {
       number: "1",
       title: "Strategic Assessment & Planning",
-      description: "Comprehensive analysis of relocation requirements, stakeholder needs, and success criteria",
+      description: "Comprehensive analyses of relocation requirements, stakeholder needs, and success criteria",
       duration: "Week 1-2",
       details: [
         "Executive stakeholder interviews and needs assessment",
-        "Destination market analysis and competitive landscape review",
+        "Destination market analyses and competitive landscape review",
         "Regulatory compliance and visa requirement evaluation",
-        "Cost-benefit analysis and budget optimization",
+        "Cost-benefit analyses and budget optimisation",
         "Risk assessment and mitigation strategy development",
         "Success metrics definition and tracking framework setup"
       ]
@@ -399,7 +399,7 @@ export default function CorporatePage() {
       details: [
         "Housing search and negotiation with premium property partners",
         "School placement assistance for executive families",
-        "Tax planning and optimization consultation",
+        "Tax planning and optimisation consultation",
         "Healthcare and insurance arrangement",
         "Cultural integration and orientation program setup",
         "Legal documentation and compliance preparation"
@@ -436,14 +436,14 @@ export default function CorporatePage() {
     {
       number: "5",
       title: "Performance Monitoring & Optimization",
-      description: "Continuous monitoring and optimization to ensure relocation success and ROI",
+      description: "Continuous monitoring and optimisation to ensure relocation success and ROI",
       duration: "Month 4-12",
       details: [
         "Regular performance reviews and success metric tracking",
         "Ongoing support and issue resolution",
         "Career development and advancement support",
         "Family satisfaction monitoring and additional services",
-        "ROI reporting and optimization recommendations",
+        "ROI reporting and optimisation recommendations",
         "Long-term retention strategy implementation"
       ]
     }
@@ -535,7 +535,7 @@ export default function CorporatePage() {
         "Reputation management support",
         "Estate planning and wealth management connections",
         "12-month comprehensive integration program",
-        "Annual relationship reviews and optimization"
+        "Annual relationship reviews and optimisation"
       ],
       industryFocus: ["Investment Banking", "Hedge Funds", "Oil & Gas", "Telecommunications"]
     }
@@ -559,7 +559,7 @@ export default function CorporatePage() {
       company: "Technology Unicorn",
       industry: "Technology",
       challenge: "Rapid expansion required relocating 25 senior engineers and executives to London to establish European R&D center while competing for top talent.",
-      solution: "Created bespoke technology sector relocation program with enhanced compensation planning, accelerated visa processing, and specialized housing search focusing on tech-friendly neighborhoods.",
+      solution: "Created bespoke technology sector relocation program with enhanced compensation planning, accelerated visa processing, and specialised housing search focusing on tech-friendly neighbourhoods.",
       results: "Successfully relocated entire team within 4 months. Established functional R&D center 2 months ahead of schedule with strong employee satisfaction scores.",
       metrics: [
         { label: "Relocation Speed", value: "4 months", improvement: "50% faster timeline" },
@@ -572,7 +572,7 @@ export default function CorporatePage() {
       company: "Pharmaceutical Giant",
       industry: "Pharmaceuticals",
       challenge: "Post-merger integration requiring relocation of 8 C-suite executives while maintaining regulatory compliance and operational stability across multiple jurisdictions.",
-      solution: "Developed specialized pharmaceutical executive program with regulatory expertise, compliance consulting, and high-security relocation protocols for sensitive IP and regulatory materials.",
+      solution: "Developed specialised pharmaceutical executive program with regulatory expertise, compliance consulting, and high-security relocation protocols for sensitive IP and regulatory materials.",
       results: "Seamless C-suite integration completed in 3 months with zero regulatory issues. Merger synergies achieved 2 quarters ahead of projections.",
       metrics: [
         { label: "Regulatory Compliance", value: "100%", improvement: "Zero issues" },
@@ -822,7 +822,7 @@ export default function CorporatePage() {
               <div className="text-center">
                 <FileText className="h-8 w-8 text-[#C9A24A] mx-auto mb-3" />
                 <h4 className="font-semibold text-[#0B1B2B] mb-2">Research Publications</h4>
-                <p className="text-[#6B7280] text-sm">Annual Corporate Mobility Report and quarterly trend analysis</p>
+                <p className="text-[#6B7280] text-sm">Annual Corporate Mobility Report and quarterly trend analyses</p>
               </div>
               
               <div className="text-center">
@@ -850,7 +850,7 @@ export default function CorporatePage() {
                 Strategic Partnership Inquiry
               </h2>
               <p className="text-[#6B7280] mb-8">
-                Partner with London's leading corporate relocation specialists. Our enterprise team is ready to discuss your global mobility requirements and provide customized solutions.
+                Partner with London's leading corporate relocation specialists. Our enterprise team is ready to discuss your global mobility requirements and provide customised solutions.
               </p>
 
               <div className="space-y-6">

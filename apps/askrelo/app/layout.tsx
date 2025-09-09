@@ -102,7 +102,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#0B1B2B" />
         <meta name="msapplication-TileColor" content="#0B1B2B" />
         
-        {/* Luxury Organization Schema */}
+        {/* Luxury Organisation Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

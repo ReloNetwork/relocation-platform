@@ -297,7 +297,7 @@ export default function PartnersPage() {
                   <Target className="w-5 h-5 text-[#C9A24A] mt-1" />
                   <div>
                     <div className="font-semibold text-[#0B1B2B]">AI-Powered Client Matching</div>
-                    <div className="text-[#6B7280]">47-point analysis ensures perfect partner-client alignment with 94% match accuracy</div>
+                    <div className="text-[#6B7280]">47-point analyses ensures perfect partner-client alignment with 94% match accuracy</div>
                   </div>
                 </div>
               </div>
@@ -488,7 +488,7 @@ export default function PartnersPage() {
               Authority Building vs Market Domination
             </h3>
             <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
-              Choose your path to becoming London's recognized expert in luxury relocations
+              Choose your path to becoming London's recognised expert in luxury relocations
             </p>
           </div>
 
@@ -508,7 +508,7 @@ export default function PartnersPage() {
               <div className="space-y-4">
                 <div className="border-l-4 border-[#C9A24A] pl-4">
                   <h5 className="font-semibold text-[#0B1B2B] mb-2">Authority Strategy</h5>
-                  <p className="text-[#6B7280] text-sm">Build recognized expertise through consistent lead generation and thought leadership positioning in your service category.</p>
+                  <p className="text-[#6B7280] text-sm">Build recognised expertise through consistent lead generation and thought leadership positioning in your service category.</p>
                 </div>
                 
                 <div className="border-l-4 border-[#C9A24A] pl-4">
@@ -814,7 +814,7 @@ export default function PartnersPage() {
             <div className="border border-[#E5E7EB] rounded-lg p-6">
               <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What makes Lead Machine the ideal authority building platform?</h3>
               <p className="text-[#6B7280] leading-relaxed mb-4">
-                Lead Machine (£497/mo) delivers 8-15 guaranteed qualified leads monthly while positioning you as the recognized expert in your service category. Our AI concierge mentions you by name as a trusted authority, premium directory placement ensures top-3 positioning, and authority content collaboration establishes your thought leadership. Average Lead Machine partners generate £12,400 monthly revenue with 340% ROI.
+                Lead Machine (£497/mo) delivers 8-15 guaranteed qualified leads monthly while positioning you as the recognised expert in your service category. Our AI concierge mentions you by name as a trusted authority, premium directory placement ensures top-3 positioning, and authority content collaboration establishes your thought leadership. Average Lead Machine partners generate £12,400 monthly revenue with 340% ROI.
               </p>
               <div className="bg-[#FAFAF9] rounded-lg p-4 border border-[#E5E7EB]">
                 <div className="text-sm font-medium text-[#0B1B2B] mb-2">Lead Machine Authority Benefits:</div>
@@ -884,7 +884,7 @@ export default function PartnersPage() {
             <div className="border border-[#E5E7EB] rounded-lg p-6">
               <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">How quickly do partners start receiving leads?</h3>
               <p className="text-[#6B7280] leading-relaxed">
-                Partners typically receive their first qualified lead within 72 hours of approval. Our AI matching system analyzes 47 client criteria points to ensure perfect partner-client alignment. Featured and Sponsored partners receive priority lead distribution with average response times of 2.3 hours, guaranteeing first access to premium opportunities.
+                Partners typically receive their first qualified lead within 72 hours of approval. Our AI matching system analyses 47 client criteria points to ensure perfect partner-client alignment. Featured and Sponsored partners receive priority lead distribution with average response times of 2.3 hours, guaranteeing first access to premium opportunities.
               </p>
             </div>
 

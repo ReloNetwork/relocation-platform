@@ -77,7 +77,7 @@ const mockMessages = [
   {
     id: '3',
     sender: 'Emma Richardson',
-    message: 'Great question! I\'ve already reached out to our contacts at Black Brick who specialize in that area. I should have some initial options for you by end of week.',
+    message: 'Great question! I\'ve already reached out to our contacts at Black Brick who specialise in that area. I should have some initial options for you by end of week.',
     timestamp: '1 day ago',
     isFromConcierge: true
   }

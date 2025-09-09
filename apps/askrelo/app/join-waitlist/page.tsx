@@ -81,7 +81,7 @@ export default function JoinWaitlistPage() {
               Tell Us About You
             </h2>
             <p className="text-[#6B7280]">
-              Answer a few questions so we can prioritize access and match you with the perfect service level.
+              Answer a few questions so we can prioritise access and match you with the perfect service level.
             </p>
           </div>
 
