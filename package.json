@@ -9,7 +9,10 @@
     "lint": "npm run --workspace=askrelo lint",
     "typecheck": "npm run --workspace=askrelo type-check",
     "db:setup": "node scripts/setup-db-simple.js",
-    "db:seed": "cd apps/askrelo && npx ts-node ../../database/seed.ts"
+    "db:seed": "cd apps/askrelo && npx ts-node ../../database/seed.ts",
+    "analyze": "cd apps/askrelo && ANALYZE=true npm run build",
+    "sitemap": "cd apps/askrelo && npx next-sitemap",
+    "seo:validate": "cd apps/askrelo && npm run build && npm run sitemap"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
@@ -23,6 +26,7 @@
   ],
   "dependencies": {
     "@next/bundle-analyzer": "^15.5.2",
+    "@vercel/analytics": "^1.5.0",
     "next-seo": "^6.8.0",
     "next-sitemap": "^4.2.3",
     "react-helmet-async": "^2.0.5",

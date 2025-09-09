@@ -2,6 +2,8 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import StickyAsk from './components/StickyAsk';
 import { Analytics } from '@vercel/analytics/react';
+import { DefaultSeo } from 'next-seo';
+import { DEFAULT_SEO } from '../lib/seo/config';
 
 // Force dynamic rendering for all pages to prevent export issues
 export const dynamic = 'force-dynamic';
@@ -27,7 +29,7 @@ export const metadata = {
   authors: [{ name: 'Relo Network', url: 'https://relocation-platform.vercel.app' }],
   creator: 'Relo Network',
   publisher: 'Relo Network',
-  metadataBase: new URL('https://relocation-platform.vercel.app'),
+  metadataBase: new URL('https://askrelo.com'),
   alternates: {
     canonical: '/',
     languages: {
@@ -38,7 +40,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://relocation-platform.vercel.app',
+    url: 'https://askrelo.com',
     siteName: 'Relo Network',
     title: 'Relo Network - London\'s Most Exclusive Relocation Network',
     description: 'Vetted experts, elite services, and a 24/7 AI concierge. Join our exclusive founding member programme.',
@@ -109,12 +111,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization", 
-              "@id": "https://relocation-platform.vercel.app#organization",
+              "@id": "https://askrelo.com#organization",
               "name": "Relo Network",
               "legalName": "Relo Network Limited",
               "description": "London's most exclusive relocation network serving high-net-worth individuals and Fortune 500 corporations with guaranteed quality and performance.",
-              "url": "https://relocation-platform.vercel.app",
-              "logo": "https://relocation-platform.vercel.app/images/logo-luxury.svg",
+              "url": "https://askrelo.com",
+              "logo": "https://askrelo.com/images/logo-luxury.svg",
               "foundingDate": "2024-01-01",
               "knowsAbout": [
                 "Luxury Relocation Services",
@@ -166,7 +168,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "FAQPage",
-              "@id": "https://relocation-platform.vercel.app#faq",
+              "@id": "https://askrelo.com#faq",
               "mainEntity": [
                 {
                   "@type": "Question",
@@ -216,12 +218,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Service",
-              "@id": "https://relocation-platform.vercel.app#service",
+              "@id": "https://askrelo.com#service",
               "name": "London Luxury Relocation Services",
               "description": "Comprehensive relocation services for high-net-worth individuals and corporations moving to London",
               "provider": {
                 "@type": "Organization",
-                "@id": "https://relocation-platform.vercel.app#organization"
+                "@id": "https://askrelo.com#organization"
               },
               "areaServed": {
                 "@type": "City",
@@ -273,12 +275,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "@id": "https://relocation-platform.vercel.app/team/sarah-mitchell",
+              "@id": "https://askrelo.com/team/sarah-mitchell",
               "name": "Sarah Mitchell",
               "jobTitle": "Head of Client Services",
               "worksFor": {
                 "@type": "Organization",
-                "@id": "https://relocation-platform.vercel.app#organization"
+                "@id": "https://askrelo.com#organization"
               },
               "alumniOf": {
                 "@type": "Organization",
@@ -318,7 +320,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Service",
-              "@id": "https://relocation-platform.vercel.app#reviews",
+              "@id": "https://askrelo.com#reviews",
               "name": "London Luxury Relocation Services",
               "review": [
                 {
@@ -377,7 +379,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "@id": "https://relocation-platform.vercel.app#awards",
+              "@id": "https://askrelo.com#awards",
               "name": "Relo Network",
               "award": [
                 {
@@ -412,6 +414,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
+        <DefaultSeo {...DEFAULT_SEO} />
         {children}
         <StickyAsk />
         <Analytics />
