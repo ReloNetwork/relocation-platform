@@ -530,7 +530,7 @@ export default function DirectoryPage() {
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
+                  className="border-white !text-white hover:bg-white hover:!text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
                   onClick={() => handleSubscribe('free')}
                 >
                   Browse Free Preview
