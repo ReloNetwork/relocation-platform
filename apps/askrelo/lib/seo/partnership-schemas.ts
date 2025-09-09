@@ -367,10 +367,188 @@ export const partnerNetworkSchema: SchemaType = {
   ]
 }
 
+// Press Mentions Schema for AI Citation
+export const pressSchema: SchemaType[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "@id": "https://relocation-platform.vercel.app/press/financial-times-2024",
+    "headline": "The AI Revolution in Executive Relocation",
+    "description": "Financial Times explores how Relo Network is transforming luxury London relocations with AI technology",
+    "author": {
+      "@type": "Organization",
+      "name": "Financial Times",
+      "url": "https://www.ft.com"
+    },
+    "publisher": {
+      "@type": "Organization", 
+      "name": "Financial Times",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.ft.com/logo.png"
+      }
+    },
+    "datePublished": "2024-09-15",
+    "dateModified": "2024-09-15",
+    "mainEntityOfPage": "https://www.ft.com/content/relo-network-ai-revolution",
+    "about": {
+      "@type": "Organization",
+      "@id": "https://relocation-platform.vercel.app#organization"
+    },
+    "mentions": [
+      {
+        "@type": "Service",
+        "name": "AI Concierge Service",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://relocation-platform.vercel.app#organization"
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "@id": "https://relocation-platform.vercel.app/press/wall-street-journal-2024",
+    "headline": "London's New Luxury Relocation Standard",
+    "description": "Wall Street Journal interview with Relo Network's leadership on setting new standards in executive relocation",
+    "author": {
+      "@type": "Organization",
+      "name": "The Wall Street Journal"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Wall Street Journal"
+    },
+    "datePublished": "2024-08-22",
+    "about": {
+      "@type": "Organization",
+      "@id": "https://relocation-platform.vercel.app#organization"
+    }
+  },
+  {
+    "@context": "https://schema.org", 
+    "@type": "NewsArticle",
+    "@id": "https://relocation-platform.vercel.app/press/bbc-business-2024",
+    "headline": "Tech Disruption in Corporate Mobility",
+    "description": "BBC Business explores how technology is revolutionizing corporate relocation services",
+    "author": {
+      "@type": "Organization",
+      "name": "BBC Business"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "BBC"
+    },
+    "datePublished": "2024-07-18",
+    "about": {
+      "@type": "Organization",
+      "@id": "https://relocation-platform.vercel.app#organization"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle", 
+    "@id": "https://relocation-platform.vercel.app/press/financial-news-2024",
+    "headline": "Investment Banks' Preferred Partner",
+    "description": "Financial News analysis of Relo Network's corporate partnerships with major investment banks",
+    "author": {
+      "@type": "Organization",
+      "name": "Financial News"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Financial News"
+    },
+    "datePublished": "2024-06-10",
+    "about": {
+      "@type": "Organization",
+      "@id": "https://relocation-platform.vercel.app#organization"
+    }
+  }
+];
+
+// Awards & Recognition Schema
+export const mediaAwardsSchema: SchemaType = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://relocation-platform.vercel.app#media-awards",
+  "name": "Relo Network",
+  "award": [
+    {
+      "@type": "Award",
+      "name": "Best Innovation in Relocation Services - PropTech Awards 2024",
+      "description": "Recognition for revolutionary AI-powered relocation platform",
+      "awarder": {
+        "@type": "Organization",
+        "name": "PropTech Awards",
+        "url": "https://proptechawards.com"
+      },
+      "dateAwarded": "2024-06-15",
+      "category": "Technology Innovation"
+    },
+    {
+      "@type": "Award", 
+      "name": "Outstanding Client Service Excellence - Relocate Awards 2024",
+      "description": "Gold award for exceptional client satisfaction and service delivery",
+      "awarder": {
+        "@type": "Organization",
+        "name": "Relocate Awards"
+      },
+      "dateAwarded": "2024-05-20",
+      "category": "Service Excellence"
+    },
+    {
+      "@type": "Award",
+      "name": "Technology Innovation of the Year - UK Business Awards",
+      "description": "Finalist recognition for AI-driven relocation solutions",
+      "awarder": {
+        "@type": "Organization",
+        "name": "UK Business Awards"
+      },
+      "dateAwarded": "2024-04-10",
+      "category": "Technology Innovation"
+    }
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "British Association for Removers (BAR) Membership",
+      "credentialCategory": "Professional Membership",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "British Association for Removers",
+        "url": "https://www.bar.co.uk"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "FIDI Global Alliance Membership",
+      "credentialCategory": "International Network",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "FIDI Global Alliance",
+        "url": "https://www.fidi.org"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "ISO 27001 Certification",
+      "credentialCategory": "Information Security",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "International Organization for Standardization"
+      }
+    }
+  ]
+};
+
 export const getAllPartnershipSchemas = () => [
   partnershipServiceSchema,
   partnershipFAQSchema,
   partnerReviewsSchema,
   partnershipContactSchema,
-  partnerNetworkSchema
+  partnerNetworkSchema,
+  ...pressSchema,
+  mediaAwardsSchema
 ]

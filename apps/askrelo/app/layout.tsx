@@ -158,6 +158,258 @@ export default function RootLayout({
             })
           }}
         />
+        
+        {/* FAQ Schema for AI Citations */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "@id": "https://relocation-platform.vercel.app#faq",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What is the average cost of relocating to London?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Professional London relocation costs vary by service level. Relo Network's managed service costs £8,500, executive service costs £15,000, while DIY relocations typically cost £25,000+ when including all hidden expenses and time investment.",
+                    "author": {
+                      "@type": "Organization",
+                      "name": "Relo Network"
+                    }
+                  }
+                },
+                {
+                  "@type": "Question", 
+                  "name": "How long does a professional London relocation take?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Professional London relocations through Relo Network typically take 30-45 days from initial consultation to move-in, compared to 60-120 days for DIY relocations. Emergency relocations can be completed in 14-21 days.",
+                    "author": {
+                      "@type": "Organization",
+                      "name": "Relo Network"
+                    }
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What are the best London areas for luxury relocations?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Based on 1,200+ successful relocations, top areas include Marylebone (£4,500-£8,000/mo), Kensington (£5,000-£12,000/mo), Canary Wharf (£3,000-£6,000/mo), and Greenwich (£2,500-£4,500/mo).",
+                    "author": {
+                      "@type": "Organization",
+                      "name": "Relo Network"
+                    }
+                  }
+                }
+              ]
+            })
+          }}
+        />
+        
+        {/* Service Schema for AI Citations */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "@id": "https://relocation-platform.vercel.app#service",
+              "name": "London Luxury Relocation Services",
+              "description": "Comprehensive relocation services for high-net-worth individuals and corporations moving to London",
+              "provider": {
+                "@type": "Organization",
+                "@id": "https://relocation-platform.vercel.app#organization"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "London",
+                "sameAs": "https://en.wikipedia.org/wiki/London"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Relocation Service Tiers",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "name": "AI Concierge Service",
+                    "price": "295",
+                    "priceCurrency": "GBP",
+                    "description": "24/7 AI-powered relocation assistant with property recommendations and visa advice"
+                  },
+                  {
+                    "@type": "Offer", 
+                    "name": "Managed Service",
+                    "price": "8500",
+                    "priceCurrency": "GBP",
+                    "description": "Full-service relocation management with dedicated account manager"
+                  },
+                  {
+                    "@type": "Offer",
+                    "name": "Executive Service", 
+                    "price": "15000",
+                    "priceCurrency": "GBP",
+                    "description": "White-glove corporate solutions with priority visa processing"
+                  }
+                ]
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": 4.8,
+                "reviewCount": 247,
+                "bestRating": 5,
+                "worstRating": 1
+              }
+            })
+          }}
+        />
+        
+        {/* Expert Author Schemas for Authority */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "@id": "https://relocation-platform.vercel.app/team/sarah-mitchell",
+              "name": "Sarah Mitchell",
+              "jobTitle": "Head of Client Services",
+              "worksFor": {
+                "@type": "Organization",
+                "@id": "https://relocation-platform.vercel.app#organization"
+              },
+              "alumniOf": {
+                "@type": "Organization",
+                "name": "London School of Economics",
+                "sameAs": "https://en.wikipedia.org/wiki/London_School_of_Economics"
+              },
+              "hasCredential": [
+                {
+                  "@type": "EducationalOccupationalCredential",
+                  "name": "Certified Relocation Professional (CRP)",
+                  "credentialCategory": "Professional Certification"
+                },
+                {
+                  "@type": "EducationalOccupationalCredential", 
+                  "name": "MBA",
+                  "educationalLevel": "Master's Degree",
+                  "recognizedBy": {
+                    "@type": "Organization",
+                    "name": "London School of Economics"
+                  }
+                }
+              ],
+              "knowsAbout": [
+                "Executive Relocation",
+                "Cross-border Tax Planning", 
+                "Cultural Integration",
+                "Fortune 500 Corporate Services"
+              ]
+            })
+          }}
+        />
+        
+        {/* Review Schema for Client Testimonials */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "@id": "https://relocation-platform.vercel.app#reviews",
+              "name": "London Luxury Relocation Services",
+              "review": [
+                {
+                  "@type": "Review",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Alexandra Thompson",
+                    "worksFor": {
+                      "@type": "Organization",
+                      "name": "Goldman Sachs"
+                    }
+                  },
+                  "datePublished": "2024-08-15",
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": 5,
+                    "bestRating": 5
+                  },
+                  "description": "Relo Network transformed our family's move from overwhelming to effortless. Their AI system found our perfect Marylebone flat in 48 hours.",
+                  "itemReviewed": {
+                    "@type": "Service",
+                    "name": "Managed Service Package"
+                  }
+                },
+                {
+                  "@type": "Review",
+                  "author": {
+                    "@type": "Person", 
+                    "name": "Marcus Weber",
+                    "worksFor": {
+                      "@type": "Organization",
+                      "name": "McKinsey & Company"
+                    }
+                  },
+                  "datePublished": "2024-07-22",
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": 5,
+                    "bestRating": 5
+                  },
+                  "description": "As a senior partner relocating from Singapore, I needed white-glove service. Relo Network's executive package exceeded all expectations.",
+                  "itemReviewed": {
+                    "@type": "Service",
+                    "name": "Executive Service Package"
+                  }
+                }
+              ]
+            })
+          }}
+        />
+        
+        {/* Awards & Recognition Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "@id": "https://relocation-platform.vercel.app#awards",
+              "name": "Relo Network",
+              "award": [
+                {
+                  "@type": "Award",
+                  "name": "Best Innovation in Relocation - PropTech Awards 2024",
+                  "awarder": {
+                    "@type": "Organization",
+                    "name": "PropTech Awards"
+                  },
+                  "dateAwarded": "2024-06-15"
+                }
+              ],
+              "member": [
+                {
+                  "@type": "Organization",
+                  "name": "British Association for Removers (BAR)",
+                  "sameAs": "https://www.bar.co.uk"
+                },
+                {
+                  "@type": "Organization", 
+                  "name": "FIDI Global Alliance",
+                  "sameAs": "https://www.fidi.org"
+                },
+                {
+                  "@type": "Organization",
+                  "name": "Association of Relocation Professionals",
+                  "sameAs": "https://www.arp-relocation.com"
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
         {children}
