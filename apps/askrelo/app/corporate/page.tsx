@@ -660,7 +660,7 @@ export default function CorporatePage() {
             <TestimonialCard 
               name="James Mitchell"
               role="Chief Operating Officer"
-              company="JP Morgan Chase"
+              company="Global Investment Bank"
               quote="Our SVP's relocation was failing catastrophically. Relo Network mobilized in 24 hours and had him fully integrated within 2 weeks. Saved our entire London expansion."
               outcome="Emergency relocation completed in 14 days, £2.3M project saved"
             />
@@ -668,7 +668,7 @@ export default function CorporatePage() {
             <TestimonialCard 
               name="Sarah Chen"
               role="Global Head of Talent"
-              company="McKinsey & Company"
+              company="Management Consulting Firm"
               quote="Three executive relocations were at risk of collapse. Their emergency team coordinated everything - from school placements to board meeting logistics. Flawless execution."
               outcome="3 C-suite executives successfully relocated in 3 weeks"
             />
@@ -676,7 +676,7 @@ export default function CorporatePage() {
             <TestimonialCard 
               name="David Rodriguez"
               role="Managing Director"
-              company="Goldman Sachs International"
+              company="Investment Banking Division"
               quote="When our CEO's London move hit crisis mode, Relo Network stepped in with military precision. They handled everything from security to spouse career placement."
               outcome="CEO operational in London within 10 days of emergency call"
             />
