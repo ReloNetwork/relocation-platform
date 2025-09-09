@@ -527,15 +527,12 @@ export default function DirectoryPage() {
                   <Search className="mr-2 h-5 w-5" />
                   Choose Access Level
                 </Button>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="border-white !text-white hover:bg-white hover:!text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
-                  style={{ color: 'white' }}
+                <button 
+                  className="inline-flex items-center justify-center h-14 px-8 py-4 text-base border border-white text-white bg-transparent hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all font-medium"
                   onClick={() => handleSubscribe('free')}
                 >
                   Browse Free Preview
-                </Button>
+                </button>
               </div>
             </div>
             
