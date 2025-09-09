@@ -186,25 +186,7 @@ export default function HomePage() {
 
       {/* Enhanced Hero Section with Authority Signals */}
       <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10">
-        {/* Authority Badge */}
-        <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-sm border border-[#C9A24A]/30 rounded-xl p-4 hidden lg:block">
-          <div className="text-center">
-            <div className="text-sm font-bold text-[#0B1B2B] mb-1">Founded 2024</div>
-            <div className="text-xs text-[#6B7280]">London E14 5AB</div>
-            <div className="flex items-center justify-center gap-2 mt-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <div className="text-xs text-[#6B7280]">45 Team Members</div>
-            </div>
-          </div>
-        </div>
-        
         <div className="text-center max-w-6xl mx-auto px-4">
-          <div className="mb-6">
-            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#C9A24A]/30 rounded-full px-4 py-2 mb-4">
-              <Award className="w-4 h-4 text-[#C9A24A]" />
-              <span className="text-sm font-semibold text-[#0B1B2B]">Winner: Best Innovation in Relocation 2024</span>
-            </div>
-          </div>
           
           <h1 className="text-6xl lg:text-7xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Relocate to <span className="text-[#C9A24A]">London</span><br />
@@ -720,38 +702,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Industry Recognition */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold text-[#0B1B2B] mb-8">Industry Recognition & Authority</h3>
-          
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="bg-[#FAFAF9] rounded-xl p-6 border border-[#0B1B2B]/10">
-              <Award className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
-              <div className="text-lg font-bold text-[#0B1B2B] mb-2">PropTech Awards 2024</div>
-              <div className="text-sm text-[#6B7280]">Best Innovation in Relocation Services</div>
-            </div>
-            
-            <div className="bg-[#FAFAF9] rounded-xl p-6 border border-[#0B1B2B]/10">
-              <Globe className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
-              <div className="text-lg font-bold text-[#0B1B2B] mb-2">Financial Times Featured</div>
-              <div className="text-sm text-[#6B7280]">"The AI Revolution in Executive Relocation"</div>
-            </div>
-            
-            <div className="bg-[#FAFAF9] rounded-xl p-6 border border-[#0B1B2B]/10">
-              <Users className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
-              <div className="text-lg font-bold text-[#0B1B2B] mb-2">12+ Investment Banks</div>
-              <div className="text-sm text-[#6B7280]">Preferred relocation partner</div>
-            </div>
-            
-            <div className="bg-[#FAFAF9] rounded-xl p-6 border border-[#0B1B2B]/10">
-              <Shield className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
-              <div className="text-lg font-bold text-[#0B1B2B] mb-2">ISO 27001 Certified</div>
-              <div className="text-sm text-[#6B7280]">Data security & privacy compliance</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="bg-[#0B1B2B] text-white py-16">
