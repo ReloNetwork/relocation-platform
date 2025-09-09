@@ -586,7 +586,7 @@ export default function HomePage() {
                   "Relo Network transformed our family's move from overwhelming to effortless. Their AI system found our perfect Marylebone flat in 48 hours."
                 </blockquote>
                 <div className="text-sm font-semibold text-[#0B1B2B]">Alexandra Thompson</div>
-                <div className="text-xs text-[#6B7280]">Managing Director, Goldman Sachs</div>
+                <div className="text-xs text-[#6B7280]">Managing Director, Investment Banking</div>
                 <div className="flex items-center mt-2">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-[#C9A24A] text-[#C9A24A]" />
@@ -599,7 +599,7 @@ export default function HomePage() {
                   "As a senior partner relocating from Singapore, I needed white-glove service. Relo Network's executive package exceeded all expectations."
                 </blockquote>
                 <div className="text-sm font-semibold text-[#0B1B2B]">Marcus Weber</div>
-                <div className="text-xs text-[#6B7280]">Senior Partner, McKinsey & Company</div>
+                <div className="text-xs text-[#6B7280]">Senior Partner, Management Consulting</div>
                 <div className="flex items-center mt-2">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-[#C9A24A] text-[#C9A24A]" />

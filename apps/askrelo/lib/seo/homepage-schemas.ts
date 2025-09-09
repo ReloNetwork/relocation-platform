@@ -332,9 +332,10 @@ export const clientTestimonialsSchema: WithContext<any> = {
       author: {
         '@type': 'Person',
         name: 'Alexandra Thompson',
+        jobTitle: 'Managing Director',
         worksFor: {
           '@type': 'Organization',
-          name: 'Goldman Sachs'
+          name: 'Investment Banking Firm'
         }
       },
       reviewBody: 'Relo Network transformed our family\'s move from overwhelming to effortless. Their AI system found our perfect Marylebone flat in 48 hours.',
@@ -355,9 +356,10 @@ export const clientTestimonialsSchema: WithContext<any> = {
       author: {
         '@type': 'Person',
         name: 'Marcus Weber',
+        jobTitle: 'Senior Partner',
         worksFor: {
           '@type': 'Organization',
-          name: 'McKinsey & Company'
+          name: 'Management Consulting Firm'
         }
       },
       reviewBody: 'As a senior partner relocating from Singapore, I needed white-glove service. Relo Network\'s executive package exceeded all expectations.',
