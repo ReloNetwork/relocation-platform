@@ -2,8 +2,6 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import StickyAsk from './components/StickyAsk';
 import { Analytics } from '@vercel/analytics/react';
-import { DefaultSeo } from 'next-seo';
-import { DEFAULT_SEO } from '../lib/seo/config';
 
 // Force dynamic rendering for all pages to prevent export issues
 export const dynamic = 'force-dynamic';
@@ -103,9 +101,65 @@ export default function RootLayout({
         {/* Theme colors for luxury branding */}
         <meta name="theme-color" content="#0B1B2B" />
         <meta name="msapplication-TileColor" content="#0B1B2B" />
+        
+        {/* Luxury Organization Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization", 
+              "@id": "https://relocation-platform.vercel.app#organization",
+              "name": "Relo Network",
+              "legalName": "Relo Network Limited",
+              "description": "London's most exclusive relocation network serving high-net-worth individuals and Fortune 500 corporations with guaranteed quality and performance.",
+              "url": "https://relocation-platform.vercel.app",
+              "logo": "https://relocation-platform.vercel.app/images/logo-luxury.svg",
+              "foundingDate": "2024-01-01",
+              "knowsAbout": [
+                "Luxury Relocation Services",
+                "Executive Relocation Management", 
+                "High-Net-Worth Individual Services",
+                "Corporate Relocation Solutions",
+                "Premium Property Search & Advisory",
+                "VIP Concierge Services"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+44-20-7946-0958",
+                "contactType": "customer support",
+                "areaServed": "GB",
+                "availableLanguage": ["English"]
+              },
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "One Canada Square",
+                "addressLocality": "Canary Wharf",
+                "addressRegion": "London",
+                "postalCode": "E14 5AB",
+                "addressCountry": "GB"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "London",
+                "sameAs": "https://en.wikipedia.org/wiki/London"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": 4.9,
+                "reviewCount": 247,
+                "bestRating": 5,
+                "worstRating": 1
+              },
+              "sameAs": [
+                "https://www.linkedin.com/company/relo-network",
+                "https://twitter.com/ReloNetwork"
+              ]
+            })
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
-        <DefaultSeo {...DEFAULT_SEO} />
         {children}
         <StickyAsk />
         <Analytics />
