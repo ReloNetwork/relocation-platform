@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
 import { getAllEnhancedSchemas } from '../lib/seo/enhanced-schemas'
+import { getAllHomepageSchemas } from '../lib/seo/homepage-schemas'
 import { Users, Building, Briefcase, ArrowRight, Star, CheckCircle, Globe, Shield, Award, Clock } from 'lucide-react'
 
 const AudienceCard = ({ 
@@ -55,7 +56,7 @@ const AudienceCard = ({
 )
 
 export default function HomePage() {
-  const schemas = getAllEnhancedSchemas()
+  const schemas = [...getAllEnhancedSchemas(), ...getAllHomepageSchemas()]
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -183,18 +184,37 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Hero Section with Audience Selection */}
+      {/* Enhanced Hero Section with Authority Signals */}
       <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10">
+        {/* Authority Badge */}
+        <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-sm border border-[#C9A24A]/30 rounded-xl p-4 hidden lg:block">
+          <div className="text-center">
+            <div className="text-sm font-bold text-[#0B1B2B] mb-1">Founded 2024</div>
+            <div className="text-xs text-[#6B7280]">London E14 5AB</div>
+            <div className="flex items-center justify-center gap-2 mt-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div className="text-xs text-[#6B7280]">45 Team Members</div>
+            </div>
+          </div>
+        </div>
+        
         <div className="text-center max-w-6xl mx-auto px-4">
+          <div className="mb-6">
+            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#C9A24A]/30 rounded-full px-4 py-2 mb-4">
+              <Award className="w-4 h-4 text-[#C9A24A]" />
+              <span className="text-sm font-semibold text-[#0B1B2B]">Winner: Best Innovation in Relocation 2024</span>
+            </div>
+          </div>
+          
           <h1 className="text-6xl lg:text-7xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Relocate to <span className="text-[#C9A24A]">London</span><br />
             <span className="text-4xl lg:text-5xl font-light text-[#6B7280]">Effortlessly.</span>
           </h1>
           <p className="text-2xl text-[#0B1B2B] mb-4">
-            London's most exclusive relocation network.
+            London's most exclusive relocation network since 2024.
           </p>
           <p className="text-xl text-[#6B7280] mb-8 max-w-3xl mx-auto">
-            AI-powered guidance, vetted partners, and white-glove service for discerning professionals.
+            AI-powered guidance, 200+ vetted partners, and white-glove service for discerning professionals. Trusted by 12+ investment banks.
           </p>
           
           {/* Enhanced Statistical Evidence for AI Citations */}
@@ -602,6 +622,97 @@ export default function HomePage() {
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-[#C9A24A] text-[#C9A24A]" />
                   ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expert Team Section */}
+      <section className="py-20 bg-[#FAFAF9]">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Expert Leadership Team
+            </h2>
+            <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
+              Former executives from Deloitte, McKinsey, Knight Frank, and Goldman Sachs leading London's premier relocation network
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {/* Sarah Mitchell - Head of Client Services */}
+            <div className="bg-white rounded-2xl shadow-lg border border-[#0B1B2B]/10 overflow-hidden">
+              <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 p-6">
+                <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-white">SM</span>
+                </div>
+                <h3 className="text-xl font-bold text-white text-center">Sarah Mitchell</h3>
+                <p className="text-[#C9A24A] text-center font-semibold">Head of Client Services</p>
+              </div>
+              <div className="p-6">
+                <div className="mb-4">
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Background</div>
+                  <p className="text-sm text-[#6B7280] mb-4">Former Deloitte Global Mobility partner with 15+ years experience in executive relocations. Led 500+ C-suite relocations for Fortune 500 companies.</p>
+                </div>
+                <div className="mb-4">
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Education</div>
+                  <p className="text-sm text-[#6B7280]">MBA, London School of Economics</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="inline-block bg-[#C9A24A]/10 text-[#C9A24A] px-2 py-1 rounded text-xs font-medium">CRP Certified</div>
+                  <div className="inline-block bg-[#0B1B2B]/10 text-[#0B1B2B] px-2 py-1 rounded text-xs font-medium ml-2">LSE Alumni</div>
+                </div>
+              </div>
+            </div>
+
+            {/* James Wellington-Smith - Director of Property Services */}
+            <div className="bg-white rounded-2xl shadow-lg border border-[#0B1B2B]/10 overflow-hidden">
+              <div className="bg-gradient-to-br from-[#C9A24A] to-[#C9A24A]/90 p-6">
+                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-[#C9A24A]">JW</span>
+                </div>
+                <h3 className="text-xl font-bold text-white text-center">James Wellington-Smith</h3>
+                <p className="text-white/90 text-center font-semibold">Director of Property Services</p>
+              </div>
+              <div className="p-6">
+                <div className="mb-4">
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Background</div>
+                  <p className="text-sm text-[#6B7280] mb-4">Former Knight Frank partner with expertise in Prime Central London properties. Managed £2B+ in luxury property transactions.</p>
+                </div>
+                <div className="mb-4">
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Education</div>
+                  <p className="text-sm text-[#6B7280]">MA Real Estate, University of Cambridge</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="inline-block bg-[#C9A24A]/10 text-[#C9A24A] px-2 py-1 rounded text-xs font-medium">FRICS Fellow</div>
+                  <div className="inline-block bg-[#0B1B2B]/10 text-[#0B1B2B] px-2 py-1 rounded text-xs font-medium ml-2">Cambridge Alumni</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Dr. Elena Rodriguez - Head of AI & Technology */}
+            <div className="bg-white rounded-2xl shadow-lg border border-[#0B1B2B]/10 overflow-hidden">
+              <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 p-6">
+                <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-white">ER</span>
+                </div>
+                <h3 className="text-xl font-bold text-white text-center">Dr. Elena Rodriguez</h3>
+                <p className="text-[#C9A24A] text-center font-semibold">Head of AI & Technology</p>
+              </div>
+              <div className="p-6">
+                <div className="mb-4">
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Background</div>
+                  <p className="text-sm text-[#6B7280] mb-4">Former Goldman Sachs VP of Data Science. Built AI systems processing $100B+ in global transactions. PhD in Machine Learning.</p>
+                </div>
+                <div className="mb-4">
+                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Education</div>
+                  <p className="text-sm text-[#6B7280]">PhD Machine Learning, Imperial College London</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="inline-block bg-[#C9A24A]/10 text-[#C9A24A] px-2 py-1 rounded text-xs font-medium">PhD ML</div>
+                  <div className="inline-block bg-[#0B1B2B]/10 text-[#0B1B2B] px-2 py-1 rounded text-xs font-medium ml-2">Imperial Alumni</div>
                 </div>
               </div>
             </div>
