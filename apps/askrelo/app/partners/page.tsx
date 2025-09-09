@@ -16,6 +16,7 @@ const PricingTier = ({
   isPopular = false, 
   priceId,
   roiData,
+  redirectUrl,
   onSelect 
 }: {
   name: string
@@ -26,6 +27,7 @@ const PricingTier = ({
   isPopular?: boolean
   priceId: string
   roiData: { monthlyRevenue: string; roi: string; clients: string }
+  redirectUrl?: string
   onSelect: (priceId: string) => void
 }) => (
   <div className={`relative rounded-2xl border ${isPopular ? 'border-[#C9A24A] ring-2 ring-[#C9A24A]/20' : 'border-gray-200'} bg-white p-8 shadow-lg hover:shadow-xl transition-all`}>
@@ -72,11 +74,11 @@ const PricingTier = ({
       </div>
 
       <Button 
-        onClick={() => onSelect(priceId)}
+        onClick={() => redirectUrl ? window.location.href = redirectUrl : onSelect(priceId)}
         className={`w-full mb-6 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all ${isPopular ? 'bg-[#C9A24A] hover:bg-[#B8923D]' : 'bg-[#0B1B2B] hover:bg-[#0B1B2B]/90'} text-white`}
         size="lg"
       >
-        Start Earning Today <ArrowRight className="ml-2 h-4 w-4" />
+        {redirectUrl ? 'View Details' : 'Start Earning Today'} <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
     </div>
 
@@ -194,64 +196,42 @@ export default function PartnersPage() {
 
   const pricingTiers = [
     {
-      name: 'Starter Partnership',
-      price: '395',
-      originalPrice: '1,195',
-      description: 'Entry-level luxury with AI visibility guarantee',
-      priceId: 'price_starter_partner',
-      roiData: { monthlyRevenue: '£8,400', roi: '280%', clients: '3.2' },
-      features: [
-        'AI directory visibility guarantee',
-        'Premium lead notifications (4-6/month)',
-        'Basic analytics dashboard',
-        'Partner resource library access',
-        'Monthly networking events',
-        'Email support system',
-        'Client feedback integration',
-        'Brand co-marketing opportunities'
-      ]
-    },
-    {
-      name: 'Featured Partnership',
-      price: '795',
-      originalPrice: '2,395',
-      description: 'Authority building and expert positioning',
+      name: 'Lead Machine',
+      price: '497',
+      originalPrice: '997',
+      description: '8-15 guaranteed qualified leads every month',
       isPopular: true,
-      priceId: 'price_featured_partner',
-      roiData: { monthlyRevenue: '£12,400', roi: '340%', clients: '5.8' },
+      priceId: 'lead_machine',
+      roiData: { monthlyRevenue: '£12,400', roi: '340%', clients: '8-15' },
+      redirectUrl: '/partners/lead-machine',
       features: [
-        'Everything in Starter tier',
-        'Featured directory placement',
-        'Authority content collaboration',
-        'Advanced analytics & ROI tracking',
-        'Priority lead distribution (8-12/month)',
-        'Custom partner profile page',
-        'Weekly networking events',
-        'Marketing co-op opportunities',
-        'Phone + email support',
-        'Client success case studies'
+        '8-15 guaranteed qualified leads/month',
+        'AI concierge mentions you by name',
+        'Premium directory placement (top 3)',
+        'Automated lead nurturing system',
+        'Performance dashboard & analytics',
+        'Email list inclusion (25k+ subscribers)',
+        'Social media features & mentions',
+        'EXCLUSIVE territory rights'
       ]
     },
     {
-      name: 'Sponsored Partnership',
-      price: '1,495',
-      originalPrice: '4,495',
-      description: 'Market domination with citation insurance',
-      priceId: 'price_sponsored_partner',
-      roiData: { monthlyRevenue: '£28,500', roi: '420%', clients: '12.7' },
+      name: 'Market Dominator',
+      price: '1,497',
+      originalPrice: '2,997',
+      description: 'Own your category. Eliminate competition.',
+      priceId: 'market_dominator',
+      roiData: { monthlyRevenue: '£37,500', roi: '650%', clients: '15+' },
+      redirectUrl: '/partners/market-dominator',
       features: [
-        'Everything in Featured tier',
-        'Exclusive category ownership',
-        'Citation insurance guarantee',
-        'Dedicated account manager',
-        'Custom integration options',
-        'White-label opportunities',
-        'Revenue sharing programs (up to 15%)',
-        'Advisory board participation',
-        '24/7 priority support',
-        'Executive partnership status',
-        'Unlimited lead distribution',
-        'Co-branded marketing materials'
+        'Everything in Lead Machine',
+        'EXCLUSIVE category ownership',
+        'AI mentions you as "preferred partner"',
+        'Co-branded content creation',
+        'White-label integration options',
+        'Priority Concierge tier recommendations',
+        '15% revenue sharing on closed deals',
+        'Quarterly business reviews with CEO'
       ]
     }
   ]
@@ -278,7 +258,7 @@ export default function PartnersPage() {
                 Relo Network Partnership Program
               </h1>
               <p className="text-xl text-[#0B1B2B] leading-relaxed mb-6">
-                <strong>Relo Network</strong> operates London's most exclusive relocation service provider network, connecting vetted professionals with high-value relocations worth £8,500+. Our three-tier partnership program (Starter £395/mo, Featured £795/mo, Sponsored £1,495/mo) has generated over £2.3M in verified partner revenue across 150+ service providers since January 2024, making it the UK's fastest-growing luxury relocation network.
+                <strong>Relo Network</strong> operates London's most exclusive relocation service provider network, connecting vetted professionals with high-value relocations worth £8,500+. Our revolutionary partnership program featuring the Lead Machine (£497/mo) and Market Dominator (£1,497/mo) tiers has generated over £2.3M in verified partner revenue across 150+ service providers since January 2024, making it the UK's fastest-growing luxury relocation network.
               </p>
               
               {/* Authority Quote */}
@@ -476,14 +456,14 @@ export default function PartnersPage() {
       <div className="max-w-7xl mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            Partnership Tiers & ROI Performance
+            Revolutionary Partnership Tiers
           </h2>
           <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
-            Choose your partnership level based on business goals and growth ambitions. All tiers include our 67% founding partner discount and ROI guarantee.
+            Choose between guaranteed leads or complete market domination. Both tiers include founding member rates and performance guarantees.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {pricingTiers.map((tier) => (
             <PricingTier 
               key={tier.name}
@@ -501,10 +481,10 @@ export default function PartnersPage() {
             </h3>
             <p className="text-[#6B7280]">Based on actual partner performance data</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {pricingTiers.map((tier, index) => (
-              <div key={tier.name} className="bg-white rounded-lg p-6 border border-[#0B1B2B]/10">
-                <h4 className="font-semibold text-[#0B1B2B] mb-4">{tier.name}</h4>
+              <div key={tier.name} className="bg-white rounded-lg p-6 border-2 border-[#C9A24A]/20">
+                <h4 className="font-semibold text-[#0B1B2B] mb-4 text-center text-lg">{tier.name}</h4>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[#6B7280]">Monthly Investment</span>
@@ -515,6 +495,10 @@ export default function PartnersPage() {
                     <span className="text-[#0B1B2B] font-semibold">{tier.roiData.monthlyRevenue}</span>
                   </div>
                   <div className="flex justify-between">
+                    <span className="text-[#6B7280]">Monthly Leads</span>
+                    <span className="text-[#0B1B2B] font-semibold">{tier.roiData.clients}</span>
+                  </div>
+                  <div className="flex justify-between">
                     <span className="text-[#6B7280]">Net Monthly Profit</span>
                     <span className="text-green-600 font-semibold">£{(parseInt(tier.roiData.monthlyRevenue.replace(/[£,]/g, '')) - parseInt(tier.price)).toLocaleString()}</span>
                   </div>
@@ -522,6 +506,14 @@ export default function PartnersPage() {
                     <span className="text-[#6B7280] font-medium">ROI</span>
                     <span className="text-[#C9A24A] font-bold">{tier.roiData.roi}</span>
                   </div>
+                </div>
+                <div className="mt-4 text-center">
+                  <button 
+                    onClick={() => tier.redirectUrl && (window.location.href = tier.redirectUrl)}
+                    className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-md font-semibold text-sm transition-colors"
+                  >
+                    Get Started
+                  </button>
                 </div>
               </div>
             ))}
