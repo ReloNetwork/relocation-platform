@@ -339,7 +339,7 @@ export default function ConciergePage() {
   ]
 
   return (
-    <Layout className="bg-[#FAFAF9]">
+    <Layout className="bg-[#FAFAF9]" showFooter={false}>
       {/* Hero Section */}
       <div className="bg-[#0B1B2B] text-white">
         <div className="max-w-6xl mx-auto px-4 py-20">
@@ -595,15 +595,13 @@ export default function ConciergePage() {
             >
               {loading ? 'Loading...' : 'Start with Quick Start - £195/mo'} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button 
+            <button 
               onClick={() => handleCheckout('price_property_hunter')}
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-[#C9A24A] rounded-md hover:scale-105 transition-all"
+              className="inline-flex items-center justify-center h-14 px-8 py-4 text-base border border-white text-white bg-transparent hover:bg-white hover:text-[#C9A24A] rounded-md hover:scale-105 transition-all font-medium disabled:opacity-50"
               disabled={loading}
             >
               Most Popular - Property Hunter
-            </Button>
+            </button>
           </div>
           
           <p className="text-sm text-white/80 mt-4">
