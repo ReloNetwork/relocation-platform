@@ -47,7 +47,7 @@ export default function JoinWaitlistPage() {
               <span className="text-[#C9A24A] text-sm font-medium">Exclusive Access</span>
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Join the <span className="text-[#C9A24A]">Waitlist</span>
             </h1>
             
