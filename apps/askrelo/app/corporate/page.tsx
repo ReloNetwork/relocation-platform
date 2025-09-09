@@ -584,7 +584,7 @@ export default function CorporatePage() {
   ]
 
   return (
-    <Layout className="bg-[#FAFAF9]">
+    <Layout className="bg-[#FAFAF9]" showFooter={false}>
       {/* Enhanced Structured Data for Corporate Authority */}
       {schemas.map((schema, index) => (
         <script
@@ -625,13 +625,11 @@ export default function CorporatePage() {
                   <Briefcase className="mr-2 h-5 w-5" />
                   Schedule Strategic Consultation
                 </Button>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
+                <button 
+                  className="inline-flex items-center justify-center h-14 px-8 py-4 text-base border border-white text-white bg-transparent hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all font-medium"
                 >
                   Download Executive Brief
-                </Button>
+                </button>
               </div>
             </div>
             
@@ -957,13 +955,11 @@ export default function CorporatePage() {
               <Briefcase className="mr-2 h-5 w-5" />
               Schedule Executive Briefing
             </Button>
-            <Button 
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
+            <button 
+              className="inline-flex items-center justify-center h-14 px-8 py-4 text-base border border-white text-white bg-transparent hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all font-medium"
             >
               Download Corporate Brochure
-            </Button>
+            </button>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
