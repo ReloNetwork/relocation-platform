@@ -133,10 +133,10 @@ export default function RootLayout({
               },
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "One Canada Square",
-                "addressLocality": "Canary Wharf",
+                "streetAddress": "City of London",
+                "addressLocality": "London",
                 "addressRegion": "London",
-                "postalCode": "E14 5AB",
+                "postalCode": "EC1V 2NX",
                 "addressCountry": "GB"
               },
               "areaServed": {
@@ -197,7 +197,7 @@ export default function RootLayout({
                   "name": "What are the best London areas for luxury relocations?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Based on 1,200+ successful relocations, top areas include Marylebone (£4,500-£8,000/mo), Kensington (£5,000-£12,000/mo), Canary Wharf (£3,000-£6,000/mo), and Greenwich (£2,500-£4,500/mo).",
+                    "text": "Based on 100s of successful relocations, top areas include Marylebone (£4,500-£8,000/mo), Kensington (£5,000-£12,000/mo), Canary Wharf (£3,000-£6,000/mo), and Greenwich (£2,500-£4,500/mo).",
                     "author": {
                       "@type": "Organization",
                       "name": "Relo Network"

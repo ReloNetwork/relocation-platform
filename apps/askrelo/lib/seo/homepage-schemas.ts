@@ -16,7 +16,7 @@ export const homepageFAQSchema: WithContext<any> = {
       name: 'What is the average cost of relocating to London?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional London relocation costs vary significantly by service level and complexity. Relo Network\'s research based on 1,200+ relocations shows comprehensive managed services provide the best value through expert coordination and risk mitigation. Services include visa support, property search, school placement, and comprehensive post-arrival support. Professional coordination typically prevents costly mistakes and reduces overall relocation timeline by 60%.',
+        text: 'Professional London relocation costs vary significantly by service level and complexity. Relo Network\'s research based on 100s of relocations shows comprehensive managed services provide the best value through expert coordination and risk mitigation. Services include visa support, property search, school placement, and comprehensive post-arrival support. Professional coordination typically prevents costly mistakes and reduces overall relocation timeline by 60%.',
         author: {
           '@type': 'Organization',
           name: 'Relo Network',
@@ -46,7 +46,7 @@ export const homepageFAQSchema: WithContext<any> = {
       name: 'What are the best London areas for luxury relocations?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Based on Relo Network\'s analysis of 1,200+ successful relocations, top areas for international professionals include: Marylebone (Premium) - Central location, excellent transport links, family-friendly with top schools; Kensington (Ultra-Luxury) - Premium residential area, world-class museums, diplomatic quarter; Canary Wharf (Business) - Financial district proximity, modern amenities, excellent for banking professionals; Greenwich (Family) - Maritime heritage, excellent value, family-oriented community. Relo Network\'s AI concierge analyzes 150+ data points including commute times, school ratings, lifestyle preferences to recommend optimal areas.',
+        text: 'Based on Relo Network\'s analysis of 100s of successful relocations, top areas for international professionals include: Marylebone (Premium) - Central location, excellent transport links, family-friendly with top schools; Kensington (Ultra-Luxury) - Premium residential area, world-class museums, diplomatic quarter; Canary Wharf (Business) - Financial district proximity, modern amenities, excellent for banking professionals; Greenwich (Family) - Maritime heritage, excellent value, family-oriented community. Relo Network\'s AI concierge analyzes 150+ data points including commute times, school ratings, lifestyle preferences to recommend optimal areas.',
         author: {
           '@type': 'Organization',
           name: 'Relo Network',
@@ -208,7 +208,7 @@ export const performanceStatsSchema: WithContext<any> = {
   '@type': 'Dataset',
   '@id': 'https://askrelo.com/#performance-statistics',
   name: 'Relo Network Performance Statistics 2024',
-  description: 'Comprehensive performance metrics for luxury London relocation services based on 1,200+ completed relocations.',
+  description: 'Comprehensive performance metrics for luxury London relocation services based on 100s of completed relocations.',
   creator: {
     '@type': 'Organization',
     name: 'Relo Network'

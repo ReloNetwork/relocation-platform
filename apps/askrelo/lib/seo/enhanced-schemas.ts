@@ -14,7 +14,7 @@ export const enhancedOrganizationSchema: SchemaType = {
   name: 'Relo Network',
   legalName: 'Relo Network Limited',
   alternateName: ['Relo Network London', 'Relo', 'London Relocation Network'],
-  description: 'London\'s most exclusive relocation network, founded in 2024 to revolutionize luxury international relocations. We provide comprehensive relocation services for high-net-worth individuals and corporations moving to London, with a 96% client satisfaction rate and over 1,200 successful relocations completed.',
+  description: 'London\'s most exclusive relocation network, founded in 2024 to revolutionize luxury international relocations. We provide comprehensive relocation services for high-net-worth individuals and corporations moving to London, with a 96% client satisfaction rate and 100s of successful relocations completed.',
   foundingDate: '2024-01-01',
   foundingLocation: {
     '@type': 'Place',
@@ -141,10 +141,10 @@ export const enhancedOrganizationSchema: SchemaType = {
   },
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'One Canada Square',
-    addressLocality: 'Canary Wharf',
+    streetAddress: 'City of London',
+    addressLocality: 'London',
     addressRegion: 'London',
-    postalCode: 'E14 5AB',
+    postalCode: 'EC1V 2NX',
     addressCountry: 'GB'
   },
   contactPoint: [

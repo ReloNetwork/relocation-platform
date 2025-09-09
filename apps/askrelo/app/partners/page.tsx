@@ -245,7 +245,7 @@ export default function PartnersPage() {
   ]
 
   return (
-    <Layout className="bg-[#FAFAF9]">
+    <Layout className="bg-[#FAFAF9]" showFooter={false}>
       {/* Enhanced Structured Data for Partnership Authority */}
       {schemas.map((schema, index) => (
         <script

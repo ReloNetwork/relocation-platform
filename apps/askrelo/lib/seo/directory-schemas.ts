@@ -14,10 +14,10 @@ export const getAllDirectorySchemas = (): Schema[] => {
       "foundingDate": "2024-01-01",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "One Canada Square, Level 42",
-        "addressLocality": "Canary Wharf",
+        "streetAddress": "City of London",
+        "addressLocality": "London",
         "addressRegion": "London",
-        "postalCode": "E14 5AB",
+        "postalCode": "EC1V 2NX",
         "addressCountry": "GB"
       },
       "geo": {

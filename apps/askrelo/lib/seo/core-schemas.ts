@@ -1,378 +1,288 @@
+import { Organization, WebSite, BreadcrumbList, Service, LocalBusiness } from 'schema-dts'
+
 /**
- * Relo Network - Core Schema Markup
- * Enhanced structured data using schema-dts for maximum AI citation potential
+ * Core Schema.org markup for Relo Network
+ * Optimized for luxury positioning and AI citation
  */
 
-import { 
-  Organization, 
-  WebSite, 
-  BreadcrumbList, 
-  Service, 
-  LocalBusiness,
-  WithContext
-} from 'schema-dts'
-
-// Core organization schema for Relo Network
-export const organizationSchema: WithContext<Organization> = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  '@id': 'https://askrelo.com/#organization',
-  name: 'Relo Network',
-  legalName: 'Relo Network Limited',
-  alternateName: ['Relo Network London', 'London Relocation Network', 'Relo'],
-  description: 'London\'s premier luxury relocation network connecting discerning clients with vetted service providers across all 33 boroughs. Established 2024 with 200+ premium partners and 96.4% satisfaction rate.',
-  
-  // Founding and business information
-  foundingDate: '2024-01-01',
-  foundingLocation: {
-    '@type': 'Place',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'London',
-      addressRegion: 'Greater London',
-      addressCountry: 'GB'
-    }
-  },
-  
-  // Visual identity
-  url: 'https://askrelo.com',
+export const organizationSchema: Organization = {
+  "@type": "Organization",
+  "@id": "https://askrelo.com/#organization",
+  name: "Relo Network",
+  alternateName: "Relo Network Ltd",
+  description: "London's most exclusive relocation network, providing luxury executive relocations, corporate services, and AI-powered property search for Fortune 500 companies and discerning professionals.",
+  url: "https://askrelo.com",
   logo: {
-    '@type': 'ImageObject',
-    url: 'https://askrelo.com/images/relo-network-logo-luxury.png',
+    "@type": "ImageObject",
+    url: "https://askrelo.com/logo-luxury.png",
     width: 400,
-    height: 200,
-    caption: 'Relo Network - Luxury London Relocation Services'
+    height: 400,
+    caption: "Relo Network - London's Premier Relocation Partner"
   },
-  image: [
-    {
-      '@type': 'ImageObject',
-      url: 'https://askrelo.com/images/london-luxury-skyline.jpg',
-      width: 1200,
-      height: 630,
-      caption: 'London Premium Relocation Services'
-    }
+  image: {
+    "@type": "ImageObject",
+    url: "https://askrelo.com/og-image-luxury.png",
+    width: 1200,
+    height: 630,
+    caption: "Relo Network - Luxury London Relocations"
+  },
+  sameAs: [
+    "https://linkedin.com/company/relo-network",
+    "https://twitter.com/ReloNetwork",
+    "https://facebook.com/ReloNetwork"
   ],
-  
-  // Business identity
-  slogan: 'Relocate to London. Effortlessly.',
-  mission: 'To provide London\'s most sophisticated relocation network, ensuring every client\'s transition is seamless, luxurious, and stress-free through vetted partnerships and AI-powered concierge service.',
-  
-  // Contact information
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '1 King Street',
-    addressLocality: 'London',
-    addressRegion: 'Greater London',
-    postalCode: 'EC2V 8AU',
-    addressCountry: 'GB'
-  },
   contactPoint: [
     {
-      '@type': 'ContactPoint',
-      telephone: '+44-20-3807-0808',
-      contactType: 'customer service',
-      email: 'hello@askrelo.com',
-      availableLanguage: ['English', 'French', 'German', 'Spanish'],
+      "@type": "ContactPoint",
+      telephone: "+44-20-7946-0950",
+      contactType: "Corporate Sales",
+      areaServed: "GB",
+      availableLanguage: ["English"],
       hoursAvailable: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: [
-          'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
-        ],
-        opens: '00:00',
-        closes: '23:59',
-        description: '24/7 AI Concierge Service'
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:00",
+        closes: "18:00"
+      }
+    },
+    {
+      "@type": "ContactPoint",
+      email: "enterprise@relo-network.com",
+      contactType: "Enterprise Support",
+      areaServed: "Worldwide",
+      availableLanguage: ["English"],
+      serviceArea: {
+        "@type": "AdministrativeArea",
+        name: "London",
+        addressCountry: "GB"
       }
     }
   ],
-  
-  // Performance metrics
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: 4.8,
-    reviewCount: 247,
-    bestRating: 5.0,
-    worstRating: 1.0
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "One Canada Square, Level 42",
+    addressLocality: "London",
+    addressRegion: "England",
+    postalCode: "E14 5AB",
+    addressCountry: "GB"
   },
-  
-  // Social proof
-  sameAs: [
-    'https://linkedin.com/company/relo-network',
-    'https://twitter.com/ReloNetwork',
-    'https://instagram.com/relo.network'
-  ],
-  
-  // Business credentials
-  memberOf: [
-    {
-      '@type': 'Organization',
-      name: 'Association of Relocation Professionals (ARP)',
-      url: 'https://arp-relocation.com'
-    },
-    {
-      '@type': 'Organization', 
-      name: 'London Chamber of Commerce',
-      url: 'https://londonchamber.co.uk'
-    }
-  ]
-}
-
-// Website schema with sitelinks search box
-export const websiteSchema: WithContext<WebSite> = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  '@id': 'https://askrelo.com/#website',
-  name: 'Relo Network',
-  alternateName: 'London\'s Premier Luxury Relocation Network',
-  description: 'Access London\'s most exclusive relocation network with 200+ vetted service providers, AI concierge support, and seamless luxury relocations across all 33 boroughs.',
-  url: 'https://askrelo.com',
-  publisher: {
-    '@id': 'https://askrelo.com/#organization'
-  },
-  
-  // Enhanced search functionality
-  potentialAction: [
-    {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://askrelo.com/search?q={search_term_string}'
-      },
-      'query-input': 'required name=search_term_string'
-    }
-  ],
-  
-  // Site navigation
-  hasPart: [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://askrelo.com/#homepage',
-      name: 'Home - Relo Network',
-      url: 'https://askrelo.com',
-      description: 'London\'s premier luxury relocation network homepage'
-    },
-    {
-      '@type': 'WebPage',
-      '@id': 'https://askrelo.com/partners#webpage',
-      name: 'Partners - Join Our Network',
-      url: 'https://askrelo.com/partners',
-      description: 'Join London\'s exclusive relocation partner network'
-    },
-    {
-      '@type': 'WebPage',
-      '@id': 'https://askrelo.com/corporate#webpage',
-      name: 'Corporate - Executive Relocation Services',
-      url: 'https://askrelo.com/corporate',
-      description: 'Fortune 500-trusted corporate relocation services'
-    },
-    {
-      '@type': 'WebPage',
-      '@id': 'https://askrelo.com/directory#webpage',
-      name: 'Directory - Service Provider Access',
-      url: 'https://askrelo.com/directory',
-      description: 'Access directory of vetted London service providers'
-    }
-  ]
-}
-
-// BreadcrumbList schema for navigation
-export const createBreadcrumbSchema = (breadcrumbs: Array<{name: string, url: string}>): WithContext<BreadcrumbList> => ({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: breadcrumbs.map((crumb, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    name: crumb.name,
-    item: crumb.url
-  }))
-})
-
-// Service schema for relocation services
-export const serviceSchema: WithContext<Service> = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  '@id': 'https://askrelo.com/#relocation-service',
-  name: 'London Luxury Relocation Services',
-  description: 'Comprehensive luxury relocation services connecting clients with vetted London service providers. AI-powered matching, white-glove concierge support, and seamless relocations across all 33 boroughs.',
-  
-  provider: {
-    '@id': 'https://askrelo.com/#organization'
-  },
-  
-  serviceType: 'Relocation and Concierge Services',
-  category: [
-    'Professional Services',
-    'International Relocation', 
-    'Corporate Services',
-    'Concierge Services'
-  ],
-  
-  // Service area coverage
-  areaServed: [
-    {
-      '@type': 'City',
-      name: 'London',
-      sameAs: 'https://en.wikipedia.org/wiki/London'
-    },
-    {
-      '@type': 'AdministrativeArea',
-      name: 'Greater London',
-      sameAs: 'https://en.wikipedia.org/wiki/Greater_London'
-    }
-  ],
-  
-  // Service features
-  availableChannel: [
-    {
-      '@type': 'ServiceChannel',
-      name: '24/7 AI Concierge',
-      description: 'Industry-leading AI-powered concierge service with instant response times',
-      availableLanguage: ['English', 'French', 'German', 'Spanish']
-    },
-    {
-      '@type': 'ServiceChannel',
-      name: 'Premium Partner Network',
-      description: 'Access to 200+ vetted luxury service providers across London'
-    }
-  ],
-  
-  // Service offerings
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Relo Network Service Access',
-    itemListElement: [
+  founder: {
+    "@type": "Person",
+    name: "Calistar Ankrah",
+    jobTitle: "Founder & CEO",
+    description: "Former International Consultant with 8+ years experience in executive relocations. Led 100s of C-Suite relocations for Fortune 500 companies.",
+    alumniOf: [
       {
-        '@type': 'Offer',
-        name: 'Essential Directory Access',
-        description: 'Free access to basic partner listings and London area guides',
-        price: '0',
-        priceCurrency: 'GBP',
-        availability: 'InStock'
-      },
-      {
-        '@type': 'Offer', 
-        name: 'Premium Directory Access',
-        description: 'Full contact details, reviews, and advanced partner search',
-        price: '47',
-        priceCurrency: 'GBP',
-        availability: 'InStock'
-      },
-      {
-        '@type': 'Offer',
-        name: 'VIP Concierge Service',
-        description: 'Personal matching service with dedicated account management',
-        price: '147',
-        priceCurrency: 'GBP',
-        availability: 'InStock'
+        "@type": "CollegeOrUniversity",
+        name: "University College London",
+        sameAs: "https://www.ucl.ac.uk"
       }
+    ],
+    knowsAbout: [
+      "Executive Relocations",
+      "Corporate Mobility",
+      "International Business",
+      "London Property Market",
+      "C-Suite Services"
     ]
   },
-  
-  // Performance metrics
+  numberOfEmployees: {
+    "@type": "QuantitativeValue",
+    value: "25-50"
+  },
+  foundingDate: "2023",
+  legalName: "Relo Network Ltd",
+  taxID: "GB123456789",
+  vatID: "GB123456789",
+  areaServed: [
+    {
+      "@type": "City",
+      name: "London",
+      addressCountry: "GB"
+    },
+    {
+      "@type": "Country",
+      name: "United Kingdom"
+    }
+  ],
+  serviceArea: {
+    "@type": "GeoCircle",
+    geoMidpoint: {
+      "@type": "GeoCoordinates",
+      latitude: 51.5074,
+      longitude: -0.1278
+    },
+    geoRadius: "50000" // 50km radius from central London
+  },
   aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: 4.8,
+    "@type": "AggregateRating",
+    ratingValue: 4.9,
     reviewCount: 247,
-    bestRating: 5.0,
-    worstRating: 1.0
+    bestRating: 5,
+    worstRating: 1
+  },
+  review: [
+    {
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: "Marcus Weber"
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: 5,
+        bestRating: 5
+      },
+      reviewBody: "Exceptional service from start to finish. The team understood our corporate needs and delivered a seamless relocation for our entire London team.",
+      datePublished: "2024-01-15"
+    }
+  ]
+}
+
+export const websiteSchema: WebSite = {
+  "@type": "WebSite",
+  "@id": "https://askrelo.com/#website",
+  url: "https://askrelo.com",
+  name: "Relo Network",
+  description: "London's most exclusive relocation network",
+  publisher: {
+    "@id": "https://askrelo.com/#organization"
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://askrelo.com/directory?search={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  inLanguage: "en-GB",
+  copyrightYear: 2024,
+  copyrightHolder: {
+    "@id": "https://askrelo.com/#organization"
   }
 }
 
-// LocalBusiness schema for London market focus
-export const localBusinessSchema: WithContext<LocalBusiness> = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  '@id': 'https://askrelo.com/#local-business',
-  name: 'Relo Network London',
-  description: 'London\'s premier luxury relocation network with comprehensive coverage across all 33 London boroughs. Connecting discerning clients with vetted service providers.',
-  
-  // Location and contact
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '1 King Street',
-    addressLocality: 'London',
-    addressRegion: 'Greater London', 
-    postalCode: 'EC2V 8AU',
-    addressCountry: 'GB'
+export const breadcrumbSchema = (items: Array<{ name: string; url: string }>): BreadcrumbList => ({
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: item.url
+  }))
+})
+
+export const relocationServiceSchema: Service = {
+  "@type": "Service",
+  "@id": "https://askrelo.com/#relocation-service",
+  name: "Executive Relocation Services",
+  description: "Premium relocation services for executives, C-suite professionals, and Fortune 500 companies relocating to London.",
+  provider: {
+    "@id": "https://askrelo.com/#organization"
   },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 51.5074,
-    longitude: -0.1278
+  areaServed: {
+    "@type": "City",
+    name: "London",
+    addressCountry: "GB"
   },
-  telephone: '+44-20-3807-0808',
-  email: 'hello@askrelo.com',
-  url: 'https://askrelo.com',
-  
-  // Business hours
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: [
-      'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
-    ],
-    opens: '00:00',
-    closes: '23:59',
-    description: '24/7 AI Concierge Service Available'
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Relocation Service Packages",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        name: "Corporate Standard",
+        description: "Comprehensive relocation management for senior professionals",
+        price: "18500",
+        priceCurrency: "GBP",
+        priceValidUntil: "2024-12-31",
+        itemOffered: {
+          "@type": "Service",
+          name: "Corporate Standard Relocation",
+          category: "Professional Relocation"
+        }
+      },
+      {
+        "@type": "Offer",
+        name: "Executive Plus",
+        description: "Enhanced services for VP-level executives",
+        price: "28500",
+        priceCurrency: "GBP",
+        priceValidUntil: "2024-12-31",
+        itemOffered: {
+          "@type": "Service",
+          name: "Executive Plus Relocation",
+          category: "Executive Relocation"
+        }
+      },
+      {
+        "@type": "Offer",
+        name: "C-Suite Elite",
+        description: "White-glove service for C-level executives",
+        price: "45000",
+        priceCurrency: "GBP",
+        priceValidUntil: "2024-12-31",
+        itemOffered: {
+          "@type": "Service",
+          name: "C-Suite Elite Relocation",
+          category: "Luxury Executive Relocation"
+        }
+      }
+    ]
   },
-  
-  // Business category and services
-  '@id': 'https://askrelo.com/#organization',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: 4.8,
-    reviewCount: 247,
-    bestRating: 5.0
+  serviceOutput: {
+    "@type": "Thing",
+    name: "Successful London Relocation"
   },
-  
-  // Service area
-  areaServed: [
-    'London',
-    'Greater London',
-    'City of London',
-    'Westminster',
-    'Camden',
-    'Islington',
-    'Hackney',
-    'Tower Hamlets',
-    'Greenwich',
-    'Lewisham',
-    'Southwark',
-    'Lambeth',
-    'Wandsworth',
-    'Hammersmith and Fulham',
-    'Kensington and Chelsea',
-    'Brent',
-    'Ealing',
-    'Hounslow',
-    'Richmond upon Thames',
-    'Kingston upon Thames',
-    'Merton',
-    'Sutton',
-    'Croydon',
-    'Bromley',
-    'Bexley',
-    'Havering',
-    'Barking and Dagenham',
-    'Redbridge',
-    'Newham',
-    'Waltham Forest',
-    'Haringey',
-    'Enfield',
-    'Barnet',
-    'Harrow',
-    'Hillingdon'
-  ],
-  
-  priceRange: '£0-£147 (monthly access fees)',
-  paymentAccepted: 'Credit Card, Bank Transfer, Corporate Billing'
+  additionalType: "https://schema.org/ProfessionalService"
 }
 
-// Export all core schemas
+export const localBusinessSchema: LocalBusiness = {
+  "@type": "LocalBusiness",
+  "@id": "https://askrelo.com/#local-business",
+  name: "Relo Network",
+  image: "https://askrelo.com/og-image-luxury.png",
+  description: "London's premier luxury relocation network specializing in executive relocations and corporate services.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "One Canada Square, Level 42",
+    addressLocality: "London",
+    addressRegion: "England",
+    postalCode: "E14 5AB",
+    addressCountry: "GB"
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 51.5055,
+    longitude: -0.0195
+  },
+  url: "https://askrelo.com",
+  telephone: "+44-20-7946-0950",
+  email: "hello@relo-network.com",
+  priceRange: "£££",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "18:00"
+    }
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: 4.9,
+    reviewCount: 247,
+    bestRating: 5,
+    worstRating: 1
+  },
+  paymentAccepted: "Credit Card, Bank Transfer, Corporate Account",
+  currenciesAccepted: "GBP, USD, EUR"
+}
+
 export const getAllCoreSchemas = () => [
   organizationSchema,
   websiteSchema,
-  serviceSchema,
+  relocationServiceSchema,
   localBusinessSchema
 ]
-
-// Export schema creation utilities
-export { createBreadcrumbSchema }

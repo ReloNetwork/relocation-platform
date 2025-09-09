@@ -10,11 +10,30 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/']
+        disallow: [
+          '/api/',
+          '/admin/',
+          '/dashboard/',
+          '/account/',
+          '/_next/',
+          '/static/',
+          '/tmp/'
+        ]
       },
       {
         userAgent: 'GPTBot',
-        allow: '/'
+        allow: '/',
+        crawlDelay: 2
+      },
+      {
+        userAgent: 'CCBot',
+        allow: '/',
+        crawlDelay: 2
+      },
+      {
+        userAgent: 'Claude-Web',
+        allow: '/',
+        crawlDelay: 1
       },
       {
         userAgent: 'ChatGPT-User',
@@ -22,7 +41,8 @@ module.exports = {
       },
       {
         userAgent: 'PerplexityBot',
-        allow: '/'
+        allow: '/',
+        crawlDelay: 2
       },
       {
         userAgent: 'ClaudeBot',
@@ -30,10 +50,6 @@ module.exports = {
       },
       {
         userAgent: 'anthropic-ai',
-        allow: '/'
-      },
-      {
-        userAgent: 'Claude-Web',
         allow: '/'
       }
     ],

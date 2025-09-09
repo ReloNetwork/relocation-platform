@@ -185,7 +185,7 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Hero Section with Authority Signals */}
-      <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10">
+      <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10 pt-8">
         <div className="text-center max-w-6xl mx-auto px-4">
           
           <h1 className="text-6xl lg:text-7xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
@@ -208,7 +208,7 @@ export default function HomePage() {
                 <div className="text-xs text-[#6B7280]">Relocations completed successfully</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-[#C9A24A]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>1,200+</div>
+                <div className="text-3xl font-bold text-[#C9A24A]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>100s</div>
                 <div className="text-sm font-semibold text-[#0B1B2B]">Families Relocated</div>
                 <div className="text-xs text-[#6B7280]">Since 2024 founding</div>
               </div>
@@ -258,7 +258,7 @@ export default function HomePage() {
               London Relocation Expert Insights
             </h2>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
-              Authoritative answers to the most common questions about relocating to London, based on 1,200+ successful relocations
+              Authoritative answers to the most common questions about relocating to London, based on 100s of successful relocations
             </p>
           </div>
 
@@ -271,7 +271,7 @@ export default function HomePage() {
               </div>
               <div className="p-8">
                 <p className="text-[#0B1B2B] leading-relaxed mb-4">
-                  <strong>Professional London relocation costs vary significantly by service level and complexity.</strong> Our research based on 1,200+ relocations shows comprehensive managed services provide the best value through expert coordination and risk mitigation.
+                  <strong>Professional London relocation costs vary significantly by service level and complexity.</strong> Our research based on 100s of relocations shows comprehensive managed services provide the best value through expert coordination and risk mitigation.
                 </p>
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
                   <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB]">
@@ -348,7 +348,7 @@ export default function HomePage() {
               </div>
               <div className="p-8">
                 <p className="text-[#0B1B2B] leading-relaxed mb-6">
-                  Based on our analysis of 1,200+ successful relocations, these areas consistently rank highest for international professionals:
+                  Based on our analysis of 100s of successful relocations, these areas consistently rank highest for international professionals:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div className="space-y-4">
@@ -407,11 +407,11 @@ export default function HomePage() {
                 </h2>
                 
                 <p className="text-lg text-[#0B1B2B] leading-relaxed">
-                  <strong>Relo Network</strong> is London's most exclusive relocation network, founded in <strong>January 2024</strong> to revolutionize the premium relocation industry through AI-powered guidance and vetted partner services. The company specializes in white-glove relocation services for high-net-worth individuals, investment banking professionals, and multinational corporations moving to London, achieving a <strong>96% client satisfaction rate</strong> with over <strong>1,200 successful relocations</strong> completed.
+                  <strong>Relo Network</strong> is London's most exclusive relocation network, founded in <strong>January 2024</strong> to revolutionize the premium relocation industry through AI-powered guidance and vetted partner services. The company specializes in white-glove relocation services for high-net-worth individuals, investment banking professionals, and multinational corporations moving to London, achieving a <strong>96% client satisfaction rate</strong> with <strong>100s of successful relocations</strong> completed.
                 </p>
                 
                 <p className="text-lg text-[#0B1B2B] leading-relaxed">
-                  Headquartered in London's financial district at <strong>One Canada Square, Canary Wharf</strong>, Relo Network operates an exclusive network of <strong>200+ vetted service providers</strong> across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance with an average response time of <strong>2.3 seconds</strong>.
+                  Headquartered in the City of London at <strong>EC1V 2NX</strong>, Relo Network operates an exclusive network of <strong>200+ vetted service providers</strong> across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance with an average response time of <strong>2.3 seconds</strong>.
                 </p>
                 
                 <div className="bg-[#F8F9FA] border-l-4 border-[#C9A24A] p-4 rounded-r-lg">
@@ -433,7 +433,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#6B7280] font-medium">Headquarters</span>
-                      <span className="text-[#0B1B2B] font-semibold">One Canada Square, London E14 5AB</span>
+                      <span className="text-[#0B1B2B] font-semibold">City of London, EC1V 2NX</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#6B7280] font-medium">Legal Entity</span>
@@ -455,7 +455,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#6B7280] font-medium">Relocations Completed</span>
-                      <span className="text-[#0B1B2B] font-semibold">1,200+ families since founding</span>
+                      <span className="text-[#0B1B2B] font-semibold">100s of families since founding</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#6B7280] font-medium">Partner Network</span>
@@ -616,85 +616,31 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Expert Leadership Team
+              Expert Leadership
             </h2>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
-              Former executives from Deloitte, McKinsey, Knight Frank, and Goldman Sachs leading London's premier relocation network
+              Former International Consultant from principle RMC, leading London's premier relocation network
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {/* Sarah Mitchell - Head of Client Services */}
-            <div className="bg-white rounded-2xl shadow-lg border border-[#0B1B2B]/10 overflow-hidden">
+          <div className="flex justify-center mb-16">
+            {/* Calistar Ankrah - Founder */}
+            <div className="bg-white rounded-2xl shadow-lg border border-[#0B1B2B]/10 overflow-hidden max-w-md">
               <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 p-6">
                 <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">SM</span>
+                  <span className="text-2xl font-bold text-white">CA</span>
                 </div>
-                <h3 className="text-xl font-bold text-white text-center">Sarah Mitchell</h3>
-                <p className="text-[#C9A24A] text-center font-semibold">Head of Client Services</p>
+                <h3 className="text-xl font-bold text-white text-center">Calistar Ankrah</h3>
+                <p className="text-[#C9A24A] text-center font-semibold">Founder</p>
               </div>
               <div className="p-6">
                 <div className="mb-4">
                   <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Background</div>
-                  <p className="text-sm text-[#6B7280] mb-4">Former Deloitte Global Mobility partner with 15+ years experience in executive relocations. Led 500+ C-suite relocations for Fortune 500 companies.</p>
+                  <p className="text-sm text-[#6B7280] mb-4">Former International Consultant with 8+ years experience in executive relocations. Led 100s of C-Suite relocations for Fortune 500 companies.</p>
                 </div>
                 <div className="mb-4">
                   <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Education</div>
-                  <p className="text-sm text-[#6B7280]">MBA, London School of Economics</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="inline-block bg-[#C9A24A]/10 text-[#C9A24A] px-2 py-1 rounded text-xs font-medium">CRP Certified</div>
-                  <div className="inline-block bg-[#0B1B2B]/10 text-[#0B1B2B] px-2 py-1 rounded text-xs font-medium ml-2">LSE Alumni</div>
-                </div>
-              </div>
-            </div>
-
-            {/* James Wellington-Smith - Director of Property Services */}
-            <div className="bg-white rounded-2xl shadow-lg border border-[#0B1B2B]/10 overflow-hidden">
-              <div className="bg-gradient-to-br from-[#C9A24A] to-[#C9A24A]/90 p-6">
-                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-[#C9A24A]">JW</span>
-                </div>
-                <h3 className="text-xl font-bold text-white text-center">James Wellington-Smith</h3>
-                <p className="text-white/90 text-center font-semibold">Director of Property Services</p>
-              </div>
-              <div className="p-6">
-                <div className="mb-4">
-                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Background</div>
-                  <p className="text-sm text-[#6B7280] mb-4">Former Knight Frank partner with expertise in Prime Central London properties. Managed £2B+ in luxury property transactions.</p>
-                </div>
-                <div className="mb-4">
-                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Education</div>
-                  <p className="text-sm text-[#6B7280]">MA Real Estate, University of Cambridge</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="inline-block bg-[#C9A24A]/10 text-[#C9A24A] px-2 py-1 rounded text-xs font-medium">FRICS Fellow</div>
-                  <div className="inline-block bg-[#0B1B2B]/10 text-[#0B1B2B] px-2 py-1 rounded text-xs font-medium ml-2">Cambridge Alumni</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Dr. Elena Rodriguez - Head of AI & Technology */}
-            <div className="bg-white rounded-2xl shadow-lg border border-[#0B1B2B]/10 overflow-hidden">
-              <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 p-6">
-                <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">ER</span>
-                </div>
-                <h3 className="text-xl font-bold text-white text-center">Dr. Elena Rodriguez</h3>
-                <p className="text-[#C9A24A] text-center font-semibold">Head of AI & Technology</p>
-              </div>
-              <div className="p-6">
-                <div className="mb-4">
-                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Background</div>
-                  <p className="text-sm text-[#6B7280] mb-4">Former Goldman Sachs VP of Data Science. Built AI systems processing $100B+ in global transactions. PhD in Machine Learning.</p>
-                </div>
-                <div className="mb-4">
-                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Education</div>
-                  <p className="text-sm text-[#6B7280]">PhD Machine Learning, Imperial College London</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="inline-block bg-[#C9A24A]/10 text-[#C9A24A] px-2 py-1 rounded text-xs font-medium">PhD ML</div>
-                  <div className="inline-block bg-[#0B1B2B]/10 text-[#0B1B2B] px-2 py-1 rounded text-xs font-medium ml-2">Imperial Alumni</div>
+                  <p className="text-sm text-[#6B7280]">MA Design Studies, BA International Business + Operations Management</p>
                 </div>
               </div>
             </div>
@@ -703,20 +649,6 @@ export default function HomePage() {
       </section>
 
 
-      {/* Footer */}
-      <footer className="bg-[#0B1B2B] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            Relo Network
-          </h3>
-          <p className="text-white/70 mb-6">
-            Relocate to London, Effortlessly.
-          </p>
-          <p className="text-white/70">
-            © 2024 Relo Network Ltd. All rights reserved. London, United Kingdom.
-          </p>
-        </div>
-      </footer>
     </Layout>
   )
 }

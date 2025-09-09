@@ -117,7 +117,7 @@ export default function GlobalNavigation() {
           content: '';
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+          background: linear-gradient(135deg, #C9A24A 0%, #B8923D 100%);
           opacity: 0;
           transition: opacity 0.3s ease;
         }
@@ -175,7 +175,7 @@ export default function GlobalNavigation() {
                 className="btn-nav relative z-10"
                 onClick={() => window.location.href = '/join-waitlist'}
               >
-                <span className="relative z-10">Sign In</span>
+                <span className="relative z-10">Join Waitlist</span>
               </button>
               
               {/* Mobile Menu Button */}
