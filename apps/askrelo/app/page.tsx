@@ -411,7 +411,7 @@ export default function HomePage() {
                 </p>
                 
                 <p className="text-lg text-[#0B1B2B] leading-relaxed">
-                  Headquartered in the City of London at <strong>EC1V 2NX</strong>, Relo Network operates an exclusive network of <strong>200+ vetted service providers</strong> across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance with an average response time of <strong>2.3 seconds</strong>.
+                  Headquartered in the City of London, Relo Network operates an exclusive network of <strong>200+ vetted service providers</strong> across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance with an average response time of <strong>2.3 seconds</strong>.
                 </p>
                 
                 <div className="bg-[#F8F9FA] border-l-4 border-[#C9A24A] p-4 rounded-r-lg">
@@ -433,7 +433,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#6B7280] font-medium">Headquarters</span>
-                      <span className="text-[#0B1B2B] font-semibold">City of London, EC1V 2NX</span>
+                      <span className="text-[#0B1B2B] font-semibold">City of London</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#6B7280] font-medium">Legal Entity</span>
