@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Phone, Clock, Shield, Trophy, AlertTriangle, Calculator, Building, Users, CheckCircle, Star, ArrowRight, Zap, Target, Globe } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
+import CorporateEmergencyForm from '../../components/forms/CorporateEmergencyForm'
 
 const EmergencyBadge = () => (
   <div className="inline-flex items-center bg-red-100 border border-red-300 rounded-full px-4 py-2 mb-6">
@@ -687,7 +688,17 @@ export default function CorporatePage() {
       {/* Emergency Booking Form */}
       <section id="emergency-form" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4">
-          <EmergencyBookingForm onSubmit={handleEmergencyBooking} />
+          <div className="text-center mb-12">
+            <EmergencyBadge />
+            <h2 className="text-3xl font-bold text-[#0B1220] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Get Emergency Relocation Support
+            </h2>
+            <p className="text-[#6B7280] text-lg max-w-2xl mx-auto">
+              Submit your emergency request and our specialist team will contact you within 2 hours to begin immediate relocation planning.
+            </p>
+          </div>
+          
+          <CorporateEmergencyForm />
         </div>
       </section>
 

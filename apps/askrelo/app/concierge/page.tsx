@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Mic, Play, Volume2, Square, MessageCircle, ArrowRight, Sparkles, Clock, Check, User, Shield, Zap, BarChart3, AlertTriangle } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
+import PremiumClientForm from '../../components/forms/PremiumClientForm'
 
 const VoiceWaveform = ({ isActive }: { isActive: boolean }) => (
   <div className="flex items-center justify-center gap-1 h-8">
@@ -268,52 +269,71 @@ export default function ConciergePage() {
 
   const pricingTiers = [
     {
-      name: 'Free Trial',
-      price: '0',
-      description: 'Experience Ask Relo risk-free',
-      usage: '3 minutes total • 1 conversation',
-      afterLaunch: '3 minutes total • 1 conversation',
-      isTrial: true,
-      priceId: 'free_trial',
+      name: 'Quick Start',
+      price: '195',
+      description: 'AI-powered property discovery',
+      usage: 'AI consultations • Basic neighborhood matching',
+      priceId: 'price_quick_start',
       features: [
-        'Voice AI conversation',
-        'Basic London insights',
-        'Transport advice',
-        'No credit card required'
+        'Unlimited AI consultations',
+        'Neighborhood matching algorithm',
+        'Transport time calculations',
+        'Basic property recommendations',
+        'Email support',
+        'Monthly market insights'
       ]
     },
     {
-      name: 'Professional',
-      price: '295',
-      originalPrice: '395',
-      description: 'Perfect for active home hunters',
-      usage: 'Unlimited voice consultations • Advanced features',
+      name: 'Property Hunter',
+      price: '495',
+      description: 'Complete property search solution',
+      usage: 'Everything in Quick Start • Advanced search features',
       isPopular: true,
-      priceId: 'price_professional_voice',
+      priceId: 'price_property_hunter',
       features: [
-        'Voice AI consultations (unlimited)',
-        'Property search and matching',
-        'Neighbourhood analysis',
-        'Transport optimisation',
-        'Market insights',
-        'SMS alerts',
-        'Basic supplier introductions'
+        'Everything in Quick Start',
+        'Advanced property filtering',
+        'Virtual viewing coordination',
+        'Landlord pre-screening',
+        'Application assistance',
+        'Rental negotiation tips',
+        'Priority email support',
+        'Weekly property alerts'
       ]
     },
     {
-      name: 'Concierge',
+      name: 'Done-For-You',
       price: '1495',
-      originalPrice: '1995',
-      description: 'White-glove relocation service',
-      usage: 'Everything + Human concierge support',
-      priceId: 'price_concierge_voice',
+      description: 'Dedicated human concierge service',
+      usage: 'Everything + Human concierge • White-glove service',
+      priceId: 'price_done_for_you',
       features: [
-        'Everything in Professional',
-        'Human concierge escalation',
-        'Property viewing coordination (up to 10 properties)',
-        'Supplier relationship management',
-        'Basic contract review',
-        'Priority support'
+        'Everything in Property Hunter',
+        'Dedicated human concierge',
+        'In-person property viewings (up to 10)',
+        'Application submission management',
+        'Contract review and negotiation',
+        'Utility setup coordination',
+        'Moving coordination',
+        'Priority phone support'
+      ]
+    },
+    {
+      name: 'Executive Relocation',
+      price: '2995',
+      description: 'Full-service executive package',
+      usage: 'Everything + Dedicated account manager • VIP treatment',
+      priceId: 'price_executive_relocation',
+      features: [
+        'Everything in Done-For-You',
+        'Dedicated account manager',
+        'Unlimited property viewings',
+        'Executive housing specialists',
+        'Temporary accommodation sourcing',
+        'International relocation coordination',
+        'Family services (schools, healthcare)',
+        'VIP concierge services',
+        '24/7 priority support'
       ]
     }
   ]
@@ -330,11 +350,11 @@ export default function ConciergePage() {
             </div>
             
             <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Your 24/7 London <span className="text-[#C9A24A]">Relocation Concierge</span>
+              London Relocation <span className="text-[#C9A24A]">Made Simple</span>
             </h1>
             
             <p className="text-xl text-white/80 max-w-3xl mx-auto mb-12">
-              Speak naturally to our AI assistant and get instant, expert advice on London properties, neighborhoods, commutes, and everything you need for your perfect relocation.
+              From AI-powered property discovery to full executive relocation service. Choose the perfect package for your London move.
             </p>
 
             {/* Stats */}
@@ -460,27 +480,31 @@ export default function ConciergePage() {
         </div>
       </div>
 
-      {/* Current Usage Section */}
+      {/* How It Works Section */}
       <div className="max-w-6xl mx-auto px-4 pb-16">
-        <h2 className="text-2xl font-bold text-[#0B1220] mb-8 text-center" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>Your Current Usage</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <UsageCard 
-            title="Voice Minutes" 
-            current={2} 
-            limit={3} 
-            upgrade={() => handleCheckout('price_professional_voice')}
-          />
-          <UsageCard 
-            title="Property Searches" 
-            current={12} 
-            limit={50}
-          />
-          <UsageCard 
-            title="Conversations" 
-            current={1} 
-            limit={1}
-            upgrade={() => handleCheckout('price_professional_voice')}
-          />
+        <h2 className="text-2xl font-bold text-[#0B1220] mb-8 text-center" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>How Relo Network Works</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center">
+            <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl font-bold text-[#C9A24A]">1</span>
+            </div>
+            <h3 className="text-lg font-semibold text-[#0B1220] mb-2">Choose Your Plan</h3>
+            <p className="text-[#6B7280]">Select the relocation package that matches your needs and budget</p>
+          </div>
+          <div className="text-center">
+            <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl font-bold text-[#C9A24A]">2</span>
+            </div>
+            <h3 className="text-lg font-semibold text-[#0B1220] mb-2">Start Your Search</h3>
+            <p className="text-[#6B7280]">Use our AI assistant or speak directly with your dedicated concierge</p>
+          </div>
+          <div className="text-center">
+            <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl font-bold text-[#C9A24A]">3</span>
+            </div>
+            <h3 className="text-lg font-semibold text-[#0B1220] mb-2">Move In</h3>
+            <p className="text-[#6B7280]">We handle everything from viewings to contracts to moving coordination</p>
+          </div>
         </div>
       </div>
 
@@ -489,14 +513,14 @@ export default function ConciergePage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#0B1220] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Choose Your Service Level
+              Choose Your Relocation Package
             </h2>
             <p className="text-[#6B7280] text-lg">
-              Start free, upgrade as you need more assistance
+              From AI-powered search to full executive service
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {pricingTiers.map((tier) => (
               <PricingTier 
                 key={tier.name}
@@ -545,6 +569,13 @@ export default function ConciergePage() {
         </div>
       </div>
 
+      {/* Premium Client Form */}
+      <section id="premium-consultation" className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <PremiumClientForm />
+        </div>
+      </section>
+
       {/* Final CTA */}
       <div className="bg-[#C9A24A] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
@@ -557,26 +588,26 @@ export default function ConciergePage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-              onClick={() => handleCheckout('free_trial')}
+              onClick={() => handleCheckout('price_quick_start')}
               size="lg"
               className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
               disabled={loading}
             >
-              {loading ? 'Loading...' : 'Try Free for 3 Minutes'} <ArrowRight className="ml-2 h-4 w-4" />
+              {loading ? 'Loading...' : 'Start with Quick Start - £195/mo'} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button 
-              onClick={() => handleCheckout('price_professional_voice')}
+              onClick={() => handleCheckout('price_property_hunter')}
               size="lg"
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-[#C9A24A] rounded-md hover:scale-105 transition-all"
               disabled={loading}
             >
-              Start Professional Plan
+              Most Popular - Property Hunter
             </Button>
           </div>
           
           <p className="text-sm text-white/80 mt-4">
-            No credit card required for trial • Cancel anytime • Launch pricing available
+            All plans include unlimited AI consultations • Cancel anytime • Expert support included
           </p>
         </div>
       </div>
