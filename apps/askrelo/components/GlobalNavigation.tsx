@@ -33,7 +33,7 @@ export default function GlobalNavigation() {
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/concierge', label: 'Concierge' },
+    { href: '/concierge', label: 'Services' },
     { href: '/partners', label: 'Partners' },
     { href: '/corporate', label: 'Corporate' },
     { href: '/directory', label: 'Directory' }

@@ -505,33 +505,35 @@ export default function DirectoryPage() {
             <div>
               <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
                 <MapPin className="h-4 w-4 text-[#C9A24A] mr-2" />
-                <span className="text-[#C9A24A] text-sm font-medium">London's Premier Relocation Directory</span>
+                <span className="text-[#C9A24A] text-sm font-medium">London's Premier Service Directory</span>
               </div>
               
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                London <span className="text-[#C9A24A]">Relocation</span><br />
-                Authority
+                London Partner <span className="text-[#C9A24A]">Directory</span><br />
+                Access
               </h1>
               
               <p className="text-xl text-white/90 mb-8 leading-relaxed">
-                The definitive directory of <strong className="text-[#C9A24A]">vetted luxury relocation specialists</strong> covering all 33 London boroughs. 
-                Expert area guides, market insights, and <strong className="text-[#C9A24A]">200+ premium partners</strong> for seamless relocations.
+                Access London's most comprehensive directory of <strong className="text-[#C9A24A]">vetted service providers</strong> across all specialties. 
+                Choose your access level to connect with <strong className="text-[#C9A24A]">200+ premium partners</strong> instantly.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg"
                   className="bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md hover:scale-105 shadow-xl"
+                  onClick={() => document.getElementById('access-tiers')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   <Search className="mr-2 h-5 w-5" />
-                  Browse Premium Partners
+                  Choose Access Level
                 </Button>
                 <Button 
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
+                  onClick={() => handleSubscribe('free')}
                 >
-                  Explore London Areas
+                  Browse Free Preview
                 </Button>
               </div>
             </div>
@@ -558,7 +560,7 @@ export default function DirectoryPage() {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Service provider name or specialty..."
+                    placeholder="Find service providers by name or specialty..."
                     className="w-full pl-10 pr-4 py-2 border border-[#E5E7EB] rounded-md focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                   />
                 </div>
@@ -595,11 +597,11 @@ export default function DirectoryPage() {
               
               <div>
                 <Button 
-                  onClick={() => setShowFilters(!showFilters)}
+                  onClick={() => document.getElementById('access-tiers')?.scrollIntoView({ behavior: 'smooth' })}
                   className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md"
                 >
                   <Filter className="mr-2 h-4 w-4" />
-                  Search Partners
+                  Get Directory Access
                 </Button>
               </div>
             </div>
@@ -612,10 +614,10 @@ export default function DirectoryPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              London Area Expertise
+              London Area Coverage
             </h2>
             <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
-              Comprehensive coverage across London's 33 boroughs with detailed local market insights, property data, and area-specific relocation guidance.
+              Our partner network spans all 33 London boroughs. Browse service providers by area to find specialists in your specific location.
             </p>
           </div>
 
@@ -627,12 +629,15 @@ export default function DirectoryPage() {
 
           <div className="text-center">
             <div className="bg-[#C9A24A]/5 rounded-lg p-8 border border-[#C9A24A]/20">
-              <h3 className="text-xl font-bold text-[#0B1B2B] mb-4">Complete London Coverage</h3>
+              <h3 className="text-xl font-bold text-[#0B1B2B] mb-4">Complete Partner Coverage</h3>
               <p className="text-[#6B7280] mb-6 max-w-3xl mx-auto">
-                Our directory covers all 33 London boroughs from Zone 1 premium areas to suburban family neighborhoods. Each area profile includes transport ratings, property market data, and local amenities guide.
+                Find trusted service providers across all 33 London boroughs. From Zone 1 specialists to suburban experts, access the right partners wherever you need them.
               </p>
-              <Button className="bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md">
-                View All London Areas
+              <Button 
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md"
+                onClick={() => document.getElementById('access-tiers')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Choose Access Level
               </Button>
             </div>
           </div>
@@ -644,10 +649,10 @@ export default function DirectoryPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Vetted Premium Partners
+              Vetted Partner Network
             </h2>
             <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
-              Carefully selected network of luxury relocation specialists. Each partner undergoes rigorous vetting and continuous quality monitoring.
+              Every service provider in our directory is carefully vetted and continuously monitored for quality. Connect with confidence.
             </p>
           </div>
 
@@ -666,8 +671,8 @@ export default function DirectoryPage() {
                   <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Shield className="w-8 h-8 text-[#C9A24A]" />
                   </div>
-                  <h3 className="font-bold text-[#0B1B2B] mb-2">200+ Vetted Partners</h3>
-                  <p className="text-[#6B7280] text-sm">Comprehensive network across all service categories</p>
+                  <h3 className="font-bold text-[#0B1B2B] mb-2">200+ Service Providers</h3>
+                  <p className="text-[#6B7280] text-sm">Comprehensive network across all specialties</p>
                 </div>
                 
                 <div className="text-center">
@@ -682,8 +687,8 @@ export default function DirectoryPage() {
                   <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Globe className="w-8 h-8 text-[#C9A24A]" />
                   </div>
-                  <h3 className="font-bold text-[#0B1B2B] mb-2">London Authority</h3>
-                  <p className="text-[#6B7280] text-sm">Local expertise across all 33 London boroughs</p>
+                  <h3 className="font-bold text-[#0B1B2B] mb-2">Local Expertise</h3>
+                  <p className="text-[#6B7280] text-sm">Specialists covering all 33 London boroughs</p>
                 </div>
               </div>
             </div>
@@ -752,45 +757,57 @@ export default function DirectoryPage() {
       </section>
 
       {/* Access Tiers */}
-      <section className="py-20 bg-[#FAFAF9]">
+      <section id="access-tiers" className="py-20 bg-[#FAFAF9]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Directory Access Tiers
             </h2>
             <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
-              Choose your level of access to London's premier relocation network
+              Choose your level of access to connect with London's premium service providers
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg p-8 border border-[#0B1B2B]/10 shadow-sm">
               <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Eye className="w-8 h-8 text-[#C9A24A]" />
+                </div>
                 <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">Essential</h3>
-                <div className="text-3xl font-bold text-[#C9A24A] mb-2">Free</div>
-                <p className="text-[#6B7280] text-sm">London area guides & market insights</p>
+                <div className="text-4xl font-bold text-[#C9A24A] mb-2">Free</div>
+                <p className="text-[#6B7280] text-sm">View basic partner listings</p>
               </div>
               
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>London area guides</span>
+                  <span>Basic partner listings</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Property market insights</span>
+                  <span>Partner business names</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Basic partner preview</span>
+                  <span>Service categories</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                  <span>London area coverage</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm">
+                  <Lock className="w-4 h-4 text-[#6B7280]" />
+                  <span className="text-[#6B7280]">Contact details locked</span>
                 </li>
               </ul>
               
               <Button 
                 className="w-full bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white rounded-md"
                 onClick={() => handleSubscribe('free')}
+                disabled={loading}
               >
-                Get Started Free
+                {loading ? 'Loading...' : 'Start Free Access'}
               </Button>
             </div>
 
@@ -802,19 +819,18 @@ export default function DirectoryPage() {
               </div>
               
               <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-[#C9A24A]" />
+                </div>
                 <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">Premium</h3>
-                <div className="text-3xl font-bold text-[#C9A24A] mb-2">£47<span className="text-lg">/mo</span></div>
-                <p className="text-[#6B7280] text-sm">Full directory access & direct contact</p>
+                <div className="text-4xl font-bold text-[#C9A24A] mb-2">£47<span className="text-lg">/mo</span></div>
+                <p className="text-[#6B7280] text-sm">Full contact details + reviews</p>
               </div>
               
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
                   <span>Everything in Essential</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Full partner directory access</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
@@ -822,57 +838,74 @@ export default function DirectoryPage() {
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Advanced filtering & search</span>
+                  <span>Partner reviews & ratings</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Partner reviews & ratings</span>
+                  <span>Advanced search filters</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                  <span>Partner comparison tools</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                  <span>Email support</span>
                 </li>
               </ul>
               
               <Button 
                 className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md"
                 onClick={() => handleSubscribe('premium')}
+                disabled={loading}
               >
-                Start Premium Trial
+                {loading ? 'Loading...' : 'Start Premium Access'}
               </Button>
             </div>
 
             <div className="bg-white rounded-lg p-8 border border-[#0B1B2B]/10 shadow-sm">
               <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Crown className="w-8 h-8 text-[#C9A24A]" />
+                </div>
                 <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">VIP Concierge</h3>
-                <div className="text-3xl font-bold text-[#C9A24A] mb-2">£147<span className="text-lg">/mo</span></div>
-                <p className="text-[#6B7280] text-sm">White-glove matching & support</p>
+                <div className="text-4xl font-bold text-[#C9A24A] mb-2">£147<span className="text-lg">/mo</span></div>
+                <p className="text-[#6B7280] text-sm">Personal matching service</p>
               </div>
               
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
                   <span>Everything in Premium</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Personal concierge matching</span>
+                  <span>Personal partner matching</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Negotiation assistance</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Priority booking support</span>
+                  <span>Introduction facilitation</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
                   <span>Dedicated account manager</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                  <span>Priority phone support</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                  <span>Custom partner shortlisting</span>
                 </li>
               </ul>
               
               <Button 
                 className="w-full bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white rounded-md"
                 onClick={() => handleSubscribe('vip')}
+                disabled={loading}
               >
-                Get VIP Access
+                {loading ? 'Loading...' : 'Get VIP Access'}
               </Button>
             </div>
           </div>
@@ -883,10 +916,10 @@ export default function DirectoryPage() {
       <div className="bg-[#0B1B2B] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h3 className="text-4xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            Find Your Perfect London Relocation Partner
+            Access London's Premier Service Directory
           </h3>
           <p className="text-xl mb-8 text-white/90">
-            Access London's most comprehensive directory of vetted luxury relocation specialists
+            Connect instantly with London's most trusted service providers across all specialties
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -896,7 +929,7 @@ export default function DirectoryPage() {
               onClick={() => handleSubscribe('premium')}
             >
               <Search className="mr-2 h-5 w-5" />
-              Start Premium Search
+              Get Premium Access
             </Button>
             <Button 
               size="lg"
@@ -904,15 +937,15 @@ export default function DirectoryPage() {
               className="border-white text-white hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
               onClick={() => handleSubscribe('free')}
             >
-              Browse Free Content
+              Start Free Access
             </Button>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-            <div>✓ 200+ Vetted Partners</div>
-            <div>✓ 33 London Boroughs</div>
-            <div>✓ 96.4% Satisfaction</div>
-            <div>✓ Premium Verified</div>
+            <div>✓ 200+ Service Providers</div>
+            <div>✓ All London Areas</div>
+            <div>✓ Instant Access</div>
+            <div>✓ Quality Verified</div>
           </div>
         </div>
       </div>
