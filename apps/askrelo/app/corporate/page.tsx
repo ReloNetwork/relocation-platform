@@ -40,15 +40,22 @@ const EmergencyBookingForm = () => {
 
       if (response.ok) {
         const result = await response.json()
+        console.log('Form submission result:', result)
+        
+        // Show success message first
+        alert('Emergency consultation request submitted successfully! Redirecting to payment options...')
         
         // Redirect to payment options page
         const params = new URLSearchParams({
-          requestId: result.requestId,
-          company: formData.companyName,
+          requestId: result.requestId || 'test-' + Date.now(),
+          company: encodeURIComponent(formData.companyName),
           timeline: formData.timeline
         })
         
-        router.push(`/corporate/payment?${params.toString()}`)
+        // Use a timeout to ensure the alert is shown
+        setTimeout(() => {
+          router.push(`/corporate/payment?${params.toString()}`)
+        }, 1000)
       } else {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
         throw new Error(errorData.error || 'Failed to submit request')
