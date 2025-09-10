@@ -11,15 +11,41 @@ export default function CorporatePaymentPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [requestId, setRequestId] = useState('')
+  const [pageError, setPageError] = useState('')
   
   // Get request details from URL params
-  const companyName = searchParams.get('company') || 'Your Company'
-  const timeline = searchParams.get('timeline') || 'urgent'
-  const requestIdParam = searchParams.get('requestId') || ''
+  const companyName = searchParams?.get('company') || 'Your Company'
+  const timeline = searchParams?.get('timeline') || 'urgent'
+  const requestIdParam = searchParams?.get('requestId') || ''
 
   useEffect(() => {
-    setRequestId(requestIdParam)
-  }, [requestIdParam])
+    try {
+      console.log('Payment page loaded with params:', { companyName, timeline, requestIdParam })
+      setRequestId(requestIdParam)
+    } catch (error) {
+      console.error('Error in payment page useEffect:', error)
+      setPageError('Error loading payment page')
+    }
+  }, [requestIdParam, companyName, timeline])
+
+  if (pageError) {
+    return (
+      <Layout>
+        <div className="min-h-screen bg-slate-900 py-16">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h1 className="text-2xl font-bold text-white mb-4">Payment Page Error</h1>
+            <p className="text-red-400 mb-4">{pageError}</p>
+            <button 
+              onClick={() => router.back()} 
+              className="bg-blue-600 text-white px-4 py-2 rounded"
+            >
+              Go Back
+            </button>
+          </div>
+        </div>
+      </Layout>
+    )
+  }
 
   const emergencyPackages = [
     {

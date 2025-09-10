@@ -54,13 +54,13 @@ const EmergencyBookingForm = () => {
         
         // Use a timeout to ensure the alert is shown
         setTimeout(() => {
-          console.log('Attempting to redirect to:', `/corporate/test-payment?${params.toString()}`)
+          console.log('Attempting to redirect to:', `/corporate/payment?${params.toString()}`)
           try {
-            router.push(`/corporate/test-payment?${params.toString()}`)
+            router.push(`/corporate/payment?${params.toString()}`)
           } catch (routerError) {
             console.error('Router error:', routerError)
             // Fallback to window.location if router fails
-            window.location.href = `/corporate/test-payment?${params.toString()}`
+            window.location.href = `/corporate/payment?${params.toString()}`
           }
         }, 1000)
       } else {
