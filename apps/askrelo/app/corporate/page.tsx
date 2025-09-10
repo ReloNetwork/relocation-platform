@@ -492,7 +492,7 @@ export default function CorporatePage() {
               </p>
               <div>
                 <div className="font-semibold text-[#0B1220]">Sarah Mitchell</div>
-                <div className="text-sm text-[#6B7280]">VP People Operations, TechCorp</div>
+                <div className="text-sm text-[#6B7280]">VP People Operations, Technology</div>
               </div>
             </div>
 
@@ -508,7 +508,7 @@ export default function CorporatePage() {
               </p>
               <div>
                 <div className="font-semibold text-[#0B1220]">James Rodriguez</div>
-                <div className="text-sm text-[#6B7280]">Chief Human Resources Officer, Global Finance Ltd</div>
+                <div className="text-sm text-[#6B7280]">Chief Human Resources Officer, Financial Services</div>
               </div>
             </div>
 
@@ -524,7 +524,7 @@ export default function CorporatePage() {
               </p>
               <div>
                 <div className="font-semibold text-[#0B1220]">Emma Thompson</div>
-                <div className="text-sm text-[#6B7280]">Head of Talent, Investment Partners</div>
+                <div className="text-sm text-[#6B7280]">Head of Talent, Investment Banking</div>
               </div>
             </div>
           </div>
