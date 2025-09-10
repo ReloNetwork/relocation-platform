@@ -171,43 +171,48 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Check if services are available
-    if (!supabase) {
-      console.error('Supabase not configured')
-      return NextResponse.json(
-        { error: 'Database service not available' },
-        { status: 503 }
-      )
-    }
+    let dbData = null
+    let requestId = `EMR-${Date.now()}`
 
-    // Store in Supabase database
-    const { data: dbData, error: dbError } = await supabase
-      .from('corporate_emergency_requests')
-      .insert({
-        company_name: data.companyName,
-        contact_name: data.contactName,
-        contact_title: data.contactTitle,
-        employee_name: data.employeeName,
-        employee_role: data.employeeRole,
-        timeline: data.timeline,
-        budget: data.budget,
-        phone: data.phone,
-        email: data.email,
-        requirements: data.requirements || null,
-        form_type: data.formType,
-        urgent: data.urgent,
-        submitted_at: data.submittedAt,
-        status: 'new'
-      })
-      .select()
-      .single()
+    // Try to store in Supabase database if available
+    if (supabase) {
+      try {
+        const { data: savedData, error: dbError } = await supabase
+          .from('corporate_emergency_requests')
+          .insert({
+            company_name: data.companyName,
+            contact_name: data.contactName,
+            contact_title: data.contactTitle,
+            employee_name: data.employeeName,
+            employee_role: data.employeeRole,
+            timeline: data.timeline,
+            budget: data.budget,
+            phone: data.phone,
+            email: data.email,
+            requirements: data.requirements || null,
+            form_type: data.formType,
+            urgent: data.urgent,
+            submitted_at: data.submittedAt,
+            status: 'new'
+          })
+          .select()
+          .single()
 
-    if (dbError) {
-      console.error('Supabase error:', dbError)
-      return NextResponse.json(
-        { error: 'Failed to store request data' },
-        { status: 500 }
-      )
+        if (dbError) {
+          console.error('Supabase error:', dbError)
+          // Log the data but don't fail the request
+          console.log('Fallback: Corporate request data (DB unavailable):', JSON.stringify(data, null, 2))
+        } else {
+          dbData = savedData
+          requestId = savedData.id
+        }
+      } catch (error) {
+        console.error('Database connection failed:', error)
+        console.log('Fallback: Corporate request data (DB failed):', JSON.stringify(data, null, 2))
+      }
+    } else {
+      console.warn('Database not configured - logging request data')
+      console.log('Corporate Emergency Request (No DB):', JSON.stringify(data, null, 2))
     }
 
     // Send confirmation email to client
@@ -243,21 +248,23 @@ export async function POST(request: NextRequest) {
     
     // Log successful processing
     console.log('Emergency Corporate Relocation Request processed:', {
-      id: dbData.id,
+      id: requestId,
       company: data.companyName,
       employee: data.employeeName,
       timeline: data.timeline,
       priority: data.urgent ? 'URGENT' : 'HIGH',
       responseTime: '2 hours',
-      team: 'Emergency Response'
+      team: 'Emergency Response',
+      databaseStored: !!dbData
     })
 
     return NextResponse.json({
       success: true,
       message: 'Emergency relocation request received and processed',
-      requestId: dbData.id,
+      requestId: requestId,
       responseTime: '2 hours',
-      confirmationSent: true
+      confirmationSent: true,
+      databaseStored: !!dbData
     })
 
   } catch (error) {

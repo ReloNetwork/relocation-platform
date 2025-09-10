@@ -53,11 +53,13 @@ const EmergencyBookingForm = () => {
           requirements: ''
         })
       } else {
-        throw new Error('Failed to submit request')
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
+        throw new Error(errorData.error || 'Failed to submit request')
       }
     } catch (error) {
       console.error('Error submitting form:', error)
-      alert('There was an error submitting your request. Please try again or call us directly.')
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+      alert(`There was an error submitting your request: ${errorMessage}\n\nPlease try again or call us directly at +44 207 123 4567`)
     }
   }
 
