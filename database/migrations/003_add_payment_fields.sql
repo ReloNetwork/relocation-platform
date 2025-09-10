@@ -39,7 +39,4 @@ ALTER TABLE consultation_bookings ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Anyone can book consultations" ON consultation_bookings
   FOR INSERT WITH CHECK (true);
 
--- Add updated_at trigger for consultation bookings
-CREATE TRIGGER trigger_consultation_bookings_updated_at
-  BEFORE UPDATE ON consultation_bookings
-  FOR EACH ROW EXECUTE FUNCTION handle_updated_at();
+-- Note: Updated_at trigger removed as handle_updated_at() function may not exist
