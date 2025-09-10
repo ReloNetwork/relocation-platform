@@ -38,20 +38,15 @@ const EmergencyBookingForm = () => {
 
       if (response.ok) {
         const result = await response.json()
-        alert('Emergency consultation request submitted successfully! Our team will contact you within 2 hours.')
-        // Reset form
-        setFormData({
-          companyName: '',
-          contactName: '',
-          contactTitle: '',
-          employeeName: '',
-          employeeRole: '',
-          timeline: '',
-          budget: '',
-          phone: '',
-          email: '',
-          requirements: ''
+        
+        // Redirect to payment options page
+        const params = new URLSearchParams({
+          requestId: result.requestId,
+          company: formData.companyName,
+          timeline: formData.timeline
         })
+        
+        window.location.href = `/corporate/payment?${params.toString()}`
       } else {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
         throw new Error(errorData.error || 'Failed to submit request')
