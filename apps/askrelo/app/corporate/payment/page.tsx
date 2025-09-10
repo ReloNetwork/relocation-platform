@@ -13,20 +13,27 @@ export default function CorporatePaymentPage() {
   const [requestId, setRequestId] = useState('')
   const [pageError, setPageError] = useState('')
   
-  // Get request details from URL params
-  const companyName = searchParams?.get('company') || 'Your Company'
-  const timeline = searchParams?.get('timeline') || 'urgent'
-  const requestIdParam = searchParams?.get('requestId') || ''
-
+  // Get request details from URL params with hydration safety
+  const [companyName, setCompanyName] = useState('Your Company')
+  const [timeline, setTimeline] = useState('urgent')
+  
   useEffect(() => {
     try {
-      console.log('Payment page loaded with params:', { companyName, timeline, requestIdParam })
-      setRequestId(requestIdParam)
+      // Only access searchParams after hydration
+      const company = searchParams?.get('company') || 'Your Company'
+      const time = searchParams?.get('timeline') || 'urgent'
+      const reqId = searchParams?.get('requestId') || ''
+      
+      console.log('Payment page loaded with params:', { company, time, reqId })
+      
+      setCompanyName(decodeURIComponent(company))
+      setTimeline(time)
+      setRequestId(reqId)
     } catch (error) {
       console.error('Error in payment page useEffect:', error)
       setPageError('Error loading payment page')
     }
-  }, [requestIdParam, companyName, timeline])
+  }, [searchParams])
 
   if (pageError) {
     return (
