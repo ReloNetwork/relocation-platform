@@ -1,8 +1,11 @@
 -- Add payment-related fields to corporate_emergency_requests table
+ALTER TABLE corporate_emergency_requests 
+ADD COLUMN IF NOT EXISTS payment_session_id TEXT;
 
 ALTER TABLE corporate_emergency_requests 
-ADD COLUMN IF NOT EXISTS payment_session_id TEXT,
-ADD COLUMN IF NOT EXISTS package_id TEXT,
+ADD COLUMN IF NOT EXISTS package_id TEXT;
+
+ALTER TABLE corporate_emergency_requests 
 ADD COLUMN IF NOT EXISTS amount_paid INTEGER;
 
 -- Add indexes for payment fields
@@ -11,14 +14,6 @@ ON corporate_emergency_requests(payment_session_id);
 
 CREATE INDEX IF NOT EXISTS idx_corporate_emergency_requests_package_id 
 ON corporate_emergency_requests(package_id);
-
--- Update status check constraint to include payment statuses
-ALTER TABLE corporate_emergency_requests 
-DROP CONSTRAINT IF EXISTS corporate_emergency_requests_status_check;
-
-ALTER TABLE corporate_emergency_requests 
-ADD CONSTRAINT corporate_emergency_requests_status_check 
-CHECK (status IN ('new', 'contacted', 'in_progress', 'completed', 'cancelled', 'paid'));
 
 -- Create consultation_bookings table for free consultations
 CREATE TABLE IF NOT EXISTS consultation_bookings (
@@ -40,18 +35,7 @@ CREATE INDEX IF NOT EXISTS idx_consultation_bookings_status ON consultation_book
 -- Enable RLS for consultation bookings
 ALTER TABLE consultation_bookings ENABLE ROW LEVEL SECURITY;
 
--- RLS Policies for consultation bookings - Admin only
-CREATE POLICY "Admins can view all consultation bookings" ON consultation_bookings
-  FOR SELECT USING (
-    EXISTS (SELECT 1 FROM users WHERE id = auth.uid() AND role = 'admin')
-  );
-
-CREATE POLICY "Admins can update consultation bookings" ON consultation_bookings
-  FOR UPDATE USING (
-    EXISTS (SELECT 1 FROM users WHERE id = auth.uid() AND role = 'admin')
-  );
-
--- Public insert policy for consultation bookings (no auth required)
+-- RLS Policies for consultation bookings - Public insert allowed
 CREATE POLICY "Anyone can book consultations" ON consultation_bookings
   FOR INSERT WITH CHECK (true);
 
