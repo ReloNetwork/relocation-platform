@@ -1,4 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
+import { Resend } from 'resend'
+import { Env } from '@/lib/env'
+
+const resend = new Resend(Env.RESEND_API_KEY)
+const supabase = createClient(
+  Env.NEXT_PUBLIC_SUPABASE_URL,
+  Env.SUPABASE_SERVICE_ROLE_KEY
+)
 
 interface CorporateEmergencyData {
   companyName: string
@@ -84,7 +93,7 @@ const getConfirmationEmailTemplate = (data: CorporateEmergencyData) => `
   
   <div style="text-align: center; padding: 20px; color: #6B7280; font-size: 12px;">
     <p>Relo Network | One Canada Square, Canary Wharf, London E14 5AB</p>
-    <p>Emergency Hotline: +44 20 7946 0958 | Email: emergency@relo-network.com</p>
+    <p>Emergency Hotline: +44 20 7946 0958 | Email: emergency@therelonetwork.com</p>
   </div>
 </body>
 </html>
@@ -150,34 +159,69 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Store in Supabase database
+    const { data: dbData, error: dbError } = await supabase
+      .from('corporate_emergency_requests')
+      .insert({
+        company_name: data.companyName,
+        contact_name: data.contactName,
+        contact_title: data.contactTitle,
+        employee_name: data.employeeName,
+        employee_role: data.employeeRole,
+        timeline: data.timeline,
+        budget: data.budget,
+        phone: data.phone,
+        email: data.email,
+        requirements: data.requirements || null,
+        form_type: data.formType,
+        urgent: data.urgent,
+        submitted_at: data.submittedAt,
+        status: 'new'
+      })
+      .select()
+      .single()
+
+    if (dbError) {
+      console.error('Supabase error:', dbError)
+      return NextResponse.json(
+        { error: 'Failed to store request data' },
+        { status: 500 }
+      )
+    }
+
     // Send confirmation email to client
-    const confirmationEmailData = {
-      to: data.email,
-      subject: `Emergency Relocation Request Confirmed - ${data.companyName}`,
-      html: getConfirmationEmailTemplate(data)
+    try {
+      await resend.emails.send({
+        from: 'emergency@therelonetwork.com',
+        to: [data.email],
+        subject: `Emergency Relocation Request Confirmed - ${data.companyName}`,
+        html: getConfirmationEmailTemplate(data)
+      })
+    } catch (emailError) {
+      console.error('Client confirmation email error:', emailError)
+      // Don't fail the request if email fails - data is already saved
     }
 
     // Send internal notification
-    const internalNotificationData = {
-      to: 'emergency@relo-network.com',
-      cc: 'ops@relo-network.com',
-      subject: `🚨 EMERGENCY CORPORATE RELOCATION - ${data.companyName} (${data.timeline})`,
-      html: getInternalNotificationTemplate(data)
+    try {
+      await resend.emails.send({
+        from: 'emergency@therelonetwork.com',
+        to: ['emergency@therelonetwork.com'],
+        cc: ['ops@therelonetwork.com'],
+        subject: `🚨 EMERGENCY CORPORATE RELOCATION - ${data.companyName} (${data.timeline})`,
+        html: getInternalNotificationTemplate(data)
+      })
+    } catch (emailError) {
+      console.error('Internal notification email error:', emailError)
+      // Don't fail the request if email fails - data is already saved
     }
-
-    // In a real implementation, you would:
-    // 1. Send emails via your email service (SendGrid, Mailgun, etc.)
-    // 2. Store in your CRM/database
-    // 3. Trigger SMS notifications for urgent requests
-    // 4. Create tasks in your project management system
-
-    // Simulate email sending
-    console.log('Sending confirmation email:', confirmationEmailData)
-    console.log('Sending internal notification:', internalNotificationData)
     
-    // Log to console for development
-    console.log('Emergency Corporate Relocation Request:', {
-      ...data,
+    // Log successful processing
+    console.log('Emergency Corporate Relocation Request processed:', {
+      id: dbData.id,
+      company: data.companyName,
+      employee: data.employeeName,
+      timeline: data.timeline,
       priority: data.urgent ? 'URGENT' : 'HIGH',
       responseTime: '2 hours',
       team: 'Emergency Response'
@@ -186,7 +230,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Emergency relocation request received and processed',
-      requestId: `EMR-${Date.now()}`,
+      requestId: dbData.id,
       responseTime: '2 hours',
       confirmationSent: true
     })
