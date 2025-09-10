@@ -7,25 +7,66 @@ import Layout from '../../components/Layout'
 
 const EmergencyBookingForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    role: '',
+    companyName: '',
+    contactName: '',
+    contactTitle: '',
+    employeeName: '',
+    employeeRole: '',
     timeline: '',
-    phone: ''
+    budget: '',
+    phone: '',
+    email: '',
+    requirements: ''
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Emergency booking:', formData)
+    
+    try {
+      const response = await fetch('/api/forms/corporate-emergency', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          formType: 'corporate-emergency',
+          submittedAt: new Date().toISOString(),
+          urgent: formData.timeline === 'immediate'
+        })
+      })
+
+      if (response.ok) {
+        const result = await response.json()
+        alert('Emergency consultation request submitted successfully! Our team will contact you within 2 hours.')
+        // Reset form
+        setFormData({
+          companyName: '',
+          contactName: '',
+          contactTitle: '',
+          employeeName: '',
+          employeeRole: '',
+          timeline: '',
+          budget: '',
+          phone: '',
+          email: '',
+          requirements: ''
+        })
+      } else {
+        throw new Error('Failed to submit request')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert('There was an error submitting your request. Please try again or call us directly.')
+    }
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-xl p-8 border-2 border-red-500">
+    <div className="bg-white rounded-lg shadow-xl p-8 border-2 border-[#C9A24A]">
       <div className="text-center mb-6">
-        <div className="inline-flex items-center bg-red-50 border border-red-200 rounded-full px-4 py-2 mb-4">
-          <AlertTriangle className="h-4 w-4 text-red-600 mr-2" />
-          <span className="text-red-800 text-sm font-medium">Emergency Booking</span>
+        <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
+          <AlertTriangle className="h-4 w-4 text-[#C9A24A] mr-2" />
+          <span className="text-[#C9A24A] text-sm font-medium">Emergency Booking</span>
         </div>
         <h3 className="text-2xl font-bold text-[#0B1220] mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
           Book Emergency Consultation
@@ -34,63 +75,129 @@ const EmergencyBookingForm = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <input
-            type="text"
-            placeholder="Executive Name *"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-            required
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <input
+              type="text"
+              placeholder="Your Name *"
+              value={formData.contactName}
+              onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
+              className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Your Title *"
+              value={formData.contactTitle}
+              onChange={(e) => setFormData({ ...formData, contactTitle: e.target.value })}
+              className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              required
+            />
+          </div>
         </div>
+        
         <div>
           <input
             type="text"
             placeholder="Company Name *"
-            value={formData.company}
-            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+            value={formData.companyName}
+            onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
             className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
             required
           />
         </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Executive Role *"
-            value={formData.role}
-            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-            className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-            required
-          />
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <input
+              type="text"
+              placeholder="Executive Name *"
+              value={formData.employeeName}
+              onChange={(e) => setFormData({ ...formData, employeeName: e.target.value })}
+              className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Executive Role *"
+              value={formData.employeeRole}
+              onChange={(e) => setFormData({ ...formData, employeeRole: e.target.value })}
+              className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              required
+            />
+          </div>
         </div>
-        <div>
-          <select
-            value={formData.timeline}
-            onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-            className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-            required
-          >
-            <option value="">Required Timeline *</option>
-            <option value="immediate">Immediate (1-7 days)</option>
-            <option value="urgent">Urgent (1-2 weeks)</option>
-            <option value="priority">Priority (2-4 weeks)</option>
-            <option value="standard">Standard (1-2 months)</option>
-          </select>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <select
+              value={formData.timeline}
+              onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+              className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              required
+            >
+              <option value="">Required Timeline *</option>
+              <option value="immediate">Immediate (1-7 days)</option>
+              <option value="urgent">Urgent (1-2 weeks)</option>
+              <option value="priority">Priority (2-4 weeks)</option>
+              <option value="standard">Standard (1-2 months)</option>
+            </select>
+          </div>
+          <div>
+            <select
+              value={formData.budget}
+              onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+              className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              required
+            >
+              <option value="">Budget Range *</option>
+              <option value="£15,000 - £20,000">£15,000 - £20,000</option>
+              <option value="£20,000 - £30,000">£20,000 - £30,000</option>
+              <option value="£30,000 - £50,000">£30,000 - £50,000</option>
+              <option value="£50,000+">£50,000+</option>
+            </select>
+          </div>
         </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <input
+              type="tel"
+              placeholder="Direct Phone Number *"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address *"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              required
+            />
+          </div>
+        </div>
+        
         <div>
-          <input
-            type="tel"
-            placeholder="Direct Phone Number *"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          <textarea
+            rows={3}
+            placeholder="Special Requirements (optional)"
+            value={formData.requirements}
+            onChange={(e) => setFormData({ ...formData, requirements: e.target.value })}
             className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-            required
           />
         </div>
         <Button
           type="submit"
-          className="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-md font-semibold text-lg hover:scale-105 transition-all shadow-lg"
+          className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white py-4 rounded-md font-semibold text-lg hover:scale-105 transition-all shadow-lg"
         >
           Book Emergency Consultation Now
         </Button>
