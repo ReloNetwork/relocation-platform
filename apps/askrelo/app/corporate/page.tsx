@@ -584,11 +584,11 @@ export default function CorporatePage() {
       </section>
 
       {/* Final Emergency CTA */}
-      <div className="bg-red-600 text-white py-16">
+      <div className="bg-[#0B1B2B] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center bg-red-500/20 border border-red-400/30 rounded-full px-4 py-2 mb-6">
-            <AlertTriangle className="h-4 w-4 text-red-200 mr-2" />
-            <span className="text-red-100 text-sm font-medium">Emergency Relocation Required?</span>
+          <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
+            <AlertTriangle className="h-4 w-4 text-[#C9A24A] mr-2" />
+            <span className="text-[#C9A24A] text-sm font-medium">Emergency Relocation Required?</span>
           </div>
           
           <h3 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
@@ -602,13 +602,13 @@ export default function CorporatePage() {
             <Button 
               onClick={handleEmergencyBooking}
               size="lg"
-              className="bg-white text-red-600 hover:bg-gray-100 rounded-lg hover:scale-105 shadow-lg hover:shadow-xl transition-all px-8 py-4 font-semibold"
+              className="bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg hover:scale-105 shadow-lg hover:shadow-xl transition-all px-8 py-4 font-semibold"
             >
               Book Emergency Consultation Now
             </Button>
             <a 
               href="tel:+442071234567"
-              className="inline-flex items-center justify-center h-14 px-8 py-4 text-base border-2 border-white text-white bg-transparent hover:bg-white hover:text-red-600 rounded-lg hover:scale-105 transition-all font-semibold"
+              className="inline-flex items-center justify-center h-14 px-8 py-4 text-base border-2 border-white text-white bg-transparent hover:bg-white hover:text-[#0B1B2B] rounded-lg hover:scale-105 transition-all font-semibold"
             >
               <Phone className="mr-2 h-5 w-5" />
               Call: +44 207 123 4567
