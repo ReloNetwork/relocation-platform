@@ -642,7 +642,7 @@ export default function CorporatePage() {
       <div className="bg-[#0B1B2B] text-white py-20">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <h2 className="text-3xl font-bold mb-4 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Why Fortune 500 Companies Choose Relo Network
             </h2>
           </div>
@@ -650,25 +650,25 @@ export default function CorporatePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
               <Building2 className="h-12 w-12 text-[#C9A24A] mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Enterprise Grade</h3>
+              <h3 className="font-semibold mb-2 text-white">Enterprise Grade</h3>
               <p className="text-white/70 text-sm">Built for large-scale corporate relocations</p>
             </div>
             
             <div className="text-center">
               <Users className="h-12 w-12 text-[#C9A24A] mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Dedicated Teams</h3>
+              <h3 className="font-semibold mb-2 text-white">Dedicated Teams</h3>
               <p className="text-white/70 text-sm">Senior specialists for each executive</p>
             </div>
             
             <div className="text-center">
               <TrendingUp className="h-12 w-12 text-[#C9A24A] mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Proven Results</h3>
+              <h3 className="font-semibold mb-2 text-white">Proven Results</h3>
               <p className="text-white/70 text-sm">100% success rate over 500+ relocations</p>
             </div>
             
             <div className="text-center">
               <Shield className="h-12 w-12 text-[#C9A24A] mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Full Guarantee</h3>
+              <h3 className="font-semibold mb-2 text-white">Full Guarantee</h3>
               <p className="text-white/70 text-sm">30-day money-back guarantee</p>
             </div>
           </div>
@@ -698,7 +698,7 @@ export default function CorporatePage() {
             <span className="text-[#C9A24A] text-sm font-medium">Emergency Relocation Required?</span>
           </div>
           
-          <h3 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+          <h3 className="text-3xl font-bold mb-4 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Don't Risk a Failed Executive Relocation
           </h3>
           <p className="text-lg mb-8 text-white/90">
