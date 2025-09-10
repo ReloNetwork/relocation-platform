@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Phone, CheckCircle, Clock, Shield, Target, Calculator, Star, ArrowRight, Zap, Building2, Users, TrendingUp, AlertTriangle } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 
 const EmergencyBookingForm = () => {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     companyName: '',
     contactName: '',
@@ -46,7 +48,7 @@ const EmergencyBookingForm = () => {
           timeline: formData.timeline
         })
         
-        window.location.href = `/corporate/payment?${params.toString()}`
+        router.push(`/corporate/payment?${params.toString()}`)
       } else {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
         throw new Error(errorData.error || 'Failed to submit request')
