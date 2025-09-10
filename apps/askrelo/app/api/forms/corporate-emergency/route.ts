@@ -1,13 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
-import { Env } from '@/lib/env'
 
-const resend = new Resend(Env.RESEND_API_KEY)
-const supabase = createClient(
-  Env.NEXT_PUBLIC_SUPABASE_URL,
-  Env.SUPABASE_SERVICE_ROLE_KEY
-)
+// Initialize services only if environment variables are available
+let resend: Resend | null = null
+let supabase: any = null
+
+try {
+  if (process.env.RESEND_API_KEY) {
+    resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    )
+  }
+} catch (error) {
+  console.warn('Warning: Some services may not be available due to missing environment variables')
+}
 
 interface CorporateEmergencyData {
   companyName: string
@@ -159,6 +171,15 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Check if services are available
+    if (!supabase) {
+      console.error('Supabase not configured')
+      return NextResponse.json(
+        { error: 'Database service not available' },
+        { status: 503 }
+      )
+    }
+
     // Store in Supabase database
     const { data: dbData, error: dbError } = await supabase
       .from('corporate_emergency_requests')
@@ -190,30 +211,34 @@ export async function POST(request: NextRequest) {
     }
 
     // Send confirmation email to client
-    try {
-      await resend.emails.send({
-        from: 'emergency@therelonetwork.com',
-        to: [data.email],
-        subject: `Emergency Relocation Request Confirmed - ${data.companyName}`,
-        html: getConfirmationEmailTemplate(data)
-      })
-    } catch (emailError) {
-      console.error('Client confirmation email error:', emailError)
-      // Don't fail the request if email fails - data is already saved
-    }
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: 'emergency@therelonetwork.com',
+          to: [data.email],
+          subject: `Emergency Relocation Request Confirmed - ${data.companyName}`,
+          html: getConfirmationEmailTemplate(data)
+        })
+      } catch (emailError) {
+        console.error('Client confirmation email error:', emailError)
+        // Don't fail the request if email fails - data is already saved
+      }
 
-    // Send internal notification
-    try {
-      await resend.emails.send({
-        from: 'emergency@therelonetwork.com',
-        to: ['emergency@therelonetwork.com'],
-        cc: ['ops@therelonetwork.com'],
-        subject: `🚨 EMERGENCY CORPORATE RELOCATION - ${data.companyName} (${data.timeline})`,
-        html: getInternalNotificationTemplate(data)
-      })
-    } catch (emailError) {
-      console.error('Internal notification email error:', emailError)
-      // Don't fail the request if email fails - data is already saved
+      // Send internal notification
+      try {
+        await resend.emails.send({
+          from: 'emergency@therelonetwork.com',
+          to: ['emergency@therelonetwork.com'],
+          cc: ['ops@therelonetwork.com'],
+          subject: `🚨 EMERGENCY CORPORATE RELOCATION - ${data.companyName} (${data.timeline})`,
+          html: getInternalNotificationTemplate(data)
+        })
+      } catch (emailError) {
+        console.error('Internal notification email error:', emailError)
+        // Don't fail the request if email fails - data is already saved
+      }
+    } else {
+      console.warn('Resend not configured - emails not sent')
     }
     
     // Log successful processing
