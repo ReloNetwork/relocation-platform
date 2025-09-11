@@ -162,10 +162,10 @@ const EmergencyBookingForm = () => {
               required
             >
               <option value="">Budget Range *</option>
-              <option value="£15,000 - £20,000">£15,000 - £20,000</option>
-              <option value="£20,000 - £30,000">£20,000 - £30,000</option>
-              <option value="£30,000 - £50,000">£30,000 - £50,000</option>
-              <option value="£50,000+">£50,000+</option>
+              <option value="£15,000 - Essential Executive">£15,000 - Essential Executive</option>
+              <option value="£25,000 - Complete Executive">£25,000 - Complete Executive</option>
+              <option value="£45,000 - C-Suite Elite">£45,000 - C-Suite Elite</option>
+              <option value="£50,000+ - Custom Package">£50,000+ - Custom Package</option>
             </select>
           </div>
         </div>
@@ -207,7 +207,7 @@ const EmergencyBookingForm = () => {
           disabled={loading}
           className="w-full bg-[#C9A24A] hover:bg-[#B8923D] disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-4 rounded-md font-semibold text-lg hover:scale-105 transition-all shadow-lg"
         >
-          {loading ? 'Processing...' : 'Reserve Executive Package Now'}
+          {loading ? 'Processing...' : 'Book Emergency Call Now'}
         </Button>
       </form>
       
