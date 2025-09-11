@@ -320,58 +320,40 @@ export default function ConciergePage() {
       ]
     },
     {
-      name: 'Human Concierge',
-      price: '1495',
-      originalPrice: '2495',
-      description: 'Personal relocation assistant',
-      usage: 'Everything + Human concierge • Personal service',
-      priceId: 'price_human_concierge',
-      features: [
-        'Everything in Property Hunter',
-        'Dedicated human concierge',
-        'In-person property viewings (up to 8)',
-        'Application assistance',
-        'Contract guidance',
-        'Basic moving coordination',
-        'Priority email & phone support',
-        'Bi-weekly check-ins'
-      ]
-    },
-    {
       name: 'Done-For-You',
       price: '1495',
       originalPrice: '2495',
-      description: 'Dedicated human concierge service',
-      usage: 'Everything + Human concierge • White-glove service',
+      description: 'Complete relocation management',
+      usage: 'Everything + Full service management • We handle it all',
       priceId: 'price_done_for_you',
       features: [
         'Everything in Property Hunter',
-        'Dedicated human concierge',
-        'In-person property viewings (up to 10)',
-        'Application submission management',
+        'Dedicated relocation manager',
+        'Complete property search management',
+        'Full application handling',
         'Contract review and negotiation',
         'Utility setup coordination',
-        'Moving coordination',
-        'Priority phone support'
+        'Moving coordination and management',
+        'Priority support with dedicated manager'
       ]
     },
     {
       name: 'Executive Relocation',
       price: '2995',
       originalPrice: '4995',
-      description: 'Full-service executive package',
-      usage: 'Everything + Dedicated account manager • VIP treatment',
+      description: 'Premium executive relocation service',
+      usage: 'Everything + VIP executive treatment • Luxury service',
       priceId: 'price_executive_relocation',
       features: [
         'Everything in Done-For-You',
-        'Dedicated account manager',
-        'Unlimited property viewings',
-        'Executive housing specialists',
+        'Senior executive relocation specialist',
+        'Unlimited premium property viewings',
+        'Executive housing and luxury properties',
         'Temporary accommodation sourcing',
         'International relocation coordination',
         'Family services (schools, healthcare)',
-        'VIP concierge services',
-        '24/7 priority support'
+        'VIP concierge and lifestyle services',
+        '24/7 priority executive support'
       ]
     }
   ]
