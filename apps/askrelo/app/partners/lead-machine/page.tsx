@@ -14,12 +14,8 @@ const CountdownTimer = () => {
   })
 
   useEffect(() => {
-    // Set target to next Friday at midnight
-    const now = new Date()
-    const daysUntilFriday = (5 - now.getDay() + 7) % 7 || 7
-    const targetDate = new Date(now)
-    targetDate.setDate(now.getDate() + daysUntilFriday)
-    targetDate.setHours(23, 59, 59, 999)
+    // Set target to Monday, September 15, 2025 • 2:00 PM GMT
+    const targetDate = new Date('2025-09-15T14:00:00.000Z')
     
     const updateCountdown = () => {
       const now = new Date()
@@ -46,7 +42,7 @@ const CountdownTimer = () => {
     <div className="bg-red-600 text-white p-4 rounded-lg text-center mb-8">
       <div className="flex items-center justify-center gap-2 mb-2">
         <Timer className="h-5 w-5" />
-        <span className="font-bold text-lg">FOUNDING RATE EXPIRES FRIDAY</span>
+        <span className="font-bold text-lg">FOUNDING RATE EXPIRES SEPTEMBER 15</span>
       </div>
       <div className="flex gap-4 justify-center text-xl font-bold">
         <div className="text-center">
@@ -74,7 +70,7 @@ const CountdownTimer = () => {
           <div className="text-xs mt-1">SEC</div>
         </div>
       </div>
-      <div className="text-sm mt-2 opacity-90">Price doubles to £997/month after Friday!</div>
+      <div className="text-sm mt-2 opacity-90">Price doubles to £997/month after September 15!</div>
     </div>
   )
 }
@@ -315,6 +311,19 @@ export default function LeadMachinePage() {
             </p>
 
             <CountdownTimer />
+            
+            {/* Annual Payment Special Offer */}
+            <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-lg mb-8 border-2 border-green-400">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-2">🎯 SPECIAL ANNUAL OFFER</h3>
+                <p className="text-lg mb-2">
+                  Pay annually and get <span className="font-bold">10 months at the discounted founding rate</span>
+                </p>
+                <p className="text-green-100">
+                  Save £996 per year • Only available until September 15, 2025
+                </p>
+              </div>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button 
