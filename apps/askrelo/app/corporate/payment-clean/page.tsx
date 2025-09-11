@@ -75,6 +75,7 @@ export default function CleanPaymentPage() {
   ]
 
   const handleBookService = async (packageId: string, price: number, packageName: string) => {
+    console.log('Button clicked:', packageId, price, packageName)
     setLoading(true)
     
     try {
@@ -94,14 +95,17 @@ export default function CleanPaymentPage() {
         })
       })
 
-      const { url } = await response.json()
+      const result = await response.json()
+      console.log('Payment response:', result)
       
-      if (url) {
-        window.location.href = url
+      if (result.url) {
+        window.location.href = result.url
+      } else {
+        throw new Error('No payment URL received')
       }
     } catch (error) {
       console.error('Payment error:', error)
-      alert('Error creating payment session. Please try again.')
+      alert('Error creating payment session. Please try again or call +44 20 7946 0958')
     } finally {
       setLoading(false)
     }
@@ -187,7 +191,7 @@ export default function CleanPaymentPage() {
                   ))}
                 </div>
 
-                <Button 
+                <button 
                   onClick={() => handleBookService(pkg.id, pkg.price, pkg.name)}
                   disabled={loading}
                   className={`w-full py-3 px-4 sm:py-4 sm:px-6 text-sm sm:text-base font-semibold transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] rounded-md ${
@@ -197,7 +201,7 @@ export default function CleanPaymentPage() {
                   }`}
                 >
                   {loading ? 'Processing...' : 'Book Now →'}
-                </Button>
+                </button>
               </div>
             ))}
           </div>
