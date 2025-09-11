@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 • Exclusive deals and partnerships
 
 Perfect for businesses with regular relocation needs.`,
-        unit_amount: 4900 // £49/month
+        unit_amount: 4700 // £47/month
       },
       vip_concierge: {
         name: 'VIP Concierge Service',
@@ -65,7 +65,7 @@ Perfect for businesses with regular relocation needs.`,
 • Quarterly strategy reviews
 
 The ultimate solution for enterprise clients.`,
-        unit_amount: 19900 // £199/month
+        unit_amount: 14700 // £147/month
       }
     }
 
@@ -84,7 +84,7 @@ The ultimate solution for enterprise clients.`,
             recurring: {
               interval: 'month',
             },
-            unit_amount: planInfo?.unit_amount || 4900,
+            unit_amount: planInfo?.unit_amount || 4700,
           },
           quantity: 1,
         },

@@ -62,7 +62,7 @@ const PRODUCTS = {
   'premium-directory': {
     name: 'Premium Directory Access',
     description: 'Access to 500+ verified service providers with direct messaging capabilities',
-    amount: 4900, // £49.00
+    amount: 4700, // £47.00
     interval: 'month',
     features: [
       'Access to 500+ verified service providers',
@@ -81,7 +81,7 @@ const PRODUCTS = {
   'vip-concierge': {
     name: 'VIP Concierge Service',
     description: 'Ultimate solution for enterprise clients with personal account manager',
-    amount: 19900, // £199.00
+    amount: 14700, // £147.00
     interval: 'month',
     features: [
       'Everything in Premium Directory PLUS:',

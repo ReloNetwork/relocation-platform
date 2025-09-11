@@ -272,19 +272,39 @@ export default function DirectoryPage() {
       if (plan === 'free') {
         window.location.href = '/account'
       } else {
+        // Map plan names to API expected values
+        const planMapping: { [key: string]: string } = {
+          'premium': 'premium_directory',
+          'vip': 'vip_concierge'
+        }
+        
+        const apiPlan = planMapping[plan] || plan
+        
         const response = await fetch('/api/directory/checkout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ plan })
+          body: JSON.stringify({ plan: apiPlan })
         })
         
-        const { url } = await response.json()
-        if (url) {
-          window.location.href = url
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        
+        const data = await response.json()
+        
+        if (data.error) {
+          throw new Error(data.error)
+        }
+        
+        if (data.url) {
+          window.location.href = data.url
+        } else {
+          throw new Error('No checkout URL received')
         }
       }
     } catch (error) {
       console.error('Subscription error:', error)
+      alert('Sorry, there was an error processing your request. Please try again.')
     } finally {
       setLoading(false)
     }
