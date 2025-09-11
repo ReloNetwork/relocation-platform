@@ -137,14 +137,14 @@ export default function CleanPaymentPage() {
               Request Submitted
             </h1>
             <p className="text-xl text-[#6B7280] max-w-2xl mx-auto">
-              Your emergency consultation request for <span className="font-semibold text-[#0B1220]">{decodeURIComponent(company)}</span> has been received.
+              Your executive relocation request for <span className="font-semibold text-[#0B1220]">{decodeURIComponent(company)}</span> has been received.
             </p>
           </div>
 
           {/* Pricing Section */}
           <div className="text-center mb-12">
             <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-[#0B1220] mb-4">
-              Choose Your Emergency Package
+              Select Your Executive Package
             </h2>
             <p className="text-[#6B7280] text-lg max-w-2xl mx-auto">
               All packages include our 30-day guarantee with emergency pricing - limited time
