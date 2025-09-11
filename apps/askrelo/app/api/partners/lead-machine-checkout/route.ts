@@ -125,17 +125,13 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
+    const tier = body.tier || 'lead_machine'
     
-    // Create Stripe Checkout Session for Lead Machine with custom data
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price_data: {
-            currency: 'gbp',
-            product_data: {
-              name: 'Lead Machine Partnership',
-              description: `Lead Machine Partnership Benefits:
+    // Define tier-specific configurations
+    const tierConfigs = {
+      'lead_machine': {
+        name: 'Lead Machine Partnership',
+        description: `Lead Machine Partnership Benefits:
 
 • 8-15 guaranteed qualified leads every month
 • AI concierge mentions to premium clients
@@ -147,32 +143,68 @@ export async function POST(request: NextRequest) {
 • High-value corporate relocations
 
 Founding Member Rate: £497/month (Regular: £997/month)`,
-              images: ['https://relocation-platform.vercel.app/images/lead-machine-logo.png'],
+        amount: 49700, // £497
+        originalAmount: 99700, // £997
+        successUrl: '/partners/lead-machine/success',
+        cancelUrl: '/partners/lead-machine'
+      },
+      'market-dominator': {
+        name: 'Market Dominator Partnership',
+        description: `Market Dominator Partnership Benefits:
+
+• Everything in Lead Machine (8-15 leads/month)
+• EXCLUSIVE category ownership
+• AI mentions you as "preferred partner"
+• Co-branded content creation
+• White-label integration options
+• Priority Concierge tier recommendations
+• 15% revenue sharing on closed deals
+• Quarterly business reviews with CEO
+
+Founding Member Rate: £1,497/month (Regular: £2,997/month)`,
+        amount: 149700, // £1497
+        originalAmount: 299700, // £2997
+        successUrl: '/partners/market-dominator/success',
+        cancelUrl: '/partners/market-dominator'
+      }
+    }
+
+    const config = tierConfigs[tier] || tierConfigs['lead_machine']
+    
+    // Create Stripe Checkout Session with tier-specific data
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'gbp',
+            product_data: {
+              name: config.name,
+              description: config.description,
+              images: ['https://relocation-platform.vercel.app/images/relo-logo.png'],
             },
             recurring: {
               interval: 'month',
             },
-            unit_amount: 49700, // £497.00 in pence
+            unit_amount: config.amount,
           },
           quantity: 1,
         },
       ],
       mode: 'subscription',
-      success_url: `${request.nextUrl.origin}/partners/lead-machine/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${request.nextUrl.origin}/partners/lead-machine`,
+      success_url: `${request.nextUrl.origin}${config.successUrl}?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${request.nextUrl.origin}${config.cancelUrl}`,
       metadata: {
-        type: 'lead_machine_subscription',
-        tier: 'lead_machine',
+        type: `${tier}_subscription`,
+        tier: tier,
         founding_rate: 'true',
-        original_price: '99700', // £997 in pence
+        original_price: config.originalAmount.toString(),
         ...body // Include any form data
       },
       subscription_data: {
         metadata: {
-          tier: 'lead_machine',
+          tier: tier,
           founding_member: 'true',
-          leads_guaranteed: '8-15',
-          territory_exclusive: 'true',
           partner_data: JSON.stringify(body)
         }
       },
@@ -181,16 +213,18 @@ Founding Member Rate: £497/month (Regular: £997/month)`,
       ui_mode: 'hosted',
       custom_text: {
         submit: {
-          message: 'Join the Lead Machine Partnership and start receiving qualified leads within 24-48 hours.'
+          message: tier === 'market-dominator' 
+            ? 'Secure your Market Dominator partnership and eliminate competition within 24-48 hours.'
+            : 'Join the Lead Machine Partnership and start receiving qualified leads within 24-48 hours.'
         }
       },
     })
 
     return NextResponse.json({ url: session.url })
   } catch (error) {
-    console.error('Lead Machine checkout error:', error)
+    console.error('Partner checkout error:', error)
     return NextResponse.json(
-      { error: 'Failed to create Lead Machine checkout session' },
+      { error: 'Failed to create checkout session' },
       { status: 500 }
     )
   }

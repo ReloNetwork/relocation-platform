@@ -316,18 +316,32 @@ export default function MarketDominatorPage() {
   const handleApplication = async (formData: any) => {
     setLoading(true)
     try {
-      const response = await fetch('/api/partners/market-dominator-application', {
+      const response = await fetch('/api/partners/lead-machine-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          tier: 'market-dominator',
+          product_name: 'Market Dominator Partnership',
+          price: 149700, // £1497 in pence
+          original_price: 299700 // £2997 in pence
+        })
       })
       
-      if (response.ok) {
-        // Redirect to Stripe checkout
-        window.location.href = '/api/partners/market-dominator-checkout'
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        throw new Error('No checkout URL received')
       }
     } catch (error) {
       console.error('Application error:', error)
+      alert(`Sorry, there was an error processing your request: ${error.message}. Please try again or contact support.`)
     } finally {
       setLoading(false)
     }
@@ -336,9 +350,31 @@ export default function MarketDominatorPage() {
   const handleDirectCheckout = async () => {
     setLoading(true)
     try {
-      window.location.href = '/api/partners/market-dominator-checkout'
+      const response = await fetch('/api/partners/lead-machine-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tier: 'market-dominator',
+          product_name: 'Market Dominator Partnership',
+          price: 149700, // £1497 in pence
+          original_price: 299700 // £2997 in pence
+        })
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        throw new Error('No checkout URL received')
+      }
     } catch (error) {
       console.error('Checkout error:', error)
+      alert(`Sorry, there was an error processing your request: ${error.message}. Please try again or contact support.`)
     } finally {
       setLoading(false)
     }
