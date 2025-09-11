@@ -86,38 +86,44 @@ export default function CleanPaymentPage() {
     setLoading(true)
     
     try {
-      const response = await fetch('/api/payments/create-checkout-session', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          packageId,
-          price,
-          requestId,
-          companyName: decodeURIComponent(company),
-          timeline,
-          successUrl: `${window.location.origin}/corporate/payment/success?session_id={CHECKOUT_SESSION_ID}&requestId=${requestId}`,
-          cancelUrl: `${window.location.origin}/corporate/payment-clean?requestId=${requestId}&company=${encodeURIComponent(company)}&timeline=${timeline}`
-        })
-      })
+      // For immediate launch - redirect to contact for payment processing
+      // This ensures customers can still complete their purchase while Stripe is being configured
+      const contactUrl = `tel:+442079460958`
+      const emailSubject = encodeURIComponent(`Executive Package Reservation - ${packageName}`)
+      const emailBody = encodeURIComponent(`Hello,
 
-      const result = await response.json()
-      console.log('Payment response:', result)
+I would like to reserve the ${packageName} package for ${decodeURIComponent(company)}.
+
+Package Details:
+- Package: ${packageName}
+- Price: £${price.toLocaleString()}
+- Company: ${decodeURIComponent(company)}
+- Timeline: ${timeline}
+- Request ID: ${requestId}
+
+Please process my payment and confirm the reservation.
+
+Thank you,`)
       
-      if (!response.ok) {
-        throw new Error(result.error || 'Payment session creation failed')
-      }
+      const emailUrl = `mailto:executive@therelonetwork.com?subject=${emailSubject}&body=${emailBody}`
       
-      if (result.url) {
-        window.location.href = result.url
+      // Show options for payment
+      const userChoice = confirm(`Reserve ${packageName} for £${price.toLocaleString()}?
+
+Click OK to call our executive hotline now for immediate payment processing.
+Or click Cancel to send an email reservation request.`)
+      
+      if (userChoice) {
+        // Call immediately
+        window.location.href = contactUrl
       } else {
-        throw new Error('No payment URL received')
+        // Send email
+        window.location.href = emailUrl
       }
+      
     } catch (error) {
       console.error('Payment error:', error)
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      alert(`Error: ${errorMessage}. Please try again or call +44 20 7946 0958`)
+      alert(`Please call +44 20 7946 0958 to complete your reservation for ${packageName}`)
     } finally {
       setLoading(false)
     }
@@ -212,7 +218,7 @@ export default function CleanPaymentPage() {
                       : 'bg-[#0B1B2B] text-white hover:bg-[#1a2332]'
                   }`}
                 >
-                  {loading ? 'Processing...' : 'Book Now →'}
+                  {loading ? 'Processing...' : 'Reserve Now →'}
                 </button>
               </div>
             ))}
