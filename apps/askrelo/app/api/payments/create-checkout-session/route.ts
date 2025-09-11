@@ -25,17 +25,17 @@ interface CheckoutSessionData {
 }
 
 const packages = {
-  'emergency-immediate': {
-    name: 'Emergency Response Package',
-    description: 'Within 24 hours - 2-hour emergency response guarantee'
+  'managed-relocation': {
+    name: 'Managed Relocation',
+    description: 'Essential executive relocation service'
   },
-  'emergency-urgent': {
-    name: 'Priority Response Package', 
-    description: 'Within 48 hours - 4-hour priority response guarantee'
+  'executive-package': {
+    name: 'Executive Package', 
+    description: 'Comprehensive executive relocation'
   },
-  'emergency-priority': {
-    name: 'Fast-Track Package',
-    description: 'Within 1 week - 24-hour response guarantee'
+  'premium-executive': {
+    name: 'Premium Executive',
+    description: 'White-glove executive relocation'
   }
 }
 
@@ -129,8 +129,22 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Error creating checkout session:', error)
+    
+    // Provide more specific error messages
+    let errorMessage = 'Failed to create payment session'
+    if (error instanceof Error) {
+      if (error.message.includes('No such price')) {
+        errorMessage = 'Invalid pricing configuration'
+      } else if (error.message.includes('api_key')) {
+        errorMessage = 'Payment service configuration error'
+      } else if (error.message.includes('Invalid request')) {
+        errorMessage = 'Invalid payment request data'
+      }
+      console.error('Stripe error details:', error.message)
+    }
+    
     return NextResponse.json(
-      { error: 'Failed to create payment session' },
+      { error: errorMessage, details: process.env.NODE_ENV === 'development' ? error.message : undefined },
       { status: 500 }
     )
   }

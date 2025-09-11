@@ -98,6 +98,10 @@ export default function CleanPaymentPage() {
       const result = await response.json()
       console.log('Payment response:', result)
       
+      if (!response.ok) {
+        throw new Error(result.error || 'Payment session creation failed')
+      }
+      
       if (result.url) {
         window.location.href = result.url
       } else {
@@ -105,7 +109,8 @@ export default function CleanPaymentPage() {
       }
     } catch (error) {
       console.error('Payment error:', error)
-      alert('Error creating payment session. Please try again or call +44 20 7946 0958')
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+      alert(`Error: ${errorMessage}. Please try again or call +44 20 7946 0958`)
     } finally {
       setLoading(false)
     }
