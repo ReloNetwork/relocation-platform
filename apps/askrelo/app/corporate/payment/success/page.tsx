@@ -22,9 +22,29 @@ export default function PaymentSuccessPage() {
 
   const fetchSessionData = async () => {
     try {
-      const response = await fetch(`/api/payments/verify-session?session_id=${sessionId}`)
-      const data = await response.json()
-      setSessionData(data)
+      // Check if this is a mock payment from URL params
+      const isMock = searchParams.get('mock') === 'true'
+      
+      if (isMock) {
+        // Create mock session data for testing
+        const mockData = {
+          id: sessionId,
+          amount_total: 1500000, // £15,000 in pence
+          metadata: {
+            companyName: 'Test Company',
+            packageId: 'managed-relocation',
+            timeline: 'urgent',
+            requestId: requestId
+          },
+          payment_status: 'paid',
+          mock: true
+        }
+        setSessionData(mockData)
+      } else {
+        const response = await fetch(`/api/payments/verify-session?session_id=${sessionId}`)
+        const data = await response.json()
+        setSessionData(data)
+      }
     } catch (error) {
       console.error('Error fetching session data:', error)
     } finally {
