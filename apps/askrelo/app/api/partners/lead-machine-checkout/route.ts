@@ -2,10 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
 const stripeKey = process.env.STRIPE_SECRET_KEY!
-const stripe = new Stripe(stripeKey)
+const stripe = new Stripe(stripeKey, {
+  apiVersion: '2024-06-20',
+})
 
 export async function GET(request: NextRequest) {
   try {
+    console.log('Creating Lead Machine checkout session...')
+    console.log('Stripe key exists:', !!stripeKey)
+    console.log('Stripe key length:', stripeKey?.length)
+    
     // Create Stripe Checkout Session for Lead Machine
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -45,14 +51,27 @@ export async function GET(request: NextRequest) {
       },
       allow_promotion_codes: false,
       billing_address_collection: 'required',
-      customer_creation: 'always',
     })
 
+    console.log('Session created successfully:', session.id)
     return NextResponse.redirect(session.url!)
   } catch (error) {
-    console.error('Lead Machine checkout error:', error)
+    console.error('Lead Machine checkout error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      stripeError: error
+    })
+    
+    // Return a more detailed error for debugging
     return NextResponse.json(
-      { error: 'Failed to create Lead Machine checkout session' },
+      { 
+        error: 'Failed to create Lead Machine checkout session',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        debug: {
+          hasStripeKey: !!stripeKey,
+          stripeKeyPrefix: stripeKey?.substring(0, 8) + '...'
+        }
+      },
       { status: 500 }
     )
   }
@@ -103,7 +122,6 @@ export async function POST(request: NextRequest) {
       },
       allow_promotion_codes: false,
       billing_address_collection: 'required',
-      customer_creation: 'always',
     })
 
     return NextResponse.json({ url: session.url })
