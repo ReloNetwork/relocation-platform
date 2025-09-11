@@ -50,6 +50,7 @@ export async function POST(request: NextRequest) {
     console.log('Payment API called - checking Stripe initialization')
     console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY)
     console.log('STRIPE_SECRET_KEY length:', process.env.STRIPE_SECRET_KEY?.length || 0)
+    console.log('STRIPE_SECRET_KEY prefix:', process.env.STRIPE_SECRET_KEY?.substring(0, 15) || 'none')
     
     const stripe = getStripe()
     console.log('Stripe instance created:', !!stripe)
