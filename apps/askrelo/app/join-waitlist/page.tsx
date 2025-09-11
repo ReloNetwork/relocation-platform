@@ -258,14 +258,7 @@ export default function JoinWaitlistPage() {
             Our team is here to help you understand how Relo Network can transform your London move
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={() => window.location.href = '/corporate'}
-              size="lg"
-              className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
-            >
-              Book a Call <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+          <div className="flex justify-center">
             <button 
               onClick={() => window.location.href = '/demo'}
               className="inline-flex items-center justify-center h-14 px-8 py-4 text-base border border-white text-white bg-transparent hover:bg-white hover:text-[#C9A24A] rounded-md hover:scale-105 transition-all font-medium"
