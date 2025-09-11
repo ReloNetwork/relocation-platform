@@ -1,21 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-// Initialize Stripe
-let stripe: Stripe | null = null
-
-try {
-  if (process.env.STRIPE_SECRET_KEY) {
-    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-06-20',
-    })
+// Initialize Stripe function
+function getStripe(): Stripe | null {
+  try {
+    if (process.env.STRIPE_SECRET_KEY) {
+      return new Stripe(process.env.STRIPE_SECRET_KEY, {
+        apiVersion: '2024-06-20',
+      })
+    } else {
+      console.warn('STRIPE_SECRET_KEY environment variable not found')
+      return null
+    }
+  } catch (error) {
+    console.error('Error initializing Stripe:', error)
+    return null
   }
-} catch (error) {
-  console.warn('Warning: Stripe not available due to missing API key')
 }
 
 export async function GET(request: NextRequest) {
   try {
+    const stripe = getStripe()
+    
     if (!stripe) {
       return NextResponse.json(
         { error: 'Payment verification not available' },
