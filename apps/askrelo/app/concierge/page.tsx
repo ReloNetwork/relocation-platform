@@ -250,18 +250,34 @@ export default function ConciergePage() {
   const handleCheckout = async (priceId: string) => {
     setLoading(true)
     try {
+      console.log('Starting checkout for priceId:', priceId)
+      
       const response = await fetch('/api/ask-relo/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ priceId })
       })
       
-      const { url } = await response.json()
-      if (url) {
-        window.location.href = url
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      console.log('Checkout response:', data)
+      
+      if (data.error) {
+        throw new Error(data.error)
+      }
+      
+      if (data.url) {
+        console.log('Redirecting to:', data.url)
+        window.location.href = data.url
+      } else {
+        throw new Error('No checkout URL received')
       }
     } catch (error) {
       console.error('Checkout error:', error)
+      alert(`Sorry, there was an error processing your request: ${error.message}. Please try again or contact support.`)
     } finally {
       setLoading(false)
     }
