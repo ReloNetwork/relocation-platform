@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../../components/Layout'
-import { Copy, ExternalLink, Plus, Check } from 'lucide-react'
+import { Copy, ExternalLink, Plus, Check, Mail, Smartphone, MessageCircle } from 'lucide-react'
 
 interface Product {
   key: string
@@ -224,15 +224,24 @@ export default function PaymentLinksPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
               <div>
-                <h3 className="font-semibold text-[#0B1220] mb-2">📧 Email Marketing</h3>
+                <h3 className="font-semibold text-[#0B1220] mb-2 flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  Email Marketing
+                </h3>
                 <p className="text-[#6B7280]">Include in newsletters, promotional emails, or direct client outreach for easy one-click purchasing.</p>
               </div>
               <div>
-                <h3 className="font-semibold text-[#0B1220] mb-2">📱 Social Media</h3>
+                <h3 className="font-semibold text-[#0B1220] mb-2 flex items-center gap-2">
+                  <Smartphone className="h-4 w-4" />
+                  Social Media
+                </h3>
                 <p className="text-[#6B7280]">Share on LinkedIn, Twitter, or other platforms to drive subscriptions from social traffic.</p>
               </div>
               <div>
-                <h3 className="font-semibold text-[#0B1220] mb-2">💬 Direct Sales</h3>
+                <h3 className="font-semibold text-[#0B1220] mb-2 flex items-center gap-2">
+                  <MessageCircle className="h-4 w-4" />
+                  Direct Sales
+                </h3>
                 <p className="text-[#6B7280]">Send directly to prospects via WhatsApp, Slack, or any messaging platform for instant purchases.</p>
               </div>
             </div>

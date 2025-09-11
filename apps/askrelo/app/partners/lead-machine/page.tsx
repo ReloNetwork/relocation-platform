@@ -315,7 +315,10 @@ export default function LeadMachinePage() {
             {/* Annual Payment Special Offer */}
             <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-lg mb-8 border-2 border-green-400">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-2">🎯 SPECIAL ANNUAL OFFER</h3>
+                <h3 className="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
+                  <Target className="h-6 w-6" />
+                  SPECIAL ANNUAL OFFER
+                </h3>
                 <p className="text-lg mb-2">
                   Pay annually and get <span className="font-bold">10 months at the discounted founding rate</span>
                 </p>

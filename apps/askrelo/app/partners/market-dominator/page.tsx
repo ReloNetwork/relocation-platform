@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Check, Star, ArrowRight, Users, Zap, Shield, Timer, Trophy, Target, AlertTriangle, Phone, Clock, Crown } from 'lucide-react'
+import { Check, Star, ArrowRight, Users, Zap, Shield, Timer, Trophy, Target, AlertTriangle, Phone, Clock, Crown, X } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../../components/Layout'
 
@@ -143,7 +143,10 @@ const CompetitorKiller = () => (
     <h3 className="text-2xl font-bold mb-6 text-center text-[#C9A24A]">Eliminate Your Competition</h3>
     <div className="grid md:grid-cols-2 gap-8">
       <div>
-        <h4 className="font-bold text-white mb-4">❌ Without Market Dominator:</h4>
+        <h4 className="font-bold text-white mb-4 flex items-center gap-2">
+          <X className="h-5 w-5" />
+          Without Market Dominator:
+        </h4>
         <ul className="space-y-2 text-white/80">
           <li>• Your competitors get equal recommendations</li>
           <li>• Clients shop around and compare prices</li>
@@ -152,7 +155,10 @@ const CompetitorKiller = () => (
         </ul>
       </div>
       <div>
-        <h4 className="font-bold text-[#C9A24A] mb-4">✅ With Market Dominator:</h4>
+        <h4 className="font-bold text-[#C9A24A] mb-4 flex items-center gap-2">
+          <Check className="h-5 w-5" />
+          With Market Dominator:
+        </h4>
         <ul className="space-y-2 text-[#C9A24A]/90">
           <li>• You become THE ONLY recommended provider</li>
           <li>• AI specifically mentions you as "preferred partner"</li>
@@ -401,7 +407,10 @@ export default function MarketDominatorPage() {
             {/* Annual Payment Special Offer */}
             <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-lg mb-8 border-2 border-green-400">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-2">🎯 SPECIAL ANNUAL OFFER</h3>
+                <h3 className="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
+                  <Target className="h-6 w-6" />
+                  SPECIAL ANNUAL OFFER
+                </h3>
                 <p className="text-lg mb-2">
                   Pay annually and get <span className="font-bold">10 months at the discounted founding rate</span>
                 </p>

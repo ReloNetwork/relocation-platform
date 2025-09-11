@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Layout from '../../../components/Layout'
+import { Check, Zap, DollarSign } from 'lucide-react'
 
 export default function SimplePaymentPage() {
   const searchParams = useSearchParams()
@@ -103,7 +104,9 @@ export default function SimplePaymentPage() {
           {/* Success Header */}
           <div className="bg-gradient-to-r from-green-700 to-emerald-600 py-12 rounded-lg mb-8">
             <div className="text-center text-white">
-              <div className="text-4xl mb-4">✅</div>
+              <div className="text-4xl mb-4">
+                <Check className="h-16 w-16 mx-auto text-white" />
+              </div>
               <h1 className="text-3xl font-bold mb-2">Request Submitted Successfully!</h1>
               <p className="text-xl">Your emergency consultation request has been received</p>
             </div>
@@ -176,7 +179,7 @@ export default function SimplePaymentPage() {
               
               <div className="bg-red-500/20 border border-red-500/30 rounded p-3 mb-4">
                 <div className="flex items-center text-red-300 text-sm">
-                  <span className="mr-2">⚡</span>
+                  <Zap className="h-4 w-4 mr-2" />
                   <span className="font-semibold">Limited Time: Emergency pricing valid for 24 hours</span>
                 </div>
               </div>
@@ -190,9 +193,10 @@ export default function SimplePaymentPage() {
                 onClick={() => {
                   document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 px-4 rounded-lg font-semibold text-lg transition-colors"
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 px-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center gap-2"
               >
-                💰 View Emergency Packages
+                <DollarSign className="h-5 w-5" />
+                View Emergency Packages
               </button>
             </div>
           </div>

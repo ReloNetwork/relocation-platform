@@ -179,8 +179,9 @@ export default function PremiumClientForm() {
                 </li>
               </ul>
               <div className="mt-4 p-3 bg-[#0B1B2B] rounded-md">
-                <p className="text-white text-sm font-medium">
-                  📱 Emergency Contact: +44 20 7946 0959 (Available 24/7)
+                <p className="text-white text-sm font-medium flex items-center">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Emergency Contact: +44 20 7946 0959 (Available 24/7)
                 </p>
               </div>
             </div>

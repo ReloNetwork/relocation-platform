@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Check, Star, ArrowRight, Users, Clock, Zap, Timer, Shield, Trophy, Target, Building, Globe, Calculator } from 'lucide-react'
+import { Check, Star, ArrowRight, Users, Clock, Zap, Timer, Shield, Trophy, Target, Building, Globe, Calculator, Mail } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 import { getAllPartnershipSchemas } from '../../lib/seo/partnership-schemas'
@@ -1005,7 +1005,7 @@ export default function PartnersPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-[#C9A24A]/10 rounded-full flex items-center justify-center">
-                      ✉️
+                      <Mail className="h-4 w-4 text-[#C9A24A]" />
                     </div>
                     <div>
                       <div className="font-medium text-[#0B1B2B]">Email</div>

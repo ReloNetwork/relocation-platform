@@ -2,6 +2,7 @@
 
 import { useSearchParams } from 'next/navigation'
 import Layout from '../../../components/Layout'
+import { Check } from 'lucide-react'
 
 export default function TestPaymentPage() {
   const searchParams = useSearchParams()
@@ -26,7 +27,10 @@ export default function TestPaymentPage() {
             </div>
             
             <div className="mt-8">
-              <p className="text-green-400">✅ Payment page routing is working!</p>
+              <p className="text-green-400 flex items-center gap-2">
+                <Check className="h-4 w-4" />
+                Payment page routing is working!
+              </p>
               <p className="text-gray-300 mt-2">If you can see this page, the redirect is successful.</p>
             </div>
           </div>
