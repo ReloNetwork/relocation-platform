@@ -73,10 +73,10 @@ const EmergencyBookingForm = () => {
       <div className="text-center mb-6">
         <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
           <AlertTriangle className="h-4 w-4 text-[#C9A24A] mr-2" />
-          <span className="text-[#C9A24A] text-sm font-medium">Emergency Booking</span>
+          <span className="text-[#C9A24A] text-sm font-medium">Executive Reservation</span>
         </div>
         <h3 className="text-2xl font-bold text-[#0B1220] mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-          Book Emergency Consultation
+          Reserve Executive Package
         </h3>
         <p className="text-[#6B7280]">Get priority response within 2 hours</p>
       </div>
@@ -207,7 +207,7 @@ const EmergencyBookingForm = () => {
           disabled={loading}
           className="w-full bg-[#C9A24A] hover:bg-[#B8923D] disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-4 rounded-md font-semibold text-lg hover:scale-105 transition-all shadow-lg"
         >
-          {loading ? 'Processing...' : 'Book Emergency Consultation Now'}
+          {loading ? 'Processing...' : 'Reserve Executive Package Now'}
         </Button>
       </form>
       
@@ -367,7 +367,7 @@ const PricingTier = ({
         onClick={onSelect}
         className={`w-full mb-8 rounded-lg hover:scale-105 shadow-lg hover:shadow-xl transition-all ${isPopular ? 'bg-[#C9A24A] hover:bg-[#B8923D]' : 'bg-[#0B1B2B] hover:bg-[#0B1B2B]/90'} text-white py-4 text-lg font-semibold`}
       >
-        Book Emergency Consultation <ArrowRight className="ml-2 h-5 w-5" />
+        Reserve Executive Package <ArrowRight className="ml-2 h-5 w-5" />
       </Button>
     </div>
 
@@ -490,7 +490,7 @@ export default function CorporatePage() {
                 className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 transition-all shadow-xl"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                Book Emergency Consultation
+                Reserve Executive Package
               </Button>
               <Button 
                 onClick={() => setShowCalculator(!showCalculator)}
@@ -729,7 +729,7 @@ export default function CorporatePage() {
               size="lg"
               className="bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg hover:scale-105 shadow-lg hover:shadow-xl transition-all px-8 py-4 font-semibold"
             >
-              Book Emergency Consultation Now
+              Reserve Executive Package Now
             </Button>
             <a 
               href="tel:+442071234567"
