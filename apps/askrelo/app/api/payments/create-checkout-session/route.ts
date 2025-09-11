@@ -1,20 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-// Initialize Stripe
-let stripe: Stripe | null = null
-
-try {
-  if (process.env.STRIPE_SECRET_KEY) {
-    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-06-20',
-    })
-    console.log('Stripe initialized successfully')
-  } else {
-    console.warn('STRIPE_SECRET_KEY environment variable not found')
+// Initialize Stripe function
+function getStripe(): Stripe | null {
+  try {
+    if (process.env.STRIPE_SECRET_KEY) {
+      console.log('Initializing Stripe with key length:', process.env.STRIPE_SECRET_KEY.length)
+      return new Stripe(process.env.STRIPE_SECRET_KEY, {
+        apiVersion: '2024-06-20',
+      })
+    } else {
+      console.warn('STRIPE_SECRET_KEY environment variable not found')
+      return null
+    }
+  } catch (error) {
+    console.error('Error initializing Stripe:', error)
+    return null
   }
-} catch (error) {
-  console.error('Error initializing Stripe:', error)
 }
 
 interface CheckoutSessionData {
@@ -44,7 +46,15 @@ const packages = {
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('Payment API called - checking Stripe initialization')
+    console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY)
+    console.log('STRIPE_SECRET_KEY length:', process.env.STRIPE_SECRET_KEY?.length || 0)
+    
+    const stripe = getStripe()
+    console.log('Stripe instance created:', !!stripe)
+    
     if (!stripe) {
+      console.error('Stripe not initialized - payment processing not available')
       return NextResponse.json(
         { error: 'Payment processing not available' },
         { status: 500 }
