@@ -136,7 +136,7 @@ export default function CleanPaymentPage() {
           </div>
 
           {/* Three-Tier Pricing */}
-          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
             {packages.map((pkg, index) => (
               <div 
                 key={pkg.id} 
@@ -190,13 +190,13 @@ export default function CleanPaymentPage() {
                 <Button 
                   onClick={() => handleBookService(pkg.id, pkg.price, pkg.name)}
                   disabled={loading}
-                  className={`w-full py-4 text-base font-semibold transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 ${
+                  className={`w-full py-4 px-6 text-base font-semibold transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] rounded-md ${
                     pkg.popular
                       ? 'bg-[#C9A24A] text-[#0B1220] hover:bg-[#B8923D]'
                       : 'bg-[#0B1B2B] text-white hover:bg-[#1a2332]'
                   }`}
                 >
-                  {loading ? 'Processing...' : `Book ${pkg.name} →`}
+                  {loading ? 'Processing...' : 'Book Emergency Consultation →'}
                 </Button>
               </div>
             ))}
