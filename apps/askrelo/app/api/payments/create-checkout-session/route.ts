@@ -9,9 +9,12 @@ try {
     stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2024-06-20',
     })
+    console.log('Stripe initialized successfully')
+  } else {
+    console.warn('STRIPE_SECRET_KEY environment variable not found')
   }
 } catch (error) {
-  console.warn('Warning: Stripe not available due to missing API key')
+  console.error('Error initializing Stripe:', error)
 }
 
 interface CheckoutSessionData {
