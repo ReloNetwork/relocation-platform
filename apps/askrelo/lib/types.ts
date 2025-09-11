@@ -230,6 +230,80 @@ export interface Database {
           updated_at?: string
         }
       }
+      directory_signups: {
+        Row: {
+          id: number
+          signup_id: string
+          first_name: string
+          last_name: string
+          email: string
+          phone: string
+          company_name: string
+          job_title: string
+          company_size: string
+          industry_type: string
+          access_tier: string
+          service_needs: string[]
+          urgency_level: string
+          budget: string
+          london_areas: string[]
+          current_challenges: string
+          specific_requirements: string | null
+          how_heard: string | null
+          marketing_consent: boolean
+          status: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: number
+          signup_id: string
+          first_name: string
+          last_name: string
+          email: string
+          phone: string
+          company_name: string
+          job_title: string
+          company_size: string
+          industry_type: string
+          access_tier: string
+          service_needs: string[]
+          urgency_level: string
+          budget: string
+          london_areas: string[]
+          current_challenges: string
+          specific_requirements?: string | null
+          how_heard?: string | null
+          marketing_consent?: boolean
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: number
+          signup_id?: string
+          first_name?: string
+          last_name?: string
+          email?: string
+          phone?: string
+          company_name?: string
+          job_title?: string
+          company_size?: string
+          industry_type?: string
+          access_tier?: string
+          service_needs?: string[]
+          urgency_level?: string
+          budget?: string
+          london_areas?: string[]
+          current_challenges?: string
+          specific_requirements?: string | null
+          how_heard?: string | null
+          marketing_consent?: boolean
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
     }
   }
 }
@@ -271,4 +345,24 @@ export interface ConsultationFormData {
   priorities: string
   additionalRequirements?: string
   howHeard?: string
+}
+
+export interface DirectorySignupFormData {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  companyName: string
+  jobTitle: string
+  companySize: string
+  industryType: string
+  accessTier: string
+  serviceNeeds: string[]
+  urgencyLevel: string
+  budget: string
+  londonAreas: string[]
+  currentChallenges: string
+  specificRequirements?: string
+  howHeard?: string
+  marketingConsent: boolean
 }

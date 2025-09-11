@@ -522,10 +522,10 @@ export default function DirectoryPage() {
                 <Button 
                   size="lg"
                   className="bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md hover:scale-105 shadow-xl"
-                  onClick={() => document.getElementById('access-tiers')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => window.location.href = '/directory/signup'}
                 >
                   <Search className="mr-2 h-5 w-5" />
-                  Choose Access Level
+                  Get Directory Access
                 </Button>
                 <button 
                   className="inline-flex items-center justify-center h-14 px-8 py-4 text-base border border-white text-white bg-transparent hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all font-medium"
@@ -595,7 +595,7 @@ export default function DirectoryPage() {
               
               <div>
                 <Button 
-                  onClick={() => document.getElementById('access-tiers')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => window.location.href = '/directory/signup'}
                   className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md"
                 >
                   <Filter className="mr-2 h-4 w-4" />
@@ -633,9 +633,9 @@ export default function DirectoryPage() {
               </p>
               <Button 
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md"
-                onClick={() => document.getElementById('access-tiers')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => window.location.href = '/directory/signup'}
               >
-                Choose Access Level
+                Get Directory Access
               </Button>
             </div>
           </div>
@@ -924,16 +924,16 @@ export default function DirectoryPage() {
             <Button 
               size="lg"
               className="bg-[#C9A24A] hover:bg-[#B8923D] !text-white rounded-md hover:scale-105 shadow-xl"
-              onClick={() => handleSubscribe('premium')}
+              onClick={() => window.location.href = '/directory/signup'}
             >
               <Search className="mr-2 h-5 w-5" />
-              Get Premium Access
+              Get Directory Access
             </Button>
             <Button 
               size="lg"
               variant="outline"
               className="border-white text-white bg-transparent hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
-              onClick={() => handleSubscribe('free')}
+              onClick={() => window.location.href = '/directory/signup'}
             >
               Start Free Access
             </Button>
