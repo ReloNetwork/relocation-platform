@@ -15,7 +15,66 @@ export default function CleanPaymentPage() {
   const company = searchParams?.get('company') || 'Your Company'
   const timeline = searchParams?.get('timeline') || 'urgent'
 
-  const handleBookService = async () => {
+  const packages = [
+    {
+      id: 'managed-relocation',
+      name: 'Managed Relocation',
+      description: 'Essential executive relocation service',
+      originalPrice: 22500,
+      price: 15000,
+      discount: '33% OFF',
+      features: [
+        'Dedicated relocation manager',
+        'Property search and shortlisting',
+        'Viewing coordination (up to 10)',
+        'Application assistance',
+        'Move coordination',
+        'Basic neighbourhood integration',
+        '30-day settling guarantee',
+        'Email and phone support'
+      ]
+    },
+    {
+      id: 'executive-package',
+      name: 'Executive Package',
+      description: 'Comprehensive executive relocation',
+      originalPrice: 25000,
+      price: 20000,
+      discount: '20% OFF',
+      popular: true,
+      features: [
+        'Everything in Managed Relocation',
+        'Senior relocation specialist',
+        'Unlimited property viewings',
+        'School search assistance',
+        'Family integration services',
+        'Temporary accommodation sourcing',
+        'Cultural orientation sessions',
+        'Priority 24/7 support hotline'
+      ]
+    },
+    {
+      id: 'premium-executive',
+      name: 'Premium Executive',
+      description: 'White-glove executive relocation',
+      originalPrice: 45000,
+      price: 25000,
+      discount: '44% OFF',
+      features: [
+        'Everything in Executive Package',
+        'C-suite relocation director',
+        'Luxury property portfolio access',
+        'Private school placement',
+        'Spouse career assistance',
+        'VIP airport transfers',
+        'Personal shopping services',
+        'Dedicated account manager',
+        'Quarterly check-ins for 1 year'
+      ]
+    }
+  ]
+
+  const handleBookService = async (packageId: string, price: number, packageName: string) => {
     setLoading(true)
     
     try {
@@ -25,8 +84,8 @@ export default function CleanPaymentPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          packageId: 'emergency-urgent',
-          price: 3199,
+          packageId,
+          price,
           requestId,
           companyName: decodeURIComponent(company),
           timeline,
@@ -48,10 +107,6 @@ export default function CleanPaymentPage() {
     }
   }
 
-  const handleScheduleConsultation = () => {
-    router.push(`/corporate/consultation?requestId=${requestId}&company=${encodeURIComponent(company)}`)
-  }
-
   return (
     <Layout>
       <div className="min-h-screen bg-[#FAFAF9]">
@@ -70,101 +125,81 @@ export default function CleanPaymentPage() {
             </p>
           </div>
 
-          {/* Payment Options */}
-          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            
-            {/* Free Consultation */}
-            <div className="bg-[#FFFFFF] rounded-lg border border-gray-200 p-8 shadow-sm">
-              <h2 className="font-['Playfair_Display'] text-2xl font-bold text-[#0B1220] mb-4">
-                Free Consultation
-              </h2>
-              <p className="text-[#6B7280] mb-6">
-                Discuss your relocation needs with our emergency specialist team.
-              </p>
-              
-              <div className="space-y-3 mb-8">
-                <div className="flex items-center text-[#0B1220]">
-                  <CheckCircle className="h-5 w-5 text-[#16A34A] mr-3" />
-                  <span>2-hour response guarantee</span>
-                </div>
-                <div className="flex items-center text-[#0B1220]">
-                  <CheckCircle className="h-5 w-5 text-[#16A34A] mr-3" />
-                  <span>Detailed needs assessment</span>
-                </div>
-                <div className="flex items-center text-[#0B1220]">
-                  <CheckCircle className="h-5 w-5 text-[#16A34A] mr-3" />
-                  <span>Custom solution design</span>
-                </div>
-                <div className="flex items-center text-[#0B1220]">
-                  <CheckCircle className="h-5 w-5 text-[#16A34A] mr-3" />
-                  <span>No obligation quote</span>
-                </div>
-              </div>
+          {/* Pricing Section */}
+          <div className="text-center mb-12">
+            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-[#0B1220] mb-4">
+              Choose Your Emergency Package
+            </h2>
+            <p className="text-[#6B7280] text-lg max-w-2xl mx-auto">
+              All packages include our 30-day guarantee with emergency pricing - limited time
+            </p>
+          </div>
 
-              <Button 
-                onClick={handleScheduleConsultation}
-                variant="outline"
-                className="w-full py-6 text-lg font-semibold border-[#0B1B2B] text-[#0B1B2B] hover:bg-[#0B1B2B] hover:text-white hover:scale-105 transition-all duration-200 shadow-sm hover:shadow-md"
+          {/* Three-Tier Pricing */}
+          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {packages.map((pkg, index) => (
+              <div 
+                key={pkg.id} 
+                className={`bg-[#FFFFFF] rounded-lg p-8 shadow-sm relative ${
+                  pkg.popular 
+                    ? 'border-2 border-[#C9A24A] transform lg:scale-105' 
+                    : 'border border-gray-200'
+                }`}
               >
-                Schedule Consultation
-              </Button>
-            </div>
+                {pkg.popular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-[#C9A24A] text-[#0B1220] px-4 py-1 rounded-full text-sm font-semibold">
+                      MOST POPULAR
+                    </span>
+                  </div>
+                )}
+                
+                <div className="text-center mb-6">
+                  <h3 className="font-['Playfair_Display'] text-2xl font-bold text-[#0B1220] mb-2">
+                    {pkg.name}
+                  </h3>
+                  <p className="text-[#6B7280] mb-4">{pkg.description}</p>
+                  
+                  <div className="mb-4">
+                    <div className="flex items-center justify-center mb-1">
+                      <span className="text-[#6B7280] line-through text-lg mr-2">
+                        £{pkg.originalPrice.toLocaleString()}
+                      </span>
+                      <span className="bg-[#DC2626] text-white px-2 py-1 rounded text-xs font-semibold">
+                        {pkg.discount}
+                      </span>
+                    </div>
+                    <div className="font-['Playfair_Display'] text-4xl font-bold text-[#0B1220]">
+                      £{pkg.price.toLocaleString()}
+                    </div>
+                    <p className="text-[#6B7280] text-sm mt-1">per employee</p>
+                    <p className="text-[#DC2626] text-xs font-semibold mt-1">Emergency pricing - limited time</p>
+                  </div>
+                </div>
 
-            {/* Emergency Service */}
-            <div className="bg-[#FFFFFF] rounded-lg border border-[#C9A24A] p-8 shadow-sm relative">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-[#C9A24A] text-[#0B1220] px-4 py-1 rounded-full text-sm font-semibold">
-                  EMERGENCY PACKAGE
-                </span>
-              </div>
-              
-              <h2 className="font-['Playfair_Display'] text-2xl font-bold text-[#0B1220] mb-4 mt-4">
-                Book Emergency Service
-              </h2>
-              <p className="text-[#6B7280] mb-6">
-                Immediate emergency relocation service with dedicated specialist.
-              </p>
+                <div className="space-y-3 mb-8">
+                  <h4 className="font-semibold text-[#0B1220] mb-3">Features included:</h4>
+                  {pkg.features.map((feature, i) => (
+                    <div key={i} className="flex items-start text-sm text-[#0B1220]">
+                      <CheckCircle className="h-4 w-4 text-[#16A34A] mr-3 mt-0.5 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
 
-              <div className="mb-6">
-                <div className="flex items-baseline justify-center">
-                  <span className="text-[#6B7280] line-through text-lg mr-2">£3,999</span>
-                  <span className="font-['Playfair_Display'] text-4xl font-bold text-[#0B1220]">£3,199</span>
-                </div>
-                <p className="text-center text-[#6B7280] text-sm mt-1">One-time emergency fee</p>
-                <div className="text-center mt-2">
-                  <span className="bg-[#DC2626] text-white px-2 py-1 rounded text-xs font-semibold">
-                    20% EMERGENCY DISCOUNT
-                  </span>
-                </div>
+                <Button 
+                  onClick={() => handleBookService(pkg.id, pkg.price, pkg.name)}
+                  disabled={loading}
+                  className={`w-full py-4 text-base font-semibold transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 ${
+                    pkg.popular
+                      ? 'bg-[#C9A24A] text-[#0B1220] hover:bg-[#B8923D]'
+                      : 'bg-[#0B1B2B] text-white hover:bg-[#1a2332]'
+                  }`}
+                >
+                  {loading ? 'Processing...' : `Book ${pkg.name} →`}
+                </Button>
               </div>
-              
-              <div className="space-y-3 mb-8">
-                <div className="flex items-center text-[#0B1220]">
-                  <CheckCircle className="h-5 w-5 text-[#16A34A] mr-3" />
-                  <span>4-hour priority response</span>
-                </div>
-                <div className="flex items-center text-[#0B1220]">
-                  <CheckCircle className="h-5 w-5 text-[#16A34A] mr-3" />
-                  <span>Dedicated emergency specialist</span>
-                </div>
-                <div className="flex items-center text-[#0B1220]">
-                  <CheckCircle className="h-5 w-5 text-[#16A34A] mr-3" />
-                  <span>Same-day property viewings</span>
-                </div>
-                <div className="flex items-center text-[#0B1220]">
-                  <CheckCircle className="h-5 w-5 text-[#16A34A] mr-3" />
-                  <span>24/7 emergency support</span>
-                </div>
-              </div>
-
-              <Button 
-                onClick={handleBookService}
-                disabled={loading}
-                className="w-full py-6 text-lg font-semibold bg-[#C9A24A] text-[#0B1220] hover:bg-[#B8923D] hover:scale-105 transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Processing...' : 'Book Emergency Service'}
-              </Button>
-            </div>
+            ))}
           </div>
 
           {/* Emergency Contact */}
