@@ -15,6 +15,7 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
   const [transcript, setTranscript] = useState('')
+  const [textInput, setTextInput] = useState('')
   const [conversation, setConversation] = useState<Array<{role: 'user' | 'agent', message: string, timestamp: Date}>>([])
   const [status, setStatus] = useState<'idle' | 'connecting' | 'connected' | 'error'>('idle')
   
@@ -56,8 +57,21 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
 
       recognitionRef.current.onerror = (event: any) => {
         console.error('Speech recognition error:', event.error)
-        setStatus('error')
         setIsListening(false)
+        
+        // Don't set status to error, just log and continue
+        if (event.error === 'not-allowed') {
+          const permissionMessage = { 
+            role: 'agent' as const, 
+            message: "I need microphone permission to listen. Please enable your microphone or call us at +44 20 7946 0958 for assistance.", 
+            timestamp: new Date() 
+          }
+          setConversation(prev => [...prev, permissionMessage])
+          
+          if (!isMuted && synthesisRef.current) {
+            speakResponse(permissionMessage.message)
+          }
+        }
       }
 
       recognitionRef.current.onend = () => {
@@ -141,15 +155,11 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
     }
   }
 
-  const startVoiceAgent = () => {
+  const startVoiceAgent = async () => {
     setIsActive(true)
     setStatus('connecting')
     
-    if (recognitionRef.current) {
-      recognitionRef.current.start()
-    }
-    
-    // Welcome message
+    // Welcome message first
     const welcomeMessage = { 
       role: 'agent' as const, 
       message: "Hello! I'm your Relo Network AI assistant. How can I help you with your London relocation today?", 
@@ -159,6 +169,37 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
     
     if (!isMuted) {
       speakResponse(welcomeMessage.message)
+    }
+
+    // Try to start speech recognition
+    try {
+      if (recognitionRef.current) {
+        // Request microphone permission first
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          await navigator.mediaDevices.getUserMedia({ audio: true })
+        }
+        
+        recognitionRef.current.start()
+        setStatus('connected')
+      } else {
+        // No speech recognition available, still allow text-based interaction
+        setStatus('connected')
+        console.warn('Speech recognition not available, using text-only mode')
+      }
+    } catch (error) {
+      console.error('Error starting voice agent:', error)
+      setStatus('connected') // Still allow the agent to work without voice input
+      
+      const errorMessage = { 
+        role: 'agent' as const, 
+        message: "Speech recognition isn't available on this browser, but you can still interact with me! Try speaking or calling us at +44 20 7946 0958.", 
+        timestamp: new Date() 
+      }
+      setConversation(prev => [...prev, errorMessage])
+      
+      if (!isMuted) {
+        speakResponse(errorMessage.message)
+      }
     }
   }
 
@@ -182,6 +223,14 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
     if (!isMuted && synthesisRef.current) {
       synthesisRef.current.cancel()
       setIsSpeaking(false)
+    }
+  }
+
+  const handleTextSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (textInput.trim()) {
+      handleUserSpeech(textInput.trim())
+      setTextInput('')
     }
   }
 
@@ -280,6 +329,28 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
             </div>
           )}
         </div>
+
+        {/* Text Input for Manual Entry */}
+        {isActive && (
+          <div className="px-4 pb-2 bg-white">
+            <form onSubmit={handleTextSubmit} className="flex gap-2">
+              <input
+                type="text"
+                value={textInput}
+                onChange={(e) => setTextInput(e.target.value)}
+                placeholder="Type your message here..."
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              />
+              <Button
+                type="submit"
+                disabled={!textInput.trim()}
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 text-sm"
+              >
+                Send
+              </Button>
+            </form>
+          </div>
+        )}
 
         {/* Controls */}
         <div className="p-4 border-t bg-white rounded-b-2xl">
