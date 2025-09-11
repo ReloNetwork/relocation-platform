@@ -8,6 +8,7 @@ import Layout from '../../components/Layout'
 
 const EmergencyBookingForm = () => {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     companyName: '',
     contactName: '',
@@ -23,6 +24,7 @@ const EmergencyBookingForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setLoading(true)
     
     try {
       const response = await fetch('/api/forms/corporate-emergency', {
@@ -42,27 +44,17 @@ const EmergencyBookingForm = () => {
         const result = await response.json()
         console.log('Form submission result:', result)
         
-        // Show success message first
-        alert('Emergency consultation request submitted successfully! Redirecting to payment options...')
-        
-        // Redirect to payment options page
+        // Redirect immediately to payment options page
         const params = new URLSearchParams({
           requestId: result.requestId || 'test-' + Date.now(),
           company: encodeURIComponent(formData.companyName),
           timeline: formData.timeline
         })
         
-        // Use a timeout to ensure the alert is shown
-        setTimeout(() => {
-          console.log('Attempting to redirect to:', `/corporate/payment?${params.toString()}`)
-          try {
-            router.push(`/corporate/payment?${params.toString()}`)
-          } catch (routerError) {
-            console.error('Router error:', routerError)
-            // Fallback to window.location if router fails
-            window.location.href = `/corporate/payment?${params.toString()}`
-          }
-        }, 1000)
+        console.log('Redirecting to payment options:', `/corporate/payment?${params.toString()}`)
+        
+        // Use window.location for more reliable redirect
+        window.location.href = `/corporate/payment?${params.toString()}`
       } else {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
         throw new Error(errorData.error || 'Failed to submit request')
@@ -70,7 +62,9 @@ const EmergencyBookingForm = () => {
     } catch (error) {
       console.error('Error submitting form:', error)
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      alert(`There was an error submitting your request: ${errorMessage}\n\nPlease try again or call us directly at +44 207 123 4567`)
+      alert(`There was an error submitting your request: ${errorMessage}\n\nPlease try again or call us directly at +44 20 7946 0958`)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -210,9 +204,10 @@ const EmergencyBookingForm = () => {
         </div>
         <Button
           type="submit"
-          className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white py-4 rounded-md font-semibold text-lg hover:scale-105 transition-all shadow-lg"
+          disabled={loading}
+          className="w-full bg-[#C9A24A] hover:bg-[#B8923D] disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-4 rounded-md font-semibold text-lg hover:scale-105 transition-all shadow-lg"
         >
-          Book Emergency Consultation Now
+          {loading ? 'Processing...' : 'Book Emergency Consultation Now'}
         </Button>
       </form>
       
