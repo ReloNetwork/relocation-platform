@@ -1,13 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-const stripeKey = process.env.STRIPE_SECRET_KEY!
+const stripeKey = process.env.STRIPE_SECRET_KEY
+
+if (!stripeKey) {
+  throw new Error('STRIPE_SECRET_KEY environment variable is not set')
+}
+
 const stripe = new Stripe(stripeKey, {
   apiVersion: '2024-06-20',
 })
 
 export async function GET(request: NextRequest) {
   try {
+    if (!stripeKey) {
+      console.error('STRIPE_SECRET_KEY environment variable is missing')
+      return NextResponse.json(
+        { 
+          error: 'Configuration error',
+          details: 'Payment processing is not properly configured',
+        },
+        { status: 500 }
+      )
+    }
+
     console.log('Creating Lead Machine checkout session...')
     console.log('Stripe key exists:', !!stripeKey)
     console.log('Stripe key length:', stripeKey?.length)
@@ -79,6 +95,17 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    if (!stripeKey) {
+      console.error('STRIPE_SECRET_KEY environment variable is missing')
+      return NextResponse.json(
+        { 
+          error: 'Configuration error',
+          details: 'Payment processing is not properly configured',
+        },
+        { status: 500 }
+      )
+    }
+
     const body = await request.json()
     
     // Create Stripe Checkout Session for Lead Machine with custom data
