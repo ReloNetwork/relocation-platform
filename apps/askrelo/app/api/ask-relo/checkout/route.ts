@@ -42,7 +42,8 @@ export async function POST(request: NextRequest) {
       'price_quick_start': { name: 'Quick Start Concierge', amount: 19500 }, // £195
       'price_property_hunter': { name: 'Property Hunter Concierge', amount: 49500 }, // £495
       'price_human_concierge': { name: 'Human Concierge Service', amount: 149500 }, // £1495
-      'price_done_for_you': { name: 'Done-For-You Premium', amount: 299500 } // £2995
+      'price_done_for_you': { name: 'Done-For-You Premium', amount: 149500 }, // £1495
+      'price_executive_relocation': { name: 'Executive Relocation Service', amount: 299500 } // £2995
     }
 
     const priceInfo = priceMapping[priceId]

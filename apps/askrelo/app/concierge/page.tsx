@@ -287,6 +287,7 @@ export default function ConciergePage() {
     {
       name: 'Quick Start',
       price: '195',
+      originalPrice: '395',
       description: 'AI-powered property discovery',
       usage: 'AI consultations • Basic neighborhood matching',
       priceId: 'price_quick_start',
@@ -302,6 +303,7 @@ export default function ConciergePage() {
     {
       name: 'Property Hunter',
       price: '495',
+      originalPrice: '795',
       description: 'Complete property search solution',
       usage: 'Everything in Quick Start • Advanced search features',
       isPopular: true,
@@ -318,8 +320,27 @@ export default function ConciergePage() {
       ]
     },
     {
+      name: 'Human Concierge',
+      price: '1495',
+      originalPrice: '2495',
+      description: 'Personal relocation assistant',
+      usage: 'Everything + Human concierge • Personal service',
+      priceId: 'price_human_concierge',
+      features: [
+        'Everything in Property Hunter',
+        'Dedicated human concierge',
+        'In-person property viewings (up to 8)',
+        'Application assistance',
+        'Contract guidance',
+        'Basic moving coordination',
+        'Priority email & phone support',
+        'Bi-weekly check-ins'
+      ]
+    },
+    {
       name: 'Done-For-You',
       price: '1495',
+      originalPrice: '2495',
       description: 'Dedicated human concierge service',
       usage: 'Everything + Human concierge • White-glove service',
       priceId: 'price_done_for_you',
@@ -337,6 +358,7 @@ export default function ConciergePage() {
     {
       name: 'Executive Relocation',
       price: '2995',
+      originalPrice: '4995',
       description: 'Full-service executive package',
       usage: 'Everything + Dedicated account manager • VIP treatment',
       priceId: 'price_executive_relocation',
