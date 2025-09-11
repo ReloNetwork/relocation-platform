@@ -17,8 +17,8 @@ export default function CleanPaymentPage() {
 
   const packages = [
     {
-      id: 'managed-relocation',
-      name: 'Managed Relocation',
+      id: 'essential-executive',
+      name: 'Essential Executive',
       description: 'Essential executive relocation service',
       originalPrice: 22500,
       price: 15000,
@@ -35,15 +35,15 @@ export default function CleanPaymentPage() {
       ]
     },
     {
-      id: 'executive-package',
-      name: 'Executive Package',
+      id: 'complete-executive',
+      name: 'Complete Executive',
       description: 'Comprehensive executive relocation',
-      originalPrice: 25000,
-      price: 20000,
-      discount: '20% OFF',
+      originalPrice: 37500,
+      price: 25000,
+      discount: '33% OFF',
       popular: true,
       features: [
-        'Everything in Managed Relocation',
+        'Everything in Essential Executive',
         'Senior relocation specialist',
         'Unlimited property viewings',
         'School search assistance',
@@ -54,14 +54,14 @@ export default function CleanPaymentPage() {
       ]
     },
     {
-      id: 'premium-executive',
-      name: 'Premium Executive',
+      id: 'c-suite-elite',
+      name: 'C-Suite Elite',
       description: 'White-glove executive relocation',
-      originalPrice: 45000,
-      price: 25000,
-      discount: '44% OFF',
+      originalPrice: 67500,
+      price: 45000,
+      discount: '33% OFF',
       features: [
-        'Everything in Executive Package',
+        'Everything in Complete Executive',
         'C-suite relocation director',
         'Luxury property portfolio access',
         'Private school placement',

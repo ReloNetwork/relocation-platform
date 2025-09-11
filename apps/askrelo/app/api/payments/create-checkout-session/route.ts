@@ -31,16 +31,16 @@ interface CheckoutSessionData {
 }
 
 const packages = {
-  'managed-relocation': {
-    name: 'Managed Relocation',
+  'essential-executive': {
+    name: 'Essential Executive',
     description: 'Essential executive relocation service'
   },
-  'executive-package': {
-    name: 'Executive Package', 
+  'complete-executive': {
+    name: 'Complete Executive', 
     description: 'Comprehensive executive relocation'
   },
-  'premium-executive': {
-    name: 'Premium Executive',
+  'c-suite-elite': {
+    name: 'C-Suite Elite',
     description: 'White-glove executive relocation'
   }
 }

@@ -395,7 +395,7 @@ export default function CorporatePage() {
 
   const pricingTiers = [
     {
-      name: 'Managed Relocation',
+      name: 'Essential Executive',
       price: '15,000',
       originalPrice: '22,500',
       emergencyDiscount: '33%',
@@ -412,14 +412,14 @@ export default function CorporatePage() {
       ]
     },
     {
-      name: 'Executive Package',
-      price: '20,000',
-      originalPrice: '25,000',
-      emergencyDiscount: '20%',
+      name: 'Complete Executive',
+      price: '25,000',
+      originalPrice: '37,500',
+      emergencyDiscount: '33%',
       description: 'Comprehensive executive relocation',
       isPopular: true,
       features: [
-        'Everything in Managed Relocation',
+        'Everything in Essential Executive',
         'Senior relocation specialist',
         'Unlimited property viewings',
         'School search assistance',
@@ -430,13 +430,13 @@ export default function CorporatePage() {
       ]
     },
     {
-      name: 'Premium Executive',
-      price: '25,000',
-      originalPrice: '45,000',
-      emergencyDiscount: '44%',
+      name: 'C-Suite Elite',
+      price: '45,000',
+      originalPrice: '67,500',
+      emergencyDiscount: '33%',
       description: 'White-glove executive relocation',
       features: [
-        'Everything in Executive Package',
+        'Everything in Complete Executive',
         'C-suite relocation director',
         'Luxury property portfolio access',
         'Private school placement',
