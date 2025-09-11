@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import Stripe from 'stripe'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,6 +29,15 @@ interface DirectorySignupFormData {
 
 export async function POST(request: NextRequest) {
   try {
+    // Check environment variables
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      console.error('Missing Supabase environment variables')
+      return NextResponse.json(
+        { error: 'Configuration error - please contact support' },
+        { status: 500 }
+      )
+    }
+
     const formData: DirectorySignupFormData = await request.json()
     
     // Validate required fields
@@ -74,8 +84,12 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error('Database error:', error)
+      console.error('Error details:', JSON.stringify(error, null, 2))
       return NextResponse.json(
-        { error: 'Failed to save signup' },
+        { 
+          error: 'Database error - please contact support',
+          details: process.env.NODE_ENV === 'development' ? error.message : 'Contact support with signup ID: ' + signupId
+        },
         { status: 500 }
       )
     }
@@ -85,7 +99,14 @@ export async function POST(request: NextRequest) {
     // Create Stripe session for paid tiers
     if (formData.accessTier !== 'free') {
       try {
-        const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+        if (!process.env.STRIPE_SECRET_KEY) {
+          console.error('Missing STRIPE_SECRET_KEY environment variable')
+          throw new Error('Payment processing not configured')
+        }
+        
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+          apiVersion: '2024-06-20',
+        })
         
         const priceAmount = formData.accessTier === 'premium' ? 4700 : 14700 // £47 or £147
         const tierName = formData.accessTier === 'premium' ? 'Premium Access' : 'VIP Concierge'
