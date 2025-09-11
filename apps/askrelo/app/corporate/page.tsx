@@ -400,16 +400,17 @@ export default function CorporatePage() {
       originalPrice: '22,500',
       emergencyDiscount: '33%',
       description: 'Executive settled and productive within 30 days',
-      promise: 'Your executive will be fully operational in their new role with zero downtime',
+      promise: 'Basic but professional - everything your executive needs to succeed',
+      positioning: 'Professional Foundation',
       features: [
         'Dedicated relocation manager',
-        'Property search and shortlisting',
-        'Viewing coordination (up to 10)',
-        'Application assistance',
-        'Move coordination',
-        'Basic neighbourhood integration',
+        'Property search and shortlisting (up to 10 viewings)',
+        'Application assistance and documentation',
+        'Move coordination and logistics',
+        'Basic neighbourhood orientation',
         '30-day settling guarantee',
-        'Email and phone support'
+        'Business hours email and phone support',
+        'Essential services checklist completion'
       ]
     },
     {
@@ -418,16 +419,18 @@ export default function CorporatePage() {
       originalPrice: '37,500',
       emergencyDiscount: '33%',
       description: 'Complete family integration with zero stress',
-      promise: 'Your executive and family will feel at home immediately with seamless transition',
+      promise: 'Everything most executives need - comprehensive family solution',
+      positioning: 'Complete Solution',
       isPopular: true,
       features: [
-        'Everything in Essential Executive',
-        'Senior relocation specialist',
+        'Everything in Essential Executive PLUS:',
+        'Senior relocation specialist assigned',
         'Unlimited property viewings',
-        'School search assistance',
-        'Family integration services',
+        'Full family integration services',
+        'School search and enrollment assistance',
         'Temporary accommodation sourcing',
-        'Cultural orientation sessions',
+        'Cultural orientation and area tours',
+        'Spouse career transition support',
         'Priority 24/7 support hotline'
       ]
     },
@@ -437,17 +440,21 @@ export default function CorporatePage() {
       originalPrice: '67,500',
       emergencyDiscount: '33%',
       description: 'White-glove treatment worthy of your senior leadership',
-      promise: 'Flawless executive experience that enhances your company reputation',
+      promise: 'Luxury treatment for top leaders - reputation-enhancing experience',
+      positioning: 'Elite Luxury',
       features: [
-        'Everything in Complete Executive',
-        'C-suite relocation director',
-        'Luxury property portfolio access',
-        'Private school placement',
-        'Spouse career assistance',
-        'VIP airport transfers',
-        'Personal shopping services',
-        'Dedicated account manager',
-        'Quarterly check-ins for 1 year'
+        'Everything in Complete Executive PLUS:',
+        'Personal C-suite relocation director',
+        'Exclusive luxury property portfolio access',
+        'Personal shopper for home essentials',
+        'Private club introductions and memberships',
+        'Yacht club membership assistance',
+        'Elite private school placement',
+        'Executive spouse career placement',
+        'VIP chauffeur and airport services',
+        'Concierge services for all personal needs',
+        'Dedicated account manager for 12 months',
+        'Quarterly executive check-ins'
       ]
     }
   ]

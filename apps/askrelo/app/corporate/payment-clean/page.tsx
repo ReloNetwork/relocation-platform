@@ -23,15 +23,16 @@ export default function CleanPaymentPage() {
       originalPrice: 22500,
       price: 15000,
       discount: '33% OFF',
+      positioning: 'Professional Foundation',
       features: [
         'Dedicated relocation manager',
-        'Property search and shortlisting',
-        'Viewing coordination (up to 10)',
-        'Application assistance',
-        'Move coordination',
-        'Basic neighbourhood integration',
+        'Property search and shortlisting (up to 10 viewings)',
+        'Application assistance and documentation',
+        'Move coordination and logistics',
+        'Basic neighbourhood orientation',
         '30-day settling guarantee',
-        'Email and phone support'
+        'Business hours email and phone support',
+        'Essential services checklist completion'
       ]
     },
     {
@@ -41,15 +42,17 @@ export default function CleanPaymentPage() {
       originalPrice: 37500,
       price: 25000,
       discount: '33% OFF',
+      positioning: 'Complete Solution',
       popular: true,
       features: [
-        'Everything in Essential Executive',
-        'Senior relocation specialist',
+        'Everything in Essential Executive PLUS:',
+        'Senior relocation specialist assigned',
         'Unlimited property viewings',
-        'School search assistance',
-        'Family integration services',
+        'Full family integration services',
+        'School search and enrollment assistance',
         'Temporary accommodation sourcing',
-        'Cultural orientation sessions',
+        'Cultural orientation and area tours',
+        'Spouse career transition support',
         'Priority 24/7 support hotline'
       ]
     },
@@ -60,16 +63,20 @@ export default function CleanPaymentPage() {
       originalPrice: 67500,
       price: 45000,
       discount: '33% OFF',
+      positioning: 'Elite Luxury',
       features: [
-        'Everything in Complete Executive',
-        'C-suite relocation director',
-        'Luxury property portfolio access',
-        'Private school placement',
-        'Spouse career assistance',
-        'VIP airport transfers',
-        'Personal shopping services',
-        'Dedicated account manager',
-        'Quarterly check-ins for 1 year'
+        'Everything in Complete Executive PLUS:',
+        'Personal C-suite relocation director',
+        'Exclusive luxury property portfolio access',
+        'Personal shopper for home essentials',
+        'Private club introductions and memberships',
+        'Yacht club membership assistance',
+        'Elite private school placement',
+        'Executive spouse career placement',
+        'VIP chauffeur and airport services',
+        'Concierge services for all personal needs',
+        'Dedicated account manager for 12 months',
+        'Quarterly executive check-ins'
       ]
     }
   ]
