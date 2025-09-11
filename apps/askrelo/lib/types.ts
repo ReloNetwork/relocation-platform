@@ -366,3 +366,215 @@ export interface DirectorySignupFormData {
   howHeard?: string
   marketingConsent: boolean
 }
+
+// Partner and Directory System Interfaces
+export interface PartnerOnboardingFormData {
+  companyName: string
+  contactName: string
+  contactEmail: string
+  contactPhone: string
+  website?: string
+  businessDescription: string
+  foundedYear?: number
+  companySize: string
+  primaryLocation: string
+  serviceAreas: string[]
+  coverageZones: string[]
+  postcodeCoverage?: string[]
+  industryCategory: string
+  serviceCategories: string[]
+  specializations: string[]
+  businessType: string
+  insuranceCoverage?: any
+  certifications?: string[]
+  regulatoryBodies?: string[]
+  vatNumber?: string
+  companyRegistration?: string
+  pricingTier: string
+  minimumProjectValue?: number
+  maximumProjectValue?: number
+  monthlyCapacity?: number
+  currentAvailability: string
+}
+
+export interface Partner {
+  id: number
+  partner_id: string
+  company_name: string
+  contact_name: string
+  contact_email: string
+  contact_phone: string
+  website?: string
+  business_description: string
+  founded_year?: number
+  company_size: string
+  primary_location: string
+  service_areas: string[]
+  coverage_zones: string[]
+  postcode_coverage?: string[]
+  industry_category: string
+  service_categories: string[]
+  specializations: string[]
+  business_type: string
+  insurance_coverage?: any
+  certifications?: string[]
+  regulatory_bodies?: string[]
+  vat_number?: string
+  company_registration?: string
+  pricing_tier: string
+  minimum_project_value?: number
+  maximum_project_value?: number
+  currency: string
+  monthly_capacity?: number
+  current_availability: string
+  approval_status: 'pending' | 'approved' | 'rejected' | 'suspended'
+  quality_score: number
+  client_rating: number
+  total_reviews: number
+  completion_rate: number
+  response_time_hours: number
+  visibility_level: 'basic' | 'premium' | 'vip' | 'featured'
+  access_tiers: string[]
+  featured_until?: string
+  premium_until?: string
+  onboarded_by?: string
+  approved_by?: string
+  approved_at?: string
+  last_contact_date?: string
+  notes?: string
+  tags?: string[]
+  created_at: string
+  updated_at: string
+}
+
+export interface ClientAccessLevel {
+  id: number
+  user_id: string
+  email: string
+  access_tier: 'free' | 'premium' | 'vip'
+  company_name?: string
+  subscription_status: 'active' | 'cancelled' | 'expired' | 'trial'
+  subscription_start_date?: string
+  subscription_end_date?: string
+  stripe_customer_id?: string
+  stripe_subscription_id?: string
+  can_view_contact_details: boolean
+  can_view_pricing: boolean
+  can_view_reviews: boolean
+  can_contact_directly: boolean
+  can_request_quotes: boolean
+  monthly_contact_limit: number
+  monthly_contacts_used: number
+  last_login?: string
+  total_searches: number
+  total_contacts: number
+  created_at: string
+  updated_at: string
+}
+
+export interface PartnerReview {
+  id: number
+  partner_id: number
+  client_email: string
+  client_name?: string
+  client_company?: string
+  overall_rating: number
+  quality_rating?: number
+  communication_rating?: number
+  timeliness_rating?: number
+  value_rating?: number
+  review_title?: string
+  review_text?: string
+  project_type?: string
+  project_value_range?: string
+  would_recommend?: boolean
+  is_verified: boolean
+  verification_method?: string
+  verified_at?: string
+  verified_by?: string
+  is_published: boolean
+  moderation_status: 'pending' | 'approved' | 'rejected'
+  moderated_by?: string
+  moderated_at?: string
+  moderation_notes?: string
+  created_at: string
+  updated_at: string
+}
+
+export interface PartnerContactRequest {
+  id: number
+  partner_id: number
+  client_email: string
+  client_name?: string
+  client_phone?: string
+  client_company?: string
+  request_type: 'quote' | 'consultation' | 'info' | 'urgent'
+  project_description?: string
+  project_timeline?: string
+  estimated_budget?: string
+  preferred_contact_method?: string
+  urgency_level: 'low' | 'normal' | 'high' | 'urgent'
+  status: 'sent' | 'viewed' | 'responded' | 'completed' | 'expired'
+  partner_response?: string
+  partner_responded_at?: string
+  client_rating?: number
+  client_access_tier: string
+  was_premium_contact: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface AutomatedWorkflow {
+  id: number
+  workflow_name: string
+  trigger_event: string
+  workflow_steps: any
+  is_active: boolean
+  execution_count: number
+  last_executed?: string
+  created_at: string
+}
+
+export interface PartnerCategory {
+  id: number
+  category_code: string
+  category_name: string
+  description?: string
+  parent_category?: string
+  icon_name?: string
+  sort_order: number
+  is_active: boolean
+  created_at: string
+}
+
+// Access Permissions Interface
+export interface AccessPermissions {
+  canViewContactDetails: boolean
+  canViewPricing: boolean
+  canViewReviews: boolean
+  canContactDirectly: boolean
+  canRequestQuotes: boolean
+  monthlyContactLimit: number
+  accessibleCategories: string[]
+  maxSearchResults: number
+  canViewPremiumPartners: boolean
+  hasPersonalAccountManager?: boolean
+  prioritySupport?: boolean
+}
+
+// Workflow Execution Interfaces
+export interface WorkflowExecutionData {
+  workflowType: string
+  partnerId?: number
+  clientEmail?: string
+  triggerEvent: string
+  metadata?: any
+}
+
+export interface WorkflowStep {
+  step: string
+  status: 'pending' | 'completed' | 'failed'
+  timestamp?: Date
+  details?: any
+  error?: any
+}
