@@ -37,7 +37,18 @@ export async function GET(request: NextRequest) {
             currency: 'gbp',
             product_data: {
               name: 'Lead Machine Partnership',
-              description: '8-15 guaranteed qualified leads/month with AI concierge mentions and premium directory placement',
+              description: `Lead Machine Partnership Benefits:
+
+• 8-15 guaranteed qualified leads every month
+• AI concierge mentions to premium clients
+• Premium directory placement & visibility
+• Exclusive territory protection
+• Priority client matching
+• Dedicated partnership support
+• Professional profile enhancement
+• High-value corporate relocations
+
+Founding Member Rate: £497/month (Regular: £997/month)`,
               images: ['https://relocation-platform.vercel.app/images/lead-machine-logo.png'],
             },
             recurring: {
@@ -117,7 +128,18 @@ export async function POST(request: NextRequest) {
             currency: 'gbp',
             product_data: {
               name: 'Lead Machine Partnership',
-              description: '8-15 guaranteed qualified leads/month with AI concierge mentions and premium directory placement',
+              description: `Lead Machine Partnership Benefits:
+
+• 8-15 guaranteed qualified leads every month
+• AI concierge mentions to premium clients
+• Premium directory placement & visibility
+• Exclusive territory protection
+• Priority client matching
+• Dedicated partnership support
+• Professional profile enhancement
+• High-value corporate relocations
+
+Founding Member Rate: £497/month (Regular: £997/month)`,
               images: ['https://relocation-platform.vercel.app/images/lead-machine-logo.png'],
             },
             recurring: {
