@@ -19,7 +19,7 @@ export default function CleanPaymentPage() {
     {
       id: 'essential-executive',
       name: 'Essential Executive',
-      description: 'Essential executive relocation service',
+      description: 'Executive settled and productive within 30 days',
       originalPrice: 22500,
       price: 15000,
       discount: '33% OFF',
@@ -37,7 +37,7 @@ export default function CleanPaymentPage() {
     {
       id: 'complete-executive',
       name: 'Complete Executive',
-      description: 'Comprehensive executive relocation',
+      description: 'Complete family integration with zero stress',
       originalPrice: 37500,
       price: 25000,
       discount: '33% OFF',
@@ -56,7 +56,7 @@ export default function CleanPaymentPage() {
     {
       id: 'c-suite-elite',
       name: 'C-Suite Elite',
-      description: 'White-glove executive relocation',
+      description: 'White-glove treatment worthy of your senior leadership',
       originalPrice: 67500,
       price: 45000,
       discount: '33% OFF',

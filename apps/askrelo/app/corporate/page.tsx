@@ -399,7 +399,8 @@ export default function CorporatePage() {
       price: '15,000',
       originalPrice: '22,500',
       emergencyDiscount: '33%',
-      description: 'Essential executive relocation service',
+      description: 'Executive settled and productive within 30 days',
+      promise: 'Your executive will be fully operational in their new role with zero downtime',
       features: [
         'Dedicated relocation manager',
         'Property search and shortlisting',
@@ -416,7 +417,8 @@ export default function CorporatePage() {
       price: '25,000',
       originalPrice: '37,500',
       emergencyDiscount: '33%',
-      description: 'Comprehensive executive relocation',
+      description: 'Complete family integration with zero stress',
+      promise: 'Your executive and family will feel at home immediately with seamless transition',
       isPopular: true,
       features: [
         'Everything in Essential Executive',
@@ -434,7 +436,8 @@ export default function CorporatePage() {
       price: '45,000',
       originalPrice: '67,500',
       emergencyDiscount: '33%',
-      description: 'White-glove executive relocation',
+      description: 'White-glove treatment worthy of your senior leadership',
+      promise: 'Flawless executive experience that enhances your company reputation',
       features: [
         'Everything in Complete Executive',
         'C-suite relocation director',
