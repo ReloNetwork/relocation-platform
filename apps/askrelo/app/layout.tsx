@@ -1,6 +1,7 @@
 import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import StickyAsk from './components/StickyAsk';
+import VoiceAgentManager from '../components/VoiceAgentManager';
 import { Analytics } from '@vercel/analytics/react';
 
 // Force dynamic rendering for all pages to prevent export issues
@@ -414,6 +415,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <StickyAsk />
+        <VoiceAgentManager />
         <Analytics />
       </body>
     </html>
