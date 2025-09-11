@@ -51,10 +51,10 @@ const EmergencyBookingForm = () => {
           timeline: formData.timeline
         })
         
-        console.log('Redirecting to payment options:', `/corporate/payment?${params.toString()}`)
+        console.log('Redirecting to payment options:', `/corporate/payment-simple?${params.toString()}`)
         
         // Use window.location for more reliable redirect
-        window.location.href = `/corporate/payment?${params.toString()}`
+        window.location.href = `/corporate/payment-simple?${params.toString()}`
       } else {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
         throw new Error(errorData.error || 'Failed to submit request')
