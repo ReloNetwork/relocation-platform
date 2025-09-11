@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { reloNetworkAppearance, reloBrandingConfig } from '@/lib/stripe-appearance'
 
 const stripeKey = process.env.STRIPE_SECRET_KEY!
 const stripe = new Stripe(stripeKey)
@@ -62,6 +63,12 @@ Ultimate partnership tier with maximum ROI potential`,
       },
       allow_promotion_codes: false,
       billing_address_collection: 'required',
+      ui_mode: 'hosted',
+      custom_text: {
+        submit: {
+          message: 'Secure your Market Dominator status and eliminate competition in your category.'
+        }
+      },
     })
 
     return NextResponse.redirect(session.url!)
@@ -136,6 +143,12 @@ Ultimate partnership tier with maximum ROI potential`,
       },
       allow_promotion_codes: false,
       billing_address_collection: 'required',
+      ui_mode: 'hosted',
+      custom_text: {
+        submit: {
+          message: 'Secure your Market Dominator status and eliminate competition in your category.'
+        }
+      },
     })
 
     return NextResponse.json({ url: session.url })

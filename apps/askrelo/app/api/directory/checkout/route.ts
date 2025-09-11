@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { reloNetworkAppearance, reloBrandingConfig } from '@/lib/stripe-appearance'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2023-10-16'
@@ -103,6 +104,14 @@ The ultimate solution for enterprise clients.`,
       },
       allow_promotion_codes: true,
       billing_address_collection: 'required',
+      ui_mode: 'hosted',
+      custom_text: {
+        submit: {
+          message: plan === 'vip_concierge' 
+            ? 'Unlock VIP access with your personal account manager and priority support.'
+            : 'Access our premium directory of verified service providers.'
+        }
+      },
     })
 
     return NextResponse.json({ url: session.url })

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { reloNetworkAppearance, reloBrandingConfig } from '@/lib/stripe-appearance'
 
 // Initialize Stripe function
 function getStripe(): Stripe | null {
@@ -162,6 +163,12 @@ export async function POST(request: NextRequest) {
         }
       },
       expires_at: Math.floor(Date.now() / 1000) + (24 * 60 * 60), // 24 hours
+      ui_mode: 'hosted',
+      custom_text: {
+        submit: {
+          message: `Secure your ${packageInfo.name} relocation package - our team will begin coordination immediately.`
+        }
+      },
     })
 
     // Log the checkout session creation

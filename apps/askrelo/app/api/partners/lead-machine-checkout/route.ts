@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { reloNetworkAppearance, reloBrandingConfig } from '@/lib/stripe-appearance'
 
 const stripeKey = process.env.STRIPE_SECRET_KEY
 
@@ -78,6 +79,12 @@ Founding Member Rate: £497/month (Regular: £997/month)`,
       },
       allow_promotion_codes: false,
       billing_address_collection: 'required',
+      ui_mode: 'hosted',
+      custom_text: {
+        submit: {
+          message: 'Join the Lead Machine Partnership and start receiving qualified leads within 24-48 hours.'
+        }
+      },
     })
 
     console.log('Session created successfully:', session.id)
@@ -171,6 +178,12 @@ Founding Member Rate: £497/month (Regular: £997/month)`,
       },
       allow_promotion_codes: false,
       billing_address_collection: 'required',
+      ui_mode: 'hosted',
+      custom_text: {
+        submit: {
+          message: 'Join the Lead Machine Partnership and start receiving qualified leads within 24-48 hours.'
+        }
+      },
     })
 
     return NextResponse.json({ url: session.url })
