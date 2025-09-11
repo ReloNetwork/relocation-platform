@@ -6,37 +6,37 @@ const generateAIResponse = (message: string, context: any): string => {
   
   // Greeting responses
   if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-    return "Hello! Welcome to Relo Network. I'm your personal AI assistant for London relocations. Whether you're looking for property advice, visa information, or partnership opportunities, I'm here to help 24/7."
+    return "Ah, splendid to make your acquaintance! I'm Relo, your digital concierge for all things London relocation. I've helped rather a lot of people navigate this magnificent but occasionally bewildering city. What brings you to London, if you don't mind my asking?"
   }
   
   // Property/accommodation queries
   if (lowerMessage.includes('property') || lowerMessage.includes('flat') || lowerMessage.includes('apartment') || lowerMessage.includes('house') || lowerMessage.includes('accommodation')) {
-    return "I can help you find the perfect property in London! Our AI system analyzes over 150 factors including commute times, school ratings, and lifestyle preferences. Popular areas for relocations include Marylebone, Kensington, Canary Wharf, and Greenwich. Would you like me to connect you with our property specialists?"
+    return "Ah, property hunting in London - my absolute favourite sport! I dare say I'm rather good at it too. I've got my digital eye on everything from charming Marylebone mews houses to those gleaming Canary Wharf towers. Tell me, are you after something with character and a bit of history, or do you prefer the modern conveniences? I do love matching people with their perfect London nest!"
   }
   
   // Pricing queries
   if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('expensive') || lowerMessage.includes('cheap') || lowerMessage.includes('affordable')) {
-    return "Our relocation services start from £295 per month for AI-powered guidance, £8,500 for managed service, and £15,000 for executive white-glove service. We also offer founding member rates with significant savings. Would you like detailed pricing information?"
+    return "Ah, the age-old question of cost! Well, I'm pleased to say we're not as dear as Harrods, but we're certainly worth every penny. We start at £295 monthly for my digital services - think of me as your personal London guide who never sleeps. Our full-service packages range from £8,500 to £15,000, and trust me, after dealing with London's property market yourself, you'll consider it money well spent! Founding members get rather splendid discounts too."
   }
   
   // Partnership queries
   if (lowerMessage.includes('partner') || lowerMessage.includes('business') || lowerMessage.includes('lead') || lowerMessage.includes('referral')) {
-    return "Excellent! We offer two main partnership tiers: Lead Machine at £497 per month with 8-15 guaranteed leads, and Market Dominator at £1,497 per month with exclusive category ownership. Both include founding member pricing until September 15th. Shall I connect you with our partnership team?"
+    return "Brilliant! Looking to join our merry band of relocation specialists, are we? Splendid choice! We've got the Lead Machine package - rather like having your own personal lead butler - starting at £497 monthly. Then there's the Market Dominator, which is quite the exclusive affair at £1,497 monthly. Think of it as having the entire relocation market as your oyster! Founding member rates are available until September 15th. Shall I have someone ring you about the particulars?"
   }
   
   // Visa/legal queries
   if (lowerMessage.includes('visa') || lowerMessage.includes('legal') || lowerMessage.includes('immigration') || lowerMessage.includes('permit')) {
-    return "We provide comprehensive visa and legal support through our network of immigration specialists. This includes visa applications, document preparation, and ongoing compliance. Our success rate for visa applications is over 94%. Would you like to speak with our legal team?"
+    return "Ah, the dreaded paperwork! Don't worry, I've seen it all - from Global Talent visas to the occasional mysterious stamp that nobody quite understands. Our legal chaps have a 94% success rate, which is rather impressive considering they're dealing with government bureaucracy. They're absolute wizards at turning incomprehensible forms into approved applications. Shall I connect you with our immigration specialists?"
   }
   
   // School/education queries
   if (lowerMessage.includes('school') || lowerMessage.includes('education') || lowerMessage.includes('children') || lowerMessage.includes('kids')) {
-    return "We specialize in school placement for international families! London has excellent state and independent schools. We'll help match your children with the right schools based on curriculum, location, and entry requirements. Our education specialists can arrange school visits and handle applications."
+    return "Ah, the little ones! Getting them sorted with a proper education is absolutely crucial, isn't it? London's got some absolutely brilliant schools - from the traditional establishments with centuries of history to modern international schools with all the latest gadgets. I do love helping families find the perfect fit. Some parents want Latin and cricket, others prefer coding and contemporary dance. Each to their own, I say! Shall I arrange some school visits?"
   }
   
   // Emergency/urgent queries
   if (lowerMessage.includes('emergency') || lowerMessage.includes('urgent') || lowerMessage.includes('immediate') || lowerMessage.includes('asap') || lowerMessage.includes('quickly')) {
-    return "I understand this is urgent. We offer emergency relocation services that can be completed in 14-21 days. Our priority response team is available 24/7. Let me connect you immediately with our emergency relocation specialists at +44 20 7946 0958."
+    return "Blimey, that does sound urgent! Right, no time for pleasantries then - though I do hope you'll pop back for a proper chat once you're settled. We've got emergency relocation services that can have you sorted in 14-21 days. Our rapid response chaps are standing by 24/7, ready to leap into action faster than you can say 'fish and chips'. Ring them immediately on +44 20 7946 0958 - tell them Relo sent you!"
   }
   
   // Corporate queries
@@ -61,36 +61,36 @@ const generateAIResponse = (message: string, context: any): string => {
   
   // Gratitude responses
   if (lowerMessage.includes('thank') || lowerMessage.includes('thanks') || lowerMessage.includes('appreciate')) {
-    return "You're very welcome! I'm here whenever you need assistance with your London relocation. Remember, our human experts are also available 24/7 at +44 20 7946 0958. Is there anything else I can help you with today?"
+    return "Oh, you're most welcome indeed! It's been an absolute pleasure chatting with you. That's what we're here for - making London feel a bit less daunting and a bit more like home. Do remember, our human colleagues are standing by at +44 20 7946 0958 should you need them. They're considerably more charming than I am, if you can believe that! Anything else I can assist with?"
   }
   
   // Default response with context awareness
   const contextualResponse = getContextualResponse(context)
-  return `I'm here to help with your London relocation needs! ${contextualResponse} You can also call our expert team directly at +44 20 7946 0958 for immediate assistance. What would you like to know more about?`
+  return `I say, that's an interesting question! ${contextualResponse} I'm rather good at these relocation chats, but if you'd prefer a human touch, our team is always available on +44 20 7946 0958. What particular aspect of London living has caught your attention?`
 }
 
 const getContextualResponse = (context: any): string => {
-  if (!context?.page) return "Whether you need property advice, visa guidance, or partnership information, I'm here to help."
+  if (!context?.page) return "Whether it's finding the perfect pied-à-terre, navigating the visa maze, or exploring partnership opportunities, I'm at your service."
   
   const page = context.page.toLowerCase()
   
   if (page.includes('concierge') || page.includes('service')) {
-    return "I see you're looking at our concierge services. We offer AI-powered assistance, managed services, and executive white-glove solutions."
+    return "Ah, browsing our concierge services, I see! Excellent choice. We've got everything from my digital assistance to full white-glove treatment - rather like having your own personal relocation valet."
   }
   
   if (page.includes('partner')) {
-    return "Since you're on our partners page, I can help you understand our Lead Machine and Market Dominator partnership opportunities."
+    return "I notice you're exploring our partnership opportunities - how exciting! Our Lead Machine and Market Dominator programmes are quite the ticket for ambitious relocation specialists."
   }
   
   if (page.includes('directory')) {
-    return "Our directory gives you access to 500+ verified London service providers. Premium and VIP tiers include direct messaging and priority support."
+    return "Splendid, you've found our directory! Over 500 carefully vetted London service providers at your fingertips. Think of it as the Yellow Pages, but infinitely more useful and considerably less yellow."
   }
   
   if (page.includes('corporate')) {
-    return "I see you're interested in corporate solutions. We specialize in executive relocations for Fortune 500 companies with proven ROI."
+    return "Corporate solutions, I see! Wonderful. We've handled relocations for some rather impressive Fortune 500 companies. Executive moves are our specialty - we do love a good challenge."
   }
   
-  return "I can help with any aspect of your London relocation journey."
+  return "I'm here to chat about any aspect of your London adventure."
 }
 
 export async function POST(request: NextRequest) {

@@ -63,7 +63,7 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
         if (event.error === 'not-allowed') {
           const permissionMessage = { 
             role: 'agent' as const, 
-            message: "I need microphone permission to listen. Please enable your microphone or call us at +44 20 7946 0958 for assistance.", 
+            message: "Terribly sorry, but I'll need you to grant microphone access for a proper chat. Your browser should be asking rather politely. If it's being difficult, do give us a bell on +44 20 7946 0958!", 
             timestamp: new Date() 
           }
           setConversation(prev => [...prev, permissionMessage])
@@ -130,11 +130,11 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
       }
     } catch (error) {
       console.error('Voice agent error:', error)
-      const errorMessage = { role: 'agent' as const, message: "I'm sorry, I'm having trouble connecting right now. Please try again or call us at +44 20 7946 0958.", timestamp: new Date() }
+      const errorMessage = { role: 'agent' as const, message: "Oh dear, seems I'm having a spot of technical trouble. Terribly embarrassing! Do give it another go, or ring us directly on +44 20 7946 0958 - we're far more reliable on the telephone, I assure you!", timestamp: new Date() }
       setConversation(prev => [...prev, errorMessage])
       
       if (!isMuted) {
-        speakResponse("I'm sorry, I'm having trouble connecting right now. Please try again or call our team.")
+        speakResponse("Oh dear, seems I'm having a spot of technical trouble. Do give it another go, or ring us directly.")
       }
     }
   }
@@ -162,7 +162,7 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
     // Welcome message first
     const welcomeMessage = { 
       role: 'agent' as const, 
-      message: "Hello! I'm your Relo Network AI assistant. How can I help you with your London relocation today?", 
+      message: "Good day! I'm Relo, your rather dapper AI concierge for London relocations. Think of me as your digital butler with a penchant for finding splendid properties and avoiding the occasional tourist trap. How may I assist you today?", 
       timestamp: new Date() 
     }
     setConversation([welcomeMessage])
@@ -192,7 +192,7 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
       
       const errorMessage = { 
         role: 'agent' as const, 
-        message: "Speech recognition isn't available on this browser, but you can still interact with me! Try speaking or calling us at +44 20 7946 0958.", 
+        message: "I say, it appears your browser is being rather stubborn about voice recognition. Not to worry though - you can still type away below, or give us a proper ring on +44 20 7946 0958. I'm still at your service!", 
         timestamp: new Date() 
       }
       setConversation(prev => [...prev, errorMessage])
@@ -268,11 +268,11 @@ export default function VoiceAgent({ isMinimized = true, onToggle }: VoiceAgentP
               <MessageSquare className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="font-semibold">Relo Voice Assistant</h3>
+              <h3 className="font-semibold">Relo - Your London Concierge</h3>
               <p className="text-white/80 text-xs">
-                {status === 'connected' ? '24/7 AI Assistant - Live' : 
-                 status === 'connecting' ? 'Connecting...' : 
-                 status === 'error' ? 'Connection Error' : 'Ready to Help'}
+                {status === 'connected' ? 'At your service, 24/7' : 
+                 status === 'connecting' ? 'Getting ready to chat...' : 
+                 status === 'error' ? 'Having a spot of trouble' : 'Ready for a chat'}
               </p>
             </div>
           </div>
