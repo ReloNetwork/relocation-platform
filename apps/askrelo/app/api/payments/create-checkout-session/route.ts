@@ -33,15 +33,53 @@ interface CheckoutSessionData {
 const packages = {
   'essential-executive': {
     name: 'Essential Executive',
-    description: 'Essential executive relocation service'
+    description: `Essential Executive Relocation Package:
+
+• Complete property search and viewing coordination
+• School placement assistance for children
+• Visa and immigration support
+• Temporary accommodation arrangement
+• Essential services setup (utilities, banking)
+• Local area orientation and integration
+• Dedicated relocation coordinator
+• 24/7 emergency support hotline
+
+Perfect for senior professionals requiring comprehensive relocation support.`
   },
   'complete-executive': {
     name: 'Complete Executive', 
-    description: 'Comprehensive executive relocation'
+    description: `Complete Executive Relocation Package:
+
+• Everything in Essential Executive PLUS:
+• Premium property portfolio access
+• Private school placement guarantee
+• Spouse career transition support
+• Pet relocation services
+• Cultural integration programs
+• Personal shopping and lifestyle setup
+• Luxury transport arrangements
+• VIP concierge services throughout
+• Extended 6-month settlement support
+
+Ideal for C-level executives and their families.`
   },
   'c-suite-elite': {
     name: 'C-Suite Elite',
-    description: 'White-glove executive relocation'
+    description: `C-Suite Elite Relocation Package:
+
+• Everything in Complete Executive PLUS:
+• Exclusive luxury property access
+• Private jet coordination for viewings
+• Personal butler/household staff placement
+• Investment property consultation
+• Tax optimization advisory
+• Security assessment and arrangements
+• Yacht/country club membership facilitation
+• Art and valuable item relocation
+• Unlimited personal concierge access
+• White-glove treatment throughout
+
+The ultimate relocation experience for top-tier executives.`
   }
 }
 

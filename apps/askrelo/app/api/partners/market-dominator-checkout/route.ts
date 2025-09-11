@@ -15,7 +15,21 @@ export async function GET(request: NextRequest) {
             currency: 'gbp',
             product_data: {
               name: 'Market Dominator Partnership',
-              description: 'Exclusive category ownership with AI preferred partner status, 15% revenue sharing, and competition elimination',
+              description: `Market Dominator Partnership Benefits:
+
+• Exclusive category ownership in your territory
+• AI preferred partner status (first recommendations)
+• 15% revenue sharing on all referred deals
+• Complete competition elimination
+• Guaranteed minimum 20-30 qualified leads/month
+• Priority placement in all search results
+• Dedicated account management team
+• Advanced analytics and lead tracking
+• Co-marketing opportunities with Relo Network
+• White-label partnership materials
+
+Founding Member Rate: £1,497/month (Regular: £2,997/month)
+Ultimate partnership tier with maximum ROI potential`,
               images: ['https://relocation-platform.vercel.app/images/market-dominator-logo.png'],
             },
             recurring: {
@@ -48,7 +62,6 @@ export async function GET(request: NextRequest) {
       },
       allow_promotion_codes: false,
       billing_address_collection: 'required',
-      customer_creation: 'always',
     })
 
     return NextResponse.redirect(session.url!)
@@ -74,7 +87,21 @@ export async function POST(request: NextRequest) {
             currency: 'gbp',
             product_data: {
               name: 'Market Dominator Partnership',
-              description: 'Exclusive category ownership with AI preferred partner status, 15% revenue sharing, and competition elimination',
+              description: `Market Dominator Partnership Benefits:
+
+• Exclusive category ownership in your territory
+• AI preferred partner status (first recommendations)
+• 15% revenue sharing on all referred deals
+• Complete competition elimination
+• Guaranteed minimum 20-30 qualified leads/month
+• Priority placement in all search results
+• Dedicated account management team
+• Advanced analytics and lead tracking
+• Co-marketing opportunities with Relo Network
+• White-label partnership materials
+
+Founding Member Rate: £1,497/month (Regular: £2,997/month)
+Ultimate partnership tier with maximum ROI potential`,
               images: ['https://relocation-platform.vercel.app/images/market-dominator-logo.png'],
             },
             recurring: {
@@ -109,7 +136,6 @@ export async function POST(request: NextRequest) {
       },
       allow_promotion_codes: false,
       billing_address_collection: 'required',
-      customer_creation: 'always',
     })
 
     return NextResponse.json({ url: session.url })
