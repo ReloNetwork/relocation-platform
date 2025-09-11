@@ -549,7 +549,7 @@ export default function DirectoryPage() {
                 </Button>
                 <button 
                   className="inline-flex items-center justify-center h-14 px-8 py-4 text-base border border-white text-white bg-transparent hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all font-medium"
-                  onClick={() => handleSubscribe('free')}
+                  onClick={() => window.location.href = '/directory/preview'}
                 >
                   Browse Free Preview
                 </button>
@@ -822,10 +822,10 @@ export default function DirectoryPage() {
               
               <Button 
                 className="w-full bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white rounded-md"
-                onClick={() => handleSubscribe('free')}
+                onClick={() => window.location.href = '/directory/preview'}
                 disabled={loading}
               >
-                {loading ? 'Loading...' : 'Start Free Access'}
+                {loading ? 'Loading...' : 'Browse Free Preview'}
               </Button>
             </div>
 
