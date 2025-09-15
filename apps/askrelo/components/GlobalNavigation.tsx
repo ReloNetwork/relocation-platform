@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/ui/components/button'
+import AuthWrapper from './auth/AuthWrapper'
+import SignOutButton from './auth/SignOutButton'
 
 export default function GlobalNavigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -169,14 +171,38 @@ export default function GlobalNavigation() {
               ))}
             </div>
             
-            {/* CTA Button */}
+            {/* Auth-aware CTA Button */}
             <div className="flex items-center space-x-4">
-              <button 
-                className="btn-nav relative z-10"
-                onClick={() => window.location.href = '/join-waitlist'}
-              >
-                <span className="relative z-10">Join Waitlist</span>
-              </button>
+              <AuthWrapper>
+                {(user, loading) => {
+                  if (loading) {
+                    return (
+                      <div className="h-10 w-24 bg-gray-200 animate-pulse rounded-md"></div>
+                    )
+                  }
+                  
+                  if (user) {
+                    return (
+                      <div className="flex items-center space-x-2">
+                        <Link href="/dashboard">
+                          <Button className="bg-[#C9A24A] hover:bg-[#B8923D] text-white">
+                            Dashboard
+                          </Button>
+                        </Link>
+                        <SignOutButton />
+                      </div>
+                    )
+                  }
+                  
+                  return (
+                    <Link href="/login">
+                      <button className="btn-nav relative z-10">
+                        <span className="relative z-10">Sign In</span>
+                      </button>
+                    </Link>
+                  )
+                }}
+              </AuthWrapper>
               
               {/* Mobile Menu Button */}
               <button className="md:hidden text-[#6B7280] hover:text-[#0B1B2B] p-2 transition-colors" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
