@@ -1,18 +1,6 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "apps/askrelo/package.json",
-      "use": "@vercel/next",
-      "config": {
-        "distDir": "apps/askrelo/.next"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/apps/askrelo/$1"
-    }
-  ]
+  "buildCommand": "npm run build",
+  "outputDirectory": "apps/askrelo/.next",
+  "framework": "nextjs",
+  "installCommand": "npm install"
 }
