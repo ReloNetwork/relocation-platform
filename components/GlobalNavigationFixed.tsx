@@ -36,8 +36,8 @@ export default function GlobalNavigationFixed() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <div className="w-10 h-10 bg-[#C9A24A] rounded-full flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-lg" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              <div className="w-12 h-12 bg-[#0B1B2B] rounded-2xl flex items-center justify-center mr-4">
+                <span className="text-[#C9A24A] font-bold text-xl" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                   R
                 </span>
               </div>
