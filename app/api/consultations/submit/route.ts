@@ -9,16 +9,35 @@ const supabase = createClient(
 
 export async function POST(request: NextRequest) {
   try {
-    const formData: ConsultationFormData = await request.json()
+    const formData: any = await request.json()
     
-    // Validate required fields
-    if (!formData.firstName || !formData.lastName || !formData.email || 
-        !formData.phone || !formData.timeline || !formData.propertyBudget ||
-        !formData.propertyType || !formData.neighborhoods || !formData.familySituation || 
-        !formData.isEmployerPaying || !formData.currentLocation || 
-        !formData.specificRequirements || !formData.hearAboutUs) {
+    console.log('Received form data:', formData)
+    
+    // Check which required fields are missing
+    const requiredFields = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      timeline: formData.timeline,
+      propertyBudget: formData.propertyBudget,
+      propertyType: formData.propertyType,
+      neighborhoods: formData.neighborhoods,
+      familySituation: formData.familySituation,
+      isEmployerPaying: formData.isEmployerPaying,
+      currentLocation: formData.currentLocation,
+      specificRequirements: formData.specificRequirements,
+      hearAboutUs: formData.hearAboutUs
+    }
+    
+    const missingFields = Object.entries(requiredFields)
+      .filter(([key, value]) => !value)
+      .map(([key]) => key)
+    
+    if (missingFields.length > 0) {
+      console.log('Missing fields:', missingFields)
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Missing required fields', missingFields },
         { status: 400 }
       )
     }
