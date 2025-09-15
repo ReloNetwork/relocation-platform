@@ -1,0 +1,6 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build && mkdir -p apps/askrelo/apps/askrelo/.next && cp apps/askrelo/.next/routes-manifest.json apps/askrelo/apps/askrelo/.next/routes-manifest.json 2>/dev/null || true",
+  "outputDirectory": "apps/askrelo/.next", 
+  "installCommand": "npm install"
+}
