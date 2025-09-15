@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-// Optional: run on the Edge for fast, low-latency checks
-export const runtime = "edge";
+export const runtime = "nodejs";            // fine (keep nodejs since you import Stripe/Resend)
+export const dynamic = "force-dynamic";     // avoid static caching of health
 
 export async function GET() {
   // Lightweight checks; expand later as needed
@@ -28,5 +28,8 @@ export async function GET() {
     },
   };
 
-  return NextResponse.json(checks, { status: 200 });
+  return NextResponse.json(checks, {
+    status: 200,
+    headers: { "Cache-Control": "no-store" },
+  });
 }
