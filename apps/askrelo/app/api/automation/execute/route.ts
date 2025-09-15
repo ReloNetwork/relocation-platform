@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { Resend } from 'resend'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -147,7 +148,8 @@ async function executeClientUpgrade(data: WorkflowExecutionData) {
   
   try {
     // Update access permissions via access manager
-    const accessUpdate = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/directory/access-manager`, {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://relo-network.vercel.app'
+    const accessUpdate = await fetch(`${siteUrl}/api/directory/access-manager`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -269,8 +271,8 @@ async function notifyRelevantClients(partnerId: number, eventType: string) {
     
     // Send notifications (implement email logic here)
     if (process.env.RESEND_API_KEY) {
-      const { Resend } = require('resend')
       const resend = new Resend(process.env.RESEND_API_KEY)
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://relo-network.vercel.app'
       
       for (const client of relevantClients) {
         if (client.access_tier === 'vip') {
@@ -282,7 +284,7 @@ async function notifyRelevantClients(partnerId: number, eventType: string) {
               <h3>New Partner Alert</h3>
               <p>A new ${partner?.industry_category} specialist has joined our network in ${partner?.primary_location}.</p>
               <p><strong>${partner?.company_name}</strong> is now available for your consideration.</p>
-              <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}/directory">View in Directory</a></p>
+              <p><a href="${siteUrl}/directory">View in Directory</a></p>
             `
           })
         }
@@ -325,8 +327,8 @@ async function sendPartnerApprovalEmail(partnerId: number) {
       .single()
     
     if (process.env.RESEND_API_KEY && partner) {
-      const { Resend } = require('resend')
       const resend = new Resend(process.env.RESEND_API_KEY)
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://relo-network.vercel.app'
       
       await resend.emails.send({
         from: 'Relo Network <noreply@therelonetwork.com>',
@@ -345,7 +347,7 @@ async function sendPartnerApprovalEmail(partnerId: number) {
           </ol>
           
           <p>Partner ID: ${partner.partner_id}</p>
-          <p>Dashboard: <a href="${process.env.NEXT_PUBLIC_SITE_URL}/partners/dashboard">Access Dashboard</a></p>
+          <p>Dashboard: <a href="${siteUrl}/partners/dashboard">Access Dashboard</a></p>
           
           <p>Welcome to the network!</p>
         `
