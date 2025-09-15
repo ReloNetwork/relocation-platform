@@ -1,10 +1,15 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://askrelo.com',
-  generateRobotsFile: true,
-  sitemapSize: 5000,
-  
-  // Enhanced robots.txt for AI crawlers and luxury positioning
+  siteUrl: process.env.SITE_URL || 'https://relocation-platform.vercel.app',
+  generateRobotsTxt: true,
+  generateIndexSitemap: false, // Since we don't have thousands of pages yet
+  exclude: [
+    '/api/*',
+    '/admin/*',
+    '/dashboard/*',
+    '/test/*',
+    '/_*'
+  ],
   robotsTxtOptions: {
     policies: [
       {
@@ -14,26 +19,20 @@ module.exports = {
           '/api/',
           '/admin/',
           '/dashboard/',
-          '/account/',
+          '/test/',
           '/_next/',
-          '/static/',
-          '/tmp/'
+          '/*.json$',
+          '/_*'
         ]
       },
       {
         userAgent: 'GPTBot',
         allow: '/',
-        crawlDelay: 2
-      },
-      {
-        userAgent: 'CCBot',
-        allow: '/',
-        crawlDelay: 2
-      },
-      {
-        userAgent: 'Claude-Web',
-        allow: '/',
-        crawlDelay: 1
+        disallow: [
+          '/api/',
+          '/admin/',
+          '/dashboard/'
+        ]
       },
       {
         userAgent: 'ChatGPT-User',
@@ -41,109 +40,62 @@ module.exports = {
       },
       {
         userAgent: 'PerplexityBot',
-        allow: '/',
-        crawlDelay: 2
-      },
-      {
-        userAgent: 'ClaudeBot',
-        allow: '/'
-      },
-      {
-        userAgent: 'anthropic-ai',
         allow: '/'
       }
     ],
     additionalSitemaps: [
-      'https://askrelo.com/sitemap-partners.xml',
-      'https://askrelo.com/sitemap-directory.xml',
-      'https://askrelo.com/sitemap-areas.xml'
-    ],
-    additionalPaths: async () => [
-      {
-        loc: '/partners',
-        changefreq: 'weekly',
-        priority: 0.9,
-        lastmod: new Date().toISOString()
-      },
-      {
-        loc: '/corporate', 
-        changefreq: 'weekly',
-        priority: 0.9,
-        lastmod: new Date().toISOString()
-      },
-      {
-        loc: '/directory',
-        changefreq: 'daily',
-        priority: 0.8,
-        lastmod: new Date().toISOString()
-      },
-      {
-        loc: '/concierge',
-        changefreq: 'daily', 
-        priority: 0.7,
-        lastmod: new Date().toISOString()
-      }
+      'https://relo-network.vercel.app/sitemap-blog.xml', // Future blog sitemap
+      'https://relo-network.vercel.app/sitemap-areas.xml'  // Future London areas sitemap
     ]
   },
-  
-  // Priority-based URL configuration
+  changefreq: 'weekly',
+  priority: 0.7,
+  sitemapSize: 5000,
   transform: async (config, path) => {
-    // High priority pages (luxury positioning)
-    const highPriorityPages = [
-      '/',
-      '/partners',
-      '/corporate',
-      '/directory'
-    ]
-    
-    // Medium priority pages
-    const mediumPriorityPages = [
-      '/concierge',
-      '/join-waitlist'
-    ]
-    
-    let priority = 0.5
-    let changefreq = 'monthly'
-    
-    if (highPriorityPages.includes(path)) {
-      priority = 0.9
-      changefreq = 'weekly'
-    } else if (mediumPriorityPages.includes(path)) {
-      priority = 0.7
-      changefreq = 'weekly'
+    // Custom priority and changefreq for different page types
+    const priorities = {
+      '/': 1.0,
+      '/partners': 0.9,
+      '/corporate': 0.9,
+      '/concierge': 0.9,
+      '/directory': 0.8,
+      '/join-waitlist': 0.7
     }
-    
+
+    const changeFreqs = {
+      '/': 'daily',
+      '/partners': 'weekly',
+      '/corporate': 'weekly',
+      '/concierge': 'weekly',
+      '/directory': 'weekly',
+      '/join-waitlist': 'monthly'
+    }
+
     return {
       loc: path,
-      changefreq,
-      priority,
-      lastmod: new Date().toISOString(),
-      
-      // Enhanced meta for luxury positioning
+      changefreq: changeFreqs[path] || config.changefreq,
+      priority: priorities[path] || config.priority,
+      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
       alternateRefs: [
         {
-          href: `https://askrelo.com${path}`,
+          href: `${config.siteUrl}${path}`,
           hreflang: 'en-GB'
         },
         {
-          href: `https://askrelo.com${path}`,
-          hreflang: 'en'
+          href: `${config.siteUrl}${path}`,
+          hreflang: 'x-default'
         }
       ]
     }
   },
-  
-  // Exclude paths that shouldn't be indexed
-  exclude: [
-    '/api/*',
-    '/admin/*',
-    '/404',
-    '/500',
-    '/_next/*',
-    '/test/*'
-  ],
-  
-  // Additional sitemap configuration
-  generateIndexSitemap: true,
-  outDir: './apps/askrelo/public'
+  additionalPaths: async (config) => {
+    // Add any dynamic paths that Next.js might not automatically discover
+    return [
+      await config.transform(config, '/partners/featured'),
+      await config.transform(config, '/partners/exclusive'),
+      await config.transform(config, '/corporate/roi-calculator'),
+      await config.transform(config, '/concierge/demo'),
+      await config.transform(config, '/directory/premium')
+    ]
+  }
 }
