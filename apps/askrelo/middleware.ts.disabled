@@ -43,22 +43,28 @@ function basicAuthCheck(req: NextRequest) {
 }
 
 export default function middleware(req: NextRequest) {
-  // Gate ONLY the portal host so askrelo.vercel.app remains open
-  const host = req.nextUrl.hostname;
-  const requireAuth = host === "app.therelonetwork.com";
-  // const requireAuth = true; // TEMP: gate all hosts to prove middleware is running
-  if (requireAuth) {
-    const gate = basicAuthCheck(req);
-    if (gate) return gate; // triggers Basic Auth prompt
-  }
+  try {
+    // Gate ONLY the portal host so askrelo.vercel.app remains open
+    const host = req.nextUrl.hostname;
+    const requireAuth = host === "app.therelonetwork.com";
+    // const requireAuth = true; // TEMP: gate all hosts to prove middleware is running
+    if (requireAuth) {
+      const gate = basicAuthCheck(req);
+      if (gate) return gate; // triggers Basic Auth prompt
+    }
 
-  // Your existing dev-route guard (kept from your file)
-  const { pathname } = req.nextUrl;
-  const isDevPath = pathname.startsWith("/api/dev") || pathname.startsWith("/integrations");
-  const devEnabled = process.env.DEV_TOOLS === "1" && process.env.NODE_ENV !== "production";
-  if (isDevPath && !devEnabled) {
-    return new NextResponse("Not available", { status: 404 });
-  }
+    // Your existing dev-route guard (kept from your file)
+    const { pathname } = req.nextUrl;
+    const isDevPath = pathname.startsWith("/api/dev") || pathname.startsWith("/integrations");
+    const devEnabled = process.env.DEV_TOOLS === "1" && process.env.NODE_ENV !== "production";
+    if (isDevPath && !devEnabled) {
+      return new NextResponse("Not available", { status: 404 });
+    }
 
-  return NextResponse.next();
+    return NextResponse.next();
+  } catch (error) {
+    // If middleware fails, just pass through
+    console.error('Middleware error:', error);
+    return NextResponse.next();
+  }
 }
