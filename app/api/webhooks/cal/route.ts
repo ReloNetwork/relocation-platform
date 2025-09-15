@@ -1,3 +1,4 @@
+x-cal-signature-256
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { createHmac, timingSafeEqual } from 'crypto';
