@@ -32,8 +32,12 @@ function basicAuthCheck(req: NextRequest) {
   const [type, value] = auth.split(" ");
   if (type !== "Basic" || !value) return challenge();
 
-  const [user, pass] = Buffer.from(value, "base64").toString().split(":");
-  if (user !== process.env.BASIC_AUTH_USER || pass !== process.env.BASIC_AUTH_PASS) return challenge();
+  try {
+    const [user, pass] = atob(value).split(":");
+    if (user !== process.env.BASIC_AUTH_USER || pass !== process.env.BASIC_AUTH_PASS) return challenge();
+  } catch (error) {
+    return challenge();
+  }
 
   return null; // OK
 }
@@ -41,8 +45,8 @@ function basicAuthCheck(req: NextRequest) {
 export default function middleware(req: NextRequest) {
   // Gate ONLY the portal host so askrelo.vercel.app remains open
   const host = req.nextUrl.hostname;
-  // const requireAuth = host === "app.therelonetwork.com";
-  const requireAuth = true; // TEMP: gate all hosts to prove middleware is running
+  const requireAuth = host === "app.therelonetwork.com";
+  // const requireAuth = true; // TEMP: gate all hosts to prove middleware is running
   if (requireAuth) {
     const gate = basicAuthCheck(req);
     if (gate) return gate; // triggers Basic Auth prompt
