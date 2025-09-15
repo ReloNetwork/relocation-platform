@@ -13,10 +13,10 @@ export async function POST(request: NextRequest) {
     
     // Validate required fields
     if (!formData.firstName || !formData.lastName || !formData.email || 
-        !formData.phone || !formData.companyName || !formData.jobTitle ||
-        !formData.relocationTimeline || !formData.destinationCity || !formData.budget ||
-        !formData.propertyType || !formData.bedrooms || !formData.familyMembers || 
-        !formData.priorities) {
+        !formData.phone || !formData.timeline || !formData.propertyBudget ||
+        !formData.propertyType || !formData.neighborhoods || !formData.familySituation || 
+        !formData.isEmployerPaying || !formData.currentLocation || 
+        !formData.specificRequirements || !formData.hearAboutUs) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -35,21 +35,21 @@ export async function POST(request: NextRequest) {
         last_name: formData.lastName,
         email: formData.email,
         phone: formData.phone,
-        company_name: formData.companyName,
-        job_title: formData.jobTitle,
-        relocation_timeline: formData.relocationTimeline,
-        destination_city: formData.destinationCity,
+        company_name: formData.employer || 'Not specified',
+        job_title: 'Not specified',
+        relocation_timeline: formData.timeline,
+        destination_city: 'London',
         current_location: formData.currentLocation,
-        budget: formData.budget,
+        budget: formData.propertyBudget,
         property_type: formData.propertyType,
-        bedrooms: formData.bedrooms,
-        family_members: formData.familyMembers,
-        children_ages: formData.childrenAges,
-        school_preferences: formData.schoolPreferences,
-        employment_assistance: formData.employmentAssistance,
-        priorities: formData.priorities,
-        additional_requirements: formData.additionalRequirements,
-        how_heard: formData.howHeard,
+        bedrooms: formData.propertyType.includes('1-2') ? '1-2' : formData.propertyType.includes('2-3') ? '2-3' : formData.propertyType.includes('3-4') ? '3-4' : formData.propertyType.includes('4+') ? '4+' : 'Not specified',
+        family_members: formData.familySituation,
+        children_ages: null,
+        school_preferences: null,
+        employment_assistance: formData.isEmployerPaying === 'Employer/Company' ? 'Yes' : 'No',
+        priorities: formData.neighborhoods,
+        additional_requirements: formData.specificRequirements,
+        how_heard: formData.hearAboutUs,
         status: 'pending',
         created_at: new Date().toISOString()
       })
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
           html: `
             <h2>Thank you for choosing The Relo Network</h2>
             <p>Dear ${formData.firstName} ${formData.lastName},</p>
-            <p>We've received your executive relocation consultation request and are excited to help you with your move to ${formData.destinationCity}.</p>
+            <p>We've received your executive relocation consultation request and are excited to help you with your move to London.</p>
             
             <h3>What Happens Next:</h3>
             <ol>
@@ -90,12 +90,12 @@ export async function POST(request: NextRequest) {
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3>Your Consultation Details:</h3>
               <p><strong>Consultation ID:</strong> ${consultationId}</p>
-              <p><strong>Company:</strong> ${formData.companyName}</p>
-              <p><strong>Timeline:</strong> ${formData.relocationTimeline}</p>
-              <p><strong>Destination:</strong> ${formData.destinationCity}</p>
-              <p><strong>Budget Range:</strong> ${formData.budget}</p>
+              <p><strong>Company:</strong> ${formData.employer || 'Not specified'}</p>
+              <p><strong>Timeline:</strong> ${formData.timeline}</p>
+              <p><strong>Destination:</strong> London</p>
+              <p><strong>Budget Range:</strong> ${formData.propertyBudget}</p>
               <p><strong>Property Type:</strong> ${formData.propertyType}</p>
-              <p><strong>Family Size:</strong> ${formData.familyMembers}</p>
+              <p><strong>Family Size:</strong> ${formData.familySituation}</p>
             </div>
             
             <h3>Emergency Contact:</h3>
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
         await resend.emails.send({
           from: 'Relo Network <noreply@therelonetwork.com>',
           to: 'consultations@therelonetwork.com',
-          subject: `URGENT: New Executive Consultation - ${formData.companyName}`,
+          subject: `URGENT: New Executive Consultation - ${formData.employer || 'Individual Client'}`,
           html: `
             <h2>🚨 New Executive Relocation Consultation</h2>
             <p><strong>Priority:</strong> Contact within 2 hours</p>
@@ -120,8 +120,8 @@ export async function POST(request: NextRequest) {
             <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 5px; margin: 15px 0;">
               <h3>Client Information:</h3>
               <p><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</p>
-              <p><strong>Company:</strong> ${formData.companyName}</p>
-              <p><strong>Title:</strong> ${formData.jobTitle}</p>
+              <p><strong>Company:</strong> ${formData.employer || 'Not specified'}</p>
+              <p><strong>Title:</strong> Not specified</p>
               <p><strong>Email:</strong> ${formData.email}</p>
               <p><strong>Phone:</strong> ${formData.phone}</p>
               <p><strong>Consultation ID:</strong> ${consultationId}</p>
@@ -129,32 +129,29 @@ export async function POST(request: NextRequest) {
             
             <div style="background: #e8f5e8; border: 1px solid #c3e6c3; padding: 15px; border-radius: 5px; margin: 15px 0;">
               <h3>Relocation Details:</h3>
-              <p><strong>Timeline:</strong> ${formData.relocationTimeline}</p>
+              <p><strong>Timeline:</strong> ${formData.timeline}</p>
               <p><strong>From:</strong> ${formData.currentLocation || 'Not specified'}</p>
-              <p><strong>To:</strong> ${formData.destinationCity}</p>
-              <p><strong>Budget:</strong> ${formData.budget}</p>
+              <p><strong>To:</strong> London</p>
+              <p><strong>Budget:</strong> ${formData.propertyBudget}</p>
             </div>
             
             <div style="background: #f0f8ff; border: 1px solid #b6d7ff; padding: 15px; border-radius: 5px; margin: 15px 0;">
               <h3>Property Requirements:</h3>
-              <p><strong>Type:</strong> ${formData.propertyType}</p>
-              <p><strong>Bedrooms:</strong> ${formData.bedrooms}</p>
-              <p><strong>Family Members:</strong> ${formData.familyMembers}</p>
-              ${formData.childrenAges ? `<p><strong>Children Ages:</strong> ${formData.childrenAges}</p>` : ''}
-              ${formData.schoolPreferences ? `<p><strong>School Preferences:</strong> ${formData.schoolPreferences}</p>` : ''}
+              <p><strong>Property Type:</strong> ${formData.propertyType}</p>
+              <p><strong>Preferred Areas:</strong> ${formData.neighborhoods}</p>
+              <p><strong>Family Situation:</strong> ${formData.familySituation}</p>
             </div>
             
             <h3>Additional Information:</h3>
-            ${formData.employmentAssistance ? `<p><strong>Employment Assistance:</strong> ${formData.employmentAssistance}</p>` : ''}
-            <p><strong>Priorities:</strong> ${formData.priorities}</p>
-            ${formData.additionalRequirements ? `<p><strong>Additional Requirements:</strong> ${formData.additionalRequirements}</p>` : ''}
-            ${formData.howHeard ? `<p><strong>How They Heard:</strong> ${formData.howHeard}</p>` : ''}
+            <p><strong>Employer Paying:</strong> ${formData.isEmployerPaying}</p>
+            <p><strong>Additional Requirements:</strong> ${formData.specificRequirements}</p>
+            <p><strong>How They Heard:</strong> ${formData.hearAboutUs}</p>
             
             <div style="background: #ffe6e6; border: 1px solid #ffb3b3; padding: 15px; border-radius: 5px; margin: 15px 0;">
               <h3>⏰ ACTION REQUIRED:</h3>
               <p>1. Call ${formData.phone} within 2 hours</p>
-              <p>2. Prepare customised proposal for ${formData.budget} budget</p>
-              <p>3. Confirm ${formData.relocationTimeline} timeline capability</p>
+              <p>2. Prepare customised proposal for ${formData.propertyBudget} budget</p>
+              <p>3. Confirm ${formData.timeline} timeline capability</p>
             </div>
           `
         })
