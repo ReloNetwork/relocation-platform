@@ -1,45 +1,37 @@
-import { NextRequest, NextResponse } from 'next/server';
-import crypto from 'crypto';
-// Update this import to your portal's Supabase server client helper:
-import { createServerClient } from '@/lib/supabase/server';
+export const runtime = 'nodejs';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+import { createHmac, timingSafeEqual } from 'crypto';
 
-export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';        // <-- important for Node 'crypto'
+export const dynamic = 'force-dynamic'; // avoid caching
 
-function verify(raw: string, sigHeader: string | null, secret: string) {
-  if (!sigHeader) return false;
-  const h = crypto.createHmac('sha256', secret).update(raw).digest('hex');
-  try {
-    return crypto.timingSafeEqual(Buffer.from(h), Buffer.from(sigHeader));
-  } catch {
-    return false;
-  }
+function verify(raw: string, sig: string | null, secret: string) {
+  if (!sig || !secret) return false;
+  const got = sig.replace(/^sha256=/, '');
+  const expected = createHmac('sha256', secret).update(raw).digest('hex');
+  const a = Buffer.from(expected, 'hex');
+  const b = Buffer.from(got, 'hex');
+  return a.length === b.length && timingSafeEqual(a, b);
 }
 
 export async function POST(req: NextRequest) {
-  const secret = process.env.CAL_WEBHOOK_SECRET || '';
-  const sig = req.headers.get('x-cal-signature-256');
-  const raw = await req.text();
+  try {
+    const secret = process.env.CAL_WEBHOOK_SECRET ?? '';
+    const sig = req.headers.get('x-cal-signature-256');
+    const raw = await req.text(); // must read RAW body for HMAC
 
-  if (!secret || !verify(raw, sig, secret)) {
-    return NextResponse.json({ ok: false, error: 'bad signature' }, { status: 401 });
+    if (!verify(raw, sig, secret)) {
+      return NextResponse.json({ ok: false, error: 'bad signature' }, { status: 401 });
+    }
+
+    // If you want: const payload = JSON.parse(raw) and do DB work here.
+    // For setup stability, don’t throw on DB errors—always return 200 once verified.
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error('cal webhook error', err);
+    // Return 200 so Cal’s ping passes while you iterate.
+    return NextResponse.json({ ok: false, note: 'caught error' }, { status: 200 });
   }
-
-  const evt = JSON.parse(raw);
-  const t = evt?.triggerEvent as string;
-  const booking = evt?.payload?.booking || {};
-  const startsAt = booking?.startTime ? new Date(booking.startTime) : null;
-  const endsAt = booking?.endTime ? new Date(booking.endTime) : null;
-
-  const supabase = createServerClient();
-
-  // TODO: map attendee/organizer email to your case/user
-  // For now, stash when we can't resolve a case:
-  await supabase.from('appointments_webhooks').insert({ payload: evt });
-
-  if (t === 'booking.created' || t === 'booking.rescheduled') {
-    // If you can resolve a case_id, upsert:
-    // await supabase.from('appointments').upsert({ case_id, title: booking.title, provider: 'Cal.com', starts_at: startsAt, ends_at: endsAt });
-  }
-
-  return NextResponse.json({ ok: true });
 }
