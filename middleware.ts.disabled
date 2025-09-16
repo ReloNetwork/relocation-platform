@@ -23,6 +23,11 @@ function basicAuthCheck(req: NextRequest) {
     /^\/robots\.txt$/,
     /^\/sitemap\.xml$/,
     /^\/api\/health$/,
+    // add to your exempt list/regex
+    // add to your exempt list/regex
+/^\/api\/webhooks\/.*$/
+
+
   ];
   if (exempt.some((rx) => rx.test(pathname))) return null;
 

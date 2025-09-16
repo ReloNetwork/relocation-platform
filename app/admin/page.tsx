@@ -2,6 +2,7 @@ import { requireUser } from '@/lib/auth'
 import { requireUserWithOrg } from '@/lib/org'
 import { createClient } from '@/lib/supabase/server'
 import Layout from '@/components/Layout'
+import AdminContent from './AdminContent'
 import { redirect } from 'next/navigation'
 
 export default async function AdminPage() {
@@ -22,49 +23,90 @@ export default async function AdminPage() {
     redirect('/dashboard')
   }
 
+  // Load cases data with client names
+  const { data: cases } = await supabase
+    .from('move_cases')
+    .select(`
+      id,
+      client_id,
+      route_from,
+      route_to,
+      move_date,
+      status,
+      created_at,
+      users!client_id (
+        email
+      )
+    `)
+    .order('created_at', { ascending: false })
+
+  // Load tasks data with case info
+  const { data: tasks } = await supabase
+    .from('tasks')
+    .select(`
+      id,
+      case_id,
+      title,
+      description,
+      assignee_role,
+      assignee_id,
+      due_at,
+      status,
+      priority,
+      created_at,
+      move_cases!case_id (
+        route_from,
+        route_to
+      )
+    `)
+    .order('created_at', { ascending: false })
+
+  // Load appointments data with case info  
+  const { data: appointments } = await supabase
+    .from('appointments')
+    .select(`
+      id,
+      case_id,
+      title,
+      description,
+      starts_at,
+      ends_at,
+      type,
+      status,
+      provider,
+      created_at,
+      move_cases!case_id (
+        route_from,
+        route_to
+      )
+    `)
+    .order('starts_at', { ascending: true })
+
+  // Transform data for the components
+  const transformedCases = (cases || []).map(case_ => ({
+    ...case_,
+    client_name: (case_.users as any)?.email || 'Unknown Client'
+  }))
+
+  const transformedTasks = (tasks || []).map(task => ({
+    ...task,
+    case_route: (task.move_cases as any) ? `${(task.move_cases as any).route_from} → ${(task.move_cases as any).route_to}` : null
+  }))
+
+  const transformedAppointments = (appointments || []).map(appointment => ({
+    ...appointment,
+    case_route: (appointment.move_cases as any) ? `${(appointment.move_cases as any).route_from} → ${(appointment.move_cases as any).route_to}` : null
+  }))
+
+  const initialData = {
+    cases: transformedCases,
+    tasks: transformedTasks,
+    appointments: transformedAppointments
+  }
+
   return (
     <Layout>
-      <div className="min-h-screen bg-[#FAFAF9] py-8">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-[#0B1B2B] mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Admin Dashboard
-            </h1>
-            <p className="text-[#6B7280] text-lg">
-              Manage your organization and access administrative tools
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-2">Payment Links</h3>
-              <p className="text-[#6B7280] text-sm mb-4">Generate and manage payment links for services</p>
-              <a
-                href="/admin/payment-links"
-                className="inline-flex items-center px-4 py-2 bg-[#C9A24A] text-white rounded-md hover:bg-[#B8923D] transition-colors"
-              >
-                Manage Links
-              </a>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-2">Organization Settings</h3>
-              <p className="text-[#6B7280] text-sm mb-4">Configure organization details and preferences</p>
-              <button className="inline-flex items-center px-4 py-2 bg-[#0B1B2B] text-white rounded-md hover:bg-[#0B1B2B]/90 transition-colors">
-                Settings
-              </button>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-2">User Management</h3>
-              <p className="text-[#6B7280] text-sm mb-4">Manage organization members and permissions</p>
-              <button className="inline-flex items-center px-4 py-2 bg-[#0B1B2B] text-white rounded-md hover:bg-[#0B1B2B]/90 transition-colors">
-                Manage Users
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <AdminContent initialData={initialData} orgId={orgId} />
     </Layout>
   )
 }

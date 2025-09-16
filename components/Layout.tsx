@@ -1,6 +1,6 @@
 'use client'
 
-import GlobalNavigation from './GlobalNavigation'
+import GlobalNavigationFixed from './GlobalNavigationFixed'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -11,8 +11,8 @@ interface LayoutProps {
 export default function Layout({ children, className = '', showFooter = true }: LayoutProps) {
   return (
     <div className={`min-h-screen ${className}`}>
-      <GlobalNavigation />
-      <main>
+      <GlobalNavigationFixed />
+      <main className="pt-16">
         {children}
       </main>
       

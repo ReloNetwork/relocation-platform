@@ -1,7 +1,9 @@
 'use client'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/components/card'
-import { Button } from '@/ui/components/button'
+// import { Button } from '@/ui/components/button'
+import { calculateSLAStatus } from '@/lib/sla'
+import MessagesPanel from './MessagesPanel'
 import type { User } from '@supabase/supabase-js'
 import type { Task, Appointment, Document, MoveCase, Organization } from '@/types/db'
 
@@ -54,6 +56,14 @@ export default function CaseContent({
       case 'medium': return 'bg-yellow-100 text-yellow-800'
       case 'low': return 'bg-green-100 text-green-800'
       default: return 'bg-gray-100 text-gray-800'
+    }
+  }
+
+  const getSLAColor = (status: string) => {
+    switch (status) {
+      case 'at_risk': return 'bg-yellow-100 text-yellow-800 border-yellow-200'
+      case 'breached': return 'bg-red-100 text-red-800 border-red-200'
+      default: return 'bg-green-100 text-green-800 border-green-200'
     }
   }
 
@@ -120,8 +130,8 @@ export default function CaseContent({
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Tasks */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Column - Tasks */}
           <Card className="border-[#E5E7EB]">
             <CardHeader>
               <CardTitle className="text-xl text-[#0B1B2B]">Tasks & Milestones</CardTitle>
@@ -132,27 +142,43 @@ export default function CaseContent({
             <CardContent>
               {tasks.length > 0 ? (
                 <div className="space-y-4">
-                  {tasks.map((task) => (
-                    <div key={task.id} className="border border-[#E5E7EB] rounded-lg p-4">
-                      <div className="flex items-start justify-between mb-3">
-                        <h4 className="font-medium text-[#0B1B2B]">{task.title}</h4>
-                        <div className="flex gap-2">
-                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${getPriorityColor(task.priority)}`}>
-                            {task.priority}
-                          </span>
-                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(task.status)}`}>
-                            {task.status.replace('_', ' ')}
-                          </span>
+                  {tasks.map((task) => {
+                    const slaStatus = calculateSLAStatus(task.created_at, task.due_date, task.title)
+                    
+                    return (
+                      <div key={task.id} className="border border-[#E5E7EB] rounded-lg p-4">
+                        <div className="flex items-start justify-between mb-3">
+                          <h4 className="font-medium text-[#0B1B2B]">{task.title}</h4>
+                          <div className="flex gap-2 flex-wrap">
+                            <span className={`px-2 py-1 text-xs font-medium rounded-full ${getPriorityColor(task.priority)}`}>
+                              {task.priority}
+                            </span>
+                            <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(task.status)}`}>
+                              {task.status.replace('_', ' ')}
+                            </span>
+                            {slaStatus.status !== 'ok' && (
+                              <span className={`px-2 py-1 text-xs font-medium rounded-full border ${getSLAColor(slaStatus.status)}`}>
+                                {slaStatus.status === 'at_risk' ? 'At Risk' : 'Breached'}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <p className="text-sm text-[#6B7280] mb-3">{task.description}</p>
+                        <div className="flex justify-between items-center text-xs text-[#6B7280]">
+                          <div>
+                            {task.due_date && (
+                              <span>Due: {formatDate(task.due_date)}</span>
+                            )}
+                          </div>
+                          {slaStatus.status !== 'ok' && (
+                            <span className={`font-medium ${slaStatus.status === 'breached' ? 'text-red-600' : 'text-yellow-600'}`}>
+                              {slaStatus.status === 'breached' ? `${slaStatus.hoursOver}h over` : `${slaStatus.hoursRemaining}h left`}
+                            </span>
+                          )}
                         </div>
                       </div>
-                      <p className="text-sm text-[#6B7280] mb-3">{task.description}</p>
-                      {task.due_date && (
-                        <p className="text-xs text-[#6B7280]">
-                          Due: {formatDate(task.due_date)}
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               ) : (
                 <p className="text-[#6B7280] text-center py-8">
@@ -162,7 +188,7 @@ export default function CaseContent({
             </CardContent>
           </Card>
 
-          {/* Appointments */}
+          {/* Middle Column - Appointments */}
           <Card className="border-[#E5E7EB]">
             <CardHeader>
               <CardTitle className="text-xl text-[#0B1B2B]">Appointments</CardTitle>
@@ -194,16 +220,19 @@ export default function CaseContent({
               ) : (
                 <div className="text-center py-8">
                   <p className="text-[#6B7280] mb-4">No appointments scheduled</p>
-                  <Button className="bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white">
+                  <button className="bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white px-4 py-2 rounded-md">
                     Schedule Meeting
-                  </Button>
+                  </button>
                 </div>
               )}
             </CardContent>
           </Card>
 
+          {/* Right Column - Messages */}
+          <MessagesPanel caseId={moveCase.id} currentUserId={user.id} />
+
           {/* Documents */}
-          <Card className="border-[#E5E7EB] lg:col-span-2">
+          <Card className="border-[#E5E7EB] lg:col-span-3">
             <CardHeader>
               <CardTitle className="text-xl text-[#0B1B2B]">Documents</CardTitle>
               <CardDescription>
@@ -226,18 +255,18 @@ export default function CaseContent({
                         <p>Size: {(document.file_size / 1024).toFixed(1)} KB</p>
                         <p>Uploaded: {formatDate(document.created_at)}</p>
                       </div>
-                      <Button variant="outline" size="sm" className="mt-3 w-full border-[#E5E7EB] text-[#0B1B2B]">
+                      <button className="mt-3 w-full border border-[#E5E7EB] text-[#0B1B2B] px-3 py-2 rounded-md text-sm hover:bg-gray-50">
                         Download
-                      </Button>
+                      </button>
                     </div>
                   ))}
                 </div>
               ) : (
                 <div className="text-center py-8">
                   <p className="text-[#6B7280] mb-4">No documents uploaded yet</p>
-                  <Button className="bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white">
+                  <button className="bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white px-4 py-2 rounded-md">
                     Upload Document
-                  </Button>
+                  </button>
                 </div>
               )}
             </CardContent>

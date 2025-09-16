@@ -1,0 +1,33 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /test/
+Disallow: /_next/
+Disallow: /*.json$
+Disallow: /_*
+
+# GPTBot
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+
+# ChatGPT-User
+User-agent: ChatGPT-User
+Allow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
+# Host
+Host: https://relocation-platform.vercel.app
+
+# Sitemaps
+Sitemap: https://relocation-platform.vercel.app/sitemap.xml
+Sitemap: https://relo-network.vercel.app/sitemap-blog.xml
+Sitemap: https://relo-network.vercel.app/sitemap-areas.xml

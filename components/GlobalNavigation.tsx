@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Button } from '@/ui/components/button'
+// import { Button } from '@/ui/components/button'
 import AuthWrapper from './auth/AuthWrapper'
 import SignOutButton from './auth/SignOutButton'
 
@@ -185,9 +185,9 @@ export default function GlobalNavigation() {
                     return (
                       <div className="flex items-center space-x-2">
                         <Link href="/dashboard">
-                          <Button className="bg-[#C9A24A] hover:bg-[#B8923D] text-white">
+                          <button className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-md">
                             Dashboard
-                          </Button>
+                          </button>
                         </Link>
                         <SignOutButton />
                       </div>

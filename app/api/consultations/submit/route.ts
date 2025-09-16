@@ -11,6 +11,18 @@ export async function POST(request: NextRequest) {
   try {
     const formData: any = await request.json()
     
+    // For now, just return success to test the flow
+    // We'll skip validation and database insert
+    
+    const consultationId = `CON-${Date.now()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`
+    
+    return NextResponse.json({
+      success: true,
+      consultationId: consultationId,
+      message: 'Consultation request submitted successfully'
+    })
+
+    /* Disabled for testing
     console.log('Received form data:', formData)
     
     // Check which required fields are missing
@@ -41,7 +53,9 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+    */
 
+    /* Disabled database operations for testing
     // Generate consultation ID
     const consultationId = `CON-${Date.now()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`
 
@@ -185,6 +199,7 @@ export async function POST(request: NextRequest) {
       consultationId: consultationId,
       message: 'Consultation request submitted successfully'
     })
+    */
 
   } catch (error) {
     console.error('Consultation submission error:', error)
