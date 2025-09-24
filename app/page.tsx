@@ -162,7 +162,7 @@ export default function HomePage() {
               Launch Day Approaching
             </div>
             <div className="text-white text-lg mb-3">
-              <strong>September 22, 2025 • 2:00 PM GMT</strong> - Limited to 100 Founding Members
+              <strong>September 26, 2025 • 2:00 PM GMT</strong> - Limited to 100 Founding Members
             </div>
             <div className="flex justify-center items-center gap-6 text-white">
               <div className="text-center">
@@ -495,7 +495,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Platform Launch</div>
-                    <div className="text-[#0B1B2B] font-semibold">September 22, 2025</div>
+                    <div className="text-[#0B1B2B] font-semibold">September 26, 2025</div>
                   </div>
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Founding Members</div>

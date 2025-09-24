@@ -500,7 +500,7 @@ export default function PartnerApplicationPage() {
                   <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6">
                     <div className="text-center">
                       <h3 className="text-lg font-semibold text-red-800 mb-2">⏰ Founding Partner Pricing Ends Soon!</h3>
-                      <p className="text-red-700 mb-4">Prices go up on Monday, 22nd September at 14:00 GMT</p>
+                      <p className="text-red-700 mb-4">Prices go up on Friday, 26th September at 14:00 GMT</p>
                       <div className="flex justify-center space-x-4">
                         <div className="text-center">
                           <div className="text-2xl font-bold text-red-800">{timeRemaining.days}</div>

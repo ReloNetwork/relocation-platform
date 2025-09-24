@@ -70,7 +70,7 @@ const CountdownTimer = () => {
           <div className="text-xs mt-1">SEC</div>
         </div>
       </div>
-      <div className="text-sm mt-2 opacity-90">Price doubles to £2,997/month after September 15!</div>
+      <div className="text-sm mt-2 opacity-90">Price doubles to £2,997/month after September 26!</div>
     </div>
   )
 }
@@ -415,7 +415,7 @@ export default function MarketDominatorPage() {
                   Pay annually and get <span className="font-bold">10 months at the discounted founding rate</span>
                 </p>
                 <p className="text-green-100">
-                  Save £2,994 per year • Only available until September 22, 2024
+                  Save £2,994 per year • Only available until September 26, 2025
                 </p>
               </div>
             </div>

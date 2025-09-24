@@ -393,7 +393,7 @@ export default function PartnersPage() {
                 Founding Rates Expire In:
               </div>
               <CountdownTimer />
-              <div className="text-sm text-white/90 mt-3 font-medium">Monday, September 22nd 2024</div>
+              <div className="text-sm text-white/90 mt-3 font-medium">Friday, September 26th 2025</div>
               <div className="text-sm text-white/70 mt-1">67% discount - Limited to first 100 partners only</div>
             </div>
           </div>
@@ -1079,7 +1079,7 @@ export default function PartnersPage() {
           </div>
           
           <div className="text-sm text-white/80">
-            <div>✓ Founding rates expire September 22nd, 2024</div>
+            <div>✓ Founding rates expire September 26th, 2025</div>
             <div>✓ No setup fees • Cancel anytime • ROI guarantee</div>
             <div>✓ Limited to first 100 founding partners</div>
           </div>
