@@ -7,27 +7,23 @@ import Layout from '../../components/Layout'
 import { getAllPartnershipSchemas } from '../../lib/seo/partnership-schemas'
 import PartnerApplicationForm from '../../components/forms/PartnerApplicationForm'
 
-const PricingTier = ({ 
+const PartnershipTier = ({ 
   name, 
   price, 
-  originalPrice, 
+  duration, 
   description, 
   features, 
   isPopular = false, 
   priceId,
-  roiData,
-  redirectUrl,
   onSelect 
 }: {
   name: string
   price: string
-  originalPrice: string
+  duration: string
   description: string
   features: string[]
   isPopular?: boolean
   priceId: string
-  roiData: { monthlyRevenue: string; roi: string; clients: string }
-  redirectUrl?: string
   onSelect: (priceId: string) => void
 }) => (
   <div className={`relative rounded-2xl border ${isPopular ? 'border-[#C9A24A] ring-2 ring-[#C9A24A]/20' : 'border-gray-200'} bg-white p-8 shadow-lg hover:shadow-xl transition-all`}>
@@ -44,41 +40,21 @@ const PricingTier = ({
       <p className="text-[#6B7280] mb-6">{description}</p>
       
       <div className="mb-6">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <span className="text-[#9CA3AF] line-through text-lg">£{originalPrice}/mo</span>
-          <span className="bg-red-100 text-red-800 px-2 py-1 rounded text-sm font-semibold">67% OFF</span>
-        </div>
         <div className="text-4xl font-bold text-[#0B1220]">
-          £{price}<span className="text-lg text-[#6B7280]">/mo</span>
+          {price}
         </div>
-        <p className="text-sm text-[#6B7280] mt-1">Founding Partner Rate</p>
-      </div>
-
-      {/* ROI Metrics */}
-      <div className="bg-[#C9A24A]/5 rounded-lg p-4 mb-6">
-        <div className="text-sm font-medium text-[#C9A24A] mb-2">Average Partner Performance</div>
-        <div className="grid grid-cols-3 gap-2 text-xs">
-          <div>
-            <div className="font-bold text-[#0B1B2B]">{roiData.monthlyRevenue}</div>
-            <div className="text-[#6B7280]">Monthly Revenue</div>
-          </div>
-          <div>
-            <div className="font-bold text-[#0B1B2B]">{roiData.roi}</div>
-            <div className="text-[#6B7280]">ROI</div>
-          </div>
-          <div>
-            <div className="font-bold text-[#0B1B2B]">{roiData.clients}</div>
-            <div className="text-[#6B7280]">Clients/Month</div>
-          </div>
+        <p className="text-lg text-[#6B7280] mt-1">{duration}</p>
+        <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded px-3 py-1 text-sm text-[#C9A24A] font-medium mt-2 inline-block">
+          Charter Rate - Expires Sept 26
         </div>
       </div>
 
       <Button 
-        onClick={() => redirectUrl ? window.location.href = redirectUrl : onSelect(priceId)}
+        onClick={() => onSelect(priceId)}
         className={`w-full mb-6 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all ${isPopular ? 'bg-[#C9A24A] hover:bg-[#B8923D]' : 'bg-[#0B1B2B] hover:bg-[#0B1B2B]/90'} text-white`}
         size="lg"
       >
-        {redirectUrl ? 'View Details' : 'Start Earning Today'} <ArrowRight className="ml-2 h-4 w-4" />
+        Select Partnership <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
     </div>
 
@@ -177,15 +153,15 @@ export default function PartnersPage() {
   const handleCheckout = async (priceId: string) => {
     setLoading(true)
     try {
-      const response = await fetch('/api/partners/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ priceId })
-      })
+      let checkoutUrl = ''
+      if (priceId === 'founding_partner') {
+        checkoutUrl = '/api/partners/checkout/founding-partner'
+      } else if (priceId === 'premium_sponsor') {
+        checkoutUrl = '/api/partners/checkout/premium-sponsor'
+      }
       
-      const { url } = await response.json()
-      if (url) {
-        window.location.href = url
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl
       }
     } catch (error) {
       console.error('Checkout error:', error)
@@ -194,52 +170,39 @@ export default function PartnersPage() {
     }
   }
 
-  const pricingTiers = [
+  const partnershipTiers = [
     {
-      name: 'Lead Machine',
-      price: '497',
-      originalPrice: '997',
-      description: 'Authority building with guaranteed lead generation',
+      name: 'Founding Partner',
+      price: '£25,000',
+      duration: '12 months',
+      description: 'Category exclusivity with homepage placement',
       isPopular: true,
-      priceId: 'lead_machine',
-      roiData: { monthlyRevenue: '£12,400', roi: '340%', clients: '8-15' },
-      redirectUrl: '/partners/lead-machine',
-      authorityFocus: 'Expert Positioning & Lead Generation',
+      priceId: 'founding_partner',
       features: [
-        '8-15 guaranteed qualified leads/month',
-        'AI concierge mentions you by name for expertise',
-        'Premium directory placement (top 3 position)',
-        'Authority content collaboration & co-creation',
-        'Expert positioning in your service category',
-        'Performance dashboard with lead analytics',
-        'Email list inclusion (25k+ luxury subscribers)',
-        'Social media authority features & mentions',
-        'EXCLUSIVE territory protection rights',
-        'Client testimonial & case study development'
+        'Category exclusivity in your service area',
+        'Homepage placement and featured positioning',
+        'Concierge-routed introductions',
+        'Territory protection rights',
+        'Professional network access',
+        'Marketing collaboration opportunities',
+        'Performance tracking and reporting',
+        'Direct partnership management'
       ]
     },
     {
-      name: 'Market Dominator',
-      price: '1,497',
-      originalPrice: '2,997',
-      description: 'Complete market domination with citation insurance',
-      priceId: 'market_dominator',
-      roiData: { monthlyRevenue: '£37,500', roi: '650%', clients: '15+' },
-      redirectUrl: '/partners/market-dominator',
-      authorityFocus: 'Market Domination & Citation Insurance',
+      name: 'Premium Sponsor',
+      price: '£5,000',
+      duration: '90 days',
+      description: 'Professional referral access with priority placement',
+      priceId: 'premium_sponsor',
       features: [
-        'Everything in Lead Machine tier',
-        'EXCLUSIVE category ownership (no competitors)',
-        'AI citations as "preferred industry partner"',
-        'Citation insurance against competitor mentions',
-        'Co-branded luxury marketing content creation',
-        'White-label platform integration options',
-        'Priority Concierge tier client recommendations',
-        '15% revenue sharing on all closed deals',
-        'Quarterly strategic business reviews with CEO',
-        'Industry thought leadership positioning',
-        'Premium press mention opportunities',
-        'Executive networking event access'
+        'Priority referral placement',
+        'Professional network access',
+        'Marketing exposure opportunities',
+        'Performance tracking',
+        'Partnership support',
+        'Networking event access',
+        'Professional development resources'
       ]
     }
   ]
@@ -257,33 +220,54 @@ export default function PartnersPage() {
         />
       ))}
 
-      {/* Lead Section - Direct Answers */}
-      <div className="bg-white border-b border-[#0B1B2B]/10 py-12">
+      {/* Hero Section */}
+      <div className="bg-white border-b border-[#0B1B2B]/10 py-16">
         <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h1 className="text-5xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Own Your Category in London's Most Vetted Relocation Network
+            </h1>
+            <p className="text-xl text-[#6B7280] max-w-3xl mx-auto mb-8">
+              Category exclusivity + concierge-routed intros + homepage placement. 12 Charter slots only. Closes 26 Sept, 2:00 PM GMT.
+            </p>
+            
+            {/* Above the fold CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button 
+                onClick={() => window.location.href = '/api/partners/checkout/founding-partner'}
+                size="lg"
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
+              >
+                Become a Founding Partner — £25,000 (12 months)
+              </Button>
+              <Button 
+                onClick={() => window.location.href = '/api/partners/checkout/premium-sponsor'}
+                size="lg"
+                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-8 py-4 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
+              >
+                Premium Sponsor — £5,000 (90 days)
+              </Button>
+            </div>
+          </div>
+          
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <h1 className="text-4xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                Relo Network Partnership Program
-              </h1>
-              <p className="text-xl text-[#0B1B2B] leading-relaxed mb-6">
-                <strong>Relo Network</strong> operates London's most exclusive relocation service provider network, connecting vetted professionals with high-value relocations worth £8,500+. Our revolutionary partnership program featuring the Lead Machine (£497/mo) and Market Dominator (£1,497/mo) tiers has generated over £2.3M in verified partner revenue across 150+ service providers since January 2024, making it the UK's fastest-growing luxury relocation network.
-              </p>
               
               {/* Authority Quote */}
               <div className="bg-[#C9A24A]/5 border-l-4 border-[#C9A24A] rounded-r-lg p-6 mb-6">
                 <blockquote className="text-lg italic text-[#0B1B2B] mb-2">
-                  "Relo Network has revolutionized how we approach luxury relocations. Their partner vetting process and AI matching system set the gold standard for the industry."
+                  "Relo Network provides structured opportunities for qualified service providers. Their vetting process maintains professional standards."
                 </blockquote>
                 <cite className="text-sm text-[#6B7280] font-medium">
-                  — Marcus Wellington-Smith, Director, London Relocation Council
+                  — Network Partner
                 </cite>
               </div>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <Shield className="w-5 h-5 text-[#C9A24A] mt-1" />
                   <div>
-                    <div className="font-semibold text-[#0B1B2B]">Guaranteed ROI Performance</div>
-                    <div className="text-[#6B7280]">Average partner ROI of 340% within 6 months, with 96% partner retention rate</div>
+                    <div className="font-semibold text-[#0B1B2B]">Partnership Performance</div>
+                    <div className="text-[#6B7280]">Structured referral system with partner retention focus</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -296,8 +280,8 @@ export default function PartnersPage() {
                 <div className="flex items-start gap-3">
                   <Target className="w-5 h-5 text-[#C9A24A] mt-1" />
                   <div>
-                    <div className="font-semibold text-[#0B1B2B]">AI-Powered Client Matching</div>
-                    <div className="text-[#6B7280]">47-point analyses ensures perfect partner-client alignment with 94% match accuracy</div>
+                    <div className="font-semibold text-[#0B1B2B]">Client-Partner Matching</div>
+                    <div className="text-[#6B7280]">Structured approach to partner-client alignment</div>
                   </div>
                 </div>
               </div>
@@ -313,24 +297,24 @@ export default function PartnersPage() {
                     <div className="text-[#0B1B2B] font-semibold">January 2024</div>
                   </div>
                   <div>
-                    <div className="text-[#6B7280] font-medium mb-1">Active Partners</div>
-                    <div className="text-[#0B1B2B] font-semibold">150+ Verified</div>
+                    <div className="text-[#6B7280] font-medium mb-1">Network Partners</div>
+                    <div className="text-[#0B1B2B] font-semibold">Vetted Professionals</div>
                   </div>
                   <div>
-                    <div className="text-[#6B7280] font-medium mb-1">Total Revenue Generated</div>
-                    <div className="text-[#0B1B2B] font-semibold">£2.3M+ Verified</div>
+                    <div className="text-[#6B7280] font-medium mb-1">Partnership Focus</div>
+                    <div className="text-[#0B1B2B] font-semibold">Quality Referrals</div>
                   </div>
                   <div>
-                    <div className="text-[#6B7280] font-medium mb-1">Average Partner ROI</div>
-                    <div className="text-[#0B1B2B] font-semibold">340% in 6 months</div>
+                    <div className="text-[#6B7280] font-medium mb-1">Service Standard</div>
+                    <div className="text-[#0B1B2B] font-semibold">Professional Grade</div>
                   </div>
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Geographic Coverage</div>
                     <div className="text-[#0B1B2B] font-semibold">33 London Boroughs</div>
                   </div>
                   <div>
-                    <div className="text-[#6B7280] font-medium mb-1">Client Quality</div>
-                    <div className="text-[#0B1B2B] font-semibold">£8,500+ Relocations Only</div>
+                    <div className="text-[#6B7280] font-medium mb-1">Client Focus</div>
+                    <div className="text-[#0B1B2B] font-semibold">Established Relocations</div>
                   </div>
                 </div>
               </div>
@@ -356,31 +340,31 @@ export default function PartnersPage() {
               Connect with high-value clients relocating to London. Premium leads, verified opportunities, and exclusive partnerships that drive real revenue.
             </p>
 
-            {/* Enhanced Social Proof */}
+            {/* Professional Network Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
               <StatCard 
                 icon={Users} 
-                number="150+" 
-                label="Vetted Partners" 
-                description="Across all service categories"
+                number="Vetted" 
+                label="Network Partners" 
+                description="Professional service providers"
               />
               <StatCard 
                 icon={Zap} 
-                number="£2.3M" 
-                label="Revenue Generated" 
-                description="Verified partner earnings"
+                number="Active" 
+                label="Referral System" 
+                description="Ongoing opportunities"
               />
               <StatCard 
                 icon={Trophy} 
-                number="96%" 
-                label="Partner Retention" 
-                description="Industry-leading satisfaction"
+                number="Quality" 
+                label="Partner Focus" 
+                description="Professional standards"
               />
               <StatCard 
                 icon={Target} 
-                number="340%" 
-                label="Average ROI" 
-                description="Within first 6 months"
+                number="Growth" 
+                label="Partnership" 
+                description="Business development"
               />
             </div>
 
@@ -472,8 +456,8 @@ export default function PartnersPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {pricingTiers.map((tier) => (
-            <PricingTier 
+          {partnershipTiers.map((tier) => (
+            <PartnershipTier 
               key={tier.name}
               {...tier}
               onSelect={handleCheckout}
@@ -575,50 +559,57 @@ export default function PartnersPage() {
           </div>
         </div>
 
-        {/* ROI Calculator */}
+        {/* Partnership Benefits Overview */}
         <div className="mt-16 bg-[#FAFAF9] rounded-2xl p-8">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Partnership ROI Calculator
+              Partnership Benefits
             </h3>
-            <p className="text-[#6B7280]">Based on actual partner performance data</p>
+            <p className="text-[#6B7280]">Professional opportunities and network access</p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {pricingTiers.map((tier, index) => (
-              <div key={tier.name} className="bg-white rounded-lg p-6 border-2 border-[#C9A24A]/20">
-                <h4 className="font-semibold text-[#0B1B2B] mb-4 text-center text-lg">{tier.name}</h4>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-[#6B7280]">Monthly Investment</span>
-                    <span className="text-[#0B1B2B] font-semibold">£{tier.price}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#6B7280]">Average Monthly Revenue</span>
-                    <span className="text-[#0B1B2B] font-semibold">{tier.roiData.monthlyRevenue}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#6B7280]">Monthly Leads</span>
-                    <span className="text-[#0B1B2B] font-semibold">{tier.roiData.clients}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#6B7280]">Net Monthly Profit</span>
-                    <span className="text-green-600 font-semibold">£{(parseInt(tier.roiData.monthlyRevenue.replace(/[£,]/g, '')) - parseInt(tier.price)).toLocaleString()}</span>
-                  </div>
-                  <div className="border-t pt-2 flex justify-between">
-                    <span className="text-[#6B7280] font-medium">ROI</span>
-                    <span className="text-[#C9A24A] font-bold">{tier.roiData.roi}</span>
-                  </div>
+            <div className="bg-white rounded-lg p-6 border-2 border-[#C9A24A]/20">
+              <h4 className="font-semibold text-[#0B1B2B] mb-4 text-center text-lg">Founding Partner</h4>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-[#6B7280]">Investment</span>
+                  <span className="text-[#0B1B2B] font-semibold">£25,000</span>
                 </div>
-                <div className="mt-4 text-center">
-                  <button 
-                    onClick={() => tier.redirectUrl && (window.location.href = tier.redirectUrl)}
-                    className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-md font-semibold text-sm transition-colors"
-                  >
-                    Get Started
-                  </button>
+                <div className="flex justify-between">
+                  <span className="text-[#6B7280]">Duration</span>
+                  <span className="text-[#0B1B2B] font-semibold">12 months</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6B7280]">Category</span>
+                  <span className="text-[#0B1B2B] font-semibold">Exclusive</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6B7280]">Placement</span>
+                  <span className="text-[#0B1B2B] font-semibold">Homepage</span>
                 </div>
               </div>
-            ))}
+            </div>
+            <div className="bg-white rounded-lg p-6 border-2 border-[#C9A24A]/20">
+              <h4 className="font-semibold text-[#0B1B2B] mb-4 text-center text-lg">Premium Sponsor</h4>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-[#6B7280]">Investment</span>
+                  <span className="text-[#0B1B2B] font-semibold">£5,000</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6B7280]">Duration</span>
+                  <span className="text-[#0B1B2B] font-semibold">90 days</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6B7280]">Access</span>
+                  <span className="text-[#0B1B2B] font-semibold">Professional</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6B7280]">Priority</span>
+                  <span className="text-[#0B1B2B] font-semibold">Placement</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -731,16 +722,16 @@ export default function PartnersPage() {
                 </div>
               </div>
               <blockquote className="text-[#0B1B2B] italic mb-4">
-                "Relo Network transformed our business. In 6 months, we've generated £47,000 from their leads - a 340% ROI. The quality of clients is exceptional."
+                "Relo Network provides professional opportunities through their structured partner network. The quality of referrals is consistently good."
               </blockquote>
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#E5E7EB]">
                 <div>
-                  <div className="text-sm text-[#6B7280]">6-Month Revenue</div>
-                  <div className="font-bold text-[#C9A24A]">£47,000</div>
+                  <div className="text-sm text-[#6B7280]">Partnership</div>
+                  <div className="font-bold text-[#C9A24A]">Professional</div>
                 </div>
                 <div>
-                  <div className="text-sm text-[#6B7280]">ROI</div>
-                  <div className="font-bold text-[#C9A24A]">340%</div>
+                  <div className="text-sm text-[#6B7280]">Quality</div>
+                  <div className="font-bold text-[#C9A24A]">Consistent</div>
                 </div>
               </div>
             </div>
@@ -756,16 +747,16 @@ export default function PartnersPage() {
                 </div>
               </div>
               <blockquote className="text-[#0B1B2B] italic mb-4">
-                "Sponsored tier gave us exclusive access to high-value relocations. We've completed 12 projects worth £180,000 total. The dedicated manager is invaluable."
+                "Premium partnership provides access to quality opportunities. The dedicated support team is professional and responsive."
               </blockquote>
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#E5E7EB]">
                 <div>
-                  <div className="text-sm text-[#6B7280]">Total Projects</div>
-                  <div className="font-bold text-[#C9A24A]">£180,000</div>
+                  <div className="text-sm text-[#6B7280]">Support</div>
+                  <div className="font-bold text-[#C9A24A]">Dedicated</div>
                 </div>
                 <div>
-                  <div className="text-sm text-[#6B7280]">Projects</div>
-                  <div className="font-bold text-[#C9A24A]">12 Completed</div>
+                  <div className="text-sm text-[#6B7280]">Access</div>
+                  <div className="font-bold text-[#C9A24A]">Quality</div>
                 </div>
               </div>
             </div>
@@ -781,16 +772,16 @@ export default function PartnersPage() {
                 </div>
               </div>
               <blockquote className="text-[#0B1B2B] italic mb-4">
-                "The AI matching system is incredibly accurate. Every lead is a perfect fit for our services. Revenue up 280% since joining the network."
+                "The referral system connects us with relevant opportunities. The matching process helps ensure appropriate fit for our services."
               </blockquote>
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#E5E7EB]">
                 <div>
-                  <div className="text-sm text-[#6B7280]">Revenue Increase</div>
-                  <div className="font-bold text-[#C9A24A]">280%</div>
+                  <div className="text-sm text-[#6B7280]">Matching</div>
+                  <div className="font-bold text-[#C9A24A]">Relevant</div>
                 </div>
                 <div>
-                  <div className="text-sm text-[#6B7280]">Match Accuracy</div>
-                  <div className="font-bold text-[#C9A24A]">94%</div>
+                  <div className="text-sm text-[#6B7280]">Process</div>
+                  <div className="font-bold text-[#C9A24A]">Structured</div>
                 </div>
               </div>
             </div>
@@ -814,7 +805,7 @@ export default function PartnersPage() {
             <div className="border border-[#E5E7EB] rounded-lg p-6">
               <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What makes Lead Machine the ideal authority building platform?</h3>
               <p className="text-[#6B7280] leading-relaxed mb-4">
-                Lead Machine (£497/mo) delivers 8-15 guaranteed qualified leads monthly while positioning you as the recognised expert in your service category. Our AI concierge mentions you by name as a trusted authority, premium directory placement ensures top-3 positioning, and authority content collaboration establishes your thought leadership. Average Lead Machine partners generate £12,400 monthly revenue with 340% ROI.
+                Professional partnerships provide structured referral opportunities with network positioning. Partners receive access to relevant client connections through our matching system and directory placement.
               </p>
               <div className="bg-[#FAFAF9] rounded-lg p-4 border border-[#E5E7EB]">
                 <div className="text-sm font-medium text-[#0B1B2B] mb-2">Lead Machine Authority Benefits:</div>
@@ -832,8 +823,8 @@ export default function PartnersPage() {
                     <div className="text-[#6B7280]">Authority building case studies & testimonials</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">340% ROI Performance</div>
-                    <div className="text-[#6B7280]">£12,400/mo average revenue generation</div>
+                    <div className="font-semibold text-[#C9A24A]">Professional Network</div>
+                    <div className="text-[#6B7280]">Structured business development</div>
                   </div>
                 </div>
               </div>
@@ -1056,7 +1047,7 @@ export default function PartnersPage() {
             Start Earning Premium Revenue Today
           </h3>
           <p className="text-lg mb-8 text-white/90">
-            Join 150+ partners generating £2.3M+ in verified revenue. Limited founding partner spots with 67% lifetime discount.
+            Join our vetted partner network. Limited charter partnership positions available.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -1079,9 +1070,9 @@ export default function PartnersPage() {
           </div>
           
           <div className="text-sm text-white/80">
-            <div>✓ Founding rates expire September 26th, 2025</div>
-            <div>✓ No setup fees • Cancel anytime • ROI guarantee</div>
-            <div>✓ Limited to first 100 founding partners</div>
+            <div>✓ Charter rates expire September 26th, 2025</div>
+            <div>✓ Professional partnership terms</div>
+            <div>✓ Limited to 12 charter positions</div>
           </div>
         </div>
       </div>
