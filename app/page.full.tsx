@@ -462,7 +462,7 @@ const CountdownTimer = () => {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2025-09-15T14:00:00Z').getTime() // Monday, September 15th 2025, 14:00 GMT
+    const targetDate = new Date('2025-09-26T14:00:00Z').getTime() // Friday, September 26th 2025, 14:00 GMT
     
     const updateCountdown = () => {
       const now = new Date().getTime()
@@ -515,7 +515,7 @@ const WaitlistCountdown = () => {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2025-09-15T14:00:00Z').getTime() // Monday, September 15th 2025, 14:00 GMT
+    const targetDate = new Date('2025-09-26T14:00:00Z').getTime() // Friday, September 26th 2025, 14:00 GMT
     
     const updateCountdown = () => {
       const now = new Date().getTime()
@@ -565,7 +565,7 @@ const CountdownBanner = () => {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2025-09-15T14:00:00Z').getTime() // Monday, September 15th 2025, 14:00 GMT
+    const targetDate = new Date('2025-09-26T14:00:00Z').getTime() // Friday, September 26th 2025, 14:00 GMT
     
     const updateCountdown = () => {
       const now = new Date().getTime()
@@ -619,7 +619,7 @@ const CountdownBanner = () => {
           <div className="text-white/80 text-xs font-medium">Secs</div>
         </div>
       </div>
-      <span className="text-white/90 text-sm font-medium">Monday, September 15th 2025</span>
+      <span className="text-white/90 text-sm font-medium">Monday, September 22nd 2024</span>
     </div>
   )
 }
@@ -827,7 +827,7 @@ export default function HomePage() {
                 <div className="space-y-4 text-sm">
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Launch Date</div>
-                    <div className="text-[#0B1B2B] font-semibold">September 15, 2025</div>
+                    <div className="text-[#0B1B2B] font-semibold">September 22, 2024</div>
                   </div>
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Founding Members</div>
@@ -1542,7 +1542,7 @@ export default function HomePage() {
               </div>
               <WaitlistCountdown />
               <div className="text-center mt-3">
-                <div className="text-sm text-[#0B1B2B] font-medium">Monday, September 15th 2025</div>
+                <div className="text-sm text-[#0B1B2B] font-medium">Monday, September 22nd 2024</div>
               </div>
             </div>
             

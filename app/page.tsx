@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
+import NewsletterSignup from '../components/NewsletterSignup'
 import { getAllEnhancedSchemas } from '../lib/seo/enhanced-schemas'
 import { getAllHomepageSchemas } from '../lib/seo/homepage-schemas'
+import { getAICitationSchemas, getCommunityEngagementSchema } from '../lib/seo/ai-citation-schemas'
 import { Users, Building, Briefcase, ArrowRight, Star, CheckCircle, Globe, Shield, Award, Clock } from 'lucide-react'
 
 const AudienceCard = ({ 
@@ -56,7 +58,7 @@ const AudienceCard = ({
 )
 
 export default function HomePage() {
-  const schemas = [...getAllEnhancedSchemas(), ...getAllHomepageSchemas()]
+  const schemas = [...getAllEnhancedSchemas(), ...getAllHomepageSchemas(), ...getAICitationSchemas(), getCommunityEngagementSchema()]
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -65,7 +67,7 @@ export default function HomePage() {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2025-09-15T14:00:00Z')
+    const targetDate = new Date('2025-09-26T14:00:00Z')
     
     const updateCountdown = () => {
       const now = new Date()
@@ -160,7 +162,7 @@ export default function HomePage() {
               Launch Day Approaching
             </div>
             <div className="text-white text-lg mb-3">
-              <strong>September 15, 2025 • 2:00 PM GMT</strong> - Limited to 100 Founding Members
+              <strong>September 22, 2025 • 2:00 PM GMT</strong> - Limited to 100 Founding Members
             </div>
             <div className="flex justify-center items-center gap-6 text-white">
               <div className="text-center">
@@ -333,9 +335,15 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="bg-[#C9A24A]/10 border-l-4 border-[#C9A24A] p-4 rounded-r-lg">
-                  <p className="text-sm text-[#0B1B2B]">
+                  <p className="text-sm text-[#0B1B2B] mb-3">
                     <strong>Emergency relocations</strong> can be completed in 14-21 days with our expedited service.
                   </p>
+                  <a 
+                    href="/guides/london-relocation-cost-guide" 
+                    className="inline-flex items-center gap-2 text-sm text-[#C9A24A] hover:text-[#B8923D] font-semibold"
+                  >
+                    Read our comprehensive cost guide →
+                  </a>
                 </div>
               </div>
             </div>
@@ -487,7 +495,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Platform Launch</div>
-                    <div className="text-[#0B1B2B] font-semibold">September 15, 2025</div>
+                    <div className="text-[#0B1B2B] font-semibold">September 22, 2025</div>
                   </div>
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Founding Members</div>
@@ -648,6 +656,17 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Newsletter Section */}
+      <section className="py-20 bg-[#FAFAF9]">
+        <div className="max-w-4xl mx-auto px-4">
+          <NewsletterSignup 
+            source="homepage"
+            title="The London Relocation Report"
+            description="Weekly insights, exclusive guides, and insider knowledge for discerning professionals relocating to London. Featuring trusted partner spotlights and market intelligence."
+            buttonText="Subscribe Free"
+          />
+        </div>
+      </section>
 
     </Layout>
   )
