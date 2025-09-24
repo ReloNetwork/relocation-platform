@@ -469,89 +469,89 @@ export default function PartnersPage() {
         <div className="mt-16 bg-white rounded-2xl p-8 border border-[#0B1B2B]/10">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Authority Building vs Market Domination
+              Charter Partnership Tiers
             </h3>
             <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
-              Choose your path to becoming London's recognised expert in luxury relocations
+              Choose your level of network participation and territorial access
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Lead Machine Authority Focus */}
+            {/* Founding Partner Focus */}
             <div className="bg-[#FAFAF9] rounded-xl p-8 border border-[#C9A24A]/20">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-[#C9A24A] text-white rounded-full flex items-center justify-center">
                   <Trophy className="h-8 w-8" />
                 </div>
                 <div>
-                  <h4 className="text-2xl font-bold text-[#0B1B2B]">Lead Machine</h4>
-                  <p className="text-[#C9A24A] font-semibold">Expert Positioning & Authority Building</p>
+                  <h4 className="text-2xl font-bold text-[#0B1B2B]">Founding Partner</h4>
+                  <p className="text-[#C9A24A] font-semibold">Category Exclusivity & Premium Placement</p>
                 </div>
               </div>
               
               <div className="space-y-4">
                 <div className="border-l-4 border-[#C9A24A] pl-4">
-                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Authority Strategy</h5>
-                  <p className="text-[#6B7280] text-sm">Build recognised expertise through consistent lead generation and thought leadership positioning in your service category.</p>
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Exclusive Territory</h5>
+                  <p className="text-[#6B7280] text-sm">Protected service category within your geographic area, ensuring no direct competition within the network.</p>
                 </div>
                 
                 <div className="border-l-4 border-[#C9A24A] pl-4">
-                  <h5 className="font-semibold text-[#0B1B2B] mb-2">AI Positioning</h5>
-                  <p className="text-[#6B7280] text-sm">Our AI concierge mentions you by name as a trusted expert, building your reputation with every client interaction.</p>
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Homepage Placement</h5>
+                  <p className="text-[#6B7280] text-sm">Featured positioning on our homepage for maximum visibility to incoming referrals and network traffic.</p>
                 </div>
                 
                 <div className="border-l-4 border-[#C9A24A] pl-4">
-                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Content Authority</h5>
-                  <p className="text-[#6B7280] text-sm">Collaborate on premium content creation, case studies, and testimonials that establish your expertise.</p>
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Concierge Routing</h5>
+                  <p className="text-[#6B7280] text-sm">Direct introduction pathway through our concierge team for qualified opportunities in your service area.</p>
                 </div>
 
                 <div className="bg-[#C9A24A]/10 rounded-lg p-4 mt-6">
-                  <div className="text-sm font-medium text-[#0B1B2B] mb-2">Perfect For:</div>
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-2">Ideal For:</div>
                   <ul className="text-xs text-[#6B7280] space-y-1">
-                    <li>• Service providers building market presence</li>
-                    <li>• Businesses seeking steady lead generation</li>
-                    <li>• Companies wanting expert recognition</li>
-                    <li>• Partners focused on consistent growth</li>
+                    <li>• Established service providers</li>
+                    <li>• Businesses seeking category leadership</li>
+                    <li>• Companies wanting territorial protection</li>
+                    <li>• Partners focused on long-term growth</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            {/* Market Dominator Authority Focus */}
+            {/* Premium Sponsor Focus */}
             <div className="bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/5 rounded-xl p-8 border-2 border-[#C9A24A]">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-[#0B1B2B] text-white rounded-full flex items-center justify-center">
                   <Target className="h-8 w-8" />
                 </div>
                 <div>
-                  <h4 className="text-2xl font-bold text-[#0B1B2B]">Market Dominator</h4>
-                  <p className="text-[#C9A24A] font-semibold">Complete Market Control & Citation Insurance</p>
+                  <h4 className="text-2xl font-bold text-[#0B1B2B]">Premium Sponsor</h4>
+                  <p className="text-[#C9A24A] font-semibold">Priority Access & Professional Networking</p>
                 </div>
               </div>
               
               <div className="space-y-4">
                 <div className="border-l-4 border-[#0B1B2B] pl-4">
-                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Market Domination Strategy</h5>
-                  <p className="text-[#6B7280] text-sm">Achieve complete category ownership by eliminating competitor mentions and securing exclusive AI recommendation status.</p>
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Priority Placement</h5>
+                  <p className="text-[#6B7280] text-sm">Enhanced visibility within our professional referral system with priority consideration for relevant opportunities.</p>
                 </div>
                 
                 <div className="border-l-4 border-[#0B1B2B] pl-4">
-                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Citation Insurance</h5>
-                  <p className="text-[#6B7280] text-sm">Guaranteed protection against competitor mentions. You become THE definitive authority in your service category.</p>
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Network Access</h5>
+                  <p className="text-[#6B7280] text-sm">Professional membership with access to networking events, industry connections, and partnership opportunities.</p>
                 </div>
                 
                 <div className="border-l-4 border-[#0B1B2B] pl-4">
-                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Premium Authority</h5>
-                  <p className="text-[#6B7280] text-sm">Co-branded content, press mentions, and thought leadership positioning that establishes market-leading authority.</p>
+                  <h5 className="font-semibold text-[#0B1B2B] mb-2">Marketing Support</h5>
+                  <p className="text-[#6B7280] text-sm">Brand exposure opportunities through network marketing channels and professional development resources.</p>
                 </div>
 
                 <div className="bg-[#0B1B2B]/10 rounded-lg p-4 mt-6">
-                  <div className="text-sm font-medium text-[#0B1B2B] mb-2">Perfect For:</div>
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-2">Ideal For:</div>
                   <ul className="text-xs text-[#6B7280] space-y-1">
-                    <li>• Market leaders seeking complete dominance</li>
-                    <li>• Premium service providers (£500k+ revenue)</li>
-                    <li>• Companies wanting zero competition</li>
-                    <li>• Partners focused on industry leadership</li>
+                    <li>• Growing service businesses</li>
+                    <li>• Companies exploring network benefits</li>
+                    <li>• Professional service providers</li>
+                    <li>• Partners testing market response</li>
                   </ul>
                 </div>
               </div>
@@ -706,7 +706,7 @@ export default function PartnersPage() {
               Partner Success Stories
             </h2>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
-              Real results from our network partners with verified revenue and performance data.
+              Professional experiences from our vetted network partners.
             </p>
           </div>
 
@@ -718,7 +718,7 @@ export default function PartnersPage() {
                 </div>
                 <div>
                   <div className="font-semibold text-[#0B1B2B]">Marcus Thompson</div>
-                  <div className="text-[#6B7280] text-sm">Property Management - Featured Partner</div>
+                  <div className="text-[#6B7280] text-sm">Property Management - Network Partner</div>
                 </div>
               </div>
               <blockquote className="text-[#0B1B2B] italic mb-4">
@@ -743,7 +743,7 @@ export default function PartnersPage() {
                 </div>
                 <div>
                   <div className="font-semibold text-[#0B1B2B]">Sarah Chen</div>
-                  <div className="text-[#6B7280] text-sm">Interior Design - Sponsored Partner</div>
+                  <div className="text-[#6B7280] text-sm">Interior Design - Premium Partner</div>
                 </div>
               </div>
               <blockquote className="text-[#0B1B2B] italic mb-4">
@@ -768,7 +768,7 @@ export default function PartnersPage() {
                 </div>
                 <div>
                   <div className="font-semibold text-[#0B1B2B]">David Rodriguez</div>
-                  <div className="text-[#6B7280] text-sm">Legal Services - Featured Partner</div>
+                  <div className="text-[#6B7280] text-sm">Legal Services - Network Partner</div>
                 </div>
               </div>
               <blockquote className="text-[#0B1B2B] italic mb-4">
@@ -803,56 +803,56 @@ export default function PartnersPage() {
 
           <div className="space-y-8">
             <div className="border border-[#E5E7EB] rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What makes Lead Machine the ideal authority building platform?</h3>
+              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What is included in Founding Partner membership?</h3>
               <p className="text-[#6B7280] leading-relaxed mb-4">
-                Professional partnerships provide structured referral opportunities with network positioning. Partners receive access to relevant client connections through our matching system and directory placement.
+                Founding Partners receive category exclusivity within their service area, homepage placement, concierge-routed introductions, and territory protection. This 12-month charter membership provides access to our vetted professional network with dedicated partnership support.
               </p>
               <div className="bg-[#FAFAF9] rounded-lg p-4 border border-[#E5E7EB]">
-                <div className="text-sm font-medium text-[#0B1B2B] mb-2">Lead Machine Authority Benefits:</div>
+                <div className="text-sm font-medium text-[#0B1B2B] mb-2">Founding Partner Benefits:</div>
                 <div className="grid grid-cols-2 gap-4 text-xs">
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Expert Positioning</div>
-                    <div className="text-[#6B7280]">AI mentions you by name as trusted authority</div>
+                    <div className="font-semibold text-[#C9A24A]">Category Exclusivity</div>
+                    <div className="text-[#6B7280]">Protected service area within network</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Premium Placement</div>
-                    <div className="text-[#6B7280]">Top-3 directory position guaranteed</div>
+                    <div className="font-semibold text-[#C9A24A]">Homepage Placement</div>
+                    <div className="text-[#6B7280]">Featured positioning for visibility</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Content Collaboration</div>
-                    <div className="text-[#6B7280]">Authority building case studies & testimonials</div>
+                    <div className="font-semibold text-[#C9A24A]">Concierge Routing</div>
+                    <div className="text-[#6B7280]">Direct introduction pathway</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Professional Network</div>
-                    <div className="text-[#6B7280]">Structured business development</div>
+                    <div className="font-semibold text-[#C9A24A]">Professional Support</div>
+                    <div className="text-[#6B7280]">Dedicated partnership management</div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="border border-[#E5E7EB] rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">How does Market Dominator ensure complete citation insurance?</h3>
+              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">How does Premium Sponsor membership work?</h3>
               <p className="text-[#6B7280] leading-relaxed mb-4">
-                Market Dominator (£1,497/mo) provides exclusive category ownership by eliminating all competitor mentions and securing AI "preferred partner" status. You become THE definitive authority in your service category with citation insurance protecting against any competitor recommendations. Plus 15% revenue sharing on all deals closed through the platform.
+                Premium Sponsors receive priority placement within our professional referral system for 90 days. This membership provides access to networking opportunities, marketing exposure, and performance tracking with professional partnership support.
               </p>
               <div className="bg-[#FAFAF9] rounded-lg p-4 border border-[#E5E7EB]">
-                <div className="text-sm font-medium text-[#0B1B2B] mb-2">Market Dominator Exclusivity Features:</div>
+                <div className="text-sm font-medium text-[#0B1B2B] mb-2">Premium Sponsor Features:</div>
                 <div className="grid grid-cols-2 gap-4 text-xs">
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Category Ownership</div>
-                    <div className="text-[#6B7280]">Complete elimination of competitor mentions</div>
+                    <div className="font-semibold text-[#C9A24A]">Priority Placement</div>
+                    <div className="text-[#6B7280]">Enhanced visibility in referral system</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Citation Insurance</div>
-                    <div className="text-[#6B7280]">Guaranteed protection against competition</div>
+                    <div className="font-semibold text-[#C9A24A]">Professional Access</div>
+                    <div className="text-[#6B7280]">Network member opportunities</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Preferred Partner Status</div>
-                    <div className="text-[#6B7280]">AI specifically recommends you as preferred choice</div>
+                    <div className="font-semibold text-[#C9A24A]">Marketing Exposure</div>
+                    <div className="text-[#6B7280]">Brand visibility opportunities</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Revenue Sharing</div>
-                    <div className="text-[#6B7280]">15% additional commission on all deals</div>
+                    <div className="font-semibold text-[#C9A24A]">Performance Tracking</div>
+                    <div className="text-[#6B7280]">Partnership analytics and reporting</div>
                   </div>
                 </div>
               </div>
@@ -866,16 +866,16 @@ export default function PartnersPage() {
             </div>
 
             <div className="border border-[#E5E7EB] rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What makes Relo Network different from other referral networks?</h3>
+              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What makes Relo Network partnership unique?</h3>
               <p className="text-[#6B7280] leading-relaxed">
-                Relo Network is the only luxury relocation network with AI-powered client matching, guaranteed exclusive territories, and comprehensive citation insurance. We focus exclusively on relocations worth £8,500+, serve only UHNW individuals and Fortune 500 corporations, and maintain a 96% client satisfaction rate with verified performance tracking.
+                Relo Network focuses on vetted professional partnerships with structured referral systems. We maintain selective membership criteria and provide territory protection for qualified service providers within the London relocation market.
               </p>
             </div>
 
             <div className="border border-[#E5E7EB] rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">How quickly do partners start receiving leads?</h3>
+              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">How does the partnership activation process work?</h3>
               <p className="text-[#6B7280] leading-relaxed">
-                Partners typically receive their first qualified lead within 72 hours of approval. Our AI matching system analyses 47 client criteria points to ensure perfect partner-client alignment. Featured and Sponsored partners receive priority lead distribution with average response times of 2.3 hours, guaranteeing first access to premium opportunities.
+                After membership confirmation, partners work with our team to complete profile setup and network integration. The activation timeline varies based on partnership tier and includes orientation, profile creation, and system access setup.
               </p>
             </div>
 
