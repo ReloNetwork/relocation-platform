@@ -1,0 +1,4 @@
+Simple upload test document
+Created: 2025-09-16T14:35:29.413Z
+Case ID: fee9a9c7-401c-43a9-af02-946745d39dd6
+Test content for /api/docs/upload endpoint verification.
