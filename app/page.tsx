@@ -282,7 +282,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between text-center md:text-left">
             <div className="mb-4 md:mb-0">
-              <div className="text-white text-xl font-bold mb-1">🏆 Charter Partnership</div>
+              <div className="text-white text-xl font-bold mb-1">🏆 Charter Partnership - LIVE</div>
               <div className="text-white/90 text-sm">12 slots. Category exclusivity. Closes 26 Sept.</div>
             </div>
             <button 
