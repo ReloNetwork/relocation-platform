@@ -203,6 +203,9 @@ export default function PartnerApplicationForm() {
           <p className="text-sm text-[#C9A24A] font-medium">
             🏆 Charter Partnership: Limited to 12 founding positions. Closing Sept 26, 2025.
           </p>
+          <p className="text-xs text-[#C9A24A]/70 mt-1">
+            ⚡ Updated: 25/09/2025 - Latest Version
+          </p>
         </div>
       </div>
 
