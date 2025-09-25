@@ -161,10 +161,29 @@ export default function PartnersPage() {
       }
       
       if (checkoutUrl) {
-        window.location.href = checkoutUrl
+        // Test the API endpoint first
+        const response = await fetch(checkoutUrl, { method: 'GET', redirect: 'manual' })
+        
+        if (response.status === 302 || response.status === 301) {
+          // Redirect to the location header or fallback to partner application
+          const location = response.headers.get('location')
+          if (location && location.includes('stripe.com')) {
+            window.location.href = location
+          } else {
+            // Fallback to partner application form
+            document.getElementById('partner-application')?.scrollIntoView({ behavior: 'smooth' })
+            alert('Checkout temporarily unavailable. Please fill out the partner application form below, and our team will contact you within 24 hours to complete your charter partnership.')
+          }
+        } else {
+          // Direct navigation if no redirect
+          window.location.href = checkoutUrl
+        }
       }
     } catch (error) {
       console.error('Checkout error:', error)
+      // Fallback to partner application form
+      document.getElementById('partner-application')?.scrollIntoView({ behavior: 'smooth' })
+      alert('Checkout temporarily unavailable. Please fill out the partner application form below, and our team will contact you within 24 hours to complete your charter partnership.')
     } finally {
       setLoading(false)
     }
@@ -234,18 +253,20 @@ export default function PartnersPage() {
             {/* Above the fold CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button 
-                onClick={() => window.location.href = '/api/partners/checkout/founding-partner'}
+                onClick={() => handleCheckout('founding_partner')}
                 size="lg"
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
+                disabled={loading}
               >
-                Become a Founding Partner — £25,000 (12 months)
+                {loading ? 'Processing...' : 'Become a Founding Partner — £25,000 (12 months)'}
               </Button>
               <Button 
-                onClick={() => window.location.href = '/api/partners/checkout/premium-sponsor'}
+                onClick={() => handleCheckout('premium_sponsor')}
                 size="lg"
                 className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-8 py-4 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
+                disabled={loading}
               >
-                Premium Sponsor — £5,000 (90 days)
+                {loading ? 'Processing...' : 'Premium Sponsor — £5,000 (90 days)'}
               </Button>
             </div>
           </div>

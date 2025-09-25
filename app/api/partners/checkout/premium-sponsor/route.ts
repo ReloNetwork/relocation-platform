@@ -1,12 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+// Check if Stripe is configured
+if (!process.env.STRIPE_SECRET_KEY) {
+  console.error('Stripe secret key not configured')
+}
+
+const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-06-20',
-})
+}) : null
 
 export async function GET(request: NextRequest) {
   try {
+    // If Stripe is not configured, redirect to contact form
+    if (!stripe) {
+      console.log('Stripe not configured, redirecting to contact')
+      return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL || request.nextUrl.origin}/partners#partner-application`)
+    }
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -34,9 +45,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(session.url!)
   } catch (error) {
     console.error('Error creating Stripe session:', error)
-    return NextResponse.json(
-      { error: 'Failed to create checkout session' },
-      { status: 500 }
-    )
+    // Fallback to contact form if Stripe fails
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL || request.nextUrl.origin}/partners#partner-application`)
   }
 }
