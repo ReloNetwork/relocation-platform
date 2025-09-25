@@ -60,9 +60,8 @@ const marketingBudgets = [
 ]
 
 const partnershipTiers = [
-  { value: 'starter', label: 'Starter Partnership - £395/mo' },
-  { value: 'featured', label: 'Featured Partnership - £795/mo' },
-  { value: 'sponsored', label: 'Sponsored Partnership - £1,495/mo' }
+  { value: 'founding_partner', label: 'Founding Partner - £25,000 (12 months)' },
+  { value: 'premium_sponsor', label: 'Premium Sponsor - £5,000 (90 days)' }
 ]
 
 export default function PartnerApplicationForm() {
@@ -199,9 +198,9 @@ export default function PartnerApplicationForm() {
           Apply to join our vetted network of premium service providers. Only 23% of applications are approved.
         </p>
         
-        <div className="bg-green-50 border border-green-200 rounded-md p-4 mt-4">
-          <p className="text-sm text-green-800 font-medium">
-            🎉 Founding Rate Special: Save 40% on your first 6 months when approved!
+        <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-md p-4 mt-4">
+          <p className="text-sm text-[#C9A24A] font-medium">
+            🏆 Charter Partnership: Limited to 12 founding positions. Closing Sept 26, 2025.
           </p>
         </div>
       </div>
@@ -391,12 +390,12 @@ export default function PartnerApplicationForm() {
           <div className="flex items-start gap-3">
             <Award className="h-5 w-5 text-[#C9A24A] mt-0.5" />
             <div>
-              <h4 className="font-medium text-[#0B1220] mb-1">Founding Partner Benefits</h4>
+              <h4 className="font-medium text-[#0B1220] mb-1">Charter Partnership Benefits</h4>
               <ul className="text-sm text-[#6B7280] space-y-1">
-                <li>• 40% discount for first 6 months</li>
-                <li>• Priority lead distribution</li>
-                <li>• Enhanced profile featuring</li>
-                <li>• Dedicated onboarding support</li>
+                <li>• Category exclusivity (Founding Partner)</li>
+                <li>• Homepage placement & concierge routing</li>
+                <li>• Professional network access</li>
+                <li>• 90-day opportunity guarantee</li>
               </ul>
             </div>
           </div>
@@ -408,7 +407,7 @@ export default function PartnerApplicationForm() {
           className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-lg py-4 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
           size="lg"
         >
-          {isSubmitting ? 'Processing Application...' : 'Secure Founding Rate & Apply'} 
+          {isSubmitting ? 'Processing Application...' : 'Apply for Charter Partnership'} 
           <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
 
