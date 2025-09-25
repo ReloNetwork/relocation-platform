@@ -1,5 +1,6 @@
 'use client'
 
+// Charter partnership form - updated 2025-09-25
 import React, { useState, useEffect } from 'react'
 import { Check, Star, ArrowRight, Users, Clock, Zap, Timer, Shield, Trophy, Target, Building, Globe, Calculator, Mail } from 'lucide-react'
 import { Button } from '@/ui/components/button'

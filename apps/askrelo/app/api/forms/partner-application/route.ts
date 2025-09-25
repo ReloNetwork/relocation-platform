@@ -21,9 +21,8 @@ interface PartnerApplicationData {
 // Email template for partner confirmation
 const getPartnerConfirmationTemplate = (data: PartnerApplicationData) => {
   const tierPricing = {
-    'starter': { name: 'Starter Partnership', price: '£395/mo', originalPrice: '£1,195', discount: '67% OFF' },
-    'featured': { name: 'Featured Partnership', price: '£795/mo', originalPrice: '£1,595', discount: '50% OFF' },
-    'sponsored': { name: 'Sponsored Partnership', price: '£1,495/mo', originalPrice: '£2,495', discount: '40% OFF' }
+    'founding_partner': { name: 'Founding Partner', price: '£25,000 (12 months)', originalPrice: '', discount: 'Charter Rate' },
+    'premium_sponsor': { name: 'Premium Sponsor', price: '£5,000 (90 days)', originalPrice: '', discount: 'Charter Rate' }
   }
   
   const selectedTier = tierPricing[data.preferredTier as keyof typeof tierPricing]

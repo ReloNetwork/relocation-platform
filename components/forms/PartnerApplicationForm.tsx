@@ -59,6 +59,7 @@ const marketingBudgets = [
   { value: '5000+', label: '£5,000+ per month' }
 ]
 
+// Charter partnership pricing tiers
 const partnershipTiers = [
   { value: 'founding_partner', label: 'Founding Partner - £25,000 (12 months)' },
   { value: 'premium_sponsor', label: 'Premium Sponsor - £5,000 (90 days)' }
