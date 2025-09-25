@@ -1,6 +1,6 @@
 'use client'
 
-// 🚀 CACHE BUSTED VERSION - 2025-09-25 - v2.0
+// 🔥 NUCLEAR REBUILD - PARTNERS PAGE v3.0 - 2025-09-25
 import React, { useState, useEffect } from 'react'
 import { Check, Star, ArrowRight, Users, Clock, Zap, Timer, Shield, Trophy, Target, Building, Globe, Calculator, Mail } from 'lucide-react'
 import { Button } from '@/ui/components/button'
