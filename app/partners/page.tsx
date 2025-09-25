@@ -6,7 +6,7 @@ import { Check, Star, ArrowRight, Users, Clock, Zap, Timer, Shield, Trophy, Targ
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 import { getAllPartnershipSchemas } from '../../lib/seo/partnership-schemas'
-import PartnerApplicationForm from '../../components/forms/PartnerApplicationForm'
+import CharterPartnershipForm from '../../components/forms/CharterPartnershipForm'
 
 const PartnershipTier = ({ 
   name, 
@@ -1058,7 +1058,7 @@ export default function PartnersPage() {
       {/* Partner Application Form */}
       <section id="partner-application" className="py-20 bg-[#FAFAF9]">
         <div className="max-w-4xl mx-auto px-4">
-          <PartnerApplicationForm />
+          <CharterPartnershipForm />
         </div>
       </section>
 

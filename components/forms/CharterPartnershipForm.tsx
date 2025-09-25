@@ -65,7 +65,7 @@ const partnershipTiers = [
   { value: 'premium_sponsor', label: '⭐ Premium Sponsor - £5,000 (90 days)' }
 ]
 
-export default function PartnerApplicationForm() {
+export default function CharterPartnershipForm() {
   const [formData, setFormData] = useState<PartnerFormData>({
     companyName: '',
     serviceType: '',
