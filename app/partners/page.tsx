@@ -399,7 +399,7 @@ export default function PartnersPage() {
               </div>
               <CountdownTimer />
               <div className="text-sm text-white/90 mt-3 font-medium">Friday, September 26th 2025</div>
-              <div className="text-sm text-white/70 mt-1">67% discount - Limited to first 100 partners only</div>
+              <div className="text-sm text-white/70 mt-1">Charter Rate - Limited to 12 founding positions</div>
             </div>
           </div>
         </div>
@@ -1073,20 +1073,20 @@ export default function PartnersPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button 
-              onClick={() => handleCheckout('price_featured_partner')}
+              onClick={() => handleCheckout('founding_partner')}
               size="lg"
               className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
               disabled={loading}
             >
-              {loading ? 'Processing...' : 'Join as Featured Partner'} <ArrowRight className="ml-2 h-4 w-4" />
+              {loading ? 'Processing...' : 'Founding Partner — £25,000'} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button 
-              onClick={() => handleCheckout('price_sponsored_partner')}
+              onClick={() => handleCheckout('premium_sponsor')}
               size="lg"
               className="border-2 border-white text-white hover:bg-white hover:text-[#C9A24A] rounded-md hover:scale-105 transition-all"
               disabled={loading}
             >
-              Upgrade to Sponsored
+              Premium Sponsor — £5,000
             </Button>
           </div>
           
