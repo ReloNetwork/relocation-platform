@@ -206,10 +206,10 @@ export default function HomePage() {
             <div className="text-center">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <div className="w-12 h-12 bg-[#C9A24A] rounded-full flex items-center justify-center">
-                  <span className="text-lg font-bold text-white">CA</span>
+                  <span className="text-lg font-bold text-white">RN</span>
                 </div>
                 <div className="text-left">
-                  <div className="text-lg font-bold text-[#0B1B2B]">Calistar Ankrah, Founder</div>
+                  <div className="text-lg font-bold text-[#0B1B2B]">Founder</div>
                   <div className="text-sm text-[#6B7280]">Former International Consultant</div>
                 </div>
               </div>
@@ -696,19 +696,19 @@ export default function HomePage() {
               Expert Leadership
             </h2>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
-              Former International Consultant from principle RMC, leading London's premier relocation network
+              Founded by former International Consultant with proven Fortune 500 expertise
             </p>
           </div>
 
           <div className="flex justify-center mb-16">
-            {/* Calistar Ankrah - Founder */}
+            {/* Founder */}
             <div className="bg-white rounded-2xl shadow-lg border border-[#0B1B2B]/10 overflow-hidden max-w-md">
               <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 p-6">
                 <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">CA</span>
+                  <span className="text-2xl font-bold text-white">RN</span>
                 </div>
-                <h3 className="text-xl font-bold text-white text-center">Calistar Ankrah</h3>
-                <p className="text-[#C9A24A] text-center font-semibold">Founder</p>
+                <h3 className="text-xl font-bold text-white text-center">Founder</h3>
+                <p className="text-[#C9A24A] text-center font-semibold">Leadership</p>
               </div>
               <div className="p-6">
                 <div className="mb-4">
