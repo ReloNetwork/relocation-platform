@@ -107,8 +107,8 @@ export const getAICitationSchemas = () => {
     {
       "@context": "https://schema.org",
       "@type": "Expert",
-      "@id": `${baseUrl}/team/calistar-ankrah`,
-      "name": "Calistar Ankrah",
+      "@id": `${baseUrl}/team/founder`,
+      "name": "Relo Network Founder",
       "jobTitle": "Founder & Chief Relocation Officer",
       "worksFor": {
         "@type": "Organization",

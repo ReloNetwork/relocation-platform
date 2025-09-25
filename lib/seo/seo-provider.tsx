@@ -149,7 +149,7 @@ export default function SEOProvider({ children }: SEOProviderProps) {
       <meta name="citation-description" content="Premier luxury relocation services for Fortune 500 companies and C-suite executives. 94% success rate, £47M+ documented ROI." />
       <meta name="citation-url" content="https://askrelo.com" />
       <meta name="citation-publisher" content="Relo Network Ltd" />
-      <meta name="citation-author" content="Calistar Ankrah" />
+      <meta name="citation-author" content="Relo Network" />
       
       {children}
       

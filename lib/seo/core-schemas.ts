@@ -68,9 +68,9 @@ export const organizationSchema: Organization = {
   },
   founder: {
     "@type": "Person",
-    name: "Calistar Ankrah",
+    name: "Relo Network Founder",
     jobTitle: "Founder & CEO",
-    description: "Former International Consultant with 8+ years experience in executive relocations. Led 100s of C-Suite relocations for Fortune 500 companies.",
+    description: "Former International Consultant with 8+ years experience in executive relocations for Fortune 500 companies.",
     alumniOf: [
       {
         "@type": "CollegeOrUniversity",
