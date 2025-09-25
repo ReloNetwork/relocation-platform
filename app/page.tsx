@@ -236,6 +236,44 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Executive Intake CTA - Primary */}
+          <div className="mb-16">
+            <div className="bg-white/90 backdrop-blur-sm border border-[#C9A24A]/30 rounded-2xl p-8 text-center shadow-xl max-w-4xl mx-auto">
+              <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
+                <Crown className="h-4 w-4 text-[#C9A24A] mr-2" />
+                <span className="text-[#C9A24A] text-sm font-medium">Executive Service</span>
+              </div>
+              <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">Start Executive Intake — £1,500</h2>
+              <p className="text-lg text-[#6B7280] mb-6">60-min strategy call, bespoke shortlist, 3 warm intros, 30-day execution window</p>
+              
+              <button
+                onClick={() => window.location.href = '/directory/checkout?plan=executive_intake'}
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-12 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg mb-6"
+              >
+                Start Executive Intake — £1,500
+              </button>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-[#6B7280]">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                  <span>60-min strategy call</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                  <span>Bespoke shortlist</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                  <span>3 warm introductions</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                  <span>30-day execution</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Top Categories Grid */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-[#0B1B2B] mb-8 text-center">Top Categories</h2>

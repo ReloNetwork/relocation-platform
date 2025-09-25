@@ -774,196 +774,315 @@ export default function DirectoryPage() {
         </div>
       </section>
 
-      {/* Access Tiers */}
-      <section id="access-tiers" className="py-20 bg-[#FAFAF9]">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Directory Access Tiers
+      {/* Executive Intake CTA - Primary */}
+      <section className="py-16 bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 text-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="mb-6">
+            <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
+              <Crown className="h-4 w-4 text-[#C9A24A] mr-2" />
+              <span className="text-[#C9A24A] text-sm font-medium">Executive Service</span>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Start Executive Intake
             </h2>
-            <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
-              Choose your level of access to connect with London's premium service providers
+            <p className="text-xl text-white/90 mb-6">
+              60-min strategy call, bespoke shortlist, 3 warm intros, 30-day execution window
             </p>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg p-8 border border-[#0B1B2B]/10 shadow-sm">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Eye className="w-8 h-8 text-[#C9A24A]" />
-                </div>
-                <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">Essential</h3>
-                <div className="text-4xl font-bold text-[#C9A24A] mb-2">Free</div>
-                <p className="text-[#6B7280] text-sm">View basic partner listings</p>
-              </div>
-              
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Basic partner listings</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Partner business names</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Service categories</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>London area coverage</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <Lock className="w-4 h-4 text-[#6B7280]" />
-                  <span className="text-[#6B7280]">Contact details locked</span>
-                </li>
-              </ul>
-              
-              <Button 
-                className="w-full bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white rounded-md"
-                onClick={() => window.location.href = '/directory/preview'}
-                disabled={loading}
-              >
-                {loading ? 'Loading...' : 'Browse Free Preview'}
-              </Button>
+          
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 mb-8">
+            <div className="text-6xl font-bold text-[#C9A24A] mb-2">£1,500</div>
+            <div className="text-white/90 mb-4">Complete intake service • Credit applied to any package</div>
+            <Button 
+              size="lg"
+              className="bg-[#C9A24A] hover:bg-[#B8923D] text-white text-lg px-12 py-4 rounded-lg hover:scale-105 shadow-xl transition-all"
+              onClick={() => window.location.href = '/directory/checkout?plan=executive_intake'}
+            >
+              Start Executive Intake — £1,500
+            </Button>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-6 text-sm text-white/80">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+              <span>60-min strategy call</span>
             </div>
-
-            <div className="bg-white rounded-lg p-8 border-2 border-[#C9A24A] shadow-lg relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <div className="bg-[#C9A24A] text-white px-4 py-1 rounded-full text-xs font-semibold">
-                  MOST POPULAR
-                </div>
-              </div>
-              
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-[#C9A24A]" />
-                </div>
-                <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">Premium</h3>
-                <div className="text-4xl font-bold text-[#C9A24A] mb-2">£47<span className="text-lg">/mo</span></div>
-                <p className="text-[#6B7280] text-sm">Full contact details + reviews</p>
-              </div>
-              
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Everything in Essential</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Direct contact details</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Partner reviews & ratings</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Advanced search filters</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Partner comparison tools</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Email support</span>
-                </li>
-              </ul>
-              
-              <Button 
-                className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-md"
-                onClick={() => handleSubscribe('premium')}
-                disabled={loading}
-              >
-                {loading ? 'Loading...' : 'Start Premium Access'}
-              </Button>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+              <span>Bespoke shortlist</span>
             </div>
-
-            <div className="bg-white rounded-lg p-8 border border-[#0B1B2B]/10 shadow-sm">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Crown className="w-8 h-8 text-[#C9A24A]" />
-                </div>
-                <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">VIP Concierge</h3>
-                <div className="text-4xl font-bold text-[#C9A24A] mb-2">£147<span className="text-lg">/mo</span></div>
-                <p className="text-[#6B7280] text-sm">Personal matching service</p>
-              </div>
-              
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Everything in Premium</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Personal partner matching</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Introduction facilitation</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Dedicated account manager</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Priority phone support</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Custom partner shortlisting</span>
-                </li>
-              </ul>
-              
-              <Button 
-                className="w-full bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white rounded-md"
-                onClick={() => handleSubscribe('vip')}
-                disabled={loading}
-              >
-                {loading ? 'Loading...' : 'Get VIP Access'}
-              </Button>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+              <span>3 warm introductions</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+              <span>30-day execution</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* Outcome-Based Access Tiers */}
+      <section id="access-tiers" className="py-20 bg-[#FAFAF9]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Outcome-Based Access
+            </h2>
+            <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
+              Choose your level of support to achieve your London relocation goals
+            </p>
+          </div>
+
+          {/* Main Tiers */}
+          <div className="grid lg:grid-cols-4 gap-8 mb-16">
+            {/* Free */}
+            <div className="bg-white rounded-lg p-6 border border-[#0B1B2B]/10 shadow-sm">
+              <div className="text-center mb-6">
+                <div className="w-12 h-12 bg-[#6B7280]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Eye className="w-6 h-6 text-[#6B7280]" />
+                </div>
+                <h3 className="text-lg font-bold text-[#0B1B2B] mb-2">Free</h3>
+                <div className="text-3xl font-bold text-[#0B1B2B] mb-2">£0</div>
+                <p className="text-[#6B7280] text-sm">Browse and explore</p>
+              </div>
+              
+              <ul className="space-y-2 mb-6 text-sm">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>Browse directory</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>1 concierge question/day</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>Save 3 items</span>
+                </li>
+              </ul>
+              
+              <Button 
+                className="w-full bg-[#6B7280] hover:bg-[#4B5563] text-white text-sm rounded-md"
+                onClick={() => window.location.href = '/directory/preview'}
+              >
+                Start Free
+              </Button>
+            </div>
+
+            {/* Plus */}
+            <div className="bg-white rounded-lg p-6 border border-[#C9A24A]/30 shadow-sm">
+              <div className="text-center mb-6">
+                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-6 h-6 text-[#C9A24A]" />
+                </div>
+                <h3 className="text-lg font-bold text-[#0B1B2B] mb-2">Plus</h3>
+                <div className="text-3xl font-bold text-[#C9A24A] mb-1">£29<span className="text-lg">/mo</span></div>
+                <div className="text-xs text-[#6B7280] mb-2">or £290/yr</div>
+                <p className="text-[#6B7280] text-sm">Full access + intros</p>
+              </div>
+              
+              <ul className="space-y-2 mb-6 text-sm">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>Full filters & contact details</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>3 curated intros/month</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>Templates bundle</span>
+                </li>
+              </ul>
+              
+              <Button 
+                className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
+                onClick={() => handleSubscribe('plus')}
+                disabled={loading}
+              >
+                Start Plus
+              </Button>
+            </div>
+
+            {/* Pro - Featured */}
+            <div className="bg-white rounded-lg p-6 border-2 border-[#C9A24A] shadow-lg relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <div className="bg-[#C9A24A] text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  MOST POPULAR
+                </div>
+              </div>
+              
+              <div className="text-center mb-6">
+                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Crown className="w-6 h-6 text-[#C9A24A]" />
+                </div>
+                <h3 className="text-lg font-bold text-[#0B1B2B] mb-2">Pro</h3>
+                <div className="text-3xl font-bold text-[#C9A24A] mb-1">£99<span className="text-lg">/mo</span></div>
+                <div className="text-xs text-[#6B7280] mb-2">or £990/yr</div>
+                <p className="text-[#6B7280] text-sm">Unlimited intros + support</p>
+              </div>
+              
+              <ul className="space-y-2 mb-6 text-sm">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>Unlimited curated intros</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>48-hour area shortlist</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>WhatsApp line (UK hours)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>Doc pre-check</span>
+                </li>
+              </ul>
+              
+              <Button 
+                className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
+                onClick={() => handleSubscribe('pro')}
+                disabled={loading}
+              >
+                Start Pro
+              </Button>
+            </div>
+
+            {/* Executive Intake */}
+            <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 text-white rounded-lg p-6 shadow-lg">
+              <div className="text-center mb-6">
+                <div className="w-12 h-12 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-6 h-6 text-[#C9A24A]" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Executive Intake</h3>
+                <div className="text-3xl font-bold text-[#C9A24A] mb-2">£1,500</div>
+                <p className="text-white/80 text-sm">Complete done-for-you</p>
+              </div>
+              
+              <ul className="space-y-2 mb-6 text-sm text-white/90">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>60-min strategy call</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>Bespoke shortlist</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>3 warm intros</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>30-day execution window</span>
+                </li>
+              </ul>
+              
+              <Button 
+                className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
+                onClick={() => window.location.href = '/directory/checkout?plan=executive_intake'}
+              >
+                Start Executive Intake
+              </Button>
+            </div>
+          </div>
+
+          {/* Accelerators */}
+          <div className="bg-white rounded-2xl p-8 border border-[#0B1B2B]/10 shadow-sm">
+            <h3 className="text-2xl font-bold text-[#0B1B2B] mb-6 text-center">Accelerators</h3>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* 72-Hour Day Pass */}
+              <div className="text-center p-6 bg-[#FAFAF9] rounded-lg border border-[#C9A24A]/20">
+                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-6 h-6 text-[#C9A24A]" />
+                </div>
+                <h4 className="font-bold text-[#0B1B2B] mb-2">72-Hour Day Pass</h4>
+                <div className="text-2xl font-bold text-[#C9A24A] mb-2">£59</div>
+                <p className="text-sm text-[#6B7280] mb-4">Full access + 1 curated intro</p>
+                <Button 
+                  className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
+                  onClick={() => window.location.href = '/directory/checkout?plan=day_pass'}
+                >
+                  Get Day Pass
+                </Button>
+              </div>
+
+              {/* Intro Pack 3 */}
+              <div className="text-center p-6 bg-[#FAFAF9] rounded-lg border border-[#C9A24A]/20">
+                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-6 h-6 text-[#C9A24A]" />
+                </div>
+                <h4 className="font-bold text-[#0B1B2B] mb-2">Intro Pack</h4>
+                <div className="text-2xl font-bold text-[#C9A24A] mb-2">£149</div>
+                <p className="text-sm text-[#6B7280] mb-4">3 curated introductions</p>
+                <Button 
+                  className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
+                  onClick={() => window.location.href = '/directory/checkout?plan=intro_pack_3'}
+                >
+                  Get 3 Intros
+                </Button>
+              </div>
+
+              {/* Intro Pack 10 */}
+              <div className="text-center p-6 bg-[#FAFAF9] rounded-lg border border-[#C9A24A]/20">
+                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Target className="w-6 h-6 text-[#C9A24A]" />
+                </div>
+                <h4 className="font-bold text-[#0B1B2B] mb-2">Premium Intro Pack</h4>
+                <div className="text-2xl font-bold text-[#C9A24A] mb-2">£399</div>
+                <p className="text-sm text-[#6B7280] mb-4">10 curated introductions</p>
+                <Button 
+                  className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
+                  onClick={() => window.location.href = '/directory/checkout?plan=intro_pack_10'}
+                >
+                  Get 10 Intros
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA - Executive Intake Primary */}
       <div className="bg-[#0B1B2B] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h3 className="text-4xl font-bold mb-4 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            Access London's Premier Service Directory
+            Ready to Start Your London Relocation?
           </h3>
           <p className="text-xl mb-8 text-white/90">
-            Connect instantly with London's most trusted service providers across all specialties
+            Skip the research. Get connected to the right providers immediately with Executive Intake.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button 
               size="lg"
-              className="bg-[#C9A24A] hover:bg-[#B8923D] !text-white rounded-md hover:scale-105 shadow-xl"
-              onClick={() => window.location.href = '/directory/signup'}
+              className="bg-[#C9A24A] hover:bg-[#B8923D] !text-white rounded-md hover:scale-105 shadow-xl text-lg px-8 py-4"
+              onClick={() => window.location.href = '/directory/checkout?plan=executive_intake'}
             >
-              <Search className="mr-2 h-5 w-5" />
-              Get Directory Access
+              <Crown className="mr-2 h-5 w-5" />
+              Start Executive Intake — £1,500
             </Button>
             <Button 
               size="lg"
               variant="outline"
               className="border-white text-white bg-transparent hover:bg-white hover:text-[#0B1B2B] rounded-md hover:scale-105 transition-all"
-              onClick={() => window.location.href = '/directory/signup'}
+              onClick={() => window.location.href = '/directory/preview'}
             >
-              Start Free Access
+              Browse Free First
             </Button>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-white/80">
-            <div>✓ 200+ Service Providers</div>
-            <div>✓ All London Areas</div>
-            <div>✓ Instant Access</div>
-            <div>✓ Quality Verified</div>
+            <div>✓ 60-min Strategy Call</div>
+            <div>✓ Bespoke Shortlist</div>
+            <div>✓ 3 Warm Introductions</div>
+            <div>✓ 30-day Execution</div>
           </div>
         </div>
       </div>
