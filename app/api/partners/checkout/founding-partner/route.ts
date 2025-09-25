@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
             currency: 'gbp',
             product_data: {
               name: 'Founding Partner - Charter Membership',
-              description: 'Category exclusivity + concierge-routed intros + homepage placement (12 months)',
+              description: 'Category exclusivity (12 months) + top placement across Home & Directory + concierge-qualified intros + 4× editorial features + quarterly pipeline reviews. Onboarding call within 24 hours, tracking & placements within 72 hours. Guarantee: if we don\'t introduce qualified opportunities in 90 days, we extend exclusivity until we do.',
             },
             unit_amount: 2500000, // £25,000 in pence
           },

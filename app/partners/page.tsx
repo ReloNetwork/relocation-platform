@@ -179,14 +179,14 @@ export default function PartnersPage() {
       isPopular: true,
       priceId: 'founding_partner',
       features: [
-        'Category exclusivity in your service area',
-        'Homepage placement and featured positioning',
-        'Concierge-routed introductions',
+        'Category exclusivity (12 months) in your service area',
+        'Top placement across Home & Directory pages',
+        'Concierge-qualified introductions',
+        '4× editorial features throughout membership',
+        'Quarterly pipeline reviews with dedicated support',
         'Territory protection rights',
-        'Professional network access',
-        'Marketing collaboration opportunities',
         'Performance tracking and reporting',
-        'Direct partnership management'
+        'Guarantee: qualified opportunities in 90 days or extended exclusivity'
       ]
     },
     {

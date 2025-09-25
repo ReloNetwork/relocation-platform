@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
             currency: 'gbp',
             product_data: {
               name: 'Premium Sponsor - Professional Partnership',
-              description: 'Professional referral access with priority placement (90 days)',
+              description: 'Priority placement in referral system (90 days) + professional network access + marketing exposure opportunities. Onboarding call within 24 hours, profile setup within 72 hours. 90-day trial of our professional partnership benefits.',
             },
             unit_amount: 500000, // £5,000 in pence
           },

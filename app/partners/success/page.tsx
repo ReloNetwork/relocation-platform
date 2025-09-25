@@ -17,28 +17,42 @@ export default function PartnershipSuccess() {
           </div>
           
           <div className="bg-white rounded-2xl p-8 border border-[#0B1B2B]/10 mb-8">
-            <h2 className="text-2xl font-semibold text-[#0B1B2B] mb-4">What happens next?</h2>
-            <div className="grid md:grid-cols-3 gap-6 text-left">
+            <h2 className="text-2xl font-semibold text-[#0B1B2B] mb-6">Your Charter Partnership Benefits</h2>
+            
+            {/* Charter Benefits */}
+            <div className="bg-[#C9A24A]/5 border border-[#C9A24A]/20 rounded-lg p-6 mb-8">
+              <h3 className="font-semibold text-[#0B1B2B] mb-3">✅ You'll Get:</h3>
+              <ul className="text-[#6B7280] space-y-2 text-sm">
+                <li>• <strong>Category exclusivity</strong> for 12 months in your service area</li>
+                <li>• <strong>Top placement</strong> across Home & Directory pages</li>
+                <li>• <strong>Concierge-qualified intros</strong> directly from our team</li>
+                <li>• <strong>4× editorial features</strong> throughout your membership</li>
+                <li>• <strong>Quarterly pipeline reviews</strong> with dedicated support</li>
+              </ul>
+            </div>
+
+            <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Implementation Timeline:</h3>
+            <div className="grid md:grid-cols-3 gap-6 text-left mb-6">
               <div>
                 <div className="w-10 h-10 bg-[#C9A24A] text-white rounded-full flex items-center justify-center font-bold mb-3">
-                  1
+                  24h
                 </div>
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Partnership Setup</h3>
-                <p className="text-[#6B7280] text-sm">Our team will contact you within 24 hours to begin the partnership setup process.</p>
+                <h3 className="font-semibold text-[#0B1B2B] mb-2">Onboarding Call</h3>
+                <p className="text-[#6B7280] text-sm">We schedule your partnership onboarding call within 24 hours of payment confirmation.</p>
               </div>
               <div>
                 <div className="w-10 h-10 bg-[#C9A24A] text-white rounded-full flex items-center justify-center font-bold mb-3">
-                  2
+                  72h
                 </div>
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Profile Creation</h3>
-                <p className="text-[#6B7280] text-sm">We'll work with you to create your partner profile and positioning within the network.</p>
+                <h3 className="font-semibold text-[#0B1B2B] mb-2">Tracking & Placements</h3>
+                <p className="text-[#6B7280] text-sm">All tracking systems and homepage/directory placements are set live within 72 hours.</p>
               </div>
               <div>
-                <div className="w-10 h-10 bg-[#C9A24A] text-white rounded-full flex items-center justify-center font-bold mb-3">
-                  3
+                <div className="w-10 h-10 bg-[#0B1B2B] text-white rounded-full flex items-center justify-center font-bold mb-3">
+                  90d
                 </div>
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Go Live</h3>
-                <p className="text-[#6B7280] text-sm">Your partnership will be activated and you'll begin receiving referrals according to your tier.</p>
+                <h3 className="font-semibold text-[#0B1B2B] mb-2">Performance Guarantee</h3>
+                <p className="text-[#6B7280] text-sm">If we don't introduce qualified opportunities in 90 days, we extend your exclusivity until we do.</p>
               </div>
             </div>
           </div>
