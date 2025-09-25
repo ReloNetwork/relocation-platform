@@ -6,7 +6,7 @@ import NewsletterSignup from '../components/NewsletterSignup'
 import { getAllEnhancedSchemas } from '../lib/seo/enhanced-schemas'
 import { getAllHomepageSchemas } from '../lib/seo/homepage-schemas'
 import { getAICitationSchemas, getCommunityEngagementSchema } from '../lib/seo/ai-citation-schemas'
-import { Users, Building, Briefcase, ArrowRight, Star, CheckCircle, Globe, Shield, Award, Clock } from 'lucide-react'
+import { Users, Building, Briefcase, ArrowRight, Star, CheckCircle, Globe, Shield, Award, Clock, Crown } from 'lucide-react'
 
 const AudienceCard = ({ 
   title, 
