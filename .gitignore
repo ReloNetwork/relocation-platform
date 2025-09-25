@@ -1,1 +1,18 @@
 .vercel
+
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Next.js cache and build output  
+.next/
+*/.next/
+out/
+*/out/
+
+# Environment files
+.env*.local
+
+# Other common ignores
+.DS_Store
+*.log
