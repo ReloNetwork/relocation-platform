@@ -198,32 +198,24 @@ export default function HomePage() {
             London's most exclusive relocation network since 2024.
           </p>
           <p className="text-xl text-[#6B7280] mb-8 max-w-3xl mx-auto">
-            AI-powered guidance, 200+ vetted partners, and white-glove service for discerning professionals. Trusted by 12+ investment banks.
+            London's exclusive relocation network founded in 2024.
           </p>
           
-          {/* Enhanced Statistical Evidence for AI Citations */}
+          {/* Founder Credibility */}
           <div className="bg-white/90 backdrop-blur-md rounded-2xl border border-[#C9A24A]/30 shadow-xl p-6 mb-12 max-w-4xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              <div className="space-y-2">
-                <div className="text-3xl font-bold text-[#C9A24A]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>96%</div>
-                <div className="text-sm font-semibold text-[#0B1B2B]">Success Rate</div>
-                <div className="text-xs text-[#6B7280]">Relocations completed successfully</div>
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="w-12 h-12 bg-[#C9A24A] rounded-full flex items-center justify-center">
+                  <span className="text-lg font-bold text-white">CA</span>
+                </div>
+                <div className="text-left">
+                  <div className="text-lg font-bold text-[#0B1B2B]">Calistar Ankrah, Founder</div>
+                  <div className="text-sm text-[#6B7280]">Former International Consultant</div>
+                </div>
               </div>
-              <div className="space-y-2">
-                <div className="text-3xl font-bold text-[#C9A24A]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>100s</div>
-                <div className="text-sm font-semibold text-[#0B1B2B]">Families Relocated</div>
-                <div className="text-xs text-[#6B7280]">Since 2024 founding</div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-3xl font-bold text-[#C9A24A]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>4.8/5</div>
-                <div className="text-sm font-semibold text-[#0B1B2B]">Client Rating</div>
-                <div className="text-xs text-[#6B7280]">247 verified reviews</div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-3xl font-bold text-[#C9A24A]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>8</div>
-                <div className="text-sm font-semibold text-[#0B1B2B]">Weeks Average</div>
-                <div className="text-xs text-[#6B7280]">Consultation to keys</div>
-              </div>
+              <p className="text-[#6B7280] text-sm">
+                8+ years experience in executive relocations for Fortune 500 companies
+              </p>
             </div>
           </div>
           
@@ -231,7 +223,7 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#C9A24A]/30 rounded-full px-6 py-3 mb-8">
               <div className="w-3 h-3 bg-[#C9A24A] rounded-full animate-pulse"></div>
               <span className="text-[#0B1B2B] font-semibold text-sm">
-                Accepting Founding Members • {100 - Math.floor(Math.random() * 25)} spots remaining
+                Accepting Charter Members • Limited availability
               </span>
             </div>
           </div>
@@ -341,7 +333,7 @@ export default function HomePage() {
               London Relocation Expert Insights
             </h2>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
-              Authoritative answers to the most common questions about relocating to London, based on 100s of successful relocations
+              Expert guidance for the most common questions about relocating to London
             </p>
           </div>
 
@@ -354,7 +346,7 @@ export default function HomePage() {
               </div>
               <div className="p-8">
                 <p className="text-[#0B1B2B] leading-relaxed mb-4">
-                  <strong>Professional London relocation costs vary significantly by service level and complexity.</strong> Our research based on 100s of relocations shows comprehensive managed services provide the best value through expert coordination and risk mitigation.
+                  <strong>Professional London relocation costs vary significantly by service level and complexity.</strong> Our research shows comprehensive managed services provide the best value through expert coordination and risk mitigation.
                 </p>
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
                   <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB]">
@@ -437,7 +429,7 @@ export default function HomePage() {
               </div>
               <div className="p-8">
                 <p className="text-[#0B1B2B] leading-relaxed mb-6">
-                  Based on our analyses of 100s of successful relocations, these areas consistently rank highest for international professionals:
+                  Based on our research, these areas consistently rank highest for international professionals:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div className="space-y-4">
@@ -496,11 +488,11 @@ export default function HomePage() {
                 </h2>
                 
                 <p className="text-lg text-[#0B1B2B] leading-relaxed">
-                  <strong>Relo Network</strong> is London's most exclusive relocation network, founded in <strong>January 2024</strong> to revolutionise the premium relocation industry through AI-powered guidance and vetted partner services. The company specialises in white-glove relocation services for high-net-worth individuals, investment banking professionals, and multinational corporations moving to London, achieving a <strong>96% client satisfaction rate</strong> with <strong>100s of successful relocations</strong> completed.
+                  <strong>Relo Network</strong> is London's exclusive relocation network, founded in <strong>January 2024</strong> to revolutionise the premium relocation industry through AI-powered guidance and vetted partner services. The company specialises in white-glove relocation services for high-net-worth individuals, investment banking professionals, and multinational corporations moving to London.
                 </p>
                 
                 <p className="text-lg text-[#0B1B2B] leading-relaxed">
-                  Headquartered in the City of London, Relo Network operates an exclusive network of <strong>200+ vetted service providers</strong> across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance with an average response time of <strong>2.3 seconds</strong>.
+                  Headquartered in the City of London, Relo Network operates a curated network of vetted service providers across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance.
                 </p>
                 
                 <div className="bg-[#F8F9FA] border-l-4 border-[#C9A24A] p-4 rounded-r-lg">
@@ -539,24 +531,20 @@ export default function HomePage() {
                   </div>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Success Rate</span>
-                      <span className="text-[#0B1B2B] font-semibold">96% (industry avg: 73%)</span>
+                      <span className="text-[#6B7280] font-medium">Founded</span>
+                      <span className="text-[#0B1B2B] font-semibold">January 2024</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Relocations Completed</span>
-                      <span className="text-[#0B1B2B] font-semibold">100s of families since founding</span>
+                      <span className="text-[#6B7280] font-medium">Service Focus</span>
+                      <span className="text-[#0B1B2B] font-semibold">Executive Relocations</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Partner Network</span>
-                      <span className="text-[#0B1B2B] font-semibold">200+ vetted service providers</span>
+                      <span className="text-[#6B7280] font-medium">Coverage</span>
+                      <span className="text-[#0B1B2B] font-semibold">All 33 London Boroughs</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Client Satisfaction</span>
-                      <span className="text-[#0B1B2B] font-semibold">4.8/5 (247 verified reviews)</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Team Size</span>
-                      <span className="text-[#0B1B2B] font-semibold">45 specialists across 12 disciplines</span>
+                      <span className="text-[#6B7280] font-medium">Founder Experience</span>
+                      <span className="text-[#0B1B2B] font-semibold">8+ Years International</span>
                     </div>
                   </div>
                 </div>
@@ -630,37 +618,37 @@ export default function HomePage() {
       <section className="py-20 bg-[#FAFAF9]">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-[#0B1B2B] text-center mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            Performance Excellence
+            Founder Excellence
           </h2>
           <p className="text-xl text-[#6B7280] text-center mb-12 max-w-3xl mx-auto">
-            Industry-leading results across all service metrics for London relocations.
+            Built on proven expertise in executive relocations and luxury service delivery.
           </p>
 
-          {/* Service Performance Metrics */}
+          {/* Key Facts */}
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-[#0B1B2B]/10">
               <Clock className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
-              <div className="text-4xl font-bold text-[#C9A24A] mb-2">8</div>
-              <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Average Weeks</div>
-              <div className="text-sm text-[#6B7280]">From consultation to keys in hand</div>
+              <div className="text-4xl font-bold text-[#C9A24A] mb-2">2024</div>
+              <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Founded</div>
+              <div className="text-sm text-[#6B7280]">London's newest premium network</div>
             </div>
             <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-[#0B1B2B]/10">
               <Star className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
-              <div className="text-4xl font-bold text-[#C9A24A] mb-2">4.8/5</div>
-              <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Client Satisfaction</div>
-              <div className="text-sm text-[#6B7280]">Based on 247 verified reviews</div>
+              <div className="text-4xl font-bold text-[#C9A24A] mb-2">8+</div>
+              <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Years Experience</div>
+              <div className="text-sm text-[#6B7280]">Founder's international expertise</div>
             </div>
             <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-[#0B1B2B]/10">
               <Shield className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
-              <div className="text-4xl font-bold text-[#C9A24A] mb-2">96%</div>
-              <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Success Rate</div>
-              <div className="text-sm text-[#6B7280]">Relocations completed successfully</div>
+              <div className="text-4xl font-bold text-[#C9A24A] mb-2">F500</div>
+              <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Enterprise Focus</div>
+              <div className="text-sm text-[#6B7280]">Fortune 500 client experience</div>
             </div>
             <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-[#0B1B2B]/10">
               <Globe className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
               <div className="text-4xl font-bold text-[#C9A24A] mb-2">33</div>
               <div className="text-lg font-semibold text-[#0B1B2B] mb-2">London Boroughs</div>
-              <div className="text-sm text-[#6B7280]">Complete coverage and expertise</div>
+              <div className="text-sm text-[#6B7280]">Complete geographic coverage</div>
             </div>
           </div>
 
@@ -725,7 +713,7 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="mb-4">
                   <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Background</div>
-                  <p className="text-sm text-[#6B7280] mb-4">Former International Consultant with 8+ years experience in executive relocations. Led 100s of C-Suite relocations for Fortune 500 companies.</p>
+                  <p className="text-sm text-[#6B7280] mb-4">Former International Consultant with 8+ years experience in executive relocations for Fortune 500 companies.</p>
                 </div>
                 <div className="mb-4">
                   <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Education</div>
