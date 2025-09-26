@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@/ui/components/button'
-import { ArrowRight, User, Calendar, Home, MapPin, Users, Building, Phone, Mail, Star, Clock } from 'lucide-react'
+import { ArrowRight, User, Calendar, Home, MapPin, Users, Building, Phone, Mail, Star, Clock, Check } from 'lucide-react'
 import { FormField, useFormSubmission, FormSuccess, FormError, validateForm } from './FormComponents'
 
 interface ClientFormData {
@@ -434,11 +434,11 @@ export default function PremiumClientForm() {
             <div>
               <h4 className="font-semibold text-[#0B1220] mb-2">Premium Service Guarantee</h4>
               <ul className="text-sm text-[#6B7280] space-y-1">
-                <li>✓ Personal consultation within 4 hours</li>
-                <li>✓ Curated property shortlist within 24 hours</li>
-                <li>✓ Dedicated relocation specialist</li>
-                <li>✓ VIP viewing coordination</li>
-                <li>✓ End-to-end support until move-in</li>
+                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600" />Personal consultation within 4 hours</li>
+                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600" />Curated property shortlist within 24 hours</li>
+                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600" />Dedicated relocation specialist</li>
+                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600" />VIP viewing coordination</li>
+                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600" />End-to-end support until move-in</li>
               </ul>
             </div>
           </div>

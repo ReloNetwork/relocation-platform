@@ -7,7 +7,7 @@ import { getAllEnhancedSchemas } from '../lib/seo/enhanced-schemas'
 import { getAllHomepageSchemas } from '../lib/seo/homepage-schemas'
 import { getAICitationSchemas, getCommunityEngagementSchema } from '../lib/seo/ai-citation-schemas'
 import { checkoutFunctions } from '../lib/checkout'
-import { Users, Building, Briefcase, ArrowRight, Star, CheckCircle, Globe, Shield, Award, Clock, Crown, Timer } from 'lucide-react'
+import { Users, Building, Briefcase, ArrowRight, Star, CheckCircle, Globe, Shield, Award, Clock, Crown, Timer, Home, Hotel, Package, FileText, GraduationCap, Landmark, Heart, Target, Gem } from 'lucide-react'
 
 const AudienceCard = ({ 
   title, 
@@ -303,8 +303,9 @@ export default function HomePage() {
                     <span>{timeLeft.minutes}m</span>
                   </div>
                 </div>
-                <div className="text-xs text-white/80 mb-4">
-                  💎 Bonus: Enroll by Oct 1 for extra editorial + homepage tile (30 days)
+                <div className="text-xs text-white/80 mb-4 flex items-center justify-center gap-1">
+                  <Gem className="w-3 h-3" />
+                  Bonus: Enroll by Oct 1 for extra editorial + homepage tile (30 days)
                 </div>
               </div>
 
@@ -343,21 +344,23 @@ export default function HomePage() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 max-w-7xl mx-auto">
               {[
-                { name: 'Property Search', href: '/directory?category=Property+Specialists', icon: '🏠' },
-                { name: 'Serviced Apartments', href: '/directory?category=Property+Specialists&type=serviced', icon: '🏨' },
-                { name: 'Luxury Movers', href: '/directory?category=Luxury+Movers', icon: '📦' },
-                { name: 'Visa & Legal', href: '/directory?category=Legal+%26+Visa', icon: '📋' },
-                { name: 'Schools', href: '/directory?category=Education+Consultants', icon: '🎓' },
-                { name: 'Banking', href: '/directory?category=Financial+Services', icon: '🏦' },
-                { name: 'Private Healthcare', href: '/directory?category=Healthcare', icon: '🏥' },
-                { name: 'Lifestyle Concierge', href: '/directory?category=Lifestyle+Concierge', icon: '🎯' }
+                { name: 'Property Search', href: '/directory?category=Property+Specialists', icon: Home },
+                { name: 'Serviced Apartments', href: '/directory?category=Property+Specialists&type=serviced', icon: Hotel },
+                { name: 'Luxury Movers', href: '/directory?category=Luxury+Movers', icon: Package },
+                { name: 'Visa & Legal', href: '/directory?category=Legal+%26+Visa', icon: FileText },
+                { name: 'Schools', href: '/directory?category=Education+Consultants', icon: GraduationCap },
+                { name: 'Banking', href: '/directory?category=Financial+Services', icon: Landmark },
+                { name: 'Private Healthcare', href: '/directory?category=Healthcare', icon: Heart },
+                { name: 'Lifestyle Concierge', href: '/directory?category=Lifestyle+Concierge', icon: Target }
               ].map((category, index) => (
                 <button
                   key={index}
                   onClick={() => window.location.href = category.href}
                   className="bg-white/90 backdrop-blur-sm border border-[#C9A24A]/20 rounded-xl p-4 text-center hover:border-[#C9A24A]/40 hover:bg-white hover:scale-105 transition-all shadow-sm hover:shadow-lg group"
                 >
-                  <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">{category.icon}</div>
+                  <div className="mb-2 group-hover:scale-110 transition-transform text-[#C9A24A]">
+                    <category.icon className="w-6 h-6 mx-auto" />
+                  </div>
                   <div className="text-sm font-medium text-[#0B1B2B] leading-tight">{category.name}</div>
                 </button>
               ))}

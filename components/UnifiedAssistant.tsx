@@ -75,10 +75,10 @@ export default function UnifiedAssistant({ variant = 'floating', className = '' 
 Choose how you'd like to communicate:
 
 💬 **Text Chat** - Perfect for quick questions and detailed information
-🎙️ **Voice Chat** - Natural conversation for in-depth consultations
+**Voice Chat** - Natural conversation for in-depth consultations
 
 I can help with every aspect of your London relocation:
-🏠 Property & Housing • 📋 Visa & Legal • 🎓 Education • 🏦 Banking • 🚗 Transport • 🎯 Lifestyle
+Property & Housing • Visa & Legal • Education • Banking • Transport • Lifestyle
 
 What would you like to know about relocating to London?`,
         timestamp: new Date().toISOString()
@@ -369,7 +369,7 @@ What would you like to know about relocating to London?`,
                         mode === 'voice' ? 'bg-[#C9A24A] text-white shadow-sm' : 'text-white hover:text-white hover:bg-white/10'
                       }`}
                     >
-                      🎙️
+                      <Mic className="w-5 h-5" />
                     </button>
                   </div>
                 )}
@@ -583,7 +583,7 @@ What would you like to know about relocating to London?`,
                       </button>
                     </div>
                     <p className="text-xs text-[#6B7280] mt-2 text-center">
-                      Switch to 🎙️ for voice chat • Powered by Relo Network AI
+                      Switch to Voice Chat • Powered by Relo Network AI
                     </p>
                   </div>
                 )}

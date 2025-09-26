@@ -34,16 +34,16 @@ export default function AIChat({ variant = 'floating', className = '' }: AIChatP
     if (isOpen && messages.length === 0) {
       const welcomeMessage: ChatMessage = {
         role: 'assistant',
-        content: `Hello! I'm Relo, your 24/7 AI relocation assistant. 👋
+        content: `Hello! I'm Relo, your 24/7 AI relocation assistant.
 
 I'm here to help with every aspect of your London relocation:
 
-🏠 **Property & Housing** - Area recommendations, market insights
-📋 **Visa & Legal** - Requirements, timelines, partner connections  
-🎓 **Education** - School placement, international options
-🏦 **Banking** - Account setup, financial services
-🚗 **Transport** - Getting around London efficiently
-🎯 **Lifestyle** - Cultural integration, local insights
+**Property & Housing** - Area recommendations, market insights
+**Visa & Legal** - Requirements, timelines, partner connections  
+**Education** - School placement, international options
+**Banking** - Account setup, financial services
+**Transport** - Getting around London efficiently
+**Lifestyle** - Cultural integration, local insights
 
 What would you like to know about relocating to London?`,
         timestamp: new Date().toISOString()

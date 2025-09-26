@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { ClipboardList, Zap, CheckCircle, FileText } from 'lucide-react';
 
 const sb = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
 
@@ -193,8 +194,10 @@ export default function TasksKanban({ caseId }: TasksKanbanProps) {
               
               {tasks.filter(t => t.status === col.key).length === 0 && (
                 <div className="text-center py-8 text-[#6B7280]">
-                  <div className="text-2xl mb-2">
-                    {col.key === 'todo' ? '📋' : col.key === 'doing' ? '⚡' : '✅'}
+                  <div className="mb-2 text-[#C9A24A]">
+                    {col.key === 'todo' ? <ClipboardList className="w-8 h-8 mx-auto" /> : 
+                     col.key === 'doing' ? <Zap className="w-8 h-8 mx-auto" /> : 
+                     <CheckCircle className="w-8 h-8 mx-auto" />}
                   </div>
                   <p className="text-sm">
                     {col.key === 'todo' ? 'No pending tasks' :
@@ -213,7 +216,9 @@ export default function TasksKanban({ caseId }: TasksKanbanProps) {
       
       {tasks.length === 0 && !loading && (
         <div className="text-center py-12">
-          <div className="text-4xl mb-4">📝</div>
+          <div className="mb-4 text-[#C9A24A]">
+            <FileText className="w-12 h-12 mx-auto" />
+          </div>
           <h3 className="text-xl font-semibold text-[#0B1B2B] mb-2">No Tasks Found</h3>
           <p className="text-[#6B7280]">
             {caseId ? 'This case has no tasks yet.' : 'No tasks have been created yet.'}

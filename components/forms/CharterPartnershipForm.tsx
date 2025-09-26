@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@/ui/components/button'
-import { ArrowRight, Building, MapPin, TrendingUp, DollarSign, Phone, Mail, Award, Users } from 'lucide-react'
+import { ArrowRight, Building, MapPin, TrendingUp, DollarSign, Phone, Mail, Award, Users, Crown, Star, Trophy, Zap } from 'lucide-react'
 import { FormField, useFormSubmission, FormSuccess, FormError, validateForm } from './FormComponents'
 import { checkoutFunctions } from '../../lib/checkout'
 
@@ -62,8 +62,8 @@ const marketingBudgets = [
 
 // NEW CHARTER PARTNERSHIP TIERS - 2025 UPDATE
 const partnershipTiers = [
-  { value: 'founding_partner', label: '🏆 Founding Partner - £25,000 (12 months)' },
-  { value: 'premium_sponsor', label: '⭐ Premium Sponsor - £5,000 (90 days)' }
+  { value: 'founding_partner', label: 'Founding Partner - £25,000 (12 months)' },
+  { value: 'premium_sponsor', label: 'Premium Sponsor - £5,000 (90 days)' }
 ]
 
 export default function CharterPartnershipForm() {
@@ -190,11 +190,13 @@ export default function CharterPartnershipForm() {
         </p>
         
         <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-md p-4 mt-4">
-          <p className="text-sm text-[#C9A24A] font-medium">
-            🏆 Charter Partnership: Limited to 12 founding positions. Closing Sept 26, 2025.
+          <p className="text-sm text-[#C9A24A] font-medium flex items-center gap-2">
+            <Trophy className="w-4 h-4" />
+            Charter Partnership: Limited to 12 founding positions. Closing Sept 26, 2025.
           </p>
-          <p className="text-xs text-[#C9A24A]/70 mt-1">
-            ⚡ DEPLOYMENT TRIGGER: Charter Partnership Form v2.0 - Sept 25, 2025
+          <p className="text-xs text-[#C9A24A]/70 mt-1 flex items-center gap-1">
+            <Zap className="w-3 h-3" />
+            DEPLOYMENT TRIGGER: Charter Partnership Form v2.0 - Sept 25, 2025
           </p>
         </div>
       </div>
