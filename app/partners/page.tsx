@@ -1081,7 +1081,7 @@ export default function PartnersPage() {
             <div>✓ Limited to 12 charter positions</div>
           </div>
           
-          <div className="text-white/40 text-sm">
+          <div className="text-white/80 text-sm">
             © 2024 Relo Network Ltd. All rights reserved. London, United Kingdom.
           </div>
         </div>
