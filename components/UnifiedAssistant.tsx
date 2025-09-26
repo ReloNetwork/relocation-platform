@@ -595,6 +595,220 @@ What would you like to know about relocating to London?`,
     )
   }
 
-  // Embedded variant would go here
-  return null
+  // Embedded variant
+  return (
+    <div className={`bg-white rounded-xl shadow-lg border border-[#E5E7EB] ${className}`}>
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-[#E5E7EB]">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#C9A24A] rounded-full flex items-center justify-center">
+            <Bot className="w-5 h-5 text-white" />
+          </div>
+          <div>
+            <h3 className="font-semibold text-[#0B1B2B]">Ask Relo</h3>
+            <p className="text-sm text-[#6B7280]">AI Assistant for London Relocation</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setMode(mode === 'chat' ? 'voice' : 'chat')}
+            className={`p-2 rounded-lg transition-colors ${
+              mode === 'voice' 
+                ? 'bg-[#C9A24A] text-white' 
+                : 'bg-[#F3F4F6] text-[#6B7280] hover:bg-[#E5E7EB]'
+            }`}
+            title={mode === 'chat' ? 'Switch to Voice' : 'Switch to Chat'}
+          >
+            {mode === 'chat' ? <Mic className="w-4 h-4" /> : <MessageCircle className="w-4 h-4" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Chat Content */}
+      <div className="h-96 flex flex-col">
+        {mode === 'chat' ? (
+          <>
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              {messages.length === 0 ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Bot className="w-8 h-8 text-[#C9A24A]" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] mb-2">Welcome to Ask Relo!</h3>
+                  <p className="text-[#6B7280] text-sm max-w-sm mx-auto">
+                    I'm here to help with your London relocation questions. Ask me about housing, schools, visas, neighborhoods, or anything else!
+                  </p>
+                </div>
+              ) : (
+                messages.map((message, index) => (
+                  <div key={index} className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    {message.role === 'assistant' && (
+                      <div className="w-8 h-8 bg-[#C9A24A] rounded-full flex items-center justify-center flex-shrink-0">
+                        <Bot className="w-4 h-4 text-white" />
+                      </div>
+                    )}
+                    <div className={`max-w-[80%] p-3 rounded-lg ${
+                      message.role === 'user' 
+                        ? 'bg-[#C9A24A] text-white' 
+                        : 'bg-[#F3F4F6] text-[#0B1B2B]'
+                    }`}>
+                      <div 
+                        className="text-sm leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }}
+                      />
+                      <div className={`text-xs mt-2 ${
+                        message.role === 'user' ? 'text-white/70' : 'text-[#6B7280]'
+                      }`}>
+                        {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </div>
+                    </div>
+                    {message.role === 'user' && (
+                      <div className="w-8 h-8 bg-[#0B1B2B] rounded-full flex items-center justify-center flex-shrink-0">
+                        <User className="w-4 h-4 text-white" />
+                      </div>
+                    )}
+                  </div>
+                ))
+              )}
+              
+              {isLoading && (
+                <div className="flex gap-3 justify-start">
+                  <div className="w-8 h-8 bg-[#C9A24A] rounded-full flex items-center justify-center">
+                    <Bot className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="bg-[#F3F4F6] p-3 rounded-lg">
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-[#6B7280] rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-[#6B7280] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                      <div className="w-2 h-2 bg-[#6B7280] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input */}
+            <div className="p-4 border-t border-[#E5E7EB]">
+              <div className="flex gap-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Ask about your London relocation..."
+                  className="flex-1 px-3 py-2 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm"
+                  disabled={isLoading}
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={!inputValue.trim() || isLoading}
+                  className="px-4 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </div>
+              <p className="text-xs text-[#6B7280] mt-2 text-center">
+                Switch to Voice Chat • Powered by Relo Network AI
+              </p>
+            </div>
+          </>
+        ) : (
+          /* Voice Mode */
+          <div className="flex-1 flex items-center justify-center p-8">
+            {callStatus === 'idle' && (
+              <div className="text-center space-y-4">
+                <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto">
+                  <Phone className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#0B1B2B] mb-2">Voice Chat with Relo</h3>
+                  <p className="text-[#6B7280] text-sm mb-6 max-w-sm mx-auto">
+                    Start a voice conversation for a more personal consultation experience.
+                  </p>
+                </div>
+                <button
+                  onClick={startCall}
+                  disabled={clientLoading}
+                  className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-6 py-3 rounded-lg font-semibold transition-colors disabled:opacity-50"
+                >
+                  {clientLoading ? 'Loading...' : 'Start Voice Chat'}
+                </button>
+                {error && (
+                  <p className="text-red-600 text-sm mt-2">{error}</p>
+                )}
+              </div>
+            )}
+
+            {(callStatus === 'connecting' || callStatus === 'connected') && (
+              <div className="text-center space-y-4">
+                <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto relative">
+                  <Phone className="w-8 h-8 text-white" />
+                  {callStatus === 'connecting' && (
+                    <div className="absolute inset-0 rounded-full border-4 border-[#C9A24A]/30 animate-ping"></div>
+                  )}
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-bold text-[#0B1B2B]">
+                    {callStatus === 'connecting' ? 'Connecting...' : 'Connected to Relo'}
+                  </h3>
+                  {callStatus === 'connected' && (
+                    <div className="flex items-center justify-center gap-2 text-[#6B7280] text-sm">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      {formatDuration(callDuration)}
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex justify-center gap-4">
+                  {callStatus === 'connected' && (
+                    <button
+                      onClick={toggleMute}
+                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${
+                        isMuted 
+                          ? 'bg-red-500 hover:bg-red-600 text-white' 
+                          : 'bg-[#F3F4F6] hover:bg-[#E5E7EB] text-[#6B7280]'
+                      }`}
+                    >
+                      {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                    </button>
+                  )}
+                  <button
+                    onClick={endCall}
+                    className="w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors"
+                    title="End Call"
+                  >
+                    <Phone className="w-5 h-5 transform rotate-[135deg]" />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {callStatus === 'ended' && (
+              <div className="text-center space-y-4">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                  <Phone className="w-8 h-8 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#0B1B2B]">Call Ended</h3>
+                  <p className="text-[#6B7280] text-sm">
+                    Thank you for speaking with Relo! We'll follow up with the information discussed.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setCallStatus('idle')}
+                  className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-lg text-sm"
+                >
+                  Start New Chat
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }

@@ -18,7 +18,7 @@ export default function AskReloPage() {
             </p>
           </div>
 
-          <UnifiedAssistant />
+          <UnifiedAssistant variant="embedded" />
         </div>
       </div>
     </Layout>
