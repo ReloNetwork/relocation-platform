@@ -176,9 +176,8 @@ export default function NewsletterSignup({
             </button>
           </form>
           
-          <div className="mt-4 text-white/60 text-sm text-center space-y-1">
-            <p>Join 100s of other professionals</p>
-            <p>Unsubscribe anytime • No spam, ever</p>
+          <div className="mt-4 text-white/60 text-sm text-center">
+            <p>Join 2,500+ professionals • Unsubscribe anytime • Weekly delivery</p>
           </div>
           
           {isSuccess && (

@@ -197,7 +197,7 @@ export default function CharterPartnershipForm() {
           </p>
           <p className="text-xs text-[#C9A24A]/70 mt-1 flex items-center gap-1">
             <Zap className="w-3 h-3" />
-            DEPLOYMENT TRIGGER: Charter Partnership Form v2.0 - Sept 25, 2025
+            DEPLOYMENT TRIGGER: Charter Partnership Form v2.0 - Sep 26, 2025
           </p>
         </div>
       </div>
