@@ -163,7 +163,7 @@ export default function HomePage() {
               Launch Day Approaching
             </div>
             <div className="text-white text-lg mb-3">
-              <strong>September 26, 2025 • 2:00 PM GMT</strong> - Limited to 100 Founding Members
+              <strong>Founding Partner Charter closes Sep 26, 2:00 PM GMT — 12 category-exclusive slots.</strong>
             </div>
             <div className="flex justify-center items-center gap-6 text-white">
               <div className="text-center">
@@ -199,7 +199,7 @@ export default function HomePage() {
             London's exclusive relocation network founded in 2024.
           </p>
           <p className="text-xl text-[#6B7280] mb-8 max-w-4xl mx-auto">
-            Vetted experts, white-glove 24/7 concierge. Start today or secure your category as a Founding Partner.
+            Vetted experts, white-glove 24/7 concierge. Start today or secure category exclusivity as a Founding Partner.
           </p>
           
           {/* Founder Credibility */}
@@ -210,8 +210,8 @@ export default function HomePage() {
                   <span className="text-lg font-bold text-white">RN</span>
                 </div>
                 <div className="text-left">
-                  <div className="text-lg font-bold text-[#0B1B2B]">Founder</div>
-                  <div className="text-sm text-[#6B7280]">Former International Consultant</div>
+                  <div className="text-lg font-bold text-[#0B1B2B]">[Your Name], Founder</div>
+                  <div className="text-sm text-[#6B7280]">Former International Consultant (ex-SIRVA / Dwellworks)</div>
                 </div>
               </div>
               <p className="text-[#6B7280] text-sm">
@@ -231,19 +231,22 @@ export default function HomePage() {
 
           {/* Main CTAs */}
           <div className="mb-12">
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-4">
               <button
                 onClick={checkoutFunctions.executiveIntake}
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg"
               >
                 Start Executive Intake — £1,500
               </button>
-              <button
-                onClick={() => window.location.href = '/partners'}
-                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg"
-              >
-                Become a Founding Partner
-              </button>
+              <div className="flex flex-col items-center">
+                <button
+                  onClick={() => window.location.href = '/partners'}
+                  className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg mb-2"
+                >
+                  Become a Founding Partner
+                </button>
+                <p className="text-sm text-[#6B7280] italic">Prefer split pay? £15k today / £10k in 30 days.</p>
+              </div>
             </div>
             <div className="text-center">
               <button
@@ -260,7 +263,7 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="mb-4 md:mb-0">
                 <div className="text-xl font-bold mb-2">Own Your Category</div>
-                <div className="text-white/90 text-sm">Concierge-routed briefs, top placement, and quarterly editorial. 12 Charter slots. Closes September 26 2:00pm GMT.</div>
+                <div className="text-white/90 text-sm">Concierge-routed briefs, top placement, and quarterly editorial. 12 Charter slots. Closes Sep 26, 2:00 PM GMT.</div>
               </div>
               <button 
                 onClick={() => window.location.href = '/partners'}
@@ -279,7 +282,7 @@ export default function HomePage() {
                 <span className="text-[#C9A24A] text-sm font-medium">Executive Service</span>
               </div>
               <h2 className="text-2xl font-bold text-[#0B1B2B] mb-4">Executive Intake</h2>
-              <p className="text-lg text-[#6B7280] mb-6">60-min strategy call, bespoke area shortlist, 3 warm intros, and a 30-day execution window. Credited toward any package.</p>
+              <p className="text-lg text-[#6B7280] mb-6">60-min strategy call, bespoke area shortlist, 3 warm introductions, and a 30-day execution window. Credited toward any package. Starts within 24 hours.</p>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-[#6B7280]">
                 <div className="flex items-center gap-2">
@@ -304,7 +307,10 @@ export default function HomePage() {
 
           {/* Top Categories Grid */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-8 text-center">Top Categories</h2>
+            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4 text-center">Top Categories</h2>
+            <p className="text-lg text-[#6B7280] mb-8 text-center max-w-3xl mx-auto">
+              Not sure who to choose? Get 3 curated intros with Plus (£29/mo) or Start Executive Intake.
+            </p>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 max-w-7xl mx-auto">
               {[
                 { name: 'Property Search', href: '/directory?category=Property+Specialists', icon: '🏠' },
