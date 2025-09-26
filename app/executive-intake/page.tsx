@@ -483,8 +483,15 @@ export default function ExecutiveIntakePage() {
                   <div className="text-[#6B7280]">3 warm intros in 7 days or we extend your concierge window free.</div>
                 </div>
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-1">Refunds?</div>
-                  <div className="text-[#6B7280]">Full refund before the call; after that, credit toward packages.</div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">Refunds & Cancellations?</div>
+                  <div className="text-[#6B7280]">Full refund up to 24 hours before your call. Within 24 hours, we convert to account credit (valid 12 months). After your call starts, payments are non-refundable; unused value may be credited at our discretion.</div>
+                </div>
+              </div>
+              
+              <div className="mt-4 pt-4 border-t border-[#E5E7EB]">
+                <div className="text-xs text-[#6B7280]">
+                  By booking, you consent for us to begin services immediately, which may affect statutory cooling-off rights. 
+                  <a href="/terms" className="text-[#C9A24A] hover:underline ml-1">View complete terms</a>
                 </div>
               </div>
             </div>

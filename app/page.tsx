@@ -280,7 +280,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <span className="font-medium text-[#0B1B2B]">Refunds?</span>
-                  <span className="text-[#6B7280]"> Full refund before the call; after that, credit toward packages.</span>
+                  <span className="text-[#6B7280]"> Full refund up to 24 hours before your call; credit conversion within 24 hours.</span>
                 </div>
               </div>
             </div>

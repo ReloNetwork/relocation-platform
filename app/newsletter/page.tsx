@@ -154,7 +154,7 @@ export default function NewsletterPage() {
     : [...featuredArticles, ...recentArticles].filter(article => article.category === selectedCategory)
 
   return (
-    <Layout className="bg-[#FAFAF9]">
+    <Layout className="bg-[#FAFAF9]" showFooter={false}>
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 text-white py-20">
         <div className="max-w-7xl mx-auto px-4">
@@ -446,13 +446,17 @@ export default function NewsletterPage() {
           <p className="text-xl text-white/90 mb-8">
             Get expert guidance, trusted partners, and insider knowledge delivered weekly.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <button className="px-8 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-colors">
               Subscribe to Newsletter
             </button>
             <button className="px-8 py-3 border border-white text-white hover:bg-white hover:text-[#0B1B2B] font-semibold rounded-lg transition-colors">
               Explore Partners
             </button>
+          </div>
+          
+          <div className="text-white/40 text-sm">
+            © 2024 Relo Network Ltd. All rights reserved. London, United Kingdom.
           </div>
         </div>
       </div>
