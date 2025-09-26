@@ -66,17 +66,17 @@ export default function PartnerApplicationPage() {
   }, [])
 
   const categories = [
-    { value: 'immigration', label: 'Immigration' },
-    { value: 'housing', label: 'Housing' },
-    { value: 'banking', label: 'Banking' },
-    { value: 'education', label: 'Education' },
-    { value: 'healthcare', label: 'Healthcare' },
-    { value: 'employment', label: 'Employment' },
-    { value: 'lifestyle', label: 'Lifestyle' },
-    { value: 'transport', label: 'Transport' },
-    { value: 'travel', label: 'Travel' },
-    { value: 'logistics', label: 'Logistics' },
-    { value: 'tax', label: 'Tax Services' }
+    { value: 'property-specialists', label: 'Property Specialists' },
+    { value: 'luxury-movers', label: 'Luxury Movers' },
+    { value: 'legal-visa', label: 'Legal & Visa' },
+    { value: 'financial-services', label: 'Financial Services' },
+    { value: 'education-consultants', label: 'Education Consultants' },
+    { value: 'lifestyle-concierge', label: 'Lifestyle Concierge' },
+    { value: 'transportation', label: 'Transportation' },
+    { value: 'home-services', label: 'Home Services' },
+    { value: 'lifestyle-services', label: 'Lifestyle Services' },
+    { value: 'pet-relocation', label: 'Pet Relocation' },
+    { value: 'other', label: 'Other (please specify)' }
   ]
 
   const membershipTiers = [
@@ -354,7 +354,7 @@ export default function PartnerApplicationPage() {
                   
                   <div>
                     <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                      Primary Category *
+                      Service Category *
                     </label>
                     <select
                       value={formData.category}

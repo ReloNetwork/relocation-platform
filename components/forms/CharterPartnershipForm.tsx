@@ -23,15 +23,16 @@ interface PartnerFormData {
 }
 
 const serviceTypes = [
-  { value: 'property-management', label: 'Property Management' },
-  { value: 'estate-agent', label: 'Estate Agent' },
-  { value: 'removals', label: 'Removals & Storage' },
-  { value: 'legal-services', label: 'Legal Services' },
+  { value: 'property-specialists', label: 'Property Specialists' },
+  { value: 'luxury-movers', label: 'Luxury Movers' },
+  { value: 'legal-visa', label: 'Legal & Visa' },
   { value: 'financial-services', label: 'Financial Services' },
-  { value: 'interior-design', label: 'Interior Design' },
+  { value: 'education-consultants', label: 'Education Consultants' },
+  { value: 'lifestyle-concierge', label: 'Lifestyle Concierge' },
+  { value: 'transportation', label: 'Transportation' },
   { value: 'home-services', label: 'Home Services' },
-  { value: 'education', label: 'Education Consultants' },
-  { value: 'pet-services', label: 'Pet Relocation' },
+  { value: 'lifestyle-services', label: 'Lifestyle Services' },
+  { value: 'pet-relocation', label: 'Pet Relocation' },
   { value: 'other', label: 'Other (please specify)' }
 ]
 
@@ -192,7 +193,7 @@ export default function CharterPartnershipForm() {
         <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-md p-4 mt-4">
           <p className="text-sm text-[#C9A24A] font-medium flex items-center gap-2">
             <Trophy className="w-4 h-4" />
-            Charter Partnership: Limited to 12 founding positions. Closing Sept 26, 2025.
+            Charter Partnership: Limited to 12 founding positions. Closing Oct 01, 2025.
           </p>
           <p className="text-xs text-[#C9A24A]/70 mt-1 flex items-center gap-1">
             <Zap className="w-3 h-3" />
@@ -223,7 +224,7 @@ export default function CharterPartnershipForm() {
             />
             
             <FormField
-              label="Service Type"
+              label="Service Category"
               name="serviceType"
               type="select"
               value={formData.serviceType}
