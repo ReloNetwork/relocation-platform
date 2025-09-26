@@ -199,7 +199,7 @@ export default function HomePage() {
             London's exclusive relocation network founded in 2024
           </p>
           <p className="text-base text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed">
-            Vetted partners and white-glove 24/7 concierge, built by international relocation specialist, with years orchestrating executive moves for Fortune 500 firms and HNW clients.
+            Vetted partners and white-glove 24/7 concierge, curated by international relocation specialist, with years orchestrating executive moves for Fortune 500 firms and HNW clients.
           </p>
 
 
