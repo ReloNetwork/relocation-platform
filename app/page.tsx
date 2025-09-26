@@ -203,21 +203,15 @@ export default function HomePage() {
           </p>
 
           {/* Proof Chips */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12 max-w-4xl mx-auto">
-            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
-              Fortune 500 Experience
-            </div>
-            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
-              8+ Years International
-            </div>
-            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
+          <div className="flex flex-wrap justify-center gap-4 mb-12 max-w-3xl mx-auto">
+            <div className="bg-[#6B7280]/10 text-[#6B7280] px-5 py-2 rounded-full text-sm font-medium">
               Ex-SIRVA / Dwellworks
             </div>
-            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
-              33 London Boroughs
+            <div className="bg-[#6B7280]/10 text-[#6B7280] px-5 py-2 rounded-full text-sm font-medium">
+              Fortune 500 Clients
             </div>
-            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
-              24/7 AI Concierge
+            <div className="bg-[#6B7280]/10 text-[#6B7280] px-5 py-2 rounded-full text-sm font-medium">
+              Founded 2024
             </div>
           </div>
 
