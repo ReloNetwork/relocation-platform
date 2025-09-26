@@ -259,7 +259,7 @@ export default function HomePage() {
           </div>
 
           {/* Founding Partner Band */}
-          <div className="bg-gradient-to-r from-[#C9A24A] to-[#B8923D] rounded-2xl p-6 text-center text-white mb-16 max-w-5xl mx-auto shadow-xl">
+          <div className="bg-gradient-to-r from-[#C9A24A] to-[#B8923D] rounded-2xl p-6 text-center text-white mb-8 max-w-5xl mx-auto shadow-xl">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="mb-4 md:mb-0">
                 <div className="text-xl font-bold mb-2">Own Your Category</div>
@@ -274,8 +274,38 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Executive Intake Details */}
-          <div className="mb-16">
+          {/* Partner Urgency Bonus */}
+          <div className="bg-white/90 backdrop-blur-sm border-2 border-[#C9A24A]/40 rounded-2xl p-6 text-center shadow-lg max-w-4xl mx-auto mb-16">
+            <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/30 rounded-full px-4 py-2 mb-4">
+              <Timer className="h-4 w-4 text-[#C9A24A] mr-2" />
+              <span className="text-[#C9A24A] text-sm font-medium">Limited Time Bonus</span>
+            </div>
+            <h3 className="text-xl font-bold text-[#0B1B2B] mb-3">Partner Enrollment Bonus</h3>
+            <p className="text-[#6B7280] mb-4">Enroll by Sep 26 and get an extra editorial feature + homepage tile for 30 days.</p>
+            <div className="flex justify-center items-center gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-xs font-bold">
+                  {timeLeft.days}
+                </div>
+                <span className="text-[#0B1B2B] font-medium">{timeLeft.days} days</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-xs font-bold">
+                  {timeLeft.hours}
+                </div>
+                <span className="text-[#0B1B2B] font-medium">{timeLeft.hours} hours</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-xs font-bold">
+                  {timeLeft.minutes}
+                </div>
+                <span className="text-[#0B1B2B] font-medium">{timeLeft.minutes} mins</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Executive Intake & Day Pass */}
+          <div className="mb-16 space-y-8">
             <div className="bg-white/90 backdrop-blur-sm border border-[#C9A24A]/30 rounded-2xl p-8 text-center shadow-xl max-w-4xl mx-auto">
               <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
                 <Crown className="h-4 w-4 text-[#C9A24A] mr-2" />
@@ -302,6 +332,22 @@ export default function HomePage() {
                   <span>30-day execution</span>
                 </div>
               </div>
+            </div>
+
+            {/* 72-Hour Day Pass */}
+            <div className="bg-white/90 backdrop-blur-sm border border-[#0B1B2B]/20 rounded-2xl p-6 text-center shadow-lg max-w-2xl mx-auto">
+              <div className="inline-flex items-center bg-[#0B1B2B]/10 border border-[#0B1B2B]/20 rounded-full px-4 py-2 mb-4">
+                <Clock className="h-4 w-4 text-[#0B1B2B] mr-2" />
+                <span className="text-[#0B1B2B] text-sm font-medium">Quick Access</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#0B1B2B] mb-3">72-Hour Day Pass (£59)</h3>
+              <p className="text-[#6B7280] mb-4">Full directory + 1 curated intro. Great for weekend viewings.</p>
+              <button
+                onClick={checkoutFunctions.dayPass}
+                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all shadow-lg"
+              >
+                Get Day Pass — £59
+              </button>
             </div>
           </div>
 
