@@ -202,25 +202,18 @@ export default function HomePage() {
             Vetted experts, white-glove 24/7 concierge. Start today or secure category exclusivity as a Founding Partner.
           </p>
           
-          {/* Founder Credibility */}
-          <div className="bg-white/90 backdrop-blur-md rounded-2xl border border-[#C9A24A]/30 shadow-xl p-6 mb-12 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-[#C9A24A] rounded-full flex items-center justify-center">
-                  <span className="text-lg font-bold text-white">RN</span>
-                </div>
-                <div className="text-left">
-                  <div className="text-lg font-bold text-[#0B1B2B]">[Your Name], Founder</div>
-                  <div className="text-sm text-[#6B7280]">Former International Consultant (ex-SIRVA / Dwellworks)</div>
-                </div>
-              </div>
-              <p className="text-[#6B7280] text-sm">
-                8+ years experience in executive relocations for Fortune 500 companies
-              </p>
-            </div>
-          </div>
-          
+          {/* Hero Content with Founder */}
           <div className="mb-12">
+            <div className="flex items-center justify-center gap-4 mb-8 max-w-md mx-auto">
+              <div className="w-12 h-12 bg-[#C9A24A] rounded-full flex items-center justify-center">
+                <span className="text-lg font-bold text-white">RN</span>
+              </div>
+              <div className="text-left">
+                <div className="text-lg font-bold text-[#0B1B2B]">[Your Name], Founder</div>
+                <div className="text-sm text-[#6B7280]">Former International Consultant (ex-SIRVA / Dwellworks)</div>
+              </div>
+            </div>
+
             <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#C9A24A]/30 rounded-full px-6 py-3 mb-8">
               <div className="w-3 h-3 bg-[#C9A24A] rounded-full animate-pulse"></div>
               <span className="text-[#0B1B2B] font-semibold text-sm">
@@ -229,23 +222,23 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Main CTAs */}
-          <div className="mb-12">
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-4">
+          {/* Main CTAs - Hero Style */}
+          <div className="mb-16">
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-8">
               <button
                 onClick={checkoutFunctions.executiveIntake}
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg"
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-10 py-4 rounded-xl text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25"
               >
                 Start Executive Intake — £1,500
               </button>
               <div className="flex flex-col items-center">
                 <button
                   onClick={() => window.location.href = '/partners'}
-                  className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg mb-2"
+                  className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-10 py-4 rounded-xl text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25 mb-2"
                 >
                   Become a Founding Partner
                 </button>
-                <p className="text-sm text-[#6B7280] italic">Prefer split pay? £15k today / £10k in 30 days.</p>
+                <p className="text-sm text-[#6B7280] italic">Split pay: £15k today / £10k in 30 days</p>
               </div>
             </div>
             <div className="text-center">
@@ -258,96 +251,106 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Founding Partner Band */}
-          <div className="bg-gradient-to-r from-[#C9A24A] to-[#B8923D] rounded-2xl p-6 text-center text-white mb-8 max-w-5xl mx-auto shadow-xl">
-            <div className="flex flex-col md:flex-row items-center justify-between">
-              <div className="mb-4 md:mb-0">
-                <div className="text-xl font-bold mb-2">Own Your Category</div>
-                <div className="text-white/90 text-sm">Concierge-routed briefs, top placement, and quarterly editorial. 12 Charter slots. Closes Sep 26, 2:00 PM GMT.</div>
-              </div>
-              <button 
-                onClick={() => window.location.href = '/partners'}
-                className="bg-white text-[#C9A24A] px-8 py-3 rounded-lg font-semibold hover:bg-white/95 hover:scale-105 transition-all shadow-lg"
-              >
-                Become a Founding Partner →
-              </button>
-            </div>
-          </div>
-
-          {/* Partner Urgency Bonus */}
-          <div className="bg-white/90 backdrop-blur-sm border-2 border-[#C9A24A]/40 rounded-2xl p-6 text-center shadow-lg max-w-4xl mx-auto mb-16">
-            <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/30 rounded-full px-4 py-2 mb-4">
-              <Timer className="h-4 w-4 text-[#C9A24A] mr-2" />
-              <span className="text-[#C9A24A] text-sm font-medium">Limited Time Bonus</span>
-            </div>
-            <h3 className="text-xl font-bold text-[#0B1B2B] mb-3">Partner Enrollment Bonus</h3>
-            <p className="text-[#6B7280] mb-4">Enroll by Sep 26 and get an extra editorial feature + homepage tile for 30 days.</p>
-            <div className="flex justify-center items-center gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-xs font-bold">
-                  {timeLeft.days}
+          {/* Services Grid - Clean Layout */}
+          <div className="mb-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Executive Intake */}
+            <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                  <Crown className="h-6 w-6 text-[#C9A24A]" />
                 </div>
-                <span className="text-[#0B1B2B] font-medium">{timeLeft.days} days</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-xs font-bold">
-                  {timeLeft.hours}
+                <div>
+                  <div className="text-sm font-medium text-[#C9A24A] uppercase tracking-wide">Executive Service</div>
+                  <h3 className="text-2xl font-bold text-[#0B1B2B]">Executive Intake</h3>
                 </div>
-                <span className="text-[#0B1B2B] font-medium">{timeLeft.hours} hours</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-xs font-bold">
-                  {timeLeft.minutes}
-                </div>
-                <span className="text-[#0B1B2B] font-medium">{timeLeft.minutes} mins</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Executive Intake & Day Pass */}
-          <div className="mb-16 space-y-8">
-            <div className="bg-white/90 backdrop-blur-sm border border-[#C9A24A]/30 rounded-2xl p-8 text-center shadow-xl max-w-4xl mx-auto">
-              <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
-                <Crown className="h-4 w-4 text-[#C9A24A] mr-2" />
-                <span className="text-[#C9A24A] text-sm font-medium">Executive Service</span>
-              </div>
-              <h2 className="text-2xl font-bold text-[#0B1B2B] mb-4">Executive Intake</h2>
-              <p className="text-lg text-[#6B7280] mb-6">60-min strategy call, bespoke area shortlist, 3 warm introductions, and a 30-day execution window. Credited toward any package. Starts within 24 hours.</p>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-[#6B7280]">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+              <p className="text-[#6B7280] mb-6 leading-relaxed">
+                60-min strategy call, bespoke area shortlist, 3 warm introductions, and a 30-day execution window. 
+                <span className="font-semibold text-[#0B1B2B]"> Credited toward any package. Starts within 24 hours.</span>
+              </p>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="flex items-center gap-2 text-[#6B7280]">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
                   <span>60-min strategy call</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Bespoke area shortlist</span>
+                <div className="flex items-center gap-2 text-[#6B7280]">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>Bespoke shortlist</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>3 warm introductions</span>
+                <div className="flex items-center gap-2 text-[#6B7280]">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
+                  <span>3 warm intros</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
+                <div className="flex items-center gap-2 text-[#6B7280]">
+                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
                   <span>30-day execution</span>
                 </div>
               </div>
             </div>
 
-            {/* 72-Hour Day Pass */}
-            <div className="bg-white/90 backdrop-blur-sm border border-[#0B1B2B]/20 rounded-2xl p-6 text-center shadow-lg max-w-2xl mx-auto">
-              <div className="inline-flex items-center bg-[#0B1B2B]/10 border border-[#0B1B2B]/20 rounded-full px-4 py-2 mb-4">
-                <Clock className="h-4 w-4 text-[#0B1B2B] mr-2" />
-                <span className="text-[#0B1B2B] text-sm font-medium">Quick Access</span>
+            {/* Founding Partner + Day Pass */}
+            <div className="space-y-6">
+              {/* Founding Partner */}
+              <div className="bg-gradient-to-br from-[#C9A24A] to-[#B8923D] rounded-3xl p-8 text-white shadow-2xl">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <div className="text-sm font-medium text-white/90 uppercase tracking-wide">Charter Partnership</div>
+                    <h3 className="text-2xl font-bold">Own Your Category</h3>
+                  </div>
+                  <Timer className="h-8 w-8 text-white/80" />
+                </div>
+                <p className="text-white/95 mb-6 leading-relaxed">
+                  Concierge-routed briefs, top placement, and quarterly editorial. <span className="font-semibold">12 Charter slots.</span>
+                </p>
+                <div className="flex items-center gap-4 text-sm mb-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-white/20 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                      {timeLeft.days}
+                    </div>
+                    <span>{timeLeft.days} days</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-white/20 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                      {timeLeft.hours}
+                    </div>
+                    <span>{timeLeft.hours}h</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-white/20 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                      {timeLeft.minutes}
+                    </div>
+                    <span>{timeLeft.minutes}m</span>
+                  </div>
+                </div>
+                <div className="text-xs text-white/80 mb-4">
+                  💎 Bonus: Enroll by Sep 26 for extra editorial + homepage tile (30 days)
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-[#0B1B2B] mb-3">72-Hour Day Pass (£59)</h3>
-              <p className="text-[#6B7280] mb-4">Full directory + 1 curated intro. Great for weekend viewings.</p>
-              <button
-                onClick={checkoutFunctions.dayPass}
-                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all shadow-lg"
-              >
-                Get Day Pass — £59
-              </button>
+
+              {/* Day Pass */}
+              <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-[#0B1B2B]/10">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-[#0B1B2B]/10 rounded-xl flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-[#0B1B2B]" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-medium text-[#0B1B2B]/60 uppercase tracking-wide">Quick Access</div>
+                    <h4 className="text-lg font-bold text-[#0B1B2B]">72-Hour Day Pass</h4>
+                  </div>
+                  <div className="ml-auto text-right">
+                    <div className="text-2xl font-bold text-[#0B1B2B]">£59</div>
+                  </div>
+                </div>
+                <p className="text-[#6B7280] text-sm mb-4">
+                  Full directory + 1 curated intro. <span className="font-medium text-[#0B1B2B]">Perfect for weekend viewings.</span>
+                </p>
+                <button
+                  onClick={checkoutFunctions.dayPass}
+                  className="w-full bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white py-3 rounded-xl font-semibold hover:scale-105 transition-all shadow-lg"
+                >
+                  Get Day Pass
+                </button>
+              </div>
             </div>
           </div>
 
