@@ -198,7 +198,7 @@ export default function HomePage() {
           <p className="text-2xl text-[#0B1B2B] mb-4">
             London's exclusive relocation network founded in 2024.
           </p>
-          <p className="text-xl text-[#6B7280] mb-8 max-w-4xl mx-auto">
+          <p className="text-lg text-[#6B7280] mb-8 max-w-3xl mx-auto leading-relaxed">
             Vetted experts, white-glove 24/7 concierge. Start today or secure category exclusivity as a Founding Partner.
           </p>
           
