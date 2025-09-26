@@ -6,6 +6,7 @@ import NewsletterSignup from '../components/NewsletterSignup'
 import { getAllEnhancedSchemas } from '../lib/seo/enhanced-schemas'
 import { getAllHomepageSchemas } from '../lib/seo/homepage-schemas'
 import { getAICitationSchemas, getCommunityEngagementSchema } from '../lib/seo/ai-citation-schemas'
+import { checkoutFunctions } from '../lib/checkout'
 import { Users, Building, Briefcase, ArrowRight, Star, CheckCircle, Globe, Shield, Award, Clock, Crown } from 'lucide-react'
 
 const AudienceCard = ({ 
@@ -239,7 +240,7 @@ export default function HomePage() {
               <p className="text-lg text-[#6B7280] mb-6">60-min strategy call, bespoke shortlist, 3 warm intros, 30-day execution window</p>
               
               <button
-                onClick={() => window.location.href = '/directory/checkout?plan=executive_intake'}
+                onClick={checkoutFunctions.executiveIntake}
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-12 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg mb-6"
               >
                 Start Executive Intake — £1,500

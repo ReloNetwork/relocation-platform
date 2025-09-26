@@ -66,31 +66,14 @@ export default function GlobalNavigationFixed() {
             </div>
           </div>
 
-          {/* Desktop Auth Section */}
+          {/* Desktop CTA */}
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
-              <div className="flex items-center space-x-2">
-                <Link href="/dashboard">
-                  <button className="text-[#6B7280] hover:text-[#0B1B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                    Dashboard
-                  </button>
-                </Link>
-                <Link href="/case">
-                  <button className="text-[#6B7280] hover:text-[#0B1B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                    My Case
-                  </button>
-                </Link>
-                <Link href="/admin">
-                  <button className="text-[#6B7280] hover:text-[#0B1B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                    Admin
-                  </button>
-                </Link>
-                <Link href="/login">
-                  <button className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Login
-                  </button>
-                </Link>
-              </div>
+              <Link href="/login">
+                <button className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-6 py-2 rounded-md text-sm font-medium transition-colors">
+                  Login
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -134,24 +117,9 @@ export default function GlobalNavigationFixed() {
               </Link>
             ))}
             <div className="border-t border-[#E5E7EB] pt-4 pb-3">
-              <div className="flex items-center px-3 space-y-2 flex-col">
-                <Link href="/dashboard" className="w-full">
-                  <button className="w-full text-[#6B7280] hover:text-[#0B1B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors border border-[#E5E7EB]">
-                    Dashboard
-                  </button>
-                </Link>
-                <Link href="/case" className="w-full">
-                  <button className="w-full text-[#6B7280] hover:text-[#0B1B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors border border-[#E5E7EB]">
-                    My Case
-                  </button>
-                </Link>
-                <Link href="/admin" className="w-full">
-                  <button className="w-full text-[#6B7280] hover:text-[#0B1B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors border border-[#E5E7EB]">
-                    Admin
-                  </button>
-                </Link>
-                <Link href="/login" className="w-full">
-                  <button className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+              <div className="px-3">
+                <Link href="/login" className="block">
+                  <button className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-3 rounded-md text-sm font-medium transition-colors">
                     Login
                   </button>
                 </Link>

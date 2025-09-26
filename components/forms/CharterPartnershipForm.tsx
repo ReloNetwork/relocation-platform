@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/ui/components/button'
 import { ArrowRight, Building, MapPin, TrendingUp, DollarSign, Phone, Mail, Award, Users } from 'lucide-react'
 import { FormField, useFormSubmission, FormSuccess, FormError, validateForm } from './FormComponents'
+import { checkoutFunctions } from '../../lib/checkout'
 
 interface PartnerFormData {
   companyName: string
@@ -110,34 +111,23 @@ export default function CharterPartnershipForm() {
     }
 
     try {
-      const result = await submitForm('/api/forms/partner-application', {
+      // Submit form data to store application
+      await submitForm('/api/forms/partner-application', {
         ...formData,
         formType: 'partner-application',
         submittedAt: new Date().toISOString()
       })
       
-      // If Stripe checkout URL is returned, redirect to payment
-      if (result.checkoutUrl) {
-        window.location.href = result.checkoutUrl
-        return
+      // Redirect to appropriate checkout based on preferred tier
+      if (formData.preferredTier === 'founding_partner') {
+        checkoutFunctions.foundingPartner()
+      } else if (formData.preferredTier === 'premium_sponsor') {
+        checkoutFunctions.premiumSponsor()
+      } else {
+        // Default to founding partner for any other selection
+        checkoutFunctions.foundingPartner()
       }
       
-      // Reset form on success
-      setFormData({
-        companyName: '',
-        serviceType: '',
-        contactName: '',
-        contactTitle: '',
-        phone: '',
-        email: '',
-        website: '',
-        territory: '',
-        monthlyLeads: '',
-        marketingSpend: '',
-        experience: '',
-        whyPartner: '',
-        preferredTier: ''
-      })
     } catch (err) {
       // Error handled by useFormSubmission
     }

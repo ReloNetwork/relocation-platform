@@ -5,6 +5,7 @@ import { Lock, Eye, Star, ArrowRight, Users, Shield, Crown, MapPin, Search, Filt
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 import { getAllDirectorySchemas } from '../../lib/seo/directory-schemas'
+import { checkoutFunctions } from '../../lib/checkout'
 
 const LondonAreaCard = ({ 
   area, 
@@ -796,7 +797,7 @@ export default function DirectoryPage() {
             <Button 
               size="lg"
               className="bg-[#C9A24A] hover:bg-[#B8923D] text-white text-lg px-12 py-4 rounded-lg hover:scale-105 shadow-xl transition-all"
-              onClick={() => window.location.href = '/directory/checkout?plan=executive_intake'}
+              onClick={checkoutFunctions.executiveIntake}
             >
               Start Executive Intake — £1,500
             </Button>
@@ -900,7 +901,7 @@ export default function DirectoryPage() {
               
               <Button 
                 className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
-                onClick={() => handleSubscribe('plus')}
+                onClick={checkoutFunctions.plusMonthly}
                 disabled={loading}
               >
                 Start Plus
@@ -946,7 +947,7 @@ export default function DirectoryPage() {
               
               <Button 
                 className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
-                onClick={() => handleSubscribe('pro')}
+                onClick={checkoutFunctions.proMonthly}
                 disabled={loading}
               >
                 Start Pro
@@ -985,7 +986,7 @@ export default function DirectoryPage() {
               
               <Button 
                 className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
-                onClick={() => window.location.href = '/directory/checkout?plan=executive_intake'}
+                onClick={checkoutFunctions.executiveIntake}
               >
                 Start Executive Intake
               </Button>
@@ -1007,7 +1008,7 @@ export default function DirectoryPage() {
                 <p className="text-sm text-[#6B7280] mb-4">Full access + 1 curated intro</p>
                 <Button 
                   className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
-                  onClick={() => window.location.href = '/directory/checkout?plan=day_pass'}
+                  onClick={checkoutFunctions.dayPass}
                 >
                   Get Day Pass
                 </Button>
@@ -1023,7 +1024,7 @@ export default function DirectoryPage() {
                 <p className="text-sm text-[#6B7280] mb-4">3 curated introductions</p>
                 <Button 
                   className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
-                  onClick={() => window.location.href = '/directory/checkout?plan=intro_pack_3'}
+                  onClick={checkoutFunctions.introPack3}
                 >
                   Get 3 Intros
                 </Button>
@@ -1039,7 +1040,7 @@ export default function DirectoryPage() {
                 <p className="text-sm text-[#6B7280] mb-4">10 curated introductions</p>
                 <Button 
                   className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
-                  onClick={() => window.location.href = '/directory/checkout?plan=intro_pack_10'}
+                  onClick={checkoutFunctions.introPack10}
                 >
                   Get 10 Intros
                 </Button>
@@ -1063,7 +1064,7 @@ export default function DirectoryPage() {
             <Button 
               size="lg"
               className="bg-[#C9A24A] hover:bg-[#B8923D] !text-white rounded-md hover:scale-105 shadow-xl text-lg px-8 py-4"
-              onClick={() => window.location.href = '/directory/checkout?plan=executive_intake'}
+              onClick={checkoutFunctions.executiveIntake}
             >
               <Crown className="mr-2 h-5 w-5" />
               Start Executive Intake — £1,500

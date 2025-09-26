@@ -7,6 +7,7 @@ import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 import { getAllPartnershipSchemas } from '../../lib/seo/partnership-schemas'
 import CharterPartnershipForm from '../../components/forms/CharterPartnershipForm'
+import { checkoutFunctions } from '../../lib/checkout'
 
 const PartnershipTier = ({ 
   name, 
@@ -154,31 +155,14 @@ export default function PartnersPage() {
   const handleCheckout = async (priceId: string) => {
     setLoading(true)
     try {
-      let checkoutUrl = ''
       if (priceId === 'founding_partner') {
-        checkoutUrl = '/api/partners/checkout/founding-partner'
+        checkoutFunctions.foundingPartner()
       } else if (priceId === 'premium_sponsor') {
-        checkoutUrl = '/api/partners/checkout/premium-sponsor'
-      }
-      
-      if (checkoutUrl) {
-        // Test the API endpoint first
-        const response = await fetch(checkoutUrl, { method: 'GET', redirect: 'manual' })
-        
-        if (response.status === 302 || response.status === 301) {
-          // Redirect to the location header or fallback to partner application
-          const location = response.headers.get('location')
-          if (location && location.includes('stripe.com')) {
-            window.location.href = location
-          } else {
-            // Fallback to partner application form
-            document.getElementById('partner-application')?.scrollIntoView({ behavior: 'smooth' })
-            alert('Checkout temporarily unavailable. Please fill out the partner application form below, and our team will contact you within 24 hours to complete your charter partnership.')
-          }
-        } else {
-          // Direct navigation if no redirect
-          window.location.href = checkoutUrl
-        }
+        checkoutFunctions.premiumSponsor()
+      } else {
+        // Fallback to partner application form
+        document.getElementById('partner-application')?.scrollIntoView({ behavior: 'smooth' })
+        alert('Please fill out the partner application form below, and our team will contact you within 24 hours to complete your charter partnership.')
       }
     } catch (error) {
       console.error('Checkout error:', error)
