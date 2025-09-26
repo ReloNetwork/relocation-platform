@@ -140,7 +140,7 @@ export default function HomePage() {
   ]
   
   return (
-    <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden">
+    <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden" showFooter={false}>
       {/* Enhanced Structured Data for AI Citations */}
       {schemas.map((schema, index) => (
         <script
