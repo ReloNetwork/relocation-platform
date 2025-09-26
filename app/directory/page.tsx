@@ -607,11 +607,13 @@ export default function DirectoryPage() {
                   className="w-full px-3 py-2 border border-[#E5E7EB] rounded-md focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                 >
                   <option value="All Areas">All Areas</option>
-                  <option value="Central London">Central London (Zones 1-2)</option>
-                  <option value="Prime Central">Prime Central London</option>
-                  <option value="Financial District">Financial District</option>
-                  <option value="West London">West London</option>
-                  <option value="North London">North London</option>
+                  <option value="Central London (Zones 1-2)">Central London (Zones 1-2)</option>
+                  <option value="Greater London (All Zones)">Greater London (All Zones)</option>
+                  <option value="Canary Wharf & East London">Canary Wharf & East London</option>
+                  <option value="West London (Kensington, Chelsea, Hammersmith)">West London (Kensington, Chelsea, Hammersmith)</option>
+                  <option value="North London (Camden, Islington, Hampstead)">North London (Camden, Islington, Hampstead)</option>
+                  <option value="South London (Clapham, Wandsworth, Greenwich)">South London (Clapham, Wandsworth, Greenwich)</option>
+                  <option value="Specific Borough (please specify)">Specific Borough (please specify)</option>
                 </select>
               </div>
               
