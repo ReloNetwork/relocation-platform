@@ -47,7 +47,7 @@ const PartnershipTier = ({
         </div>
         <p className="text-lg text-[#6B7280] mt-1">{duration}</p>
         <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded px-3 py-1 text-sm text-[#C9A24A] font-medium mt-2 inline-block">
-          Charter Rate - Expires Sept 26
+          Charter Rate - Expires Oct 01
         </div>
       </div>
 
@@ -232,7 +232,7 @@ export default function PartnersPage() {
               Own Your Category in London's Most Vetted Relocation Network
             </h1>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto mb-8">
-              Category exclusivity + concierge-routed intros + homepage placement. 12 Charter slots only. Closes 26 Sept, 2:00 PM GMT.
+              Category exclusivity + concierge-routed intros + homepage placement. 12 Charter slots only. Closes 01 Oct, 2:00 PM GMT.
             </p>
             
             {/* Above the fold CTAs */}
