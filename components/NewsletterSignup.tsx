@@ -145,32 +145,38 @@ export default function NewsletterSignup({
 
   if (variant === 'navbar') {
     return (
-      <div className={`bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/95 w-full py-4 px-6 ${className}`}>
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-[#C9A24A]/20 rounded-full flex items-center justify-center animate-pulse">
-                <Mail className="w-6 h-6 text-[#C9A24A]" />
+      <div className={`bg-gradient-to-r from-[#0B1B2B] via-[#0B1B2B] to-[#0B1B2B]/95 w-full py-5 px-6 border-t border-[#C9A24A]/20 ${className}`}>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-6">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#C9A24A] to-[#B8923D] rounded-full flex items-center justify-center shadow-lg">
+                <Mail className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white animate-pulse">
+                <h3 className="text-xl font-bold text-white mb-1">
                   {title || 'The Relo Network News'}
                 </h3>
-                <p className="text-white/70 text-sm">
+                <p className="text-white/80 text-sm leading-relaxed max-w-lg">
                   {description || 'Weekly insights, exclusive guides, and insider knowledge for discerning professionals relocating to London.'}
                 </p>
               </div>
             </div>
             
             <div className="flex-shrink-0">
+              <div className="text-center lg:text-right mb-3">
+                <p className="text-[#C9A24A] text-sm font-semibold">
+                  Join 2,500+ professionals • Weekly delivery
+                </p>
+              </div>
+              
               <form onSubmit={handleSubmit} className="flex gap-3">
                 <div className="relative">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="w-64 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm backdrop-blur-sm"
+                    placeholder="Enter your email address"
+                    className="w-72 px-4 py-3 rounded-lg bg-white/95 border border-white/30 text-[#0B1B2B] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm shadow-lg backdrop-blur-sm"
                     required
                     disabled={isLoading}
                   />
@@ -178,7 +184,7 @@ export default function NewsletterSignup({
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="px-6 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 text-sm disabled:opacity-50 flex items-center gap-2 animate-pulse"
+                  className="px-8 py-3 bg-gradient-to-r from-[#C9A24A] to-[#B8923D] hover:from-[#B8923D] hover:to-[#A8813D] text-white font-semibold rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-lg text-sm disabled:opacity-50 flex items-center gap-2 shadow-lg"
                 >
                   {isLoading ? 'Subscribing...' : (buttonText || 'Subscribe Free')}
                   <ArrowRight className="w-4 h-4" />
@@ -186,18 +192,18 @@ export default function NewsletterSignup({
               </form>
               
               {isSuccess && (
-                <div className="mt-2 flex items-center justify-center gap-2 text-green-400 text-sm">
+                <div className="mt-3 flex items-center justify-center gap-2 text-green-400 text-sm">
                   <CheckCircle className="w-4 h-4" />
                   Successfully subscribed!
                 </div>
               )}
               
               {error && (
-                <div className="mt-2 text-red-400 text-sm text-center">{error}</div>
+                <div className="mt-3 text-red-400 text-sm text-center">{error}</div>
               )}
               
-              <p className="text-white/50 text-xs mt-2 text-center">
-                Join 2,500+ professionals • Unsubscribe anytime • Weekly delivery
+              <p className="text-white/60 text-xs mt-2 text-center lg:text-right">
+                Unsubscribe anytime • No spam, ever
               </p>
             </div>
           </div>
