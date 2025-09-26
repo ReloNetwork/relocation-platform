@@ -145,68 +145,47 @@ export default function NewsletterSignup({
 
   if (variant === 'navbar') {
     return (
-      <div className={`bg-gradient-to-r from-[#0B1B2B] via-[#0B1B2B] to-[#0B1B2B]/95 w-full py-5 px-6 border-t border-[#C9A24A]/20 ${className}`}>
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-6">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#C9A24A] to-[#B8923D] rounded-full flex items-center justify-center shadow-lg">
-                <Mail className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-1">
-                  {title || 'The Relo Network News'}
-                </h3>
-                <p className="text-white/80 text-sm leading-relaxed max-w-lg">
-                  {description || 'Weekly insights, exclusive guides, and insider knowledge for discerning professionals relocating to London.'}
-                </p>
-              </div>
+      <div className={`bg-[#1A2332] w-full py-12 px-6 ${className}`}>
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            {title || 'More London Insights'}
+          </h2>
+          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+            {description || 'Get weekly area guides, market updates, and partner spotlights delivered to your inbox.'}
+          </p>
+          
+          <form onSubmit={handleSubmit} className="max-w-4xl mx-auto space-y-4">
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#6B7280] w-5 h-5" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="w-full pl-12 pr-4 py-4 rounded-lg bg-white text-[#0B1B2B] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#C9A24A] text-base shadow-sm"
+                required
+                disabled={isLoading}
+              />
             </div>
-            
-            <div className="flex-shrink-0">
-              <div className="text-center lg:text-right mb-3">
-                <p className="text-[#C9A24A] text-sm font-semibold">
-                  Join 2,500+ professionals • Weekly delivery
-                </p>
-              </div>
-              
-              <form onSubmit={handleSubmit} className="flex gap-3">
-                <div className="relative">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email address"
-                    className="w-72 px-4 py-3 rounded-lg bg-white/95 border border-white/30 text-[#0B1B2B] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm shadow-lg backdrop-blur-sm"
-                    required
-                    disabled={isLoading}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="px-8 py-3 bg-gradient-to-r from-[#C9A24A] to-[#B8923D] hover:from-[#B8923D] hover:to-[#A8813D] text-white font-semibold rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-lg text-sm disabled:opacity-50 flex items-center gap-2 shadow-lg"
-                >
-                  {isLoading ? 'Subscribing...' : (buttonText || 'Subscribe Free')}
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
-              
-              {isSuccess && (
-                <div className="mt-3 flex items-center justify-center gap-2 text-green-400 text-sm">
-                  <CheckCircle className="w-4 h-4" />
-                  Successfully subscribed!
-                </div>
-              )}
-              
-              {error && (
-                <div className="mt-3 text-red-400 text-sm text-center">{error}</div>
-              )}
-              
-              <p className="text-white/60 text-xs mt-2 text-center lg:text-right">
-                Unsubscribe anytime • No spam, ever
-              </p>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full py-4 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-colors text-base disabled:opacity-50"
+            >
+              {isLoading ? 'Subscribing...' : (buttonText || 'Subscribe for More')}
+            </button>
+          </form>
+          
+          {isSuccess && (
+            <div className="mt-4 flex items-center justify-center gap-2 text-green-400">
+              <CheckCircle className="w-5 h-5" />
+              <span className="font-medium">Successfully subscribed!</span>
             </div>
-          </div>
+          )}
+          
+          {error && (
+            <div className="mt-4 text-red-400 text-center">{error}</div>
+          )}
         </div>
       </div>
     )
