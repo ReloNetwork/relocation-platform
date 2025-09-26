@@ -163,7 +163,7 @@ export default function HomePage() {
               Launch Day Approaching
             </div>
             <div className="text-white text-lg mb-3">
-              <strong>Founding Partner Charter closes Sep 26, 2:00 PM GMT — 12 category-exclusive slots.</strong>
+              <strong>Founding Partner Charter closes Oct 1, 2:00 PM GMT — 12 category-exclusive slots.</strong>
             </div>
             <div className="flex justify-center items-center gap-6 text-white">
               <div className="text-center">
@@ -304,7 +304,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="text-xs text-white/80 mb-4">
-                  💎 Bonus: Enroll by Sep 26 for extra editorial + homepage tile (30 days)
+                  💎 Bonus: Enroll by Oct 1 for extra editorial + homepage tile (30 days)
                 </div>
               </div>
 
@@ -620,7 +620,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Platform Launch</div>
-                    <div className="text-[#0B1B2B] font-semibold">September 26, 2025</div>
+                    <div className="text-[#0B1B2B] font-semibold">October 1, 2025</div>
                   </div>
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Founding Members</div>

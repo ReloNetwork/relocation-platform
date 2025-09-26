@@ -14,7 +14,7 @@ const CountdownTimer = () => {
   })
 
   useEffect(() => {
-    // Set target to Friday, September 26, 2025 • 2:00 PM GMT
+    // Set target to Tuesday, October 1, 2025 • 2:00 PM GMT
     const targetDate = new Date('2025-09-26T14:00:00.000Z')
     
     const updateCountdown = () => {
@@ -70,7 +70,7 @@ const CountdownTimer = () => {
           <div className="text-xs mt-1">SEC</div>
         </div>
       </div>
-      <div className="text-sm mt-2 opacity-90">Price doubles to £997/month after September 26!</div>
+      <div className="text-sm mt-2 opacity-90">Price doubles to £997/month after October 1!</div>
     </div>
   )
 }
@@ -323,7 +323,7 @@ export default function LeadMachinePage() {
                   Pay annually and get <span className="font-bold">10 months at the discounted founding rate</span>
                 </p>
                 <p className="text-green-100">
-                  Save £996 per year • Only available until September 26, 2025
+                  Save £996 per year • Only available until October 1, 2025
                 </p>
               </div>
             </div>

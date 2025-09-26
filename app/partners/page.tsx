@@ -383,7 +383,7 @@ export default function PartnersPage() {
                 Founding Rates Expire In:
               </div>
               <CountdownTimer />
-              <div className="text-sm text-white/90 mt-3 font-medium">Friday, September 26th 2025</div>
+              <div className="text-sm text-white/90 mt-3 font-medium">Tuesday, October 1st 2025</div>
               <div className="text-sm text-white/70 mt-1">Charter Rate - Limited to 12 founding positions</div>
             </div>
           </div>
@@ -1076,7 +1076,7 @@ export default function PartnersPage() {
           </div>
           
           <div className="text-sm text-white/80">
-            <div>✓ Charter rates expire September 26th, 2025</div>
+            <div>✓ Charter rates expire October 1st, 2025</div>
             <div>✓ Professional partnership terms</div>
             <div>✓ Limited to 12 charter positions</div>
           </div>
