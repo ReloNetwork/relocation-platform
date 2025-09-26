@@ -172,9 +172,14 @@ export default function NewsletterSignup({
               disabled={isLoading}
               className="w-full py-4 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-colors text-base disabled:opacity-50"
             >
-              {isLoading ? 'Subscribing...' : (buttonText || 'Subscribe for More')}
+              {isLoading ? 'Subscribing...' : (buttonText || 'Subscribe Free')}
             </button>
           </form>
+          
+          <div className="mt-4 text-white/60 text-sm text-center space-y-1">
+            <p>Join 100s of other professionals</p>
+            <p>Unsubscribe anytime • No spam, ever</p>
+          </div>
           
           {isSuccess && (
             <div className="mt-4 flex items-center justify-center gap-2 text-green-400">
