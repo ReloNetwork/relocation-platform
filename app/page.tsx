@@ -637,10 +637,6 @@ export default function HomePage() {
                     <div className="text-[#6B7280] font-medium mb-1">Founding Members</div>
                     <div className="text-[#0B1B2B] font-semibold">Limited to 100</div>
                   </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium mb-1">Service Tiers</div>
-                    <div className="text-[#0B1B2B] font-semibold">Managed to Executive</div>
-                  </div>
                 </div>
               </div>
               
