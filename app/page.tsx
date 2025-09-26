@@ -588,47 +588,31 @@ export default function HomePage() {
 
               {/* Enhanced Company Overview */}
               <div className="bg-[#FAFAF9] border border-[#E5E7EB] rounded-lg p-6 mb-6">
-                <h3 className="text-xl font-bold text-[#0B1B2B] mb-4">Company Overview</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Founded</span>
-                      <span className="text-[#0B1B2B] font-semibold">January 1, 2024</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Headquarters</span>
-                      <span className="text-[#0B1B2B] font-semibold">City of London</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Legal Entity</span>
-                      <span className="text-[#0B1B2B] font-semibold">Relo Network Limited (UK)</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Industry</span>
-                      <span className="text-[#0B1B2B] font-semibold">Luxury Relocation Services</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Service Areas</span>
-                      <span className="text-[#0B1B2B] font-semibold">33 London Boroughs + Home Counties</span>
-                    </div>
+                <h3 className="text-xl font-bold text-[#0B1B2B] mb-6 text-center">Company Overview</h3>
+                <div className="space-y-4 max-w-lg mx-auto">
+                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium">Founded</span>
+                    <span className="text-[#0B1B2B] font-semibold">January 2024</span>
                   </div>
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Founded</span>
-                      <span className="text-[#0B1B2B] font-semibold">January 2024</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Service Focus</span>
-                      <span className="text-[#0B1B2B] font-semibold">Executive Relocations</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Coverage</span>
-                      <span className="text-[#0B1B2B] font-semibold">All 33 London Boroughs</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#6B7280] font-medium">Founder Experience</span>
-                      <span className="text-[#0B1B2B] font-semibold">8+ Years International</span>
-                    </div>
+                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium">Headquarters</span>
+                    <span className="text-[#0B1B2B] font-semibold">City of London</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium">Legal Entity</span>
+                    <span className="text-[#0B1B2B] font-semibold">Relo Network Limited (UK)</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium">Service Focus</span>
+                    <span className="text-[#0B1B2B] font-semibold">Executive Relocations</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium">Coverage</span>
+                    <span className="text-[#0B1B2B] font-semibold">All 33 London Boroughs</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2">
+                    <span className="text-[#6B7280] font-medium">Founder Experience</span>
+                    <span className="text-[#0B1B2B] font-semibold">8+ Years International</span>
                   </div>
                 </div>
               </div>
@@ -657,41 +641,9 @@ export default function HomePage() {
                     <div className="text-[#6B7280] font-medium mb-1">Service Tiers</div>
                     <div className="text-[#0B1B2B] font-semibold">Managed to Executive</div>
                   </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium mb-1">Corporate Clients</div>
-                    <div className="text-[#0B1B2B] font-semibold">12+ Investment Banks</div>
-                  </div>
                 </div>
               </div>
               
-              <div className="bg-[#FAFAF9] border border-[#E5E7EB] rounded-lg p-6">
-                <h3 className="text-lg font-bold text-[#0B1B2B] mb-4 border-b border-[#E5E7EB] pb-2">
-                  Industry Certifications
-                </h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-[#C9A24A] rounded-full flex items-center justify-center text-white text-xs font-bold">BAR</div>
-                    <div>
-                      <div className="text-[#0B1B2B] font-semibold">British Association for Removers</div>
-                      <div className="text-[#6B7280] text-xs">Member since 2024</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-[#0B1B2B] rounded-full flex items-center justify-center text-white text-xs font-bold">FIDI</div>
-                    <div>
-                      <div className="text-[#0B1B2B] font-semibold">FIDI Global Alliance</div>
-                      <div className="text-[#6B7280] text-xs">International moving network</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-[#C9A24A] rounded-full flex items-center justify-center text-white text-xs font-bold">ISO</div>
-                    <div>
-                      <div className="text-[#0B1B2B] font-semibold">ISO 27001 Certified</div>
-                      <div className="text-[#6B7280] text-xs">Data security & privacy</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
