@@ -196,10 +196,10 @@ export default function HomePage() {
             <span className="text-4xl lg:text-5xl font-light text-[#6B7280]">Effortlessly.</span>
           </h1>
           <p className="text-2xl text-[#0B1B2B] mb-4">
-            London's most exclusive relocation network since 2024.
-          </p>
-          <p className="text-xl text-[#6B7280] mb-8 max-w-3xl mx-auto">
             London's exclusive relocation network founded in 2024.
+          </p>
+          <p className="text-xl text-[#6B7280] mb-8 max-w-4xl mx-auto">
+            Vetted experts, white-glove 24/7 concierge. Start today or secure your category as a Founding Partner.
           </p>
           
           {/* Founder Credibility */}
@@ -229,22 +229,57 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Executive Intake CTA - Primary */}
+          {/* Main CTAs */}
+          <div className="mb-12">
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
+              <button
+                onClick={checkoutFunctions.executiveIntake}
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg"
+              >
+                Start Executive Intake — £1,500
+              </button>
+              <button
+                onClick={() => window.location.href = '/partners'}
+                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg"
+              >
+                Become a Founding Partner
+              </button>
+            </div>
+            <div className="text-center">
+              <button
+                onClick={() => window.location.href = '/directory'}
+                className="text-[#C9A24A] hover:text-[#B8923D] font-semibold text-lg hover:underline"
+              >
+                Browse the Directory →
+              </button>
+            </div>
+          </div>
+
+          {/* Founding Partner Band */}
+          <div className="bg-gradient-to-r from-[#C9A24A] to-[#B8923D] rounded-2xl p-6 text-center text-white mb-16 max-w-5xl mx-auto shadow-xl">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="mb-4 md:mb-0">
+                <div className="text-xl font-bold mb-2">Own Your Category</div>
+                <div className="text-white/90 text-sm">Concierge-routed briefs, top placement, and quarterly editorial. 12 Charter slots. Closes September 26 2:00pm GMT.</div>
+              </div>
+              <button 
+                onClick={() => window.location.href = '/partners'}
+                className="bg-white text-[#C9A24A] px-8 py-3 rounded-lg font-semibold hover:bg-white/95 hover:scale-105 transition-all shadow-lg"
+              >
+                Become a Founding Partner →
+              </button>
+            </div>
+          </div>
+
+          {/* Executive Intake Details */}
           <div className="mb-16">
             <div className="bg-white/90 backdrop-blur-sm border border-[#C9A24A]/30 rounded-2xl p-8 text-center shadow-xl max-w-4xl mx-auto">
               <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
                 <Crown className="h-4 w-4 text-[#C9A24A] mr-2" />
                 <span className="text-[#C9A24A] text-sm font-medium">Executive Service</span>
               </div>
-              <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">Start Executive Intake — £1,500</h2>
-              <p className="text-lg text-[#6B7280] mb-6">60-min strategy call, bespoke shortlist, 3 warm intros, 30-day execution window</p>
-              
-              <button
-                onClick={checkoutFunctions.executiveIntake}
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-12 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-all shadow-lg mb-6"
-              >
-                Start Executive Intake — £1,500
-              </button>
+              <h2 className="text-2xl font-bold text-[#0B1B2B] mb-4">Executive Intake</h2>
+              <p className="text-lg text-[#6B7280] mb-6">60-min strategy call, bespoke area shortlist, 3 warm intros, and a 30-day execution window. Credited toward any package.</p>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-[#6B7280]">
                 <div className="flex items-center gap-2">
@@ -253,7 +288,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
-                  <span>Bespoke shortlist</span>
+                  <span>Bespoke area shortlist</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A]" />
@@ -270,15 +305,16 @@ export default function HomePage() {
           {/* Top Categories Grid */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-[#0B1B2B] mb-8 text-center">Top Categories</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 max-w-7xl mx-auto">
               {[
                 { name: 'Property Search', href: '/directory?category=Property+Specialists', icon: '🏠' },
                 { name: 'Serviced Apartments', href: '/directory?category=Property+Specialists&type=serviced', icon: '🏨' },
                 { name: 'Luxury Movers', href: '/directory?category=Luxury+Movers', icon: '📦' },
-                { name: 'Visa/Legal', href: '/directory?category=Legal+%26+Visa', icon: '📋' },
+                { name: 'Visa & Legal', href: '/directory?category=Legal+%26+Visa', icon: '📋' },
                 { name: 'Schools', href: '/directory?category=Education+Consultants', icon: '🎓' },
                 { name: 'Banking', href: '/directory?category=Financial+Services', icon: '🏦' },
-                { name: 'Concierge', href: '/directory?category=Lifestyle+Concierge', icon: '🎯' }
+                { name: 'Private Healthcare', href: '/directory?category=Healthcare', icon: '🏥' },
+                { name: 'Lifestyle Concierge', href: '/directory?category=Lifestyle+Concierge', icon: '🎯' }
               ].map((category, index) => (
                 <button
                   key={index}
@@ -308,23 +344,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Founding Partner Band */}
-      <section className="py-8 bg-gradient-to-r from-[#C9A24A] to-[#B8923D]">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between text-center md:text-left">
-            <div className="mb-4 md:mb-0">
-              <div className="text-white text-xl font-bold mb-1">🏆 Charter Partnership - LIVE</div>
-              <div className="text-white/90 text-sm">12 slots. Category exclusivity. Closes 26 Sept.</div>
-            </div>
-            <button 
-              onClick={() => window.location.href = '/partners'}
-              className="bg-white text-[#C9A24A] px-8 py-3 rounded-lg font-semibold hover:bg-white/95 hover:scale-105 transition-all shadow-lg"
-            >
-              Join Now →
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* Enhanced FAQ Section for AI Citations */}
       <section className="py-20 bg-gradient-to-br from-white to-[#FAFAF9]">
