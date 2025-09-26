@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { storeNewsletterSubscription } from '@/lib/newsletter-storage'
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,20 +21,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // For now, we'll simulate successful subscription
-    // In production, integrate with your preferred email service
-    console.log('Newsletter subscription:', {
+    // Store the subscription in Supabase
+    const result = await storeNewsletterSubscription({
       email,
       name,
       source: source || 'website',
-      utmSource: utmSource || 'website',
-      utmMedium: utmMedium || 'organic',
-      utmCampaign,
+      utm_source: utmSource || 'website',
+      utm_medium: utmMedium || 'organic',
+      utm_campaign: utmCampaign,
       subscription_date: new Date().toISOString(),
       source_page: source,
     })
 
-    // Simulate successful subscription
     return NextResponse.json({
       success: true,
       message: 'Successfully subscribed to The Relo Network News!'
