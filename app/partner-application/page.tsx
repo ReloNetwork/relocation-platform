@@ -43,7 +43,7 @@ export default function PartnerApplicationPage() {
 
   // Countdown timer effect
   useEffect(() => {
-    const launchDate = new Date('2025-09-26T14:00:00Z').getTime()
+    const launchDate = new Date('2025-10-01T14:00:00Z').getTime()
     
     const updateCountdown = () => {
       const now = new Date().getTime()

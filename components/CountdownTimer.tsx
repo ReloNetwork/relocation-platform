@@ -10,9 +10,9 @@ interface CountdownTimerProps {
 }
 
 export default function CountdownTimer({ 
-  launchDate = '2025-09-26T14:00:00Z',
+  launchDate = '2025-10-01T14:00:00Z',
   title = 'Founding Partner Pricing Ends Soon!',
-  subtitle = 'Prices go up on Friday, 26th September at 14:00 GMT',
+  subtitle = 'Prices go up on Tuesday, 1st October at 14:00 GMT',
   className = ''
 }: CountdownTimerProps) {
   const [timeRemaining, setTimeRemaining] = useState({

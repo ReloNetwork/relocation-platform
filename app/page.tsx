@@ -68,7 +68,7 @@ export default function HomePage() {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2025-09-26T14:00:00Z')
+    const targetDate = new Date('2025-10-01T14:00:00Z')
     
     const updateCountdown = () => {
       const now = new Date()
@@ -199,7 +199,7 @@ export default function HomePage() {
             London's exclusive relocation network founded in 2024
           </p>
           <p className="text-base text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed">
-            Vetted partners and white-glove 24/7 concierge, built by international relocation specialist, with years orchestrating executive moves for global firms and HNW clients.
+            Vetted partners and white-glove 24/7 concierge, built by international relocation specialist, with years orchestrating executive moves for Fortune 500 firms and HNW clients.
           </p>
 
 
