@@ -195,7 +195,7 @@ export default function HomePage() {
             Relocate to <span className="text-[#C9A24A]">London</span><br />
             <span className="text-4xl lg:text-5xl font-light text-[#6B7280]">Effortlessly.</span>
           </h1>
-          <p className="text-xl text-[#0B1B2B] mb-6 max-w-4xl mx-auto leading-relaxed font-medium">
+          <p className="text-2xl text-[#0B1B2B] mb-4 max-w-4xl mx-auto leading-relaxed font-medium">
             London's exclusive relocation network founded in 2024
           </p>
           <p className="text-lg text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed">
