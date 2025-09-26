@@ -96,7 +96,7 @@ export default function HomePage() {
       title: "I'm Relocating to London",
       description: "Get expert guidance for your luxury London relocation with AI-powered assistance and white-glove service.",
       icon: Users,
-      href: "/concierge",
+      href: "/executive-intake",
       features: [
         "24/7 AI relocation concierge",
         "Expert property recommendations", 
