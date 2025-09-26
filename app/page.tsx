@@ -195,8 +195,11 @@ export default function HomePage() {
             Relocate to <span className="text-[#C9A24A]">London</span><br />
             <span className="text-4xl lg:text-5xl font-light text-[#6B7280]">Effortlessly.</span>
           </h1>
+          <p className="text-xl text-[#0B1B2B] mb-6 max-w-4xl mx-auto leading-relaxed font-medium">
+            London's exclusive relocation network founded in 2024
+          </p>
           <p className="text-lg text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed">
-            London's exclusive relocation network founded in 2024 with vetted partners and white-glove 24/7 concierge, built by international relocation specialist, with years orchestrating executive moves for global firms and HNW clients.
+            Vetted partners and white-glove 24/7 concierge, built by international relocation specialist, with years orchestrating executive moves for global firms and HNW clients.
           </p>
 
           {/* Proof Chips */}
