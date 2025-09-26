@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Mail, ArrowRight, CheckCircle } from 'lucide-react'
 
 interface NewsletterSignupProps {
-  variant?: 'default' | 'compact' | 'inline'
+  variant?: 'default' | 'compact' | 'inline' | 'navbar'
   source?: string
   className?: string
   title?: string
@@ -138,6 +138,69 @@ export default function NewsletterSignup({
           {error && (
             <div className="mt-3 text-red-400 text-sm">{error}</div>
           )}
+        </div>
+      </div>
+    )
+  }
+
+  if (variant === 'navbar') {
+    return (
+      <div className={`bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/95 w-full py-4 px-6 ${className}`}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-[#C9A24A]/20 rounded-full flex items-center justify-center animate-pulse">
+                <Mail className="w-6 h-6 text-[#C9A24A]" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white animate-pulse">
+                  {title || 'The Relo Network News'}
+                </h3>
+                <p className="text-white/70 text-sm">
+                  {description || 'Weekly insights, exclusive guides, and insider knowledge for discerning professionals relocating to London.'}
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex-shrink-0">
+              <form onSubmit={handleSubmit} className="flex gap-3">
+                <div className="relative">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-64 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm backdrop-blur-sm"
+                    required
+                    disabled={isLoading}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="px-6 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 text-sm disabled:opacity-50 flex items-center gap-2 animate-pulse"
+                >
+                  {isLoading ? 'Subscribing...' : (buttonText || 'Subscribe Free')}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </form>
+              
+              {isSuccess && (
+                <div className="mt-2 flex items-center justify-center gap-2 text-green-400 text-sm">
+                  <CheckCircle className="w-4 h-4" />
+                  Successfully subscribed!
+                </div>
+              )}
+              
+              {error && (
+                <div className="mt-2 text-red-400 text-sm text-center">{error}</div>
+              )}
+              
+              <p className="text-white/50 text-xs mt-2 text-center">
+                Join 2,500+ professionals • Unsubscribe anytime • Weekly delivery
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     )

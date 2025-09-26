@@ -160,7 +160,7 @@ export default function NewsletterPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              The London <span className="text-[#C9A24A]">Relocation</span> Report
+              The <span className="text-[#C9A24A]">Relo Network</span> News
             </h1>
             <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
               Weekly insights, exclusive guides, and insider knowledge for discerning professionals relocating to London. 

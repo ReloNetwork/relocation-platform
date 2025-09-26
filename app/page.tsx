@@ -772,17 +772,14 @@ export default function HomePage() {
       </section>
 
 
-      {/* Newsletter Section */}
-      <section className="py-20 bg-[#FAFAF9]">
-        <div className="max-w-4xl mx-auto px-4">
-          <NewsletterSignup 
-            source="homepage"
-            title="The London Relocation Report"
-            description="Weekly insights, exclusive guides, and insider knowledge for discerning professionals relocating to London. Featuring trusted partner spotlights and market intelligence."
-            buttonText="Subscribe Free"
-          />
-        </div>
-      </section>
+      {/* Newsletter Section - Bottom Navbar Style */}
+      <NewsletterSignup 
+        variant="navbar"
+        source="homepage"
+        title="The Relo Network News"
+        description="Weekly insights, exclusive guides, and insider knowledge for discerning professionals relocating to London."
+        buttonText="Subscribe Free"
+      />
 
     </Layout>
   )

@@ -35,10 +35,10 @@ export default function GlobalNavigation() {
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/concierge', label: 'Services' },
+    { href: '/directory', label: 'Directory' },
     { href: '/partners', label: 'Partners' },
-    { href: '/corporate', label: 'Corporate' },
-    { href: '/directory', label: 'Directory' }
+    { href: '/newsletter', label: 'Relo News' },
+    { href: '/ask-relo', label: 'Ask Relo' }
   ]
 
   return (
