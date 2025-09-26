@@ -771,42 +771,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Expert Team Section */}
-      <section className="py-20 bg-[#FAFAF9]">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Expert Leadership
-            </h2>
-            <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
-              Founded by former International Consultant with proven Fortune 500 expertise
-            </p>
-          </div>
-
-          <div className="flex justify-center mb-16">
-            {/* Founder */}
-            <div className="bg-white rounded-2xl shadow-lg border border-[#0B1B2B]/10 overflow-hidden max-w-md">
-              <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 p-6">
-                <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">RN</span>
-                </div>
-                <h3 className="text-xl font-bold text-white text-center">Founder</h3>
-                <p className="text-[#C9A24A] text-center font-semibold">Leadership</p>
-              </div>
-              <div className="p-6">
-                <div className="mb-4">
-                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Background</div>
-                  <p className="text-sm text-[#6B7280] mb-4">Former International Consultant with 8+ years experience in executive relocations for Fortune 500 companies.</p>
-                </div>
-                <div className="mb-4">
-                  <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Education</div>
-                  <p className="text-sm text-[#6B7280]">MA Design Studies, BA International Business + Operations Management</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Newsletter Section */}
       <section className="py-20 bg-[#FAFAF9]">
