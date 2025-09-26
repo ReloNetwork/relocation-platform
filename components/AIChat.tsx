@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { Send, Bot, User, Minimize2, Maximize2, MessageCircle, X } from 'lucide-react'
+import { Send, Bot, User, Minimize2, Maximize2, MessageCircle, X, Crown } from 'lucide-react'
+import { checkoutFunctions } from '../lib/checkout'
 
 interface ChatMessage {
   role: 'user' | 'assistant' | 'system'
@@ -52,6 +53,24 @@ What would you like to know about relocating to London?`,
     }
   }, [isOpen])
 
+  // Check for Executive Intake trigger keywords
+  const checkForExecutiveTriggers = (userInput: string): boolean => {
+    const triggers = [
+      'book viewings',
+      'school shortlist', 
+      'visa + housing',
+      'visa and housing',
+      'we land this weekend',
+      'urgent relocation',
+      'need help with everything',
+      'overwhelmed',
+      'complex move'
+    ]
+    
+    const input = userInput.toLowerCase()
+    return triggers.some(trigger => input.includes(trigger))
+  }
+
   const sendMessage = async () => {
     if (!inputValue.trim() || isLoading) return
 
@@ -60,6 +79,9 @@ What would you like to know about relocating to London?`,
       content: inputValue.trim(),
       timestamp: new Date().toISOString()
     }
+
+    // Check for Executive Intake triggers
+    const shouldTriggerExecutive = checkForExecutiveTriggers(inputValue.trim())
 
     setMessages(prev => [...prev, userMessage])
     setInputValue('')
@@ -84,7 +106,20 @@ What would you like to know about relocating to London?`,
       const data = await response.json()
 
       if (data.success) {
-        setMessages(prev => [...prev, data.message])
+        const assistantMessage = data.message
+        
+        // If triggered Executive keywords, add Executive Intake suggestion
+        if (shouldTriggerExecutive) {
+          const executivePrompt: ChatMessage = {
+            role: 'system',
+            content: `This is faster with our Executive service. Want me to open the brief?`,
+            timestamp: new Date().toISOString()
+          }
+          setMessages(prev => [...prev, assistantMessage, executivePrompt])
+        } else {
+          setMessages(prev => [...prev, assistantMessage])
+        }
+        
         setSessionId(data.sessionId)
       } else {
         throw new Error(data.error || 'Failed to send message')
@@ -168,22 +203,33 @@ What would you like to know about relocating to London?`,
                 <div className="flex-1 overflow-y-auto p-4 space-y-4">
                   {messages.map((message, index) => (
                     <div key={index} className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      {message.role === 'assistant' && (
-                        <div className="w-8 h-8 bg-[#C9A24A] rounded-full flex items-center justify-center flex-shrink-0">
-                          <Bot className="w-4 h-4 text-white" />
+                      {(message.role === 'assistant' || message.role === 'system') && (
+                        <div className={`w-8 h-8 ${message.role === 'system' ? 'bg-[#0B1B2B]' : 'bg-[#C9A24A]'} rounded-full flex items-center justify-center flex-shrink-0`}>
+                          {message.role === 'system' ? <Crown className="w-4 h-4 text-white" /> : <Bot className="w-4 h-4 text-white" />}
                         </div>
                       )}
-                      <div className={`max-w-[80%] p-3 rounded-lg ${
+                      <div className={`max-w-[80%] ${
                         message.role === 'user' 
-                          ? 'bg-[#C9A24A] text-white' 
-                          : 'bg-[#F3F4F6] text-[#0B1B2B]'
+                          ? 'bg-[#C9A24A] text-white p-3 rounded-lg' 
+                          : message.role === 'system'
+                          ? 'bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white p-3 rounded-lg'
+                          : 'bg-[#F3F4F6] text-[#0B1B2B] p-3 rounded-lg'
                       }`}>
                         <div 
                           className="text-sm leading-relaxed"
                           dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }}
                         />
+                        {message.role === 'system' && (
+                          <button
+                            onClick={checkoutFunctions.executiveIntake}
+                            className="mt-3 w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white py-2 px-4 rounded-md text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+                          >
+                            <Crown className="w-4 h-4" />
+                            Start Executive Intake — £1,500
+                          </button>
+                        )}
                         <div className={`text-xs mt-2 ${
-                          message.role === 'user' ? 'text-white/70' : 'text-[#6B7280]'
+                          message.role === 'user' ? 'text-white/70' : message.role === 'system' ? 'text-white/70' : 'text-[#6B7280]'
                         }`}>
                           {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </div>

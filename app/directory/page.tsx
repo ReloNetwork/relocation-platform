@@ -6,6 +6,7 @@ import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 import { getAllDirectorySchemas } from '../../lib/seo/directory-schemas'
 import { checkoutFunctions } from '../../lib/checkout'
+import ExecutiveIntakeNudge from '../../components/ExecutiveIntakeNudge'
 
 const LondonAreaCard = ({ 
   area, 
@@ -1087,6 +1088,12 @@ export default function DirectoryPage() {
           </div>
         </div>
       </div>
+
+      {/* Executive Intake Nudge for browsing/filtering triggers */}
+      <ExecutiveIntakeNudge 
+        trigger="partner_views"
+        nudgeText="Get 3 warm intros + a 30-day execution plan."
+      />
     </Layout>
   )
 }

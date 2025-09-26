@@ -339,9 +339,17 @@ export default function HomePage() {
           {/* Top Categories Grid */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4 text-center">Top Categories</h2>
-            <p className="text-lg text-[#6B7280] mb-8 text-center max-w-3xl mx-auto">
-              Not sure who to choose? Get 3 curated intros with Plus (£29/mo) or Start Executive Intake.
-            </p>
+            <div className="text-center mb-8">
+              <p className="text-lg text-[#6B7280] mb-4 max-w-3xl mx-auto">
+                Not sure who to pick? We'll run it for you.
+              </p>
+              <button
+                onClick={checkoutFunctions.executiveIntake}
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-all shadow-lg"
+              >
+                Start Executive Intake — £1,500
+              </button>
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 max-w-7xl mx-auto">
               {[
                 { name: 'Property Search', href: '/directory?category=Property+Specialists', icon: Home },
