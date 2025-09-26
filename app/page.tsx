@@ -195,30 +195,26 @@ export default function HomePage() {
             Relocate to <span className="text-[#C9A24A]">London</span><br />
             <span className="text-4xl lg:text-5xl font-light text-[#6B7280]">Effortlessly.</span>
           </h1>
-          <p className="text-2xl text-[#0B1B2B] mb-4">
-            London's exclusive relocation network founded in 2024.
+          <p className="text-lg text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed">
+            London's exclusive relocation network founded in 2024 with vetted partners and white-glove 24/7 concierge, built by international relocation specialist, with years orchestrating executive moves for global firms and HNW clients.
           </p>
-          <p className="text-lg text-[#6B7280] mb-8 max-w-3xl mx-auto leading-relaxed">
-            Vetted experts, white-glove 24/7 concierge. Start today or secure category exclusivity as a Founding Partner.
-          </p>
-          
-          {/* Hero Content with Founder */}
-          <div className="mb-12">
-            <div className="flex items-center justify-center gap-4 mb-8 max-w-md mx-auto">
-              <div className="w-12 h-12 bg-[#C9A24A] rounded-full flex items-center justify-center">
-                <span className="text-lg font-bold text-white">RN</span>
-              </div>
-              <div className="text-left">
-                <div className="text-lg font-bold text-[#0B1B2B]">[Your Name], Founder</div>
-                <div className="text-sm text-[#6B7280]">Former International Consultant (ex-SIRVA / Dwellworks)</div>
-              </div>
-            </div>
 
-            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#C9A24A]/30 rounded-full px-6 py-3 mb-8">
-              <div className="w-3 h-3 bg-[#C9A24A] rounded-full animate-pulse"></div>
-              <span className="text-[#0B1B2B] font-semibold text-sm">
-                Accepting Charter Members • Limited availability
-              </span>
+          {/* Proof Chips */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12 max-w-4xl mx-auto">
+            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
+              Fortune 500 Experience
+            </div>
+            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
+              8+ Years International
+            </div>
+            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
+              Ex-SIRVA / Dwellworks
+            </div>
+            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
+              33 London Boroughs
+            </div>
+            <div className="bg-[#6B7280]/10 text-[#6B7280] px-4 py-2 rounded-full text-sm font-medium">
+              24/7 AI Concierge
             </div>
           </div>
 
