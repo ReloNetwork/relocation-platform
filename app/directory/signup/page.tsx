@@ -139,34 +139,32 @@ export default function DirectorySignupPage() {
       ]
     },
     {
-      id: 'premium',
-      name: 'Premium Access',
-      price: '£47/month',
-      description: 'Full contact details plus reviews',
+      id: 'plus',
+      name: 'Plus Directory Access',
+      price: '£29/month',
+      description: 'Full filters & contact details',
       icon: Star,
       popular: true,
       features: [
         'Everything in Essential Access',
-        'Direct contact details',
-        'Partner reviews & ratings',
-        'Advanced search & filters',
-        'Partner comparison tools',
-        'Email support included'
+        'Full filters & contact details',
+        '3 curated introductions per month',
+        'Templates bundle access',
+        'Email support'
       ]
     },
     {
-      id: 'vip',
-      name: 'VIP Concierge',
-      price: '£147/month',
+      id: 'pro',
+      name: 'Pro Directory Access',
+      price: '£99/month',
       description: 'Personal partner matching service',
       icon: Crown,
       features: [
-        'Everything in Premium Access',
-        'Personal partner matching',
-        'Introduction facilitation',
-        'Dedicated account manager',
-        'Priority phone support',
-        'Custom partner shortlisting'
+        'Everything in Plus Access',
+        'Unlimited curated introductions',
+        '48-hour area shortlist delivery',
+        'WhatsApp line (UK hours)',
+        'Document pre-check service'
       ]
     }
   ]
@@ -492,18 +490,18 @@ export default function DirectorySignupPage() {
                       <h4 className="text-lg font-semibold text-[#0B1220] mb-2">Start Your Free Access</h4>
                       <p className="text-[#6B7280]">Get instant access to basic partner listings</p>
                     </>
-                  ) : formData.accessTier === 'premium' ? (
+                  ) : formData.accessTier === 'plus' ? (
                     <>
-                      <h4 className="text-lg font-semibold text-[#0B1220] mb-2">Activate Premium Access</h4>
+                      <h4 className="text-lg font-semibold text-[#0B1220] mb-2">Activate Plus Directory Access</h4>
                       <p className="text-[#6B7280]">
-                        Monthly subscription: <span className="font-semibold text-[#C9A24A]">£47/month</span>
+                        Monthly subscription: <span className="font-semibold text-[#C9A24A]">£29/month</span>
                       </p>
                     </>
-                  ) : formData.accessTier === 'vip' ? (
+                  ) : formData.accessTier === 'pro' ? (
                     <>
-                      <h4 className="text-lg font-semibold text-[#0B1220] mb-2">Activate VIP Concierge</h4>
+                      <h4 className="text-lg font-semibold text-[#0B1220] mb-2">Activate Pro Directory Access</h4>
                       <p className="text-[#6B7280]">
-                        Monthly subscription: <span className="font-semibold text-[#C9A24A]">£147/month</span>
+                        Monthly subscription: <span className="font-semibold text-[#C9A24A]">£99/month</span>
                       </p>
                     </>
                   ) : (

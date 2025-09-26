@@ -126,8 +126,8 @@ export async function POST(request: NextRequest) {
           apiVersion: '2024-06-20',
         })
         
-        const priceAmount = formData.accessTier === 'premium' ? 4700 : 14700 // £47 or £147
-        const tierName = formData.accessTier === 'premium' ? 'Premium Access' : 'VIP Concierge'
+        const priceAmount = formData.accessTier === 'plus' ? 2900 : 9900 // £29 or £99
+        const tierName = formData.accessTier === 'plus' ? 'Plus Directory Access' : 'Pro Directory Access'
         
         const session = await stripe.checkout.sessions.create({
           payment_method_types: ['card'],
@@ -175,11 +175,11 @@ export async function POST(request: NextRequest) {
         await resend.emails.send({
           from: 'Relo Network <noreply@therelonetwork.com>',
           to: formData.email,
-          subject: `Directory Access Confirmed - ${formData.accessTier === 'free' ? 'Essential' : formData.accessTier === 'premium' ? 'Premium' : 'VIP Concierge'}`,
+          subject: `Directory Access Confirmed - ${formData.accessTier === 'free' ? 'Essential' : formData.accessTier === 'plus' ? 'Plus' : 'Pro'}`,
           html: `
             <h2>Welcome to the Relo Network Directory!</h2>
             <p>Dear ${formData.firstName} ${formData.lastName},</p>
-            <p>Thank you for joining London's premier service directory. Your ${formData.accessTier === 'free' ? 'Essential' : formData.accessTier === 'premium' ? 'Premium' : 'VIP Concierge'} access is being set up.</p>
+            <p>Thank you for joining London's premier service directory. Your ${formData.accessTier === 'free' ? 'Essential' : formData.accessTier === 'plus' ? 'Plus Directory' : 'Pro Directory'} access is being set up.</p>
             
             <h3>What Happens Next:</h3>
             <ol>
@@ -189,8 +189,8 @@ export async function POST(request: NextRequest) {
               }
               <li><strong>Account Setup:</strong> You\'ll receive login credentials within 2 hours</li>
               <li><strong>Partner Matching:</strong> Our team will identify relevant partners based on your requirements</li>
-              ${formData.accessTier === 'vip' ? 
-                '<li><strong>VIP Onboarding:</strong> Your dedicated account manager will contact you within 24 hours</li>' : ''
+              ${formData.accessTier === 'pro' ? 
+                '<li><strong>Pro Onboarding:</strong> Your dedicated account manager will contact you within 24 hours</li>' : ''
               }
             </ol>
             
@@ -198,7 +198,7 @@ export async function POST(request: NextRequest) {
               <h3>Your Directory Profile:</h3>
               <p><strong>Signup ID:</strong> ${signupId}</p>
               <p><strong>Company:</strong> ${formData.companyName}</p>
-              <p><strong>Access Tier:</strong> ${formData.accessTier === 'free' ? 'Essential (Free)' : formData.accessTier === 'premium' ? 'Premium (£47/month)' : 'VIP Concierge (£147/month)'}</p>
+              <p><strong>Access Tier:</strong> ${formData.accessTier === 'free' ? 'Essential (Free)' : formData.accessTier === 'plus' ? 'Plus (£29/month)' : 'Pro (£99/month)'}</p>
               <p><strong>Service Focus:</strong> ${formData.serviceNeeds.slice(0, 3).join(', ')}${formData.serviceNeeds.length > 3 ? '...' : ''}</p>
               <p><strong>Priority Areas:</strong> ${formData.londonAreas.slice(0, 3).join(', ')}${formData.londonAreas.length > 3 ? '...' : ''}</p>
               <p><strong>Timeline:</strong> ${formData.urgencyLevel}</p>
@@ -239,7 +239,7 @@ export async function POST(request: NextRequest) {
             
             <div style="background: #e8f5e8; border: 1px solid #c3e6c3; padding: 15px; border-radius: 5px; margin: 15px 0;">
               <h3>Access Requirements:</h3>
-              <p><strong>Tier:</strong> ${formData.accessTier === 'free' ? 'Essential (Free)' : formData.accessTier === 'premium' ? 'Premium (£47/month)' : 'VIP Concierge (£147/month)'}</p>
+              <p><strong>Tier:</strong> ${formData.accessTier === 'free' ? 'Essential (Free)' : formData.accessTier === 'plus' ? 'Plus (£29/month)' : 'Pro (£99/month)'}</p>
               <p><strong>Timeline:</strong> ${formData.urgencyLevel}</p>
               <p><strong>Budget:</strong> ${formData.budget}</p>
               <p><strong>Payment URL:</strong> ${paymentUrl || 'Free tier - no payment required'}</p>
@@ -268,12 +268,12 @@ export async function POST(request: NextRequest) {
             
             <div style="background: #ffe6e6; border: 1px solid #ffb3b3; padding: 15px; border-radius: 5px; margin: 15px 0;">
               <h3>⏰ ACTION REQUIRED:</h3>
-              ${formData.accessTier === 'vip' ? `
-                <p>1. <strong>VIP Priority:</strong> Contact ${formData.phone} within 2 hours</p>
+              ${formData.accessTier === 'pro' ? `
+                <p>1. <strong>Pro Priority:</strong> Contact ${formData.phone} within 2 hours</p>
                 <p>2. Assign dedicated account manager</p>
                 <p>3. Prepare custom partner shortlist</p>
-              ` : formData.accessTier === 'premium' ? `
-                <p>1. Set up premium directory access</p>
+              ` : formData.accessTier === 'plus' ? `
+                <p>1. Set up plus directory access</p>
                 <p>2. Send login credentials</p>
                 <p>3. Prepare partner recommendations</p>
               ` : `
