@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../../components/Layout'
 import { CheckCircle, ArrowRight, Crown, Award } from 'lucide-react'
 import { Button } from '@/ui/components/button'
+import DayPassUpgrade from '../../../components/DayPassUpgrade'
 
 export default function CheckoutSuccessPage() {
   const [sessionId, setSessionId] = useState<string | null>(null)
@@ -11,8 +12,17 @@ export default function CheckoutSuccessPage() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
-    setSessionId(urlParams.get('session_id'))
-    setPlan(urlParams.get('plan'))
+    const sessionIdParam = urlParams.get('session_id')
+    const planParam = urlParams.get('plan')
+    
+    setSessionId(sessionIdParam)
+    setPlan(planParam)
+    
+    // Set Day Pass purchase flags for upgrade flow
+    if (planParam === 'day_pass') {
+      sessionStorage.setItem('day_pass_purchased', 'true')
+      sessionStorage.setItem('day_pass_purchase_time', Date.now().toString())
+    }
   }, [])
 
   const getPlanDetails = (planType: string | null) => {
@@ -198,6 +208,14 @@ export default function CheckoutSuccessPage() {
           </div>
         </div>
       </div>
+
+      {/* Day Pass Upgrade Flow */}
+      {plan === 'day_pass' && (
+        <DayPassUpgrade 
+          trigger="post_purchase" 
+          nudgeText="Convert your pass into full service — we'll quarterback the whole move."
+        />
+      )}
     </Layout>
   )
 }

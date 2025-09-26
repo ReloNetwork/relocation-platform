@@ -267,6 +267,22 @@ export default function HomePage() {
                   <span>30-day execution</span>
                 </div>
               </div>
+              
+              {/* Micro-FAQ */}
+              <div className="bg-[#F8F9FA] rounded-lg p-4 text-xs space-y-2">
+                <div>
+                  <span className="font-medium text-[#0B1B2B]">What happens after I pay?</span>
+                  <span className="text-[#6B7280]"> Call booked within 24h; we start your shortlist the same day.</span>
+                </div>
+                <div>
+                  <span className="font-medium text-[#0B1B2B]">Guarantee?</span>
+                  <span className="text-[#6B7280]"> 3 warm intros in 7 days or we extend your concierge window free.</span>
+                </div>
+                <div>
+                  <span className="font-medium text-[#0B1B2B]">Refunds?</span>
+                  <span className="text-[#6B7280]"> Full refund before the call; after that, credit toward packages.</span>
+                </div>
+              </div>
             </div>
 
             {/* Founding Partner + Day Pass */}

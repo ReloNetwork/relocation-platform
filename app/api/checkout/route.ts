@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     if (!stripeKey) return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });
     const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
 
-    const { plan, cadence = 'one_time', email } = await req.json();
+    const { plan, cadence = 'one_time', email, credit = 0 } = await req.json();
     
     if (!plan || !(plan in VALID_PLANS)) {
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
@@ -61,13 +61,37 @@ export async function POST(req: NextRequest) {
 
     const planConfig = VALID_PLANS[plan as keyof typeof VALID_PLANS];
     
+    // Handle Day Pass credit for Executive Intake
+    const lineItems = [{ price: price.id, quantity: 1 }];
+    const discounts = [];
+    
+    if (credit > 0 && plan === 'executive_intake') {
+      // Create a discount for the credit amount
+      try {
+        const coupon = await stripe.coupons.create({
+          amount_off: credit * 100, // Convert to pence
+          currency: 'gbp',
+          duration: 'once',
+          name: 'Day Pass Credit',
+        });
+        discounts.push({ coupon: coupon.id });
+      } catch (couponError) {
+        console.error('Could not create credit coupon:', couponError);
+      }
+    }
+
     const session = await stripe.checkout.sessions.create({
       mode: planConfig.mode as 'payment' | 'subscription',
       billing_address_collection: "required",
       allow_promotion_codes: true,
-      line_items: [{ price: price.id, quantity: 1 }],
-      success_url: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=${plan}`,
-      cancel_url: `${siteUrl}/checkout/cancelled?plan=${plan}`,
+      line_items: lineItems,
+      discounts: discounts.length > 0 ? discounts : undefined,
+      success_url: plan === 'executive_intake' 
+        ? `${siteUrl}/executive-intake/success?session_id={CHECKOUT_SESSION_ID}`
+        : `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=${plan}`,
+      cancel_url: plan === 'executive_intake'
+        ? `${siteUrl}/executive-intake`
+        : `${siteUrl}/checkout/cancelled?plan=${plan}`,
       customer_email: email || undefined,
       metadata: { 
         plan, 
