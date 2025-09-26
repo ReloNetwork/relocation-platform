@@ -1075,10 +1075,14 @@ export default function PartnersPage() {
             </Button>
           </div>
           
-          <div className="text-sm text-white/80">
+          <div className="flex flex-wrap justify-center gap-8 text-sm text-white/80 mb-6">
             <div>✓ Charter rates expire October 1st, 2025</div>
             <div>✓ Professional partnership terms</div>
             <div>✓ Limited to 12 charter positions</div>
+          </div>
+          
+          <div className="text-white/40 text-sm">
+            © 2024 Relo Network Ltd. All rights reserved. London, United Kingdom.
           </div>
         </div>
       </div>
