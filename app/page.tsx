@@ -246,9 +246,13 @@ export default function HomePage() {
                 </div>
               </div>
               <p className="text-[#6B7280] mb-6 leading-relaxed">
-                60-min strategy call, bespoke area shortlist, 3 warm introductions, and a 30-day execution window. 
-                <span className="font-semibold text-[#0B1B2B]"> Credited toward any package. Starts within 24 hours.</span>
+                60-minute strategy call, bespoke area shortlist, 3 warm introductions, and a 30-day execution window.
               </p>
+              <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3 mb-6">
+                <p className="text-sm font-semibold text-[#0B1B2B] text-center">
+                  ✓ Credited toward any package • Starts within 24 hours
+                </p>
+              </div>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="flex items-center gap-2 text-[#6B7280]">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
@@ -268,19 +272,19 @@ export default function HomePage() {
                 </div>
               </div>
               
-              {/* Micro-FAQ */}
-              <div className="bg-[#F8F9FA] rounded-lg p-4 text-xs space-y-2">
-                <div>
-                  <span className="font-medium text-[#0B1B2B]">What happens after I pay?</span>
-                  <span className="text-[#6B7280]"> Call booked within 24h; we start your shortlist the same day.</span>
+              {/* Clear FAQ Section */}
+              <div className="bg-[#F8F9FA] rounded-lg p-4 space-y-3">
+                <div className="space-y-1">
+                  <div className="font-medium text-[#0B1B2B] text-sm">What happens after I pay?</div>
+                  <div className="text-[#6B7280] text-sm leading-relaxed">Call booked within 24h; we start your shortlist the same day.</div>
                 </div>
-                <div>
-                  <span className="font-medium text-[#0B1B2B]">Guarantee?</span>
-                  <span className="text-[#6B7280]"> 3 warm intros in 7 days or we extend your concierge window free.</span>
+                <div className="space-y-1">
+                  <div className="font-medium text-[#0B1B2B] text-sm">Guarantee?</div>
+                  <div className="text-[#6B7280] text-sm leading-relaxed">3 warm intros in 7 days or we extend your concierge window free.</div>
                 </div>
-                <div>
-                  <span className="font-medium text-[#0B1B2B]">Refunds?</span>
-                  <span className="text-[#6B7280]"> Full refund up to 24 hours before your call; credit conversion within 24 hours.</span>
+                <div className="space-y-1">
+                  <div className="font-medium text-[#0B1B2B] text-sm">Refunds?</div>
+                  <div className="text-[#6B7280] text-sm leading-relaxed">Full refund up to 24 hours before your call; credit conversion within 24 hours.</div>
                 </div>
               </div>
             </div>
@@ -296,9 +300,14 @@ export default function HomePage() {
                   </div>
                   <Timer className="h-8 w-8 text-white/80" />
                 </div>
-                <p className="text-white/95 mb-6 leading-relaxed">
-                  Concierge-routed briefs, top placement, and quarterly editorial. <span className="font-semibold">12 Charter slots.</span>
-                </p>
+                <div className="mb-6">
+                  <p className="text-white/95 leading-relaxed mb-3">
+                    Concierge-routed briefs, top placement, and quarterly editorial.
+                  </p>
+                  <div className="bg-white/20 rounded-lg p-2 text-center">
+                    <span className="font-bold text-white">12 Charter slots available</span>
+                  </div>
+                </div>
                 <div className="flex items-center gap-4 text-sm mb-6">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-white/20 text-white rounded-full flex items-center justify-center text-xs font-bold">
@@ -319,9 +328,11 @@ export default function HomePage() {
                     <span>{timeLeft.minutes}m</span>
                   </div>
                 </div>
-                <div className="text-xs text-white/80 mb-4 flex items-center justify-center gap-1">
-                  <Gem className="w-3 h-3" />
-                  Bonus: Enroll by Oct 1 for extra editorial + homepage tile (30 days)
+                <div className="bg-white/10 rounded-lg p-3 mb-4">
+                  <div className="text-sm text-white/90 text-center flex items-center justify-center gap-2">
+                    <Gem className="w-4 h-4" />
+                    <span className="font-medium">Bonus: Enroll by Oct 1 for extra editorial + homepage tile (30 days)</span>
+                  </div>
                 </div>
               </div>
 
@@ -339,9 +350,16 @@ export default function HomePage() {
                     <div className="text-2xl font-bold text-[#0B1B2B]">£59</div>
                   </div>
                 </div>
-                <p className="text-[#6B7280] text-sm mb-4">
-                  Full directory + 1 curated intro. <span className="font-medium text-[#0B1B2B]">Perfect for weekend viewings.</span>
-                </p>
+                <div className="space-y-2 mb-4">
+                  <p className="text-[#6B7280] text-sm leading-relaxed">
+                    Full directory access + 1 curated introduction.
+                  </p>
+                  <div className="bg-[#0B1B2B]/5 rounded-lg p-2">
+                    <p className="text-xs font-medium text-[#0B1B2B] text-center">
+                      Perfect for weekend viewings
+                    </p>
+                  </div>
+                </div>
                 <button
                   onClick={checkoutFunctions.dayPass}
                   className="w-full bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white py-3 rounded-xl font-semibold hover:scale-105 transition-all shadow-lg"
