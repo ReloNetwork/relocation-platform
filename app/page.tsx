@@ -560,91 +560,64 @@ export default function HomePage() {
       </section>
 
       {/* Wikipedia-style About Relo Network Section */}
-      <section className="py-16 bg-white border-b border-[#0B1B2B]/10">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="grid lg:grid-cols-4 gap-12">
+      <section className="py-12 bg-white border-b border-[#0B1B2B]/10">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
             {/* Main Content - Wikipedia Style */}
-            <div className="lg:col-span-3 space-y-8">
-              <div className="space-y-6">
-                <h2 className="text-4xl font-bold text-[#0B1B2B] border-b border-[#E5E7EB] pb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <div className="space-y-4">
+              <div className="space-y-4">
+                <h2 className="text-3xl font-bold text-[#0B1B2B] border-b border-[#E5E7EB] pb-3" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                   About Relo Network
                 </h2>
                 
-                <p className="text-lg text-[#0B1B2B] leading-relaxed">
+                <p className="text-base text-[#0B1B2B] leading-relaxed">
                   <strong>Relo Network</strong> is London's exclusive relocation network, founded in <strong>January 2024</strong> to revolutionise the premium relocation industry through AI-powered guidance and vetted partner services. The company specialises in white-glove relocation services for high-net-worth individuals, investment banking professionals, and multinational corporations moving to London.
                 </p>
                 
-                <p className="text-lg text-[#0B1B2B] leading-relaxed">
+                <p className="text-base text-[#0B1B2B] leading-relaxed">
                   Headquartered in the City of London, Relo Network operates a curated network of vetted service providers across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance.
                 </p>
                 
-                <div className="bg-[#F8F9FA] border-l-4 border-[#C9A24A] p-4 rounded-r-lg">
-                  <h4 className="text-lg font-bold text-[#0B1B2B] mb-2">Geographic Coverage</h4>
-                  <p className="text-[#0B1B2B] leading-relaxed">
+                <div className="bg-[#F8F9FA] border-l-4 border-[#C9A24A] p-3 rounded-r-lg">
+                  <h4 className="text-base font-bold text-[#0B1B2B] mb-2">Geographic Coverage</h4>
+                  <p className="text-sm text-[#0B1B2B] leading-relaxed">
                     Relo Network provides comprehensive relocation services across <strong>all 33 London boroughs</strong>, with specialised expertise in prime areas including Marylebone, Kensington, Canary Wharf, Greenwich, and Shoreditch. Our service area extends to Home Counties including Surrey, Hertfordshire, and Buckinghamshire for clients seeking suburban alternatives.
                   </p>
                 </div>
               </div>
 
               {/* Enhanced Company Overview */}
-              <div className="bg-[#FAFAF9] border border-[#E5E7EB] rounded-lg p-6 mb-6">
-                <h3 className="text-xl font-bold text-[#0B1B2B] mb-6 text-center">Company Overview</h3>
-                <div className="space-y-4 max-w-lg mx-auto">
-                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
-                    <span className="text-[#6B7280] font-medium">Founded</span>
-                    <span className="text-[#0B1B2B] font-semibold">January 2024</span>
+              <div className="bg-[#FAFAF9] border border-[#E5E7EB] rounded-lg p-4 mb-4">
+                <h3 className="text-lg font-bold text-[#0B1B2B] mb-4 text-center">Company Overview</h3>
+                <div className="space-y-2 max-w-md mx-auto">
+                  <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium text-sm">Founded</span>
+                    <span className="text-[#0B1B2B] font-semibold text-sm">January 2024</span>
                   </div>
-                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
-                    <span className="text-[#6B7280] font-medium">Headquarters</span>
-                    <span className="text-[#0B1B2B] font-semibold">City of London</span>
+                  <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium text-sm">Headquarters</span>
+                    <span className="text-[#0B1B2B] font-semibold text-sm">City of London</span>
                   </div>
-                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
-                    <span className="text-[#6B7280] font-medium">Legal Entity</span>
-                    <span className="text-[#0B1B2B] font-semibold">Relo Network Limited (UK)</span>
+                  <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium text-sm">Service Focus</span>
+                    <span className="text-[#0B1B2B] font-semibold text-sm">Executive Relocations</span>
                   </div>
-                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
-                    <span className="text-[#6B7280] font-medium">Service Focus</span>
-                    <span className="text-[#0B1B2B] font-semibold">Executive Relocations</span>
+                  <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium text-sm">Coverage</span>
+                    <span className="text-[#0B1B2B] font-semibold text-sm">All 33 London Boroughs</span>
                   </div>
-                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
-                    <span className="text-[#6B7280] font-medium">Coverage</span>
-                    <span className="text-[#0B1B2B] font-semibold">All 33 London Boroughs</span>
+                  <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
+                    <span className="text-[#6B7280] font-medium text-sm">Founder Experience</span>
+                    <span className="text-[#0B1B2B] font-semibold text-sm">8+ Years International</span>
                   </div>
-                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
-                    <span className="text-[#6B7280] font-medium">Founder Experience</span>
-                    <span className="text-[#0B1B2B] font-semibold">8+ Years International</span>
-                  </div>
-                  <div className="flex items-center justify-between py-2">
-                    <span className="text-[#6B7280] font-medium">Service Areas</span>
-                    <span className="text-[#0B1B2B] font-semibold text-right">33 London Boroughs + Home Counties</span>
+                  <div className="flex items-center justify-between py-1">
+                    <span className="text-[#6B7280] font-medium text-sm">Platform Launch</span>
+                    <span className="text-[#0B1B2B] font-semibold text-sm">October 1, 2025</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Enhanced Sidebar - Key Facts & Certifications */}
-            <div className="lg:col-span-1 space-y-6">
-              <div className="bg-[#FAFAF9] border border-[#E5E7EB] rounded-lg p-6 sticky top-8">
-                <h3 className="text-lg font-bold text-[#0B1B2B] mb-4 border-b border-[#E5E7EB] pb-2">
-                  Quick Facts
-                </h3>
-                <div className="space-y-4 text-sm">
-                  <div>
-                    <div className="text-[#6B7280] font-medium mb-1">Company Founded</div>
-                    <div className="text-[#0B1B2B] font-semibold">January 1, 2024</div>
-                  </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium mb-1">Platform Launch</div>
-                    <div className="text-[#0B1B2B] font-semibold">October 1, 2025</div>
-                  </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium mb-1">Founding Members</div>
-                    <div className="text-[#0B1B2B] font-semibold">Limited to 100</div>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
           </div>
         </div>
       </section>
