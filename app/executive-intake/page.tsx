@@ -6,6 +6,7 @@ import { Crown, ArrowRight, CheckCircle, Calendar, Users, MapPin, GraduationCap,
 
 export default function ExecutiveIntakePage() {
   const [step, setStep] = useState(1)
+  const [termsAccepted, setTermsAccepted] = useState(false)
   const [formData, setFormData] = useState({
     // Move window
     moveDate: '',
@@ -483,22 +484,46 @@ export default function ExecutiveIntakePage() {
                   <div className="text-[#6B7280]">3 warm intros in 7 days or we extend your concierge window free.</div>
                 </div>
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-1">Refunds & Cancellations?</div>
-                  <div className="text-[#6B7280]">Full refund up to 24 hours before your call. Within 24 hours, we convert to account credit (valid 12 months). After your call starts, payments are non-refundable; unused value may be credited at our discretion.</div>
+                  <div className="font-medium text-[#0B1B2B] mb-3">Refunds & Cancellations</div>
+                  <div className="text-[#6B7280] space-y-2 text-sm">
+                    <div><strong>Cash refund:</strong> Available until 24 hours before your strategy call.</div>
+                    <div><strong>Within 24 hours:</strong> No cash refunds. We issue account credit valid for 12 months (usable on any Relo service).</div>
+                    <div><strong>After the call starts:</strong> Non-refundable. We may offer account credit only at our discretion.</div>
+                    <div className="text-xs text-[#6B7280] mt-2">
+                      <strong>Note:</strong> Credit is non-transferable and not redeemable for cash.
+                    </div>
+                  </div>
                 </div>
               </div>
               
               <div className="mt-4 pt-4 border-t border-[#E5E7EB]">
                 <div className="text-xs text-[#6B7280]">
-                  By booking, you consent for us to begin services immediately, which may affect statutory cooling-off rights. 
+                  By booking, you ask us to begin services immediately, which may affect statutory cooling-off rights. 
                   <a href="/terms" className="text-[#C9A24A] hover:underline ml-1">View complete terms</a>
                 </div>
               </div>
             </div>
 
+            {/* Required Terms Checkbox */}
+            <div className="mb-6">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={termsAccepted}
+                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                  className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded mt-0.5"
+                  required
+                />
+                <span className="text-sm text-[#6B7280]">
+                  I've read the Refunds & Cancellations policy and I want Relo to begin services immediately.
+                </span>
+              </label>
+            </div>
+
             <button
               onClick={handleSubmit}
-              className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white py-4 rounded-lg font-semibold text-lg hover:scale-105 transition-all shadow-lg flex items-center justify-center gap-2"
+              disabled={!termsAccepted}
+              className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white py-4 rounded-lg font-semibold text-lg hover:scale-105 transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               <CreditCard className="w-5 h-5" />
               Complete Payment
