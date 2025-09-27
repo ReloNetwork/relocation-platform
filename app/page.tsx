@@ -124,15 +124,15 @@ export default function HomePage() {
     },
     {
       title: "I'm in HR/Talent",
-      description: "Corporate relocation solutions for Fortune 500 companies with executive-level service and proven ROI.",
+      description: "Corporate relocation packages from £15,000 to £45,000 per employee with 33% emergency pricing discount.",
       icon: Briefcase,
       href: "/corporate",
       features: [
-        "C-suite executive relocations",
-        "Global mobility management",
-        "Proven 94% success rate",
-        "Fortune 500 partnerships",
-        "Comprehensive ROI reporting"
+        "Essential Executive: £15,000 per employee",
+        "Complete Executive: £25,000 per employee", 
+        "C-Suite Elite: £45,000 per employee",
+        "30-day settling guarantee",
+        "Emergency pricing - limited time"
       ],
       bgGradient: "bg-gradient-to-br from-[#059669] to-[#047857]",
       iconBg: "bg-white/20"
@@ -433,19 +433,23 @@ export default function HomePage() {
                 </p>
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
                   <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB]">
-                    <div className="text-lg font-bold text-[#C9A24A] mb-2">Managed Service</div>
-                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Complete coordination</div>
-                    <div className="text-xs text-[#6B7280]">Full relocation management with expert guidance</div>
+                    <div className="text-2xl font-bold text-[#C9A24A] mb-2">£15,000</div>
+                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Essential Executive</div>
+                    <div className="text-xs text-[#6B7280]">Executive settled and productive within 30 days</div>
+                    <div className="text-xs text-red-600 mt-1">33% OFF Emergency pricing</div>
+                  </div>
+                  <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB] ring-2 ring-[#C9A24A]">
+                    <div className="text-xs bg-[#C9A24A] text-white px-2 py-1 rounded-full mb-2">MOST POPULAR</div>
+                    <div className="text-2xl font-bold text-[#C9A24A] mb-2">£25,000</div>
+                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Complete Executive</div>
+                    <div className="text-xs text-[#6B7280]">Complete family integration with zero stress</div>
+                    <div className="text-xs text-red-600 mt-1">33% OFF Emergency pricing</div>
                   </div>
                   <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB]">
-                    <div className="text-lg font-bold text-[#C9A24A] mb-2">Executive Service</div>
-                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">White-glove premium</div>
-                    <div className="text-xs text-[#6B7280]">Luxury service with priority support</div>
-                  </div>
-                  <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB]">
-                    <div className="text-lg font-bold text-[#C9A24A] mb-2">Enterprise Solutions</div>
-                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Corporate programs</div>
-                    <div className="text-xs text-[#6B7280]">Volume discounts and dedicated account management</div>
+                    <div className="text-2xl font-bold text-[#C9A24A] mb-2">£45,000</div>
+                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">C-Suite Elite</div>
+                    <div className="text-xs text-[#6B7280]">White-glove treatment worthy of your senior leadership</div>
+                    <div className="text-xs text-red-600 mt-1">33% OFF Emergency pricing</div>
                   </div>
                 </div>
                 <p className="text-[#6B7280] text-sm italic">
