@@ -314,7 +314,7 @@ export default function DirectoryPage() {
 
   const categories = [
     'All', 'Property Specialists', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
-    'Education Consultants', 'Lifestyle Concierge', 'Transportation', 'Home Services', 'Lifestyle Services', 'Pet Relocation', 'Other (please specify)'
+    'Education Consultants', 'Lifestyle Concierge', 'Transportation', 'Home Services', 'Lifestyle Services', 'Pet Relocation', 'Travel', 'Other (please specify)'
   ]
 
   const londonAreas = [

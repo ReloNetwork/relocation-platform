@@ -33,6 +33,7 @@ const serviceTypes = [
   { value: 'home-services', label: 'Home Services' },
   { value: 'lifestyle-services', label: 'Lifestyle Services' },
   { value: 'pet-relocation', label: 'Pet Relocation' },
+  { value: 'travel', label: 'Travel' },
   { value: 'other', label: 'Other (please specify)' }
 ]
 
