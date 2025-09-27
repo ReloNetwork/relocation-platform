@@ -424,32 +424,29 @@ export default function HomePage() {
             <div className="bg-white rounded-2xl border border-[#0B1B2B]/10 shadow-lg overflow-hidden">
               <div className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 px-8 py-6">
                 <h3 className="text-xl font-bold text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                  What is the average cost of relocating to London?
+                  What types of London relocation services are available?
                 </h3>
               </div>
               <div className="p-8">
                 <p className="text-[#0B1B2B] leading-relaxed mb-4">
-                  <strong>Professional London relocation costs vary significantly by service level and complexity.</strong> Our research shows comprehensive managed services provide the best value through expert coordination and risk mitigation.
+                  <strong>Professional London relocations are tailored to different executive needs and family situations.</strong> Our tiered service approach ensures each move receives the appropriate level of support, from individual professionals to senior leadership requiring white-glove treatment.
                 </p>
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
                   <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB]">
-                    <div className="text-2xl font-bold text-[#C9A24A] mb-2">£15,000</div>
-                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Essential Executive</div>
-                    <div className="text-xs text-[#6B7280]">Executive settled and productive within 30 days</div>
-                    <div className="text-xs text-red-600 mt-1">33% OFF Emergency pricing</div>
+                    <div className="text-lg font-bold text-[#C9A24A] mb-2">Essential Executive</div>
+                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Individual Professional Moves</div>
+                    <div className="text-xs text-[#6B7280] leading-relaxed">Perfect for single professionals or couples without children. Includes dedicated relocation manager, property search assistance, visa support, and basic neighbourhood orientation.</div>
                   </div>
                   <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB] ring-2 ring-[#C9A24A]">
                     <div className="text-xs bg-[#C9A24A] text-white px-2 py-1 rounded-full mb-2">MOST POPULAR</div>
-                    <div className="text-2xl font-bold text-[#C9A24A] mb-2">£25,000</div>
-                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Complete Executive</div>
-                    <div className="text-xs text-[#6B7280]">Complete family integration with zero stress</div>
-                    <div className="text-xs text-red-600 mt-1">33% OFF Emergency pricing</div>
+                    <div className="text-lg font-bold text-[#C9A24A] mb-2">Complete Executive</div>
+                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Family Integration Moves</div>
+                    <div className="text-xs text-[#6B7280] leading-relaxed">Comprehensive service for families with children. Includes everything in Essential plus school placement, family orientation tours, spouse career support, and ongoing integration assistance.</div>
                   </div>
                   <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB]">
-                    <div className="text-2xl font-bold text-[#C9A24A] mb-2">£45,000</div>
-                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">C-Suite Elite</div>
-                    <div className="text-xs text-[#6B7280]">White-glove treatment worthy of your senior leadership</div>
-                    <div className="text-xs text-red-600 mt-1">33% OFF Emergency pricing</div>
+                    <div className="text-lg font-bold text-[#C9A24A] mb-2">C-Suite Elite</div>
+                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Senior Leadership Moves</div>
+                    <div className="text-xs text-[#6B7280] leading-relaxed">White-glove service for C-level executives. Includes personal relocation director, luxury property portfolio access, private club introductions, and 12-month dedicated account management.</div>
                   </div>
                 </div>
                 <p className="text-[#6B7280] text-sm italic">
