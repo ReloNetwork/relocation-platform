@@ -610,9 +610,13 @@ export default function HomePage() {
                     <span className="text-[#6B7280] font-medium">Coverage</span>
                     <span className="text-[#0B1B2B] font-semibold">All 33 London Boroughs</span>
                   </div>
-                  <div className="flex items-center justify-between py-2">
+                  <div className="flex items-center justify-between py-2 border-b border-[#E5E7EB]/50">
                     <span className="text-[#6B7280] font-medium">Founder Experience</span>
                     <span className="text-[#0B1B2B] font-semibold">8+ Years International</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2">
+                    <span className="text-[#6B7280] font-medium">Service Areas</span>
+                    <span className="text-[#0B1B2B] font-semibold text-right">33 London Boroughs + Home Counties</span>
                   </div>
                 </div>
               </div>
