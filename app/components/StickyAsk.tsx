@@ -126,9 +126,17 @@ export default function StickyAsk() {
 
   useEffect(() => {
     if (hideOn.includes(pathname)) { setShow(false); return; }
-    const onScroll = () => setShow(window.scrollY > 280);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // Always show on homepage, show on scroll for other pages
+    let onScroll: (() => void) | undefined;
+    
+    if (pathname === '/') {
+      setShow(true);
+    } else {
+      onScroll = () => setShow(window.scrollY > 280);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
     
     // Listen for voice widget trigger from header
     const handleOpenWidget = () => {
@@ -137,7 +145,9 @@ export default function StickyAsk() {
     window.addEventListener('openVoiceWidget', handleOpenWidget);
     
     return () => {
-      window.removeEventListener('scroll', onScroll);
+      if (onScroll) {
+        window.removeEventListener('scroll', onScroll);
+      }
       window.removeEventListener('openVoiceWidget', handleOpenWidget);
     };
   }, [pathname]);

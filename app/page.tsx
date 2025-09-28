@@ -155,33 +155,31 @@ export default function HomePage() {
       {/* Countdown Banner */}
       <div className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white py-4 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 text-center relative">
-          <div className="animate-pulse">
-            <div className="text-[#C9A24A] font-semibold text-sm uppercase tracking-wide mb-2 flex items-center justify-center gap-2">
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8L14,13H10L12,8Z"/>
-              </svg>
-              Launch Day Approaching
+          <div className="text-[#C9A24A] font-semibold text-sm uppercase tracking-wide mb-2 flex items-center justify-center gap-2">
+            <svg className="w-4 h-4 fill-current animate-pulse" viewBox="0 0 24 24">
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8L14,13H10L12,8Z"/>
+            </svg>
+            Launch Day Approaching
+          </div>
+          <div className="text-white text-lg mb-3">
+            <strong>Founding Partner Charter closes Oct 1, 2:00 PM GMT — 12 category-exclusive slots.</strong>
+          </div>
+          <div className="flex justify-center items-center gap-6 text-white">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#C9A24A] transition-all duration-500">{timeLeft.days}</div>
+              <div className="text-xs uppercase tracking-wide">Days</div>
             </div>
-            <div className="text-white text-lg mb-3">
-              <strong>Founding Partner Charter closes Oct 1, 2:00 PM GMT — 12 category-exclusive slots.</strong>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#C9A24A] transition-all duration-500">{timeLeft.hours}</div>
+              <div className="text-xs uppercase tracking-wide">Hours</div>
             </div>
-            <div className="flex justify-center items-center gap-6 text-white">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-[#C9A24A]">{timeLeft.days}</div>
-                <div className="text-xs uppercase tracking-wide">Days</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-[#C9A24A]">{timeLeft.hours}</div>
-                <div className="text-xs uppercase tracking-wide">Hours</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-[#C9A24A]">{timeLeft.minutes}</div>
-                <div className="text-xs uppercase tracking-wide">Minutes</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-[#C9A24A]">{timeLeft.seconds}</div>
-                <div className="text-xs uppercase tracking-wide">Seconds</div>
-              </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#C9A24A] transition-all duration-500">{timeLeft.minutes}</div>
+              <div className="text-xs uppercase tracking-wide">Minutes</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#C9A24A] transition-all duration-500">{timeLeft.seconds}</div>
+              <div className="text-xs uppercase tracking-wide">Seconds</div>
             </div>
           </div>
         </div>
@@ -222,22 +220,10 @@ export default function HomePage() {
                 <p className="text-sm text-[#6B7280] italic">Split pay: £15k today / £10k in 30 days</p>
               </div>
             </div>
-            <div className="text-center space-y-4">
-              <button
-                onClick={() => {
-                  const event = new CustomEvent('openVoiceWidget')
-                  window.dispatchEvent(event)
-                }}
-                className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#C9A24A] to-[#B8923D] hover:from-[#B8923D] hover:to-[#A8833C] text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-white/20"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd" />
-                </svg>
-                🎙️ Ask Relo AI — Try Free Demo
-              </button>
+            <div className="text-center">
               <button
                 onClick={() => window.location.href = '/directory'}
-                className="block text-[#C9A24A] hover:text-[#B8923D] font-semibold text-lg hover:underline"
+                className="text-[#C9A24A] hover:text-[#B8923D] font-semibold text-lg hover:underline"
               >
                 Browse the Directory →
               </button>
