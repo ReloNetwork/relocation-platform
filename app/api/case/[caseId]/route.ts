@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServiceRoleClient } from '@/lib/supabase/server'
+import { createServiceSupabase } from '../../../../lib/supabase'
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { caseId: string } }
 ) {
   try {
-    const supabase = createServiceRoleClient()
+    const supabase = createServiceSupabase()
     const caseId = params.caseId
 
     // Get case details

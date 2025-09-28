@@ -3,8 +3,8 @@ import './globals.css';
 import StickyAsk from './components/StickyAsk';
 import { Analytics } from '@vercel/analytics/react';
 
-// Force dynamic rendering for all pages to prevent export issues
-export const dynamic = 'force-dynamic';
+// Enable static generation for better performance  
+export const dynamic = 'auto';
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -24,10 +24,10 @@ export const metadata = {
   title: 'Relo Network - Relocate to London. Effortlessly.',
   description: 'London\'s most exclusive relocation network. Vetted experts, elite services, and a 24/7 AI concierge - one accountable partner from landing to "I live here."',
   keywords: 'London relocation, luxury relocation services, corporate relocation, international moving London, expatriate services, premium relocation',
-  authors: [{ name: 'Relo Network', url: 'https://relocation-platform.vercel.app' }],
+  authors: [{ name: 'Relo Network', url: 'https://therelonetwork.com' }],
   creator: 'Relo Network',
   publisher: 'Relo Network',
-  metadataBase: new URL('https://askrelo.com'),
+  metadataBase: new URL('https://therelonetwork.com'),
   alternates: {
     canonical: '/',
     languages: {
@@ -38,7 +38,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://askrelo.com',
+    url: 'https://therelonetwork.com',
     siteName: 'Relo Network',
     title: 'Relo Network - London\'s Most Exclusive Relocation Network',
     description: 'Vetted experts, elite services, and a 24/7 AI concierge. Join our exclusive founding member programme.',
@@ -109,12 +109,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization", 
-              "@id": "https://askrelo.com#organization",
+              "@id": "https://therelonetwork.com#organization",
               "name": "Relo Network",
               "legalName": "Relo Network Limited",
               "description": "London's most exclusive relocation network serving high-net-worth individuals and Fortune 500 corporations with guaranteed quality and performance.",
-              "url": "https://askrelo.com",
-              "logo": "https://askrelo.com/images/logo-luxury.svg",
+              "url": "https://therelonetwork.com",
+              "logo": "https://therelonetwork.com/images/logo-luxury.svg",
               "foundingDate": "2024-01-01",
               "knowsAbout": [
                 "Luxury Relocation Services",
@@ -166,7 +166,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "FAQPage",
-              "@id": "https://askrelo.com#faq",
+              "@id": "https://therelonetwork.com#faq",
               "mainEntity": [
                 {
                   "@type": "Question",
@@ -216,12 +216,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Service",
-              "@id": "https://askrelo.com#service",
+              "@id": "https://therelonetwork.com#service",
               "name": "London Luxury Relocation Services",
               "description": "Comprehensive relocation services for high-net-worth individuals and corporations moving to London",
               "provider": {
                 "@type": "Organization",
-                "@id": "https://askrelo.com#organization"
+                "@id": "https://therelonetwork.com#organization"
               },
               "areaServed": {
                 "@type": "City",
@@ -273,12 +273,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "@id": "https://askrelo.com/team/sarah-mitchell",
+              "@id": "https://therelonetwork.com/team/sarah-mitchell",
               "name": "Sarah Mitchell",
               "jobTitle": "Head of Client Services",
               "worksFor": {
                 "@type": "Organization",
-                "@id": "https://askrelo.com#organization"
+                "@id": "https://therelonetwork.com#organization"
               },
               "alumniOf": {
                 "@type": "Organization",
@@ -318,7 +318,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Service",
-              "@id": "https://askrelo.com#reviews",
+              "@id": "https://therelonetwork.com#reviews",
               "name": "London Luxury Relocation Services",
               "review": [
                 {
@@ -377,7 +377,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "@id": "https://askrelo.com#awards",
+              "@id": "https://therelonetwork.com#awards",
               "name": "Relo Network",
               "award": [
                 {

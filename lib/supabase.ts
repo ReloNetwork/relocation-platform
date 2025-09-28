@@ -241,6 +241,25 @@ export type Database = {
           attendees_json?: any;
         };
       };
+      messages: {
+        Row: {
+          id: string;
+          case_id: string;
+          body: string;
+          sender: 'client' | 'concierge' | 'system';
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          case_id: string;
+          body: string;
+          sender?: 'client' | 'concierge' | 'system';
+        };
+        Update: {
+          body?: string;
+          sender?: 'client' | 'concierge' | 'system';
+        };
+      };
     };
   };
 };

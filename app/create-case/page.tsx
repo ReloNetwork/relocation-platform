@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation';
-import { createServiceRoleClient } from '@/lib/supabase/server';
+import { createServiceSupabase } from '../../lib/supabase';
 import Layout from '@/components/Layout';
 
 async function createCase(formData: FormData) {
   'use server';
-  const sb = createServiceRoleClient();
+  const sb = createServiceSupabase();
 
   const payload = {
     full_name: String(formData.get('full_name') || ''),

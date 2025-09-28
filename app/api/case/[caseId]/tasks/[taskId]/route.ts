@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServiceRoleClient } from '@/lib/supabase/server'
+import { createServiceSupabase } from '../../../../../../lib/supabase'
 
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { caseId: string; taskId: string } }
 ) {
   try {
-    const supabase = createServiceRoleClient()
+    const supabase = createServiceSupabase()
     const { taskId } = params
     const { status } = await request.json()
 
