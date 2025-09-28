@@ -179,9 +179,11 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
 
   // Start web call
   const startWebCall = async () => {
+    console.log('🚀 startWebCall triggered')
     setMode('voice')
     setIsLoading(true)
     setError('')
+    console.log('📱 Mode set to voice, loading:', true)
 
     // Check if Retell client is available
     if (clientLoading) {
@@ -211,14 +213,29 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
         utterance.pitch = 1.0
         utterance.volume = 0.8
         
-        // Try to use British voice if available
-        const voices = speechSynthesis.getVoices()
-        const britishVoice = voices.find(voice => 
-          voice.lang.includes('en-GB') || voice.name.includes('British') || voice.name.includes('UK')
-        ) || voices.find(voice => voice.lang.includes('en-'))
+        // Ensure voices are loaded before using them
+        const speakWithVoice = () => {
+          const voices = speechSynthesis.getVoices()
+          console.log('🔊 Available voices:', voices.length)
+          
+          const britishVoice = voices.find(voice => 
+            voice.lang.includes('en-GB') || voice.name.includes('British') || voice.name.includes('UK')
+          ) || voices.find(voice => voice.lang.includes('en-US') || voice.lang.includes('en'))
+          
+          if (britishVoice) {
+            utterance.voice = britishVoice
+            console.log('🇬🇧 Using voice:', britishVoice.name)
+          }
+          
+          speechSynthesis.speak(utterance)
+        }
         
-        if (britishVoice) {
-          utterance.voice = britishVoice
+        // Check if voices are already loaded
+        if (speechSynthesis.getVoices().length > 0) {
+          speakWithVoice()
+        } else {
+          // Wait for voices to load
+          speechSynthesis.addEventListener('voiceschanged', speakWithVoice, { once: true })
         }
         
         utterance.onend = () => {
@@ -244,8 +261,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
           }, 15000)
         }
         
-        speechSynthesis.speak(utterance)
-        console.log('🔊 Demo voice greeting started')
+        console.log('🔊 Demo voice greeting initiated')
       }, 2000)
       
       return
@@ -431,6 +447,11 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
             </div>
 
             <div className="p-4">
+              {/* Debug info */}
+              <div className="text-xs text-gray-500 mb-2">
+                Mode: {mode} | Call Status: {callStatus} | Demo: {isDemoVoiceMode.toString()}
+              </div>
+              
               {/* Always show choice mode as default */}
               {(mode === 'choice' || !mode) && (
                 <div className="space-y-4">
@@ -496,7 +517,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                 </div>
               )}
 
-              {(callStatus === 'connecting' || callStatus === 'connected') && (
+              {mode === 'voice' && (callStatus === 'connecting' || callStatus === 'connected') && (
                 <div className="text-center space-y-4">
                   <div className="w-20 h-20 bg-[#C9A24A] rounded-full flex items-center justify-center mx-auto relative">
                     <Phone className="w-8 h-8 text-white" />
