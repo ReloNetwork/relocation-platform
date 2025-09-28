@@ -129,10 +129,18 @@ export default function StickyAsk() {
     const onScroll = () => setShow(window.scrollY > 280);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    
+    // Listen for voice widget trigger from header
+    const handleOpenWidget = () => {
+      setWidgetOpen(true);
+    };
+    window.addEventListener('openVoiceWidget', handleOpenWidget);
+    
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('openVoiceWidget', handleOpenWidget);
+    };
   }, [pathname]);
-
-  if (!show) return null;
 
   return (
     <>
@@ -156,18 +164,20 @@ export default function StickyAsk() {
         }
       `}</style>
       
-      {/* Sticky Ask Button */}
-      <button 
-        onClick={openWidget}
-        className="fixed bottom-6 right-6 z-50 inline-flex items-center justify-center rounded-full px-8 py-5 bg-[#C9A24A] hover:bg-[#B8923D] text-white transition-all duration-300 border-2 border-white font-bold text-base transform hover:scale-110 animate-pulse-ask focus-ring"
-        style={{ 
-          background: 'linear-gradient(135deg, #C9A24A 0%, #B8923D 100%)'
-        }}
-        aria-label="Ask Relo AI Assistant"
-      >
-        <Mic className="w-5 h-5 mr-3" />
-        Ask Relo
-      </button>
+      {/* Sticky Ask Button - Only show when scrolled */}
+      {show && (
+        <button 
+          onClick={openWidget}
+          className="fixed bottom-6 right-6 z-50 inline-flex items-center justify-center rounded-full px-8 py-5 bg-[#C9A24A] hover:bg-[#B8923D] text-white transition-all duration-300 border-2 border-white font-bold text-base transform hover:scale-110 animate-pulse-ask focus-ring"
+          style={{ 
+            background: 'linear-gradient(135deg, #C9A24A 0%, #B8923D 100%)'
+          }}
+          aria-label="Ask Relo AI Assistant"
+        >
+          <Mic className="w-5 h-5 mr-3" />
+          Ask Relo
+        </button>
+      )}
 
       {/* Voice Widget Modal */}
       {widgetOpen && (

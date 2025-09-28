@@ -23,8 +23,13 @@ export default function GlobalNavigationFixed() {
     { name: 'Directory', href: '/directory' },
     { name: 'Partners', href: '/partners' },
     { name: 'Relo News', href: '/newsletter' },
-    { name: 'Ask Relo', href: '/ask-relo' },
   ]
+
+  const openVoiceWidget = () => {
+    // Trigger the StickyAsk voice widget
+    const event = new CustomEvent('openVoiceWidget')
+    window.dispatchEvent(event)
+  }
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
@@ -64,6 +69,14 @@ export default function GlobalNavigationFixed() {
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Ask Relo Voice Widget Trigger */}
+              <button
+                onClick={openVoiceWidget}
+                className="px-3 py-2 text-sm font-medium transition-colors text-[#6B7280] hover:text-[#C9A24A]"
+              >
+                Ask Relo
+              </button>
             </div>
           </div>
 
