@@ -3,6 +3,8 @@ import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 import { calculateSLAStatus } from '@/lib/sla';
 
+export const dynamic = 'force-dynamic';
+
 interface TaskForSLA {
   id: string;
   title: string;

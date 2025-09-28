@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { CheckCircle, Clock, Shield, Zap, Building2, CreditCard, Calendar, Phone } from 'lucide-react'
 import { Button } from '@/ui/components/button'

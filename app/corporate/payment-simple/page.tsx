@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Layout from '../../../components/Layout'
 import { Check, Zap, DollarSign } from 'lucide-react'

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { CheckCircle, Phone } from 'lucide-react'
 import { Button } from '@/ui/components/button'

@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { CheckCircle, Calendar, Phone, Clock, ArrowRight, Users, Target } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../../components/Layout'
 
-export default function ConsultationBookingPage() {
+function ConsultationContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [selectedSlot, setSelectedSlot] = useState('')
@@ -203,5 +203,19 @@ export default function ConsultationBookingPage() {
         </div>
       </div>
     </Layout>
+  )
+}
+
+export default function ConsultationBookingPage() {
+  return (
+    <Suspense fallback={
+      <Layout>
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center">
+          <div className="text-white text-xl">Loading...</div>
+        </div>
+      </Layout>
+    }>
+      <ConsultationContent />
+    </Suspense>
   )
 }
