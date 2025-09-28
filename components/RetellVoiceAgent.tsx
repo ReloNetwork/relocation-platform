@@ -11,6 +11,7 @@ interface RetellVoiceAgentProps {
 
 export default function RetellVoiceAgent({ variant = 'floating', className = '' }: RetellVoiceAgentProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [mode, setMode] = useState<'choice' | 'voice' | 'text'>('choice')
   const [callStatus, setCallStatus] = useState<'idle' | 'connecting' | 'connected' | 'ended'>('idle')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
@@ -18,10 +19,19 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
   const [isMuted, setIsMuted] = useState(false)
   const [callDuration, setCallDuration] = useState(0)
   const [audioTestStatus, setAudioTestStatus] = useState<'idle' | 'testing' | 'success' | 'failed'>('idle')
+  const [messages, setMessages] = useState<Array<{text: string, isUser: boolean, timestamp: Date}>>([])
+  const [textInput, setTextInput] = useState('')
+  const [isTextLoading, setIsTextLoading] = useState(false)
   
   const { retellClient, isLoading: clientLoading, error: clientError } = useRetellClient()
   const retellClientRef = useRef<any>(null)
   const timerRef = useRef<NodeJS.Timeout>()
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  // Auto-scroll to bottom when new messages arrive
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
 
   // Timer for call duration
   useEffect(() => {
@@ -90,8 +100,85 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
   }
 
 
+  // Start text chat
+  const startTextChat = () => {
+    setMode('text')
+    setMessages([
+      {
+        text: "Hello! I'm Relo, your London relocation assistant. How can I help you with your move to London today?",
+        isUser: false,
+        timestamp: new Date()
+      }
+    ])
+  }
+
+  // Send text message
+  const sendTextMessage = async () => {
+    if (!textInput.trim() || isTextLoading) return
+    
+    const userMessage = textInput.trim()
+    setTextInput('')
+    setIsTextLoading(true)
+    
+    // Add user message
+    setMessages(prev => [...prev, {
+      text: userMessage,
+      isUser: true,
+      timestamp: new Date()
+    }])
+    
+    try {
+      // Convert current messages to API format
+      const apiMessages = messages.map(msg => ({
+        role: msg.isUser ? 'user' : 'assistant',
+        content: msg.text,
+        timestamp: msg.timestamp.toISOString()
+      }))
+      
+      // Add the new user message
+      apiMessages.push({
+        role: 'user',
+        content: userMessage,
+        timestamp: new Date().toISOString()
+      })
+      
+      const response = await fetch('/api/ai/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: apiMessages,
+          context: {
+            userType: 'individual',
+            relocationType: 'general'
+          }
+        })
+      })
+      
+      const data = await response.json()
+      
+      // Add AI response
+      setMessages(prev => [...prev, {
+        text: data.message?.content || "I'm here to help with your London relocation. Could you tell me more about what you're looking for?",
+        isUser: false,
+        timestamp: new Date()
+      }])
+    } catch (error) {
+      console.error('Text chat error:', error)
+      setMessages(prev => [...prev, {
+        text: "I'm sorry, I'm having trouble connecting right now. Could you try rephrasing your question?",
+        isUser: false,
+        timestamp: new Date()
+      }])
+    } finally {
+      setIsTextLoading(false)
+    }
+  }
+
   // Start web call
   const startWebCall = async () => {
+    setMode('voice')
     setIsLoading(true)
     setError('')
 
@@ -254,12 +341,19 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                   <Phone className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Talk to Relo</h3>
+                  <h3 className="font-semibold">Ask Relo</h3>
                   <p className="text-xs text-white/80">Professional Voice Assistant</p>
                 </div>
               </div>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false)
+                  setMode('choice')
+                  setMessages([])
+                  setTextInput('')
+                  setError('')
+                  setIsTextLoading(false)
+                }}
                 className="text-white/80 hover:text-white transition-colors"
               >
                 <X className="w-4 h-4" />
@@ -267,7 +361,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
             </div>
 
             <div className="p-4">
-              {callStatus === 'idle' && (
+              {mode === 'choice' && (
                 <div className="space-y-4">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -293,11 +387,11 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
 
                     {/* Text Chat Fallback */}
                     <button
-                      onClick={() => window.location.href = '/concierge'}
+                      onClick={startTextChat}
                       className="w-full px-4 py-3 bg-white hover:bg-gray-50 text-[#0B1B2B] border-2 border-[#C9A24A] rounded-lg transition-colors font-semibold flex items-center justify-center gap-2"
                     >
                       <MessageCircle className="w-5 h-5" />
-                      Use Text Chat Instead
+                      Start Text Chat
                     </button>
                   </div>
 
@@ -389,6 +483,68 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                       Thank you for speaking with Relo! We'll follow up with the information discussed.
                     </p>
                   </div>
+                </div>
+              )}
+
+              {mode === 'text' && (
+                <div className="space-y-4">
+                  {/* Chat Messages */}
+                  <div className="max-h-64 overflow-y-auto space-y-3 bg-gray-50 rounded-lg p-3">
+                    {messages.map((message, index) => (
+                      <div key={index} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`max-w-[80%] p-3 rounded-lg text-sm ${
+                          message.isUser 
+                            ? 'bg-[#C9A24A] text-white rounded-br-none' 
+                            : 'bg-white text-gray-800 border rounded-bl-none'
+                        }`}>
+                          <p className="whitespace-pre-wrap">{message.text}</p>
+                          <p className={`text-xs mt-1 opacity-70 ${message.isUser ? 'text-white/70' : 'text-gray-500'}`}>
+                            {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                    {isTextLoading && (
+                      <div className="flex justify-start">
+                        <div className="bg-white text-gray-800 border rounded-lg rounded-bl-none p-3 text-sm">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <span className="text-gray-500 text-xs">Relo is typing...</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <div ref={messagesEndRef} />
+                  </div>
+
+                  {/* Message Input */}
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={textInput}
+                      onChange={(e) => setTextInput(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && sendTextMessage()}
+                      placeholder="Type your question about London relocation..."
+                      className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm"
+                    />
+                    <button
+                      onClick={sendTextMessage}
+                      disabled={!textInput.trim() || isTextLoading}
+                      className="px-4 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isTextLoading ? 'Sending...' : 'Send'}
+                    </button>
+                  </div>
+
+                  {/* Back to Options */}
+                  <button
+                    onClick={() => setMode('choice')}
+                    className="w-full px-4 py-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
+                  >
+                    ← Back to chat options
+                  </button>
                 </div>
               )}
             </div>
