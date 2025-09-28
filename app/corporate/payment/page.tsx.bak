@@ -6,7 +6,7 @@ import { CheckCircle, Clock, Shield, Zap, Building2, CreditCard, Calendar, Phone
 import { Button } from '@/ui/components/button'
 import Layout from '../../../components/Layout'
 
-function CorporatePaymentPageContent() {
+export default function CorporatePaymentPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -380,12 +380,5 @@ function CorporatePaymentPageContent() {
         </div>
       </div>
     </Layout>
-  )
-}
-export default function CorporatePaymentPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <CorporatePaymentPageContent />
-    </Suspense>
   )
 }

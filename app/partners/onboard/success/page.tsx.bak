@@ -1,13 +1,11 @@
 'use client'
 
-import { Suspense } from 'react'
-
 import { useSearchParams } from 'next/navigation'
 import { CheckCircle, Award, Shield, Star, TrendingUp, Users, Phone, Mail } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../../../components/Layout'
 
-function PartnerOnboardingSuccessPageContent() {
+export default function PartnerOnboardingSuccessPage() {
   const searchParams = useSearchParams()
   const partnerId = searchParams?.get('partnerId') || ''
   const status = searchParams?.get('status') || 'pending'
@@ -276,12 +274,5 @@ function PartnerOnboardingSuccessPageContent() {
         </div>
       </div>
     </Layout>
-  )
-}
-export default function PartnerOnboardingSuccessPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <PartnerOnboardingSuccessPageContent />
-    </Suspense>
   )
 }

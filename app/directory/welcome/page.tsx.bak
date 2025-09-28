@@ -1,13 +1,11 @@
 'use client'
 
-import { Suspense } from 'react'
-
 import { useSearchParams } from 'next/navigation'
 import { CheckCircle, Shield, Star, Crown, Search, Phone, Mail, Users, Clock, Target } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../../components/Layout'
 
-function DirectoryWelcomePageContent() {
+export default function DirectoryWelcomePage() {
   const searchParams = useSearchParams()
   const sessionId = searchParams?.get('session_id')
   const signupId = searchParams?.get('signup_id')
@@ -260,12 +258,5 @@ function DirectoryWelcomePageContent() {
         </div>
       </div>
     </Layout>
-  )
-}
-export default function DirectoryWelcomePage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <DirectoryWelcomePageContent />
-    </Suspense>
   )
 }

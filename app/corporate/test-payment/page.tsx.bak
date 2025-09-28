@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import Layout from '../../../components/Layout'
 import { Check } from 'lucide-react'
 
-function TestPaymentPageContent() {
+export default function TestPaymentPage() {
   const searchParams = useSearchParams()
   
   const requestId = searchParams.get('requestId') || 'No ID'
@@ -39,12 +39,5 @@ function TestPaymentPageContent() {
         </div>
       </div>
     </Layout>
-  )
-}
-export default function TestPaymentPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <TestPaymentPageContent />
-    </Suspense>
   )
 }

@@ -1,14 +1,12 @@
 'use client'
 
-import { Suspense } from 'react'
-
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { CheckCircle, Download, Phone, Mail, Calendar, ArrowRight, Building2, Zap } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../../../components/Layout'
 
-function PaymentSuccessPageContent() {
+export default function PaymentSuccessPage() {
   const searchParams = useSearchParams()
   const [sessionData, setSessionData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
@@ -272,12 +270,5 @@ function PaymentSuccessPageContent() {
         </div>
       </div>
     </Layout>
-  )
-}
-export default function PaymentSuccessPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <PaymentSuccessPageContent />
-    </Suspense>
   )
 }

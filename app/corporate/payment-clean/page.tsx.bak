@@ -6,7 +6,7 @@ import { CheckCircle, Phone } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../../components/Layout'
 
-function CleanPaymentPageContent() {
+export default function CleanPaymentPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -252,12 +252,5 @@ Click OK to call +44 20 7946 0958 now, or Cancel to try again later.`)
         </div>
       </div>
     </Layout>
-  )
-}
-export default function CleanPaymentPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <CleanPaymentPageContent />
-    </Suspense>
   )
 }

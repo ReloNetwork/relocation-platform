@@ -1,12 +1,10 @@
 'use client'
 
-import { Suspense } from 'react'
-
 import { useSearchParams } from 'next/navigation'
 import { CheckCircle, MapPin, Users, TrendingUp, Phone, Mail } from 'lucide-react'
 import Layout from '../../../components/Layout'
 
-function PartnerWelcomePageContent() {
+export default function PartnerWelcomePage() {
   const searchParams = useSearchParams()
   const sessionId = searchParams?.get('session_id')
   const applicationId = searchParams?.get('application_id')
@@ -146,12 +144,5 @@ function PartnerWelcomePageContent() {
         </div>
       </div>
     </Layout>
-  )
-}
-export default function PartnerWelcomePage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <PartnerWelcomePageContent />
-    </Suspense>
   )
 }

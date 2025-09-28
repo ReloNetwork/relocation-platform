@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import Layout from '../../../components/Layout'
 import { Check, Zap, DollarSign } from 'lucide-react'
 
-function SimplePaymentPageContent() {
+export default function SimplePaymentPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -281,12 +281,5 @@ function SimplePaymentPageContent() {
         </div>
       </div>
     </Layout>
-  )
-}
-export default function SimplePaymentPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <SimplePaymentPageContent />
-    </Suspense>
   )
 }
