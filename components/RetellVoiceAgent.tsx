@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { Phone, Mic, MicOff, X, Volume2, VolumeX } from 'lucide-react'
+import { Phone, Mic, MicOff, X, Volume2, VolumeX, MessageCircle } from 'lucide-react'
 import { useRetellClient } from '@/hooks/useRetellClient'
 
 interface RetellVoiceAgentProps {
@@ -103,7 +103,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
     }
 
     if (clientError || !retellClient) {
-      setError('Voice client not available. Please refresh the page and try again.')
+      setError('Voice client not available. Use text chat instead or refresh the page.')
       setIsLoading(false)
       return
     }
@@ -185,11 +185,11 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
 
         retellClientRef.current = retellClient
       } else {
-        setError(data.error || 'Failed to start web call')
+        setError(data.error || 'Failed to start web call. Try text chat instead.')
       }
     } catch (error) {
       console.error('❌ Web call error:', error)
-      setError('Failed to initiate web call. Please try again.')
+      setError('Unable to connect voice service. Use text chat or try again later.')
     } finally {
       setIsLoading(false)
     }
@@ -226,14 +226,21 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
   if (variant === 'floating') {
     return (
       <>
-        {/* Floating Voice Button */}
+        {/* Floating Voice Button with Text */}
         {!isOpen && (
-          <button
-            onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 left-6 w-14 h-14 bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-[#C9A24A] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center z-50 group"
-          >
-            <Phone className="w-6 h-6 group-hover:scale-110 transition-transform" />
-          </button>
+          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
+            {/* Ask Relo Label */}
+            <div className="bg-white px-3 py-2 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="text-sm font-medium text-gray-700">Ask Relo</span>
+            </div>
+            
+            <button
+              onClick={() => setIsOpen(true)}
+              className="w-14 h-14 bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-[#C9A24A] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+            >
+              <Phone className="w-6 h-6 group-hover:scale-110 transition-transform" />
+            </button>
+          </div>
         )}
 
         {/* Voice Call Window */}
@@ -272,15 +279,27 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                     </p>
                   </div>
 
-                  {/* Voice Chat Option */}
-                  <button
-                    onClick={startWebCall}
-                    disabled={isLoading || clientLoading}
-                    className="w-full px-4 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg transition-colors disabled:opacity-50 font-semibold flex items-center justify-center gap-2"
-                  >
-                    <Mic className="w-5 h-5" />
-                    {isLoading ? 'Connecting...' : clientLoading ? 'Loading...' : 'Start Voice Chat'}
-                  </button>
+                  {/* Chat Options */}
+                  <div className="space-y-3">
+                    {/* Voice Chat Option */}
+                    <button
+                      onClick={startWebCall}
+                      disabled={isLoading || clientLoading}
+                      className="w-full px-4 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg transition-colors disabled:opacity-50 font-semibold flex items-center justify-center gap-2"
+                    >
+                      <Mic className="w-5 h-5" />
+                      {isLoading ? 'Connecting...' : clientLoading ? 'Loading...' : 'Start Voice Chat'}
+                    </button>
+
+                    {/* Text Chat Fallback */}
+                    <button
+                      onClick={() => window.location.href = '/concierge'}
+                      className="w-full px-4 py-3 bg-white hover:bg-gray-50 text-[#0B1B2B] border-2 border-[#C9A24A] rounded-lg transition-colors font-semibold flex items-center justify-center gap-2"
+                    >
+                      <MessageCircle className="w-5 h-5" />
+                      Use Text Chat Instead
+                    </button>
+                  </div>
 
                   {/* Audio Test Button */}
                   <button
