@@ -190,7 +190,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
     }
 
     if (clientError || !retellClient) {
-      setError('Voice client not available. Use text chat instead or refresh the page.')
+      setError('Voice service temporarily unavailable. Please use text chat for immediate assistance.')
       setIsLoading(false)
       return
     }
@@ -272,11 +272,12 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
 
         retellClientRef.current = retellClient
       } else {
-        setError(data.error || 'Failed to start web call. Try text chat instead.')
+        console.error('❌ Web call creation failed:', data)
+        setError('Voice service is currently being set up. Please use text chat for immediate assistance.')
       }
     } catch (error) {
       console.error('❌ Web call error:', error)
-      setError('Unable to connect voice service. Use text chat or try again later.')
+      setError('Voice service temporarily unavailable. Text chat is ready to help you!')
     } finally {
       setIsLoading(false)
     }
