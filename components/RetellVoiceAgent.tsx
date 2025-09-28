@@ -192,9 +192,8 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
       return
     }
 
-    // Force demo mode since Retell API key is not properly configured
-    // if (clientError || !retellClient) {
-    if (true) { // Always use demo mode for now
+    // Use Retell client if available, fallback to demo mode
+    if (clientError || !retellClient) {
       console.log('🎭 Starting demo voice mode - no Retell client available')
       setIsDemoVoiceMode(true)
       setCallStatus('connecting')
@@ -229,6 +228,29 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
           }
           
           speechSynthesis.speak(utterance)
+          
+          utterance.onend = () => {
+            console.log('🔊 Demo voice greeting completed')
+            // After greeting, add demo responses every 15 seconds if still connected
+            const demoInterval = setInterval(() => {
+              if (callStatus === 'connected' && isDemoVoiceMode) {
+                const responses = [
+                  "I can help you with property searches in areas like Marylebone, Kensington, or Canary Wharf. What's your preferred area?",
+                  "For visas, most professionals use the Skilled Worker visa. What's your nationality and employment situation?",
+                  "London transport is excellent. An annual travelcard for zones 1-2 costs about £1,576. Where will you be working?",
+                  "Would you like information about schools, banking, or cost of living in London?"
+                ]
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)]
+                const followUpUtterance = new SpeechSynthesisUtterance(randomResponse)
+                followUpUtterance.rate = 0.9
+                followUpUtterance.volume = 0.7
+                if (britishVoice) followUpUtterance.voice = britishVoice
+                speechSynthesis.speak(followUpUtterance)
+              } else {
+                clearInterval(demoInterval)
+              }
+            }, 15000)
+          }
         }
         
         // Check if voices are already loaded
@@ -237,29 +259,6 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
         } else {
           // Wait for voices to load
           speechSynthesis.addEventListener('voiceschanged', speakWithVoice, { once: true })
-        }
-        
-        utterance.onend = () => {
-          console.log('🔊 Demo voice greeting completed')
-          // After greeting, add demo responses every 15 seconds if still connected
-          const demoInterval = setInterval(() => {
-            if (callStatus === 'connected' && isDemoVoiceMode) {
-              const responses = [
-                "I can help you with property searches in areas like Marylebone, Kensington, or Canary Wharf. What's your preferred area?",
-                "For visas, most professionals use the Skilled Worker visa. What's your nationality and employment situation?",
-                "London transport is excellent. An annual travelcard for zones 1-2 costs about £1,576. Where will you be working?",
-                "Would you like information about schools, banking, or cost of living in London?"
-              ]
-              const randomResponse = responses[Math.floor(Math.random() * responses.length)]
-              const followUpUtterance = new SpeechSynthesisUtterance(randomResponse)
-              followUpUtterance.rate = 0.9
-              followUpUtterance.volume = 0.7
-              if (britishVoice) followUpUtterance.voice = britishVoice
-              speechSynthesis.speak(followUpUtterance)
-            } else {
-              clearInterval(demoInterval)
-            }
-          }, 15000)
         }
         
         console.log('🔊 Demo voice greeting initiated')
@@ -449,8 +448,11 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
 
             <div className="p-4">
               {/* Debug info */}
-              <div className="text-xs text-gray-500 mb-2">
-                Mode: {mode} | Call Status: {callStatus} | Demo: {isDemoVoiceMode.toString()}
+              <div className="text-xs text-gray-500 mb-2 space-y-1">
+                <div>Mode: {mode} | Call Status: {callStatus} | Demo: {isDemoVoiceMode.toString()}</div>
+                <div>Client Loading: {clientLoading.toString()} | Client Available: {!!retellClient}</div>
+                {clientError && <div className="text-red-500">Client Error: {clientError}</div>}
+                {error && <div className="text-red-500">Error: {error}</div>}
               </div>
               
               {/* Always show choice mode as default */}

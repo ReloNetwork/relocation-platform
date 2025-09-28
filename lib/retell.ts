@@ -236,12 +236,22 @@ Remember: You represent London's most exclusive relocation network. Maintain pro
       }
     }
 
-    // Always use production mode now that we have valid API key
     if (!this.apiKey) {
-      throw new Error('Retell API key is required for web calls')
+      console.log('Demo mode: Creating mock web call')
+      return {
+        accessToken: 'demo_access_token_' + Date.now(),
+        callId: 'demo_web_call_' + Date.now()
+      }
     }
 
     try {
+      console.log('🚀 Making request to Retell API:', {
+        url: `${this.baseUrl}/v2/create-web-call`,
+        config: webCallConfig,
+        hasApiKey: !!this.apiKey,
+        apiKeyLength: this.apiKey?.length
+      })
+      
       const response = await fetch(`${this.baseUrl}/v2/create-web-call`, {
         method: 'POST',
         headers: {
@@ -251,15 +261,24 @@ Remember: You represent London's most exclusive relocation network. Maintain pro
         body: JSON.stringify(webCallConfig)
       })
 
+      console.log('📡 Retell API response status:', response.status, response.statusText)
+      
+      if (!response.ok) {
+        const errorText = await response.text()
+        console.error('❌ Retell API error response:', errorText)
+        throw new Error(`Retell API error: ${response.status} ${response.statusText} - ${errorText}`)
+      }
+
       const data = await response.json()
+      console.log('✅ Retell API response data:', data)
       
       return {
         accessToken: data.access_token,
         callId: data.call_id
       }
     } catch (error) {
-      console.error('Failed to create web call:', error)
-      throw new Error('Failed to create web call')
+      console.error('❌ Failed to create web call:', error)
+      throw new Error(`Failed to create web call: ${error}`)
     }
   }
 }

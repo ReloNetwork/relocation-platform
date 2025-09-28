@@ -15,25 +15,36 @@ export const useRetellClient = () => {
         // Check if we're in the browser
         if (typeof window === 'undefined') {
           console.log('❌ Not in browser environment')
+          setError('Not in browser environment')
+          setIsLoading(false)
           return
         }
 
         // Import the Retell SDK dynamically
+        console.log('📦 Importing retell-client-js-sdk...')
         const { RetellWebClient } = await import('retell-client-js-sdk')
         
-        console.log('🎯 RetellWebClient imported successfully')
+        console.log('🎯 RetellWebClient imported successfully:', RetellWebClient)
         
         // Create new client instance
         const client = new RetellWebClient()
         
-        console.log('🔊 Retell client initialized:', client)
+        console.log('🔊 Retell client initialized successfully:', client)
+        console.log('🔊 Client methods available:', Object.getOwnPropertyNames(Object.getPrototypeOf(client)))
         
         setRetellClient(client)
+        setError(null)
         setIsLoading(false)
+        console.log('✅ Retell client setup complete')
         
-      } catch (err) {
+      } catch (err: any) {
         console.error('❌ Failed to initialize Retell client:', err)
-        setError(`Failed to load Retell client: ${err}`)
+        console.error('❌ Error details:', {
+          message: err.message,
+          stack: err.stack,
+          name: err.name
+        })
+        setError(`Failed to load Retell client: ${err.message || err}`)
         setIsLoading(false)
       }
     }

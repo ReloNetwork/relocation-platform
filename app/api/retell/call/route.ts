@@ -24,14 +24,25 @@ export async function POST(request: NextRequest) {
     }
 
     if (type === 'web') {
-      const webCall = await createWebVoiceCall()
-      
-      return NextResponse.json({
-        success: true,
-        accessToken: webCall.accessToken,
-        callId: webCall.callId,
-        message: 'Web voice call created'
-      })
+      console.log('🌐 Creating web voice call...')
+      try {
+        const webCall = await createWebVoiceCall()
+        console.log('✅ Web call created successfully:', webCall)
+        
+        return NextResponse.json({
+          success: true,
+          accessToken: webCall.accessToken,
+          callId: webCall.callId,
+          message: 'Web voice call created'
+        })
+      } catch (webCallError) {
+        console.error('❌ Web call creation failed:', webCallError)
+        return NextResponse.json({
+          success: false,
+          error: `Web call creation failed: ${webCallError}`,
+          message: 'Failed to create web voice call'
+        }, { status: 500 })
+      }
     }
 
     return NextResponse.json(
