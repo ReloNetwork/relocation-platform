@@ -3,25 +3,23 @@ import Stripe from 'stripe'
 
 const stripeKey = process.env.STRIPE_SECRET_KEY
 
-if (!stripeKey) {
-  throw new Error('STRIPE_SECRET_KEY environment variable is not set')
+if (!stripeKey || stripeKey.includes('placeholder')) {
+  console.log('Demo mode: Stripe not configured, returning demo response')
 }
 
-const stripe = new Stripe(stripeKey, {
-  apiVersion: '2024-06-20',
-})
+const stripe = stripeKey && !stripeKey.includes('placeholder') 
+  ? new Stripe(stripeKey, { apiVersion: '2024-06-20' })
+  : null
 
 export async function POST(request: NextRequest) {
   try {
-    if (!stripeKey) {
-      console.error('STRIPE_SECRET_KEY environment variable is missing')
-      return NextResponse.json(
-        { 
-          error: 'Configuration error',
-          details: 'Payment processing is not properly configured',
-        },
-        { status: 500 }
-      )
+    if (!stripeKey || stripeKey.includes('placeholder')) {
+      console.log('Demo mode: Stripe not configured, returning demo response')
+      return NextResponse.json({
+        url: '/concierge/demo-success?plan=demo',
+        demo: true,
+        message: 'Demo mode - Stripe payment processing not configured'
+      })
     }
 
     const { priceId } = await request.json()
