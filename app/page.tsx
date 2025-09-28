@@ -222,10 +222,22 @@ export default function HomePage() {
                 <p className="text-sm text-[#6B7280] italic">Split pay: £15k today / £10k in 30 days</p>
               </div>
             </div>
-            <div className="text-center">
+            <div className="text-center space-y-4">
+              <button
+                onClick={() => {
+                  const event = new CustomEvent('openVoiceWidget')
+                  window.dispatchEvent(event)
+                }}
+                className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#C9A24A] to-[#B8923D] hover:from-[#B8923D] hover:to-[#A8833C] text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-white/20"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd" />
+                </svg>
+                Ask Relo AI — Free Demo
+              </button>
               <button
                 onClick={() => window.location.href = '/directory'}
-                className="text-[#C9A24A] hover:text-[#B8923D] font-semibold text-lg hover:underline"
+                className="block text-[#C9A24A] hover:text-[#B8923D] font-semibold text-lg hover:underline"
               >
                 Browse the Directory →
               </button>

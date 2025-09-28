@@ -130,6 +130,18 @@ export default function GlobalNavigationFixed() {
                 {item.name}
               </Link>
             ))}
+            
+            {/* Ask Relo Mobile */}
+            <button
+              onClick={() => {
+                openVoiceWidget()
+                setMobileMenuOpen(false)
+              }}
+              className="block w-full text-left px-3 py-2 text-base font-medium transition-colors text-[#6B7280] hover:text-[#C9A24A] hover:bg-[#C9A24A]/5"
+            >
+              Ask Relo
+            </button>
+            
             <div className="border-t border-[#E5E7EB] pt-4 pb-3">
               <div className="px-3">
                 <Link href="/login" className="block">

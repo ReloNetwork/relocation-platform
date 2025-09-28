@@ -284,10 +284,10 @@ export default function StickyAsk() {
                 <Button 
                   size="sm"
                   className="flex-1 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg"
-                  onClick={() => window.location.href = '/concierge'}
+                  onClick={closeWidget}
                 >
                   <ArrowRight className="mr-2 h-4 w-4" />
-                  Full Service
+                  Continue Chat
                 </Button>
                 <Button 
                   size="sm"
