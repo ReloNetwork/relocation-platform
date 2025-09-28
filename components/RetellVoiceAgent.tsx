@@ -192,8 +192,9 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
       return
     }
 
-    // If no Retell client available, use demo mode with simulated voice experience
-    if (clientError || !retellClient) {
+    // Force demo mode since Retell API key is not properly configured
+    // if (clientError || !retellClient) {
+    if (true) { // Always use demo mode for now
       console.log('🎭 Starting demo voice mode - no Retell client available')
       setIsDemoVoiceMode(true)
       setCallStatus('connecting')
