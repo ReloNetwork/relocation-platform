@@ -384,7 +384,10 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
             </div>
             
             <button
-              onClick={() => setIsOpen(true)}
+              onClick={() => {
+                setIsOpen(true)
+                setMode('choice')
+              }}
               className="w-14 h-14 bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-[#C9A24A] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
             >
               <Phone className="w-6 h-6 group-hover:scale-110 transition-transform" />
@@ -403,7 +406,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                   <Phone className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Ask Relo</h3>
+                  <h3 className="font-semibold text-white">Ask Relo</h3>
                   <p className="text-xs text-white/80">Professional Voice Assistant</p>
                 </div>
               </div>
@@ -428,12 +431,8 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
             </div>
 
             <div className="p-4">
-              {/* Debug info */}
-              {process.env.NODE_ENV === 'development' && (
-                <div className="text-xs text-gray-500 mb-2">Mode: {mode}</div>
-              )}
-              
-              {mode === 'choice' && (
+              {/* Always show choice mode as default */}
+              {(mode === 'choice' || !mode) && (
                 <div className="space-y-4">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -624,30 +623,6 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                   >
                     ← Back to chat options
                   </button>
-                </div>
-              )}
-
-              {/* Fallback content if no mode matches */}
-              {!['choice', 'voice', 'text'].includes(mode) && (
-                <div className="space-y-4">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Mic className="w-8 h-8 text-[#C9A24A]" />
-                    </div>
-                    <h3 className="text-lg font-bold text-[#0B1B2B] mb-2">Speak with Relo</h3>
-                    <p className="text-[#6B7280] text-sm mb-4">
-                      Get instant expert advice on your London relocation with our professional voice assistant
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <button
-                      onClick={() => setMode('choice')}
-                      className="w-full px-4 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg transition-colors font-semibold"
-                    >
-                      Get Started
-                    </button>
-                  </div>
                 </div>
               )}
             </div>
