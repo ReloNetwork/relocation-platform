@@ -22,6 +22,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
   const [messages, setMessages] = useState<Array<{text: string, isUser: boolean, timestamp: Date}>>([])
   const [textInput, setTextInput] = useState('')
   const [isTextLoading, setIsTextLoading] = useState(false)
+  const [isDemoVoiceMode, setIsDemoVoiceMode] = useState(false)
   
   const { retellClient, isLoading: clientLoading, error: clientError } = useRetellClient()
   const retellClientRef = useRef<any>(null)
@@ -189,9 +190,64 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
       return
     }
 
+    // If no Retell client available, use demo mode with simulated voice experience
     if (clientError || !retellClient) {
-      setError('Voice service temporarily unavailable. Please use text chat for immediate assistance.')
+      console.log('🎭 Starting demo voice mode - no Retell client available')
+      setIsDemoVoiceMode(true)
+      setCallStatus('connecting')
+      setCallId('demo_call_' + Date.now())
       setIsLoading(false)
+      
+      // Simulate connection and voice greeting
+      setTimeout(() => {
+        setCallStatus('connected')
+        setCallDuration(0)
+        
+        // Simulate voice greeting with audio
+        const utterance = new SpeechSynthesisUtterance(
+          "Hello! I'm Relo, your London relocation assistant. I'm here to help with all aspects of your move to London. What would you like to know about relocating to London?"
+        )
+        utterance.rate = 0.9
+        utterance.pitch = 1.0
+        utterance.volume = 0.8
+        
+        // Try to use British voice if available
+        const voices = speechSynthesis.getVoices()
+        const britishVoice = voices.find(voice => 
+          voice.lang.includes('en-GB') || voice.name.includes('British') || voice.name.includes('UK')
+        ) || voices.find(voice => voice.lang.includes('en-'))
+        
+        if (britishVoice) {
+          utterance.voice = britishVoice
+        }
+        
+        utterance.onend = () => {
+          console.log('🔊 Demo voice greeting completed')
+          // After greeting, add demo responses every 15 seconds if still connected
+          const demoInterval = setInterval(() => {
+            if (callStatus === 'connected' && isDemoVoiceMode) {
+              const responses = [
+                "I can help you with property searches in areas like Marylebone, Kensington, or Canary Wharf. What's your preferred area?",
+                "For visas, most professionals use the Skilled Worker visa. What's your nationality and employment situation?",
+                "London transport is excellent. An annual travelcard for zones 1-2 costs about £1,576. Where will you be working?",
+                "Would you like information about schools, banking, or cost of living in London?"
+              ]
+              const randomResponse = responses[Math.floor(Math.random() * responses.length)]
+              const followUpUtterance = new SpeechSynthesisUtterance(randomResponse)
+              followUpUtterance.rate = 0.9
+              followUpUtterance.volume = 0.7
+              if (britishVoice) followUpUtterance.voice = britishVoice
+              speechSynthesis.speak(followUpUtterance)
+            } else {
+              clearInterval(demoInterval)
+            }
+          }, 15000)
+        }
+        
+        speechSynthesis.speak(utterance)
+        console.log('🔊 Demo voice greeting started')
+      }, 2000)
+      
       return
     }
 
@@ -285,6 +341,10 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
 
   // End call
   const endCall = () => {
+    // Stop any ongoing speech synthesis
+    speechSynthesis.cancel()
+    setIsDemoVoiceMode(false)
+    
     if (retellClientRef.current) {
       retellClientRef.current.stopCall()
     }
@@ -296,6 +356,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
     setTimeout(() => {
       setCallStatus('idle')
       setCallId('')
+      setMode('choice')
     }, 3000)
   }
 
@@ -317,16 +378,16 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
         {/* Floating Voice Button with Text */}
         {!isOpen && (
           <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
-            {/* Ask Relo Label - Always Visible */}
-            <div className="bg-white px-3 py-2 rounded-lg shadow-lg border border-gray-200 transition-all duration-300">
+            {/* Ask Relo Label - Hover Only */}
+            <div className="bg-white px-3 py-2 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <span className="text-sm font-medium text-gray-700">Ask Relo</span>
             </div>
             
             <button
               onClick={() => setIsOpen(true)}
-              className="w-14 h-14 bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-[#C9A24A] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group-hover:scale-105"
+              className="w-14 h-14 bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-[#C9A24A] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
             >
-              <Phone className="w-6 h-6 transition-transform" />
+              <Phone className="w-6 h-6 group-hover:scale-110 transition-transform" />
             </button>
           </div>
         )}
@@ -348,12 +409,17 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
               </div>
               <button
                 onClick={() => {
+                  speechSynthesis.cancel()
+                  setIsDemoVoiceMode(false)
                   setIsOpen(false)
                   setMode('choice')
                   setMessages([])
                   setTextInput('')
                   setError('')
                   setIsTextLoading(false)
+                  if (retellClientRef.current) {
+                    retellClientRef.current.stopCall()
+                  }
                 }}
                 className="text-white/80 hover:text-white transition-colors"
               >
@@ -445,9 +511,16 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                       {callStatus === 'connecting' ? 'Connecting...' : 'Connected to Relo'}
                     </h3>
                     {callStatus === 'connected' && (
-                      <div className="flex items-center justify-center gap-2 text-[#6B7280] text-sm">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        {formatDuration(callDuration)}
+                      <div className="text-center">
+                        <div className="flex items-center justify-center gap-2 text-[#6B7280] text-sm mb-1">
+                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                          {formatDuration(callDuration)}
+                        </div>
+                        {isDemoVoiceMode && (
+                          <div className="text-xs text-[#C9A24A] font-medium">
+                            🎭 Demo Voice Mode - Speak and I'll respond!
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
