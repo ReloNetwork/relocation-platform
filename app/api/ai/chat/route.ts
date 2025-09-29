@@ -20,67 +20,106 @@ interface ChatSession {
 // Simulated AI responses based on relocation expertise
 const generateAIResponse = async (messages: ChatMessage[], context: any): Promise<string> => {
   const lastMessage = messages[messages.length - 1]?.content?.toLowerCase() || ''
+  const conversationHistory = messages.slice(0, -1)
+  const isFirstMessage = messages.length <= 1
+  const hasPreviousConversation = conversationHistory.length > 0
   
-  // Greeting responses
-  if (messages.length <= 1 || lastMessage.includes('hello') || lastMessage.includes('hi')) {
+  // Extract context from previous messages
+  const previousTopics = conversationHistory.map(msg => msg.content.toLowerCase()).join(' ')
+  const discussedProperty = previousTopics.includes('property') || previousTopics.includes('area')
+  const discussedVisa = previousTopics.includes('visa') || previousTopics.includes('immigration')
+  const discussedSchools = previousTopics.includes('school') || previousTopics.includes('education')
+  const discussedBanking = previousTopics.includes('bank') || previousTopics.includes('finance')
+  
+  // Greeting responses (only for first message)
+  if (isFirstMessage || (lastMessage.includes('hello') || lastMessage.includes('hi')) && !hasPreviousConversation) {
     return `Hello! I'm Relo, your AI assistant for London relocation. I provide instant answers and guidance for moving to London.
 
 I can help you with:
-🏠 Property areas, prices & recommendations
-📋 Visa requirements & processes
-🎓 School options & admissions  
-🏦 Banking setup & requirements
-🚗 Transport costs & options
-🎯 Living costs & lifestyle tips
+• Property areas, prices & recommendations
+• Visa requirements & processes
+• School options & admissions  
+• Banking setup & requirements
+• Transport costs & options
+• Living costs & lifestyle tips
 
 What would you like to know about London?`
   }
 
   // Property/Housing queries
-  if (lastMessage.includes('property') || lastMessage.includes('housing') || lastMessage.includes('flat') || lastMessage.includes('apartment')) {
-    return `Here's your London property guide:
-
-**Prime Areas & Prices:**
-• **Marylebone** - Central location, £1,200-£2,000/sq ft
-• **Canary Wharf** - Financial district, £800-£1,400/sq ft 
-• **Kensington** - Premium area, £1,500-£3,000/sq ft
-• **Greenwich** - Family-friendly, £600-£1,000/sq ft
+  if (lastMessage.includes('property') || lastMessage.includes('housing') || lastMessage.includes('flat') || lastMessage.includes('apartment') || lastMessage.includes('area')) {
+    // More specific responses based on context
+    if (lastMessage.includes('budget') || lastMessage.includes('cost') || lastMessage.includes('price')) {
+      return `London property costs vary significantly by area:
 
 **Rental Costs (1-bed flat):**
-• Zone 1: £1,800-£3,500/month
-• Zone 2: £1,500-£2,800/month  
-• Zone 3: £1,200-£2,200/month
+• **Zone 1 (Central)**: £1,800-£3,500/month - Bank, Marylebone, City
+• **Zone 2**: £1,500-£2,800/month - Greenwich, Clapham, Shoreditch  
+• **Zone 3**: £1,200-£2,200/month - Stratford, Walthamstow
 
-**Key Considerations:**
-• Transport links to your workplace
-• Council tax (£1,000-£3,000/year)
-• Utilities (£150-£250/month)
+**Purchase Prices:**
+• **Prime areas**: £1,200-£3,000/sq ft (Marylebone, Kensington)
+• **Financial districts**: £800-£1,400/sq ft (Canary Wharf, City)
+• **Family areas**: £600-£1,000/sq ft (Greenwich, Richmond)
 
-What's your budget range or preferred area?`
+**Additional costs:** Council tax (£1,000-£3K/year), utilities (£150-250/month), deposit (1-6 weeks rent).
+
+Most professionals find Zone 2 offers the best value - good transport links with 30-40% savings vs Zone 1.`
+    }
+    
+    if (lastMessage.includes('family') || lastMessage.includes('children') || lastMessage.includes('kids')) {
+      return `For families, I'd recommend these areas:
+
+**Greenwich** - Excellent schools, parks, river views, £600-1,000/sq ft, 20-min train to City
+**Richmond** - Suburban feel, outstanding primaries, riverside walks, royal park access  
+**Clapham** - Family-friendly community, good transport, trendy restaurants, strong social scene
+**Marylebone** - Premium area with excellent schools nearby, central location but higher costs
+
+**School timing:** Most international schools require 12-18 months advance application, so start early. Many families strategically choose homes within catchment areas of outstanding state schools to combine great education with property investment.`
+    }
+    
+    if (lastMessage.includes('work') || lastMessage.includes('commute') || lastMessage.includes('office')) {
+      return `Your commute determines the best areas to live:
+
+**City/Bank workers** - Marylebone (Central line), Shoreditch (walking/cycle), Bank areas
+**Canary Wharf** - Greenwich (DLR 15-min), Stratford (Jubilee line), Isle of Dogs
+**West End** - Camden (Northern line), King's Cross (Piccadilly/Circle), Fitzrovia
+**Tech hub (Shoreditch)** - Liverpool Street connections, Old Street, cycle-friendly areas
+
+**Smart strategy:** Zone 1-2 annual travelcard costs £1,576. Many choose Zone 2-3 for 30-40% housing savings while keeping commutes under 30 minutes.`
+    }
+    
+    // Generic property response if no specific context
+    if (!discussedProperty) {
+      return `Here are London's best areas for different needs:
+
+**For Professionals:** Marylebone (central location), Shoreditch (tech hub), Bank area (finance)
+**For Families:** Greenwich (schools/parks), Richmond (suburban feel), Clapham (community)  
+**Best Value:** Stratford (improving area), Walthamstow (village feel), Lewisham (up-and-coming)
+
+**Quick costs:** Zone 1 rentals £1,800-3,500/month, Zone 2 £1,500-2,800/month.
+
+Zone 2 typically offers the best balance of location, transport links, and value for money.`
+    } else {
+      return `Each area has distinct advantages. Marylebone offers central convenience, Greenwich provides family amenities with good transport, while Shoreditch is perfect for tech professionals. Zone 2 locations generally provide the best value with excellent connectivity.`
+    }
   }
 
   // Visa/Legal queries
   if (lastMessage.includes('visa') || lastMessage.includes('legal') || lastMessage.includes('immigration')) {
-    return `Here's your UK visa guide:
+    if (discussedVisa) {
+      return `Most professionals use the Skilled Worker Visa (£610 fee + £624/year health surcharge) which requires a job offer with sponsorship. Processing takes 3-8 weeks typically. The Global Talent visa (£623) is excellent for tech/science/arts leaders as it doesn't require a job offer. Start your application 3+ months before your planned move date.`
+    }
+    
+    return `The visa you need depends on your situation:
 
-**Main Visa Types:**
-• **Skilled Worker Visa** - For sponsored employment (£610 fee + £624/year health surcharge)
-• **Global Talent Visa** - For leaders in tech/science/arts (£623 fee)
-• **Investment Visa** - For investors (£2,404 fee, £2M+ investment)
-• **Intra-company Transfer** - For company transfers (£610-£1,408 fee)
+**Most Common Options:**
+• **Skilled Worker** - Requires job offer with sponsorship, £610 + £624/year health surcharge
+• **Global Talent** - For tech/science/arts leaders, £623 fee, no job offer needed
+• **Intra-company Transfer** - For company transfers, £610-£1,408 fee
+• **Investment Visa** - For investors with £2M+, £2,404 fee
 
-**Processing Times:**
-• Inside UK: 8 weeks
-• Outside UK: 3-8 weeks
-• Priority service: 5-10 working days (extra cost)
-
-**Requirements:**
-• English language test (unless exempt)
-• Tuberculosis test (if from certain countries)
-• Biometric information
-• Financial requirements proof
-
-What's your nationality and employment situation?`
+**Processing Timeline:** 3-8 weeks (priority service available for faster processing). Most people start applications 3+ months before their planned move date to allow for any delays or additional documentation requests.`
   }
 
   // Education/Schools queries
@@ -271,19 +310,41 @@ What type of lifestyle are you looking for?`
 Would you like me to connect you with specific partners, or would you prefer a comprehensive consultation covering multiple services?`
   }
 
-  // Fallback response
-  return `I'm here to help with your London relocation! I can provide instant answers about:
+  // Fallback response - more conversational based on context
+  if (hasPreviousConversation) {
+    // Provide helpful follow-up information based on what's been discussed
+    if (discussedProperty && !discussedVisa) {
+      return `Since you're looking at London property, visa status is crucial for rental applications. Most landlords require valid UK visa documentation. The Skilled Worker visa is most common for professionals (£610 + £624/year health surcharge, requires job offer). Processing takes 3-8 weeks, so plan accordingly.`
+    }
+    
+    if (discussedVisa && !discussedBanking) {
+      return `With visa planning sorted, UK banking setup is your next step. This typically takes 2-4 weeks and requires proof of address and employment documentation. HSBC Expat and Barclays International offer good services for newcomers. Some banks can start the process before you arrive with proper documentation.`
+    }
+    
+    if (discussedProperty && discussedVisa && !discussedSchools) {
+      return `With housing and visa covered, education is important if you have children. London has excellent international schools but most require 12-18 months advance application. American School in London and International School of London are popular choices. Many families also consider outstanding state schools in certain catchment areas.`
+    }
+    
+    // General follow-up for ongoing conversation
+    const topics = ['transport', 'banking', 'schools', 'living costs']
+    const uncoveredTopics = topics.filter(topic => !previousTopics.includes(topic))
+    
+    if (uncoveredTopics.length > 0) {
+      return `Other important aspects for London relocation include ${uncoveredTopics.slice(0, 2).join(' and ')}. Transport costs around £130-250/month depending on zones, and overall living costs vary significantly by lifestyle and location.`
+    }
+    
+    return `London offers excellent quality of life with world-class amenities, transport, and cultural opportunities. The key is planning each aspect systematically - property, visa, banking, schools (if needed), and understanding transport zones for cost efficiency.`
+  }
+  
+  // Only show full intro for completely new conversations
+  return `I'm here to help with your London relocation! Ask me anything specific like:
 
-• **Property** - Areas, prices, rental costs
-• **Visas** - Types, requirements, processing times  
-• **Schools** - International schools, state options, fees
-• **Banking** - Account setup, requirements, best banks
-• **Transport** - Costs, zones, Oyster cards
-• **Living costs** - Monthly budgets, council tax, utilities
+• "What areas are good for families?"
+• "How much does transport cost?"  
+• "What visa do I need?"
+• "How do I set up banking?"
 
-Just ask me something specific like "What areas are good for families?" or "How much does transport cost?" and I'll give you detailed information right away.
-
-What would you like to know about London?`
+What would you like to know?`
 }
 
 export async function POST(request: NextRequest) {

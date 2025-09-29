@@ -301,7 +301,7 @@ export default function VoiceAgent({ variant = 'floating', className = '' }: Voi
                     {isDemo && (
                       <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4">
                         <p className="text-amber-800 text-xs font-medium">
-                          🎯 Demo Mode: Browser voice chat available! Phone calls require Retell AI setup.
+                          Demo Mode: Browser voice chat available! Phone calls require Retell AI setup.
                         </p>
                       </div>
                     )}
@@ -385,7 +385,7 @@ export default function VoiceAgent({ variant = 'floating', className = '' }: Voi
                         <div className="text-center">
                           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
                             <p className="text-blue-800 text-xs font-medium">
-                              🎯 Demo Mode: Click microphone to speak, Relo will respond with voice!
+                              Demo Mode: Click microphone to speak, Relo will respond with voice!
                             </p>
                           </div>
                           
@@ -470,7 +470,7 @@ export default function VoiceAgent({ variant = 'floating', className = '' }: Voi
         {isDemo && (
           <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8 max-w-md mx-auto">
             <p className="text-amber-800 text-sm font-medium">
-              🎯 Demo Mode: Browser voice chat available! Phone calls require Retell AI API setup.
+              Demo Mode: Browser voice chat available! Phone calls require Retell AI API setup.
             </p>
           </div>
         )}

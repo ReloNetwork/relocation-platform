@@ -40,7 +40,7 @@ export default function BookingContent({ user, organization, orgId }: BookingCon
           </p>
           <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2">
             <span className="text-[#C9A24A] text-sm font-medium">
-              ✨ When you book here, it appears instantly on your concierge calendar
+When you book here, it appears instantly on your concierge calendar
             </span>
           </div>
         </div>

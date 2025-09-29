@@ -382,7 +382,7 @@ What would you like to know about relocating to London?`,
           </button>
         </div>
         <p className="text-sm text-[#6B7280] mt-3 text-center">
-          🤖 Powered by Relo Network AI • Expert knowledge from 100s of successful relocations
+Powered by Relo Network AI • Expert knowledge from 100s of successful relocations
         </p>
       </div>
     </div>

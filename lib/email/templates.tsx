@@ -143,7 +143,7 @@ export function createTaskAssignedEmail(
     subject: `New Task Assigned: ${taskTitle}`,
     html: EmailWrapper({ children: `
       <div class="content">
-        <h2>You have a new task! 📋</h2>
+        <h2>You have a new task!</h2>
         <p>A new task has been assigned to you for your London relocation case.</p>
         
         <div style="background: #F9FAFB; padding: 16px; border-radius: 6px; margin: 16px 0;">
@@ -337,7 +337,7 @@ export function createVoiceSubscriptionEmail(
         </div>
         
         <div style="background: #FFF7ED; padding: 16px; border-radius: 6px; margin: 20px 0;">
-          <h4 style="margin-top: 0; color: #C9A24A;">💡 Getting Started Tips</h4>
+          <h4 style="margin-top: 0; color: #C9A24A;">Getting Started Tips</h4>
           <ul style="margin: 10px 0;">
             <li>Try: "Find me a 2-bed flat near Canary Wharf under £3000/month"</li>
             <li>Ask: "What's the best area for families with good schools?"</li>
@@ -362,10 +362,10 @@ export function createDirectorySubscriptionEmail(
 ): EmailTemplate {
   return {
     to: [email],
-    subject: `Directory Access Activated - Explore London's Premier Network! 🔓`,
+    subject: `Directory Access Activated - Explore London's Premier Network!`,
     html: EmailWrapper({ children: `
       <div class="content">
-        <h2>Your Premium Directory Access is Active! 🔓</h2>
+        <h2>Your Premium Directory Access is Active!</h2>
         <p>Welcome to London's most exclusive relocation service directory. You now have ${planName === 'Basic Access' ? 'limited preview' : 'full'} access to our vetted partner network.</p>
         
         <div style="background: #F0F9FF; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #C9A24A;">

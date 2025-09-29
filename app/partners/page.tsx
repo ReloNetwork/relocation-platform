@@ -1,6 +1,6 @@
 'use client'
 
-// 🔥 NUCLEAR REBUILD - PARTNERS PAGE v3.0 - 2025-09-25
+// NUCLEAR REBUILD - PARTNERS PAGE v3.0 - 2025-09-25
 import React, { useState, useEffect } from 'react'
 import { Check, Star, ArrowRight, Users, Clock, Zap, Timer, Shield, Trophy, Target, Building, Globe, Calculator, Mail } from 'lucide-react'
 import { Button } from '@/ui/components/button'
@@ -993,7 +993,7 @@ export default function PartnersPage() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-[#C9A24A]/10 rounded-full flex items-center justify-center">
-                      📞
+                      <span>•</span>
                     </div>
                     <div>
                       <div className="font-medium text-[#0B1B2B]">Partnership Inquiries</div>
@@ -1011,7 +1011,7 @@ export default function PartnersPage() {
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mt-1">
-                      📍
+                      <span>•</span>
                     </div>
                     <div>
                       <div className="font-medium text-[#0B1B2B]">Office</div>
@@ -1020,7 +1020,7 @@ export default function PartnersPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-[#C9A24A]/10 rounded-full flex items-center justify-center">
-                      🕒
+                      <span>•</span>
                     </div>
                     <div>
                       <div className="font-medium text-[#0B1B2B]">Hours</div>

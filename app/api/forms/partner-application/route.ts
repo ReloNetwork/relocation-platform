@@ -47,7 +47,7 @@ const getPartnerConfirmationTemplate = (data: PartnerApplicationData) => {
     <p>Congratulations! Your partnership application for <strong>${data.companyName}</strong> has been received and is now under review by our Partner Board.</p>
     
     <div style="background: #EFF6FF; border: 1px solid #DBEAFE; padding: 20px; border-radius: 8px; margin: 20px 0;">
-      <h3 style="color: #1E40AF; margin-top: 0;">🎉 Founding Partner Opportunity</h3>
+      <h3 style="color: #1E40AF; margin-top: 0;">Founding Partner Opportunity</h3>
       <p style="color: #1E40AF; margin-bottom: 10px;">You've applied during our founding partner period and qualify for exclusive benefits:</p>
       <ul style="color: #1E40AF; margin-bottom: 0;">
         <li><strong>${selectedTier?.discount}</strong> for the first 6 months</li>
@@ -86,7 +86,7 @@ const getPartnerConfirmationTemplate = (data: PartnerApplicationData) => {
     </ol>
     
     <div style="background: #F0FDF4; border: 1px solid #BBF7D0; padding: 20px; border-radius: 8px; margin: 20px 0;">
-      <h4 style="color: #166534; margin-top: 0;">📞 What's Next?</h4>
+      <h4 style="color: #166534; margin-top: 0;">What's Next?</h4>
       <p style="color: #166534; margin-bottom: 5px;">Our Partner Relations team will contact you at <strong>${data.phone}</strong> within 24 hours to:</p>
       <ul style="color: #166534; margin-bottom: 0;">
         <li>Discuss your application in detail</li>
@@ -125,11 +125,11 @@ const getPartnerInternalTemplate = (data: PartnerApplicationData) => `
 <html>
 <head>
   <meta charset="utf-8">
-  <title>🤝 NEW PARTNER APPLICATION - ${data.companyName}</title>
+  <title>NEW PARTNER APPLICATION - ${data.companyName}</title>
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
   <div style="background: #C9A24A; color: white; padding: 20px; text-align: center;">
-    <h1 style="margin: 0; font-size: 24px;">🤝 NEW PARTNER APPLICATION</h1>
+    <h1 style="margin: 0; font-size: 24px;">NEW PARTNER APPLICATION</h1>
     <p style="margin: 10px 0 0 0; font-size: 16px;">${data.companyName} - ${data.serviceType.replace('-', ' ').toUpperCase()}</p>
   </div>
   
@@ -203,7 +203,7 @@ export async function POST(request: NextRequest) {
     const internalNotificationData = {
       to: 'partners@relo-network.com',
       cc: 'ops@relo-network.com',
-      subject: `🤝 NEW PARTNER APPLICATION - ${data.companyName} (${data.serviceType})`,
+      subject: `NEW PARTNER APPLICATION - ${data.companyName} (${data.serviceType})`,
       html: getPartnerInternalTemplate(data)
     }
 

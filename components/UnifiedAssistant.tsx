@@ -70,11 +70,11 @@ export default function UnifiedAssistant({ variant = 'floating', className = '' 
     if (isOpen && messages.length === 0) {
       const welcomeMessage: ChatMessage = {
         role: 'assistant',
-        content: `Hello! I'm Relo, your 24/7 AI relocation assistant. 👋
+        content: `Hello! I'm Relo, your 24/7 AI relocation assistant.
 
 Choose how you'd like to communicate:
 
-💬 **Text Chat** - Perfect for quick questions and detailed information
+**Text Chat** - Perfect for quick questions and detailed information
 **Voice Chat** - Natural conversation for in-depth consultations
 
 I can help with every aspect of your London relocation:
@@ -99,7 +99,7 @@ What would you like to know about relocating to London?`,
     setAudioTestStatus('testing')
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      console.log('🎤 Microphone test passed')
+      console.log('Microphone test passed')
       
       const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
       const oscillator = audioContext.createOscillator()
@@ -119,12 +119,12 @@ What would you like to know about relocating to London?`,
       
       stream.getTracks().forEach(track => track.stop())
       
-      console.log('🔊 Audio playback test passed')
+      console.log('Audio playback test passed')
       setAudioTestStatus('success')
       
       setTimeout(() => setAudioTestStatus('idle'), 3000)
     } catch (error) {
-      console.error('❌ Audio test failed:', error)
+      console.error('Audio test failed:', error)
       setAudioTestStatus('failed')
       setError(`Audio test failed: ${error}`)
       setTimeout(() => setAudioTestStatus('idle'), 3000)
@@ -150,9 +150,9 @@ What would you like to know about relocating to London?`,
 
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true })
-      console.log('✅ Microphone permission granted')
+      console.log('Microphone permission granted')
     } catch (permissionError) {
-      console.error('❌ Microphone permission denied:', permissionError)
+      console.error('Microphone permission denied:', permissionError)
       setError('Microphone access required. Please allow microphone permissions and try again.')
       setIsLoading(false)
       return
@@ -177,30 +177,30 @@ What would you like to know about relocating to London?`,
         setCallDuration(0)
         setMode('voice')
 
-        console.log('🔊 Using initialized Retell client:', retellClient)
+        console.log('Using initialized Retell client:', retellClient)
         
         retellClient.on('conversationStarted', () => {
-          console.log('🎙️ Conversation started - audio should be working now')
+          console.log('Conversation started - audio should be working now')
           setCallStatus('connected')
         })
 
         retellClient.on('conversationEnded', () => {
-          console.log('🔇 Conversation ended')
+          console.log('Conversation ended')
           setCallStatus('ended')
         })
 
         retellClient.on('error', (error: any) => {
-          console.error('❌ Retell Web Client error:', error)
+          console.error('Retell Web Client error:', error)
           setError(`Voice call error: ${error.message || error}`)
           setCallStatus('ended')
         })
 
         retellClient.on('update', (update: any) => {
-          console.log('📊 Retell update:', update)
+          console.log('Retell update:', update)
         })
 
         try {
-          console.log('🚀 Starting call with access token')
+          console.log('Starting call with access token')
           await retellClient.startCall({
             accessToken: data.accessToken,
             callId: data.callId,
@@ -208,7 +208,7 @@ What would you like to know about relocating to London?`,
             enableUpdate: true,
           })
         } catch (startError) {
-          console.error('❌ Failed to start call:', startError)
+          console.error('Failed to start call:', startError)
           setError(`Failed to start voice call: ${startError}`)
           setCallStatus('ended')
         }
@@ -218,7 +218,7 @@ What would you like to know about relocating to London?`,
         setError(data.error || 'Failed to start web call')
       }
     } catch (error) {
-      console.error('❌ Web call error:', error)
+      console.error('Web call error:', error)
       setError('Failed to initiate web call. Please try again.')
     } finally {
       setIsLoading(false)
@@ -361,7 +361,7 @@ What would you like to know about relocating to London?`,
                         mode === 'chat' ? 'bg-[#C9A24A] text-white shadow-sm' : 'text-white hover:text-white hover:bg-white/10'
                       }`}
                     >
-                      💬
+                      <MessageCircle className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => setMode('voice')}
@@ -484,8 +484,8 @@ What would you like to know about relocating to London?`,
                               {audioTestStatus === 'failed' && <VolumeX className="w-4 h-4" />}
                               {audioTestStatus === 'idle' && <Volume2 className="w-4 h-4" />}
                               {audioTestStatus === 'testing' ? 'Testing Audio...' : 
-                               audioTestStatus === 'success' ? 'Audio Test Passed ✓' :
-                               audioTestStatus === 'failed' ? 'Audio Test Failed ✗' :
+                               audioTestStatus === 'success' ? 'Audio Test Passed' :
+                               audioTestStatus === 'failed' ? 'Audio Test Failed' :
                                'Test Audio & Mic'}
                             </button>
 

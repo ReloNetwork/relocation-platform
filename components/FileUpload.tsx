@@ -192,11 +192,12 @@ export default function FileUpload({
   };
 
   const getFileIcon = (contentType: string) => {
-    if (contentType.startsWith('image/')) return '🖼️';
-    if (contentType === 'application/pdf') return '📄';
-    if (contentType.includes('word')) return '📝';
-    if (contentType.includes('excel') || contentType.includes('sheet')) return '📊';
-    return '📎';
+    // Return appropriate Lucide icon component or class name instead of emojis
+    if (contentType.startsWith('image/')) return 'File';
+    if (contentType === 'application/pdf') return 'File';
+    if (contentType.includes('word')) return 'File';
+    if (contentType.includes('excel') || contentType.includes('sheet')) return 'File';
+    return 'File';
   };
 
   return (

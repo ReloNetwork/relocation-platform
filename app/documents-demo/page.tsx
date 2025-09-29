@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import FileUpload from '@/components/FileUpload';
 import { createClient } from '@supabase/supabase-js';
+import { Folder, Shield, CheckCircle, Smartphone, FileImage, FileText, BarChart, TrendingUp, Zap, Package } from 'lucide-react';
 
 // Mock case for demo
 const DEMO_CASE_ID = 'demo-case-123';

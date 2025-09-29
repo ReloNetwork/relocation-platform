@@ -181,7 +181,7 @@ export default function TasksKanban({ caseId }: TasksKanbanProps) {
                     
                     {task.due_at && (
                       <div className="text-xs text-[#6B7280] flex items-center gap-1">
-                        <span>📅</span>
+                        <span>•</span>
                         <span>Due: {new Date(task.due_at).toLocaleDateString()}</span>
                       </div>
                     )}

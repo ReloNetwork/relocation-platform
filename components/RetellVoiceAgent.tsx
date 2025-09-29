@@ -23,6 +23,10 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
   const [textInput, setTextInput] = useState('')
   const [isTextLoading, setIsTextLoading] = useState(false)
   const [isDemoVoiceMode, setIsDemoVoiceMode] = useState(false)
+  const [freeQuestionsUsed, setFreeQuestionsUsed] = useState(0)
+  const [showUpgradePrompt, setShowUpgradePrompt] = useState(false)
+  
+  const FREE_QUESTION_LIMIT = 3
   
   const { retellClient, isLoading: clientLoading, error: clientError } = useRetellClient()
   const retellClientRef = useRef<any>(null)
@@ -117,9 +121,18 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
   const sendTextMessage = async () => {
     if (!textInput.trim() || isTextLoading) return
     
+    // Check free question limit
+    if (freeQuestionsUsed >= FREE_QUESTION_LIMIT) {
+      setShowUpgradePrompt(true)
+      return
+    }
+    
     const userMessage = textInput.trim()
     setTextInput('')
     setIsTextLoading(true)
+    
+    // Increment free questions used
+    setFreeQuestionsUsed(prev => prev + 1)
     
     // Add user message
     setMessages(prev => [...prev, {
@@ -180,9 +193,20 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
   // Start web call
   const startWebCall = async () => {
     console.log('🚀 startWebCall triggered')
+    
+    // Check free question limit for voice
+    if (freeQuestionsUsed >= FREE_QUESTION_LIMIT) {
+      setShowUpgradePrompt(true)
+      return
+    }
+    
     setMode('voice')
     setIsLoading(true)
     setError('')
+    
+    // Increment usage for voice calls
+    setFreeQuestionsUsed(prev => prev + 1)
+    
     console.log('📱 Mode set to voice, loading:', true)
 
     // Check if Retell client is available
@@ -447,12 +471,20 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
             </div>
 
             <div className="p-4">
-              {/* Debug info */}
-              <div className="text-xs text-gray-500 mb-2 space-y-1">
-                <div>Mode: {mode} | Call Status: {callStatus} | Demo: {isDemoVoiceMode.toString()}</div>
-                <div>Client Loading: {clientLoading.toString()} | Client Available: {!!retellClient}</div>
-                {clientError && <div className="text-red-500">Client Error: {clientError}</div>}
-                {error && <div className="text-red-500">Error: {error}</div>}
+              {/* Usage indicator */}
+              <div className="text-xs text-gray-600 mb-3 bg-amber-50 border border-amber-200 rounded-lg p-2">
+                <div className="flex items-center justify-between">
+                  <span>Free consultation: {freeQuestionsUsed}/{FREE_QUESTION_LIMIT} questions used</span>
+                  <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div 
+                      className="bg-amber-500 h-1.5 rounded-full transition-all duration-300" 
+                      style={{ width: `${(freeQuestionsUsed / FREE_QUESTION_LIMIT) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+                {freeQuestionsUsed >= FREE_QUESTION_LIMIT && (
+                  <div className="text-amber-700 font-medium mt-1">Upgrade for unlimited access to Relo</div>
+                )}
               </div>
               
               {/* Always show choice mode as default */}
@@ -462,10 +494,15 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                     <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Mic className="w-8 h-8 text-[#C9A24A]" />
                     </div>
-                    <h3 className="text-lg font-bold text-[#0B1B2B] mb-2">Speak with Relo</h3>
+                    <h3 className="text-lg font-bold text-[#0B1B2B] mb-2">Meet Relo</h3>
                     <p className="text-[#6B7280] text-sm mb-4">
-                      Get instant expert advice on your London relocation with our professional voice assistant
+                      Try our professional AI relocation assistant free! Get expert London advice with voice or text chat.
                     </p>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+                      <p className="text-blue-800 text-xs font-medium">
+                        Free trial: 3 questions to experience Relo's expertise. Full service clients get unlimited access included.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Chat Options */}
@@ -541,7 +578,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                         </div>
                         {isDemoVoiceMode && (
                           <div className="text-xs text-[#C9A24A] font-medium">
-                            🎭 Demo Voice Mode - Speak and I'll respond!
+                            Demo Voice Mode - Speak and I'll respond!
                           </div>
                         )}
                       </div>
@@ -649,6 +686,72 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
                   </button>
                 </div>
               )}
+            </div>
+          </div>
+        )}
+
+        {/* Upgrade Prompt Modal */}
+        {showUpgradePrompt && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60]">
+            <div className="bg-white rounded-xl shadow-2xl border border-[#E5E7EB] max-w-md mx-4 p-6">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Phone className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">Ready to Move with Relo?</h3>
+                <p className="text-[#6B7280] text-sm mb-6">
+                  You've experienced Relo's expertise! Unlock unlimited access and premium relocation services.
+                </p>
+
+                <div className="space-y-4">
+                  <div className="bg-[#F8F9FA] rounded-lg p-4 text-left">
+                    <div className="text-sm space-y-2">
+                      <div className="flex justify-between">
+                        <span className="text-[#6B7280]">Unlimited Relo Access</span>
+                        <span className="font-semibold text-[#0B1B2B]">£29/month</span>
+                      </div>
+                      <div className="text-xs text-[#6B7280]">
+                        • Unlimited voice & text consultations<br/>
+                        • Priority response times<br/>
+                        • Detailed relocation planning
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-[#C9A24A]/10 to-[#B8923D]/10 rounded-lg p-4 text-left border border-[#C9A24A]/30">
+                    <div className="text-sm space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold text-[#0B1B2B]">Full Relocation Service</span>
+                        <span className="text-xs bg-[#C9A24A] text-white px-2 py-1 rounded">POPULAR</span>
+                      </div>
+                      <div className="text-xs text-[#6B7280] mb-2">
+                        • Everything above INCLUDED for free<br/>
+                        • Personal relocation manager<br/>
+                        • Property search & viewings<br/>
+                        • Visa & legal assistance<br/>
+                        • School placement support<br/>
+                        • Banking & utilities setup
+                      </div>
+                      <div className="text-sm font-semibold text-[#0B1B2B]">From £1,500 - Full service</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 mt-6">
+                  <button
+                    onClick={() => setShowUpgradePrompt(false)}
+                    className="flex-1 px-4 py-2 text-[#6B7280] hover:text-[#0B1B2B] transition-colors text-sm"
+                  >
+                    Maybe Later
+                  </button>
+                  <button
+                    onClick={() => window.open('/executive-intake', '_blank')}
+                    className="flex-1 px-4 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg transition-colors text-sm font-medium"
+                  >
+                    Explore Services
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}

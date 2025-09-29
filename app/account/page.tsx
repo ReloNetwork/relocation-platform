@@ -212,10 +212,10 @@ export default function AccountPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button className="w-full justify-start">
-                  📅 Schedule Appointment
+                  Schedule Appointment
                 </Button>
                 <Button variant="outline" className="w-full justify-start">
-                  📄 Upload Documents
+                  Upload Documents
                 </Button>
                 <a
                   href="/ask"
