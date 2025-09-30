@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
               <li>We'll assess your needs and provide a custom solution</li>
             </ul>
             
-            <p>If you need to reschedule, call <strong>+44 20 7946 0958</strong></p>
+            <p>If you need to reschedule, call <strong>+44 20 3974 1239</strong></p>
           `
         })
 

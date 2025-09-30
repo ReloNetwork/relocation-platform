@@ -151,7 +151,7 @@ function generateReceiptHtml(session: Stripe.Checkout.Session): string {
         </div>
         
         <h3>Contact Information</h3>
-        <p><strong>Emergency Hotline:</strong> +44 20 7946 0958</p>
+        <p><strong>Emergency Hotline:</strong> +44 20 3974 1239</p>
         <p><strong>Email:</strong> emergency@therelonetwork.com</p>
         <p><strong>Address:</strong> One Canada Square, Canary Wharf, London E14 5AB</p>
     </div>

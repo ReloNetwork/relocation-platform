@@ -244,7 +244,7 @@ function DirectoryWelcomePageContent() {
               <Phone className="h-8 w-8 text-[#C9A24A] mb-4" />
               <h3 className="font-semibold text-[#0B1220] mb-2">Directory Support</h3>
               <p className="text-[#6B7280] mb-2">Questions about your access or need help finding partners?</p>
-              <p className="font-semibold text-[#0B1220]">+44 20 7946 0958</p>
+              <p className="font-semibold text-[#0B1220]">+44 20 3974 1239</p>
               <p className="text-sm text-[#6B7280]">24/7 support available</p>
             </div>
             

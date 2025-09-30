@@ -273,7 +273,7 @@ function SimplePaymentPageContent() {
           <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-6 text-center">
             <h2 className="text-2xl font-bold text-white mb-4">Emergency Hotline</h2>
             <p className="text-red-200 mb-4">Need immediate assistance?</p>
-            <div className="text-3xl font-bold text-red-300 mb-2">+44 20 7946 0958</div>
+            <div className="text-3xl font-bold text-red-300 mb-2">+44 20 3974 1239</div>
             <p className="text-red-200 text-sm">Available 24/7 for emergency relocations</p>
             <p className="text-red-200 text-sm mt-2">Reference ID: {requestId}</p>
           </div>

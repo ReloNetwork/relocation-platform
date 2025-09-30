@@ -139,7 +139,7 @@ When you book here, it appears instantly on your concierge calendar
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-[#C9A24A]">📞</span>
-                    <span className="text-[#6B7280]">+44 20 7946 0958</span>
+                    <span className="text-[#6B7280]">+44 20 3974 1239</span>
                   </div>
                 </div>
               </CardContent>

@@ -168,8 +168,7 @@ export const luxuryLocalBusinessSchema: WithContext<LocalBusiness> = {
   
   // Opening Hours (Luxury Service Standards)
   openingHours: [
-    'Mo-Fr 09:00-18:00',
-    'Sa 10:00-16:00'
+    'Monday-Friday 09:00-18:00'
   ],
   
   // Service Categories

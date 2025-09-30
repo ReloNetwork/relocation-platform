@@ -6,14 +6,24 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get('code')
   const next = searchParams.get('next') ?? '/dashboard'
 
-  console.log('Auth callback received:', { code: !!code, origin, next })
+  console.log('Auth callback received:', { 
+    code: !!code, 
+    origin, 
+    next, 
+    fullUrl: request.url,
+    searchParams: Object.fromEntries(searchParams.entries())
+  })
 
   if (code) {
     const supabase = createClient()
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
     
-    if (!error && data?.user) {
+    if (!error && data?.user && data?.session) {
       console.log('Auth successful for user:', data.user.email)
+      console.log('Session established:', { 
+        sessionId: data.session.access_token.substring(0, 10) + '...', 
+        expiresAt: data.session.expires_at 
+      })
       
       // Auto-create user profile and organization if needed
       try {
@@ -37,9 +47,16 @@ export async function GET(request: NextRequest) {
       }
 
       console.log('Redirecting to:', redirectUrl)
-      return NextResponse.redirect(redirectUrl)
+      
+      // Create response with redirect and ensure cookies are set
+      const response = NextResponse.redirect(redirectUrl)
+      
+      // Ensure auth cookies are properly set by refreshing the session
+      await supabase.auth.getSession()
+      
+      return response
     } else {
-      console.error('Auth exchange failed:', error)
+      console.error('Auth exchange failed:', { error, hasUser: !!data?.user, hasSession: !!data?.session })
     }
   }
 

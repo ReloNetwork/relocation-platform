@@ -97,7 +97,7 @@ export default function PartnerOnboardingPage() {
       }
     } catch (error) {
       console.error('Error submitting onboarding:', error)
-      alert('Error submitting application. Please try again or call +44 20 7946 0958')
+      alert('Error submitting application. Please try again or call +44 20 3974 1239')
     } finally {
       setLoading(false)
     }
@@ -535,7 +535,7 @@ export default function PartnerOnboardingPage() {
 
             <div className="text-center mt-6">
               <p className="text-sm text-[#6B7280]">
-                Questions? Call our partnership team: <span className="font-semibold text-[#0B1220]">+44 20 7946 0958</span>
+                Questions? Call our partnership team: <span className="font-semibold text-[#0B1220]">+44 20 3974 1239</span>
               </p>
             </div>
           </div>

@@ -283,8 +283,7 @@ export const partnershipContactSchema: SchemaType = {
     longitude: -0.0185
   },
   openingHours: [
-    'Mo-Fr 09:00-18:00',
-    'Sa 10:00-16:00'
+    'Monday-Friday 09:00-18:00'
   ],
   contactPoint: [
     {

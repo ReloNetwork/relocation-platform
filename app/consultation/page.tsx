@@ -78,7 +78,7 @@ export default function PremiumConsultationPage() {
       }
     } catch (error) {
       console.error('Error submitting consultation:', error)
-      alert('Error submitting consultation request. Please try again or call +44 20 7946 0958')
+      alert('Error submitting consultation request. Please try again or call +44 20 3974 1239')
     } finally {
       setLoading(false)
     }
@@ -361,7 +361,7 @@ export default function PremiumConsultationPage() {
 
             <div className="text-center mt-6">
               <p className="text-sm text-[#6B7280]">
-                Prefer to speak immediately? Call: <span className="font-semibold text-[#0B1220]">+44 20 7946 0958</span>
+                Prefer to speak immediately? Call: <span className="font-semibold text-[#0B1220]">+44 20 3974 1239</span>
               </p>
             </div>
           </div>

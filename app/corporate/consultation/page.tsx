@@ -195,7 +195,7 @@ function ConsultationContent() {
             <p className="text-red-200 mb-6">
               For immediate assistance, call our 24/7 emergency hotline
             </p>
-            <div className="text-3xl font-bold text-red-300 mb-2">+44 20 7946 0958</div>
+            <div className="text-3xl font-bold text-red-300 mb-2">+44 20 3974 1239</div>
             <p className="text-red-200 text-sm">
               Reference your request ID: {requestId}
             </p>

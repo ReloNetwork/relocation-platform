@@ -115,7 +115,7 @@ export default function CorporateEmergencyForm() {
                 <li>• You'll receive an email confirmation within 5 minutes</li>
                 <li>• Our emergency response team will call you within 2 hours</li>
                 <li>• We'll provide a detailed relocation plan within 24 hours</li>
-                <li>• For immediate assistance: +44 20 7946 0958</li>
+                <li>• For immediate assistance: +44 20 3974 1239</li>
               </ul>
             </div>
           </div>
