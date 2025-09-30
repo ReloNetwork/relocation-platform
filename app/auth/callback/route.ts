@@ -29,9 +29,12 @@ export async function GET(request: NextRequest) {
       // Skip organization creation - do it later in dashboard
       // Focus on getting the redirect to work first
       
-      // Simplified redirect logic - always redirect to dashboard
-      const redirectUrl = `${origin}/dashboard`
-      console.log('🎯 Redirecting to dashboard:', redirectUrl)
+      // HARDCODE dashboard redirect to avoid any URL issues
+      const isDev = process.env.NODE_ENV === 'development'
+      const redirectUrl = isDev 
+        ? 'http://localhost:3000/dashboard'
+        : 'https://therelonetwork.com/dashboard'
+      console.log('🎯 HARDCODED redirect to dashboard:', redirectUrl)
       
       // Create response with redirect
       const response = NextResponse.redirect(redirectUrl)

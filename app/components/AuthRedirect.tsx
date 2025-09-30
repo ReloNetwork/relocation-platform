@@ -20,7 +20,14 @@ export default function AuthRedirect() {
       
       if (user && !error) {
         console.log('✅ AuthRedirect: User authenticated, redirecting to dashboard immediately')
-        router.replace('/dashboard') // Use replace instead of push
+        // Force immediate redirect with window.location as backup
+        router.replace('/dashboard')
+        setTimeout(() => {
+          if (window.location.pathname === '/') {
+            console.log('🚨 Router failed, using window.location.href')
+            window.location.href = '/dashboard'
+          }
+        }, 500)
       } else {
         console.log('❌ AuthRedirect: No authenticated user found')
       }
@@ -33,6 +40,12 @@ export default function AuthRedirect() {
       if (session?.user) {
         console.log('🎯 AuthRedirect: User has session, redirecting to dashboard')
         router.replace('/dashboard')
+        setTimeout(() => {
+          if (window.location.pathname === '/') {
+            console.log('🚨 Auth state router failed, using window.location.href')
+            window.location.href = '/dashboard'
+          }
+        }, 500)
       }
     })
 
