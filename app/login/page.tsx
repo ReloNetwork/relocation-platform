@@ -20,6 +20,11 @@ export default function LoginPage() {
     setMessage('')
 
     try {
+      console.log('Environment check:', {
+        url: process.env.NEXT_PUBLIC_SUPABASE_URL,
+        key: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'present' : 'missing'
+      })
+      
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {

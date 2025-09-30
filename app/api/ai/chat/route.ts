@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Simple server-side analytics tracking
+const trackServerEvent = (event: string, properties: any = {}) => {
+  console.log('📊 Server Analytics Event:', {
+    event,
+    timestamp: new Date().toISOString(),
+    ...properties
+  })
+}
+
 interface ChatMessage {
   role: 'user' | 'assistant' | 'system'
   content: string
@@ -356,6 +365,17 @@ export async function POST(request: NextRequest) {
         { error: 'Messages array is required' },
         { status: 400 }
       )
+    }
+
+    // Track AI interaction for analytics
+    const lastMessage = messages[messages.length - 1]
+    if (lastMessage?.role === 'user') {
+      trackServerEvent('AI Chat Interaction', {
+        sessionId,
+        messageLength: lastMessage.content.length,
+        messageCount: messages.length,
+        context: context || {}
+      })
     }
 
     // Generate AI response

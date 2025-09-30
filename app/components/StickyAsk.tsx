@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import RetellVoiceAgent from '@/components/RetellVoiceAgent';
+import ErrorBoundary, { AIChatErrorFallback } from '@/components/ErrorBoundary';
 
 export default function StickyAsk() {
   const [show, setShow] = useState(false);
@@ -31,5 +32,9 @@ export default function StickyAsk() {
 
   if (!show) return null;
 
-  return <RetellVoiceAgent variant="floating" />;
+  return (
+    <ErrorBoundary fallback={AIChatErrorFallback}>
+      <RetellVoiceAgent variant="floating" />
+    </ErrorBoundary>
+  );
 }
