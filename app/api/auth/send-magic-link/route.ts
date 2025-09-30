@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       if (error.message.includes('email') || error.message.includes('SMTP')) {
         // For now, return success - you'll need to manually add users or configure SMTP
         return NextResponse.json({ 
-          message: 'Magic link request received. Please contact support@askrelo.com for manual account setup.',
+          message: 'Magic link request received. Please contact hello@therelonetwork.com for manual account setup.',
           requiresManualSetup: true 
         })
       }

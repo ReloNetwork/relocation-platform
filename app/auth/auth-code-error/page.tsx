@@ -38,7 +38,7 @@ export default function AuthCodeError() {
                   <p className="text-sm text-[#6B7280]">
                     Need help?{' '}
                     <a 
-                      href="mailto:support@askrelo.com" 
+                      href="mailto:hello@therelonetwork.com" 
                       className="text-[#0B1B2B] hover:underline"
                     >
                       Contact Support

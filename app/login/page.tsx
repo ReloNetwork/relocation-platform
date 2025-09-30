@@ -121,7 +121,7 @@ export default function LoginPage() {
               <div className="bg-amber-50 border border-amber-200 rounded-md p-3">
                 <p className="text-sm text-amber-700 text-center">
                   <strong>Note:</strong> If you experience any login issues, please contact support at{' '}
-                  <a href="mailto:support@askrelo.com" className="underline">support@askrelo.com</a>
+                  <a href="mailto:hello@therelonetwork.com" className="underline">hello@therelonetwork.com</a>
                 </p>
               </div>
 

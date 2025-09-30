@@ -18,36 +18,37 @@ export default function TermsPage() {
             Terms of Service
           </h1>
           <p className="text-xl text-[#6B7280]">
-            Executive Intake Service - Refunds, Cancellations & Service Terms
+            Relo Network - Terms of Service for All Services
           </p>
         </div>
 
         <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#E5E7EB] space-y-8">
           
-          {/* Executive Intake Service Terms */}
+          {/* General Service Terms */}
           <section>
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
               <Clock className="w-6 h-6 text-[#C9A24A]" />
-              Executive Intake Service
+              Our Services
             </h2>
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Service Includes</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Relo Network Services</h3>
                 <ul className="space-y-2 text-[#6B7280]">
-                  <li>• 60-minute strategy call (scheduled within 24 hours)</li>
-                  <li>• Bespoke area shortlist based on your requirements</li>
-                  <li>• 3 warm introductions to vetted partners</li>
-                  <li>• 30-day execution window with concierge support</li>
-                  <li>• Credit toward any future packages</li>
+                  <li>• Executive Intake Service: Strategy calls and bespoke relocation planning</li>
+                  <li>• Luxury Relocation Packages: Comprehensive end-to-end services</li>
+                  <li>• AI-Powered Assistance: 24/7 Relo AI support and guidance</li>
+                  <li>• Partner Network Access: Connections to vetted service providers</li>
+                  <li>• Ongoing Concierge Support: Continuous assistance throughout your journey</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Service Guarantee</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Service Commitment</h3>
                 <p className="text-[#6B7280]">
-                  We guarantee 3 warm introductions within 7 days of your strategy call. If we fail to deliver, 
-                  we will extend your concierge window free of charge.
+                  Relo Network is committed to delivering exceptional relocation services with transparency, 
+                  professionalism, and attention to detail. All services are provided according to the specific 
+                  package terms agreed upon booking.
                 </p>
               </div>
             </div>
@@ -163,7 +164,7 @@ export default function TermsPage() {
               </p>
               <div className="space-y-2 text-[#6B7280]">
                 <div><strong>Phone:</strong> +44 20 7946 0958</div>
-                <div><strong>Email:</strong> support@relo-network.com</div>
+                <div><strong>Email:</strong> hello@therelonetwork.com</div>
                 <div><strong>Hours:</strong> Monday-Friday 9:00-18:00, Saturday 10:00-16:00</div>
               </div>
             </div>
