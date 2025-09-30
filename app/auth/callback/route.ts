@@ -4,26 +4,80 @@ import { createClient } from '@/lib/supabase/server'
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
-  // if "next" is in param, use it as the redirect URL
   const next = searchParams.get('next') ?? '/dashboard'
+
+  console.log('Auth callback received:', { code: !!code, origin, next })
 
   if (code) {
     const supabase = createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (!error) {
-      const forwardedHost = request.headers.get('x-forwarded-host') // original origin before load balancer
-      const isLocalEnv = process.env.NODE_ENV === 'development'
-      if (isLocalEnv) {
-        // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
-        return NextResponse.redirect(`${origin}${next}`)
-      } else if (forwardedHost) {
-        return NextResponse.redirect(`https://${forwardedHost}${next}`)
-      } else {
-        return NextResponse.redirect(`${origin}${next}`)
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+    
+    if (!error && data?.user) {
+      console.log('Auth successful for user:', data.user.email)
+      
+      // Auto-create user profile and organization if needed
+      try {
+        await ensureUserProfile(supabase, data.user)
+      } catch (profileError) {
+        console.error('Profile creation error:', profileError)
+        // Continue anyway - user can still access basic features
       }
+
+      // Determine redirect URL
+      const forwardedHost = request.headers.get('x-forwarded-host')
+      const isLocalEnv = process.env.NODE_ENV === 'development'
+      
+      let redirectUrl = ''
+      if (isLocalEnv) {
+        redirectUrl = `${origin}${next}`
+      } else if (forwardedHost) {
+        redirectUrl = `https://${forwardedHost}${next}`
+      } else {
+        redirectUrl = `${origin}${next}`
+      }
+
+      console.log('Redirecting to:', redirectUrl)
+      return NextResponse.redirect(redirectUrl)
+    } else {
+      console.error('Auth exchange failed:', error)
     }
   }
 
   // return the user to an error page with instructions
+  console.log('Auth failed, redirecting to error page')
   return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+}
+
+// Helper function to ensure user has required profile data
+async function ensureUserProfile(supabase: any, user: any) {
+  // Check if user already has an organization
+  const { data: existingMembership } = await supabase
+    .from('org_memberships')
+    .select('org_id')
+    .eq('user_id', user.id)
+    .single()
+
+  if (!existingMembership) {
+    // Create organization for new user
+    const { data: org, error: orgError } = await supabase
+      .from('orgs')
+      .insert({
+        name: `${user.email?.split('@')[0] || 'Client'} Organization`
+      })
+      .select()
+      .single()
+
+    if (!orgError && org) {
+      // Add user to organization
+      await supabase
+        .from('org_memberships')
+        .insert({
+          user_id: user.id,
+          org_id: org.id,
+          role: 'client'
+        })
+
+      console.log('Created org and membership for user:', user.email)
+    }
+  }
 }
