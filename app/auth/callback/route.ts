@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
-  const next = searchParams.get('next') ?? '/dashboard'
+  const next = '/dashboard' // Always redirect to dashboard after successful auth
 
   console.log('Auth callback received:', { 
     code: !!code, 
@@ -67,14 +67,20 @@ export async function GET(request: NextRequest) {
 
 // Helper function to ensure user has required profile data
 async function ensureUserProfile(supabase: any, user: any) {
+  console.log('Checking organization for user:', user.email)
+  
   // Check if user already has an organization
-  const { data: existingMembership } = await supabase
+  const { data: existingMembership, error: membershipError } = await supabase
     .from('org_memberships')
     .select('org_id')
     .eq('user_id', user.id)
     .single()
 
+  console.log('Existing membership check:', { existingMembership, membershipError })
+
   if (!existingMembership) {
+    console.log('Creating new organization for user:', user.email)
+    
     // Create organization for new user
     const { data: org, error: orgError } = await supabase
       .from('orgs')
@@ -84,17 +90,33 @@ async function ensureUserProfile(supabase: any, user: any) {
       .select()
       .single()
 
+    console.log('Organization creation result:', { org, orgError })
+
     if (!orgError && org) {
       // Add user to organization
-      await supabase
+      const { data: membership, error: membershipInsertError } = await supabase
         .from('org_memberships')
         .insert({
           user_id: user.id,
           org_id: org.id,
           role: 'client'
         })
+        .select()
+        .single()
 
-      console.log('Created org and membership for user:', user.email)
+      console.log('Membership creation result:', { membership, membershipInsertError })
+
+      if (!membershipInsertError) {
+        console.log('Successfully created org and membership for user:', user.email)
+      } else {
+        console.error('Failed to create membership:', membershipInsertError)
+        throw new Error(`Failed to create user membership: ${membershipInsertError.message}`)
+      }
+    } else {
+      console.error('Failed to create organization:', orgError)
+      throw new Error(`Failed to create organization: ${orgError?.message}`)
     }
+  } else {
+    console.log('User already has organization membership')
   }
 }

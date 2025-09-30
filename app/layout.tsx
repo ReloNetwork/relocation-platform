@@ -126,7 +126,7 @@ export default function RootLayout({
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+44-20-7946-0958",
+                "telephone": "+44-20-3974-1239",
                 "contactType": "customer support",
                 "areaServed": "GB",
                 "availableLanguage": ["English"]

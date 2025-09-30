@@ -7,7 +7,10 @@ import type { Task, Appointment, MoveCase, Organization } from '@/types/db'
 
 export default async function DashboardPage() {
   const user = await requireUser()
+  console.log('Dashboard: User authenticated:', user.email)
+  
   const { userId, orgId, organization } = await requireUserWithOrg(user.id)
+  console.log('Dashboard: User has organization:', orgId)
   
   const supabase = createClient()
 
