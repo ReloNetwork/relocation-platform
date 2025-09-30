@@ -25,10 +25,17 @@ export default function LoginPage() {
         key: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'present' : 'missing'
       })
       
+      // HARDCODE the redirect URL to force Supabase to use our callback
+      const redirectUrl = window.location.hostname === 'localhost' 
+        ? 'http://localhost:3000/auth/callback?next=/dashboard'
+        : 'https://therelonetwork.com/auth/callback?next=/dashboard'
+      
+      console.log('🔗 Magic link will redirect to:', redirectUrl)
+      
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=/dashboard`,
+          emailRedirectTo: redirectUrl,
           shouldCreateUser: true
         }
       })
