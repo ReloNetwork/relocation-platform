@@ -20,44 +20,28 @@ export async function GET(request: NextRequest) {
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
     
     if (!error && data?.user && data?.session) {
-      console.log('Auth successful for user:', data.user.email)
-      console.log('Session established:', { 
+      console.log('🔐 Auth successful for user:', data.user.email)
+      console.log('📋 Session established:', { 
         sessionId: data.session.access_token.substring(0, 10) + '...', 
         expiresAt: data.session.expires_at 
       })
       
-      // Auto-create user profile and organization if needed
-      try {
-        await ensureUserProfile(supabase, data.user)
-      } catch (profileError) {
-        console.error('Profile creation error:', profileError)
-        // Continue anyway - user can still access basic features
-      }
-
-      // Determine redirect URL
-      const forwardedHost = request.headers.get('x-forwarded-host')
-      const isLocalEnv = process.env.NODE_ENV === 'development'
+      // Skip organization creation - do it later in dashboard
+      // Focus on getting the redirect to work first
       
-      let redirectUrl = ''
-      if (isLocalEnv) {
-        redirectUrl = `${origin}${next}`
-      } else if (forwardedHost) {
-        redirectUrl = `https://${forwardedHost}${next}`
-      } else {
-        redirectUrl = `${origin}${next}`
-      }
-
-      console.log('Redirecting to:', redirectUrl)
+      // Simplified redirect logic - always redirect to dashboard
+      const redirectUrl = `${origin}/dashboard`
+      console.log('🎯 Redirecting to dashboard:', redirectUrl)
       
-      // Create response with redirect and ensure cookies are set
+      // Create response with redirect
       const response = NextResponse.redirect(redirectUrl)
       
-      // Ensure auth cookies are properly set by refreshing the session
+      // Ensure auth cookies are properly set
       await supabase.auth.getSession()
       
       return response
     } else {
-      console.error('Auth exchange failed:', { error, hasUser: !!data?.user, hasSession: !!data?.session })
+      console.error('❌ Auth exchange failed:', { error, hasUser: !!data?.user, hasSession: !!data?.session })
     }
   }
 

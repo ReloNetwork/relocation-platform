@@ -8,37 +8,41 @@ export default function AuthRedirect() {
   const router = useRouter()
 
   useEffect(() => {
+    console.log('🚀 AuthRedirect: Component mounted')
     const supabase = createClient()
     
     // Check if user just authenticated
     const checkAuthAndRedirect = async () => {
+      console.log('🔍 AuthRedirect: Checking auth state...')
       const { data: { user }, error } = await supabase.auth.getUser()
       
+      console.log('👤 AuthRedirect: User check result:', { hasUser: !!user, error })
+      
       if (user && !error) {
-        console.log('AuthRedirect: User authenticated, redirecting to dashboard')
-        // Small delay to ensure page is loaded
-        setTimeout(() => {
-          router.push('/dashboard')
-        }, 100)
+        console.log('✅ AuthRedirect: User authenticated, redirecting to dashboard immediately')
+        router.replace('/dashboard') // Use replace instead of push
+      } else {
+        console.log('❌ AuthRedirect: No authenticated user found')
       }
     }
 
     // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('AuthRedirect: Auth state changed:', event, !!session)
+      console.log('🔄 AuthRedirect: Auth state changed:', event, !!session)
       
-      if (event === 'SIGNED_IN' && session) {
-        console.log('AuthRedirect: User signed in, redirecting to dashboard')
-        setTimeout(() => {
-          router.push('/dashboard')
-        }, 100)
+      if (session?.user) {
+        console.log('🎯 AuthRedirect: User has session, redirecting to dashboard')
+        router.replace('/dashboard')
       }
     })
 
-    // Check current auth state
+    // Check current auth state immediately
     checkAuthAndRedirect()
 
-    return () => subscription.unsubscribe()
+    return () => {
+      console.log('🧹 AuthRedirect: Cleanup subscription')
+      subscription.unsubscribe()
+    }
   }, [router])
 
   return null // This component doesn't render anything
