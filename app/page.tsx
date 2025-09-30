@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
 import NewsletterSignup from '../components/NewsletterSignup'
+import AuthRedirect from './components/AuthRedirect'
 import { getAllEnhancedSchemas } from '../lib/seo/enhanced-schemas'
 import { getAllHomepageSchemas } from '../lib/seo/homepage-schemas'
 import { getAICitationSchemas, getCommunityEngagementSchema } from '../lib/seo/ai-citation-schemas'
@@ -141,6 +142,7 @@ export default function HomePage() {
   
   return (
     <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden" showFooter={false}>
+      <AuthRedirect />
       {/* Enhanced Structured Data for AI Citations */}
       {schemas.map((schema, index) => (
         <script
