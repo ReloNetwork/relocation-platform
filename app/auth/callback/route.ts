@@ -11,7 +11,8 @@ export async function GET(request: NextRequest) {
     origin, 
     next, 
     fullUrl: request.url,
-    searchParams: Object.fromEntries(searchParams.entries())
+    searchParams: Object.fromEntries(searchParams.entries()),
+    allParams: Array.from(searchParams.entries())
   })
 
   if (code) {
