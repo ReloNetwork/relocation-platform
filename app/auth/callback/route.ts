@@ -6,11 +6,15 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get('code')
   const next = searchParams.get('next') ?? '/dashboard'
 
-  console.log('Auth callback received:', { 
-    code: !!code, 
+  console.log('🔥 AUTH CALLBACK DEBUG:', { 
+    code: code ? code.substring(0, 20) + '...' : null,
+    codeExists: !!code,
     origin, 
     next, 
     fullUrl: request.url,
+    host: request.headers.get('host'),
+    forwardedHost: request.headers.get('x-forwarded-host'),
+    userAgent: request.headers.get('user-agent')?.substring(0, 50),
     searchParams: Object.fromEntries(searchParams.entries()),
     allParams: Array.from(searchParams.entries())
   })
@@ -67,7 +71,13 @@ export async function GET(request: NextRequest) {
   }
 
   // return the user to an error page with instructions
-  console.log('Auth failed, redirecting to error page')
+  console.log('❌ AUTH COMPLETELY FAILED - No code received or code exchange failed')
+  console.log('📊 Final state:', {
+    hadCode: !!code,
+    url: request.url,
+    origin,
+    timestamp: new Date().toISOString()
+  })
   return NextResponse.redirect(`${origin}/auth/auth-code-error`)
 }
 
