@@ -22,6 +22,7 @@ export default function GlobalNavigationFixed() {
     { name: 'Home', href: '/' },
     { name: 'Directory', href: '/directory' },
     { name: 'Partners', href: '/partners' },
+    { name: 'Dashboard', href: '/demo-dashboard' },
     { name: 'Relo News', href: '/newsletter' },
   ]
 

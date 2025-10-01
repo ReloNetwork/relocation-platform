@@ -1,7 +1,7 @@
 'use client'
 import Layout from '@/components/Layout'
 import { useState } from 'react'
-import { ExternalLink, Star, Users, Clock, MapPin, CheckCircle } from 'lucide-react'
+import { ExternalLink, Star, Users, Clock, MapPin, CheckCircle, GraduationCap, Home, Zap, Building2, Scale, Heart, UserCheck, ExternalLinkIcon } from 'lucide-react'
 
 export default function DemoDashboard() {
   const [tasks, setTasks] = useState([
@@ -68,6 +68,11 @@ export default function DemoDashboard() {
   ])
 
   const [selectedTaskForPartners, setSelectedTaskForPartners] = useState(null)
+  
+  const connectWithPartners = (taskType: string) => {
+    // In a real app, this would redirect to partner connection flow
+    alert(`Connecting you with ${taskType} partners. This would redirect to the partner selection and booking interface.`)
+  }
 
   const partnerServices = {
     education: [
@@ -257,8 +262,9 @@ export default function DemoDashboard() {
                                 {/* Partner Services Integration */}
                                 <div className="pt-2 border-t border-gray-100">
                                   <div className="flex items-center justify-between">
-                                    <div className="text-xs text-[#C9A24A] font-medium">
-                                      🤝 {task.suggestedPartners?.length || 0} Partner Services
+                                    <div className="text-xs text-[#C9A24A] font-medium flex items-center gap-1">
+                                      <UserCheck className="w-3 h-3" />
+                                      {task.suggestedPartners?.length || 0} Partner Services
                                     </div>
                                     <button
                                       onClick={() => setSelectedTaskForPartners(selectedTaskForPartners === task.id ? null : task.id)}
@@ -287,7 +293,11 @@ export default function DemoDashboard() {
                                           </div>
                                         ))}
                                       </div>
-                                      <button className="w-full mt-2 px-2 py-1 text-xs bg-[#0B1B2B] text-[#C9A24A] rounded hover:bg-[#0B1B2B]/90">
+                                      <button 
+                                        onClick={() => connectWithPartners(task.partnerType)}
+                                        className="w-full mt-2 px-2 py-1 text-xs bg-[#0B1B2B] text-[#C9A24A] rounded hover:bg-[#0B1B2B]/90 flex items-center justify-center gap-1"
+                                      >
+                                        <ExternalLinkIcon className="w-3 h-3" />
                                         Connect with Partners
                                       </button>
                                     </div>
@@ -360,7 +370,10 @@ export default function DemoDashboard() {
 
               {/* Partner Services Network */}
               <div className="bg-white rounded-xl p-6 shadow-sm border border-[#0B1B2B]/10 mb-6">
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">🤝 Partner Services Network</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4 flex items-center gap-2">
+                  <UserCheck className="w-5 h-5 text-[#C9A24A]" />
+                  Partner Services Network
+                </h3>
                 <p className="text-sm text-[#6B7280] mb-4">
                   Access our curated network of verified service providers to streamline your relocation.
                 </p>
@@ -370,12 +383,12 @@ export default function DemoDashboard() {
                     <div key={category} className="border border-[#E5E7EB] rounded-lg p-3">
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-medium text-[#0B1B2B] capitalize flex items-center gap-2">
-                          {category === 'education' && '🎓'}
-                          {category === 'property' && '🏠'}
-                          {category === 'utilities' && '⚡'}
-                          {category === 'banking' && '🏦'}
-                          {category === 'legal' && '⚖️'}
-                          {category === 'healthcare' && '🏥'}
+                          {category === 'education' && <GraduationCap className="w-4 h-4 text-[#C9A24A]" />}
+                          {category === 'property' && <Home className="w-4 h-4 text-[#C9A24A]" />}
+                          {category === 'utilities' && <Zap className="w-4 h-4 text-[#C9A24A]" />}
+                          {category === 'banking' && <Building2 className="w-4 h-4 text-[#C9A24A]" />}
+                          {category === 'legal' && <Scale className="w-4 h-4 text-[#C9A24A]" />}
+                          {category === 'healthcare' && <Heart className="w-4 h-4 text-[#C9A24A]" />}
                           {category.replace(/([A-Z])/g, ' $1').trim()}
                         </h4>
                         <span className="text-xs bg-[#C9A24A]/10 text-[#C9A24A] px-2 py-1 rounded">
@@ -383,11 +396,17 @@ export default function DemoDashboard() {
                         </span>
                       </div>
                       
-                      <div className="text-xs text-[#6B7280] mb-2">
-                        Top Partner: {partners[0].name} ({partners[0].rating}★)
+                      <div className="text-xs text-[#6B7280] mb-2 flex items-center gap-1">
+                        Top Partner: {partners[0].name} 
+                        <Star className="w-3 h-3 text-yellow-400 fill-current" />
+                        {partners[0].rating}
                       </div>
                       
-                      <button className="w-full text-xs bg-[#0B1B2B] text-[#C9A24A] px-3 py-1 rounded hover:bg-[#0B1B2B]/90 transition-colors">
+                      <button 
+                        onClick={() => connectWithPartners(category)}
+                        className="w-full text-xs bg-[#0B1B2B] text-[#C9A24A] px-3 py-1 rounded hover:bg-[#0B1B2B]/90 transition-colors flex items-center justify-center gap-1"
+                      >
+                        <ExternalLinkIcon className="w-3 h-3" />
                         View All {category.charAt(0).toUpperCase() + category.slice(1)} Partners
                       </button>
                     </div>
@@ -400,10 +419,22 @@ export default function DemoDashboard() {
                     <span className="text-sm font-medium text-[#0B1B2B]">Premium Partnership Benefits</span>
                   </div>
                   <ul className="text-xs text-[#6B7280] space-y-1">
-                    <li>• Verified & vetted service providers</li>
-                    <li>• Exclusive client discounts</li>
-                    <li>• Direct coordination with Relo team</li>
-                    <li>• 24/7 priority support</li>
+                    <li className="flex items-center gap-1">
+                      <CheckCircle className="w-3 h-3 text-[#C9A24A]" />
+                      Verified & vetted service providers
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <CheckCircle className="w-3 h-3 text-[#C9A24A]" />
+                      Exclusive client discounts
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <CheckCircle className="w-3 h-3 text-[#C9A24A]" />
+                      Direct coordination with Relo team
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <CheckCircle className="w-3 h-3 text-[#C9A24A]" />
+                      24/7 priority support
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -429,7 +460,8 @@ export default function DemoDashboard() {
                   <p className="text-xs text-blue-700">
                     Your dedicated concierge is monitoring your case and coordinating with all partner services.
                   </p>
-                  <button className="w-full mt-2 text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+                  <button className="w-full mt-2 text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 flex items-center justify-center gap-1">
+                    <Users className="w-3 h-3" />
                     Message Concierge
                   </button>
                 </div>
