@@ -38,6 +38,20 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
+  // Listen for openVoiceWidget event from navigation
+  useEffect(() => {
+    const handleOpenVoiceWidget = () => {
+      setIsOpen(true)
+      setMode('choice')
+    }
+
+    window.addEventListener('openVoiceWidget', handleOpenVoiceWidget)
+    
+    return () => {
+      window.removeEventListener('openVoiceWidget', handleOpenVoiceWidget)
+    }
+  }, [])
+
   // Timer for call duration
   useEffect(() => {
     if (callStatus === 'connected') {
