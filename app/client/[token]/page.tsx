@@ -98,18 +98,30 @@ export default function ClientDashboard() {
   ])
 
   useEffect(() => {
-    // Validate token and load client data
-    const validateAccess = async () => {
-      try {
-        const response = await fetch(`/api/client/validate?token=${params.token}`)
-        if (response.ok) {
-          const data = await response.json()
-          setValidToken(true)
-          setClientInfo(data.client)
-        } else {
-          setValidToken(false)
+    // For demo purposes, validate known tokens without API call
+    const validateAccess = () => {
+      const validTokens = ['demo-client-123', 'vip-client-456', 'family-client-789']
+      
+      if (params.token && validTokens.includes(params.token as string)) {
+        setValidToken(true)
+        // Set demo client data based on token
+        if (params.token === 'demo-client-123') {
+          setClientInfo({
+            name: 'Sarah Johnson',
+            packageType: 'Premium Relocation Package'
+          })
+        } else if (params.token === 'vip-client-456') {
+          setClientInfo({
+            name: 'Michael Chen',
+            packageType: 'VIP Executive Package'
+          })
+        } else if (params.token === 'family-client-789') {
+          setClientInfo({
+            name: 'Emma Thompson',
+            packageType: 'Family Complete Package'
+          })
         }
-      } catch (error) {
+      } else {
         setValidToken(false)
       }
     }
