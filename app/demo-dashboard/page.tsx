@@ -72,50 +72,11 @@ export default function DemoDashboard() {
   const connectWithPartners = (taskType: string) => {
     // In a real app, this would redirect to partner connection flow
     const message = `Connecting you with ${taskType} partners. This would redirect to the partner selection and booking interface.`
-    
-    // Create a more professional modal instead of alert
-    const modal = document.createElement('div')
-    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'
-    modal.innerHTML = `
-      <div class="bg-white rounded-lg p-6 max-w-md mx-4">
-        <h3 class="text-lg font-semibold text-gray-900 mb-2">Partner Connection</h3>
-        <p class="text-gray-600 mb-4">${message}</p>
-        <button onclick="this.closest('.fixed').remove()" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          Close
-        </button>
-      </div>
-    `
-    document.body.appendChild(modal)
-    
-    // Auto-close after 3 seconds
-    setTimeout(() => {
-      if (modal.parentNode) {
-        modal.remove()
-      }
-    }, 3000)
+    alert(message)
   }
 
   const messageConcierge = () => {
-    const message = "Opening secure messaging channel with your dedicated concierge. In the full platform, this would open a real-time chat interface."
-    
-    const modal = document.createElement('div')
-    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'
-    modal.innerHTML = `
-      <div class="bg-white rounded-lg p-6 max-w-md mx-4">
-        <h3 class="text-lg font-semibold text-gray-900 mb-2">Concierge Messaging</h3>
-        <p class="text-gray-600 mb-4">${message}</p>
-        <button onclick="this.closest('.fixed').remove()" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          Close
-        </button>
-      </div>
-    `
-    document.body.appendChild(modal)
-    
-    setTimeout(() => {
-      if (modal.parentNode) {
-        modal.remove()
-      }
-    }, 3000)
+    alert("Opening secure messaging channel with your dedicated concierge. In the full platform, this would open a real-time chat interface.")
   }
 
   const partnerServices = {
@@ -242,7 +203,7 @@ export default function DemoDashboard() {
                           .map(task => (
                             <div
                               key={task.id}
-                              className="rounded-xl p-4 bg-white border border-[#E5E7EB] hover:shadow-lg transition-all duration-200 hover:border-[#C9A24A]/20"
+                              className="rounded-xl p-4 bg-white border border-[#E5E7EB] hover:shadow-md transition-all"
                             >
                               <div className="flex items-start justify-between mb-2">
                                 <h4 className={`font-medium text-[#0B1B2B] leading-snug ${
@@ -261,46 +222,47 @@ export default function DemoDashboard() {
                               
                               <p className="text-sm text-[#6B7280] mb-3">{task.description}</p>
                               
-                              <div className="space-y-3">
-                                <div className="text-xs text-[#6B7280]">
-                                  Due: {new Date(task.due).toLocaleDateString()}
+                              <div className="space-y-2">
+                                <div className="flex items-center justify-between">
+                                  <div className="text-xs text-[#6B7280]">
+                                    Due: {new Date(task.due).toLocaleDateString()}
+                                  </div>
+                                  
+                                  <div className="flex gap-1">
+                                    {task.status !== 'todo' && (
+                                      <button
+                                        onClick={() => updateTaskStatus(task.id, 'todo')}
+                                        className="px-2 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600"
+                                      >
+                                        Back
+                                      </button>
+                                    )}
+                                    {task.status === 'todo' && (
+                                      <button
+                                        onClick={() => updateTaskStatus(task.id, 'doing')}
+                                        className="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
+                                      >
+                                        Start
+                                      </button>
+                                    )}
+                                    {task.status !== 'done' && (
+                                      <button
+                                        onClick={() => updateTaskStatus(task.id, 'done')}
+                                        className="px-2 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700"
+                                      >
+                                        Complete
+                                      </button>
+                                    )}
+                                    {task.status === 'done' && (
+                                      <button
+                                        onClick={() => updateTaskStatus(task.id, 'doing')}
+                                        className="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
+                                      >
+                                        Reopen
+                                      </button>
+                                    )}
+                                  </div>
                                 </div>
-                                
-                                <div className="flex flex-wrap gap-2">
-                                  {task.status !== 'todo' && (
-                                    <button
-                                      onClick={() => updateTaskStatus(task.id, 'todo')}
-                                      className="px-3 py-1.5 text-xs bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
-                                    >
-                                      Back
-                                    </button>
-                                  )}
-                                  {task.status === 'todo' && (
-                                    <button
-                                      onClick={() => updateTaskStatus(task.id, 'doing')}
-                                      className="px-3 py-1.5 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-                                    >
-                                      Start
-                                    </button>
-                                  )}
-                                  {task.status !== 'done' && (
-                                    <button
-                                      onClick={() => updateTaskStatus(task.id, 'done')}
-                                      className="px-3 py-1.5 text-xs bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
-                                    >
-                                      Complete
-                                    </button>
-                                  )}
-                                  {task.status === 'done' && (
-                                    <button
-                                      onClick={() => updateTaskStatus(task.id, 'doing')}
-                                      className="px-3 py-1.5 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-                                    >
-                                      Reopen
-                                    </button>
-                                  )}
-                                </div>
-                              </div>
                                 
                                 {/* Partner Services Integration */}
                                 <div className="pt-2 border-t border-gray-100">
