@@ -194,7 +194,7 @@ export default function CharterPartnershipForm() {
         <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-md p-4 mt-4">
           <p className="text-sm text-[#C9A24A] font-medium flex items-center gap-2">
             <Trophy className="w-4 h-4" />
-            Charter Partnership: Limited to 12 founding positions. Closing Oct 01, 2025.
+            Charter Partnership: Limited to 12 founding positions. Closing Oct 06, 2025.
           </p>
           <p className="text-xs text-[#C9A24A]/70 mt-1 flex items-center gap-1">
             <Zap className="w-3 h-3" />

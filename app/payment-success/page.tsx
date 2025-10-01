@@ -3,7 +3,7 @@
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Layout from '@/components/Layout'
-import { CheckCircle, ExternalLink, Copy, Mail, Clock, Sparkles } from 'lucide-react'
+import { CheckCircle, ExternalLink, Copy, Mail, Clock, Sparkles, Target } from 'lucide-react'
 
 function PaymentSuccessContent() {
   const searchParams = useSearchParams()
@@ -17,12 +17,18 @@ function PaymentSuccessContent() {
       // Use demo token for consistent experience
       const demoToken = 'demo-client-123'
       const dashboardLink = `${window.location.origin}/client/${demoToken}`
+      const packageType = 'Premium Relocation Package'
       
       setDashboardUrl(dashboardLink)
       setClientData({
         name: 'Sarah Johnson',
-        packageType: 'Premium Relocation Package'
+        packageType: packageType
       })
+
+      // Track conversion for analytics
+      if (typeof window !== 'undefined' && (window as any).trackConversion) {
+        (window as any).trackConversion('payment_success', packageType, 5000) // £5000 example value
+      }
     }
 
     generateDashboardAccess()
@@ -37,7 +43,7 @@ function PaymentSuccessContent() {
   }
 
   const sendEmailDemo = () => {
-    alert(`📧 Email Sent!\n\nYour dashboard access link has been sent to:\n${clientData?.email || 'client@email.com'}\n\nSubject: "Your Relo Network Dashboard is Ready!"\n\nThe client will receive:\n• Direct dashboard access link\n• Personal AI assistant (Relo)\n• Complete relocation checklist\n• Partner connections\n• 24/7 support access`)
+    alert(`Email Sent!\n\nYour dashboard access link has been sent to:\n${clientData?.email || 'client@email.com'}\n\nSubject: "Your Relo Network Dashboard is Ready!"\n\nThe client will receive:\n• Direct dashboard access link\n• Personal AI assistant (Relo)\n• Complete relocation checklist\n• Partner connections\n• 24/7 support access`)
   }
 
   return (
@@ -147,27 +153,57 @@ function PaymentSuccessContent() {
           {/* Business Model Demo */}
           <div className="bg-gradient-to-r from-[#C9A24A]/10 to-[#B8923D]/10 rounded-xl border border-[#C9A24A]/20 p-8">
             <h3 className="text-xl font-bold text-[#0B1B2B] mb-4">
-              🚀 Business Model Demo
+              Business Model Demo
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold text-[#0B1B2B] mb-2">Payment-First Authentication Flow:</h4>
                 <ul className="text-sm text-[#6B7280] space-y-1">
-                  <li>✅ Client pays for service package</li>
-                  <li>✅ Instant dashboard access generated</li>
-                  <li>✅ Unique secure token created</li>
-                  <li>✅ No separate login/password needed</li>
-                  <li>✅ Direct value delivery</li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    Client pays for service package
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    Instant dashboard access generated
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    Unique secure token created
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    No separate login/password needed
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    Direct value delivery
+                  </li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold text-[#0B1B2B] mb-2">Business Benefits:</h4>
                 <ul className="text-sm text-[#6B7280] space-y-1">
-                  <li>🎯 Immediate post-purchase engagement</li>
-                  <li>🎯 Higher customer satisfaction</li>
-                  <li>🎯 Reduced support tickets</li>
-                  <li>🎯 Better retention rates</li>
-                  <li>🎯 Streamlined onboarding</li>
+                  <li className="flex items-center gap-2">
+                    <Target className="w-4 h-4 text-blue-600" />
+                    Immediate post-purchase engagement
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Target className="w-4 h-4 text-blue-600" />
+                    Higher customer satisfaction
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Target className="w-4 h-4 text-blue-600" />
+                    Reduced support tickets
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Target className="w-4 h-4 text-blue-600" />
+                    Better retention rates
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Target className="w-4 h-4 text-blue-600" />
+                    Streamlined onboarding
+                  </li>
                 </ul>
               </div>
             </div>

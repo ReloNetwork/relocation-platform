@@ -105,21 +105,30 @@ export default function ClientDashboard() {
       if (params.token && validTokens.includes(params.token as string)) {
         setValidToken(true)
         // Set demo client data based on token
+        let packageType = ''
         if (params.token === 'demo-client-123') {
+          packageType = 'Premium Relocation Package'
           setClientInfo({
             name: 'Sarah Johnson',
-            packageType: 'Premium Relocation Package'
+            packageType: packageType
           })
         } else if (params.token === 'vip-client-456') {
+          packageType = 'VIP Executive Package'
           setClientInfo({
             name: 'Michael Chen',
-            packageType: 'VIP Executive Package'
+            packageType: packageType
           })
         } else if (params.token === 'family-client-789') {
+          packageType = 'Family Complete Package'
           setClientInfo({
             name: 'Emma Thompson',
-            packageType: 'Family Complete Package'
+            packageType: packageType
           })
+        }
+
+        // Track dashboard access for analytics
+        if (typeof window !== 'undefined' && (window as any).trackDashboardAccess) {
+          (window as any).trackDashboardAccess(params.token, packageType)
         }
       } else {
         setValidToken(false)
@@ -134,36 +143,36 @@ export default function ClientDashboard() {
   const handleReloAction = (rec: ReloRecommendation) => {
     switch (rec.action) {
       case 'View Details':
-        alert(`📋 Detailed Analysis:\n\n${rec.message}\n\nRecommended next steps:\n• Contact 3 temporary housing providers\n• Schedule virtual tours\n• Prepare required documents\n• Book accommodation for first month`)
+        alert(`Detailed Analysis:\n\n${rec.message}\n\nRecommended next steps:\n• Contact 3 temporary housing providers\n• Schedule virtual tours\n• Prepare required documents\n• Book accommodation for first month`)
         break
       case 'Help Prioritize':
-        alert(`🎯 Smart Prioritization:\n\nBased on your timeline, here's the optimal order:\n\n1. Temporary accommodation (URGENT - 5 days)\n2. School applications (HIGH - 10 days)\n3. Banking setup (MEDIUM - 15 days)\n4. NHS registration (LOW - 20 days)\n\nShall I automatically reorder your tasks?`)
+        alert(`Smart Prioritization:\n\nBased on your timeline, here's the optimal order:\n\n1. Temporary accommodation (URGENT - 5 days)\n2. School applications (HIGH - 10 days)\n3. Banking setup (MEDIUM - 15 days)\n4. NHS registration (LOW - 20 days)\n\nShall I automatically reorder your tasks?`)
         break
       case 'Connect Now':
-        alert(`🤝 Partner Connection:\n\nI can connect you with:\n\n• HSBC Expat Banking (Same-day account opening)\n• International School of London (Application fast-track)\n• Corporate Housing London (Move-in within 48 hours)\n\nWhich would you like me to contact first?`)
+        alert(`Partner Connection:\n\nI can connect you with:\n\n• HSBC Expat Banking (Same-day account opening)\n• International School of London (Application fast-track)\n• Corporate Housing London (Move-in within 48 hours)\n\nWhich would you like me to contact first?`)
         break
       default:
-        alert(`✨ Relo Insight: ${rec.message}`)
+        alert(`Relo Insight: ${rec.message}`)
     }
   }
 
   const handlePartnerClick = (partner: string, taskTitle: string) => {
-    alert(`🤝 Connecting with ${partner}\n\nFor: ${taskTitle}\n\n✅ Contact initiated\n📞 They will call you within 2 hours\n📧 Confirmation email sent\n💼 Premium client status confirmed\n\nNext steps:\n• Prepare your requirements list\n• Have your documents ready\n• Expect their call soon!`)
+    alert(`Connecting with ${partner}\n\nFor: ${taskTitle}\n\n✓ Contact initiated\n✓ They will call you within 2 hours\n✓ Confirmation email sent\n✓ Premium client status confirmed\n\nNext steps:\n• Prepare your requirements list\n• Have your documents ready\n• Expect their call soon!`)
   }
 
   const handleQuickAction = (action: string) => {
     switch (action) {
       case 'Chat with Relo AI':
-        alert(`💬 Relo AI Chat\n\nStarting your personal AI consultation...\n\n🤖 "Hello! I'm your dedicated relocation assistant. I can help you with:\n\n• Urgent task prioritization\n• Partner recommendations\n• Timeline optimization\n• Local area insights\n• Document preparation\n\nWhat would you like to discuss first?"`)
+        alert(`Relo AI Chat\n\nStarting your personal AI consultation...\n\n"Hello! I'm your dedicated relocation assistant. I can help you with:\n\n• Urgent task prioritization\n• Partner recommendations\n• Timeline optimization\n• Local area insights\n• Document preparation\n\nWhat would you like to discuss first?"`)
         break
       case 'Schedule Consultation':
-        alert(`📅 Schedule Consultation\n\nBooking your premium consultation...\n\n✅ Available slots:\n• Today 3:00 PM - 30 min call\n• Tomorrow 10:00 AM - 60 min video\n• Friday 2:00 PM - In-person visit\n\n💎 As a premium client, you get:\n• Priority booking\n• Expert consultant\n• Personalized action plan\n\nWhich slot works best for you?`)
+        alert(`Schedule Consultation\n\nBooking your premium consultation...\n\n✓ Available slots:\n• Today 3:00 PM - 30 min call\n• Tomorrow 10:00 AM - 60 min video\n• Friday 2:00 PM - In-person visit\n\nAs a premium client, you get:\n• Priority booking\n• Expert consultant\n• Personalized action plan\n\nWhich slot works best for you?`)
         break
       case 'Download Checklist':
-        alert(`📋 Download Checklist\n\nGenerating your personalized checklist...\n\n✅ Created for: Sarah Johnson\n📍 Relocating to: London, UK\n📅 Move date: Jan 15, 2024\n\n📄 Checklist includes:\n• 47 location-specific tasks\n• Timeline with deadlines\n• Required documents list\n• Emergency contacts\n• Local area guide\n\nDownload starting... ✨`)
+        alert(`Download Checklist\n\nGenerating your personalized checklist...\n\n✓ Created for: Sarah Johnson\n✓ Relocating to: London, UK\n✓ Move date: Jan 15, 2024\n\nChecklist includes:\n• 47 location-specific tasks\n• Timeline with deadlines\n• Required documents list\n• Emergency contacts\n• Local area guide\n\nDownload starting...`)
         break
       default:
-        alert(`🔧 ${action}\n\nThis feature is coming soon!\nYour premium account will get early access.`)
+        alert(`${action}\n\nThis feature is coming soon!\nYour premium account will get early access.`)
     }
   }
 

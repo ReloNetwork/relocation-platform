@@ -69,7 +69,7 @@ export default function HomePage() {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2025-10-01T14:00:00Z')
+    const targetDate = new Date('2025-10-06T14:00:00Z')
     
     const updateCountdown = () => {
       const now = new Date()
@@ -164,7 +164,7 @@ export default function HomePage() {
             Launch Day Approaching
           </div>
           <div className="text-white text-lg mb-3">
-            <strong>Founding Partner Charter closes Oct 1, 2:00 PM GMT — 12 category-exclusive slots.</strong>
+            <strong>Founding Partner Charter closes Oct 6, 2:00 PM GMT — 12 category-exclusive slots.</strong>
           </div>
           <div className="flex justify-center items-center gap-6 text-white">
             <div className="text-center">
@@ -331,7 +331,7 @@ export default function HomePage() {
                 <div className="bg-white/10 rounded-lg p-3 mb-4">
                   <div className="text-sm text-white/90 text-center flex items-center justify-center gap-2">
                     <Gem className="w-4 h-4" />
-                    <span className="font-medium">Bonus: Enroll by Oct 1 for extra editorial + homepage tile (30 days)</span>
+                    <span className="font-medium">Bonus: Enroll by Oct 6 for extra editorial + homepage tile (30 days)</span>
                   </div>
                 </div>
               </div>
@@ -633,7 +633,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex items-center justify-between py-1">
                       <span className="text-[#6B7280] font-medium text-sm">Platform Launch</span>
-                      <span className="text-[#0B1B2B] font-semibold text-sm">October 1, 2025</span>
+                      <span className="text-[#0B1B2B] font-semibold text-sm">October 6, 2025</span>
                     </div>
                   </div>
                 </div>

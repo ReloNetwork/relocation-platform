@@ -43,7 +43,7 @@ export default function PartnerApplicationPage() {
 
   // Countdown timer effect
   useEffect(() => {
-    const launchDate = new Date('2025-10-01T14:00:00Z').getTime()
+    const launchDate = new Date('2025-10-06T14:00:00Z').getTime()
     
     const updateCountdown = () => {
       const now = new Date().getTime()
@@ -499,8 +499,11 @@ export default function PartnerApplicationPage() {
                   {/* Countdown Timer */}
                   <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6">
                     <div className="text-center">
-                      <h3 className="text-lg font-semibold text-red-800 mb-2">⏰ Founding Partner Pricing Ends Soon!</h3>
-                      <p className="text-red-700 mb-4">Prices go up on Tuesday, 1st October at 14:00 GMT</p>
+                      <h3 className="text-lg font-semibold text-red-800 mb-2 flex items-center gap-2">
+                        <Clock className="w-5 h-5" />
+                        Founding Partner Pricing Ends Soon!
+                      </h3>
+                      <p className="text-red-700 mb-4">Prices go up on Monday, 6th October at 14:00 GMT</p>
                       <div className="flex justify-center space-x-4">
                         <div className="text-center">
                           <div className="text-2xl font-bold text-red-800">{timeRemaining.days}</div>

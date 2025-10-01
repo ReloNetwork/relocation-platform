@@ -47,7 +47,7 @@ const PartnershipTier = ({
         </div>
         <p className="text-lg text-[#6B7280] mt-1">{duration}</p>
         <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded px-3 py-1 text-sm text-[#C9A24A] font-medium mt-2 inline-block">
-          Charter Rate - Expires Oct 01
+          Charter Rate - Expires Oct 06
         </div>
       </div>
 
@@ -106,7 +106,7 @@ const CountdownTimer = () => {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2025-10-01T14:00:00Z')
+    const targetDate = new Date('2025-10-06T14:00:00Z')
     
     const updateCountdown = () => {
       const now = new Date()
@@ -383,7 +383,7 @@ export default function PartnersPage() {
                 Founding Rates Expire In:
               </div>
               <CountdownTimer />
-              <div className="text-sm text-white/90 mt-3 font-medium">Tuesday, October 1st 2025</div>
+              <div className="text-sm text-white/90 mt-3 font-medium">Monday, October 6th 2025</div>
               <div className="text-sm text-white/70 mt-1">Charter Rate - Limited to 12 founding positions</div>
             </div>
           </div>
@@ -1076,7 +1076,7 @@ export default function PartnersPage() {
           </div>
           
           <div className="flex flex-wrap justify-center gap-8 text-sm text-white/80 mb-6">
-            <div>✓ Charter rates expire October 1st, 2025</div>
+            <div>✓ Charter rates expire October 6th, 2025</div>
             <div>✓ Professional partnership terms</div>
             <div>✓ Limited to 12 charter positions</div>
           </div>
