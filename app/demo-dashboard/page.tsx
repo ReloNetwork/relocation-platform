@@ -3,21 +3,41 @@ import Layout from '@/components/Layout'
 import { useState } from 'react'
 import { ExternalLink, Star, Users, Clock, MapPin, CheckCircle, GraduationCap, Home, Zap, Building2, Scale, Heart, UserCheck, ExternalLinkIcon, Plus, Edit3, Bot, MessageCircle, AlertCircle, Calendar, Flag } from 'lucide-react'
 
+interface Task {
+  id: number
+  title: string
+  description: string
+  status: 'todo' | 'doing' | 'done'
+  priority: 'low' | 'medium' | 'high'
+  due: string
+  partnerType: string
+  suggestedPartners?: string[]
+}
+
+interface ReloRecommendation {
+  id: number
+  type: 'tip' | 'celebration' | 'reminder' | 'insight' | 'suggestion'
+  title: string
+  message: string
+  action?: string
+  taskId?: number
+}
+
 export default function DemoDashboard() {
   const [showPartnerModal, setShowPartnerModal] = useState(false)
   const [selectedPartnerType, setSelectedPartnerType] = useState('')
   const [showTaskModal, setShowTaskModal] = useState(false)
-  const [editingTask, setEditingTask] = useState(null)
+  const [editingTask, setEditingTask] = useState<Task | null>(null)
   const [showReloPanel, setShowReloPanel] = useState(false)
-  const [reloRecommendations, setReloRecommendations] = useState([])
+  const [reloRecommendations, setReloRecommendations] = useState<ReloRecommendation[]>([])
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
-    priority: 'medium',
+    priority: 'medium' as 'low' | 'medium' | 'high',
     due: '',
     partnerType: 'general'
   })
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState<Task[]>([
     { 
       id: 1, 
       title: 'Register Children for School', 
@@ -100,46 +120,56 @@ export default function DemoDashboard() {
       suggestedPartners: []
     }
     setTasks([...tasks, task])
-    setNewTask({ title: '', description: '', priority: 'medium', due: '', partnerType: 'general' })
+    setNewTask({ title: '', description: '', priority: 'medium' as const, due: '', partnerType: 'general' })
     setShowTaskModal(false)
     
     // Trigger Relo recommendation
     generateReloRecommendation(task)
   }
 
-  const editTask = (task: any) => {
+  const editTask = (task: Task) => {
     setEditingTask(task)
-    setNewTask(task)
+    setNewTask({
+      title: task.title,
+      description: task.description,
+      priority: task.priority,
+      due: task.due,
+      partnerType: task.partnerType
+    })
     setShowTaskModal(true)
   }
 
   const updateTask = () => {
-    setTasks(tasks.map(t => t.id === editingTask.id ? { ...editingTask, ...newTask } : t))
-    setEditingTask(null)
-    setNewTask({ title: '', description: '', priority: 'medium', due: '', partnerType: 'general' })
-    setShowTaskModal(false)
+    if (editingTask) {
+      setTasks(tasks.map(t => t.id === editingTask.id ? { ...editingTask, ...newTask } : t))
+      setEditingTask(null)
+      setNewTask({ title: '', description: '', priority: 'medium' as const, due: '', partnerType: 'general' })
+      setShowTaskModal(false)
+    }
   }
 
   const deleteTask = (taskId: number) => {
     setTasks(tasks.filter(t => t.id !== taskId))
   }
 
-  const updateTaskStatus = (taskId: number, newStatus: string) => {
+  const updateTaskStatus = (taskId: number, newStatus: 'todo' | 'doing' | 'done') => {
     setTasks(tasks.map(t => t.id === taskId ? { ...t, status: newStatus } : t))
     
     // Trigger Relo celebration or next step recommendation
     if (newStatus === 'done') {
       const completedTask = tasks.find(t => t.id === taskId)
-      generateReloCompletion(completedTask)
+      if (completedTask) {
+        generateReloCompletion(completedTask)
+      }
     }
   }
 
   // Relo AI Integration Functions
-  const generateReloRecommendation = (task: any) => {
+  const generateReloRecommendation = (task: Task) => {
     const recommendations = [
       {
         id: Date.now(),
-        type: 'tip',
+        type: 'tip' as const,
         title: 'Smart Timing Tip',
         message: `For "${task.title}", I recommend starting 2-3 weeks early. This gives buffer time for any unexpected requirements.`,
         action: 'Adjust Timeline',
@@ -150,10 +180,10 @@ export default function DemoDashboard() {
     setShowReloPanel(true)
   }
 
-  const generateReloCompletion = (task: any) => {
+  const generateReloCompletion = (task: Task) => {
     const completionMsg = {
       id: Date.now(),
-      type: 'celebration',
+      type: 'celebration' as const,
       title: '🎉 Task Completed!',
       message: `Great job completing "${task.title}"! Based on your progress, I recommend focusing on high-priority items next.`,
       action: 'View Next Steps',
@@ -167,21 +197,21 @@ export default function DemoDashboard() {
     const insights = [
       {
         id: Date.now() + 1,
-        type: 'insight',
+        type: 'insight' as const,
         title: 'Progress Analysis',
         message: `You've completed ${tasks.filter(t => t.status === 'done').length} out of ${tasks.length} tasks. You're ${Math.round((tasks.filter(t => t.status === 'done').length / tasks.length) * 100)}% complete!`,
         action: 'View Details'
       },
       {
         id: Date.now() + 2,
-        type: 'reminder',
+        type: 'reminder' as const,
         title: 'Upcoming Deadlines',
         message: `You have ${tasks.filter(t => t.priority === 'high' && t.status !== 'done').length} high-priority tasks. Would you like me to help prioritize them?`,
         action: 'Help Prioritize'
       },
       {
         id: Date.now() + 3,
-        type: 'suggestion',
+        type: 'suggestion' as const,
         title: 'Partner Recommendation',
         message: 'Based on your tasks, I suggest connecting with education partners first, as school enrollment often has strict deadlines.',
         action: 'Connect Now'
@@ -302,7 +332,7 @@ export default function DemoDashboard() {
                   <button
                     onClick={() => {
                       setEditingTask(null)
-                      setNewTask({ title: '', description: '', priority: 'medium', due: '', partnerType: 'general' })
+                      setNewTask({ title: '', description: '', priority: 'medium' as const, due: '', partnerType: 'general' })
                       setShowTaskModal(true)
                     }}
                     className="flex items-center gap-2 bg-[#0B1B2B] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#0B1B2B]/90 transition-colors"
