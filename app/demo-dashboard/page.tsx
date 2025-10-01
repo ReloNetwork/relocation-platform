@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { ExternalLink, Star, Users, Clock, MapPin, CheckCircle, GraduationCap, Home, Zap, Building2, Scale, Heart, UserCheck, ExternalLinkIcon } from 'lucide-react'
 
 export default function DemoDashboard() {
+  const [showPartnerModal, setShowPartnerModal] = useState(false)
+  const [selectedPartnerType, setSelectedPartnerType] = useState('')
   const [tasks, setTasks] = useState([
     { 
       id: 1, 
@@ -70,9 +72,8 @@ export default function DemoDashboard() {
   const [selectedTaskForPartners, setSelectedTaskForPartners] = useState(null)
   
   const connectWithPartners = (taskType: string) => {
-    // In a real app, this would redirect to partner connection flow
-    const message = `Connecting you with ${taskType} partners. This would redirect to the partner selection and booking interface.`
-    alert(message)
+    setSelectedPartnerType(taskType)
+    setShowPartnerModal(true)
   }
 
   const messageConcierge = () => {
@@ -494,6 +495,83 @@ export default function DemoDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Partner Selection Modal */}
+      {showPartnerModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-bold text-gray-900">
+                  {selectedPartnerType.charAt(0).toUpperCase() + selectedPartnerType.slice(1)} Partners
+                </h3>
+                <button
+                  onClick={() => setShowPartnerModal(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  ✕
+                </button>
+              </div>
+              <p className="text-gray-600 text-sm mt-2">
+                Choose from our verified {selectedPartnerType} partners to help with your relocation
+              </p>
+            </div>
+
+            <div className="p-6 space-y-4">
+              {partnerServices[selectedPartnerType as keyof typeof partnerServices]?.map((partner, index) => (
+                <div key={index} className="border border-gray-200 rounded-lg p-4 hover:border-[#C9A24A] transition-colors">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h4 className="font-semibold text-gray-900">{partner.name}</h4>
+                        {partner.verified && (
+                          <div className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+                            ✓ Verified
+                          </div>
+                        )}
+                      </div>
+                      <p className="text-sm text-gray-600 mb-2">{partner.speciality}</p>
+                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                        <div className="flex items-center gap-1">
+                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                          <span>{partner.rating}</span>
+                          <span>({partner.reviews} reviews)</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <MapPin className="w-4 h-4" />
+                          <span>{partner.location}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2 ml-4">
+                      <button className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        Connect
+                      </button>
+                      <button className="text-[#C9A24A] hover:text-[#B8923D] text-sm font-medium transition-colors">
+                        View Profile
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="p-6 border-t border-gray-200 bg-gray-50 rounded-b-xl">
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-gray-600">
+                  All partners are pre-verified and rated by our community
+                </p>
+                <button
+                  onClick={() => setShowPartnerModal(false)}
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </Layout>
   )
 }
