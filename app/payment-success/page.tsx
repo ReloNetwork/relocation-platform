@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Layout from '@/components/Layout'
 import { CheckCircle, ExternalLink, Copy, Mail, Clock, Sparkles } from 'lucide-react'
 
-export default function PaymentSuccess() {
+function PaymentSuccessContent() {
   const searchParams = useSearchParams()
   const [dashboardUrl, setDashboardUrl] = useState('')
   const [clientData, setClientData] = useState<any>(null)
@@ -211,5 +211,27 @@ export default function PaymentSuccess() {
         </div>
       </div>
     </Layout>
+  )
+}
+
+export default function PaymentSuccess() {
+  return (
+    <Suspense fallback={
+      <Layout>
+        <div className="min-h-screen bg-[#FAFAF9] flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#C9A24A] mx-auto mb-4"></div>
+            <h2 className="text-xl font-semibold text-[#0B1B2B] mb-2">
+              Loading...
+            </h2>
+            <p className="text-[#6B7280]">
+              Setting up your dashboard access.
+            </p>
+          </div>
+        </div>
+      </Layout>
+    }>
+      <PaymentSuccessContent />
+    </Suspense>
   )
 }
