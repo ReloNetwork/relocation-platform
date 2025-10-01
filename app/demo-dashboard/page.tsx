@@ -254,12 +254,6 @@ export default function DemoDashboard() {
     ]
   }
 
-  const updateTaskStatus = (taskId: number, newStatus: 'todo' | 'doing' | 'done') => {
-    setTasks(prev => prev.map(task => 
-      task.id === taskId ? { ...task, status: newStatus } : task
-    ))
-  }
-
   const getStatusCounts = () => {
     const completed = tasks.filter(t => t.status === 'done').length
     const inProgress = tasks.filter(t => t.status === 'doing').length
