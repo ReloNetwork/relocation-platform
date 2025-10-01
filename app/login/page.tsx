@@ -28,7 +28,7 @@ export default function LoginPage() {
       // HARDCODE the redirect URL to force Supabase to use our callback
       const redirectUrl = window.location.hostname === 'localhost' 
         ? 'http://localhost:3000/auth/callback?next=/dashboard'
-        : 'https://therelonetwork.com/auth/callback?next=/dashboard'
+        : 'https://www.therelonetwork.com/auth/callback?next=/dashboard'
       
       console.log('🔗 Magic link will redirect to:', redirectUrl)
       console.log('🌐 Current window location:', window.location.href)

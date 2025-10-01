@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
       const isDev = process.env.NODE_ENV === 'development'
       const redirectUrl = isDev 
         ? 'http://localhost:3000/dashboard'
-        : 'https://therelonetwork.com/dashboard'
+        : 'https://www.therelonetwork.com/dashboard'
       console.log('🎯 HARDCODED redirect to dashboard:', redirectUrl)
       
       // Create response with redirect

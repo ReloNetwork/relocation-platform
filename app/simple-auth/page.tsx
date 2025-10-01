@@ -21,7 +21,7 @@ export default function SimpleAuth() {
         email,
         options: {
           // Use the exact same domain as Supabase Site URL
-          emailRedirectTo: 'https://therelonetwork.com/simple-auth',
+          emailRedirectTo: 'https://www.therelonetwork.com/simple-auth',
           shouldCreateUser: true
         }
       })
