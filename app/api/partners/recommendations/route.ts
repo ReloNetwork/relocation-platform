@@ -419,7 +419,7 @@ const partners = [
 
 export async function GET(req: Request) {
   try {
-    const { searchParams } = new URL(req.url)
+    const { searchParams } = new URL(req.url || "", "http://localhost:3000")
     const category = searchParams.get('category')
     const taskId = searchParams.get('taskId')
 

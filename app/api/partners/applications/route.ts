@@ -76,7 +76,7 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
-    const { searchParams } = new URL(req.url)
+    const { searchParams } = new URL(req.url || "", "http://localhost:3000")
     const status = searchParams.get('status')
     const category = searchParams.get('category')
 

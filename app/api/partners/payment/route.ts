@@ -98,7 +98,7 @@ async function updateApplicationPaymentStatus(applicationId: string, status: str
 
 export async function GET(req: Request) {
   try {
-    const { searchParams } = new URL(req.url)
+    const { searchParams } = new URL(req.url || "", "http://localhost:3000")
     const paymentId = searchParams.get('paymentId')
 
     if (!paymentId) {

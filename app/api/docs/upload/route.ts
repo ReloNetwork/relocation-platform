@@ -105,8 +105,8 @@ export async function POST(req: Request) {
 // GET endpoint to retrieve documents for a case
 export async function GET(req: Request) {
   try {
-    const url = new URL(req.url);
-    const caseId = url.searchParams.get('case_id');
+    const { searchParams } = new URL(req.url || '', 'http://localhost:3000');
+    const caseId = searchParams.get('case_id');
 
     if (!caseId) {
       return NextResponse.json({

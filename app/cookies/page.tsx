@@ -1,7 +1,7 @@
 'use client'
 
 import Layout from '@/components/Layout'
-import { Cookie, Shield, Eye, Settings, ExternalLink } from 'lucide-react'
+import { Cookie, Shield, Eye, Settings, ExternalLink, CheckCircle } from 'lucide-react'
 
 export default function CookiesPage() {
   return (

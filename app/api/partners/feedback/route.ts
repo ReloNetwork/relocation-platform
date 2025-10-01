@@ -74,7 +74,7 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
-    const { searchParams } = new URL(req.url)
+    const { searchParams } = new URL(req.url || "", "http://localhost:3000")
     const partnerId = searchParams.get('partnerId')
     const verified = searchParams.get('verified')
     const limit = parseInt(searchParams.get('limit') || '10')
