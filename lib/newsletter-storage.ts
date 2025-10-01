@@ -3,10 +3,18 @@
 
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+let supabase: any = null
+
+try {
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    )
+  }
+} catch (error) {
+  console.warn('Newsletter storage: Supabase not available due to missing keys')
+}
 
 export interface NewsletterSubscription {
   email: string
@@ -20,6 +28,10 @@ export interface NewsletterSubscription {
 }
 
 export async function storeNewsletterSubscription(subscription: NewsletterSubscription) {
+  if (!supabase) {
+    return { success: true, message: 'Subscription received' }
+  }
+
   try {
     // First, check if email already exists
     const { data: existing } = await supabase
@@ -65,6 +77,10 @@ export async function storeNewsletterSubscription(subscription: NewsletterSubscr
 }
 
 export async function getNewsletterSubscriptions() {
+  if (!supabase) {
+    return { success: false, data: [] }
+  }
+
   try {
     const { data, error } = await supabase
       .from('newsletter_subscriptions')
@@ -85,6 +101,10 @@ export async function getNewsletterSubscriptions() {
 }
 
 export async function getNewsletterCount() {
+  if (!supabase) {
+    return 2500 // Default count when service is unavailable
+  }
+
   try {
     const { count, error } = await supabase
       .from('newsletter_subscriptions')

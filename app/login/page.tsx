@@ -20,36 +20,20 @@ export default function LoginPage() {
     setMessage('')
 
     try {
-      console.log('Environment check:', {
-        url: process.env.NEXT_PUBLIC_SUPABASE_URL,
-        key: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'present' : 'missing'
-      })
-      
-      // HARDCODE the redirect URL to force Supabase to use our callback
-      const redirectUrl = window.location.hostname === 'localhost' 
-        ? 'http://localhost:3000/auth/callback?next=/dashboard'
-        : 'https://www.therelonetwork.com/auth/callback?next=/dashboard'
-      
-      console.log('🔗 Magic link will redirect to:', redirectUrl)
-      console.log('🌐 Current window location:', window.location.href)
-      console.log('🏠 Detected hostname:', window.location.hostname)
-      
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: redirectUrl,
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=/dashboard`,
           shouldCreateUser: true
         }
       })
 
       if (error) {
-        console.error('Magic link error:', error)
         setMessage(`Authentication error: ${error.message}`)
       } else {
         setMessage('Check your email for the magic link!')
       }
     } catch (error) {
-      console.error('Unexpected error:', error)
       setMessage('An unexpected error occurred. Please try again.')
     } finally {
       setLoading(false)

@@ -23,6 +23,41 @@ export type Database = {
           role?: 'client' | 'concierge' | 'supplier' | 'admin';
         };
       };
+      orgs: {
+        Row: {
+          id: string;
+          name: string;
+          type: 'individual' | 'corporate';
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          name: string;
+          type?: 'individual' | 'corporate';
+        };
+        Update: {
+          name?: string;
+          type?: 'individual' | 'corporate';
+        };
+      };
+      org_memberships: {
+        Row: {
+          id: string;
+          user_id: string;
+          org_id: string;
+          role: 'admin' | 'member' | 'client' | 'concierge';
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          user_id: string;
+          org_id: string;
+          role?: 'admin' | 'member' | 'client' | 'concierge';
+        };
+        Update: {
+          role?: 'admin' | 'member' | 'client' | 'concierge';
+        };
+      };
       client_profiles: {
         Row: {
           id: string;
@@ -54,7 +89,8 @@ export type Database = {
       move_cases: {
         Row: {
           id: string;
-          client_id: string;
+          org_id: string;
+          client_user_id: string;
           concierge_id: string | null;
           route_from: string;
           route_to: string;
@@ -67,7 +103,8 @@ export type Database = {
           updated_at: string;
         };
         Insert: {
-          client_id: string;
+          org_id: string;
+          client_user_id: string;
           concierge_id?: string;
           route_from: string;
           route_to: string;
@@ -91,24 +128,24 @@ export type Database = {
       tasks: {
         Row: {
           id: string;
-          case_id: string;
+          move_case_id: string;
           title: string;
           description: string | null;
           assignee_role: 'client' | 'concierge' | 'supplier';
           assignee_id: string | null;
-          due_at: string | null;
+          due_date: string | null;
           status: 'todo' | 'doing' | 'blocked' | 'done';
           priority: 'low' | 'medium' | 'high' | 'urgent';
           created_at: string;
           updated_at: string;
         };
         Insert: {
-          case_id: string;
+          move_case_id: string;
           title: string;
           description?: string;
           assignee_role: 'client' | 'concierge' | 'supplier';
           assignee_id?: string;
-          due_at?: string;
+          due_date?: string;
           status?: 'todo' | 'doing' | 'blocked' | 'done';
           priority?: 'low' | 'medium' | 'high' | 'urgent';
         };
@@ -117,7 +154,7 @@ export type Database = {
           description?: string;
           assignee_role?: 'client' | 'concierge' | 'supplier';
           assignee_id?: string;
-          due_at?: string;
+          due_date?: string;
           status?: 'todo' | 'doing' | 'blocked' | 'done';
           priority?: 'low' | 'medium' | 'high' | 'urgent';
         };
@@ -207,11 +244,11 @@ export type Database = {
       appointments: {
         Row: {
           id: string;
-          case_id: string;
+          move_case_id: string;
           title: string;
           description: string | null;
-          starts_at: string;
-          ends_at: string;
+          start_time: string;
+          end_time: string;
           location: string | null;
           cal_external_id: string | null;
           created_by: string | null;
@@ -220,11 +257,11 @@ export type Database = {
           updated_at: string;
         };
         Insert: {
-          case_id: string;
+          move_case_id: string;
           title: string;
           description?: string;
-          starts_at: string;
-          ends_at: string;
+          start_time: string;
+          end_time: string;
           location?: string;
           cal_external_id?: string;
           created_by?: string;
@@ -233,8 +270,8 @@ export type Database = {
         Update: {
           title?: string;
           description?: string;
-          starts_at?: string;
-          ends_at?: string;
+          start_time?: string;
+          end_time?: string;
           location?: string;
           cal_external_id?: string;
           created_by?: string;
@@ -264,7 +301,7 @@ export type Database = {
   };
 };
 
-// Client-side Supabase client
+// Client-side Supabase client  
 export function createClientSupabase(): SupabaseClient<Database> {
   return createClientComponentClient<Database>();
 }
@@ -274,6 +311,10 @@ export function createServerSupabase() {
   const cookieStore = cookies();
   return createServerComponentClient<Database>({ cookies: () => cookieStore });
 }
+
+// Re-export the new SSR clients for consistency
+export { createClient as createBrowserClient } from '@/lib/supabase/client';
+export { createClient as createServerClient } from '@/lib/supabase/server';
 
 // Service role client for admin operations
 export function createServiceSupabase(): SupabaseClient<Database> {
