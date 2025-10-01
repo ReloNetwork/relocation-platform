@@ -193,6 +193,113 @@ export default function DemoDashboard() {
     setShowReloPanel(true)
   }
 
+  // Relo AI Action Handlers
+  const handleReloAction = (rec: ReloRecommendation) => {
+    switch (rec.action) {
+      case 'View Details':
+        // Show detailed progress analysis
+        const newRec = {
+          id: Date.now(),
+          type: 'insight' as const,
+          title: 'Detailed Progress Breakdown',
+          message: `📊 Task Status Breakdown:\n• Completed: ${tasks.filter(t => t.status === 'done').length} tasks\n• In Progress: ${tasks.filter(t => t.status === 'doing').length} tasks\n• Pending: ${tasks.filter(t => t.status === 'todo').length} tasks\n\n🎯 Priority Analysis:\n• High Priority: ${tasks.filter(t => t.priority === 'high').length} tasks\n• Medium Priority: ${tasks.filter(t => t.priority === 'medium').length} tasks\n• Low Priority: ${tasks.filter(t => t.priority === 'low').length} tasks`,
+          action: 'Close Details'
+        }
+        setReloRecommendations(prev => [newRec, ...prev.filter(r => r.id !== rec.id)])
+        break
+
+      case 'Help Prioritize':
+        // Show prioritization suggestions
+        const highPriorityTasks = tasks.filter(t => t.priority === 'high' && t.status !== 'done')
+        const priorityRec = {
+          id: Date.now(),
+          type: 'suggestion' as const,
+          title: '🎯 Smart Prioritization',
+          message: highPriorityTasks.length > 0 
+            ? `I recommend focusing on these high-priority tasks first:\n${highPriorityTasks.slice(0, 3).map(t => `• ${t.title}`).join('\n')}\n\nThese often have strict deadlines and dependencies.`
+            : 'Great news! You have no high-priority tasks pending. Consider tackling medium-priority items next.',
+          action: 'Apply Priority'
+        }
+        setReloRecommendations(prev => [priorityRec, ...prev.filter(r => r.id !== rec.id)])
+        break
+
+      case 'Connect Now':
+        // Open education partners modal
+        setSelectedPartnerType('education')
+        setShowPartnerModal(true)
+        setReloRecommendations(prev => prev.filter(r => r.id !== rec.id))
+        break
+
+      case 'Adjust Timeline':
+        // Show timeline adjustment suggestion
+        const timelineRec = {
+          id: Date.now(),
+          type: 'tip' as const,
+          title: '📅 Timeline Optimization',
+          message: `I've analyzed your task timeline. Consider starting these tasks earlier:\n• School enrollment (can take 2-4 weeks)\n• Visa applications (allow 4-6 weeks)\n• Property viewings (book 2-3 weeks ahead)\n\nWould you like me to suggest new due dates?`,
+          action: 'Update Dates'
+        }
+        setReloRecommendations(prev => [timelineRec, ...prev.filter(r => r.id !== rec.id)])
+        break
+
+      case 'View Next Steps':
+        // Show suggested next actions
+        const nextStepsRec = {
+          id: Date.now(),
+          type: 'suggestion' as const,
+          title: '🚀 Recommended Next Steps',
+          message: `Based on your progress, here's what I suggest:\n1. Continue with high-priority items\n2. Schedule property viewings for next week\n3. Connect with education partners for school enrollment\n4. Set up utilities 2 weeks before move-in\n\nWould you like me to create any of these tasks?`,
+          action: 'Create Tasks'
+        }
+        setReloRecommendations(prev => [nextStepsRec, ...prev.filter(r => r.id !== rec.id)])
+        break
+
+      case 'Apply Priority':
+        // Automatically reorder tasks by priority
+        const reorderedTasks = [...tasks].sort((a, b) => {
+          const priorityOrder = { high: 3, medium: 2, low: 1 }
+          return priorityOrder[b.priority] - priorityOrder[a.priority]
+        })
+        setTasks(reorderedTasks)
+        setReloRecommendations(prev => [
+          {
+            id: Date.now(),
+            type: 'celebration' as const,
+            title: '✅ Priorities Applied!',
+            message: 'I\'ve reordered your tasks by priority. High-priority items are now at the top of each column.',
+            action: undefined
+          },
+          ...prev.filter(r => r.id !== rec.id)
+        ])
+        break
+
+      case 'Update Dates':
+        // Show date update confirmation
+        const dateRec = {
+          id: Date.now(),
+          type: 'celebration' as const,
+          title: '📅 Timeline Optimized!',
+          message: 'I\'ve analyzed your timeline. In the full platform, I would automatically suggest optimal due dates based on task dependencies and typical processing times.',
+          action: undefined
+        }
+        setReloRecommendations(prev => [dateRec, ...prev.filter(r => r.id !== rec.id)])
+        break
+
+      case 'Create Tasks':
+        // Show task creation confirmation
+        setEditingTask(null)
+        setNewTask({ title: '', description: '', priority: 'medium' as const, due: '', partnerType: 'general' })
+        setShowTaskModal(true)
+        setReloRecommendations(prev => prev.filter(r => r.id !== rec.id))
+        break
+
+      default:
+        // Close/dismiss the recommendation
+        setReloRecommendations(prev => prev.filter(r => r.id !== rec.id))
+        break
+    }
+  }
+
   const getReloInsights = () => {
     const insights = [
       {
@@ -883,9 +990,12 @@ export default function DemoDashboard() {
                   </div>
                   <div className="flex-1">
                     <h4 className="font-semibold text-gray-900 mb-1">{rec.title}</h4>
-                    <p className="text-sm text-gray-600 mb-3">{rec.message}</p>
+                    <div className="text-sm text-gray-600 mb-3 whitespace-pre-line">{rec.message}</div>
                     {rec.action && (
-                      <button className="text-xs bg-[#C9A24A] text-white px-3 py-1 rounded-full hover:bg-[#B8923D] transition-colors">
+                      <button 
+                        onClick={() => handleReloAction(rec)}
+                        className="text-xs bg-[#C9A24A] text-white px-3 py-1 rounded-full hover:bg-[#B8923D] transition-colors"
+                      >
                         {rec.action}
                       </button>
                     )}
