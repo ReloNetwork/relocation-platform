@@ -31,6 +31,8 @@ export default function LoginPage() {
         : 'https://therelonetwork.com/auth/callback?next=/dashboard'
       
       console.log('🔗 Magic link will redirect to:', redirectUrl)
+      console.log('🌐 Current window location:', window.location.href)
+      console.log('🏠 Detected hostname:', window.location.hostname)
       
       const { error } = await supabase.auth.signInWithOtp({
         email,
