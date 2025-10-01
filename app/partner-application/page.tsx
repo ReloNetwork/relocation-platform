@@ -2,6 +2,12 @@
 
 import React, { useState, useEffect } from 'react'
 import Layout from '@/components/Layout'
+import { Clock } from 'lucide-react'
+import { Button } from '../../ui/components/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/components/card'
+import { Badge } from '../../ui/components/badge'
+import { Input } from '../../ui/components/input'
+import { Textarea } from '../../ui/components/textarea'
 
 export default function PartnerApplicationPage() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -259,22 +265,22 @@ export default function PartnerApplicationPage() {
           </div>
 
           {currentStep !== 5 && (
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#0B1B2B]/10">
-              {/* Step 1: Company Information */}
-              {currentStep === 1 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-[#0B1B2B] mb-6">Company Information</h2>
+            <Card className="shadow-sm">
+              <CardContent className="p-8">
+                {/* Step 1: Company Information */}
+                {currentStep === 1 && (
+                  <div className="space-y-6">
+                    <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-6">Company Information</CardTitle>
                   
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                         Company Name *
                       </label>
-                      <input
+                      <Input
                         type="text"
                         value={formData.companyName}
                         onChange={(e) => handleInputChange('companyName', e.target.value)}
-                        className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
                         placeholder="Your Company Ltd"
                       />
                     </div>
@@ -283,11 +289,10 @@ export default function PartnerApplicationPage() {
                       <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                         Contact Person *
                       </label>
-                      <input
+                      <Input
                         type="text"
                         value={formData.contactPerson}
                         onChange={(e) => handleInputChange('contactPerson', e.target.value)}
-                        className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
                         placeholder="John Smith"
                       />
                     </div>
@@ -296,11 +301,10 @@ export default function PartnerApplicationPage() {
                       <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                         Email Address *
                       </label>
-                      <input
+                      <Input
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
-                        className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
                         placeholder="john@company.com"
                       />
                     </div>
@@ -309,11 +313,10 @@ export default function PartnerApplicationPage() {
                       <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                         Phone Number *
                       </label>
-                      <input
+                      <Input
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
-                        className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
                         placeholder="+44 20 1234 5678"
                       />
                     </div>
@@ -322,11 +325,10 @@ export default function PartnerApplicationPage() {
                       <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                         Website
                       </label>
-                      <input
+                      <Input
                         type="url"
                         value={formData.website}
                         onChange={(e) => handleInputChange('website', e.target.value)}
-                        className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
                         placeholder="https://www.company.com"
                       />
                     </div>
@@ -335,11 +337,10 @@ export default function PartnerApplicationPage() {
                       <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                         Business Registration
                       </label>
-                      <input
+                      <Input
                         type="text"
                         value={formData.businessRegistration}
                         onChange={(e) => handleInputChange('businessRegistration', e.target.value)}
-                        className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
                         placeholder="Companies House Number: 12345678"
                       />
                     </div>
@@ -347,10 +348,10 @@ export default function PartnerApplicationPage() {
                 </div>
               )}
 
-              {/* Step 2: Services */}
-              {currentStep === 2 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-[#0B1B2B] mb-6">Services & Expertise</h2>
+                {/* Step 2: Services */}
+                {currentStep === 2 && (
+                  <div className="space-y-6">
+                    <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-6">Services & Expertise</CardTitle>
                   
                   <div>
                     <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
@@ -372,11 +373,10 @@ export default function PartnerApplicationPage() {
                     <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                       Services Offered * <span className="text-sm text-[#6B7280]">(comma-separated)</span>
                     </label>
-                    <input
+                    <Input
                       type="text"
                       value={formData.services.join(', ')}
                       onChange={(e) => handleArrayInputChange('services', e.target.value)}
-                      className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
                       placeholder="visa applications, work permits, residency permits"
                     />
                   </div>
@@ -385,31 +385,29 @@ export default function PartnerApplicationPage() {
                     <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                       Company Description *
                     </label>
-                    <textarea
+                    <Textarea
                       value={formData.description}
                       onChange={(e) => handleInputChange('description', e.target.value)}
                       rows={4}
-                      className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all resize-none"
                       placeholder="Describe your company's expertise and what makes you unique..."
                     />
                   </div>
                 </div>
               )}
 
-              {/* Step 3: Credentials */}
-              {currentStep === 3 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-[#0B1B2B] mb-6">Credentials & References</h2>
+                {/* Step 3: Credentials */}
+                {currentStep === 3 && (
+                  <div className="space-y-6">
+                    <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-6">Credentials & References</CardTitle>
                   
                   <div>
                     <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                       Professional Insurance *
                     </label>
-                    <input
+                    <Input
                       type="text"
                       value={formData.insurance}
                       onChange={(e) => handleInputChange('insurance', e.target.value)}
-                      className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
                       placeholder="Professional Indemnity: £2M, Public Liability: £1M"
                     />
                   </div>
@@ -418,11 +416,10 @@ export default function PartnerApplicationPage() {
                     <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
                       Certifications * <span className="text-sm text-[#6B7280]">(comma-separated)</span>
                     </label>
-                    <input
+                    <Input
                       type="text"
                       value={formData.certifications.join(', ')}
                       onChange={(e) => handleArrayInputChange('certifications', e.target.value)}
-                      className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
                       placeholder="ACCA, CIOT, Law Society, etc."
                     />
                   </div>
@@ -432,13 +429,14 @@ export default function PartnerApplicationPage() {
                       <label className="block text-sm font-medium text-[#0B1B2B]">
                         Client References
                       </label>
-                      <button
+                      <Button
                         type="button"
                         onClick={addReference}
-                        className="px-4 py-2 bg-[#C9A24A] text-white rounded-lg hover:bg-[#C9A24A]/90 transition-colors text-sm"
+                        className="bg-[#C9A24A] hover:bg-[#C9A24A]/90 text-white text-sm"
+                        size="sm"
                       >
                         Add Reference
-                      </button>
+                      </Button>
                     </div>
                     
                     {formData.references.map((ref, index) => (
@@ -491,10 +489,10 @@ export default function PartnerApplicationPage() {
                 </div>
               )}
 
-              {/* Step 4: Membership Selection */}
-              {currentStep === 4 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-[#0B1B2B] mb-6">Choose Your Founding Partner Membership</h2>
+                {/* Step 4: Membership Selection */}
+                {currentStep === 4 && (
+                  <div className="space-y-6">
+                    <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-6">Choose Your Founding Partner Membership</CardTitle>
                   
                   {/* Countdown Timer */}
                   <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6">
@@ -527,15 +525,16 @@ export default function PartnerApplicationPage() {
                   
                   <div className="grid md:grid-cols-2 gap-6">
                     {membershipTiers.map((tier) => (
-                      <div
+                      <Card
                         key={tier.tier}
-                        className={`border-2 rounded-xl p-6 cursor-pointer transition-all ${
+                        className={`cursor-pointer transition-all border-2 ${
                           formData.membershipTier === tier.tier
                             ? 'border-[#C9A24A] bg-[#C9A24A]/5'
                             : 'border-[#E5E7EB] hover:border-[#C9A24A]/50'
                         }`}
                         onClick={() => handleInputChange('membershipTier', tier.tier)}
                       >
+                        <CardContent className="p-6">
                         <div className="text-center mb-4">
                           <h3 className="text-xl font-semibold text-[#0B1B2B] mb-2">{tier.name}</h3>
                           <div className="mb-2">
@@ -555,52 +554,57 @@ export default function PartnerApplicationPage() {
                             </li>
                           ))}
                         </ul>
-                      </div>
+                        </CardContent>
+                      </Card>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Navigation Buttons */}
-              <div className="flex justify-between pt-8 border-t border-[#E5E7EB]">
-                <button
-                  onClick={prevStep}
-                  disabled={currentStep === 1}
-                  className="px-6 py-3 border border-[#E5E7EB] text-[#6B7280] rounded-xl hover:bg-[#F9FAFB] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  Previous
-                </button>
-                
-                <button
-                  onClick={nextStep}
-                  disabled={!isStepValid() || loading}
-                  className="px-6 py-3 bg-[#0B1B2B] text-[#C9A24A] rounded-xl hover:bg-[#0B1B2B]/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-semibold"
-                >
-                  {loading ? 'Submitting...' : currentStep === 4 ? 'Submit Application' : 'Next'}
-                </button>
-              </div>
-            </div>
+                {/* Navigation Buttons */}
+                <div className="flex justify-between pt-8 border-t border-[#E5E7EB]">
+                  <Button
+                    variant="outline"
+                    onClick={prevStep}
+                    disabled={currentStep === 1}
+                    className="text-[#6B7280]"
+                  >
+                    Previous
+                  </Button>
+                  
+                  <Button
+                    onClick={nextStep}
+                    disabled={!isStepValid() || loading}
+                    className="bg-[#0B1B2B] text-[#C9A24A] hover:bg-[#0B1B2B]/90 font-semibold"
+                  >
+                    {loading ? 'Submitting...' : currentStep === 4 ? 'Submit Application' : 'Next'}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           )}
 
           {/* Success Message */}
           {currentStep === 5 && (
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#0B1B2B]/10 text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-semibold text-[#0B1B2B] mb-4">Application Submitted!</h2>
-              <p className="text-[#6B7280] mb-6">
-                Thank you for your interest in becoming a Relo Network partner. We will review your application and contact you within 1-3 business days.
-              </p>
-              <button
-                onClick={() => window.location.href = '/'}
-                className="px-6 py-3 bg-[#0B1B2B] text-[#C9A24A] rounded-xl hover:bg-[#0B1B2B]/90 transition-colors font-semibold"
-              >
-                Return to Homepage
-              </button>
-            </div>
+            <Card className="shadow-sm text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-4">Application Submitted!</CardTitle>
+                <CardDescription className="text-[#6B7280] mb-6">
+                  Thank you for your interest in becoming a Relo Network partner. We will review your application and contact you within 1-3 business days.
+                </CardDescription>
+                <Button
+                  onClick={() => window.location.href = '/'}
+                  className="bg-[#0B1B2B] text-[#C9A24A] hover:bg-[#0B1B2B]/90 font-semibold"
+                >
+                  Return to Homepage
+                </Button>
+              </CardContent>
+            </Card>
           )}
 
           {/* Error/Success Message */}

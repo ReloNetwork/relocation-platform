@@ -9,6 +9,10 @@ import { getAllHomepageSchemas } from '../lib/seo/homepage-schemas'
 import { getAICitationSchemas, getCommunityEngagementSchema } from '../lib/seo/ai-citation-schemas'
 import { checkoutFunctions } from '../lib/checkout'
 import { Users, Building, Briefcase, ArrowRight, Star, CheckCircle, Globe, Shield, Award, Clock, Crown, Timer, Home, Hotel, Package, FileText, GraduationCap, Landmark, Heart, Target, Gem } from 'lucide-react'
+import { Button } from '../ui/components/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/components/card'
+import { Badge } from '../ui/components/badge'
+import { Separator } from '../ui/components/separator'
 
 const AudienceCard = ({ 
   title, 
@@ -27,36 +31,38 @@ const AudienceCard = ({
   bgGradient: string
   iconBg: string
 }) => (
-  <div className={`relative ${bgGradient} rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-white/20`}>
-    <div className="text-center mb-6">
+  <Card className={`relative ${bgGradient} border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105`}>
+    <CardHeader className="text-center pb-4">
       <div className={`w-16 h-16 ${iconBg} rounded-full flex items-center justify-center mx-auto mb-4`}>
         <Icon className="w-8 h-8 text-white" />
       </div>
-      <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+      <CardTitle className="text-2xl font-bold text-white mb-3" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
         {title}
-      </h3>
-      <p className="text-white/90 text-lg leading-relaxed">
+      </CardTitle>
+      <CardDescription className="text-white/90 text-lg leading-relaxed">
         {description}
-      </p>
-    </div>
-    
-    <div className="space-y-3 mb-8">
-      {features.map((feature, idx) => (
-        <div key={idx} className="flex items-center gap-3">
-          <CheckCircle className="w-5 h-5 text-white/80 flex-shrink-0" />
-          <span className="text-white/90 text-sm">{feature}</span>
-        </div>
-      ))}
-    </div>
-    
-    <button 
-      onClick={() => window.location.href = href}
-      className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 border border-white/30"
-    >
-      Get Started
-      <ArrowRight className="w-5 h-5" />
-    </button>
-  </div>
+      </CardDescription>
+    </CardHeader>
+    <CardContent className="space-y-6">
+      <div className="space-y-3">
+        {features.map((feature, idx) => (
+          <div key={idx} className="flex items-center gap-3">
+            <CheckCircle className="w-5 h-5 text-white/80 flex-shrink-0" />
+            <span className="text-white/90 text-sm">{feature}</span>
+          </div>
+        ))}
+      </div>
+      
+      <Button 
+        onClick={() => window.location.href = href}
+        className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold border border-white/30"
+        size="lg"
+      >
+        Get Started
+        <ArrowRight className="w-5 h-5 ml-2" />
+      </Button>
+    </CardContent>
+  </Card>
 )
 
 export default function HomePage() {
@@ -206,53 +212,59 @@ export default function HomePage() {
           {/* Main CTAs - Hero Style */}
           <div className="mb-16">
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-8">
-              <button
+              <Button
                 onClick={checkoutFunctions.executiveIntake}
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-10 py-4 rounded-xl text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25"
+                size="lg"
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-10 py-4 text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25"
               >
                 Start Executive Intake — £1,500
-              </button>
+              </Button>
               <div className="flex flex-col items-center">
-                <button
+                <Button
                   onClick={() => window.location.href = '/partners'}
-                  className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-10 py-4 rounded-xl text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25 mb-2"
+                  size="lg"
+                  className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-10 py-4 text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25 mb-2"
                 >
                   Become a Founding Partner
-                </button>
+                </Button>
                 <p className="text-sm text-[#6B7280] italic">Split pay: £15k today / £10k in 30 days</p>
               </div>
             </div>
             <div className="text-center">
-              <button
+              <Button
+                variant="link"
                 onClick={() => window.location.href = '/directory'}
-                className="text-[#C9A24A] hover:text-[#B8923D] font-semibold text-lg hover:underline"
+                className="text-[#C9A24A] hover:text-[#B8923D] font-semibold text-lg"
               >
                 Browse the Directory →
-              </button>
+              </Button>
             </div>
           </div>
 
           {/* Services Grid - Clean Layout */}
           <div className="mb-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Executive Intake */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
-                  <Crown className="h-6 w-6 text-[#C9A24A]" />
+            <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                    <Crown className="h-6 w-6 text-[#C9A24A]" />
+                  </div>
+                  <div>
+                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 mb-1">Executive Service</Badge>
+                    <CardTitle className="text-2xl font-bold text-[#0B1B2B]">Executive Intake</CardTitle>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-sm font-medium text-[#C9A24A] uppercase tracking-wide">Executive Service</div>
-                  <h3 className="text-2xl font-bold text-[#0B1B2B]">Executive Intake</h3>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <CardDescription className="text-[#6B7280] leading-relaxed">
+                  60-minute strategy call, bespoke area shortlist, 3 warm introductions, and a 30-day execution window.
+                </CardDescription>
+                <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3">
+                  <p className="text-sm font-semibold text-[#0B1B2B] text-center">
+                    ✓ Credited toward any package • Starts within 24 hours
+                  </p>
                 </div>
-              </div>
-              <p className="text-[#6B7280] mb-6 leading-relaxed">
-                60-minute strategy call, bespoke area shortlist, 3 warm introductions, and a 30-day execution window.
-              </p>
-              <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3 mb-6">
-                <p className="text-sm font-semibold text-[#0B1B2B] text-center">
-                  ✓ Credited toward any package • Starts within 24 hours
-                </p>
-              </div>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="flex items-center gap-2 text-[#6B7280]">
                   <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
@@ -271,43 +283,45 @@ export default function HomePage() {
                   <span>30-day execution</span>
                 </div>
               </div>
-              
-              {/* Clear FAQ Section */}
-              <div className="bg-[#F8F9FA] rounded-lg p-4 space-y-3">
-                <div className="space-y-1">
-                  <div className="font-medium text-[#0B1B2B] text-sm">What happens after I pay?</div>
-                  <div className="text-[#6B7280] text-sm leading-relaxed">Call booked within 24h; we start your shortlist the same day.</div>
+                
+                {/* Clear FAQ Section */}
+                <div className="bg-[#F8F9FA] rounded-lg p-4 space-y-3">
+                  <div className="space-y-1">
+                    <div className="font-medium text-[#0B1B2B] text-sm">What happens after I pay?</div>
+                    <div className="text-[#6B7280] text-sm leading-relaxed">Call booked within 24h; we start your shortlist the same day.</div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="font-medium text-[#0B1B2B] text-sm">Guarantee?</div>
+                    <div className="text-[#6B7280] text-sm leading-relaxed">3 warm intros in 7 days or we extend your concierge window free.</div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="font-medium text-[#0B1B2B] text-sm">Refunds?</div>
+                    <div className="text-[#6B7280] text-sm leading-relaxed">Full refund up to 24 hours before your call; credit conversion within 24 hours.</div>
+                  </div>
                 </div>
-                <div className="space-y-1">
-                  <div className="font-medium text-[#0B1B2B] text-sm">Guarantee?</div>
-                  <div className="text-[#6B7280] text-sm leading-relaxed">3 warm intros in 7 days or we extend your concierge window free.</div>
-                </div>
-                <div className="space-y-1">
-                  <div className="font-medium text-[#0B1B2B] text-sm">Refunds?</div>
-                  <div className="text-[#6B7280] text-sm leading-relaxed">Full refund up to 24 hours before your call; credit conversion within 24 hours.</div>
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Founding Partner + Day Pass */}
             <div className="space-y-6">
               {/* Founding Partner */}
-              <div className="bg-gradient-to-br from-[#C9A24A] to-[#B8923D] rounded-3xl p-8 text-white shadow-2xl">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <div className="text-sm font-medium text-white/90 uppercase tracking-wide">Charter Partnership</div>
-                    <h3 className="text-2xl font-bold">Own Your Category</h3>
+              <Card className="bg-gradient-to-br from-[#C9A24A] to-[#B8923D] text-white shadow-2xl border-none">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <Badge variant="secondary" className="text-white/90 bg-white/20 mb-2">Charter Partnership</Badge>
+                      <CardTitle className="text-2xl font-bold text-white">Own Your Category</CardTitle>
+                    </div>
+                    <Timer className="h-8 w-8 text-white/80" />
                   </div>
-                  <Timer className="h-8 w-8 text-white/80" />
-                </div>
-                <div className="mb-6">
-                  <p className="text-white/95 leading-relaxed mb-3">
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <CardDescription className="text-white/95 leading-relaxed">
                     Concierge-routed briefs, top placement, and quarterly editorial.
-                  </p>
+                  </CardDescription>
                   <div className="bg-white/20 rounded-lg p-2 text-center">
                     <span className="font-bold text-white">12 Charter slots available</span>
                   </div>
-                </div>
                 <div className="flex items-center gap-4 text-sm mb-6">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-white/20 text-white rounded-full flex items-center justify-center text-xs font-bold">
@@ -328,45 +342,46 @@ export default function HomePage() {
                     <span>{timeLeft.minutes}m</span>
                   </div>
                 </div>
-                <div className="bg-white/10 rounded-lg p-3 mb-4">
-                  <div className="text-sm text-white/90 text-center flex items-center justify-center gap-2">
-                    <Gem className="w-4 h-4" />
-                    <span className="font-medium">Bonus: Enroll by Oct 6 for extra editorial + homepage tile (30 days)</span>
+                  <div className="bg-white/10 rounded-lg p-3">
+                    <div className="text-sm text-white/90 text-center flex items-center justify-center gap-2">
+                      <Gem className="w-4 h-4" />
+                      <span className="font-medium">Bonus: Enroll by Oct 6 for extra editorial + homepage tile (30 days)</span>
+                    </div>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
 
               {/* Day Pass */}
-              <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-[#0B1B2B]/10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-[#0B1B2B]/10 rounded-xl flex items-center justify-center">
-                    <Clock className="h-5 w-5 text-[#0B1B2B]" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-medium text-[#0B1B2B]/60 uppercase tracking-wide">Quick Access</div>
-                    <h4 className="text-lg font-bold text-[#0B1B2B]">72-Hour Day Pass</h4>
-                  </div>
-                  <div className="ml-auto text-right">
+              <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-[#0B1B2B]/10">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-[#0B1B2B]/10 rounded-xl flex items-center justify-center">
+                      <Clock className="h-5 w-5 text-[#0B1B2B]" />
+                    </div>
+                    <div className="flex-1">
+                      <Badge variant="outline" className="text-[#0B1B2B]/60 mb-1">Quick Access</Badge>
+                      <CardTitle className="text-lg font-bold text-[#0B1B2B]">72-Hour Day Pass</CardTitle>
+                    </div>
                     <div className="text-2xl font-bold text-[#0B1B2B]">£59</div>
                   </div>
-                </div>
-                <div className="space-y-2 mb-4">
-                  <p className="text-[#6B7280] text-sm leading-relaxed">
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <CardDescription className="text-[#6B7280] text-sm leading-relaxed">
                     Full directory access + 1 curated introduction.
-                  </p>
+                  </CardDescription>
                   <div className="bg-[#0B1B2B]/5 rounded-lg p-2">
                     <p className="text-xs font-medium text-[#0B1B2B] text-center">
                       Perfect for weekend viewings
                     </p>
                   </div>
-                </div>
-                <button
-                  onClick={checkoutFunctions.dayPass}
-                  className="w-full bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white py-3 rounded-xl font-semibold hover:scale-105 transition-all shadow-lg"
-                >
-                  Get Day Pass
-                </button>
-              </div>
+                  <Button
+                    onClick={checkoutFunctions.dayPass}
+                    className="w-full bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white font-semibold hover:scale-105 transition-all shadow-lg"
+                  >
+                    Get Day Pass
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
 
@@ -377,12 +392,12 @@ export default function HomePage() {
               <p className="text-lg text-[#6B7280] mb-4 max-w-3xl mx-auto">
                 Not sure who to pick? We'll run it for you.
               </p>
-              <button
+              <Button
                 onClick={checkoutFunctions.executiveIntake}
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-all shadow-lg"
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 font-semibold hover:scale-105 transition-all shadow-lg"
               >
                 Start Executive Intake — £1,500
-              </button>
+              </Button>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 max-w-7xl mx-auto">
               {[
@@ -395,16 +410,17 @@ export default function HomePage() {
                 { name: 'Private Healthcare', href: '/directory?category=Healthcare', icon: Heart },
                 { name: 'Lifestyle Concierge', href: '/directory?category=Lifestyle+Concierge', icon: Target }
               ].map((category, index) => (
-                <button
+                <Button
                   key={index}
+                  variant="outline"
                   onClick={() => window.location.href = category.href}
-                  className="bg-white/90 backdrop-blur-sm border border-[#C9A24A]/20 rounded-xl p-4 text-center hover:border-[#C9A24A]/40 hover:bg-white hover:scale-105 transition-all shadow-sm hover:shadow-lg group"
+                  className="bg-white/90 backdrop-blur-sm border-[#C9A24A]/20 rounded-xl p-4 h-auto flex-col text-center hover:border-[#C9A24A]/40 hover:bg-white hover:scale-105 transition-all shadow-sm hover:shadow-lg group"
                 >
                   <div className="mb-2 group-hover:scale-110 transition-transform text-[#C9A24A]">
                     <category.icon className="w-6 h-6 mx-auto" />
                   </div>
                   <div className="text-sm font-medium text-[#0B1B2B] leading-tight">{category.name}</div>
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -439,13 +455,13 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-8">
-            <div className="bg-white rounded-2xl border border-[#0B1B2B]/10 shadow-lg overflow-hidden">
-              <div className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 px-8 py-6">
-                <h3 className="text-xl font-bold text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <Card className="overflow-hidden shadow-lg">
+              <CardHeader className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white">
+                <CardTitle className="text-xl font-bold" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                   What types of London relocation services are available?
-                </h3>
-              </div>
-              <div className="p-8">
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-8">
                 <p className="text-[#0B1B2B] leading-relaxed mb-4">
                   <strong>Professional London relocations are tailored to different executive needs and family situations.</strong> Our tiered service approach ensures each move receives the appropriate level of support, from individual professionals to senior leadership requiring white-glove treatment.
                 </p>
@@ -470,8 +486,8 @@ export default function HomePage() {
                 <p className="text-[#6B7280] text-sm italic">
                   *Services include visa support, property search, school placement, and comprehensive post-arrival support. Professional coordination typically prevents costly mistakes and reduces overall relocation timeline by 60%.
                 </p>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             <div className="bg-white rounded-2xl border border-[#0B1B2B]/10 shadow-lg overflow-hidden">
               <div className="bg-gradient-to-r from-[#C9A24A] to-[#C9A24A]/90 px-8 py-6">
