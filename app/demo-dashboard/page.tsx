@@ -1,11 +1,22 @@
 'use client'
 import Layout from '@/components/Layout'
 import { useState } from 'react'
-import { ExternalLink, Star, Users, Clock, MapPin, CheckCircle, GraduationCap, Home, Zap, Building2, Scale, Heart, UserCheck, ExternalLinkIcon } from 'lucide-react'
+import { ExternalLink, Star, Users, Clock, MapPin, CheckCircle, GraduationCap, Home, Zap, Building2, Scale, Heart, UserCheck, ExternalLinkIcon, Plus, Edit3, Bot, MessageCircle, AlertCircle, Calendar, Flag } from 'lucide-react'
 
 export default function DemoDashboard() {
   const [showPartnerModal, setShowPartnerModal] = useState(false)
   const [selectedPartnerType, setSelectedPartnerType] = useState('')
+  const [showTaskModal, setShowTaskModal] = useState(false)
+  const [editingTask, setEditingTask] = useState(null)
+  const [showReloPanel, setShowReloPanel] = useState(false)
+  const [reloRecommendations, setReloRecommendations] = useState([])
+  const [newTask, setNewTask] = useState({
+    title: '',
+    description: '',
+    priority: 'medium',
+    due: '',
+    partnerType: 'general'
+  })
   const [tasks, setTasks] = useState([
     { 
       id: 1, 
@@ -78,6 +89,106 @@ export default function DemoDashboard() {
 
   const messageConcierge = () => {
     alert("Opening secure messaging channel with your dedicated concierge. In the full platform, this would open a real-time chat interface.")
+  }
+
+  // Task Management Functions
+  const addTask = () => {
+    const task = {
+      id: Date.now(),
+      ...newTask,
+      status: 'todo',
+      suggestedPartners: []
+    }
+    setTasks([...tasks, task])
+    setNewTask({ title: '', description: '', priority: 'medium', due: '', partnerType: 'general' })
+    setShowTaskModal(false)
+    
+    // Trigger Relo recommendation
+    generateReloRecommendation(task)
+  }
+
+  const editTask = (task: any) => {
+    setEditingTask(task)
+    setNewTask(task)
+    setShowTaskModal(true)
+  }
+
+  const updateTask = () => {
+    setTasks(tasks.map(t => t.id === editingTask.id ? { ...editingTask, ...newTask } : t))
+    setEditingTask(null)
+    setNewTask({ title: '', description: '', priority: 'medium', due: '', partnerType: 'general' })
+    setShowTaskModal(false)
+  }
+
+  const deleteTask = (taskId: number) => {
+    setTasks(tasks.filter(t => t.id !== taskId))
+  }
+
+  const updateTaskStatus = (taskId: number, newStatus: string) => {
+    setTasks(tasks.map(t => t.id === taskId ? { ...t, status: newStatus } : t))
+    
+    // Trigger Relo celebration or next step recommendation
+    if (newStatus === 'done') {
+      const completedTask = tasks.find(t => t.id === taskId)
+      generateReloCompletion(completedTask)
+    }
+  }
+
+  // Relo AI Integration Functions
+  const generateReloRecommendation = (task: any) => {
+    const recommendations = [
+      {
+        id: Date.now(),
+        type: 'tip',
+        title: 'Smart Timing Tip',
+        message: `For "${task.title}", I recommend starting 2-3 weeks early. This gives buffer time for any unexpected requirements.`,
+        action: 'Adjust Timeline',
+        taskId: task.id
+      }
+    ]
+    setReloRecommendations(prev => [...prev, ...recommendations])
+    setShowReloPanel(true)
+  }
+
+  const generateReloCompletion = (task: any) => {
+    const completionMsg = {
+      id: Date.now(),
+      type: 'celebration',
+      title: '🎉 Task Completed!',
+      message: `Great job completing "${task.title}"! Based on your progress, I recommend focusing on high-priority items next.`,
+      action: 'View Next Steps',
+      taskId: task.id
+    }
+    setReloRecommendations(prev => [...prev, completionMsg])
+    setShowReloPanel(true)
+  }
+
+  const getReloInsights = () => {
+    const insights = [
+      {
+        id: Date.now() + 1,
+        type: 'insight',
+        title: 'Progress Analysis',
+        message: `You've completed ${tasks.filter(t => t.status === 'done').length} out of ${tasks.length} tasks. You're ${Math.round((tasks.filter(t => t.status === 'done').length / tasks.length) * 100)}% complete!`,
+        action: 'View Details'
+      },
+      {
+        id: Date.now() + 2,
+        type: 'reminder',
+        title: 'Upcoming Deadlines',
+        message: `You have ${tasks.filter(t => t.priority === 'high' && t.status !== 'done').length} high-priority tasks. Would you like me to help prioritize them?`,
+        action: 'Help Prioritize'
+      },
+      {
+        id: Date.now() + 3,
+        type: 'suggestion',
+        title: 'Partner Recommendation',
+        message: 'Based on your tasks, I suggest connecting with education partners first, as school enrollment often has strict deadlines.',
+        action: 'Connect Now'
+      }
+    ]
+    setReloRecommendations(insights)
+    setShowReloPanel(true)
   }
 
   const partnerServices = {
@@ -177,6 +288,31 @@ export default function DemoDashboard() {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Tasks Section */}
             <div className="lg:col-span-2">
+              {/* Task Management Header */}
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-[#0B1B2B]">Task Management</h2>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={getReloInsights}
+                    className="flex items-center gap-2 bg-gradient-to-r from-[#C9A24A] to-[#B8923D] text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all"
+                  >
+                    <Bot className="w-4 h-4" />
+                    Ask Relo
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditingTask(null)
+                      setNewTask({ title: '', description: '', priority: 'medium', due: '', partnerType: 'general' })
+                      setShowTaskModal(true)
+                    }}
+                    className="flex items-center gap-2 bg-[#0B1B2B] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#0B1B2B]/90 transition-colors"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add Task
+                  </button>
+                </div>
+              </div>
+
               {/* Kanban Board */}
               <div className="mb-8">
                 <div className="grid md:grid-cols-3 gap-6">
@@ -230,6 +366,20 @@ export default function DemoDashboard() {
                                   </div>
                                   
                                   <div className="flex gap-1">
+                                    <button
+                                      onClick={() => editTask(task)}
+                                      className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors"
+                                      title="Edit Task"
+                                    >
+                                      <Edit3 className="w-3 h-3" />
+                                    </button>
+                                    <button
+                                      onClick={() => deleteTask(task.id)}
+                                      className="px-2 py-1 text-xs bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors"
+                                      title="Delete Task"
+                                    >
+                                      ✕
+                                    </button>
                                     {task.status !== 'todo' && (
                                       <button
                                         onClick={() => updateTaskStatus(task.id, 'todo')}
@@ -569,6 +719,177 @@ export default function DemoDashboard() {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Task Add/Edit Modal */}
+      {showTaskModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-md w-full">
+            <div className="p-6 border-b border-gray-200">
+              <h3 className="text-xl font-bold text-gray-900">
+                {editingTask ? 'Edit Task' : 'Add New Task'}
+              </h3>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                <input
+                  type="text"
+                  value={newTask.title}
+                  onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A]"
+                  placeholder="Enter task title"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <textarea
+                  value={newTask.description}
+                  onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A]"
+                  rows={3}
+                  placeholder="Enter task description"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                  <select
+                    value={newTask.priority}
+                    onChange={(e) => setNewTask({ ...newTask, priority: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A]"
+                  >
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Due Date</label>
+                  <input
+                    type="date"
+                    value={newTask.due}
+                    onChange={(e) => setNewTask({ ...newTask, due: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                <select
+                  value={newTask.partnerType}
+                  onChange={(e) => setNewTask({ ...newTask, partnerType: e.target.value })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A]"
+                >
+                  <option value="general">General</option>
+                  <option value="education">Education</option>
+                  <option value="property">Property</option>
+                  <option value="utilities">Utilities</option>
+                  <option value="banking">Banking</option>
+                  <option value="legal">Legal</option>
+                  <option value="healthcare">Healthcare</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-gray-200 flex justify-end gap-3">
+              <button
+                onClick={() => setShowTaskModal(false)}
+                className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={editingTask ? updateTask : addTask}
+                className="px-4 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg transition-colors"
+              >
+                {editingTask ? 'Update Task' : 'Add Task'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Relo AI Recommendations Panel */}
+      {showReloPanel && (
+        <div className="fixed top-4 right-4 w-80 bg-white rounded-xl shadow-2xl border border-[#E5E7EB] z-50 max-h-[80vh] overflow-y-auto">
+          <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-[#C9A24A] to-[#B8923D] text-white rounded-t-xl">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Bot className="w-5 h-5" />
+                <h3 className="font-semibold">Relo AI Assistant</h3>
+              </div>
+              <button
+                onClick={() => setShowReloPanel(false)}
+                className="text-white/80 hover:text-white"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <div className="p-4 space-y-4">
+            {reloRecommendations.map((rec) => (
+              <div
+                key={rec.id}
+                className={`p-4 rounded-lg border ${
+                  rec.type === 'celebration' ? 'bg-green-50 border-green-200' :
+                  rec.type === 'tip' ? 'bg-blue-50 border-blue-200' :
+                  rec.type === 'reminder' ? 'bg-yellow-50 border-yellow-200' :
+                  'bg-gray-50 border-gray-200'
+                }`}
+              >
+                <div className="flex items-start gap-3">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${
+                    rec.type === 'celebration' ? 'bg-green-500 text-white' :
+                    rec.type === 'tip' ? 'bg-blue-500 text-white' :
+                    rec.type === 'reminder' ? 'bg-yellow-500 text-white' :
+                    'bg-gray-500 text-white'
+                  }`}>
+                    {rec.type === 'celebration' ? '🎉' :
+                     rec.type === 'tip' ? '💡' :
+                     rec.type === 'reminder' ? '⏰' : '🔍'}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-1">{rec.title}</h4>
+                    <p className="text-sm text-gray-600 mb-3">{rec.message}</p>
+                    {rec.action && (
+                      <button className="text-xs bg-[#C9A24A] text-white px-3 py-1 rounded-full hover:bg-[#B8923D] transition-colors">
+                        {rec.action}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {reloRecommendations.length === 0 && (
+              <div className="text-center py-8">
+                <Bot className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-500 text-sm">
+                  I'll provide smart recommendations as you work on your tasks!
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="p-4 border-t border-gray-200 bg-gray-50 rounded-b-xl">
+            <button
+              onClick={() => {
+                setReloRecommendations([])
+                setShowReloPanel(false)
+              }}
+              className="w-full text-sm text-gray-600 hover:text-gray-800 transition-colors"
+            >
+              Clear Recommendations
+            </button>
           </div>
         </div>
       )}
