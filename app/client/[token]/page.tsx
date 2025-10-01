@@ -147,6 +147,26 @@ export default function ClientDashboard() {
     }
   }
 
+  const handlePartnerClick = (partner: string, taskTitle: string) => {
+    alert(`🤝 Connecting with ${partner}\n\nFor: ${taskTitle}\n\n✅ Contact initiated\n📞 They will call you within 2 hours\n📧 Confirmation email sent\n💼 Premium client status confirmed\n\nNext steps:\n• Prepare your requirements list\n• Have your documents ready\n• Expect their call soon!`)
+  }
+
+  const handleQuickAction = (action: string) => {
+    switch (action) {
+      case 'Chat with Relo AI':
+        alert(`💬 Relo AI Chat\n\nStarting your personal AI consultation...\n\n🤖 "Hello! I'm your dedicated relocation assistant. I can help you with:\n\n• Urgent task prioritization\n• Partner recommendations\n• Timeline optimization\n• Local area insights\n• Document preparation\n\nWhat would you like to discuss first?"`)
+        break
+      case 'Schedule Consultation':
+        alert(`📅 Schedule Consultation\n\nBooking your premium consultation...\n\n✅ Available slots:\n• Today 3:00 PM - 30 min call\n• Tomorrow 10:00 AM - 60 min video\n• Friday 2:00 PM - In-person visit\n\n💎 As a premium client, you get:\n• Priority booking\n• Expert consultant\n• Personalized action plan\n\nWhich slot works best for you?`)
+        break
+      case 'Download Checklist':
+        alert(`📋 Download Checklist\n\nGenerating your personalized checklist...\n\n✅ Created for: Sarah Johnson\n📍 Relocating to: London, UK\n📅 Move date: Jan 15, 2024\n\n📄 Checklist includes:\n• 47 location-specific tasks\n• Timeline with deadlines\n• Required documents list\n• Emergency contacts\n• Local area guide\n\nDownload starting... ✨`)
+        break
+      default:
+        alert(`🔧 ${action}\n\nThis feature is coming soon!\nYour premium account will get early access.`)
+    }
+  }
+
   // Loading state
   if (validToken === null) {
     return (
@@ -319,6 +339,7 @@ export default function ClientDashboard() {
                             {task.suggestedPartners.map((partner, index) => (
                               <button 
                                 key={index}
+                                onClick={() => handlePartnerClick(partner, task.title)}
                                 className="text-xs bg-[#C9A24A]/10 text-[#B8923D] px-2 py-1 rounded-full hover:bg-[#C9A24A]/20 transition-colors"
                               >
                                 {partner}
@@ -385,15 +406,24 @@ export default function ClientDashboard() {
               <div className="bg-white rounded-xl border border-[#E5E7EB] p-6">
                 <h3 className="font-semibold text-[#0B1B2B] mb-4">Quick Actions</h3>
                 <div className="space-y-3">
-                  <button className="w-full flex items-center gap-3 p-3 rounded-lg border border-[#E5E7EB] hover:bg-gray-50 transition-colors">
+                  <button 
+                    onClick={() => handleQuickAction('Chat with Relo AI')}
+                    className="w-full flex items-center gap-3 p-3 rounded-lg border border-[#E5E7EB] hover:bg-gray-50 transition-colors"
+                  >
                     <MessageSquare className="w-5 h-5 text-[#C9A24A]" />
                     <span className="text-sm font-medium text-[#0B1B2B]">Chat with Relo AI</span>
                   </button>
-                  <button className="w-full flex items-center gap-3 p-3 rounded-lg border border-[#E5E7EB] hover:bg-gray-50 transition-colors">
+                  <button 
+                    onClick={() => handleQuickAction('Schedule Consultation')}
+                    className="w-full flex items-center gap-3 p-3 rounded-lg border border-[#E5E7EB] hover:bg-gray-50 transition-colors"
+                  >
                     <Calendar className="w-5 h-5 text-[#C9A24A]" />
                     <span className="text-sm font-medium text-[#0B1B2B]">Schedule Consultation</span>
                   </button>
-                  <button className="w-full flex items-center gap-3 p-3 rounded-lg border border-[#E5E7EB] hover:bg-gray-50 transition-colors">
+                  <button 
+                    onClick={() => handleQuickAction('Download Checklist')}
+                    className="w-full flex items-center gap-3 p-3 rounded-lg border border-[#E5E7EB] hover:bg-gray-50 transition-colors"
+                  >
                     <FileText className="w-5 h-5 text-[#C9A24A]" />
                     <span className="text-sm font-medium text-[#0B1B2B]">Download Checklist</span>
                   </button>
