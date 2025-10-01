@@ -12,46 +12,17 @@ function PaymentSuccessContent() {
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    // Simulate payment processing and dashboard generation
-    const generateDashboardAccess = async () => {
-      // Simulate client data from payment
-      const mockClientData = {
+    // For demo purposes, use the demo token directly
+    const generateDashboardAccess = () => {
+      // Use demo token for consistent experience
+      const demoToken = 'demo-client-123'
+      const dashboardLink = `${window.location.origin}/client/${demoToken}`
+      
+      setDashboardUrl(dashboardLink)
+      setClientData({
         name: 'Sarah Johnson',
-        email: 'sarah.johnson@email.com',
-        relocationType: 'Corporate Transfer',
-        destination: 'London, UK',
-        moveDate: '2024-01-15'
-      }
-
-      const packageType = searchParams?.get('package') || 'Premium Relocation Package'
-
-      try {
-        // Call API to create dashboard access
-        const response = await fetch('/api/client/validate', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            clientData: mockClientData,
-            packageType: packageType
-          })
-        })
-
-        if (response.ok) {
-          const data = await response.json()
-          setDashboardUrl(data.dashboardUrl)
-          setClientData(data.client)
-        }
-      } catch (error) {
-        console.error('Dashboard generation error:', error)
-        // Fallback to demo URL
-        setDashboardUrl(`${window.location.origin}/client/demo-client-123`)
-        setClientData({
-          name: 'Sarah Johnson',
-          packageType: 'Premium Relocation Package'
-        })
-      }
+        packageType: 'Premium Relocation Package'
+      })
     }
 
     generateDashboardAccess()
