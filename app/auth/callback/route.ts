@@ -16,8 +16,16 @@ export async function GET(request: NextRequest) {
   })
 
   if (code) {
+    console.log('🔑 Processing auth code:', code.substring(0, 10) + '...')
     const supabase = createClient()
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+    
+    console.log('🔄 Exchange result:', { 
+      hasData: !!data, 
+      hasUser: !!data?.user, 
+      hasSession: !!data?.session,
+      error: error?.message 
+    })
     
     if (!error && data?.user && data?.session) {
       console.log('🔐 Auth successful for user:', data.user.email)
@@ -44,7 +52,17 @@ export async function GET(request: NextRequest) {
       
       return response
     } else {
-      console.error('❌ Auth exchange failed:', { error, hasUser: !!data?.user, hasSession: !!data?.session })
+      console.error('❌ Auth exchange failed:', { error: error?.message, hasUser: !!data?.user, hasSession: !!data?.session })
+      
+      // Try to get existing session as fallback
+      console.log('🔄 Attempting fallback session check...')
+      const { data: sessionData } = await supabase.auth.getSession()
+      
+      if (sessionData?.session?.user) {
+        console.log('✅ Found existing session, redirecting anyway')
+        const redirectUrl = `${origin}/dashboard`
+        return NextResponse.redirect(redirectUrl)
+      }
     }
   }
 
