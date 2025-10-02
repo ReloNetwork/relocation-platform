@@ -232,7 +232,7 @@ export default function PartnersPage() {
               Own Your Category in London's Most Vetted Relocation Network
             </h1>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto mb-8">
-              Category exclusivity + concierge-routed intros + homepage placement. 12 Charter slots only. Closes 06 Oct, 2:00 PM GMT.
+              Category exclusivity, concierge qualified introductions, directory and homepage placements. 12 Founder slots only. Closes 06 Oct, 2:00 PM GMT.
             </p>
             
             {/* Above the fold CTAs */}

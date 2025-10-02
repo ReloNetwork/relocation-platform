@@ -314,7 +314,7 @@ export default function HomePage() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <CardDescription className="text-white/95 leading-relaxed text-left">
-                    Concierge qualified introductions, top placements cross Home, Directory pages and Concierge recommendations and quarterly editorial features.
+                    Concierge qualified introductions, top placements across Home, Directory pages, Concierge recommendations and quarterly editorial features.
                   </CardDescription>
                   <div className="bg-white/20 rounded-lg p-2 text-center">
                     <span className="font-bold text-white">12 Founder slots available</span>
