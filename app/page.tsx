@@ -307,14 +307,14 @@ export default function HomePage() {
                   <div className="mb-2">
                     <div className="flex items-center gap-3 mb-2">
                       <Timer className="h-8 w-8 text-white/80" />
-                      <Badge variant="secondary" className="text-white/90 bg-white/20">Founding Partnership</Badge>
+                      <Badge variant="secondary" className="text-white/90 bg-white/20 px-4 py-2">Founding Partnership</Badge>
                     </div>
                     <CardTitle className="text-2xl font-bold text-white text-left">Own Your Category</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <CardDescription className="text-white/95 leading-relaxed text-left">
-                    Concierge-qualified introductions, top placements and quarterly editorial features.
+                    Concierge qualified introductions, top placements cross Home, Directory pages and Concierge recommendations and quarterly editorial features.
                   </CardDescription>
                   <div className="bg-white/20 rounded-lg p-2 text-center">
                     <span className="font-bold text-white">12 Founder slots available</span>
