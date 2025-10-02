@@ -194,7 +194,7 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Hero Section with Authority Signals */}
-      <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10 pt-8">
+      <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10 pt-24">
         <div className="text-center max-w-6xl mx-auto px-4">
           
           <h1 className="text-6xl lg:text-7xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
@@ -229,7 +229,7 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-            <div className="text-center">
+            <div className="text-center mb-24">
               <Button
                 variant="link"
                 onClick={() => window.location.href = '/directory'}
