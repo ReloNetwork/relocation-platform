@@ -120,8 +120,8 @@ export default function HomePage() {
       icon: Building,
       href: "/partners",
       features: [
-        "Lead Machine guaranteed leads",
-        "Market Dominator exclusivity",
+        "Premium Sponsor guaranteed leads",
+        "Founding Partner exclusivity",
         "Premium client network access",
         "AI-powered client matching",
         "Revenue sharing opportunities"
