@@ -313,7 +313,7 @@ export default function DirectoryPage() {
   }
 
   const categories = [
-    'All', 'Property Specialists', 'Serviced Accommodation', 'Independent Schools', 'Premium Banking', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
+    'All', 'Property Specialists', 'Serviced Accommodation', 'Independent Schools', 'Premium Banking', 'Private Healthcare', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
     'Education Consultants', 'Lifestyle Concierge', 'Transportation', 'Home Services', 'Lifestyle Services', 'Pet Relocation', 'Travel', 'Other (please specify)'
   ]
 
@@ -791,6 +791,72 @@ export default function DirectoryPage() {
         phone: "+44-20-7885-8888", 
         email: "priority@sc.com",
         website: "sc.com/priority-banking"
+      },
+      isPremium: true
+    },
+    
+    // Private Healthcare Services
+    {
+      name: "The Harley Street Clinic",
+      category: "Private Healthcare",
+      description: "World-leading acute care hospital specialising in oncology, cardiology and neurosciences. CQC Outstanding rating with international patient coordinators and global medical concierge services.",
+      rating: 4.9,
+      reviews: 847,
+      verificationBadge: "CQC Outstanding • Global Medical Excellence",
+      serviceAreas: ["Harley Street", "Weymouth Street", "International Patients"],
+      specializations: ["Oncology", "Cardiology", "Neurosciences", "International Patients"],
+      contactInfo: { 
+        phone: "+44-20-7935-7700", 
+        email: "international@hcahealthcare.co.uk",
+        website: "hcahealthcare.co.uk/harley-street-clinic"
+      },
+      isPremium: true
+    },
+    {
+      name: "The London Clinic",
+      category: "Private Healthcare",
+      description: "UK's largest independent private hospital established in 1932. 90+ years of international medical excellence with dedicated international coordinators and multilingual support.",
+      rating: 4.8,
+      reviews: 1156,
+      verificationBadge: "90+ Years Excellence • International Coordinators",
+      serviceAreas: ["Devonshire Place", "London Medical District", "International"],
+      specializations: ["International Patients", "Specialist Surgery", "Diagnostics", "Medical Excellence"],
+      contactInfo: { 
+        phone: "+44-20-7935-4444", 
+        email: "international@thelondonclinic.co.uk",
+        website: "thelondonclinic.co.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "The London General Practice",
+      category: "Private Healthcare",
+      description: "24/7 private GP services on Harley Street with global healthcare concierge. Provides comprehensive medical services for UK and international patients with home and hotel visits.",
+      rating: 4.7,
+      reviews: 623,
+      verificationBadge: "24/7 Service • Global Healthcare Concierge",
+      serviceAreas: ["Harley Street", "Home Visits", "Hotel Visits"],
+      specializations: ["24/7 GP Services", "International Patients", "Home Visits", "Healthcare Concierge"],
+      contactInfo: { 
+        phone: "+44-207-935-1000", 
+        email: "enquiries@thelondongeneralpractice.com",
+        website: "thelondongeneralpractice.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Cleveland Clinic London",
+      category: "Private Healthcare",
+      description: "World-class American healthcare in London with dedicated Global Patient Services. Transparent pricing, multilingual support, and seamless care coordination for international patients.",
+      rating: 4.8,
+      reviews: 394,
+      verificationBadge: "World-Class Care • Global Patient Services",
+      serviceAreas: ["Portland Place", "Moorgate", "Multiple Locations"],
+      specializations: ["Global Patient Services", "Self-Pay Services", "International Care", "Multilingual Support"],
+      contactInfo: { 
+        phone: "+44-20-3423-8000", 
+        email: "international@clevelandcliniclondon.uk",
+        website: "clevelandcliniclondon.uk"
       },
       isPremium: true
     },
