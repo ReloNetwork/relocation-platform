@@ -217,7 +217,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-10 py-4 text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25"
               >
-                Start Executive Intake — £1,500
+                Start Executive Intake
               </Button>
               <div className="flex flex-col items-center">
                 <Button
@@ -227,7 +227,6 @@ export default function HomePage() {
                 >
                   Become a Founding Partner
                 </Button>
-                <p className="text-sm text-[#6B7280] italic">Split pay: £15k today / £10k in 30 days</p>
               </div>
             </div>
             <div className="text-center">
@@ -396,7 +395,7 @@ export default function HomePage() {
                 onClick={checkoutFunctions.executiveIntake}
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 font-semibold hover:scale-105 transition-all shadow-lg"
               >
-                Start Executive Intake — £1,500
+                Start Executive Intake
               </Button>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 max-w-7xl mx-auto">
