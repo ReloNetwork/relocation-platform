@@ -2,6 +2,8 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/components/card'
 import { Button } from '@/ui/components/button'
+import { Badge } from '@/ui/components/badge'
+import { Calendar, Clock, Edit, X, Users, CheckCircle } from 'lucide-react'
 import type { User } from '@supabase/supabase-js'
 import type { Task, Appointment, MoveCase, Organization } from '@/types/db'
 
@@ -20,6 +22,78 @@ export default function DashboardContent({
   tasks, 
   appointments 
 }: DashboardContentProps) {
+  // Sample tasks for demo purposes when database is empty
+  const sampleTasks = [
+    {
+      id: 'sample-1',
+      title: 'Register Children for School',
+      description: 'Complete school enrollment process for all children',
+      status: 'pending',
+      priority: 'high',
+      due_date: '2024-03-01',
+      move_case_id: 'sample',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sample-2',
+      title: 'Set up Utilities',
+      description: 'Arrange electricity, gas, water, and Internet connections',
+      status: 'pending',
+      priority: 'medium',
+      due_date: '2024-03-15',
+      move_case_id: 'sample',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sample-3',
+      title: 'Register with Local GP',
+      description: 'Find and register with local healthcare provider',
+      status: 'pending',
+      priority: 'low',
+      due_date: '2024-03-30',
+      move_case_id: 'sample',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sample-4',
+      title: 'Schedule Property Viewings',
+      description: 'Arrange viewings for shortlisted properties in desired area',
+      status: 'in_progress',
+      priority: 'high',
+      due_date: '2024-02-01',
+      move_case_id: 'sample',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sample-5',
+      title: 'Open Bank Account',
+      description: 'Set up local bank account and transfer initial funds',
+      status: 'in_progress',
+      priority: 'medium',
+      due_date: '2024-02-10',
+      move_case_id: 'sample',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sample-6',
+      title: 'Submit Visa Application',
+      description: 'Complete and submit visa application with required documents',
+      status: 'completed',
+      priority: 'high',
+      due_date: '2024-01-15',
+      move_case_id: 'sample',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
+  ]
+
+  // Use sample tasks if no real tasks exist
+  const displayTasks = tasks && tasks.length > 0 ? tasks : sampleTasks
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'high': return 'text-red-600 bg-red-50 border-red-200'
@@ -136,12 +210,12 @@ export default function DashboardContent({
                       <div 
                         className="bg-[#C9A24A] h-2 rounded-full" 
                         style={{ 
-                          width: `${tasks.length > 0 ? (tasks.filter(t => t.status === 'completed').length / tasks.length) * 100 : 0}%` 
+                          width: `${displayTasks.length > 0 ? (displayTasks.filter(t => t.status === 'completed').length / displayTasks.length) * 100 : 0}%` 
                         }}
                       />
                     </div>
                     <span className="text-sm font-medium text-[#0B1B2B]">
-                      {tasks.filter(t => t.status === 'completed').length}/{tasks.length}
+                      {displayTasks.filter(t => t.status === 'completed').length}/{displayTasks.length}
                     </span>
                   </div>
                 </div>
@@ -173,95 +247,213 @@ export default function DashboardContent({
           </Card>
         </section>
 
-        {/* Main Content Grid */}
-        <main className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Tasks */}
-          <section aria-label="Relocation Tasks">
-            <Card className="border-[#E5E7EB]">
-              <CardHeader>
-                <CardTitle className="text-[#0B1B2B] text-xl">Your Tasks</CardTitle>
-                <CardDescription>
-                  Keep track of your relocation milestones
-                </CardDescription>
-              </CardHeader>
-            <CardContent>
-              {tasks.length > 0 ? (
-                <div className="space-y-4">
-                  {tasks.slice(0, 5).map((task) => (
-                    <div key={task.id} className="border border-[#E5E7EB] rounded-lg p-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <h4 className="font-medium text-[#0B1B2B]">{task.title}</h4>
-                        <div className="flex gap-2">
-                          <span className={`px-2 py-1 text-xs font-medium rounded-full border ${getPriorityColor(task.priority)}`}>
-                            {task.priority}
-                          </span>
-                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(task.status)}`}>
-                            {task.status}
-                          </span>
+        {/* Kanban Board */}
+        <main className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* To Do Column */}
+          <section aria-label="To Do Tasks">
+            <div className="bg-white rounded-lg border border-[#E5E7EB] h-fit">
+              <div className="p-4 border-b border-[#E5E7EB]">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-[#0B1B2B]">To Do</h2>
+                  <Badge variant="secondary" className="bg-[#F3F4F6] text-[#6B7280]">
+                    {displayTasks.filter(t => t.status === 'pending').length}
+                  </Badge>
+                </div>
+              </div>
+              <div className="p-4 space-y-4">
+                {displayTasks.filter(t => t.status === 'pending').map((task) => (
+                  <Card key={task.id} className="border border-[#E5E7EB] shadow-sm hover:shadow-md transition-shadow">
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="font-semibold text-[#0B1B2B] text-sm leading-tight">{task.title}</h3>
+                        <Badge 
+                          variant="outline" 
+                          className={`text-xs ${
+                            task.priority === 'high' ? 'border-red-200 text-red-600 bg-red-50' :
+                            task.priority === 'medium' ? 'border-yellow-200 text-yellow-600 bg-yellow-50' :
+                            'border-green-200 text-green-600 bg-green-50'
+                          }`}
+                        >
+                          {task.priority}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-[#6B7280] mb-4 leading-relaxed">{task.description}</p>
+                      
+                      {task.due_date && (
+                        <div className="flex items-center gap-2 text-xs text-[#6B7280] mb-4">
+                          <Calendar className="w-3 h-3" />
+                          <span>Due: {formatDate(task.due_date)}</span>
+                        </div>
+                      )}
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1 text-xs text-[#C9A24A]">
+                          <Users className="w-3 h-3" />
+                          <span>2 Partner Services</span>
+                        </div>
+                        <div className="flex gap-1">
+                          <Button size="sm" variant="outline" className="h-6 px-2 text-xs border-[#E5E7EB] hover:bg-[#F3F4F6]">
+                            <Edit className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="h-6 px-2 text-xs border-[#E5E7EB] hover:bg-[#F3F4F6]">
+                            <X className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" className="h-6 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white">
+                            Start
+                          </Button>
+                          <Button size="sm" className="h-6 px-3 text-xs bg-green-600 hover:bg-green-700 text-white">
+                            Complete
+                          </Button>
                         </div>
                       </div>
-                      <p className="text-sm text-[#6B7280] mb-3">{task.description}</p>
-                      {task.due_date && (
-                        <p className="text-xs text-[#6B7280]">
-                          Due: {formatDate(task.due_date)}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                  {tasks.length > 5 && (
-                    <Button variant="outline" className="w-full border-[#E5E7EB] text-[#0B1B2B]">
-                      View All Tasks ({tasks.length})
-                    </Button>
-                  )}
-                </div>
-              ) : (
-                <p className="text-[#6B7280] text-center py-8">
-                  No tasks yet. Your personalized plan is being prepared.
-                </p>
-              )}
-            </CardContent>
-            </Card>
+
+                      <div className="mt-3 pt-3 border-t border-[#E5E7EB]">
+                        <Button variant="outline" size="sm" className="w-full h-6 text-xs text-[#C9A24A] border-[#C9A24A] hover:bg-[#C9A24A] hover:text-white">
+                          View
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
           </section>
 
-          {/* Upcoming Appointments */}
-          <section aria-label="Upcoming Appointments">
-            <Card className="border-[#E5E7EB]">
-              <CardHeader>
-                <CardTitle className="text-[#0B1B2B] text-xl">Upcoming Appointments</CardTitle>
-                <CardDescription>
-                  Your scheduled consultations and viewings
-                </CardDescription>
-              </CardHeader>
-            <CardContent>
-              {appointments.length > 0 ? (
-                <div className="space-y-4">
-                  {appointments.map((appointment) => (
-                    <div key={appointment.id} className="border border-[#E5E7EB] rounded-lg p-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <h4 className="font-medium text-[#0B1B2B]">{appointment.title}</h4>
-                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(appointment.status)}`}>
-                          {appointment.status}
-                        </span>
-                      </div>
-                      <p className="text-sm text-[#6B7280] mb-2">{appointment.description}</p>
-                      <div className="flex items-center gap-4 text-xs text-[#6B7280]">
-                        <span>{formatDate(appointment.start_time)}</span>
-                        <span>{formatTime(appointment.start_time)}</span>
-                        <span className="capitalize">{appointment.type}</span>
-                      </div>
-                    </div>
-                  ))}
+          {/* In Progress Column */}
+          <section aria-label="In Progress Tasks">
+            <div className="bg-white rounded-lg border border-[#E5E7EB] h-fit">
+              <div className="p-4 border-b border-[#E5E7EB]">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-[#0B1B2B]">In Progress</h2>
+                  <Badge variant="secondary" className="bg-blue-50 text-blue-600">
+                    {displayTasks.filter(t => t.status === 'in_progress').length}
+                  </Badge>
                 </div>
-              ) : (
-                <div className="text-center py-8">
-                  <p className="text-[#6B7280] mb-4">No upcoming appointments</p>
-                  <Button className="bg-[#0B1B2B] hover:bg-[#0B1B2B]/90 text-white">
-                    Schedule Consultation
-                  </Button>
+              </div>
+              <div className="p-4 space-y-4">
+                {displayTasks.filter(t => t.status === 'in_progress').map((task) => (
+                  <Card key={task.id} className="border border-[#E5E7EB] shadow-sm hover:shadow-md transition-shadow">
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="font-semibold text-[#0B1B2B] text-sm leading-tight">{task.title}</h3>
+                        <Badge 
+                          variant="outline" 
+                          className={`text-xs ${
+                            task.priority === 'high' ? 'border-red-200 text-red-600 bg-red-50' :
+                            task.priority === 'medium' ? 'border-yellow-200 text-yellow-600 bg-yellow-50' :
+                            'border-green-200 text-green-600 bg-green-50'
+                          }`}
+                        >
+                          {task.priority}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-[#6B7280] mb-4 leading-relaxed">{task.description}</p>
+                      
+                      {task.due_date && (
+                        <div className="flex items-center gap-2 text-xs text-[#6B7280] mb-4">
+                          <Calendar className="w-3 h-3" />
+                          <span>Due: {formatDate(task.due_date)}</span>
+                        </div>
+                      )}
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1 text-xs text-[#C9A24A]">
+                          <Users className="w-3 h-3" />
+                          <span>2 Partner Services</span>
+                        </div>
+                        <div className="flex gap-1">
+                          <Button size="sm" variant="outline" className="h-6 px-2 text-xs border-[#E5E7EB] hover:bg-[#F3F4F6]">
+                            <Edit className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="h-6 px-2 text-xs border-[#E5E7EB] hover:bg-[#F3F4F6]">
+                            <X className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" className="h-6 px-3 text-xs bg-gray-600 hover:bg-gray-700 text-white">
+                            Back
+                          </Button>
+                          <Button size="sm" className="h-6 px-3 text-xs bg-green-600 hover:bg-green-700 text-white">
+                            Complete
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div className="mt-3 pt-3 border-t border-[#E5E7EB]">
+                        <Button variant="outline" size="sm" className="w-full h-6 text-xs text-[#C9A24A] border-[#C9A24A] hover:bg-[#C9A24A] hover:text-white">
+                          View
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Completed Column */}
+          <section aria-label="Completed Tasks">
+            <div className="bg-white rounded-lg border border-[#E5E7EB] h-fit">
+              <div className="p-4 border-b border-[#E5E7EB]">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-[#0B1B2B]">Completed</h2>
+                  <Badge variant="secondary" className="bg-green-50 text-green-600">
+                    {displayTasks.filter(t => t.status === 'completed').length}
+                  </Badge>
                 </div>
-              )}
-            </CardContent>
-            </Card>
+              </div>
+              <div className="p-4 space-y-4">
+                {displayTasks.filter(t => t.status === 'completed').map((task) => (
+                  <Card key={task.id} className="border border-[#E5E7EB] shadow-sm hover:shadow-md transition-shadow opacity-75">
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="font-semibold text-[#0B1B2B] text-sm leading-tight line-through">{task.title}</h3>
+                        <Badge 
+                          variant="outline" 
+                          className={`text-xs ${
+                            task.priority === 'high' ? 'border-red-200 text-red-600 bg-red-50' :
+                            task.priority === 'medium' ? 'border-yellow-200 text-yellow-600 bg-yellow-50' :
+                            'border-green-200 text-green-600 bg-green-50'
+                          }`}
+                        >
+                          {task.priority}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-[#6B7280] mb-4 leading-relaxed">{task.description}</p>
+                      
+                      {task.due_date && (
+                        <div className="flex items-center gap-2 text-xs text-[#6B7280] mb-4">
+                          <CheckCircle className="w-3 h-3 text-green-600" />
+                          <span>Completed: {formatDate(task.due_date)}</span>
+                        </div>
+                      )}
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1 text-xs text-[#C9A24A]">
+                          <Users className="w-3 h-3" />
+                          <span>2 Partner Services</span>
+                        </div>
+                        <div className="flex gap-1">
+                          <Button size="sm" variant="outline" className="h-6 px-2 text-xs border-[#E5E7EB] hover:bg-[#F3F4F6]">
+                            <Edit className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" className="h-6 px-3 text-xs bg-gray-600 hover:bg-gray-700 text-white">
+                            Back
+                          </Button>
+                          <Button size="sm" className="h-6 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white">
+                            Reopen
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div className="mt-3 pt-3 border-t border-[#E5E7EB]">
+                        <Button variant="outline" size="sm" className="w-full h-6 text-xs text-[#C9A24A] border-[#C9A24A] hover:bg-[#C9A24A] hover:text-white">
+                          View
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
           </section>
         </main>
       </div>
