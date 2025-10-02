@@ -396,7 +396,7 @@ export default function HomePage() {
                 Start Executive Intake
               </Button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4 max-w-7xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
               {[
                 { name: 'Property Search', href: '/directory?category=Property+Specialists', icon: Home },
                 { name: 'Serviced Apartments', href: '/directory?category=Property+Specialists&type=serviced', icon: Hotel },
@@ -411,7 +411,7 @@ export default function HomePage() {
                   key={index}
                   variant="outline"
                   onClick={() => window.location.href = category.href}
-                  className="bg-white/90 backdrop-blur-sm border-[#C9A24A]/20 rounded-xl p-6 h-auto flex-col text-center hover:border-[#C9A24A]/40 hover:bg-white hover:scale-105 transition-all shadow-sm hover:shadow-lg group min-h-[100px]"
+                  className="bg-white/90 backdrop-blur-sm border-[#C9A24A]/20 rounded-xl px-4 py-6 h-auto flex-col text-center hover:border-[#C9A24A]/40 hover:bg-white hover:scale-105 transition-all shadow-sm hover:shadow-lg group min-h-[110px]"
                 >
                   <div className="mb-2 group-hover:scale-110 transition-transform text-[#C9A24A]">
                     <category.icon className="w-6 h-6 mx-auto" />
