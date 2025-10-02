@@ -453,8 +453,8 @@ export default function HomePage() {
 
           <div className="space-y-8">
             <Card className="overflow-hidden shadow-lg">
-              <CardHeader className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white">
-                <CardTitle className="text-xl font-bold" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              <CardHeader className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white px-8 py-6">
+                <CardTitle className="text-xl font-bold text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                   What types of London relocation services are available?
                 </CardTitle>
               </CardHeader>
