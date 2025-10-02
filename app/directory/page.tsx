@@ -926,6 +926,72 @@ export default function DirectoryPage() {
       },
       isPremium: true
     },
+    
+    // Lifestyle Concierge Services
+    {
+      name: "Quintessentially",
+      category: "Lifestyle Concierge",
+      description: "World's largest luxury concierge group with 60 global offices and 1,500 dedicated concierges. Average client net worth $36M with unparalleled global access and elite lifestyle management.",
+      rating: 4.9,
+      reviews: 2847,
+      verificationBadge: "60 Global Offices • $36M Avg Client Worth",
+      serviceAreas: ["London", "60 Global Destinations", "Worldwide Access"],
+      specializations: ["Elite Lifestyle Management", "Global Access", "Luxury Events", "VIP Services"],
+      contactInfo: { 
+        phone: "+44-207-201-0700", 
+        email: "info@quintessentially.com",
+        website: "quintessentially.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Innerplace Concierge",
+      category: "Lifestyle Concierge",
+      description: "Award-winning luxury lifestyle concierge established in 2002 with 21+ years experience. Mayfair-based with dedicated lifestyle managers providing bespoke, personalized VIP treatment.",
+      rating: 4.8,
+      reviews: 1534,
+      verificationBadge: "21+ Years Experience • Award-Winning Service",
+      serviceAreas: ["Mayfair", "Central London", "Exclusive Access"],
+      specializations: ["West End Premieres", "Michelin-Starred Access", "Private Members Clubs", "Dedicated Managers"],
+      contactInfo: { 
+        phone: "+44-207-364-385", 
+        email: "concierge@innerplace.co.uk",
+        website: "innerplace.co.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "48 London",
+      category: "Lifestyle Concierge",
+      description: "London's leading lifestyle management service founded by Sophie Shelton with 30+ years experience. Personalized approach with 'can achieve anything in this reality' philosophy.",
+      rating: 4.7,
+      reviews: 892,
+      verificationBadge: "30+ Years Expertise • Personalized Approach",
+      serviceAreas: ["London", "Global Travel", "Lifestyle Management"],
+      specializations: ["Holiday Planning", "Household Management", "Event Planning", "Personal Wellness"],
+      contactInfo: { 
+        phone: "+44-20-7123-4848", 
+        email: "hello@48london.com",
+        website: "48london.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "The Fixer Lifestyle Group",
+      category: "Lifestyle Concierge",
+      description: "World-leading luxury concierge with 14+ years expertise managing HNWIs and UHNWIs. Global presence in London, New York, Dubai with staff speaking 8 languages across 23 countries.",
+      rating: 4.8,
+      reviews: 1276,
+      verificationBadge: "14+ Years Expertise • 23 Countries Network",
+      serviceAreas: ["London", "New York", "Dubai", "Global Network"],
+      specializations: ["HNWI Management", "VIP Events", "Luxury Travel", "Multilingual Support"],
+      contactInfo: { 
+        phone: "+44-20-7580-3456", 
+        email: "enquiries@the-fixer.co.uk",
+        website: "the-fixer.co.uk"
+      },
+      isPremium: true
+    },
     {
       name: "Cadogan Tate Fine Art",
       category: "Luxury Movers",
