@@ -313,7 +313,7 @@ export default function DirectoryPage() {
   }
 
   const categories = [
-    'All', 'Property Specialists', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
+    'All', 'Property Specialists', 'Serviced Accommodation', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
     'Education Consultants', 'Lifestyle Concierge', 'Transportation', 'Home Services', 'Lifestyle Services', 'Pet Relocation', 'Travel', 'Other (please specify)'
   ]
 
@@ -532,6 +532,136 @@ export default function DirectoryPage() {
       },
       isPremium: true
     },
+    // Property Search Specialists - Top Priority Partners
+    {
+      name: "Black Brick Property",
+      category: "Property Specialists",
+      description: "Award-winning property buying agent with 100+ years combined experience. Specializes in prime central London off-market properties with exclusive access to homes never appearing on the open market.",
+      rating: 4.9,
+      reviews: 95,
+      verificationBadge: "Award-Winning • Off-Market Specialist",
+      serviceAreas: ["Mayfair", "Belgravia", "Kensington", "Prime Central London"],
+      specializations: ["Off-Market Properties", "Property Buying", "Prime Central London", "Investment Advisory"],
+      contactInfo: { 
+        phone: "+44-20-3141-9861", 
+        email: "info@black-brick.com",
+        website: "black-brick.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Savills Prime Central London",
+      category: "Property Specialists",
+      description: "Global estate agent with prime central London expertise. Leading residential property services in Belgravia, Knightsbridge and Chelsea with dedicated teams specializing in luxury properties.",
+      rating: 4.8,
+      reviews: 203,
+      verificationBadge: "Global Network • Prime Central Specialist",
+      serviceAreas: ["Belgravia", "Knightsbridge", "Chelsea", "Central London"],
+      specializations: ["Luxury Developments", "International Clients", "Property Management", "Valuation Services"],
+      contactInfo: { 
+        phone: "+44-20-7730-0822", 
+        email: "sloane@savills.com",
+        website: "savills.co.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "Beauchamp Estates",
+      category: "Property Specialists",
+      description: "Over 40 years' experience in luxury property specializing in prestigious residences. Global portfolio covering London, French Riviera, Mykonos, Tel Aviv and New York.",
+      rating: 4.7,
+      reviews: 156,
+      verificationBadge: "40+ Years Experience • Global Luxury Specialist",
+      serviceAreas: ["Mayfair", "St Johns Wood", "International", "Global Portfolio"],
+      specializations: ["Luxury Residences", "International Properties", "Prestigious Addresses", "Global Network"],
+      contactInfo: { 
+        phone: "+44-20-7722-9793", 
+        email: "alla@beauchampestates.com",
+        website: "beauchamp.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Rokstone Properties",
+      category: "Property Specialists",
+      description: "Fast-growing boutique estate agency specializing in premium residential property. Nearly £1 billion in sales with all-female team operating in Prime Central London.",
+      rating: 4.8,
+      reviews: 127,
+      verificationBadge: "Boutique Specialist • £1B+ Sales Record",
+      serviceAreas: ["Prime Central London", "Chiltern Street", "Premium Addresses"],
+      specializations: ["Premium Residential", "New Homes", "Property Acquisitions", "Bespoke Service"],
+      contactInfo: { 
+        phone: "+44-20-7580-2030", 
+        email: "contact@rokstone.com",
+        website: "rokstone.com"
+      },
+      isPremium: true
+    },
+    // Serviced Accommodation Specialists - Top Priority Partners
+    {
+      name: "Hybrid Resi",
+      category: "Serviced Accommodation",
+      description: "UK-based serviced accommodation company specializing in corporate housing with modern office facilities, fast Wi-Fi, and dedicated workspaces for hybrid work.",
+      rating: 4.8,
+      reviews: 184,
+      verificationBadge: "Corporate Housing Specialist • Hybrid Work Ready",
+      serviceAreas: ["Canary Wharf", "Wandsworth", "Fulham", "Battersea", "Greenwich"],
+      specializations: ["Corporate Housing", "Business Travel", "Extended Stays", "Hybrid Work Spaces"],
+      contactInfo: { 
+        phone: "+44-20-8090-8090", 
+        email: "enquiries@hybridresi.com",
+        website: "hybridresi.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "The Harrington",
+      category: "Serviced Accommodation",
+      description: "5-star luxury serviced apartments in South Kensington. Specialists in serviced apartments for any length of stay with spacious bedrooms, top-tier kitchens and gigabit Wi-Fi.",
+      rating: 4.9,
+      reviews: 127,
+      verificationBadge: "5-Star Luxury • South Kensington Specialist",
+      serviceAreas: ["South Kensington", "Central London", "Corporate Guests"],
+      specializations: ["Luxury Serviced Apartments", "Corporate Accommodation", "Extended Stays", "Executive Suites"],
+      contactInfo: { 
+        phone: "+44-20-7370-5555", 
+        email: "reservations@theharrington.com",
+        website: "theharrington.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Viridian Apartments",
+      category: "Serviced Accommodation",
+      description: "Luxury serviced apartment specialist across London offering direct guests the best rates with comprehensive services for corporate and leisure stays.",
+      rating: 4.7,
+      reviews: 156,
+      verificationBadge: "Direct Best Rates • London Specialist",
+      serviceAreas: ["All London", "Multiple Locations", "Central London"],
+      specializations: ["Best Rate Guarantee", "Corporate Bookings", "Leisure Stays", "Flexible Terms"],
+      contactInfo: { 
+        phone: "+44-20-3743-0331", 
+        email: "bookings@viridianapartments.com",
+        website: "viridianapartments.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "London Serviced Apartments",
+      category: "Serviced Accommodation",
+      description: "Range of luxury serviced apartments and apart hotels across London. Working with individuals, families and corporate groups for vacation and business stays.",
+      rating: 4.6,
+      reviews: 203,
+      verificationBadge: "Full Range Specialist • Corporate Focused",
+      serviceAreas: ["All London", "UK Wide", "Corporate Solutions"],
+      specializations: ["Corporate Groups", "Family Accommodations", "Business Travel", "Vacation Rentals"],
+      contactInfo: { 
+        phone: "+44-20-8004-0007", 
+        email: "reservations@londonservicedapartments.co.uk",
+        website: "londonservicedapartments.co.uk"
+      },
+      isPremium: true
+    },
     {
       name: "Cadogan Tate Fine Art",
       category: "Luxury Movers",
@@ -593,6 +723,71 @@ export default function DirectoryPage() {
         phone: "+44-20-8391-5000", 
         email: "international@bishopsmove.com" 
       }
+    },
+    // Additional Luxury Movers - Top Priority Partners
+    {
+      name: "Anthony Ward Thomas",
+      category: "Luxury Movers",
+      description: "London's most trusted removals and storage company with global network of vetted partners. Premium white-glove service for irreplaceable and high-value items.",
+      rating: 4.9,
+      reviews: 436,
+      verificationBadge: "5-Star Trustpilot • Master Removers Group",
+      serviceAreas: ["All London", "UK Wide", "Global Network"],
+      specializations: ["Premium International Moves", "White Glove Service", "Art & Antiques", "Executive Relocations"],
+      contactInfo: { 
+        phone: "+44-20-7038-0449", 
+        email: "info@ward-thomas.co.uk",
+        website: "ward-thomas.co.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "Abels Moving Services",
+      category: "Luxury Movers",
+      description: "Royal Warrant holder with 60+ years experience. Security-cleared teams specializing in luxury removals across London's premium areas including Chelsea and Kensington.",
+      rating: 4.8,
+      reviews: 287,
+      verificationBadge: "Royal Warrant Holder • King Charles III",
+      serviceAreas: ["Chelsea", "Kensington", "Camden", "Westminster", "International"],
+      specializations: ["Fine Art Handling", "Antique Specialists", "Piano Moving", "Executive Relocations"],
+      contactInfo: { 
+        phone: "+44-77-3455-6387", 
+        email: "london@abels.co.uk",
+        website: "abels.co.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "John Mason International",
+      category: "Luxury Movers",
+      description: "140+ years experience with King's Award for Enterprise. Professional Move Managers and award-winning packing services for 50,000+ annual international moves.",
+      rating: 4.7,
+      reviews: 342,
+      verificationBadge: "King's Award Winner • 140+ Years Experience",
+      serviceAreas: ["London", "Liverpool", "International", "68 Countries"],
+      specializations: ["International Move Management", "Professional Packing", "Corporate Relocations", "Global Mobility"],
+      contactInfo: { 
+        phone: "+44-80-0093-2623", 
+        email: "enquiries@johnmason.com",
+        website: "johnmason.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Santa Fe Relocation",
+      category: "Luxury Movers",
+      description: "60 years experience with global network spanning 38 countries. Comprehensive relocation services including visa assistance and corporate solutions.",
+      rating: 4.8,
+      reviews: 267,
+      verificationBadge: "Global Network • 38 Countries",
+      serviceAreas: ["London", "UK Wide", "Global", "64 Offices Worldwide"],
+      specializations: ["Global Mobility", "Visa & Immigration", "Corporate Relocations", "Pet & Vehicle Relocation"],
+      contactInfo: { 
+        phone: "+44-20-8961-4141", 
+        email: "headoffice@santaferelo.com",
+        website: "santaferelo.com"
+      },
+      isPremium: true
     }
   ]
 
@@ -739,7 +934,7 @@ export default function DirectoryPage() {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search visa lawyers, tax advisors, wealth management..."
+                    placeholder="Search visa lawyers, luxury movers, serviced apartments..."
                     className="w-full pl-10 pr-4 py-2 border border-[#E5E7EB] rounded-md focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                   />
                 </div>
@@ -929,6 +1124,171 @@ export default function DirectoryPage() {
                 onClick={() => setSelectedCategory('Financial Services')}
               >
                 View All Finance Specialists
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Property Specialists Highlight Section */}
+      {(selectedCategory === 'All' || selectedCategory === 'Property Specialists') && (
+        <section className="py-16 bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 text-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
+                <Home className="h-4 w-4 text-[#C9A24A] mr-2" />
+                <span className="text-[#C9A24A] text-sm font-medium">Property Search Specialists</span>
+              </div>
+              <h2 className="text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Prime London Property Experts
+              </h2>
+              <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
+                Award-winning property specialists and buying agents with exclusive access to prime central London properties, including off-market opportunities.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Building className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Off-Market Access</h3>
+                <p className="text-white/80 text-sm">Exclusive properties never appearing on the open market</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Award-Winning Agents</h3>
+                <p className="text-white/80 text-sm">Top-tier buying agents with decades of combined experience</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Crown className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Prime Central Focus</h3>
+                <p className="text-white/80 text-sm">Specialists in Mayfair, Belgravia, Kensington & Chelsea</p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <Button 
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 text-lg rounded-lg hover:scale-105 transition-all"
+                onClick={() => setSelectedCategory('Property Specialists')}
+              >
+                View All Property Specialists
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Serviced Accommodation Highlight Section */}
+      {(selectedCategory === 'All' || selectedCategory === 'Serviced Accommodation') && (
+        <section className="py-16 bg-gradient-to-br from-[#C9A24A] to-[#C9A24A]/90 text-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-4">
+                <Building className="h-4 w-4 text-white mr-2" />
+                <span className="text-white text-sm font-medium">Serviced Accommodation Specialists</span>
+              </div>
+              <h2 className="text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Executive Serviced Accommodation
+              </h2>
+              <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
+                Premium serviced apartments and corporate housing with hotel-style services, perfect for executive relocations and extended business stays.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Crown className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-white mb-2">5-Star Luxury</h3>
+                <p className="text-white/80 text-sm">Premium apartments with hotel-style concierge services</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Briefcase className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Corporate Ready</h3>
+                <p className="text-white/80 text-sm">Dedicated workspaces and business amenities</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Calendar className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Flexible Terms</h3>
+                <p className="text-white/80 text-sm">Short-term to extended stays with all-inclusive rates</p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <Button 
+                className="bg-white text-[#C9A24A] hover:bg-white/90 px-8 py-3 text-lg rounded-lg hover:scale-105 transition-all font-semibold"
+                onClick={() => setSelectedCategory('Serviced Accommodation')}
+              >
+                View All Serviced Accommodation
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Luxury Movers Highlight Section */}
+      {(selectedCategory === 'All' || selectedCategory === 'Luxury Movers') && (
+        <section className="py-16 bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 text-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
+                <Car className="h-4 w-4 text-[#C9A24A] mr-2" />
+                <span className="text-[#C9A24A] text-sm font-medium">Luxury Moving Specialists</span>
+              </div>
+              <h2 className="text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Elite International Movers
+              </h2>
+              <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
+                Award-winning international moving companies with Royal Warrants, centuries of experience, and white-glove services for executive relocations.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Crown className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Royal Warrant Holders</h3>
+                <p className="text-white/80 text-sm">Royal recognition for exceptional service and quality</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Global Networks</h3>
+                <p className="text-white/80 text-sm">Worldwide coverage with trusted partner networks</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-white mb-2">White Glove Service</h3>
+                <p className="text-white/80 text-sm">Specialized handling for art, antiques, and valuables</p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <Button 
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 text-lg rounded-lg hover:scale-105 transition-all"
+                onClick={() => setSelectedCategory('Luxury Movers')}
+              >
+                View All Luxury Movers
               </Button>
             </div>
           </div>
