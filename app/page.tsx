@@ -250,11 +250,11 @@ export default function HomePage() {
                     </div>
                     <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10">Executive Service</Badge>
                   </div>
-                  <CardTitle className="text-2xl font-bold text-[#0B1B2B]">Executive Intake</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-[#0B1B2B] text-left">Executive Intake</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="space-y-6">
-                <CardDescription className="text-[#6B7280] leading-relaxed">
+                <CardDescription className="text-[#6B7280] leading-relaxed text-left">
                   60-minute strategy call, bespoke area shortlist, 3 warm introductions, and a 30-day execution window.
                 </CardDescription>
                 <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3">
@@ -284,16 +284,16 @@ export default function HomePage() {
                 {/* Clear FAQ Section */}
                 <div className="bg-[#F8F9FA] rounded-lg p-4 space-y-3">
                   <div className="space-y-1">
-                    <div className="font-medium text-[#0B1B2B] text-sm">What happens after I pay?</div>
-                    <div className="text-[#6B7280] text-sm leading-relaxed">Call booked within 24h; we start your shortlist the same day.</div>
+                    <div className="font-medium text-[#0B1B2B] text-sm text-left">What happens after I pay?</div>
+                    <div className="text-[#6B7280] text-sm leading-relaxed text-left">Call booked within 24h; we start your shortlist the same day.</div>
                   </div>
                   <div className="space-y-1">
-                    <div className="font-medium text-[#0B1B2B] text-sm">Guarantee?</div>
-                    <div className="text-[#6B7280] text-sm leading-relaxed">3 warm intros in 7 days or we extend your concierge window free.</div>
+                    <div className="font-medium text-[#0B1B2B] text-sm text-left">Guarantee?</div>
+                    <div className="text-[#6B7280] text-sm leading-relaxed text-left">3 warm intros in 7 days or we extend your concierge window free.</div>
                   </div>
                   <div className="space-y-1">
-                    <div className="font-medium text-[#0B1B2B] text-sm">Refunds?</div>
-                    <div className="text-[#6B7280] text-sm leading-relaxed">Full refund up to 24 hours before your call; credit conversion within 24 hours.</div>
+                    <div className="font-medium text-[#0B1B2B] text-sm text-left">Refunds?</div>
+                    <div className="text-[#6B7280] text-sm leading-relaxed text-left">Full refund up to 24 hours before your call; credit conversion within 24 hours.</div>
                   </div>
                 </div>
               </CardContent>
