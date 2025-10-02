@@ -467,6 +467,71 @@ export default function DirectoryPage() {
       },
       isPremium: true
     },
+    // Finance and Tax Specialists - Top Priority Partners
+    {
+      name: "Gerald Edelman LLP",
+      category: "Financial Services",
+      description: "Top 20 UK accountancy firm specializing in international tax planning and UHNW wealth management. Expert in expat tax compliance and cross-border advisory.",
+      rating: 4.9,
+      reviews: 143,
+      verificationBadge: "Top 20 UK Firm • International Tax Certified",
+      serviceAreas: ["Central London", "International", "Cross-border Tax"],
+      specializations: ["International Tax Planning", "UHNW Wealth Management", "Expat Tax Compliance", "Cross-border Advisory"],
+      contactInfo: { 
+        phone: "+44-20-7299-1400", 
+        email: "info@ge.co.uk",
+        website: "ge.co.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "RSM UK",
+      category: "Financial Services", 
+      description: "Leading international accounting and advisory firm with specialist relocation tax services. Comprehensive support for executive transfers and international assignments.",
+      rating: 4.8,
+      reviews: 267,
+      verificationBadge: "Global Network • Relocation Specialist",
+      serviceAreas: ["London", "UK Nationwide", "Global Network"],
+      specializations: ["Executive Relocation Tax", "International Assignments", "Immigration Tax Planning", "Cross-border Compliance"],
+      contactInfo: { 
+        phone: "+44-20-3201-8000", 
+        email: "london@rsmuk.com",
+        website: "rsmuk.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Azets",
+      category: "Financial Services",
+      description: "European accounting and advisory network with specialized international tax and wealth management services for relocating executives and HNW individuals.",
+      rating: 4.7,
+      reviews: 198,
+      verificationBadge: "European Network • Executive Advisory",
+      serviceAreas: ["Central London", "European Network", "International"],
+      specializations: ["Wealth Management", "International Tax Advisory", "Executive Services", "Cross-border Planning"],
+      contactInfo: { 
+        phone: "+44-20-7403-1877", 
+        email: "london@azets.co.uk",
+        website: "azets.co.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "Blevins Franks",
+      category: "Financial Services",
+      description: "Specialist international tax and wealth management advisors with 45+ years experience. Expert guidance for expatriates and international relocations.",
+      rating: 4.8,
+      reviews: 156,
+      verificationBadge: "Specialist Advisory • 45+ Years Experience",
+      serviceAreas: ["London", "International", "Expatriate Focus"],
+      specializations: ["Expatriate Tax Planning", "International Wealth Management", "Cross-border Pensions", "Investment Advisory"],
+      contactInfo: { 
+        phone: "+44-20-7389-8133", 
+        email: "london@blevinsfranks.com",
+        website: "blevinsfranks.com"
+      },
+      isPremium: true
+    },
     {
       name: "Cadogan Tate Fine Art",
       category: "Luxury Movers",
@@ -674,7 +739,7 @@ export default function DirectoryPage() {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search visa lawyers, Global Talent, immigration..."
+                    placeholder="Search visa lawyers, tax advisors, wealth management..."
                     className="w-full pl-10 pr-4 py-2 border border-[#E5E7EB] rounded-md focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                   />
                 </div>
@@ -809,6 +874,61 @@ export default function DirectoryPage() {
                 onClick={() => setSelectedCategory('Legal & Visa')}
               >
                 View All Visa Lawyers
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Finance and Tax Specialists Highlight Section */}
+      {(selectedCategory === 'All' || selectedCategory === 'Financial Services') && (
+        <section className="py-16 bg-gradient-to-br from-[#C9A24A] to-[#C9A24A]/90 text-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-4">
+                <TrendingUp className="h-4 w-4 text-white mr-2" />
+                <span className="text-white text-sm font-medium">Financial Services & Tax Advisory</span>
+              </div>
+              <h2 className="text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                International Tax & Wealth Advisors
+              </h2>
+              <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
+                Top UK accounting firms specializing in international relocations, expat tax planning, and cross-border wealth management for executives.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Cross-border Expertise</h3>
+                <p className="text-white/80 text-sm">International tax planning and compliance specialists</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Crown className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-white mb-2">UHNW Focus</h3>
+                <p className="text-white/80 text-sm">Wealth management for high net worth individuals</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Briefcase className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Executive Services</h3>
+                <p className="text-white/80 text-sm">Specialized relocation and assignment tax support</p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <Button 
+                className="bg-white text-[#C9A24A] hover:bg-white/90 px-8 py-3 text-lg rounded-lg hover:scale-105 transition-all font-semibold"
+                onClick={() => setSelectedCategory('Financial Services')}
+              >
+                View All Finance Specialists
               </Button>
             </div>
           </div>
