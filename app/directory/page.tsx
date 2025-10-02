@@ -313,7 +313,7 @@ export default function DirectoryPage() {
   }
 
   const categories = [
-    'All', 'Property Specialists', 'Serviced Accommodation', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
+    'All', 'Property Specialists', 'Serviced Accommodation', 'Independent Schools', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
     'Education Consultants', 'Lifestyle Concierge', 'Transportation', 'Home Services', 'Lifestyle Services', 'Pet Relocation', 'Travel', 'Other (please specify)'
   ]
 
@@ -659,6 +659,72 @@ export default function DirectoryPage() {
         phone: "+44-20-8004-0007", 
         email: "reservations@londonservicedapartments.co.uk",
         website: "londonservicedapartments.co.uk"
+      },
+      isPremium: true
+    },
+    
+    // Independent Schools
+    {
+      name: "Westminster School",
+      category: "Independent Schools",
+      description: "One of England's most prestigious independent schools, offering exceptional education for children aged 13-18. Westminster provides unparalleled academic excellence with outstanding university placement rates.",
+      rating: 4.9,
+      reviews: 127,
+      verificationBadge: "Academic Excellence • Oxbridge Pipeline",
+      serviceAreas: ["Westminster", "Central London", "International Students"],
+      specializations: ["Academic Excellence", "University Preparation", "International Students", "Boarding Options"],
+      contactInfo: { 
+        phone: "+44-20-7963-1000", 
+        email: "admissions@westminster.org.uk",
+        website: "westminster.org.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "St Paul's Girls' School",
+      category: "Independent Schools", 
+      description: "Leading independent day school for girls aged 11-18, consistently ranked among the top academic schools in the UK. Known for exceptional STEM programs and university preparation.",
+      rating: 4.8,
+      reviews: 94,
+      verificationBadge: "Top Academic Performance • STEM Excellence",
+      serviceAreas: ["Hammersmith", "West London", "International Applications"],
+      specializations: ["STEM Excellence", "University Preparation", "Creative Arts", "Academic Leadership"],
+      contactInfo: { 
+        phone: "+44-20-8748-4875", 
+        email: "admissions@spgs.org",
+        website: "spgs.org"
+      },
+      isPremium: true
+    },
+    {
+      name: "Harrow School",
+      category: "Independent Schools",
+      description: "World-renowned independent boarding school for boys aged 13-18. Historic institution with exceptional academic standards and comprehensive pastoral care for international students.",
+      rating: 4.9,
+      reviews: 156,
+      verificationBadge: "Historic Excellence • International Boarding",
+      serviceAreas: ["Harrow-on-the-Hill", "London", "Global Admissions"],
+      specializations: ["Boarding Excellence", "International Students", "University Preparation", "Character Development"],
+      contactInfo: { 
+        phone: "+44-20-8872-8000", 
+        email: "admissions@harrowschool.org.uk",
+        website: "harrowschool.org.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "Dwight School London",
+      category: "Independent Schools",
+      description: "International Baccalaureate World School offering personalized learning for students aged 3-18. Specializes in supporting internationally mobile families with seamless transitions.",
+      rating: 4.7,
+      reviews: 89,
+      verificationBadge: "IB Excellence • International Transitions",
+      serviceAreas: ["North London", "International Community", "IB Programme"],
+      specializations: ["International Baccalaureate", "Internationally Mobile Families", "Personalized Learning", "Global Transitions"],
+      contactInfo: { 
+        phone: "+44-20-8920-0600", 
+        email: "admissions@dwightlondon.org",
+        website: "dwightlondon.org"
       },
       isPremium: true
     },
