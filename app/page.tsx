@@ -304,20 +304,20 @@ export default function HomePage() {
               {/* Founding Partner */}
               <Card className="bg-gradient-to-br from-[#C9A24A] to-[#B8923D] text-white shadow-2xl border-none">
                 <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <Badge variant="secondary" className="text-white/90 bg-white/20 mb-2">Charter Partnership</Badge>
-                      <CardTitle className="text-2xl font-bold text-white">Own Your Category</CardTitle>
+                  <div className="mb-2">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Timer className="h-8 w-8 text-white/80" />
+                      <Badge variant="secondary" className="text-white/90 bg-white/20">Founding Partnership</Badge>
                     </div>
-                    <Timer className="h-8 w-8 text-white/80" />
+                    <CardTitle className="text-2xl font-bold text-white text-left">Own Your Category</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <CardDescription className="text-white/95 leading-relaxed">
-                    Concierge-routed briefs, top placement, and quarterly editorial.
+                  <CardDescription className="text-white/95 leading-relaxed text-left">
+                    Concierge-qualified introductions, top placements and quarterly editorial features.
                   </CardDescription>
                   <div className="bg-white/20 rounded-lg p-2 text-center">
-                    <span className="font-bold text-white">12 Charter slots available</span>
+                    <span className="font-bold text-white">12 Founder slots available</span>
                   </div>
                 <div className="flex items-center gap-4 text-sm mb-6">
                   <div className="flex items-center gap-2">
