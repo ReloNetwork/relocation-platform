@@ -219,15 +219,13 @@ export default function HomePage() {
               >
                 Start Executive Intake
               </Button>
-              <div className="flex flex-col items-center">
-                <Button
-                  onClick={() => window.location.href = '/partners'}
-                  size="lg"
-                  className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-10 py-4 text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25 mb-2"
-                >
-                  Become a Founding Partner
-                </Button>
-              </div>
+              <Button
+                onClick={() => window.location.href = '/partners'}
+                size="lg"
+                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-10 py-4 text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25"
+              >
+                Become a Founding Partner
+              </Button>
             </div>
             <div className="text-center mb-24">
               <Button
