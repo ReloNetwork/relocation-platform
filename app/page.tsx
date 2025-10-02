@@ -48,7 +48,7 @@ const AudienceCard = ({
         {features.map((feature, idx) => (
           <div key={idx} className="flex items-center gap-3">
             <CheckCircle className="w-5 h-5 text-white/80 flex-shrink-0" />
-            <span className="text-white/90 text-sm">{feature}</span>
+            <span className="text-white/90 text-sm text-left">{feature}</span>
           </div>
         ))}
       </div>
