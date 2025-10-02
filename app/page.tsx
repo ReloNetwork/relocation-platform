@@ -243,12 +243,12 @@ export default function HomePage() {
             {/* Executive Intake */}
             <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group">
               <CardHeader className="pb-4">
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-start gap-3 mb-2">
                   <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
                     <Crown className="h-6 w-6 text-[#C9A24A]" />
                   </div>
-                  <div>
-                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 mb-1">Executive Service</Badge>
+                  <div className="flex-1">
+                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 mb-2">Executive Service</Badge>
                     <CardTitle className="text-2xl font-bold text-[#0B1B2B]">Executive Intake</CardTitle>
                   </div>
                 </div>
@@ -283,15 +283,15 @@ export default function HomePage() {
                 
                 {/* Clear FAQ Section */}
                 <div className="bg-[#F8F9FA] rounded-lg p-4 space-y-3">
-                  <div className="space-y-1">
+                  <div className="space-y-1 text-right">
                     <div className="font-medium text-[#0B1B2B] text-sm">What happens after I pay?</div>
                     <div className="text-[#6B7280] text-sm leading-relaxed">Call booked within 24h; we start your shortlist the same day.</div>
                   </div>
-                  <div className="space-y-1">
+                  <div className="space-y-1 text-right">
                     <div className="font-medium text-[#0B1B2B] text-sm">Guarantee?</div>
                     <div className="text-[#6B7280] text-sm leading-relaxed">3 warm intros in 7 days or we extend your concierge window free.</div>
                   </div>
-                  <div className="space-y-1">
+                  <div className="space-y-1 text-right">
                     <div className="font-medium text-[#0B1B2B] text-sm">Refunds?</div>
                     <div className="text-[#6B7280] text-sm leading-relaxed">Full refund up to 24 hours before your call; credit conversion within 24 hours.</div>
                   </div>
