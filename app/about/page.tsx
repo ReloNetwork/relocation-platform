@@ -2,6 +2,58 @@
 
 import Layout from '../../components/Layout'
 import { Users, Globe, Award, Shield, Heart, Target, Zap, Building } from 'lucide-react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About Us | Relo Network - London\'s Elite Relocation Network Story',
+  description: 'Discover the story behind London\'s most exclusive relocation network. Founded in 2024, connecting high-net-worth clients with vetted luxury service providers. Our mission, values, and team.',
+  keywords: 'Relo Network about, London relocation company story, luxury relocation network history, executive relocation team, high-net-worth relocation specialists, premium relocation company London, vetted service providers',
+  authors: [{ name: 'Relo Network', url: 'https://therelonetwork.com' }],
+  creator: 'Relo Network',
+  publisher: 'Relo Network',
+  metadataBase: new URL('https://therelonetwork.com'),
+  alternates: {
+    canonical: '/about',
+    languages: {
+      'en-GB': '/about',
+      'x-default': '/about'
+    }
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_GB',
+    url: 'https://therelonetwork.com/about',
+    siteName: 'Relo Network',
+    title: 'About Relo Network | London\'s Elite Relocation Network',
+    description: 'Founded in 2024, Relo Network connects high-net-worth clients with London\'s most exclusive vetted service providers. Discover our mission and team.',
+    images: [
+      {
+        url: '/images/og-about-company.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'About Relo Network - London Elite Relocation Company Story'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@ReloNetwork',
+    creator: '@ReloNetwork',
+    title: 'About Relo Network | Elite London Relocation Network',
+    description: 'Discover the story behind London\'s most exclusive relocation network, connecting high-value clients with vetted luxury service providers.'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+}
 
 const StatCard = ({ icon: Icon, number, label, description }: { 
   icon: any, 

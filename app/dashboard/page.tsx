@@ -4,6 +4,38 @@ import { createClient } from '@/lib/supabase/server'
 import Layout from '@/components/Layout'
 import DashboardContent from './DashboardContent'
 import type { Task, Appointment, MoveCase, Organization } from '@/types/db'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Client Dashboard | Relo Network - London Relocation Management',
+  description: 'Manage your London relocation with real-time progress tracking, task management, appointment scheduling, and direct access to premium service providers. Expert guidance for executive moves.',
+  keywords: [
+    'London relocation dashboard',
+    'executive relocation management',
+    'relocation progress tracking',
+    'London move management',
+    'international relocation platform',
+    'premium relocation services',
+    'corporate relocation dashboard',
+    'London relocation concierge'
+  ].join(', '),
+  openGraph: {
+    title: 'Client Dashboard | Relo Network',
+    description: 'Manage your London relocation with real-time progress tracking and premium service provider access.',
+    type: 'website',
+    locale: 'en_GB',
+    siteName: 'Relo Network'
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Client Dashboard | Relo Network',
+    description: 'Manage your London relocation with real-time progress tracking and premium service provider access.'
+  },
+  robots: {
+    index: false, // Dashboard should not be indexed as it's private
+    follow: false
+  }
+}
 
 export default async function DashboardPage() {
   const user = await requireUser()

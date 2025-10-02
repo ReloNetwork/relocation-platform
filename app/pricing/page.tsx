@@ -2,6 +2,58 @@
 
 import Layout from '@/components/Layout'
 import { Check, Star, ArrowRight, Shield, Clock, Users } from 'lucide-react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Pricing | Relo Network - Transparent London Relocation Service Costs',
+  description: 'Transparent pricing for London relocation services. AI Concierge £295/month, Managed Service £8,500, Executive Service £15,000. No hidden fees, 100% money-back guarantee.',
+  keywords: 'London relocation costs, relocation service pricing, luxury moving costs London, executive relocation pricing, corporate relocation costs, AI concierge service pricing, transparent relocation fees',
+  authors: [{ name: 'Relo Network', url: 'https://therelonetwork.com' }],
+  creator: 'Relo Network',
+  publisher: 'Relo Network',
+  metadataBase: new URL('https://therelonetwork.com'),
+  alternates: {
+    canonical: '/pricing',
+    languages: {
+      'en-GB': '/pricing',
+      'x-default': '/pricing'
+    }
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_GB',
+    url: 'https://therelonetwork.com/pricing',
+    siteName: 'Relo Network',
+    title: 'Transparent Pricing | London Relocation Service Costs',
+    description: 'Clear, transparent pricing for London relocation services. From AI-assisted moves to white-glove executive service. No hidden fees, guaranteed results.',
+    images: [
+      {
+        url: '/images/og-pricing-transparent.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Relo Network Transparent Pricing - London Relocation Service Costs'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@ReloNetwork',
+    creator: '@ReloNetwork',
+    title: 'Transparent Pricing | London Relocation Service Costs',
+    description: 'Clear pricing for London relocation: AI Concierge £295/mo, Managed £8.5k, Executive £15k. No hidden fees, money-back guarantee.'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+}
 
 export default function PricingPage() {
   return (

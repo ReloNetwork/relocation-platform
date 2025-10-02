@@ -55,22 +55,50 @@ export default function DashboardContent({
 
   return (
     <div className="min-h-screen bg-[#FAFAF9] py-8">
+      {/* Structured Data for Dashboard Activity */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Relo Network Client Dashboard",
+            "description": "Professional London relocation management dashboard for tracking move progress, tasks, and appointments",
+            "applicationCategory": "RelocationManagement",
+            "operatingSystem": "Web",
+            "provider": {
+              "@type": "Organization",
+              "name": "Relo Network",
+              "description": "London's exclusive relocation network for executives and high-net-worth individuals"
+            },
+            "featureList": [
+              "Real-time relocation progress tracking",
+              "Task management and milestone tracking",
+              "Appointment scheduling with service providers",
+              "Direct access to vetted London relocation specialists",
+              "Personalized relocation timeline management",
+              "Premium concierge service integration"
+            ]
+          }, null, 2)
+        }}
+      />
+      
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="mb-8">
+        <header className="mb-8">
           <h1 className="text-4xl font-bold text-[#0B1B2B] mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Welcome back, {user.user_metadata?.full_name || 'Valued Client'}
           </h1>
           <p className="text-[#6B7280] text-lg">
-            Your relocation to {moveCase?.destination_city} is {' '}
+            Your relocation to <strong>{moveCase?.destination_city}</strong> is {' '}
             <span className="font-medium text-[#0B1B2B]">
               {moveCase?.status === 'planning' ? 'in planning' : moveCase?.status}
             </span>
           </p>
-        </div>
+        </header>
 
         {/* Move Case Summary */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8" aria-label="Relocation Overview">
           <Card className="border-[#E5E7EB]">
             <CardHeader>
               <CardTitle className="text-[#0B1B2B] text-lg">Move Details</CardTitle>
@@ -143,18 +171,19 @@ export default function DashboardContent({
               </Button>
             </CardContent>
           </Card>
-        </div>
+        </section>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <main className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Tasks */}
-          <Card className="border-[#E5E7EB]">
-            <CardHeader>
-              <CardTitle className="text-[#0B1B2B] text-xl">Your Tasks</CardTitle>
-              <CardDescription>
-                Keep track of your relocation milestones
-              </CardDescription>
-            </CardHeader>
+          <section aria-label="Relocation Tasks">
+            <Card className="border-[#E5E7EB]">
+              <CardHeader>
+                <CardTitle className="text-[#0B1B2B] text-xl">Your Tasks</CardTitle>
+                <CardDescription>
+                  Keep track of your relocation milestones
+                </CardDescription>
+              </CardHeader>
             <CardContent>
               {tasks.length > 0 ? (
                 <div className="space-y-4">
@@ -191,16 +220,18 @@ export default function DashboardContent({
                 </p>
               )}
             </CardContent>
-          </Card>
+            </Card>
+          </section>
 
           {/* Upcoming Appointments */}
-          <Card className="border-[#E5E7EB]">
-            <CardHeader>
-              <CardTitle className="text-[#0B1B2B] text-xl">Upcoming Appointments</CardTitle>
-              <CardDescription>
-                Your scheduled consultations and viewings
-              </CardDescription>
-            </CardHeader>
+          <section aria-label="Upcoming Appointments">
+            <Card className="border-[#E5E7EB]">
+              <CardHeader>
+                <CardTitle className="text-[#0B1B2B] text-xl">Upcoming Appointments</CardTitle>
+                <CardDescription>
+                  Your scheduled consultations and viewings
+                </CardDescription>
+              </CardHeader>
             <CardContent>
               {appointments.length > 0 ? (
                 <div className="space-y-4">
@@ -230,8 +261,9 @@ export default function DashboardContent({
                 </div>
               )}
             </CardContent>
-          </Card>
-        </div>
+            </Card>
+          </section>
+        </main>
       </div>
     </div>
   )
