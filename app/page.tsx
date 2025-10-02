@@ -255,7 +255,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <CardDescription className="text-[#6B7280] leading-relaxed text-left">
-                  60-minute strategy call, bespoke area shortlist, 3 warm introductions, and a 30-day execution window.
+                  60-minute strategy call, bespoke area shortlist, 3 network partner warm introductions, and a 30-day execution window.
                 </CardDescription>
                 <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3">
                   <p className="text-sm font-semibold text-[#0B1B2B] text-center">
