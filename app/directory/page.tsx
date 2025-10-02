@@ -313,7 +313,7 @@ export default function DirectoryPage() {
   }
 
   const categories = [
-    'All', 'Property Specialists', 'Serviced Accommodation', 'Independent Schools', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
+    'All', 'Property Specialists', 'Serviced Accommodation', 'Independent Schools', 'Premium Banking', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
     'Education Consultants', 'Lifestyle Concierge', 'Transportation', 'Home Services', 'Lifestyle Services', 'Pet Relocation', 'Travel', 'Other (please specify)'
   ]
 
@@ -725,6 +725,72 @@ export default function DirectoryPage() {
         phone: "+44-20-8920-0600", 
         email: "admissions@dwightlondon.org",
         website: "dwightlondon.org"
+      },
+      isPremium: true
+    },
+    
+    // Premium Banking Services
+    {
+      name: "Coutts Private Bank",
+      category: "Premium Banking",
+      description: "Royal warrant holders providing private banking and wealth management for over 300 years. Minimum deposit £3M for international clients with 24/7 concierge banking services.",
+      rating: 4.9,
+      reviews: 342,
+      verificationBadge: "Royal Warrant Holders • 300+ Years Heritage",
+      serviceAreas: ["London", "International", "Global Wealth Management"],
+      specializations: ["Private Banking", "Wealth Management", "International Clients", "24/7 Concierge Services"],
+      contactInfo: { 
+        phone: "+44-20-7957-2424", 
+        email: "enquiries@coutts.com",
+        website: "coutts.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "HSBC Premier Banking",
+      category: "Premium Banking",
+      description: "Global banking for international clients with multi-currency accounts and worldwide coverage. Largest bank in Europe with specialized expatriate services across 60+ countries.",
+      rating: 4.7,
+      reviews: 1283,
+      verificationBadge: "Global Network • Expat Specialists",
+      serviceAreas: ["London", "Global Network", "Multi-Currency"],
+      specializations: ["International Banking", "Multi-Currency Accounts", "Expatriate Services", "Global Transfers"],
+      contactInfo: { 
+        phone: "+44-345-770-7070", 
+        email: "premier@hsbc.co.uk",
+        website: "hsbc.co.uk/premier"
+      },
+      isPremium: true
+    },
+    {
+      name: "Barclays Private Bank",
+      category: "Premium Banking",
+      description: "Specialist investment, banking and wealth advisory services for influential individuals and families. Minimum £3M investment portfolio with 330+ years banking experience.",
+      rating: 4.8,
+      reviews: 567,
+      verificationBadge: "330+ Years Experience • Global Resources",
+      serviceAreas: ["Canary Wharf", "Global Wealth Hubs", "International"],
+      specializations: ["Wealth Advisory", "Investment Services", "Estate Planning", "Bespoke Banking"],
+      contactInfo: { 
+        phone: "+44-207-761-5138", 
+        email: "privatebank@barclays.com",
+        website: "privatebank.barclays.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Standard Chartered Priority Banking",
+      category: "Premium Banking",
+      description: "International banking with focus on emerging markets and global wealth solutions. Priority Banking services from London headquarters with Asian, African and Middle Eastern expertise.",
+      rating: 4.6,
+      reviews: 894,
+      verificationBadge: "Emerging Markets Expertise • Global Reach",
+      serviceAreas: ["London", "Asia Pacific", "Middle East & Africa"],
+      specializations: ["International Wealth Solutions", "Emerging Markets", "Cross-Border Banking", "Global Network"],
+      contactInfo: { 
+        phone: "+44-20-7885-8888", 
+        email: "priority@sc.com",
+        website: "sc.com/priority-banking"
       },
       isPremium: true
     },
