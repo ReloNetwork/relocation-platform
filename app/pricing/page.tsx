@@ -1,5 +1,3 @@
-'use client'
-
 import Layout from '@/components/Layout'
 import { Check, Star, ArrowRight, Shield, Clock, Users } from 'lucide-react'
 import type { Metadata } from 'next'

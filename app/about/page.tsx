@@ -1,5 +1,3 @@
-'use client'
-
 import Layout from '../../components/Layout'
 import { Users, Globe, Award, Shield, Heart, Target, Zap, Building } from 'lucide-react'
 import type { Metadata } from 'next'
