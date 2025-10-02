@@ -313,8 +313,8 @@ export default function DirectoryPage() {
   }
 
   const categories = [
-    'All', 'Property Specialists', 'Serviced Accommodation', 'Independent Schools', 'Premium Banking', 'Private Healthcare', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
-    'Education Consultants', 'Lifestyle Concierge', 'Transportation', 'Home Services', 'Lifestyle Services', 'Pet Relocation', 'Travel', 'Other (please specify)'
+    'All', 'Property Specialists', 'Serviced Accommodation', 'Independent Schools', 'Premium Banking', 'Private Healthcare', 'Premium Transport', 'Luxury Movers', 'Legal & Visa', 'Financial Services', 
+    'Education Consultants', 'Lifestyle Concierge', 'Home Services', 'Lifestyle Services', 'Pet Relocation', 'Travel', 'Other (please specify)'
   ]
 
   const londonAreas = [
@@ -857,6 +857,72 @@ export default function DirectoryPage() {
         phone: "+44-20-3423-8000", 
         email: "international@clevelandcliniclondon.uk",
         website: "clevelandcliniclondon.uk"
+      },
+      isPremium: true
+    },
+    
+    // Premium Transport Services
+    {
+      name: "JK Executive Chauffeurs",
+      category: "Premium Transport",
+      description: "Top-rated luxury chauffeur service with 120 professional chauffeurs and 24/7 personalized customer service. Serving executives, diplomats, and corporate teams with discretion and punctuality.",
+      rating: 4.9,
+      reviews: 1247,
+      verificationBadge: "120 Professional Chauffeurs • 24/7 Service",
+      serviceAreas: ["London", "All Major Airports", "Corporate Travel"],
+      specializations: ["Executive Transfers", "Airport Services", "Corporate Travel", "Diplomatic Services"],
+      contactInfo: { 
+        phone: "+44-203-475-9906", 
+        email: "info@jkexecutivechauffeurs.com",
+        website: "jkexecutivechauffeurs.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "London Luxury Chauffeuring",
+      category: "Premium Transport",
+      description: "Elite chauffeur services with Rolls-Royce, Bentley, and Mercedes fleet. Global travel solutions including private jet charters and international chauffeur services for luxury lifestyle.",
+      rating: 4.8,
+      reviews: 634,
+      verificationBadge: "Elite Fleet • Global Travel Solutions",
+      serviceAreas: ["London", "Global Network", "Private Aviation"],
+      specializations: ["Luxury Fleet", "Bespoke Travel", "Concierge Services", "Global Solutions"],
+      contactInfo: { 
+        phone: "+44-20-7123-4567", 
+        email: "bookings@llccars.co.uk",
+        website: "llccars.co.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "Blacklane",
+      category: "Premium Transport",
+      description: "Global premium chauffeur service with experienced local drivers and flight tracking. Quality and integrity service with punctual arrivals and personal pickup at airports worldwide.",
+      rating: 4.7,
+      reviews: 2156,
+      verificationBadge: "Global Network • Flight Tracking",
+      serviceAreas: ["London", "Global Coverage", "All UK Airports"],
+      specializations: ["Airport Transfers", "Flight Tracking", "Global Network", "Corporate Travel"],
+      contactInfo: { 
+        phone: "+44-20-3318-9761", 
+        email: "support@blacklane.com",
+        website: "blacklane.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Imperial Ride",
+      category: "Premium Transport",
+      description: "Premium chauffeur service operating in 60 cities worldwide for over 9 years. Fixed pricing, 24/7 customer service, and chauffeurs with signed NDAs for complete confidentiality.",
+      rating: 4.8,
+      reviews: 892,
+      verificationBadge: "60 Cities Worldwide • NDA Protection",
+      serviceAreas: ["London", "60 Global Cities", "International Travel"],
+      specializations: ["Privacy Protection", "Fixed Pricing", "Global Coverage", "VIP Services"],
+      contactInfo: { 
+        phone: "+44-2080-904-926", 
+        email: "bookings@imperialride.com",
+        website: "imperialride.com"
       },
       isPremium: true
     },
