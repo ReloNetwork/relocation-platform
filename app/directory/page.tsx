@@ -385,6 +385,88 @@ export default function DirectoryPage() {
   ]
 
   const premiumPartners = [
+    // Visa Lawyers - Top Priority Partners
+    {
+      name: "Richmond Chambers LLP",
+      category: "Legal & Visa",
+      description: "Multi-award winning immigration barristers with 19 specialists. UK's leading immigration law firm providing direct access services with 5-star client rating.",
+      rating: 5.0,
+      reviews: 189,
+      verificationBadge: "Chambers Ranked • Immigration Certified",
+      serviceAreas: ["All London", "UK Nationwide", "International"],
+      specializations: ["Executive Visas", "Global Talent", "Investor Visas", "Business Immigration"],
+      contactInfo: { 
+        phone: "+44-20-3617-9173", 
+        email: "info@richmondchambers.com",
+        website: "immigrationbarrister.co.uk"
+      },
+      isSponsored: true,
+      isPremium: true
+    },
+    {
+      name: "Kingsley Napley LLP",
+      category: "Legal & Visa",
+      description: "Market-leading immigration practice for HNW and UHNW clients. Chambers-ranked with expertise in ETA Scheme, Global Talent, and Investor visa routes.",
+      rating: 4.9,
+      reviews: 156,
+      verificationBadge: "Chambers Band 1 • HNW Specialist",
+      serviceAreas: ["Central London", "International", "Technology Sector"],
+      specializations: ["UHNW Immigration", "Electronic Travel Authorization", "Innovator Founder", "Corporate Sponsorship"],
+      contactInfo: { 
+        phone: "+44-20-7814-1200", 
+        email: "immigration@kingsleynapley.co.uk",
+        website: "kingsleynapley.co.uk"
+      },
+      isPremium: true
+    },
+    {
+      name: "Laura Devine Immigration",
+      category: "Legal & Visa",
+      description: "Highly regarded UK & US immigration specialists. Expert business immigration advice for international executives, SMEs and senior professionals.",
+      rating: 4.8,
+      reviews: 203,
+      verificationBadge: "Chambers Ranked • UK-US Expert",
+      serviceAreas: ["London", "New York", "International Business"],
+      specializations: ["UK-US Transfers", "Senior Executive Immigration", "Business Immigration", "International Coordination"],
+      contactInfo: { 
+        phone: "+44-20-7697-1000", 
+        email: "enquiries@lauradevine.com",
+        website: "lauradevine.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Mishcon de Reya LLP",
+      category: "Legal & Visa",
+      description: "Leading UHNW immigration practice with sophisticated discretionary applications expertise. Specializes in complex cases outside usual rules.",
+      rating: 4.9,
+      reviews: 127,
+      verificationBadge: "Magic Circle • UHNW Specialist",
+      serviceAreas: ["Central London", "International", "Technology & Media"],
+      specializations: ["Discretionary Applications", "UHNW Immigration", "Naturalization", "Complex Asylum"],
+      contactInfo: { 
+        phone: "+44-20-3321-7000", 
+        email: "immigration@mishcon.com",
+        website: "mishcon.com"
+      },
+      isPremium: true
+    },
+    {
+      name: "Garden Court Chambers",
+      category: "Legal & Visa",
+      description: "Band 1 ranked immigration chambers - pre-eminent set in UK immigration law. Leading barristers including Adrian Berry KC and Stephanie Harrison KC.",
+      rating: 4.8,
+      reviews: 95,
+      verificationBadge: "Chambers Band 1 • QC/KC Specialists",
+      serviceAreas: ["All London", "Supreme Court", "Appeal Courts"],
+      specializations: ["Strategic Immigration", "Supreme Court Appeals", "Human Rights", "Asylum Law"],
+      contactInfo: { 
+        phone: "+44-20-7993-7600", 
+        email: "immigrationteam@gardencourtchambers.co.uk",
+        website: "gardencourtchambers.co.uk"
+      },
+      isPremium: true
+    },
     {
       name: "Cadogan Tate Fine Art",
       category: "Luxury Movers",
@@ -448,6 +530,18 @@ export default function DirectoryPage() {
       }
     }
   ]
+
+  // Filter partners based on search and category
+  const filteredPartners = premiumPartners.filter(partner => {
+    const matchesSearch = searchTerm === '' || 
+      partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      partner.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      partner.specializations.some(spec => spec.toLowerCase().includes(searchTerm.toLowerCase()))
+    
+    const matchesCategory = selectedCategory === 'All' || partner.category === selectedCategory
+    
+    return matchesSearch && matchesCategory
+  })
 
   const marketInsights = [
     {
@@ -580,7 +674,7 @@ export default function DirectoryPage() {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Find service providers by name or specialty..."
+                    placeholder="Search visa lawyers, Global Talent, immigration..."
                     className="w-full pl-10 pr-4 py-2 border border-[#E5E7EB] rounded-md focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                   />
                 </div>
@@ -666,6 +760,61 @@ export default function DirectoryPage() {
         </div>
       </section>
 
+      {/* Visa Lawyers Highlight Section */}
+      {(selectedCategory === 'All' || selectedCategory === 'Legal & Visa') && (
+        <section className="py-16 bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 text-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-4">
+                <Briefcase className="h-4 w-4 text-[#C9A24A] mr-2" />
+                <span className="text-[#C9A24A] text-sm font-medium">Legal & Visa Specialists</span>
+              </div>
+              <h2 className="text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Elite Immigration Lawyers
+              </h2>
+              <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
+                Chambers-ranked immigration specialists serving executives and HNW individuals. From Global Talent visas to complex discretionary applications.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-white mb-2">Chambers UK Ranked</h3>
+                <p className="text-white/80 text-sm">Band 1 and leading tier immigration practices</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Crown className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-white mb-2">QC/KC Specialists</h3>
+                <p className="text-white/80 text-sm">Leading King's Counsel and senior barristers</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C9A24A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-white mb-2">HNW Expertise</h3>
+                <p className="text-white/80 text-sm">Specialized in high net worth and executive immigration</p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <Button 
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 text-lg rounded-lg hover:scale-105 transition-all"
+                onClick={() => setSelectedCategory('Legal & Visa')}
+              >
+                View All Visa Lawyers
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Premium Partner Network */}
       <section className="py-20 bg-[#FAFAF9]">
         <div className="max-w-6xl mx-auto px-4">
@@ -678,12 +827,38 @@ export default function DirectoryPage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {premiumPartners.map((partner, index) => (
-              <div key={index} className="relative">
-                <PartnerCard {...partner} />
+          <div className="mb-8">
+            <div className="text-center mb-6">
+              <div className="text-sm font-medium text-[#0B1B2B] mb-2">
+                Showing {filteredPartners.length} of {premiumPartners.length} partners
+                {selectedCategory !== 'All' && ` in ${selectedCategory}`}
+                {searchTerm && ` matching "${searchTerm}"`}
               </div>
-            ))}
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {filteredPartners.length > 0 ? (
+              filteredPartners.map((partner, index) => (
+                <div key={index} className="relative">
+                  <PartnerCard {...partner} />
+                </div>
+              ))
+            ) : (
+              <div className="lg:col-span-2 text-center py-12">
+                <div className="text-[#6B7280] mb-4">
+                  <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] mb-2">No partners found</h3>
+                  <p>Try adjusting your search terms or category filter</p>
+                </div>
+                <Button 
+                  onClick={() => { setSearchTerm(''); setSelectedCategory('All'); }}
+                  className="bg-[#C9A24A] hover:bg-[#B8923D] text-white"
+                >
+                  Clear Filters
+                </Button>
+              </div>
+            )}
           </div>
 
           <div className="mt-12 text-center">
