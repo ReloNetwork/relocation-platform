@@ -236,22 +236,18 @@ const PartnerCard = ({
     
     <div className="flex gap-3">
       {isFreeUser ? (
-        <>
-          <Button 
-            onClick={() => checkoutFunctions.plus()}
-            className="flex-1 bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
-          >
-            <Lock className="w-4 h-4 mr-2" />
-            Upgrade to View
-          </Button>
-          <Button 
-            onClick={() => checkoutFunctions.plus()}
-            variant="outline" 
-            className="border-[#C9A24A] text-[#C9A24A] hover:bg-[#C9A24A] hover:text-white text-sm rounded-md"
-          >
-            Upgrade
-          </Button>
-        </>
+        <Button 
+          onClick={() => {
+            const accessTiersSection = document.getElementById('access-tiers')
+            if (accessTiersSection) {
+              accessTiersSection.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
+          className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
+        >
+          <Lock className="w-4 h-4 mr-2" />
+          Upgrade to View
+        </Button>
       ) : (
         <>
           <Button className="flex-1 bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md">
