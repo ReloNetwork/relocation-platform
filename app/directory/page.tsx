@@ -103,7 +103,8 @@ const PartnerCard = ({
   specializations,
   contactInfo,
   isSponsored = false,
-  isPremium = false 
+  isPremium = false,
+  userAccessTier = 'free'
 }: {
   name: string
   category: string
@@ -116,7 +117,12 @@ const PartnerCard = ({
   contactInfo: { phone: string; email: string; website?: string }
   isSponsored?: boolean
   isPremium?: boolean
-}) => (
+  userAccessTier?: 'free' | 'premium' | 'vip'
+}) => {
+  const isFreeUser = userAccessTier === 'free'
+  const blurredName = name.split(' ').map(word => word.charAt(0) + '●'.repeat(word.length - 1)).join(' ')
+
+  return (
   <div className={`bg-white rounded-lg p-6 border ${isPremium ? 'border-[#C9A24A] ring-2 ring-[#C9A24A]/20' : 'border-[#0B1B2B]/10'} shadow-sm hover:shadow-lg transition-all`}>
     <div className="flex items-start gap-4 mb-4">
       {isSponsored && (
@@ -135,7 +141,14 @@ const PartnerCard = ({
       
       <div className="flex-1">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="font-bold text-[#0B1B2B] text-lg">{name}</h3>
+          <div className="relative">
+            <h3 className="font-bold text-[#0B1B2B] text-lg">{isFreeUser ? blurredName : name}</h3>
+            {isFreeUser && (
+              <div className="absolute inset-0 flex items-center justify-end">
+                <Lock className="w-4 h-4 text-[#6B7280] ml-2" />
+              </div>
+            )}
+          </div>
           {isPremium && <Crown className="w-5 h-5 text-[#C9A24A]" />}
         </div>
         
@@ -188,28 +201,71 @@ const PartnerCard = ({
     </div>
     
     <div className="border-t border-[#E5E7EB] pt-4 mb-4">
-      <div className="grid grid-cols-2 gap-4 text-sm">
-        <div className="flex items-center gap-2">
-          <Phone className="w-4 h-4 text-[#C9A24A]" />
-          <span className="text-[#6B7280]">{contactInfo.phone}</span>
+      {isFreeUser ? (
+        <div className="relative">
+          <div className="grid grid-cols-2 gap-4 text-sm blur-sm">
+            <div className="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-[#C9A24A]" />
+              <span className="text-[#6B7280]">+44 ●●● ●●● ●●●</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-[#C9A24A]" />
+              <span className="text-[#6B7280] truncate">●●●●●@●●●●●.com</span>
+            </div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg border border-[#C9A24A]/20 flex items-center gap-2">
+              <Lock className="w-4 h-4 text-[#C9A24A]" />
+              <span className="text-sm font-medium text-[#C9A24A]">Upgrade to view contact details</span>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <Mail className="w-4 h-4 text-[#C9A24A]" />
-          <span className="text-[#6B7280] truncate">{contactInfo.email}</span>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="flex items-center gap-2">
+            <Phone className="w-4 h-4 text-[#C9A24A]" />
+            <span className="text-[#6B7280]">{contactInfo.phone}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Mail className="w-4 h-4 text-[#C9A24A]" />
+            <span className="text-[#6B7280] truncate">{contactInfo.email}</span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
     
     <div className="flex gap-3">
-      <Button className="flex-1 bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md">
-        View Profile
-      </Button>
-      <Button variant="outline" className="border-[#C9A24A] text-[#C9A24A] hover:bg-[#C9A24A] hover:text-white text-sm rounded-md">
-        Contact
-      </Button>
+      {isFreeUser ? (
+        <>
+          <Button 
+            onClick={() => checkoutFunctions.plus()}
+            className="flex-1 bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md"
+          >
+            <Lock className="w-4 h-4 mr-2" />
+            Upgrade to View
+          </Button>
+          <Button 
+            onClick={() => checkoutFunctions.plus()}
+            variant="outline" 
+            className="border-[#C9A24A] text-[#C9A24A] hover:bg-[#C9A24A] hover:text-white text-sm rounded-md"
+          >
+            Upgrade
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button className="flex-1 bg-[#C9A24A] hover:bg-[#B8923D] text-white text-sm rounded-md">
+            View Profile
+          </Button>
+          <Button variant="outline" className="border-[#C9A24A] text-[#C9A24A] hover:bg-[#C9A24A] hover:text-white text-sm rounded-md">
+            Contact
+          </Button>
+        </>
+      )}
     </div>
   </div>
-)
+  )
+}
 
 const MarketInsightCard = ({ 
   title, 
@@ -266,7 +322,15 @@ export default function DirectoryPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [showFilters, setShowFilters] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [userAccessTier, setUserAccessTier] = useState<'free' | 'premium' | 'vip'>('free')
   const schemas = getAllDirectorySchemas()
+
+  // Mock user access tier - in production this would come from authentication/subscription state
+  useEffect(() => {
+    // For demo purposes, you can change this to test different tiers
+    // In production, this would check user's actual subscription status
+    setUserAccessTier('free') // Change to 'premium' or 'vip' to test other tiers
+  }, [])
 
   const handleSubscribe = async (plan: string) => {
     setLoading(true)
@@ -1651,7 +1715,7 @@ export default function DirectoryPage() {
             {filteredPartners.length > 0 ? (
               filteredPartners.map((partner, index) => (
                 <div key={index} className="relative">
-                  <PartnerCard {...partner} />
+                  <PartnerCard {...partner} userAccessTier={userAccessTier} />
                 </div>
               ))
             ) : (
