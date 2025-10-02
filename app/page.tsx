@@ -248,7 +248,7 @@ export default function HomePage() {
                     <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
                       <Crown className="h-6 w-6 text-[#C9A24A]" />
                     </div>
-                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10">Executive Service</Badge>
+                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 px-4 py-2">Executive Service</Badge>
                   </div>
                   <CardTitle className="text-2xl font-bold text-[#0B1B2B] text-left">Executive Intake</CardTitle>
                 </div>
