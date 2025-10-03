@@ -471,7 +471,7 @@ export default function DemoDashboard() {
                           .map(task => (
                             <div
                               key={task.id}
-                              className="rounded-xl p-4 bg-white border border-[#E5E7EB] hover:shadow-md transition-all"
+                              className="rounded-xl p-4 bg-white border border-[#E5E7EB] hover:shadow-md transition-all min-h-[200px] flex flex-col"
                             >
                               <div className="flex items-start justify-between mb-2">
                                 <h4 className={`font-medium text-[#0B1B2B] leading-snug ${
@@ -490,59 +490,65 @@ export default function DemoDashboard() {
                               
                               <p className="text-sm text-[#6B7280] mb-3">{task.description}</p>
                               
-                              <div className="space-y-2">
-                                <div className="flex items-center justify-between">
-                                  <div className="text-xs text-[#6B7280]">
-                                    Due: {new Date(task.due).toLocaleDateString()}
-                                  </div>
-                                  
-                                  <div className="flex gap-1">
-                                    <button
-                                      onClick={() => editTask(task)}
-                                      className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors"
-                                      title="Edit Task"
-                                    >
-                                      <Edit3 className="w-3 h-3" />
-                                    </button>
-                                    <button
-                                      onClick={() => deleteTask(task.id)}
-                                      className="px-2 py-1 text-xs bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors"
-                                      title="Delete Task"
-                                    >
-                                      ✕
-                                    </button>
-                                    {task.status !== 'todo' && (
+                              <div className="mt-auto space-y-3">
+                                <div className="flex items-center justify-between text-xs text-[#6B7280]">
+                                  <span>Due: {new Date(task.due).toLocaleDateString()}</span>
+                                </div>
+                                
+                                {/* Action Buttons */}
+                                <div className="space-y-2">
+                                  <div className="flex gap-2 justify-between">
+                                    <div className="flex gap-1">
                                       <button
-                                        onClick={() => updateTaskStatus(task.id, 'todo')}
-                                        className="px-2 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600"
+                                        onClick={() => editTask(task)}
+                                        className="p-1.5 text-xs bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors flex items-center justify-center"
+                                        title="Edit Task"
                                       >
-                                        Back
+                                        <Edit3 className="w-3 h-3" />
                                       </button>
-                                    )}
-                                    {task.status === 'todo' && (
                                       <button
-                                        onClick={() => updateTaskStatus(task.id, 'doing')}
-                                        className="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
+                                        onClick={() => deleteTask(task.id)}
+                                        className="p-1.5 text-xs bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors flex items-center justify-center"
+                                        title="Delete Task"
                                       >
-                                        Start
+                                        ✕
                                       </button>
-                                    )}
-                                    {task.status !== 'done' && (
-                                      <button
-                                        onClick={() => updateTaskStatus(task.id, 'done')}
-                                        className="px-2 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700"
-                                      >
-                                        Complete
-                                      </button>
-                                    )}
-                                    {task.status === 'done' && (
-                                      <button
-                                        onClick={() => updateTaskStatus(task.id, 'doing')}
-                                        className="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
-                                      >
-                                        Reopen
-                                      </button>
-                                    )}
+                                    </div>
+                                    
+                                    <div className="flex gap-1">
+                                      {task.status !== 'todo' && (
+                                        <button
+                                          onClick={() => updateTaskStatus(task.id, 'todo')}
+                                          className="px-2 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+                                        >
+                                          Back
+                                        </button>
+                                      )}
+                                      {task.status === 'todo' && (
+                                        <button
+                                          onClick={() => updateTaskStatus(task.id, 'doing')}
+                                          className="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                                        >
+                                          Start
+                                        </button>
+                                      )}
+                                      {task.status !== 'done' && (
+                                        <button
+                                          onClick={() => updateTaskStatus(task.id, 'done')}
+                                          className="px-2 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                                        >
+                                          Complete
+                                        </button>
+                                      )}
+                                      {task.status === 'done' && (
+                                        <button
+                                          onClick={() => updateTaskStatus(task.id, 'doing')}
+                                          className="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                                        >
+                                          Reopen
+                                        </button>
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
                                 
@@ -555,7 +561,7 @@ export default function DemoDashboard() {
                                     </div>
                                     <button
                                       onClick={() => setSelectedTaskForPartners(selectedTaskForPartners === task.id ? null : task.id)}
-                                      className="px-2 py-1 text-xs bg-[#C9A24A] text-white rounded hover:bg-[#B8923D] transition-colors"
+                                      className="px-3 py-1 text-xs bg-[#C9A24A] text-white rounded hover:bg-[#B8923D] transition-colors font-medium"
                                     >
                                       {selectedTaskForPartners === task.id ? 'Hide' : 'View'}
                                     </button>
