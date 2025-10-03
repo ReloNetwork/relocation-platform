@@ -111,6 +111,15 @@ export default function DemoDashboard() {
     alert("Opening secure messaging channel with your dedicated concierge. In the full platform, this would open a real-time chat interface.")
   }
 
+  // Partner Action Functions
+  const handlePartnerConnect = (partner: any) => {
+    alert(`Connecting with ${partner.name}!\n\nIn the full platform, this would:\n• Send your contact details to ${partner.name}\n• Schedule an initial consultation\n• Add them to your active partners\n• Notify your concierge about the connection\n\nYou would receive a confirmation email with next steps.`)
+  }
+
+  const handleViewProfile = (partner: any) => {
+    alert(`Viewing profile for ${partner.name}\n\nSpecialty: ${partner.speciality}\nLocation: ${partner.location}\nRating: ${partner.rating} stars (${partner.reviews} reviews)\n${partner.verified ? '✓ Verified Partner' : ''}\n\nIn the full platform, this would open a detailed profile page with:\n• Complete service offerings\n• Client testimonials\n• Pricing information\n• Availability calendar\n• Direct messaging`)
+  }
+
   // Task Management Functions
   const addTask = () => {
     const task = {
@@ -831,10 +840,16 @@ export default function DemoDashboard() {
                       </div>
                     </div>
                     <div className="flex flex-col gap-2 ml-4">
-                      <button className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                      <button 
+                        onClick={() => handlePartnerConnect(partner)}
+                        className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                      >
                         Connect
                       </button>
-                      <button className="text-[#C9A24A] hover:text-[#B8923D] text-sm font-medium transition-colors">
+                      <button 
+                        onClick={() => handleViewProfile(partner)}
+                        className="text-[#C9A24A] hover:text-[#B8923D] text-sm font-medium transition-colors"
+                      >
                         View Profile
                       </button>
                     </div>
