@@ -3,11 +3,13 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { useDashboardAccess } from '@/hooks/useDashboardAccess'
 
 export default function GlobalNavigationFixed() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const { hasAccess, isLoading, dashboardUrl } = useDashboardAccess()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,13 +20,24 @@ export default function GlobalNavigationFixed() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navigation = [
+  // Build navigation array conditionally
+  const baseNavigation = [
     { name: 'Home', href: '/' },
     { name: 'Directory', href: '/directory' },
     { name: 'Partners', href: '/partners' },
-    { name: 'Dashboard', href: '/demo-dashboard' },
-    { name: 'Relo News', href: '/newsletter' },
   ]
+
+  // Add Dashboard only if user has access
+  const navigation = hasAccess 
+    ? [
+        ...baseNavigation,
+        { name: 'Dashboard', href: dashboardUrl },
+        { name: 'Relo News', href: '/newsletter' },
+      ]
+    : [
+        ...baseNavigation,
+        { name: 'Relo News', href: '/newsletter' },
+      ]
 
   const openVoiceWidget = () => {
     // Trigger the StickyAsk voice widget
