@@ -1,159 +1,100 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
-import { Resend } from 'resend'
-
-// Initialize services
-let resend: Resend | null = null
-let supabase: any = null
-
-try {
-  if (process.env.RESEND_API_KEY) {
-    resend = new Resend(process.env.RESEND_API_KEY)
-  }
-  
-  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
-    supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    )
-  }
-} catch (error) {
-  console.warn('Warning: Some services may not be available')
-}
+import { NextRequest, NextResponse } from 'next/server';
+import { writeFile, readFile } from 'fs/promises';
+import { join } from 'path';
 
 interface ConsultationBookingData {
-  requestId: string
-  slotId: string
-  companyName: string
-}
-
-// Mock time slots - in production, integrate with actual calendar service
-const timeSlots = {
-  '1': { date: 'Today', time: '2:00 PM', datetime: new Date(Date.now() + 2 * 60 * 60 * 1000) },
-  '2': { date: 'Today', time: '4:00 PM', datetime: new Date(Date.now() + 4 * 60 * 60 * 1000) },
-  '3': { date: 'Today', time: '6:00 PM', datetime: new Date(Date.now() + 6 * 60 * 60 * 1000) },
-  '4': { date: 'Tomorrow', time: '9:00 AM', datetime: new Date(Date.now() + 24 * 60 * 60 * 1000) },
-  '5': { date: 'Tomorrow', time: '11:00 AM', datetime: new Date(Date.now() + 26 * 60 * 60 * 1000) },
-  '6': { date: 'Tomorrow', time: '2:00 PM', datetime: new Date(Date.now() + 29 * 60 * 60 * 1000) },
-  '8': { date: 'Day After', time: '10:00 AM', datetime: new Date(Date.now() + 48 * 60 * 60 * 1000) }
+  full_name: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  current_location?: string;
+  target_location?: string;
+  move_timeframe?: string;
+  preferred_date: string;
+  preferred_time: string;
+  message?: string;
+  source?: string;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const data: ConsultationBookingData = await request.json()
+    const data: ConsultationBookingData = await request.json();
     
     // Validate required fields
-    if (!data.requestId || !data.slotId || !data.companyName) {
+    if (!data.full_name || !data.email || !data.preferred_date || !data.preferred_time) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Missing required fields: full_name, email, preferred_date, and preferred_time are required' },
         { status: 400 }
       )
     }
 
-    // Get slot details
-    const slot = timeSlots[data.slotId as keyof typeof timeSlots]
-    if (!slot) {
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
       return NextResponse.json(
-        { error: 'Invalid time slot' },
+        { error: 'Invalid email format' },
         { status: 400 }
-      )
+      );
     }
 
-    // Create consultation booking record
-    let bookingId = `CONS-${Date.now()}`
+    // Create booking record
+    const booking = {
+      id: `consultation_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      ...data,
+      source: `consultation_${data.source || 'newsletter'}`,
+      status: 'active',
+      created_at: new Date().toISOString()
+    };
+
+    // Save to local file for now (in production, this would be saved to database)
+    const filePath = join(process.cwd(), 'consultations.json');
+    let consultations = [];
     
-    if (supabase) {
-      try {
-        // Create a simple consultation booking table entry
-        // Note: This would need the consultation_bookings table to be created
-        const { data: booking, error } = await supabase
-          .from('consultation_bookings')
-          .insert({
-            id: bookingId,
-            request_id: data.requestId,
-            company_name: data.companyName,
-            slot_id: data.slotId,
-            scheduled_at: slot.datetime.toISOString(),
-            status: 'confirmed',
-            created_at: new Date().toISOString()
-          })
-          .select()
-          .single()
-          
-        if (!error && booking) {
-          bookingId = booking.id
-        }
-      } catch (dbError) {
-        console.warn('Database not configured for consultations, using fallback')
-      }
+    try {
+      const fileData = await readFile(filePath, 'utf8');
+      consultations = JSON.parse(fileData);
+    } catch (error) {
+      // File doesn't exist yet, start with empty array
+      consultations = [];
     }
+    
+    consultations.push(booking);
+    await writeFile(filePath, JSON.stringify(consultations, null, 2));
 
-    // Send confirmation emails
-    if (resend) {
-      try {
-        // Send client confirmation
-        await resend.emails.send({
-          from: 'emergency@therelonetwork.com',
-          to: ['info@therelonetwork.com'], // In production, get from request data
-          subject: `Consultation Confirmed - ${data.companyName}`,
-          html: `
-            <h2>Emergency Consultation Confirmed</h2>
-            <p>Your consultation has been scheduled for <strong>${slot.date} at ${slot.time}</strong>.</p>
-            <p><strong>Company:</strong> ${data.companyName}</p>
-            <p><strong>Booking ID:</strong> ${bookingId}</p>
-            <p><strong>Request ID:</strong> ${data.requestId}</p>
-            
-            <h3>What's Next:</h3>
-            <ul>
-              <li>Our emergency specialist will call you at the scheduled time</li>
-              <li>Have your requirements and timeline ready</li>
-              <li>We'll assess your needs and provide a custom solution</li>
-            </ul>
-            
-            <p>If you need to reschedule, call <strong>+44 20 3974 1239</strong></p>
-          `
-        })
-
-        // Send internal notification
-        await resend.emails.send({
-          from: 'emergency@therelonetwork.com',
-          to: ['emergency@therelonetwork.com'],
-          subject: `📅 Emergency Consultation Booked - ${data.companyName}`,
-          html: `
-            <h2>New Emergency Consultation Booking</h2>
-            <p><strong>Company:</strong> ${data.companyName}</p>
-            <p><strong>Scheduled:</strong> ${slot.date} at ${slot.time}</p>
-            <p><strong>Booking ID:</strong> ${bookingId}</p>
-            <p><strong>Request ID:</strong> ${data.requestId}</p>
-            
-            <p><strong>Action Required:</strong> Call client at scheduled time for emergency consultation.</p>
-          `
-        })
-      } catch (emailError) {
-        console.error('Email error:', emailError)
-      }
-    }
-
+    // Log the consultation details for manual follow-up
     console.log('Consultation booked:', {
-      bookingId,
-      requestId: data.requestId,
-      company: data.companyName,
-      slot: `${slot.date} at ${slot.time}`,
-      scheduledAt: slot.datetime.toISOString()
-    })
+      id: booking.id,
+      name: data.full_name,
+      email: data.email,
+      phone: data.phone,
+      company: data.company,
+      current_location: data.current_location,
+      target_location: data.target_location,
+      move_timeframe: data.move_timeframe,
+      preferred_date: data.preferred_date,
+      preferred_time: data.preferred_time,
+      message: data.message,
+      created_at: booking.created_at
+    });
 
     return NextResponse.json({
       success: true,
-      bookingId,
-      scheduledAt: slot.datetime.toISOString(),
+      booking_id: booking.id,
       message: 'Consultation booked successfully'
     })
 
   } catch (error) {
-    console.error('Error booking consultation:', error)
+    console.error('Error booking consultation:', error);
     return NextResponse.json(
-      { error: 'Failed to book consultation' },
+      { error: 'Internal server error' },
       { status: 500 }
-    )
+    );
   }
+}
+
+export async function GET() {
+  return NextResponse.json(
+    { message: 'Consultation booking endpoint - use POST to book a consultation' },
+    { status: 200 }
+  );
 }

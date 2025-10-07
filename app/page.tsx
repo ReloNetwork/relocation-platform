@@ -74,6 +74,7 @@ export default function HomePage() {
     seconds: 0
   })
 
+
   useEffect(() => {
     const targetDate = new Date('2025-10-06T14:00:00Z')
     
@@ -97,6 +98,7 @@ export default function HomePage() {
     const interval = setInterval(updateCountdown, 1000)
     return () => clearInterval(interval)
   }, [])
+
 
   const audienceCards = [
     {
@@ -193,9 +195,34 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Enhanced Hero Section with Authority Signals */}
-      <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B1B2B]/5 to-[#C9A24A]/10 pt-32">
-        <div className="text-center max-w-6xl mx-auto px-4">
+      {/* Enhanced Hero Section with Light Translucent Overlays */}
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
+        {/* Light Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-white to-[#F8F9FA]"></div>
+        
+        {/* Elegant Translucent Overlays */}
+        <div className="absolute inset-0">
+          {/* Large circle - top right */}
+          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-[#C9A24A]/25 to-[#C9A24A]/10 blur-3xl"></div>
+          
+          {/* Medium circle - bottom left */}
+          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-[#0B1B2B]/15 to-[#0B1B2B]/5 blur-2xl"></div>
+          
+          {/* Small accent - center left */}
+          <div className="absolute top-1/3 -left-20 w-56 h-56 rounded-full bg-gradient-to-r from-[#C9A24A]/20 to-transparent blur-xl"></div>
+          
+          {/* Additional accent - center right */}
+          <div className="absolute top-2/3 -right-16 w-48 h-48 rounded-full bg-gradient-to-l from-[#0B1B2B]/12 to-transparent blur-xl"></div>
+          
+          {/* Geometric shapes for sophistication */}
+          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#C9A24A]/40 rounded-full animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/3 w-2 h-2 bg-[#0B1B2B]/40 rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-[#C9A24A]/35 rounded-full animate-pulse delay-2000"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#0B1B2B]/30 rounded-full animate-pulse delay-3000"></div>
+        </div>
+        
+        {/* Content with higher z-index */}
+        <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
           
           <h1 className="text-6xl lg:text-7xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Relocate to <span className="text-[#C9A24A]">London</span><br />
@@ -237,6 +264,7 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
+
 
           {/* Services Grid - Clean Layout */}
           <div className="mb-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">

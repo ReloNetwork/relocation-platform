@@ -1,0 +1,34 @@
+[
+  {
+    "id": "consultation_1759724288990_u9ptc3l12",
+    "full_name": "Cali",
+    "email": "calistar@live.co.uk",
+    "phone": "",
+    "company": "",
+    "current_location": "",
+    "target_location": "",
+    "move_timeframe": "",
+    "preferred_date": "2025-11-29",
+    "preferred_time": "11:00",
+    "message": "",
+    "source": "consultation_newsletter",
+    "status": "active",
+    "created_at": "2025-10-06T04:18:08.990Z"
+  },
+  {
+    "id": "consultation_1759738168198_jru5ngdhz",
+    "full_name": "uyhh",
+    "email": "calistar@live.co.uk",
+    "phone": "",
+    "company": "",
+    "current_location": "",
+    "target_location": "",
+    "move_timeframe": "",
+    "preferred_date": "2025-10-24",
+    "preferred_time": "14:00",
+    "message": "",
+    "source": "consultation_newsletter",
+    "status": "active",
+    "created_at": "2025-10-06T08:09:28.198Z"
+  }
+]

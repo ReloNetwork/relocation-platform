@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Layout from '@/components/Layout'
 import { ArrowRight, Mail, Calendar, User, Tag, ExternalLink, Star, TrendingUp, Globe } from 'lucide-react'
+import Head from 'next/head'
 
 interface Article {
   id: string
@@ -25,94 +26,103 @@ export default function NewsletterPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
 
   const categories = [
-    { id: 'all', name: 'All Articles', count: 24 },
-    { id: 'relocation-guide', name: 'Relocation Guides', count: 8 },
-    { id: 'area-spotlight', name: 'Area Spotlights', count: 6 },
-    { id: 'partner-features', name: 'Partner Features', count: 5 },
-    { id: 'market-insights', name: 'Market Insights', count: 3 },
-    { id: 'lifestyle', name: 'London Lifestyle', count: 2 }
+    { id: 'all', name: 'All Articles', count: 6 },
+    { id: 'launch-announcement', name: 'Launch Updates', count: 1 },
+    { id: 'area-spotlight', name: 'Area Spotlights', count: 1 },
+    { id: 'partner-features', name: 'Partner Features', count: 2 },
+    { id: 'education-partners', name: 'Education', count: 1 },
+    { id: 'transport-partners', name: 'Transport', count: 1 },
+    { id: 'market-insights', name: 'Market Insights', count: 1 }
   ]
 
   const featuredArticles: Article[] = [
     {
-      id: '1',
-      title: 'The Complete Guide to Relocating to Marylebone: A Professional\'s Paradise',
-      excerpt: 'Discover why Marylebone has become the preferred choice for international executives, from world-class dining to prestigious schools.',
-      category: 'area-spotlight',
-      author: 'Sarah Mitchell',
-      date: '2025-09-15',
-      readTime: '8 min read',
-      image: '/images/marylebone-guide.jpg',
+      id: 'launch-newsletter',
+      title: 'The Executive\'s London Has Arrived - Relo Network Launch Edition',
+      excerpt: 'From Goldman Sachs MDs to pharmaceutical CEOs, discover how Fortune 500 executives are transforming their London relocations with our exclusive founding partner network.',
+      category: 'launch-announcement',
+      author: 'Relo Network Team',
+      date: '2025-01-07',
+      readTime: '6 min read',
+      image: '/images/relo-launch-newsletter.jpg',
       featured: true,
       partnerSpotlight: {
-        partner: 'Prime Properties London',
-        service: 'Luxury Property Search'
+        partner: 'The Chancery Rosewood',
+        service: 'Ultra-Luxury Executive Suites'
       }
     },
     {
-      id: '2',
-      title: 'UK Visa Updates: What High-Net-Worth Individuals Need to Know in 2025',
-      excerpt: 'Latest changes to investor visas, Global Talent schemes, and expedited processing options for premium relocations.',
-      category: 'relocation-guide',
-      author: 'Michael Thompson',
-      date: '2025-09-12',
-      readTime: '12 min read',
-      image: '/images/visa-guide.jpg',
+      id: 'mayfair-executive-guide',
+      title: 'Mayfair: The Executive\'s London - Complete Relocation Guide 2025',
+      excerpt: 'Why 40% of C-suite relocations choose W1 addresses. From The Chancery Rosewood to exclusive private members\' clubs, discover London\'s most prestigious postcode.',
+      category: 'area-spotlight',
+      author: 'London Relocation Experts',
+      date: '2025-01-06',
+      readTime: '8 min read',
+      image: '/images/mayfair-executive-guide.jpg',
       featured: true,
       partnerSpotlight: {
-        partner: 'Elite Immigration Advisors',
-        service: 'Visa & Legal Services'
+        partner: 'Coutts International',
+        service: 'Private Banking & Wealth Management'
       }
     }
   ]
 
   const recentArticles: Article[] = [
     {
-      id: '3',
-      title: 'Top 10 International Schools in London for Executive Families',
-      excerpt: 'A comprehensive comparison of London\'s most prestigious international schools, including admission requirements and fees.',
-      category: 'relocation-guide',
-      author: 'Emma Richardson',
-      date: '2025-09-10',
-      readTime: '6 min read',
-      image: '/images/schools-guide.jpg',
-      featured: false
-    },
-    {
-      id: '4',
-      title: 'Partner Spotlight: How Sterling Wealth Management Simplifies UK Banking',
-      excerpt: 'Learn how our featured partner helps international clients navigate UK banking regulations and investment opportunities.',
-      category: 'partner-features',
-      author: 'James Wilson',
-      date: '2025-09-08',
-      readTime: '4 min read',
-      image: '/images/banking-guide.jpg',
+      id: 'fragomen-immigration-guide',
+      title: 'Corporate Immigration Excellence: How Leading London Firms Transform Executive Visa Processing',
+      excerpt: 'Discover how global immigration expertise delivers sophisticated visa solutions and seamless corporate relocations for Fortune 500 executives.',
+      category: 'immigration-insights',
+      author: 'Immigration Law Specialists',
+      date: '2025-01-05',
+      readTime: '5 min read',
+      image: '/images/fragomen-partnership.jpg',
       featured: false,
-      partnerSpotlight: {
-        partner: 'Sterling Wealth Management',
-        service: 'Banking & Financial Services'
+      serviceSpotlight: {
+        focus: 'Executive Immigration Services',
+        service: 'Corporate Immigration & Visa Services'
       }
     },
     {
-      id: '5',
-      title: 'Q3 2025 London Property Market Report: Premium Areas Analysis',
-      excerpt: 'Exclusive insights into price trends, availability, and investment opportunities in London\'s most sought-after postcodes.',
-      category: 'market-insights',
-      author: 'Alexandra Davies',
-      date: '2025-09-05',
-      readTime: '10 min read',
-      image: '/images/market-report.jpg',
-      featured: false
+      id: 'american-school-london-guide',
+      title: 'American School in London: Seamless Education Transition for Executive Families',
+      excerpt: 'Why 50 nationalities choose ASL for continuity. From flexible admissions to dedicated expat support - ensuring family decisions drive relocation timing.',
+      category: 'education-insights',
+      author: 'Education Placement Experts',
+      date: '2025-01-04',
+      readTime: '6 min read',
+      image: '/images/asl-partnership.jpg',
+      featured: false,
+      serviceSpotlight: {
+        focus: 'International Education Excellence',
+        service: 'International Education & Family Support'
+      }
     },
     {
-      id: '6',
-      title: 'Cultural Integration: Your First 30 Days in London',
-      excerpt: 'Essential tips for seamlessly integrating into London\'s professional and social circles, from networking to local customs.',
-      category: 'lifestyle',
-      author: 'Sophie Chen',
-      date: '2025-09-03',
-      readTime: '7 min read',
-      image: '/images/culture-guide.jpg',
+      id: 'london-luxury-transport',
+      title: 'Executive Transport Excellence: London Luxury Chauffeuring Services Overview',
+      excerpt: 'Range Rover Autobiography fleet, signed NDAs, and 24/7 availability. How premium transport services ensure executive confidentiality and reliability.',
+      category: 'transport-insights',
+      author: 'Executive Services Team',
+      date: '2025-01-03',
+      readTime: '4 min read',
+      image: '/images/luxury-transport.jpg',
+      featured: false,
+      serviceSpotlight: {
+        focus: 'Executive Transport Services',
+        service: 'Executive Chauffeur Services'
+      }
+    },
+    {
+      id: 'london-property-trends-2025',
+      title: 'London Property Market 2025: Executive Relocation Insights and Trends',
+      excerpt: 'American buyers driving 300% increase in London purchases. New FIG tax regime benefits and 48-hour decision windows for premium properties.',
+      category: 'market-insights',
+      author: 'Property Market Analysts',
+      date: '2025-01-02',
+      readTime: '8 min read',
+      image: '/images/london-property-2025.jpg',
       featured: false
     }
   ]
@@ -160,11 +170,11 @@ export default function NewsletterPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              The <span className="text-[#C9A24A]">Relo Network</span> News
+              The <span className="text-[#C9A24A]">Executive's</span> London Newsletter
             </h1>
             <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
-              Weekly insights, exclusive guides, and insider knowledge for discerning professionals relocating to London. 
-              Curated by experts, featuring trusted partners.
+              Exclusive insights, founding partner spotlights, and insider intelligence for Fortune 500 executives relocating to London. 
+              Where £45,000 budgets meet white-glove service.
             </p>
             
             {/* Newsletter Signup */}
@@ -190,7 +200,7 @@ export default function NewsletterPage() {
                 </button>
               </div>
               <p className="text-white text-sm mt-3 opacity-90">
-                Join 2,500+ professionals • Unsubscribe anytime • Weekly delivery
+                Join Fortune 500 executives • Unsubscribe anytime • Weekly insider intelligence
               </p>
             </form>
           </div>
@@ -276,16 +286,16 @@ export default function NewsletterPage() {
                   </h3>
                   <div className="space-y-3">
                     <div className="p-3 bg-[#F8F9FA] rounded-lg">
-                      <div className="text-sm font-semibold text-[#0B1B2B]">Prime Properties London</div>
-                      <div className="text-xs text-[#6B7280]">Luxury Property Search</div>
+                      <div className="text-sm font-semibold text-[#0B1B2B]">The Chancery Rosewood</div>
+                      <div className="text-xs text-[#6B7280]">Ultra-Luxury Mayfair Suites</div>
                     </div>
                     <div className="p-3 bg-[#F8F9FA] rounded-lg">
-                      <div className="text-sm font-semibold text-[#0B1B2B]">Elite Immigration</div>
-                      <div className="text-xs text-[#6B7280]">Visa & Legal Services</div>
+                      <div className="text-sm font-semibold text-[#0B1B2B]">Fragomen London</div>
+                      <div className="text-xs text-[#6B7280]">Corporate Immigration Law</div>
                     </div>
                     <div className="p-3 bg-[#F8F9FA] rounded-lg">
-                      <div className="text-sm font-semibold text-[#0B1B2B]">Sterling Wealth</div>
-                      <div className="text-xs text-[#6B7280]">Banking & Finance</div>
+                      <div className="text-sm font-semibold text-[#0B1B2B]">Coutts International</div>
+                      <div className="text-xs text-[#6B7280]">Private Banking & Wealth</div>
                     </div>
                   </div>
                   <button className="w-full mt-4 px-4 py-2 border border-[#C9A24A] text-[#C9A24A] hover:bg-[#C9A24A] hover:text-white font-semibold rounded-lg transition-colors text-sm">
@@ -305,9 +315,21 @@ export default function NewsletterPage() {
                 </h2>
                 <div className="grid lg:grid-cols-2 gap-8">
                   {featuredArticles.map((article) => (
-                    <article key={article.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E5E7EB] hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = '/newsletter/marylebone-guide'}>
-                      <div className="aspect-video bg-gradient-to-br from-[#0B1B2B] to-[#C9A24A] relative flex items-center justify-center">
-                        <div className="text-center text-white p-6">
+                    <article key={article.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E5E7EB] hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = article.id === 'launch-newsletter' ? '/newsletter/launch-edition' : '/newsletter/mayfair-guide'}>
+                      <div className="aspect-video relative flex items-center justify-center overflow-hidden">
+                        {/* Background Image */}
+                        <div 
+                          className="absolute inset-0 bg-cover bg-center"
+                          style={{
+                            backgroundImage: article.id === 'launch-newsletter' 
+                              ? 'url(https://images.unsplash.com/photo-1520986606214-8b456906c813?w=800&h=450&fit=crop&crop=center&auto=format&q=80)'
+                              : 'url(https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=450&fit=crop&crop=center&auto=format&q=80)'
+                          }}
+                        />
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1B2B]/50 to-[#1e3a8a]/30" />
+                        {/* Content */}
+                        <div className="relative text-center text-white p-6 z-10">
                           <h4 className="text-xl font-bold mb-2">{article.title.split(':')[0]}</h4>
                           <p className="text-white/80 text-sm">{article.category.replace('-', ' ').toUpperCase()}</p>
                         </div>
@@ -374,11 +396,27 @@ export default function NewsletterPage() {
                 </h2>
                 <div className="space-y-6">
                   {recentArticles.map((article) => (
-                    <article key={article.id} className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E7EB] hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = '/newsletter/marylebone-guide'}>
+                    <article key={article.id} className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E7EB] hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = `/newsletter/${article.id}`}>
                       <div className="flex flex-col md:flex-row gap-6">
                         <div className="md:w-48 flex-shrink-0">
-                          <div className="aspect-video md:aspect-square bg-gradient-to-br from-[#0B1B2B] to-[#C9A24A] rounded-lg relative flex items-center justify-center">
-                            <div className="text-center text-white p-3">
+                          <div className="aspect-video md:aspect-square rounded-lg relative flex items-center justify-center overflow-hidden">
+                            {/* Background Image */}
+                            <div 
+                              className="absolute inset-0 bg-cover bg-center"
+                              style={{
+                                backgroundImage: article.id === 'fragomen-immigration-guide' 
+                                  ? 'url(https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=400&fit=crop&crop=center&auto=format&q=80)'
+                                  : article.id === 'american-school-london-guide'
+                                  ? 'url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=400&fit=crop&crop=center&auto=format&q=80)'
+                                  : article.id === 'london-luxury-transport'
+                                  ? 'url(https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=400&fit=crop&crop=center&auto=format&q=80)'
+                                  : 'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=400&fit=crop&crop=center&auto=format&q=80)'
+                              }}
+                            />
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#0B1B2B]/50 to-[#1e3a8a]/30" />
+                            {/* Content */}
+                            <div className="relative text-center text-white p-3 z-10">
                               <h5 className="text-sm font-bold">{article.title.split(':')[0]}</h5>
                             </div>
                             {article.partnerSpotlight && (

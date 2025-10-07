@@ -20,7 +20,7 @@ export default function MaryleBoneGuidePage() {
             "description": "Discover why Marylebone has become the preferred choice for international executives, from world-class dining to prestigious schools.",
             "author": {
               "@type": "Person",
-              "name": "Sarah Mitchell"
+              "name": "The Relo Network Team"
             },
             "publisher": {
               "@type": "Organization",
@@ -84,8 +84,8 @@ export default function MaryleBoneGuidePage() {
                   <User className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="font-semibold text-[#0B1B2B]">Sarah Mitchell</div>
-                  <div className="text-sm text-[#6B7280]">Head of Client Services</div>
+                  <div className="font-semibold text-[#0B1B2B]">The Relo Network Team</div>
+                  <div className="text-sm text-[#6B7280]">Executive Relocation Specialists</div>
                 </div>
               </div>
               <button className="flex items-center gap-2 text-[#6B7280] hover:text-[#C9A24A] transition-colors">
