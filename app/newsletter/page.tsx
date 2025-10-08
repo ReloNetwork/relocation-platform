@@ -165,41 +165,14 @@ export default function NewsletterPage() {
 
   return (
     <Layout className="bg-[#FAFAF9]" showFooter={false}>
-      {/* Background Overlays */}
-      <div className="fixed inset-0 pointer-events-none">
-        {/* Light Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-white to-[#F8F9FA]"></div>
-        
-        {/* Elegant Translucent Overlays */}
-        <div className="absolute inset-0">
-          {/* Large circle - top right */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-[#C9A24A]/25 to-[#C9A24A]/10 blur-3xl"></div>
-          
-          {/* Medium circle - bottom left */}
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-[#0B1B2B]/15 to-[#0B1B2B]/5 blur-2xl"></div>
-          
-          {/* Small accent - center left */}
-          <div className="absolute top-1/3 -left-20 w-56 h-56 rounded-full bg-gradient-to-r from-[#C9A24A]/20 to-transparent blur-xl"></div>
-          
-          {/* Additional accent - center right */}
-          <div className="absolute top-2/3 -right-16 w-48 h-48 rounded-full bg-gradient-to-l from-[#0B1B2B]/12 to-transparent blur-xl"></div>
-          
-          {/* Geometric shapes for sophistication */}
-          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#C9A24A]/40 rounded-full animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/3 w-2 h-2 bg-[#0B1B2B]/40 rounded-full animate-pulse delay-1000"></div>
-          <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-[#C9A24A]/35 rounded-full animate-pulse delay-2000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#0B1B2B]/30 rounded-full animate-pulse delay-3000"></div>
-        </div>
-      </div>
-
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-[#0B1B2B]/95 to-[#0B1B2B]/90 backdrop-blur-sm text-white py-20 shadow-2xl">
+      <div className="bg-gradient-to-br from-[#0B1B2B] to-[#0B1B2B]/90 text-white py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white px-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               The <span className="text-[#C9A24A]">Executive's</span> London Newsletter
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto px-4">
+            <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
               Exclusive insights, founding partner spotlights, and insider intelligence for Fortune 500 executives relocating to London. 
               Where £45,000 budgets meet white-glove service.
             </p>
@@ -220,7 +193,7 @@ export default function NewsletterPage() {
                 </div>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg hover:scale-105 shadow-2xl hover:shadow-[#C9A24A]/25 transition-all duration-300 flex items-center gap-2 justify-center"
+                  className="px-6 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-colors flex items-center gap-2 justify-center"
                 >
                   Subscribe
                   <ArrowRight className="w-4 h-4" />
@@ -235,7 +208,7 @@ export default function NewsletterPage() {
       </div>
 
       {/* Stats Bar */}
-      <div className="relative bg-white/95 backdrop-blur-sm border-b border-[#E5E7EB] py-6 shadow-lg">
+      <div className="bg-white border-b border-[#E5E7EB] py-6">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>

@@ -28,7 +28,7 @@ const PartnershipTier = ({
   priceId: string
   onSelect: (priceId: string) => void
 }) => (
-  <div className={`relative rounded-2xl border ${isPopular ? 'border-[#C9A24A] ring-2 ring-[#C9A24A]/20' : 'border-gray-200'} bg-white/95 backdrop-blur-sm p-8 shadow-2xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:shadow-[#C9A24A]/10`}>
+  <div className={`relative rounded-2xl border ${isPopular ? 'border-[#C9A24A] ring-2 ring-[#C9A24A]/20' : 'border-gray-200'} bg-white p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300`}>
     {isPopular && (
       <div className="absolute -top-4 left-1/2 -translate-x-1/2">
         <div className="bg-[#C9A24A] text-white px-4 py-2 rounded-full text-sm font-semibold">
@@ -100,7 +100,7 @@ const ProcessStep = ({ number, title, description }: { number: string, title: st
 const LaunchWeekBanner = () => {
   return (
     <div className="text-center">
-      <div className="bg-[#C9A24A] text-white px-6 py-3 rounded-lg inline-block shadow-2xl hover:shadow-[#C9A24A]/25 hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+      <div className="bg-[#C9A24A] text-white px-6 py-3 rounded-lg inline-block">
         <div className="text-lg font-bold">Launch Week Now Open</div>
         <div className="text-sm opacity-90">Limited Charter Positions Available</div>
       </div>
@@ -184,41 +184,14 @@ export default function PartnersPage() {
         />
       ))}
 
-      {/* Background Overlays */}
-      <div className="fixed inset-0 pointer-events-none">
-        {/* Light Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-white to-[#F8F9FA]"></div>
-        
-        {/* Elegant Translucent Overlays */}
-        <div className="absolute inset-0">
-          {/* Large circle - top right */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-[#C9A24A]/25 to-[#C9A24A]/10 blur-3xl"></div>
-          
-          {/* Medium circle - bottom left */}
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-[#0B1B2B]/15 to-[#0B1B2B]/5 blur-2xl"></div>
-          
-          {/* Small accent - center left */}
-          <div className="absolute top-1/3 -left-20 w-56 h-56 rounded-full bg-gradient-to-r from-[#C9A24A]/20 to-transparent blur-xl"></div>
-          
-          {/* Additional accent - center right */}
-          <div className="absolute top-2/3 -right-16 w-48 h-48 rounded-full bg-gradient-to-l from-[#0B1B2B]/12 to-transparent blur-xl"></div>
-          
-          {/* Geometric shapes for sophistication */}
-          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#C9A24A]/40 rounded-full animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/3 w-2 h-2 bg-[#0B1B2B]/40 rounded-full animate-pulse delay-1000"></div>
-          <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-[#C9A24A]/35 rounded-full animate-pulse delay-2000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#0B1B2B]/30 rounded-full animate-pulse delay-3000"></div>
-        </div>
-      </div>
-
       {/* Hero Section */}
-      <div className="relative bg-white/95 backdrop-blur-sm border-b border-[#0B1B2B]/10 py-16 shadow-xl">
+      <div className="bg-white border-b border-[#0B1B2B]/10 py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-6 px-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Own Your Category in London's Most Vetted Relocation Network
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-[#6B7280] max-w-3xl mx-auto mb-8 px-4">
+            <p className="text-xl text-[#6B7280] max-w-3xl mx-auto mb-8">
               Category exclusivity, concierge qualified introductions, directory and homepage placements. 12 Founder slots only. Launch week enrollment open.
             </p>
             
@@ -227,28 +200,18 @@ export default function PartnersPage() {
               <Button 
                 onClick={() => handleCheckout('founding_partner')}
                 size="lg"
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-2xl hover:shadow-[#C9A24A]/25 transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-xl hover:shadow-2xl transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : (
-                  <>
-                    <span className="hidden sm:inline">Become a Founding Partner — £25,000 (12 months)</span>
-                    <span className="sm:hidden">Founding Partner — £25,000</span>
-                  </>
-                )}
+                {loading ? 'Processing...' : 'Become a Founding Partner — £25,000 (12 months)'}
               </Button>
               <Button 
                 onClick={() => handleCheckout('premium_sponsor')}
                 size="lg"
-                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-2xl hover:shadow-[#0B1B2B]/25 transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
+                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-xl hover:shadow-2xl transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : (
-                  <>
-                    <span className="hidden sm:inline">Premium Sponsor — £5,000 (90 days)</span>
-                    <span className="sm:hidden">Premium Sponsor — £5,000</span>
-                  </>
-                )}
+                {loading ? 'Processing...' : 'Premium Sponsor — £5,000 (90 days)'}
               </Button>
             </div>
           </div>
@@ -257,7 +220,7 @@ export default function PartnersPage() {
             <div className="lg:col-span-2">
               
               {/* Authority Quote */}
-              <div className="bg-[#C9A24A]/5 backdrop-blur-sm border-l-4 border-[#C9A24A] rounded-r-lg p-6 mb-6 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="bg-[#C9A24A]/5 border-l-4 border-[#C9A24A] rounded-r-lg p-6 mb-6">
                 <blockquote className="text-lg italic text-[#0B1B2B] mb-2">
                   "Relo Network provides structured opportunities for qualified service providers. Their vetting process maintains professional standards."
                 </blockquote>
@@ -290,7 +253,7 @@ export default function PartnersPage() {
               </div>
             </div>
             <div className="lg:col-span-1">
-              <div className="bg-[#FAFAF9]/95 backdrop-blur-sm border border-[#E5E7EB] rounded-lg p-6 shadow-2xl hover:shadow-xl transition-all duration-300">
+              <div className="bg-[#FAFAF9] border border-[#E5E7EB] rounded-lg p-6">
                 <h3 className="text-lg font-bold text-[#0B1B2B] mb-4 border-b border-[#E5E7EB] pb-2">
                   Partnership Quick Facts
                 </h3>
@@ -327,7 +290,7 @@ export default function PartnersPage() {
       </div>
 
       {/* Hero Section with Enhanced Stats */}
-      <div className="relative bg-[#0B1B2B]/95 backdrop-blur-sm text-white shadow-2xl">
+      <div className="bg-[#0B1B2B] text-white">
         <div className="max-w-6xl mx-auto px-4 py-16">
           <div className="text-center">
             <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
