@@ -196,10 +196,10 @@ export default function NewsletterPage() {
       <div className="relative bg-gradient-to-br from-[#0B1B2B]/95 to-[#0B1B2B]/90 backdrop-blur-sm text-white py-20 shadow-2xl">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white px-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               The <span className="text-[#C9A24A]">Executive's</span> London Newsletter
             </h1>
-            <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto px-4">
               Exclusive insights, founding partner spotlights, and insider intelligence for Fortune 500 executives relocating to London. 
               Where £45,000 budgets meet white-glove service.
             </p>

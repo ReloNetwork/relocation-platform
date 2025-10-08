@@ -135,12 +135,12 @@ export default function BlueprintPage() {
             FREE BLUEPRINT • VALUE £97
           </div>
           
-          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-6 px-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             From Concept to <span className="text-[#C9A24A]">£180K</span>:<br />
             The Executive's Platform Blueprint
           </h1>
           
-          <p className="text-xl text-white/90 mb-8 max-w-4xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 max-w-4xl mx-auto px-4">
             The exact 30-page roadmap I used to build a Fortune 500-serving platform in 8 weeks without coding. 
             Complete with tools, templates, and transparent revenue breakdowns.
           </p>
@@ -166,7 +166,7 @@ export default function BlueprintPage() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           
           {/* Left Column - Benefits */}
           <div>

@@ -215,10 +215,10 @@ export default function PartnersPage() {
       <div className="relative bg-white/95 backdrop-blur-sm border-b border-[#0B1B2B]/10 py-16 shadow-xl">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-6 px-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
               Own Your Category in London's Most Vetted Relocation Network
             </h1>
-            <p className="text-xl text-[#6B7280] max-w-3xl mx-auto mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-[#6B7280] max-w-3xl mx-auto mb-8 px-4">
               Category exclusivity, concierge qualified introductions, directory and homepage placements. 12 Founder slots only. Launch week enrollment open.
             </p>
             
@@ -227,18 +227,28 @@ export default function PartnersPage() {
               <Button 
                 onClick={() => handleCheckout('founding_partner')}
                 size="lg"
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 rounded-md hover:scale-105 shadow-2xl hover:shadow-[#C9A24A]/25 transition-all duration-300"
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-2xl hover:shadow-[#C9A24A]/25 transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Become a Founding Partner — £25,000 (12 months)'}
+                {loading ? 'Processing...' : (
+                  <>
+                    <span className="hidden sm:inline">Become a Founding Partner — £25,000 (12 months)</span>
+                    <span className="sm:hidden">Founding Partner — £25,000</span>
+                  </>
+                )}
               </Button>
               <Button 
                 onClick={() => handleCheckout('premium_sponsor')}
                 size="lg"
-                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-8 py-4 rounded-md hover:scale-105 shadow-2xl hover:shadow-[#0B1B2B]/25 transition-all duration-300"
+                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-2xl hover:shadow-[#0B1B2B]/25 transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Premium Sponsor — £5,000 (90 days)'}
+                {loading ? 'Processing...' : (
+                  <>
+                    <span className="hidden sm:inline">Premium Sponsor — £5,000 (90 days)</span>
+                    <span className="sm:hidden">Premium Sponsor — £5,000</span>
+                  </>
+                )}
               </Button>
             </div>
           </div>

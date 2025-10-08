@@ -180,14 +180,14 @@ export default function HomePage() {
         {/* Content with higher z-index */}
         <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
           
-          <h1 className="text-6xl lg:text-7xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Relocate to <span className="text-[#C9A24A]">London</span><br />
-            <span className="text-4xl lg:text-5xl font-light text-[#6B7280]">Effortlessly.</span>
+            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#6B7280]">Effortlessly.</span>
           </h1>
-          <p className="text-2xl text-[#0B1B2B] mb-2 max-w-4xl mx-auto leading-relaxed font-medium">
+          <p className="text-lg sm:text-xl md:text-2xl text-[#0B1B2B] mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4">
             London's exclusive relocation network founded in 2024
           </p>
-          <p className="text-base text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed px-4">
             Vetted partners and white-glove 24/7 concierge, curated by international relocation specialist, with years orchestrating executive moves for Fortune 500 firms and HNW clients.
           </p>
 
@@ -198,16 +198,18 @@ export default function HomePage() {
               <Button
                 onClick={checkoutFunctions.executiveIntake}
                 size="lg"
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-10 py-4 text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25"
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg md:text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25 w-full sm:w-auto"
               >
-                Start Executive Intake
+                <span className="hidden sm:inline">Start Executive Intake</span>
+                <span className="sm:hidden">Executive Intake</span>
               </Button>
               <Button
                 onClick={() => window.location.href = '/partners'}
                 size="lg"
-                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-10 py-4 text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25"
+                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg md:text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25 w-full sm:w-auto"
               >
-                Become a Founding Partner
+                <span className="hidden sm:inline">Become a Founding Partner</span>
+                <span className="sm:hidden">Founding Partner</span>
               </Button>
             </div>
             <div className="text-center mb-24">
