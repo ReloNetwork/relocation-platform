@@ -97,53 +97,13 @@ const ProcessStep = ({ number, title, description }: { number: string, title: st
   </div>
 )
 
-const CountdownTimer = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  })
-
-  useEffect(() => {
-    const targetDate = new Date('2025-10-06T14:00:00Z')
-    
-    const updateCountdown = () => {
-      const now = new Date()
-      const difference = targetDate.getTime() - now.getTime()
-      
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000)
-        
-        setTimeLeft({ days, hours, minutes, seconds })
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-      }
-    }
-
-    updateCountdown()
-    const interval = setInterval(updateCountdown, 1000)
-    return () => clearInterval(interval)
-  }, [])
-
+const LaunchWeekBanner = () => {
   return (
-    <div className="flex gap-4 justify-center">
-      {[
-        { value: timeLeft.days, label: 'Days' },
-        { value: timeLeft.hours, label: 'Hours' },
-        { value: timeLeft.minutes, label: 'Minutes' },
-        { value: timeLeft.seconds, label: 'Seconds' }
-      ].map((item, index) => (
-        <div key={index} className="text-center">
-          <div className="bg-[#C9A24A] text-white w-12 h-12 rounded-lg flex items-center justify-center text-xl font-bold">
-            {String(item.value).padStart(2, '0')}
-          </div>
-          <div className="text-sm text-[#6B7280] mt-1">{item.label}</div>
-        </div>
-      ))}
+    <div className="text-center">
+      <div className="bg-[#C9A24A] text-white px-6 py-3 rounded-lg inline-block">
+        <div className="text-lg font-bold">Launch Week Now Open</div>
+        <div className="text-sm opacity-90">Limited Charter Positions Available</div>
+      </div>
     </div>
   )
 }
@@ -232,7 +192,7 @@ export default function PartnersPage() {
               Own Your Category in London's Most Vetted Relocation Network
             </h1>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto mb-8">
-              Category exclusivity, concierge qualified introductions, directory and homepage placements. 12 Founder slots only. Closes 06 Oct, 2:00 PM GMT.
+              Category exclusivity, concierge qualified introductions, directory and homepage placements. 12 Founder slots only. Launch week enrollment open.
             </p>
             
             {/* Above the fold CTAs */}
@@ -380,10 +340,10 @@ export default function PartnersPage() {
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8L14,13H10L12,8Z"/>
                 </svg>
-                Founding Rates Expire In:
+                Founding Partnership Status:
               </div>
-              <CountdownTimer />
-              <div className="text-sm text-white/90 mt-3 font-medium">Monday, October 6th 2025</div>
+              <LaunchWeekBanner />
+              <div className="text-sm text-white/90 mt-3 font-medium">Launch Week 2025</div>
               <div className="text-sm text-white/70 mt-1">Charter Rate - Limited to 12 founding positions</div>
             </div>
           </div>
@@ -1076,7 +1036,7 @@ export default function PartnersPage() {
           </div>
           
           <div className="flex flex-wrap justify-center gap-8 text-sm text-white/80 mb-6">
-            <div>✓ Charter rates expire October 6th, 2025</div>
+            <div>✓ Charter rates available during launch week</div>
             <div>✓ Professional partnership terms</div>
             <div>✓ Limited to 12 charter positions</div>
           </div>

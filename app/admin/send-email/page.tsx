@@ -721,7 +721,7 @@ export default function AdminSendEmail() {
                 </div>
                 <div>
                   <h4 className="font-medium mb-2">◐ Launch Week Timeline</h4>
-                  <p className="text-[#6B7280]">Founding Partner Charter closes Friday, October 6th</p>
+                  <p className="text-[#6B7280]">Founding Partner Charter - Launch Week enrollment</p>
                   <p className="text-[#7F1D1D] font-medium">⚠ Partners confirmed before Friday included in launch announcements!</p>
                 </div>
                 <div>

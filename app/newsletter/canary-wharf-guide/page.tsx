@@ -66,7 +66,7 @@ export default function CanaryWharfGuidePage() {
               </span>
               <span className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
-                October 6, 2025
+                Launch Week 2025
               </span>
             </div>
             

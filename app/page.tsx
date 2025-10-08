@@ -67,37 +67,6 @@ const AudienceCard = ({
 
 export default function HomePage() {
   const schemas = [...getAllEnhancedSchemas(), ...getAllHomepageSchemas(), ...getAICitationSchemas(), getCommunityEngagementSchema()]
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  })
-
-
-  useEffect(() => {
-    const targetDate = new Date('2025-10-06T14:00:00Z')
-    
-    const updateCountdown = () => {
-      const now = new Date()
-      const difference = targetDate.getTime() - now.getTime()
-      
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000)
-        
-        setTimeLeft({ days, hours, minutes, seconds })
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-      }
-    }
-
-    updateCountdown()
-    const interval = setInterval(updateCountdown, 1000)
-    return () => clearInterval(interval)
-  }, [])
 
 
   const audienceCards = [
@@ -169,27 +138,14 @@ export default function HomePage() {
             <svg className="w-4 h-4 fill-current animate-pulse" viewBox="0 0 24 24">
               <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8L14,13H10L12,8Z"/>
             </svg>
-            Launch Day Approaching
+            Launch Week
           </div>
           <div className="text-white text-lg mb-3">
-            <strong>Founding Partner Charter closes Oct 6, 2:00 PM GMT — 12 category-exclusive slots.</strong>
+            <strong>Founding Partner Charter now open — 12 category-exclusive slots available.</strong>
           </div>
-          <div className="flex justify-center items-center gap-6 text-white">
+          <div className="flex justify-center items-center text-white">
             <div className="text-center">
-              <div className="text-2xl font-bold text-[#C9A24A] transition-all duration-500">{timeLeft.days}</div>
-              <div className="text-xs uppercase tracking-wide">Days</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[#C9A24A] transition-all duration-500">{timeLeft.hours}</div>
-              <div className="text-xs uppercase tracking-wide">Hours</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[#C9A24A] transition-all duration-500">{timeLeft.minutes}</div>
-              <div className="text-xs uppercase tracking-wide">Minutes</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[#C9A24A] transition-all duration-500">{timeLeft.seconds}</div>
-              <div className="text-xs uppercase tracking-wide">Seconds</div>
+              <div className="text-[#C9A24A] font-semibold">Apply now to secure your category-exclusive partnership</div>
             </div>
           </div>
         </div>
@@ -347,30 +303,15 @@ export default function HomePage() {
                   <div className="bg-white/20 rounded-lg p-2 text-center">
                     <span className="font-bold text-white">12 Founder slots available</span>
                   </div>
-                <div className="flex items-center gap-4 text-sm mb-6">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-white/20 text-white rounded-full flex items-center justify-center text-xs font-bold">
-                      {timeLeft.days}
-                    </div>
-                    <span>{timeLeft.days} days</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-white/20 text-white rounded-full flex items-center justify-center text-xs font-bold">
-                      {timeLeft.hours}
-                    </div>
-                    <span>{timeLeft.hours}h</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-white/20 text-white rounded-full flex items-center justify-center text-xs font-bold">
-                      {timeLeft.minutes}
-                    </div>
-                    <span>{timeLeft.minutes}m</span>
+                <div className="flex items-center justify-center text-sm mb-6">
+                  <div className="bg-white/20 text-white rounded-full px-4 py-2 font-medium">
+                    Launch Week - Limited Slots Available
                   </div>
                 </div>
                   <div className="bg-white/10 rounded-lg p-3">
                     <div className="text-sm text-white/90 text-center flex items-center justify-center gap-2">
                       <Gem className="w-4 h-4" />
-                      <span className="font-medium">Bonus: Enroll by Oct 6 for extra editorial + homepage tile (30 days)</span>
+                      <span className="font-medium">Bonus: Enroll during launch week for extra editorial + homepage tile (30 days)</span>
                     </div>
                   </div>
                 </CardContent>
@@ -674,7 +615,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex items-center justify-between py-1">
                       <span className="text-[#6B7280] font-medium text-sm">Platform Launch</span>
-                      <span className="text-[#0B1B2B] font-semibold text-sm">October 6, 2025</span>
+                      <span className="text-[#0B1B2B] font-semibold text-sm">Launch Week</span>
                     </div>
                   </div>
                 </div>
