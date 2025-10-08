@@ -387,7 +387,15 @@ export default function HomePage() {
                   <div className="mb-2 group-hover:scale-110 transition-transform text-[#C9A24A]">
                     <category.icon className="w-6 h-6 mx-auto" />
                   </div>
-                  <div className="text-xs font-medium text-[#0B1B2B] leading-tight text-center">{category.name}</div>
+                  <div className="text-[10px] sm:text-xs font-medium text-[#0B1B2B] leading-tight text-center px-1">
+                    <span className="hidden sm:inline">{category.name}</span>
+                    <span className="sm:hidden">
+                      {category.name === 'Serviced Apartments' ? 'Serviced Apts' :
+                       category.name === 'Private Healthcare' ? 'Healthcare' :
+                       category.name === 'Lifestyle Concierge' ? 'Concierge' :
+                       category.name}
+                    </span>
+                  </div>
                 </Button>
               ))}
             </div>
