@@ -14,16 +14,16 @@ export const getAllCorporateSchemas = (): Schema[] => {
       "foundingDate": "2024-01-01",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "One Canada Square, Level 42",
+        "streetAddress": "City of London",
         "addressLocality": "Canary Wharf",
         "addressRegion": "London",
-        "postalCode": "E14 5AB",
+        "postalCode": "EC1V 2NX",
         "addressCountry": "GB"
       },
       "contactPoint": [
         {
           "@type": "ContactPoint",
-          "telephone": "+44-20-7946-0950",
+          "telephone": "+44-20-3105 9566",
           "contactType": "corporate sales",
           "availableLanguage": "en",
           "hoursAvailable": {
@@ -35,7 +35,7 @@ export const getAllCorporateSchemas = (): Schema[] => {
         },
         {
           "@type": "ContactPoint",
-          "email": "enterprise@relo-network.com",
+          "email": "enterprise@therelonetwork.com",
           "contactType": "enterprise client services",
           "availableLanguage": "en",
           "hoursAvailable": "24/7"
@@ -469,14 +469,14 @@ export const getAllCorporateSchemas = (): Schema[] => {
       "name": "Relo Network Corporate Headquarters",
       "description": "Corporate headquarters for London's premier executive relocation specialists serving Fortune 500 companies with comprehensive global mobility solutions.",
       "url": "https://askrelo.com/corporate",
-      "telephone": "+44-20-7946-0950", 
-      "email": "enterprise@relo-network.com",
+      "telephone": "+44-20-3105 9566", 
+      "email": "enterprise@therelonetwork.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "One Canada Square, Level 42",
+        "streetAddress": "City of London",
         "addressLocality": "Canary Wharf",
         "addressRegion": "London", 
-        "postalCode": "E14 5AB",
+        "postalCode": "EC1V 2NX",
         "addressCountry": "GB"
       },
       "geo": {
@@ -488,9 +488,9 @@ export const getAllCorporateSchemas = (): Schema[] => {
       "contactPoint": [
         {
           "@type": "ContactPoint",
-          "telephone": "+44-20-7946-0950",
+          "telephone": "+44-20-3105 9566",
           "contactType": "corporate sales inquiry",
-          "email": "enterprise@relo-network.com"
+          "email": "enterprise@therelonetwork.com"
         }
       ],
       "sameAs": [

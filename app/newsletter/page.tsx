@@ -193,7 +193,7 @@ export default function NewsletterPage() {
                 </div>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-colors flex items-center gap-2 justify-center"
+                  className="px-6 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg hover:scale-105 shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-2 justify-center"
                 >
                   Subscribe
                   <ArrowRight className="w-4 h-4" />

@@ -251,7 +251,7 @@ export default function BlueprintPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-6 bg-[#C9A24A] hover:bg-[#B8923D] disabled:bg-gray-400 text-white font-semibold rounded-lg transition-colors"
+                className="w-full py-3 px-6 bg-[#C9A24A] hover:bg-[#B8923D] disabled:bg-gray-400 text-white font-semibold rounded-lg hover:scale-105 shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 {isSubmitting ? 'Sending Blueprint...' : 'Get My Free Blueprint Now'}
               </button>

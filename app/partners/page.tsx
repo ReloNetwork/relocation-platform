@@ -957,7 +957,7 @@ export default function PartnersPage() {
                     </div>
                     <div>
                       <div className="font-medium text-[#0B1B2B]">Partnership Inquiries</div>
-                      <div className="text-[#6B7280]">+44-20-7946-0960</div>
+                      <div className="text-[#6B7280]">+44 20 3105 9566</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -966,7 +966,7 @@ export default function PartnersPage() {
                     </div>
                     <div>
                       <div className="font-medium text-[#0B1B2B]">Email</div>
-                      <div className="text-[#6B7280]">partners@relo-network.com</div>
+                      <div className="text-[#6B7280]">hello@therelonetwork.com</div>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -975,7 +975,7 @@ export default function PartnersPage() {
                     </div>
                     <div>
                       <div className="font-medium text-[#0B1B2B]">Office</div>
-                      <div className="text-[#6B7280]">One Canada Square<br />Canary Wharf, London E14 5AB</div>
+                      <div className="text-[#6B7280]">City of London<br />London EC1V 2NX</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -990,8 +990,8 @@ export default function PartnersPage() {
                 </div>
                 <div className="mt-8 pt-6 border-t border-[#E5E7EB]">
                   <div className="text-sm text-[#6B7280] mb-4">Sponsored Partner Support (24/7):</div>
-                  <div className="font-medium text-[#0B1B2B]">+44-20-7946-0961</div>
-                  <div className="text-[#6B7280]">sponsored@relo-network.com</div>
+                  <div className="font-medium text-[#0B1B2B]">+44 20 3105 9566</div>
+                  <div className="text-[#6B7280]">hello@therelonetwork.com</div>
                 </div>
               </div>
             </div>

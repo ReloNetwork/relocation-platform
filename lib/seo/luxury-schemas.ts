@@ -71,7 +71,7 @@ export const luxuryOrganizationSchema: WithContext<Organization> = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      telephone: '+44-20-7946-0958',
+      telephone: '+44-20-3105 9566',
       contactType: 'customer support',
       areaServed: 'GB',
       availableLanguage: ['English'],
@@ -85,7 +85,7 @@ export const luxuryOrganizationSchema: WithContext<Organization> = {
     },
     {
       '@type': 'ContactPoint',
-      telephone: '+44-20-7946-0958',
+      telephone: '+44-20-3105 9566',
       contactType: 'emergency',
       areaServed: 'GB',
       availableLanguage: ['English'],
@@ -104,7 +104,7 @@ export const luxuryOrganizationSchema: WithContext<Organization> = {
     streetAddress: 'One Canada Square',
     addressLocality: 'Canary Wharf',
     addressRegion: 'London',
-    postalCode: 'E14 5AB',
+    postalCode: 'EC1V 2NX',
     addressCountry: 'GB'
   },
   
@@ -200,8 +200,8 @@ export const luxuryLocalBusinessSchema: WithContext<LocalBusiness> = {
   geo: luxuryOrganizationSchema.geo,
   
   // Contact Information  
-  telephone: '+44-20-7946-0958',
-  email: 'hello@relo-network.com',
+  telephone: '+44-20-3105 9566',
+  email: 'hello@therelonetwork.com',
   
   // Reviews & Ratings
   aggregateRating: {

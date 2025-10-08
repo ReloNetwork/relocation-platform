@@ -28,7 +28,7 @@ export const getAllDirectorySchemas = (): Schema[] => {
       "contactPoint": [
         {
           "@type": "ContactPoint",
-          "telephone": "+44-20-7946-0960",
+          "telephone": "+44-20-3105 9566",
           "contactType": "directory inquiries",
           "availableLanguage": "en",
           "hoursAvailable": {

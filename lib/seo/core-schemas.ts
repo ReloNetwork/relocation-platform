@@ -34,7 +34,7 @@ export const organizationSchema: Organization = {
   contactPoint: [
     {
       "@type": "ContactPoint",
-      telephone: "+44-20-7946-0950",
+      telephone: "+44 20 3105 9566",
       contactType: "Corporate Sales",
       areaServed: "GB",
       availableLanguage: ["English"],
@@ -47,7 +47,7 @@ export const organizationSchema: Organization = {
     },
     {
       "@type": "ContactPoint",
-      email: "enterprise@relo-network.com",
+      email: "hello@therelonetwork.com",
       contactType: "Enterprise Support",
       areaServed: "Worldwide",
       availableLanguage: ["English"],
@@ -60,10 +60,10 @@ export const organizationSchema: Organization = {
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "One Canada Square, Level 42",
+    streetAddress: "City of London",
     addressLocality: "London",
     addressRegion: "England",
-    postalCode: "E14 5AB",
+    postalCode: "EC1V 2NX",
     addressCountry: "GB"
   },
   founder: {
@@ -246,10 +246,10 @@ export const localBusinessSchema: LocalBusiness = {
   description: "London's premier luxury relocation network specializing in executive relocations and corporate services.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "One Canada Square, Level 42",
+    streetAddress: "City of London",
     addressLocality: "London",
     addressRegion: "England",
-    postalCode: "E14 5AB",
+    postalCode: "EC1V 2NX",
     addressCountry: "GB"
   },
   geo: {
@@ -258,8 +258,8 @@ export const localBusinessSchema: LocalBusiness = {
     longitude: -0.0195
   },
   url: "https://askrelo.com",
-  telephone: "+44-20-7946-0950",
-  email: "hello@relo-network.com",
+  telephone: "+44 20 3105 9566",
+  email: "hello@therelonetwork.com",
   priceRange: "£££",
   openingHoursSpecification: [
     {

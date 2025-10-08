@@ -267,14 +267,14 @@ export const partnershipContactSchema: SchemaType = {
   name: 'Relo Network Partnership Department',
   description: 'Dedicated partnership team managing London\'s most exclusive relocation service provider network with Lead Machine and Market Dominator programs.',
   url: 'https://askrelo.com/partners',
-  telephone: '+44-20-7946-0960',
-  email: 'partners@relo-network.com',
+  telephone: '+44-20-3105 9566',
+  email: 'partners@therelonetwork.com',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'One Canada Square',
     addressLocality: 'Canary Wharf',
     addressRegion: 'London',
-    postalCode: 'E14 5AB',
+    postalCode: 'EC1V 2NX',
     addressCountry: 'GB'
   },
   geo: {
@@ -288,9 +288,9 @@ export const partnershipContactSchema: SchemaType = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      telephone: '+44-20-7946-0960',
+      telephone: '+44-20-3105 9566',
       contactType: 'Partnership Inquiries',
-      email: 'partners@relo-network.com',
+      email: 'partners@therelonetwork.com',
       hoursAvailable: {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
@@ -300,9 +300,9 @@ export const partnershipContactSchema: SchemaType = {
     },
     {
       '@type': 'ContactPoint',
-      telephone: '+44-20-7946-0961',
+      telephone: '+44-20-3105 9566',
       contactType: 'Market Dominator Support',
-      email: 'dominator@relo-network.com',
+      email: 'dominator@therelonetwork.com',
       hoursAvailable: {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: [

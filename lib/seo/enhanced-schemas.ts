@@ -150,9 +150,9 @@ export const enhancedOrganizationSchema: SchemaType = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      telephone: '+44-20-7946-0958',
+      telephone: '+44 20 3105 9566',
       contactType: 'customer service',
-      email: 'concierge@relo-network.com',
+      email: 'hello@therelonetwork.com',
       availableLanguage: ['English', 'French', 'German', 'Spanish'],
       hoursAvailable: {
         '@type': 'OpeningHoursSpecification',
@@ -165,9 +165,9 @@ export const enhancedOrganizationSchema: SchemaType = {
     },
     {
       '@type': 'ContactPoint',
-      telephone: '+44-20-7946-0959',
+      telephone: '+44-20-3105 9566',
       contactType: 'corporate sales',
-      email: 'corporate@relo-network.com',
+      email: 'hello@therelonetwork.com',
       availableLanguage: ['English'],
       hoursAvailable: {
         '@type': 'OpeningHoursSpecification',

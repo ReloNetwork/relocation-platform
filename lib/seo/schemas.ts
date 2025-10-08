@@ -39,7 +39,7 @@ export const organizationSchema: WithContext<Organization> = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'hello@relo-network.com',
+    email: 'hello@therelonetwork.com',
     availableLanguage: ['English']
   },
   sameAs: [
@@ -56,11 +56,11 @@ export const localBusinessSchema: WithContext<LocalBusiness> = {
   name: 'Relo Network',
   description: 'Premium relocation services for London. Vetted experts, elite services, and 24/7 AI concierge support.',
   url: 'https://relocation-platform.vercel.app',
-  telephone: '+44-20-XXXX-XXXX',
-  email: 'hello@relo-network.com',
+  telephone: '+44 20 3105 9566',
+  email: 'hello@therelonetwork.com',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'London Financial District',
+    streetAddress: 'City of London',
     addressLocality: 'London',
     addressRegion: 'Greater London',
     addressCountry: 'GB'
