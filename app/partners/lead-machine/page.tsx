@@ -433,10 +433,10 @@ export default function LeadMachinePage() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-            <div>✓ 8-15 Leads Guaranteed</div>
-            <div>✓ £500 Failure Guarantee</div>
-            <div>✓ Exclusive Territory Rights</div>
-            <div>✓ Cancel Anytime</div>
+            <div>• 8-15 Leads Guaranteed</div>
+            <div>• £500 Failure Guarantee</div>
+            <div>• Exclusive Territory Rights</div>
+            <div>• Cancel Anytime</div>
           </div>
         </div>
       </div>

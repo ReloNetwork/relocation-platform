@@ -2128,10 +2128,10 @@ export default function DirectoryPage() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-white/80 mb-8">
-            <div>✓ 60-min Strategy Call</div>
-            <div>✓ Bespoke Shortlist</div>
-            <div>✓ 3 Warm Introductions</div>
-            <div>✓ 30-day Execution</div>
+            <div>• 60-min Strategy Call</div>
+            <div>• Bespoke Shortlist</div>
+            <div>• 3 Warm Introductions</div>
+            <div>• 30-day Execution</div>
           </div>
           
           <div className="text-white/40 text-sm">

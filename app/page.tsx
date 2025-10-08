@@ -245,7 +245,7 @@ export default function HomePage() {
                 </CardDescription>
                 <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3">
                   <p className="text-sm font-semibold text-[#0B1B2B] text-center">
-                    ✓ Credited toward any package • Starts within 24 hours
+                    • Credited toward any package • Starts within 24 hours
                   </p>
                 </div>
               <div className="grid grid-cols-2 gap-3 text-sm">

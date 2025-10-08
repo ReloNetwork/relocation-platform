@@ -1037,9 +1037,9 @@ export default function PartnersPage() {
           </div>
           
           <div className="flex flex-wrap justify-center gap-8 text-sm text-white/80 mb-6">
-            <div>✓ Charter rates available during launch week</div>
-            <div>✓ Professional partnership terms</div>
-            <div>✓ Limited to 12 charter positions</div>
+            <div>• Charter rates available during launch week</div>
+            <div>• Professional partnership terms</div>
+            <div>• Limited to 12 charter positions</div>
           </div>
           
           <div className="text-white/80 text-sm">

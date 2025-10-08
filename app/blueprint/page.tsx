@@ -259,7 +259,7 @@ export default function BlueprintPage() {
 
             <div className="mt-6 pt-6 border-t border-gray-200">
               <div className="text-center text-sm text-gray-600">
-                <p className="mb-2">✅ Instant download • ✅ No spam ever • ✅ Unsubscribe anytime</p>
+                <p className="mb-2">• Instant download • No spam ever • Unsubscribe anytime</p>
                 <p>Join 2,500+ executives building premium platforms</p>
               </div>
             </div>

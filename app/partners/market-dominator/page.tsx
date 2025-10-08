@@ -524,10 +524,10 @@ export default function MarketDominatorPage() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-            <div>✓ Exclusive Category Rights</div>
-            <div>✓ 15% Revenue Sharing</div>
-            <div>✓ Competition Elimination</div>
-            <div>✓ #1 Position Guarantee</div>
+            <div>• Exclusive Category Rights</div>
+            <div>• 15% Revenue Sharing</div>
+            <div>• Competition Elimination</div>
+            <div>• #1 Position Guarantee</div>
           </div>
         </div>
       </div>
