@@ -388,6 +388,7 @@ export default function HomePage() {
                     <category.icon className="w-6 h-6 mx-auto" />
                   </div>
                   <div className="text-[10px] sm:text-xs font-medium text-[#0B1B2B] leading-tight text-center px-1">
+                    {/* Desktop: Full text, Mobile: Abbreviated text for better fit */}
                     <span className="hidden sm:inline">{category.name}</span>
                     <span className="sm:hidden">
                       {category.name === 'Serviced Apartments' ? 'Serviced Apts' :
