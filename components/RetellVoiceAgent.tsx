@@ -156,19 +156,18 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
     }])
     
     try {
-      // Convert current messages to API format
-      const apiMessages = messages.map(msg => ({
+      // Convert current messages to API format (including the user message we just added)
+      const currentMessages = [...messages, {
+        text: userMessage,
+        isUser: true,
+        timestamp: new Date()
+      }]
+      
+      const apiMessages = currentMessages.map(msg => ({
         role: msg.isUser ? 'user' : 'assistant',
         content: msg.text,
         timestamp: msg.timestamp.toISOString()
       }))
-      
-      // Add the new user message
-      apiMessages.push({
-        role: 'user',
-        content: userMessage,
-        timestamp: new Date().toISOString()
-      })
       
       const response = await fetch('/api/ai/chat', {
         method: 'POST',
@@ -184,14 +183,23 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
         })
       })
       
-      const data = await response.json()
+      if (!response.ok) {
+        throw new Error(`API responded with status: ${response.status}`)
+      }
       
-      // Add AI response
-      setMessages(prev => [...prev, {
-        text: data.message?.content || "I'm here to help with your London relocation. Could you tell me more about what you're looking for?",
-        isUser: false,
-        timestamp: new Date()
-      }])
+      const data = await response.json()
+      console.log('AI Chat Response:', data) // Debug log
+      
+      if (data.success && data.message?.content) {
+        // Add AI response
+        setMessages(prev => [...prev, {
+          text: data.message.content,
+          isUser: false,
+          timestamp: new Date()
+        }])
+      } else {
+        throw new Error('Invalid response format from AI API')
+      }
     } catch (error) {
       console.error('Text chat error:', error)
       setMessages(prev => [...prev, {
