@@ -165,7 +165,7 @@ export default function TermsPage() {
               <div className="space-y-2 text-[#6B7280]">
                 <div><strong>Phone:</strong> +44 20 3974 1239</div>
                 <div><strong>Email:</strong> hello@therelonetwork.com</div>
-                <div><strong>Hours:</strong> Monday-Friday 9:00-18:00</div>
+                <div><strong>Hours:</strong> Monday-Friday 8:00-20:00</div>
               </div>
             </div>
           </section>

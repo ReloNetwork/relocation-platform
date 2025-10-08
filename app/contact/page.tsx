@@ -82,7 +82,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-[#0B1B2B] mb-1">Phone</h3>
                     <p className="text-[#6B7280]">+44 20 3974 1239</p>
-                    <p className="text-sm text-[#9CA3AF]">Monday-Friday 9:00-18:00</p>
+                    <p className="text-sm text-[#9CA3AF]">Monday-Friday 8:00-20:00</p>
                   </div>
                 </div>
 
@@ -114,7 +114,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-[#0B1B2B] mb-1">Business Hours</h3>
-                    <p className="text-[#6B7280]">Monday-Friday: 9:00-18:00</p>
+                    <p className="text-[#6B7280]">Monday-Friday: 8:00-20:00</p>
                     <p className="text-sm text-[#9CA3AF]">Emergency support available 24/7</p>
                   </div>
                 </div>

@@ -78,8 +78,8 @@ export const luxuryOrganizationSchema: WithContext<Organization> = {
       hoursAvailable: {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '09:00',
-        closes: '18:00',
+        opens: '08:00',
+        closes: '20:00',
         validFrom: '2024-01-01'
       }
     },
@@ -168,7 +168,7 @@ export const luxuryLocalBusinessSchema: WithContext<LocalBusiness> = {
   
   // Opening Hours (Luxury Service Standards)
   openingHours: [
-    'Monday-Friday 09:00-18:00'
+    'Monday-Friday 08:00-20:00'
   ],
   
   // Service Categories
