@@ -90,6 +90,34 @@ export default function GlobalNavigation() {
           border-color: #C9A24A;
         }
         
+        .nav-link-ask-relo {
+          position: relative;
+        }
+        
+        .nav-link-ask-relo::after {
+          content: '';
+          position: absolute;
+          bottom: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 20px;
+          height: 2px;
+          background: linear-gradient(90deg, #C9A24A, #B8923D);
+          border-radius: 2px;
+          animation: pulse-line 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-line {
+          0%, 100% {
+            opacity: 0.6;
+            transform: translateX(-50%) scaleX(1);
+          }
+          50% {
+            opacity: 1;
+            transform: translateX(-50%) scaleX(1.2);
+          }
+        }
+        
         .nav-logo {
           background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
           box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
@@ -164,7 +192,7 @@ export default function GlobalNavigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`nav-link ${pathname === link.href ? 'active' : ''}`}
+                  className={`nav-link ${pathname === link.href ? 'active' : ''} ${link.href === '/ask-relo' ? 'nav-link-ask-relo' : ''}`}
                 >
                   {link.label}
                 </Link>
@@ -222,7 +250,7 @@ export default function GlobalNavigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`nav-link block ${pathname === link.href ? 'active' : ''}`}
+                  className={`nav-link block ${pathname === link.href ? 'active' : ''} ${link.href === '/ask-relo' ? 'nav-link-ask-relo' : ''}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}

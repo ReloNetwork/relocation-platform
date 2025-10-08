@@ -429,25 +429,23 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
   if (variant === 'floating') {
     return (
       <>
-        {/* Floating Voice Button with Text */}
-        {!isOpen && (
-          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
-            {/* Ask Relo Label - Hover Only */}
-            <div className="bg-white px-3 py-2 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="text-sm font-medium text-gray-700">Ask Relo</span>
-            </div>
-            
-            <button
-              onClick={() => {
-                setIsOpen(true)
-                setMode('choice')
-              }}
-              className="w-14 h-14 bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-[#C9A24A] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
-            >
-              <Phone className="w-6 h-6 group-hover:scale-110 transition-transform" />
-            </button>
+        {/* Floating Voice Button with Text - Always Visible */}
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
+          {/* Ask Relo Label - Hover Only */}
+          <div className="bg-white px-3 py-2 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span className="text-sm font-medium text-gray-700">Ask Relo</span>
           </div>
-        )}
+          
+          <button
+            onClick={() => {
+              setIsOpen(true)
+              setMode('choice')
+            }}
+            className="w-14 h-14 bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-[#C9A24A] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+          >
+            <Phone className="w-6 h-6 group-hover:scale-110 transition-transform" />
+          </button>
+        </div>
 
         {/* Voice Call Window */}
         {isOpen && (
