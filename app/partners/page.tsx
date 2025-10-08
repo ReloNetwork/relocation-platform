@@ -985,6 +985,7 @@ export default function PartnersPage() {
                     <div>
                       <div className="font-medium text-[#0B1B2B]">Hours</div>
                       <div className="text-[#6B7280]">Monday-Friday 8:00-20:00</div>
+                      <div className="text-sm text-[#9CA3AF]">Online Service Hours: 24/7</div>
                     </div>
                   </div>
                 </div>
