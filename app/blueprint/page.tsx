@@ -100,7 +100,33 @@ export default function BlueprintPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0B1B2B] to-[#1e3a5f] py-12 px-4">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#0B1B2B] to-[#1e3a5f] py-12 px-4">
+      {/* Background Overlays */}
+      <div className="fixed inset-0 pointer-events-none">
+        {/* Dark Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1B2B] via-[#1e3a5f] to-[#2a4f7f]"></div>
+        
+        {/* Elegant Translucent Overlays for dark theme */}
+        <div className="absolute inset-0">
+          {/* Large circle - top right */}
+          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-[#C9A24A]/20 to-[#C9A24A]/5 blur-3xl"></div>
+          
+          {/* Medium circle - bottom left */}
+          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-[#C9A24A]/15 to-[#C9A24A]/3 blur-2xl"></div>
+          
+          {/* Small accent - center left */}
+          <div className="absolute top-1/3 -left-20 w-56 h-56 rounded-full bg-gradient-to-r from-[#C9A24A]/15 to-transparent blur-xl"></div>
+          
+          {/* Additional accent - center right */}
+          <div className="absolute top-2/3 -right-16 w-48 h-48 rounded-full bg-gradient-to-l from-[#C9A24A]/10 to-transparent blur-xl"></div>
+          
+          {/* Geometric shapes for sophistication */}
+          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#C9A24A]/30 rounded-full animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/3 w-2 h-2 bg-[#C9A24A]/25 rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-[#C9A24A]/20 rounded-full animate-pulse delay-2000"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#C9A24A]/15 rounded-full animate-pulse delay-3000"></div>
+        </div>
+      </div>
       <div className="max-w-6xl mx-auto">
         
         {/* Header */}
@@ -215,7 +241,7 @@ export default function BlueprintPage() {
           </div>
 
           {/* Right Column - Download Form */}
-          <div className="bg-white rounded-xl p-8 shadow-xl">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-2xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
             <div className="text-center mb-6">
               <Download className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-[#0B1B2B] mb-2">
@@ -251,7 +277,7 @@ export default function BlueprintPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-6 bg-[#C9A24A] hover:bg-[#B8923D] disabled:bg-gray-400 text-white font-semibold rounded-lg transition-colors"
+                className="w-full py-3 px-6 bg-[#C9A24A] hover:bg-[#B8923D] disabled:bg-gray-400 text-white font-semibold rounded-lg hover:scale-105 shadow-2xl hover:shadow-[#C9A24A]/25 transition-all duration-300"
               >
                 {isSubmitting ? 'Sending Blueprint...' : 'Get My Free Blueprint Now'}
               </button>

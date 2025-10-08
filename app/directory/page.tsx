@@ -27,7 +27,7 @@ const LondonAreaCard = ({
   propertyTypes: string[]
   highlights: string[]
 }) => (
-  <div className="bg-white rounded-lg p-6 border border-[#0B1B2B]/10 shadow-sm hover:shadow-lg transition-all">
+  <div className="bg-white/95 backdrop-blur-sm rounded-lg p-6 border border-[#0B1B2B]/10 shadow-2xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:shadow-[#C9A24A]/10">
     <div className="flex items-start justify-between mb-4">
       <div>
         <h3 className="text-xl font-bold text-[#0B1B2B] mb-1">{area}</h3>
@@ -1264,8 +1264,35 @@ export default function DirectoryPage() {
         />
       ))}
 
+      {/* Background Overlays */}
+      <div className="fixed inset-0 pointer-events-none">
+        {/* Light Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-white to-[#F8F9FA]"></div>
+        
+        {/* Elegant Translucent Overlays */}
+        <div className="absolute inset-0">
+          {/* Large circle - top right */}
+          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-[#C9A24A]/25 to-[#C9A24A]/10 blur-3xl"></div>
+          
+          {/* Medium circle - bottom left */}
+          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-[#0B1B2B]/15 to-[#0B1B2B]/5 blur-2xl"></div>
+          
+          {/* Small accent - center left */}
+          <div className="absolute top-1/3 -left-20 w-56 h-56 rounded-full bg-gradient-to-r from-[#C9A24A]/20 to-transparent blur-xl"></div>
+          
+          {/* Additional accent - center right */}
+          <div className="absolute top-2/3 -right-16 w-48 h-48 rounded-full bg-gradient-to-l from-[#0B1B2B]/12 to-transparent blur-xl"></div>
+          
+          {/* Geometric shapes for sophistication */}
+          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#C9A24A]/40 rounded-full animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/3 w-2 h-2 bg-[#0B1B2B]/40 rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-[#C9A24A]/35 rounded-full animate-pulse delay-2000"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#0B1B2B]/30 rounded-full animate-pulse delay-3000"></div>
+        </div>
+      </div>
+
       {/* London Market Authority Hero */}
-      <div className="bg-[#0B1B2B] text-white">
+      <div className="relative bg-[#0B1B2B]/95 backdrop-blur-sm text-white shadow-2xl">
         <div className="max-w-6xl mx-auto px-4 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
