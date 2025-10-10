@@ -16,3 +16,5 @@ out/
 # Other common ignores
 .DS_Store
 *.log
+.env.production
+.env.staging
