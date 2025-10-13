@@ -408,6 +408,63 @@ export default function RootLayout({
             })
           }}
         />
+
+        {/* Google Business Profile LocalBusiness Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Relo Network Ltd",
+              "url": "https://therelonetwork.com/",
+              "telephone": "+442031059566",
+              "areaServed": ["London"],
+              "serviceArea": "GB-LND",
+              "openingHours": "Mo-Su 08:00-20:00",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "London",
+                "addressRegion": "England",
+                "addressCountry": "GB"
+              },
+              "description": "London's premier service-area business for executive relocations and corporate services. Visits by appointment only.",
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Relocation Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Executive Relocation Services",
+                      "serviceType": "Relocation Management"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Corporate Services",
+                      "serviceType": "Corporate Relocation"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Property Search",
+                      "serviceType": "Property Advisory"
+                    }
+                  }
+                ]
+              },
+              "priceRange": "£295-£15000",
+              "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+              "currenciesAccepted": "GBP"
+            })
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
         {children}
