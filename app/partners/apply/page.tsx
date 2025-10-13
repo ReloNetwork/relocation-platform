@@ -65,7 +65,7 @@ export default function PartnerApplicationPage() {
       }
     } catch (error) {
       console.error('Error submitting application:', error)
-      alert('Error submitting application. Please try again or call +44 20 3974 1239')
+      alert('Error submitting application. Please try again or call +44 20 3105 9566')
     } finally {
       setLoading(false)
     }
@@ -325,7 +325,7 @@ export default function PartnerApplicationPage() {
 
             <div className="text-center mt-6">
               <p className="text-sm text-[#6B7280]">
-                Questions? Call our partner team: <span className="font-semibold text-[#0B1220]">+44 20 3974 1239</span>
+                Questions? Call our partner team: <span className="font-semibold text-[#0B1220]">+44 20 3105 9566</span>
               </p>
             </div>
           </div>

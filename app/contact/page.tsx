@@ -81,7 +81,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-[#0B1B2B] mb-1">Phone</h3>
-                    <p className="text-[#6B7280]">+44 20 3974 1239</p>
+                    <p className="text-[#6B7280]">+44 20 3105 9566</p>
                     <p className="text-sm text-[#9CA3AF]">Monday-Friday 8:00-20:00</p>
                   </div>
                 </div>

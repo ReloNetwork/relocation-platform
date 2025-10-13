@@ -233,7 +233,7 @@ function PartnerOnboardingSuccessPageContent() {
               <Phone className="h-8 w-8 text-[#C9A24A] mb-4" />
               <h3 className="font-semibold text-[#0B1220] mb-2">Partnership Support</h3>
               <p className="text-[#6B7280] mb-2">Questions about your application or need help getting started?</p>
-              <p className="font-semibold text-[#0B1220]">+44 20 3974 1239</p>
+              <p className="font-semibold text-[#0B1220]">+44 20 3105 9566</p>
               <p className="text-sm text-[#6B7280]">Mon-Fri: 9AM-6PM GMT</p>
             </div>
             

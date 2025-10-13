@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
             </div>
             
             <h3>Emergency Contact:</h3>
-            <p>For immediate assistance, call our 24/7 executive hotline: <strong>+44 20 3974 1239</strong></p>
+            <p>For immediate assistance, call our 24/7 executive hotline: <strong>+44 20 3105 9566</strong></p>
             <p>Reference your consultation ID: <strong>${consultationId}</strong></p>
             
             <p>We understand the importance of your relocation and are committed to making this transition seamless for you and your family.</p>

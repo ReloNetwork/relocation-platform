@@ -289,7 +289,7 @@ export async function POST(request: NextRequest) {
             <h3>Directory Access:</h3>
             <p>Your business will be visible to clients with: <strong>${locationTiers.join(', ')}</strong> access levels</p>
             
-            <p>Questions? Contact our partner support team: <strong>+44 20 3974 1239</strong></p>
+            <p>Questions? Contact our partner support team: <strong>+44 20 3105 9566</strong></p>
             
             <p>Best regards,<br>The Relo Network Partnership Team</p>
           `

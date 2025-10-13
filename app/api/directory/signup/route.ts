@@ -208,7 +208,7 @@ export async function POST(request: NextRequest) {
             <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}/directory" style="background: #C9A24A; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">Access Directory Now</a></p>
             
             <h3>Need Help?</h3>
-            <p>Our directory team is available 24/7: <strong>+44 20 3974 1239</strong></p>
+            <p>Our directory team is available 24/7: <strong>+44 20 3105 9566</strong></p>
             <p>Reference your signup ID: <strong>${signupId}</strong></p>
             
             <p>We're excited to connect you with London's most trusted service providers!</p>

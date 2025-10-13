@@ -92,7 +92,7 @@ const getConfirmationEmailTemplate = (data: CorporateEmergencyData) => `
     
     <div style="background: #EFF6FF; border: 1px solid #DBEAFE; padding: 20px; border-radius: 8px; margin: 20px 0;">
       <h4 style="color: #1E40AF; margin-top: 0;">🚨 Emergency Hotline</h4>
-      <p style="color: #1E40AF; margin-bottom: 5px;"><strong>Phone:</strong> +44 20 3974 1239</p>
+      <p style="color: #1E40AF; margin-bottom: 5px;"><strong>Phone:</strong> +44 20 3105 9566</p>
       <p style="color: #1E40AF; margin-bottom: 0;"><strong>Available:</strong> 24/7 for emergency relocations</p>
     </div>
     
@@ -105,7 +105,7 @@ const getConfirmationEmailTemplate = (data: CorporateEmergencyData) => `
   
   <div style="text-align: center; padding: 20px; color: #6B7280; font-size: 12px;">
     <p>Relo Network | One Canada Square, Canary Wharf, London E14 5AB</p>
-    <p>Emergency Hotline: +44 20 3974 1239 | Email: emergency@therelonetwork.com</p>
+    <p>Emergency Hotline: +44 20 3105 9566 | Email: emergency@therelonetwork.com</p>
   </div>
 </body>
 </html>

@@ -163,7 +163,7 @@ export default function TermsPage() {
                 If you have questions about these terms or need assistance with your booking:
               </p>
               <div className="space-y-2 text-[#6B7280]">
-                <div><strong>Phone:</strong> +44 20 3974 1239</div>
+                <div><strong>Phone:</strong> +44 20 3105 9566</div>
                 <div><strong>Email:</strong> hello@therelonetwork.com</div>
                 <div><strong>Hours:</strong> Monday-Friday 8:00-20:00</div>
               </div>

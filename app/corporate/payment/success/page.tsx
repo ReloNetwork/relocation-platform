@@ -189,7 +189,7 @@ function PaymentSuccessPageContent() {
               <div className="text-center">
                 <Phone className="h-12 w-12 text-red-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-white mb-2">24/7 Emergency Hotline</h3>
-                <p className="text-2xl font-bold text-red-300 mb-2">+44 20 3974 1239</p>
+                <p className="text-2xl font-bold text-red-300 mb-2">+44 20 3105 9566</p>
                 <p className="text-red-200 text-sm">Available 24/7 for emergency relocations</p>
               </div>
               

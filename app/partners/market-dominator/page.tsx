@@ -232,7 +232,7 @@ const PartnerApplicationForm = ({ onSubmit }: { onSubmit: (data: any) => void })
               value={formData.phone}
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
               className="w-full border border-[#E5E7EB] rounded-md px-3 py-2 focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-              placeholder="+44 20 3974 1239"
+              placeholder="+44 20 3105 9566"
             />
           </div>
           <div>

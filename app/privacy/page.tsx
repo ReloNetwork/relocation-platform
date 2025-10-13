@@ -228,7 +228,7 @@ export default function PrivacyPage() {
               </p>
               <div className="space-y-2 text-[#6B7280]">
                 <div><strong>Privacy Officer:</strong> hello@therelonetwork.com</div>
-                <div><strong>Phone:</strong> +44 20 3974 1239</div>
+                <div><strong>Phone:</strong> +44 20 3105 9566</div>
                 <div><strong>Address:</strong> Relo Network Ltd, London, United Kingdom</div>
               </div>
               <p className="text-[#6B7280] text-sm mt-4">

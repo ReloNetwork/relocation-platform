@@ -125,7 +125,7 @@ Would you like to complete your ${packageName} reservation via phone?
 - Price: £${price.toLocaleString()}
 - Package: ${packageName}
 
-Click OK to call +44 20 3974 1239 now, or Cancel to try again later.`)
+Click OK to call +44 20 3105 9566 now, or Cancel to try again later.`)
       
       if (fallbackChoice) {
         window.location.href = 'tel:+442079460958'
@@ -241,7 +241,7 @@ Click OK to call +44 20 3974 1239 now, or Cancel to try again later.`)
                 Call our 24/7 emergency hotline
               </p>
               <div className="font-['Playfair_Display'] text-3xl font-bold text-[#0B1220] mb-2">
-                +44 20 3974 1239
+                +44 20 3105 9566
               </div>
               <p className="text-[#6B7280] text-sm">
                 Reference ID: {requestId}

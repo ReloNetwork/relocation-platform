@@ -148,7 +148,7 @@ export default function ExecutiveIntakeSuccessPage() {
               </div>
               <div>
                 <div className="font-semibold">Priority Support</div>
-                <div className="text-white/80 text-sm">+44 20 3974 1239</div>
+                <div className="text-white/80 text-sm">+44 20 3105 9566</div>
               </div>
             </div>
             

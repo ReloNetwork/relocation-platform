@@ -317,7 +317,7 @@ export default function VoiceAgent({ variant = 'floating', className = '' }: Voi
                         type="tel"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="+44 20 3974 1239"
+                        placeholder="+44 20 3105 9566"
                         className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm"
                       />
                     </div>
@@ -486,7 +486,7 @@ export default function VoiceAgent({ variant = 'floating', className = '' }: Voi
                   type="tel"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder="+44 20 3974 1239"
+                  placeholder="+44 20 3105 9566"
                   className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                 />
               </div>
