@@ -26,7 +26,7 @@ interface ChatSession {
   }
 }
 
-// Simulated AI responses based on relocation expertise
+// Enhanced AI response system with better context understanding
 const generateAIResponse = async (messages: ChatMessage[], context: any): Promise<string> => {
   const lastMessage = messages[messages.length - 1]?.content?.toLowerCase() || ''
   const conversationHistory = messages.slice(0, -1)
@@ -39,6 +39,86 @@ const generateAIResponse = async (messages: ChatMessage[], context: any): Promis
   const discussedVisa = previousTopics.includes('visa') || previousTopics.includes('immigration')
   const discussedSchools = previousTopics.includes('school') || previousTopics.includes('education')
   const discussedBanking = previousTopics.includes('bank') || previousTopics.includes('finance')
+  
+  // Enhanced question analysis
+  const isQuestion = lastMessage.includes('?') || lastMessage.startsWith('how') || lastMessage.startsWith('what') || lastMessage.startsWith('where') || lastMessage.startsWith('when') || lastMessage.startsWith('why') || lastMessage.includes('i need') || lastMessage.includes('can you')
+  const isGreeting = lastMessage.includes('hello') || lastMessage.includes('hi') || lastMessage.includes('hey')
+  
+  // Direct answer system for specific questions
+  if (isQuestion || lastMessage.includes('i need') || lastMessage.includes('looking for')) {
+    
+    // Airport taxi specific questions
+    if ((lastMessage.includes('taxi') || lastMessage.includes('uber') || lastMessage.includes('cab')) && lastMessage.includes('airport')) {
+      return `For airport taxis in London, here are your best options:
+
+**From Heathrow:**
+• Black cab: £45-75 (45-90 mins to central London)
+• Uber: £35-65 (usually 10-20% cheaper)
+• Pre-booked: Addison Lee from £55
+
+**From Gatwick:**
+• Black cab: £60-90 (60-90 mins)
+• Uber: £50-80
+• Gatwick Express + taxi often cheaper for central London
+
+**From Stansted/Luton:**
+• Black cab: £55-80
+• Uber: £45-70
+
+**Booking Tips:**
+• Book in advance for better rates
+• Download FREE NOW app for black cabs
+• Avoid surge pricing during peak times (Mon AM, Fri PM)
+
+Which airport are you flying into? I can give more specific advice.`
+    }
+    
+    // Housing/property questions
+    if (lastMessage.includes('where') && (lastMessage.includes('live') || lastMessage.includes('area') || lastMessage.includes('neighbourhood'))) {
+      return `For choosing where to live in London, here are the best areas by lifestyle:
+
+**For Professionals:**
+• **Canary Wharf** - Finance workers, modern apartments, excellent transport
+• **Marylebone** - Central location, great amenities, upscale
+• **Shoreditch** - Tech hub, trendy, good nightlife
+
+**For Families:**
+• **Greenwich** - Great schools, parks, 20-min to City
+• **Richmond** - Suburban feel, outstanding schools, riverside
+• **Clapham** - Family community, good transport links
+
+**Best Value:**
+• **Stratford** - Olympic area, improving rapidly, great transport
+• **Walthamstow** - Village feel, more affordable
+• **Zone 2-3** generally offers best value for money
+
+What's most important to you - commute time, budget, or lifestyle? I can narrow down recommendations.`
+    }
+    
+    // Budget/cost questions
+    if (lastMessage.includes('cost') || lastMessage.includes('expensive') || lastMessage.includes('budget') || lastMessage.includes('much')) {
+      return `London living costs vary significantly by area and lifestyle:
+
+**Monthly Essentials (Individual):**
+• Rent Zone 1: £1,800-3,500 (1-bed)
+• Rent Zone 2: £1,500-2,800 (1-bed)
+• Transport: £130-250 (Oyster card)
+• Food/groceries: £300-600
+• Utilities: £100-200
+
+**Family Additional Costs:**
+• School fees: £1,250-2,900/month per child (private)
+• Childcare: £1,200-2,000/month
+• Larger accommodation: +£1,000-3,000
+
+**Quick Budget Guide:**
+• £30k salary = comfortable sharing
+• £50k salary = own 1-bed in Zone 2-3
+• £80k+ = central London lifestyle
+
+What specific costs are you most concerned about?`
+    }
+  }
   
   // Greeting responses (only for first message)
   if (isFirstMessage || (lastMessage.includes('hello') || lastMessage.includes('hi')) && !hasPreviousConversation) {
@@ -180,33 +260,6 @@ Would you like specific recommendations based on your children's ages and educat
 Would you like me to connect you with Sterling Wealth for a consultation, or do you have specific banking questions?`
   }
 
-  // Transport queries
-  if (lastMessage.includes('transport') || lastMessage.includes('travel') || lastMessage.includes('car') || lastMessage.includes('tube')) {
-    return `London's transport system is excellent once you understand it! Here's your guide:
-
-**Public Transport:**
-• **Oyster Card/Contactless** - Essential for daily travel
-• **Zone 1-2** - Most professionals live/work here
-• **Annual Travelcard** - £1,576 for Zone 1-2
-• **Peak Hours** - 7:30-9:30am, 5-7pm (avoid if possible)
-
-**Car Considerations:**
-• **Congestion Charge** - £15/day in central London
-• **ULEZ** - Additional environmental charges
-• **Parking** - Very expensive and limited
-• **Car hire** - Often more practical than ownership
-
-**Professional Transport:**
-• Executive car services for client meetings
-• Cycle to Work schemes popular
-• Many choose Zone 2 living for better transport links
-
-**Our Partners:**
-• **Executive Car Services** for business travel
-• **Cycle rental schemes** for eco-friendly commuting
-
-Would you like specific advice based on where you'll be living and working?`
-  }
 
   // Budget/Cost queries
   if (lastMessage.includes('cost') || lastMessage.includes('budget') || lastMessage.includes('expensive') || lastMessage.includes('price')) {

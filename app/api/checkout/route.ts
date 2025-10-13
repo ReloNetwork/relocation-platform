@@ -51,7 +51,29 @@ export async function POST(req: NextRequest) {
       query: `lookup_key:'${lookup_key}' AND active:'true'` 
     });
     
-    const price = prices.data[0];
+    let price = prices.data[0];
+    
+    // Fallback for test mode - create mock prices if not found
+    if (!price && stripeKey.includes('Placeholder')) {
+      // Create mock price objects for test mode
+      const mockPrices = {
+        'founding_partner': {
+          id: 'price_mock_founding_partner',
+          unit_amount: 2500000, // £25,000 in pence
+          currency: 'gbp'
+        },
+        'premium_sponsor': {
+          id: 'price_mock_premium_sponsor', 
+          unit_amount: 500000, // £5,000 in pence
+          currency: 'gbp'
+        }
+      };
+      
+      if (mockPrices[plan as keyof typeof mockPrices]) {
+        price = mockPrices[plan as keyof typeof mockPrices] as any;
+      }
+    }
+    
     if (!price) {
       return NextResponse.json({ 
         error: "Price not found. Please contact support.",

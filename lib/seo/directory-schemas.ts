@@ -14,10 +14,10 @@ export const getAllDirectorySchemas = (): Schema[] => {
       "foundingDate": "2024-01-01",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "City of London",
+        
         "addressLocality": "London",
         "addressRegion": "London",
-        "postalCode": "EC1V 2NX",
+        
         "addressCountry": "GB"
       },
       "geo": {

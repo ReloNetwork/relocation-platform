@@ -133,10 +133,8 @@ export default function RootLayout({
               },
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "City of London",
                 "addressLocality": "London",
                 "addressRegion": "London",
-                "postalCode": "EC1V 2NX",
                 "addressCountry": "GB"
               },
               "areaServed": {

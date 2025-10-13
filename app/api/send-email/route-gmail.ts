@@ -21,7 +21,7 @@ function checkBasicAuth(req: NextRequest): boolean {
 
 // Rate limiting: Simple in-memory rate limiter
 const emailAttempts = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT = 5; // emails per hour
+const RATE_LIMIT = 10; // emails per hour
 const RATE_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
 
 function checkRateLimit(ip: string): boolean {
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
   // SECURITY: Rate limiting
   const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
   if (!checkRateLimit(clientIP)) {
-    return NextResponse.json({ error: 'Rate limit exceeded. Maximum 5 emails per hour.' }, { status: 429 });
+    return NextResponse.json({ error: 'Rate limit exceeded. Maximum 10 emails per hour.' }, { status: 429 });
   }
 
   try {

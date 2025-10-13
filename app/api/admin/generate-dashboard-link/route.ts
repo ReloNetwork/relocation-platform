@@ -3,7 +3,28 @@ import { createClient } from '@supabase/supabase-js';
 
 export const runtime = 'nodejs';
 
+// Security: Basic Auth check for admin endpoints
+function checkBasicAuth(req: NextRequest): boolean {
+  const auth = req.headers.get("authorization");
+  if (!auth) return false;
+  
+  const [type, value] = auth.split(" ");
+  if (type !== "Basic" || !value) return false;
+  
+  try {
+    const [user, pass] = atob(value).split(":");
+    return user === process.env.BASIC_AUTH_USER && pass === process.env.BASIC_AUTH_PASS;
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(req: NextRequest) {
+  // SECURITY: Require authentication for admin endpoint
+  if (!checkBasicAuth(req)) {
+    return NextResponse.json({ error: 'Unauthorized - Admin access required' }, { status: 401, headers: { 'WWW-Authenticate': 'Basic realm="Admin"' } });
+  }
+
   try {
     const { email, moveCase } = await req.json();
     
@@ -100,6 +121,11 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  // SECURITY: Require authentication for admin endpoint
+  if (!checkBasicAuth(req)) {
+    return NextResponse.json({ error: 'Unauthorized - Admin access required' }, { status: 401, headers: { 'WWW-Authenticate': 'Basic realm="Admin"' } });
+  }
+
   const { searchParams } = new URL(req.url);
   const email = searchParams.get('email');
   

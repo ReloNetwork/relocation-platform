@@ -588,7 +588,7 @@ export default function HomePage() {
                 </p>
                 
                 <p className="text-base text-[#0B1B2B] leading-relaxed">
-                  Headquartered in the City of London, Relo Network operates a curated network of vetted service providers across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance.
+                  Headquartered in London, Relo Network operates a curated network of vetted service providers across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance.
                 </p>
                 
                 <div className="bg-[#F8F9FA] border-l-4 border-[#C9A24A] p-4 rounded-r-lg">
@@ -609,8 +609,8 @@ export default function HomePage() {
                       <span className="text-[#0B1B2B] font-semibold text-sm">January 2024</span>
                     </div>
                     <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
-                      <span className="text-[#6B7280] font-medium text-sm">Headquarters</span>
-                      <span className="text-[#0B1B2B] font-semibold text-sm">City of London</span>
+                      <span className="text-[#6B7280] font-medium text-sm">Business Model</span>
+                      <span className="text-[#0B1B2B] font-semibold text-sm">Service-area business</span>
                     </div>
                     <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
                       <span className="text-[#6B7280] font-medium text-sm">Service Focus</span>

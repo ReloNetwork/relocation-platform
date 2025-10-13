@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "security:scan": "node security-monitor.js",
+    "security:fix": "node security-monitor.js --fix",
+    "security:weekly": "node security-monitor.js && echo 'Weekly security scan complete'",
+    "precommit:security": "node security-monitor.js"
+  }
+}

@@ -14,10 +14,10 @@ export const getAllCorporateSchemas = (): Schema[] => {
       "foundingDate": "2024-01-01",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "City of London",
+        
         "addressLocality": "Canary Wharf",
         "addressRegion": "London",
-        "postalCode": "EC1V 2NX",
+        
         "addressCountry": "GB"
       },
       "contactPoint": [
@@ -473,10 +473,10 @@ export const getAllCorporateSchemas = (): Schema[] => {
       "email": "enterprise@therelonetwork.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "City of London",
+        
         "addressLocality": "Canary Wharf",
         "addressRegion": "London", 
-        "postalCode": "EC1V 2NX",
+        
         "addressCountry": "GB"
       },
       "geo": {

@@ -60,10 +60,8 @@ export const organizationSchema: Organization = {
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "City of London",
     addressLocality: "London",
     addressRegion: "England",
-    postalCode: "EC1V 2NX",
     addressCountry: "GB"
   },
   founder: {
@@ -246,10 +244,8 @@ export const localBusinessSchema: LocalBusiness = {
   description: "London's premier luxury relocation network specializing in executive relocations and corporate services.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "City of London",
     addressLocality: "London",
     addressRegion: "England",
-    postalCode: "EC1V 2NX",
     addressCountry: "GB"
   },
   geo: {
