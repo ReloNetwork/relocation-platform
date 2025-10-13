@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 export const runtime = 'nodejs';
 
@@ -82,52 +82,54 @@ export async function POST(req: NextRequest) {
       ({ to, subject, html, from, replyTo, attachment } = data);
     }
     
-    console.log('Sending email via Gmail SMTP...');
+    console.log('Sending email via Resend...');
     console.log('To:', to);
     console.log('Subject:', subject);
     
-    // Create Gmail transporter
-    const transporter = nodemailer.createTransporter({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER || 'hello@therelonetwork.com',
-        pass: process.env.GMAIL_APP_PASSWORD || 'temp_password_replace_me'
-      }
-    });
+    // Check for Resend API key
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json({ error: 'Resend API key not configured' }, { status: 500 });
+    }
 
-    // Prepare email options
-    const mailOptions: any = {
-      from: `"Relo Network" <${process.env.GMAIL_USER || 'hello@therelonetwork.com'}>`,
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    // Prepare email data with optional attachment
+    const emailParams: any = {
+      from: 'Relo Network Admin <onboarding@resend.dev>',
       to: Array.isArray(to) ? to : [to],
       subject,
       html,
       replyTo: replyTo || 'hello@therelonetwork.com'
     };
 
-    // Add attachment if provided
+    // Add attachment if provided (Resend format)
     if (attachment) {
-      mailOptions.attachments = [{
+      emailParams.attachments = [{
         filename: attachment.filename,
-        content: Buffer.from(attachment.content, 'base64'),
-        contentType: attachment.type
+        content: attachment.content // Resend expects base64 content directly
       }];
     }
     
-    console.log('Sending email with Gmail...');
-    const result = await transporter.sendMail(mailOptions);
-    console.log('Gmail send result:', result.messageId);
+    console.log('Sending email with Resend API...');
+    const emailData = await resend.emails.send(emailParams);
+    
+    if (emailData.error) {
+      throw new Error(`Resend API error: ${emailData.error.message}`);
+    }
+    
+    console.log('Resend send result:', emailData.data?.id);
 
     return NextResponse.json({ 
       success: true, 
-      messageId: result.messageId,
-      message: 'Email sent successfully via Gmail SMTP',
-      provider: 'Gmail SMTP'
+      messageId: emailData.data?.id,
+      message: 'Email sent successfully via Resend',
+      provider: 'Resend API'
     });
 
   } catch (error: any) {
-    console.error('Gmail email sending error:', error);
+    console.error('Resend email sending error:', error);
     return NextResponse.json({ 
-      error: 'Failed to send email via Gmail', 
+      error: 'Failed to send email via Resend', 
       details: error.message 
     }, { status: 500 });
   }
@@ -135,11 +137,12 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   return NextResponse.json({
-    message: 'Gmail SMTP email sending endpoint',
+    message: 'Resend API email sending endpoint',
     endpoint: 'POST /api/send-email',
-    provider: 'Gmail SMTP',
+    provider: 'Resend API',
     required_fields: ['to', 'subject', 'html'],
-    required_env: ['GMAIL_USER', 'GMAIL_APP_PASSWORD'],
-    optional_fields: ['from', 'replyTo']
+    required_env: ['RESEND_API_KEY'],
+    optional_fields: ['from', 'replyTo', 'attachment'],
+    rate_limit: '5 emails per hour'
   });
 }
