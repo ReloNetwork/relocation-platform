@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 export const runtime = 'nodejs';
 
@@ -30,15 +30,13 @@ export async function POST(req: NextRequest) {
 
     console.log('Contact form submission:', { name, email, phone, service, message });
 
-    // Send email notification to hello@therelonetwork.com
+    // Send email notification to hello@therelonetwork.com using Resend
     try {
-      const transporter = nodemailer.createTransporter({
-        service: 'gmail',
-        auth: {
-          user: process.env.GMAIL_USER || 'hello@therelonetwork.com',
-          pass: process.env.GMAIL_APP_PASSWORD || 'temp_password_replace_me'
-        }
-      });
+      if (!process.env.RESEND_API_KEY) {
+        throw new Error('Resend API key not configured');
+      }
+
+      const resend = new Resend(process.env.RESEND_API_KEY);
 
       const emailContent = `
         <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px;">
@@ -69,15 +67,15 @@ export async function POST(req: NextRequest) {
         </div>
       `;
 
-      const result = await transporter.sendMail({
-        from: `"Relo Network Contact Form" <${process.env.GMAIL_USER || 'hello@therelonetwork.com'}>`,
+      const result = await resend.emails.send({
+        from: 'Relo Network Contact <onboarding@resend.dev>',
         to: 'hello@therelonetwork.com',
         replyTo: email,
         subject: `New Contact: ${name} - ${service || 'General Inquiry'}`,
         html: emailContent
       });
 
-      console.log('Contact notification sent:', result.messageId);
+      console.log('Contact notification sent via Resend:', result.data?.id);
 
       // Send confirmation email to customer
       const confirmationEmail = `
@@ -114,14 +112,14 @@ export async function POST(req: NextRequest) {
         </div>
       `;
 
-      await transporter.sendMail({
-        from: `"Relo Network" <${process.env.GMAIL_USER || 'hello@therelonetwork.com'}>`,
+      await resend.emails.send({
+        from: 'Relo Network <onboarding@resend.dev>',
         to: email,
         subject: 'Thank you for contacting Relo Network - We\'ll respond within 2 hours',
         html: confirmationEmail
       });
 
-      console.log('Confirmation email sent to customer');
+      console.log('Confirmation email sent to customer via Resend');
 
     } catch (emailError: any) {
       console.error('Email sending error:', emailError);
