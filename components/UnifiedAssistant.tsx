@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import { Send, Bot, User, Minimize2, Maximize2, MessageCircle, X, Mic, Phone, MicOff, Volume2, VolumeX } from 'lucide-react'
 import { useRetellClient } from '@/hooks/useRetellClient'
 
@@ -15,7 +15,11 @@ interface UnifiedAssistantProps {
   className?: string
 }
 
-export default function UnifiedAssistant({ variant = 'floating', className = '' }: UnifiedAssistantProps) {
+interface UnifiedAssistantRef {
+  openAssistant: () => void
+}
+
+const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(({ variant = 'floating', className = '' }, ref) => {
   // Chat state
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
@@ -40,6 +44,14 @@ export default function UnifiedAssistant({ variant = 'floating', className = '' 
   
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // Expose methods via ref
+  useImperativeHandle(ref, () => ({
+    openAssistant: () => {
+      setIsOpen(true)
+      setIsMinimized(false)
+    }
+  }))
 
   // Timer for call duration
   useEffect(() => {
@@ -811,4 +823,8 @@ What would you like to know about relocating to London?`,
       </div>
     </div>
   )
-}
+})
+
+UnifiedAssistant.displayName = 'UnifiedAssistant'
+
+export default UnifiedAssistant

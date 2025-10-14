@@ -47,7 +47,7 @@ const PartnershipTier = ({
         </div>
         <p className="text-lg text-[#6B7280] mt-1">{duration}</p>
         <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded px-3 py-1 text-sm text-[#C9A24A] font-medium mt-2 inline-block">
-          Charter Rate - Expires 10 Oct
+          Charter Rate
         </div>
       </div>
 
@@ -97,52 +97,6 @@ const ProcessStep = ({ number, title, description }: { number: string, title: st
   </div>
 )
 
-const CountdownTimer = () => {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-
-  useEffect(() => {
-    const targetDate = new Date('2025-10-10T23:59:00+01:00') // BST
-    
-    const timer = setInterval(() => {
-      const now = new Date().getTime()
-      const distance = targetDate.getTime() - now
-      
-      if (distance > 0) {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000)
-        })
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-      }
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [])
-
-  return (
-    <div className="flex gap-4 justify-center text-center">
-      <div className="bg-white/20 rounded px-2 py-1 min-w-[40px]">
-        <div className="text-lg font-bold">{timeLeft.days.toString().padStart(2, '0')}</div>
-        <div className="text-xs opacity-90">DAYS</div>
-      </div>
-      <div className="bg-white/20 rounded px-2 py-1 min-w-[40px]">
-        <div className="text-lg font-bold">{timeLeft.hours.toString().padStart(2, '0')}</div>
-        <div className="text-xs opacity-90">HRS</div>
-      </div>
-      <div className="bg-white/20 rounded px-2 py-1 min-w-[40px]">
-        <div className="text-lg font-bold">{timeLeft.minutes.toString().padStart(2, '0')}</div>
-        <div className="text-xs opacity-90">MIN</div>
-      </div>
-      <div className="bg-white/20 rounded px-2 py-1 min-w-[40px]">
-        <div className="text-lg font-bold">{timeLeft.seconds.toString().padStart(2, '0')}</div>
-        <div className="text-xs opacity-90">SEC</div>
-      </div>
-    </div>
-  )
-}
 
 const LaunchWeekBanner = () => {
   return (
@@ -242,11 +196,6 @@ export default function PartnersPage() {
               Category exclusivity, concierge qualified introductions, directory and homepage placements. 12 Founder slots only. Launch week enrollment open.
             </p>
             
-            {/* Urgency Banner with Countdown */}
-            <div className="bg-red-600 text-white px-6 py-4 rounded-lg inline-block mb-8">
-              <div className="text-lg font-bold mb-2">Closes 10 Oct, 23:59 BST - 2 slots open today</div>
-              <CountdownTimer />
-            </div>
             
             {/* Above the fold CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
