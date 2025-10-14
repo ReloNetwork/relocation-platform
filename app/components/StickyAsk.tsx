@@ -23,10 +23,18 @@ export default function StickyAsk() {
       window.addEventListener('scroll', onScroll, { passive: true });
     }
     
+    // Listen for navigation "Ask Relo" clicks to force show the widget
+    const handleOpenVoiceWidget = () => {
+      setShow(true);
+    };
+
+    window.addEventListener('openVoiceWidget', handleOpenVoiceWidget);
+    
     return () => {
       if (onScroll) {
         window.removeEventListener('scroll', onScroll);
       }
+      window.removeEventListener('openVoiceWidget', handleOpenVoiceWidget);
     };
   }, [pathname]);
 
