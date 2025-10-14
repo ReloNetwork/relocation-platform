@@ -45,8 +45,7 @@ const EMAIL_TEMPLATES = {
       <p style="margin: 0;"><strong>Calistar Ankrah</strong></p>
       <p style="margin: 0;">Founder, Relo Network Ltd</p>
       <p style="margin: 0;">✉ hello@therelonetwork.com</p>
-      <p style="margin: 0;">☎ +44 (0)20 3105 9566</p>
-      <p style="margin: 0;">◆ +44 (0) 7947 115 194</p>
+      <p style="margin: 0;">☎ +44 20 3105 9566</p>
     </div>
   </div>
   
