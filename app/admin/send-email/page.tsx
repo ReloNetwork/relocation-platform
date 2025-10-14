@@ -7,7 +7,7 @@ import { Input } from '@/ui/components/input'
 import { Textarea } from '@/ui/components/textarea'
 import Layout from '@/components/Layout'
 
-// Commercial placement email templates
+// Commercial placement email templates - Updated Cheval Collection
 const EMAIL_TEMPLATES = {
   cheval: {
     to: 'info@chevalcollection.com',
