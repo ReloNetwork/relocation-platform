@@ -84,32 +84,31 @@ export default function EmailSender() {
               </div>
               
               <div style="padding: 30px 20px;">
-                <p>Dear Team,</p>
+                <p>Dear [Title] [Surname],</p>
                 
-                <p>I am the Founder of Relo Network, a vetted concierge serving high-net-worth professionals relocating to London. We are appointing category-exclusive Founding Partners and would like to discuss a potential partnership.</p>
+                <p>I am the Founder of Relo Network, a vetted concierge serving high-net-worth professionals relocating to London. We are appointing two category-exclusive Founding Partners in Serviced Residences and would like to extend priority to Cheval Collection.</p>
                 
-                <h2 style="color: #C9A24A; font-family: 'Playfair Display', Georgia, serif;">Partnership Opportunity</h2>
+                <h2 style="color: #C9A24A; font-family: 'Playfair Display', Georgia, serif;">Appointment Summary</h2>
                 
-                <div style="background: #F8F9FA; padding: 20px; border-left: 4px solid #C9A24A; margin: 20px 0;">
-                  <ul style="margin: 0; padding-left: 20px;">
-                    <li><strong>Exclusivity:</strong> Category-exclusive placement across our platform</li>
-                    <li><strong>Introductions:</strong> Minimum 20 qualified introductions per quarter</li>
-                    <li><strong>Visibility:</strong> Homepage placement and editorial features</li>
-                    <li><strong>Investment:</strong> £25,000 for 12 months (Founding Partner rate)</li>
-                    <li><strong>Start:</strong> November 1, 2025</li>
-                  </ul>
-                </div>
+                <p><strong>Exclusivity:</strong> Sole placement within the Serviced Residences category across our Home, Directory, and concierge routing.</p>
                 
-                <p>Would you be available for a brief call to discuss this exclusive opportunity?</p>
+                <p><strong>Introductions:</strong> A minimum of 20 concierge-qualified introductions per quarter (family composition, dates, budget captured). Where a quarterly minimum is not reached, the term is extended month-for-month until delivered.</p>
+                
+                <p><strong>Visibility:</strong> Homepage tile (30 days), one editorial feature, and two newsletter insertions.</p>
+                
+                <p><strong>Measurement:</strong> Quarterly performance reporting and appropriate data handling.</p>
+                
+                <p><strong>Commercials:</strong> £25,000 for 12 months (Founding Partner).</p>
+                
+                <p><strong>Timing:</strong> We can commence 1 November 2025 while securing exclusivity today.</p>
+                
+                <p>If acceptable, I will provide a one-page summary and a secure payment link to confirm.</p>
                 
                 <p>Kind regards,</p>
                 
-                <div style="margin: 30px 0;">
-                  <p style="margin: 0;"><strong>Calistar Ankrah</strong></p>
-                  <p style="margin: 0;">Founder, Relo Network Ltd</p>
-                  <p style="margin: 0;">✉ hello@therelonetwork.com</p>
-                  <p style="margin: 0;">☎ +44 20 3105 9566</p>
-                </div>
+                <p>[Your Name]<br>
+                Founder, Relo Network Ltd<br>
+                [Mobile] | [Email]</p>
                 
                 <div style="background: #f3f4f6; padding: 15px; margin-top: 30px; font-size: 12px; color: #6b7280; text-align: center;">
                   <p style="margin: 0;">Relo Network Ltd | London's Premier Executive Relocation Platform</p>
