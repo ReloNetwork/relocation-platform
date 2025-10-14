@@ -26,27 +26,26 @@ const EMAIL_TEMPLATES = {
     
     <h2 style="color: #C9A24A; font-family: 'Playfair Display', Georgia, serif;">Appointment Summary</h2>
     
-    <div style="background: #F8F9FA; padding: 20px; border-left: 4px solid #C9A24A; margin: 20px 0;">
-      <ul style="margin: 0; padding-left: 20px;">
-        <li><strong>Exclusivity:</strong> Sole placement within the Serviced Residences category across our Home, Directory, and concierge routing.</li>
-        <li><strong>Introductions:</strong> A minimum of 20 concierge-qualified introductions per quarter (family composition, dates, budget captured). Where a quarterly minimum is not reached, the term is extended month-for-month until delivered.</li>
-        <li><strong>Visibility:</strong> Homepage tile (30 days), one editorial feature, and two newsletter insertions.</li>
-        <li><strong>Measurement:</strong> Quarterly performance reporting and appropriate data handling.</li>
-        <li><strong>Commercials:</strong> £25,000 for 12 months (Founding Partner).</li>
-        <li><strong>Timing:</strong> We can commence 1 November 2025 while securing exclusivity today.</li>
-      </ul>
-    </div>
+    <p><strong>Exclusivity:</strong> Sole placement within the Serviced Residences category across our Home, Directory, and concierge routing.</p>
+    
+    <p><strong>Introductions:</strong> A minimum of 20 concierge-qualified introductions per quarter (family composition, dates, budget captured). Where a quarterly minimum is not reached, the term is extended month-for-month until delivered.</p>
+    
+    <p><strong>Visibility:</strong> Homepage tile (30 days), one editorial feature, and two newsletter insertions.</p>
+    
+    <p><strong>Measurement:</strong> Quarterly performance reporting and appropriate data handling.</p>
+    
+    <p><strong>Commercials:</strong> £25,000 for 12 months (Founding Partner).</p>
+    
+    <p><strong>Timing:</strong> We can commence 1 November 2025 while securing exclusivity today.</p>
     
     <p>If acceptable, I will provide a one-page summary and a secure payment link to confirm.</p>
     
     <p>Kind regards,</p>
     
-    <div style="margin: 30px 0;">
-      <p style="margin: 0;"><strong>Calistar Ankrah</strong></p>
-      <p style="margin: 0;">Founder, Relo Network Ltd</p>
-      <p style="margin: 0;">✉ hello@therelonetwork.com</p>
-      <p style="margin: 0;">☎ +44 20 3105 9566</p>
-    </div>
+    <p>Calistar Ankrah<br>
+    Founder, Relo Network Ltd<br>
+    +44 20 3105 9566 | hello@therelonetwork.com</p>
+    
   </div>
   
   <div style="background: #F8F9FA; padding: 20px; text-align: center; border-top: 1px solid #E5E7EB;">
