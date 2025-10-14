@@ -20,7 +20,7 @@ const EMAIL_TEMPLATES = {
   </div>
   
   <div style="padding: 30px 20px;">
-    <p>Dear Cheval Collection Team,</p>
+    <p>Dear [Title] [Surname],</p>
     
     <p>I am the Founder of Relo Network, a vetted concierge serving high-net-worth professionals relocating to London. We are appointing two category-exclusive Founding Partners in Serviced Residences and would like to extend priority to Cheval Collection.</p>
     
@@ -42,9 +42,9 @@ const EMAIL_TEMPLATES = {
     
     <p>Kind regards,</p>
     
-    <p>Calistar Ankrah<br>
+    <p>[Your Name]<br>
     Founder, Relo Network Ltd<br>
-    +44 20 3105 9566 | hello@therelonetwork.com</p>
+    [Mobile] | [Email]</p>
     
   </div>
   
