@@ -2,8 +2,6 @@
 
 import GlobalNavigationFixed from './GlobalNavigationFixed'
 import Analytics from './Analytics'
-import UnifiedAssistant from './UnifiedAssistant'
-import { useEffect, useRef } from 'react'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -12,23 +10,6 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, className = '', showFooter = true }: LayoutProps) {
-  const assistantRef = useRef<any>(null)
-
-  useEffect(() => {
-    const handleOpenVoiceWidget = () => {
-      // Trigger the assistant to open
-      if (assistantRef.current) {
-        assistantRef.current.openAssistant()
-      }
-    }
-
-    window.addEventListener('openVoiceWidget', handleOpenVoiceWidget)
-    
-    return () => {
-      window.removeEventListener('openVoiceWidget', handleOpenVoiceWidget)
-    }
-  }, [])
-
   return (
     <div className={`min-h-screen ${className}`}>
       <Analytics />
@@ -36,7 +17,6 @@ export default function Layout({ children, className = '', showFooter = true }: 
       <main className="pt-16">
         {children}
       </main>
-      <UnifiedAssistant ref={assistantRef} />
       
       {/* Footer */}
       {showFooter && (

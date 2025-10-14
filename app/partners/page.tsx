@@ -47,7 +47,7 @@ const PartnershipTier = ({
         </div>
         <p className="text-lg text-[#6B7280] mt-1">{duration}</p>
         <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded px-3 py-1 text-sm text-[#C9A24A] font-medium mt-2 inline-block">
-          Charter Rate
+          Charter Rate - Expires 31 Oct
         </div>
       </div>
 
