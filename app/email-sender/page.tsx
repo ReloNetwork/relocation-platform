@@ -11,15 +11,15 @@ const EMAIL_TEMPLATES = {
     subject: 'Exclusive Serviced Residences Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Serviced Residences',
     company: 'Cheval Collection',
-    salutation: 'Dear Cheval Collection Team'
+    salutation: 'Dear Global/Regional Sales Director'
   },
   otherhouse: {
     name: 'The Other House (Luxury Accommodations)',
-    to: 'reservations@theotherhouse.com',
+    to: 'sales@otherhouse.com',
     subject: 'Exclusive Luxury Accommodations Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Luxury Accommodations',
     company: 'The Other House',
-    salutation: 'Dear Other House Team'
+    salutation: 'Dear Group Sales Team'
   },
   cadogan: {
     name: 'Cadogan Tate (Fine Art Storage)',
@@ -27,23 +27,23 @@ const EMAIL_TEMPLATES = {
     subject: 'Exclusive Fine Art Storage Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Fine Art Storage',
     company: 'Cadogan Tate',
-    salutation: 'Dear Cadogan Tate Team'
+    salutation: 'Dear BD/Partnerships Team'
   },
   bishops: {
-    name: 'Bishop\'s Move (Relocation Services)',
+    name: 'Bishop\'s Move (International Division)',
     to: 'corporate@bishopsmove.com',
-    subject: 'Exclusive Relocation Services Placement — Confirmation by 17:00 BST, 15 Oct',
-    category: 'Relocation Services',
+    subject: 'Exclusive International Relocation Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'International Relocation Services',
     company: 'Bishop\'s Move',
-    salutation: 'Dear Bishop\'s Move Team'
+    salutation: 'Dear International Director'
   },
   blackbrick: {
-    name: 'Black Brick (Property Consultancy)',
-    to: 'hello@black-brick.com',
-    subject: 'Exclusive Property Consultancy Placement — Confirmation by 17:00 BST, 15 Oct',
-    category: 'Property Consultancy',
+    name: 'Black Brick (Prime Property)',
+    to: 'camilla.dell@black-brick.com',
+    subject: 'Exclusive Prime Property Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'Prime Property Services',
     company: 'Black Brick',
-    salutation: 'Dear Black Brick Team'
+    salutation: 'Dear Camilla Dell'
   },
   laura: {
     name: 'Laura Devine Immigration',
@@ -54,18 +54,18 @@ const EMAIL_TEMPLATES = {
     salutation: 'Dear Laura Devine Immigration Team'
   },
   davidson: {
-    name: 'DavidsonMorris (Employment Law)',
-    to: 'enquiries@davidsonmorris.com',
-    subject: 'Exclusive Employment Law Placement — Confirmation by 17:00 BST, 15 Oct',
-    category: 'Employment Law',
-    company: 'DavidsonMorris',
-    salutation: 'Dear DavidsonMorris Team'
-  },
-  gherson: {
-    name: 'Gherson Solicitors (Immigration Law)',
-    to: 'info@gherson.com',
+    name: 'DavidsonMorris (Immigration Law)',
+    to: 'hello@davidsonmorris.com',
     subject: 'Exclusive Immigration Law Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Immigration Law',
+    company: 'DavidsonMorris',
+    salutation: 'Dear Anne Morris'
+  },
+  gherson: {
+    name: 'Gherson Solicitors (HNWI Immigration)',
+    to: 'info@gherson.com',
+    subject: 'Exclusive HNWI Immigration Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'HNWI Immigration Services',
     company: 'Gherson Solicitors',
     salutation: 'Dear Gherson Solicitors Team'
   }
