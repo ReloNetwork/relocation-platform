@@ -8,42 +8,58 @@ const EMAIL_TEMPLATES = {
   cheval: {
     name: 'Cheval Collection (Serviced Residences)',
     to: 'info@chevalcollection.com',
-    subject: 'Exclusive London Serviced Residence Placement — Confirmation Today',
+    subject: 'Exclusive Serviced Residences Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'Serviced Residences',
+    company: 'Cheval Collection'
   },
   otherhouse: {
     name: 'The Other House (Luxury Accommodations)',
     to: 'reservations@theotherhouse.com',
-    subject: 'Premium Client Pipeline - London Luxury Accommodation Partnership',
+    subject: 'Exclusive Luxury Accommodations Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'Luxury Accommodations',
+    company: 'The Other House'
   },
   cadogan: {
     name: 'Cadogan Tate (Fine Art Storage)',
     to: 'enquiries@cadogantate.com',
-    subject: 'Executive Client Pipeline - Fine Art Storage Partnership',
+    subject: 'Exclusive Fine Art Storage Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'Fine Art Storage',
+    company: 'Cadogan Tate'
   },
   bishops: {
     name: 'Bishop\'s Move (Relocation Services)',
     to: 'corporate@bishopsmove.com',
-    subject: 'High-Value Client Pipeline - Corporate Relocation Partnership',
+    subject: 'Exclusive Relocation Services Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'Relocation Services',
+    company: 'Bishop\'s Move'
   },
   blackbrick: {
     name: 'Black Brick (Property Consultancy)',
     to: 'hello@black-brick.com',
-    subject: 'Premium Client Pipeline - Property Consultancy Partnership',
+    subject: 'Exclusive Property Consultancy Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'Property Consultancy',
+    company: 'Black Brick'
   },
   laura: {
     name: 'Laura Devine Immigration',
     to: 'enquiries@lauradevine.com',
-    subject: 'Executive Client Pipeline - Immigration Services Partnership',
+    subject: 'Exclusive Immigration Services Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'Immigration Services',
+    company: 'Laura Devine Immigration'
   },
   davidson: {
     name: 'DavidsonMorris (Employment Law)',
     to: 'enquiries@davidsonmorris.com',
-    subject: 'Corporate Client Pipeline - Employment Law Partnership',
+    subject: 'Exclusive Employment Law Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'Employment Law',
+    company: 'DavidsonMorris'
   },
   gherson: {
     name: 'Gherson Solicitors (Immigration Law)',
     to: 'info@gherson.com',
-    subject: 'Executive Client Pipeline - Immigration Law Partnership',
+    subject: 'Exclusive Immigration Law Placement — Confirmation by 17:00 BST, 15 Oct',
+    category: 'Immigration Law',
+    company: 'Gherson Solicitors'
   }
 }
 
@@ -86,29 +102,31 @@ export default function EmailSender() {
               <div style="padding: 30px 20px;">
                 <p>Dear [Title] [Surname],</p>
                 
-                <p>I am the Founder of Relo Network, a vetted concierge serving high-net-worth professionals relocating to London. We are appointing two category-exclusive Founding Partners in Serviced Residences and would like to extend priority to Cheval Collection.</p>
+                <p>I am the Founder of Relo Network, a vetted concierge serving high-net-worth professionals relocating to London. We are appointing category-exclusive Founding Partners in ${EMAIL_TEMPLATES[selectedTemplate]?.category || '[Category]'} and would like to extend priority to ${EMAIL_TEMPLATES[selectedTemplate]?.company || '[Company]'}.</p>
                 
                 <h2 style="color: #C9A24A; font-family: 'Playfair Display', Georgia, serif;">Appointment Summary</h2>
                 
-                <p><strong>Exclusivity:</strong> Sole placement within the Serviced Residences category across our Home, Directory, and concierge routing.</p>
+                <p><strong>Exclusivity:</strong> Sole placement within ${EMAIL_TEMPLATES[selectedTemplate]?.category || '[Category]'} across our Home, Directory, and concierge routing.</p>
                 
-                <p><strong>Introductions:</strong> A minimum of 20 concierge-qualified introductions per quarter (family composition, dates, budget captured). Where a quarterly minimum is not reached, the term is extended month-for-month until delivered.</p>
+                <p><strong>Introductions:</strong> Minimum 20 concierge-qualified introductions per quarter; where a quarterly minimum is not reached, the term is extended month-for-month until delivered.</p>
                 
-                <p><strong>Visibility:</strong> Homepage tile (30 days), one editorial feature, and two newsletter insertions.</p>
+                <p><strong>Visibility:</strong> Homepage tile (30 days), one editorial feature, two newsletter insertions.</p>
                 
-                <p><strong>Measurement:</strong> Quarterly performance reporting and appropriate data handling.</p>
+                <p><strong>Measurement:</strong> Quarterly performance reporting; appropriate data handling.</p>
                 
                 <p><strong>Commercials:</strong> £25,000 for 12 months (Founding Partner).</p>
                 
-                <p><strong>Timing:</strong> We can commence 1 November 2025 while securing exclusivity today.</p>
+                <p><strong>Timing:</strong> Commencement 1 November 2025; exclusivity can be secured by 17:00 BST, 15 October 2025 via secure link.</p>
                 
-                <p>If acceptable, I will provide a one-page summary and a secure payment link to confirm.</p>
+                <p>If acceptable, I will circulate the one-page summary and the secure payment link.</p>
                 
                 <p>Kind regards,</p>
                 
                 <p>[Your Name]<br>
                 Founder, Relo Network Ltd<br>
                 [Mobile] | [Email]</p>
+                
+                <p style="font-style: italic; margin-top: 20px;">P.S. A 90-day pilot is available by exception on request.</p>
                 
                 <div style="background: #f3f4f6; padding: 15px; margin-top: 30px; font-size: 12px; color: #6b7280; text-align: center;">
                   <p style="margin: 0;">Relo Network Ltd | London's Premier Executive Relocation Platform</p>
