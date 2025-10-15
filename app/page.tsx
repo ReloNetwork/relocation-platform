@@ -152,7 +152,7 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Hero Section with Video Background */}
-      <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Video Background */}
         <video 
           autoPlay 
