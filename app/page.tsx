@@ -152,19 +152,23 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Hero Section with Video Background */}
-      <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-32 sm:pt-16">
         {/* Video Background */}
         <video 
           autoPlay 
           muted 
           loop 
           playsInline
-          className="absolute top-0 left-0 w-full h-full object-contain"
+          className="absolute top-0 left-0 w-full h-full object-contain md:object-contain sm:object-cover"
           style={{ 
             objectPosition: 'center top',
             filter: 'brightness(1.2) contrast(0.9)',
             opacity: '0.8',
-            marginTop: '-128px'
+            marginTop: '-128px',
+            '@media (max-width: 768px)': {
+              marginTop: '-64px',
+              objectFit: 'cover'
+            }
           }}
           poster="/london-skyline-hero.mp4"
         >
@@ -174,10 +178,10 @@ export default function HomePage() {
         </video>
         
         {/* Light overlay to maintain professional brand */}
-        <div className="absolute top-0 left-0 w-full h-full bg-white/30" style={{ marginTop: '-128px' }}></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-white/30 md:-mt-32 sm:-mt-16"></div>
         
         {/* Additional light gradient overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#FAFAF9]/50 via-white/40 to-[#F8F9FA]/50" style={{ marginTop: '-128px' }}></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#FAFAF9]/50 via-white/40 to-[#F8F9FA]/50 md:-mt-32 sm:-mt-16"></div>
         
         {/* Elegant Translucent Overlays for sophistication */}
         <div className="absolute inset-0">
