@@ -151,43 +151,57 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Enhanced Hero Section with Light Translucent Overlays */}
+      {/* Enhanced Hero Section with Video Background */}
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
-        {/* Light Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-white to-[#F8F9FA]"></div>
+        {/* Video Background */}
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster="/london-skyline-hero.mp4"
+        >
+          <source src="/london-skyline-hero.mp4" type="video/mp4" />
+          {/* Fallback for browsers that don't support video */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-white to-[#F8F9FA]"></div>
+        </video>
         
-        {/* Elegant Translucent Overlays */}
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        
+        {/* Elegant Translucent Overlays for sophistication */}
         <div className="absolute inset-0">
           {/* Large circle - top right */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-[#C9A24A]/25 to-[#C9A24A]/10 blur-3xl"></div>
+          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-[#C9A24A]/20 to-[#C9A24A]/5 blur-3xl"></div>
           
           {/* Medium circle - bottom left */}
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-[#0B1B2B]/15 to-[#0B1B2B]/5 blur-2xl"></div>
+          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-white/10 to-white/5 blur-2xl"></div>
           
           {/* Small accent - center left */}
-          <div className="absolute top-1/3 -left-20 w-56 h-56 rounded-full bg-gradient-to-r from-[#C9A24A]/20 to-transparent blur-xl"></div>
+          <div className="absolute top-1/3 -left-20 w-56 h-56 rounded-full bg-gradient-to-r from-[#C9A24A]/15 to-transparent blur-xl"></div>
           
           {/* Additional accent - center right */}
-          <div className="absolute top-2/3 -right-16 w-48 h-48 rounded-full bg-gradient-to-l from-[#0B1B2B]/12 to-transparent blur-xl"></div>
+          <div className="absolute top-2/3 -right-16 w-48 h-48 rounded-full bg-gradient-to-l from-white/8 to-transparent blur-xl"></div>
           
           {/* Geometric shapes for sophistication */}
-          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#C9A24A]/40 rounded-full animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/3 w-2 h-2 bg-[#0B1B2B]/40 rounded-full animate-pulse delay-1000"></div>
-          <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-[#C9A24A]/35 rounded-full animate-pulse delay-2000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#0B1B2B]/30 rounded-full animate-pulse delay-3000"></div>
+          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#C9A24A]/60 rounded-full animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/3 w-2 h-2 bg-white/60 rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-[#C9A24A]/50 rounded-full animate-pulse delay-2000"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-white/50 rounded-full animate-pulse delay-3000"></div>
         </div>
         
         {/* Content with higher z-index */}
         <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-2xl" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Relocate to <span className="text-[#C9A24A]">London</span><br />
-            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#6B7280]">Effortlessly.</span>
+            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/90">Effortlessly.</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-[#0B1B2B] mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4">
+          <p className="text-lg sm:text-xl md:text-2xl text-white mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4 drop-shadow-lg">
             London's exclusive relocation network founded in 2024
           </p>
-          <p className="text-sm sm:text-base text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="text-sm sm:text-base text-white/80 mb-8 max-w-4xl mx-auto leading-relaxed px-4 drop-shadow-lg">
             Vetted partners and white-glove 24/7 concierge, curated by international relocation specialist, with years orchestrating executive moves for Fortune 500 firms and HNW clients.
           </p>
 
