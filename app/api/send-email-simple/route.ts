@@ -53,11 +53,20 @@ export async function POST(req: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Send partnership email
-    // For testing: only allow sending to specific email addresses
+    // Allowed email addresses for sending
     const allowedTestEmails = [
       'calistarankrah@icloud.com',
       'hello@therelonetwork.com',
-      'calistar@therelonetwork.com'
+      'calistar@therelonetwork.com',
+      // Company email addresses
+      'info@chevalcollection.com',
+      'reservations@theotherhouse.com',
+      'enquiries@cadogantate.com',
+      'corporate@bishopsmove.com',
+      'hello@black-brick.com',
+      'enquiries@lauradevine.com',
+      'enquiries@davidsonmorris.com',
+      'info@gherson.com'
     ];
     
     if (!allowedTestEmails.includes(to.toLowerCase())) {
