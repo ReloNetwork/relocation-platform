@@ -52,7 +52,21 @@ export async function POST(req: NextRequest) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    // Send partnership email  
+    // Send partnership email
+    // For testing: only allow sending to specific email addresses
+    const allowedTestEmails = [
+      'calistarankrah@icloud.com',
+      'hello@therelonetwork.com',
+      'calistar@therelonetwork.com'
+    ];
+    
+    if (!allowedTestEmails.includes(to.toLowerCase())) {
+      return NextResponse.json({ 
+        error: `Testing mode: Can only send emails to verified addresses. Please use one of: ${allowedTestEmails.join(', ')}`,
+        recipient: to 
+      }, { status: 400 });
+    }
+
     const emailData = await resend.emails.send({
       from: 'Calistar Ankrah, Founder <onboarding@resend.dev>',
       to: to,
