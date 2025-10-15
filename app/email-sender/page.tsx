@@ -10,56 +10,64 @@ const EMAIL_TEMPLATES = {
     to: 'info@chevalcollection.com',
     subject: 'Exclusive Serviced Residences Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Serviced Residences',
-    company: 'Cheval Collection'
+    company: 'Cheval Collection',
+    salutation: 'Dear Cheval Collection Team'
   },
   otherhouse: {
     name: 'The Other House (Luxury Accommodations)',
     to: 'reservations@theotherhouse.com',
     subject: 'Exclusive Luxury Accommodations Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Luxury Accommodations',
-    company: 'The Other House'
+    company: 'The Other House',
+    salutation: 'Dear Other House Team'
   },
   cadogan: {
     name: 'Cadogan Tate (Fine Art Storage)',
     to: 'enquiries@cadogantate.com',
     subject: 'Exclusive Fine Art Storage Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Fine Art Storage',
-    company: 'Cadogan Tate'
+    company: 'Cadogan Tate',
+    salutation: 'Dear Cadogan Tate Team'
   },
   bishops: {
     name: 'Bishop\'s Move (Relocation Services)',
     to: 'corporate@bishopsmove.com',
     subject: 'Exclusive Relocation Services Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Relocation Services',
-    company: 'Bishop\'s Move'
+    company: 'Bishop\'s Move',
+    salutation: 'Dear Bishop\'s Move Team'
   },
   blackbrick: {
     name: 'Black Brick (Property Consultancy)',
     to: 'hello@black-brick.com',
     subject: 'Exclusive Property Consultancy Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Property Consultancy',
-    company: 'Black Brick'
+    company: 'Black Brick',
+    salutation: 'Dear Black Brick Team'
   },
   laura: {
     name: 'Laura Devine Immigration',
     to: 'enquiries@lauradevine.com',
     subject: 'Exclusive Immigration Services Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Immigration Services',
-    company: 'Laura Devine Immigration'
+    company: 'Laura Devine Immigration',
+    salutation: 'Dear Laura Devine Immigration Team'
   },
   davidson: {
     name: 'DavidsonMorris (Employment Law)',
     to: 'enquiries@davidsonmorris.com',
     subject: 'Exclusive Employment Law Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Employment Law',
-    company: 'DavidsonMorris'
+    company: 'DavidsonMorris',
+    salutation: 'Dear DavidsonMorris Team'
   },
   gherson: {
     name: 'Gherson Solicitors (Immigration Law)',
     to: 'info@gherson.com',
     subject: 'Exclusive Immigration Law Placement — Confirmation by 17:00 BST, 15 Oct',
     category: 'Immigration Law',
-    company: 'Gherson Solicitors'
+    company: 'Gherson Solicitors',
+    salutation: 'Dear Gherson Solicitors Team'
   }
 }
 
@@ -100,7 +108,7 @@ export default function EmailSender() {
               </div>
               
               <div style="padding: 30px 20px;">
-                <p>Dear [Title] [Surname],</p>
+                <p>${EMAIL_TEMPLATES[selectedTemplate]?.salutation || 'Dear Team'},</p>
                 
                 <p>I am the Founder of Relo Network, a vetted concierge serving high-net-worth professionals relocating to London. We are appointing category-exclusive Founding Partners in ${EMAIL_TEMPLATES[selectedTemplate]?.category || '[Category]'} and would like to extend priority to ${EMAIL_TEMPLATES[selectedTemplate]?.company || '[Company]'}.</p>
                 
@@ -122,9 +130,9 @@ export default function EmailSender() {
                 
                 <p>Kind regards,</p>
                 
-                <p>[Your Name]<br>
+                <p>Calistar Ankrah<br>
                 Founder, Relo Network Ltd<br>
-                [Mobile] | [Email]</p>
+                +44 20 3105 9566 | hello@therelonetwork.com</p>
                 
                 <p style="font-style: italic; margin-top: 20px;">P.S. A 90-day pilot is available by exception on request.</p>
                 
