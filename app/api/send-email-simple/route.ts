@@ -52,32 +52,9 @@ export async function POST(req: NextRequest) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    // Send partnership email
-    // Allowed email addresses for sending
-    const allowedTestEmails = [
-      'calistarankrah@icloud.com',
-      'hello@therelonetwork.com',
-      'calistar@therelonetwork.com',
-      // Company email addresses
-      'info@chevalcollection.com',
-      'reservations@theotherhouse.com',
-      'enquiries@cadogantate.com',
-      'corporate@bishopsmove.com',
-      'hello@black-brick.com',
-      'enquiries@lauradevine.com',
-      'enquiries@davidsonmorris.com',
-      'info@gherson.com'
-    ];
-    
-    if (!allowedTestEmails.includes(to.toLowerCase())) {
-      return NextResponse.json({ 
-        error: `Testing mode: Can only send emails to verified addresses. Please use one of: ${allowedTestEmails.join(', ')}`,
-        recipient: to 
-      }, { status: 400 });
-    }
-
+    // Send partnership email using verified domain
     const emailData = await resend.emails.send({
-      from: 'Calistar Ankrah, Founder <onboarding@resend.dev>',
+      from: 'Calistar Ankrah, Founder <hello@therelonetwork.com>',
       to: to,
       subject: subject,
       html: html,

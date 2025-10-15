@@ -172,6 +172,11 @@ export default function EmailSender() {
             <p className="text-[#6B7280]">
               Send commercial partnership emails to potential partners
             </p>
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
+              <p className="text-green-800 text-sm">
+                <strong>✅ PRODUCTION READY:</strong> Domain verified! You can now send emails to all company addresses.
+              </p>
+            </div>
           </div>
 
           <div className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E7EB]">
