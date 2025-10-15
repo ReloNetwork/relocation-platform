@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    // Send partnership email
+    // Send partnership email  
     const emailData = await resend.emails.send({
       from: 'Calistar Ankrah, Founder <onboarding@resend.dev>',
       to: to,
