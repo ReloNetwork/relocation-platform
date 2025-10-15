@@ -159,11 +159,12 @@ export default function HomePage() {
           muted 
           loop 
           playsInline
-          className="absolute inset-0 w-full h-full object-contain"
+          className="absolute top-0 left-0 w-full h-full object-contain"
           style={{ 
-            objectPosition: 'center',
+            objectPosition: 'center top',
             filter: 'brightness(1.2) contrast(0.9)',
-            opacity: '0.8'
+            opacity: '0.8',
+            marginTop: '-128px'
           }}
           poster="/london-skyline-hero.mp4"
         >
@@ -173,10 +174,10 @@ export default function HomePage() {
         </video>
         
         {/* Light overlay to maintain professional brand */}
-        <div className="absolute inset-0 bg-white/30"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-white/30" style={{ marginTop: '-128px' }}></div>
         
         {/* Additional light gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9]/50 via-white/40 to-[#F8F9FA]/50"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#FAFAF9]/50 via-white/40 to-[#F8F9FA]/50" style={{ marginTop: '-128px' }}></div>
         
         {/* Elegant Translucent Overlays for sophistication */}
         <div className="absolute inset-0">
