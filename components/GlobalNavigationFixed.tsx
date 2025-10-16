@@ -25,6 +25,7 @@ export default function GlobalNavigationFixed() {
     { name: 'Home', href: '/' },
     { name: 'Directory', href: '/directory' },
     { name: 'Partners', href: '/partners' },
+    { name: 'Education', href: '/education' },
   ]
 
   // Add Dashboard only if user has access
