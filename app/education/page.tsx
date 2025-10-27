@@ -3510,7 +3510,7 @@ export default function EducationPortal() {
     const headers = [
       'school_name', 'school_type', 'address', 'city', 'postcode', 
       'website', 'phone', 'region', 'head_teacher', 'age_range',
-      'day_boarding', 'fees', 'notable_alumni', 'ofsted_rating'
+      'day_boarding', 'notable_alumni', 'ofsted_rating'
     ]
     
     const csvContent = [
@@ -3685,7 +3685,7 @@ export default function EducationPortal() {
                 <div className="text-center">
                   <Award className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
                   <h4 className="font-semibold text-[#0B1B2B] mb-2">Detailed Profiles</h4>
-                  <p className="text-[#6B7280] text-sm">Comprehensive information including fees and ratings</p>
+                  <p className="text-[#6B7280] text-sm">Comprehensive information including contact details and ratings</p>
                 </div>
                 <div className="text-center">
                   <Download className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
