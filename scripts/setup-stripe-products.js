@@ -54,7 +54,7 @@ async function createProduct() {
     // Create the price
     const price = await stripe.prices.create({
       product: product.id,
-      unit_amount: 250000, // £2,500 in pence
+      unit_amount: 349700, // £3,497 in pence
       currency: 'gbp',
       lookup_key: '72hour_audit',
       metadata: {
@@ -67,7 +67,7 @@ async function createProduct() {
     console.log('✅ Lookup key:', price.lookup_key);
     console.log('✅ Price ID:', price.id);
     
-    console.log('\n🎉 Setup complete! The 72-Hour Setup Audit is now available for checkout.');
+    console.log('\n🎉 Setup complete! The 72-Hour Setup Audit (£3,497) is now available for checkout.');
     
   } catch (error) {
     console.error('❌ Error setting up Stripe products:', error.message);
