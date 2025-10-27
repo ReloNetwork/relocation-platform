@@ -212,7 +212,7 @@ export default function HomePage() {
             <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#4B5563]">Effortlessly.</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-[#0B1B2B] mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4">
-            London's exclusive relocation network founded in 2024
+            Your concierge for executive relocations to London.
           </p>
           <p className="text-sm sm:text-base text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed px-4">
             Property, schools, and lifestyle handled in days, not months—for executives and the teams who move them.
