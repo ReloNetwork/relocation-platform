@@ -116,7 +116,7 @@ export default function ExecutivePage() {
               <p className="text-[#6B7280] mb-4">
                 Comprehensive area analysis, property shortlist, and detailed relocation roadmap delivered within 72 hours.
               </p>
-              <div className="text-sm text-[#C9A24A] font-medium">£3,497 (credited toward full service)</div>
+              <div className="text-sm text-[#C9A24A] font-medium">Credited toward full service</div>
             </div>
             
             <div className="text-center">
@@ -407,7 +407,7 @@ export default function ExecutivePage() {
                   onClick={handleGetStarted}
                   className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white py-3 rounded-lg font-semibold mb-4"
                 >
-                  Start Your 72-Hour Audit - £3,497
+                  Start Your 72-Hour Audit
                 </Button>
               </div>
               
