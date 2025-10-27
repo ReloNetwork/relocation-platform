@@ -226,7 +226,7 @@ export default function HomePage() {
             Now Live
           </div>
           <div className="text-white text-lg mb-3">
-            <strong>72-Hour London Setup Audit — Executive relocations starting at £2,500.</strong>
+            <strong>72-Hour London Setup Audit — Executive relocations made simple.</strong>
           </div>
           <div className="flex justify-center items-center text-white">
             <div className="text-center">
