@@ -138,7 +138,7 @@ export default function PartnersPage() {
   const partnershipTiers = [
     {
       name: 'Founding Partner',
-      price: '£25,000',
+      price: 'Contact for pricing',
       duration: '12 months',
       description: 'Category exclusivity with homepage placement',
       isPopular: true,
@@ -156,7 +156,7 @@ export default function PartnersPage() {
     },
     {
       name: 'Premium Sponsor',
-      price: '£5,000',
+      price: 'Contact for pricing',
       duration: '90 days',
       description: 'Professional referral access with priority placement',
       priceId: 'premium_sponsor',
@@ -205,7 +205,7 @@ export default function PartnersPage() {
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-xl hover:shadow-2xl transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Become a Founding Partner — £25,000 (12 months)'}
+                {loading ? 'Processing...' : 'Apply for Founding Partnership'}
               </Button>
               <Button 
                 onClick={() => handleCheckout('premium_sponsor')}
@@ -213,7 +213,7 @@ export default function PartnersPage() {
                 className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-xl hover:shadow-2xl transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Premium Sponsor — £5,000 (90 days)'}
+                {loading ? 'Processing...' : 'Apply for Premium Sponsorship'}
               </Button>
             </div>
           </div>
@@ -541,7 +541,7 @@ export default function PartnersPage() {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-[#6B7280]">Investment</span>
-                  <span className="text-[#0B1B2B] font-semibold">£25,000</span>
+                  <span className="text-[#0B1B2B] font-semibold">Contact for pricing</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#6B7280]">Duration</span>
@@ -562,7 +562,7 @@ export default function PartnersPage() {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-[#6B7280]">Investment</span>
-                  <span className="text-[#0B1B2B] font-semibold">£5,000</span>
+                  <span className="text-[#0B1B2B] font-semibold">Contact for pricing</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#6B7280]">Duration</span>
@@ -615,7 +615,7 @@ export default function PartnersPage() {
             </div>
             <div className="text-center p-6 border border-[#0B1B2B]/10 rounded-lg">
               <Users className="h-8 w-8 text-[#C9A24A] mx-auto mb-3" />
-              <div className="text-2xl font-bold text-[#0B1B2B]">£8,500+</div>
+              <div className="text-2xl font-bold text-[#0B1B2B]">Premium</div>
               <div className="text-[#6B7280] font-medium">Min. Relocation Value</div>
               <div className="text-[#6B7280] text-sm mt-1">Premium clients only</div>
             </div>
@@ -649,7 +649,7 @@ export default function PartnersPage() {
                 <div className="space-y-3">
                   <div className="bg-white rounded-lg p-3 border border-[#E5E7EB]">
                     <div className="text-sm font-medium text-[#C9A24A]">Average Client Budget</div>
-                    <div className="text-lg font-bold text-[#0B1B2B]">£18,500</div>
+                    <div className="text-lg font-bold text-[#0B1B2B]">Premium</div>
                   </div>
                   <div className="bg-white rounded-lg p-3 border border-[#E5E7EB]">
                     <div className="text-sm font-medium text-[#C9A24A]">Lead Conversion Rate</div>
@@ -881,7 +881,7 @@ export default function PartnersPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#6B7280]">Marketing Co-op Budget:</span>
-                    <span className="text-[#0B1B2B]">Up to £2,500/quarter</span>
+                    <span className="text-[#0B1B2B]">Available on request</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#6B7280]">Revenue Sharing:</span>
@@ -1026,7 +1026,7 @@ export default function PartnersPage() {
               className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
               disabled={loading}
             >
-              {loading ? 'Processing...' : 'Founding Partner — £25,000'} <ArrowRight className="ml-2 h-4 w-4" />
+              {loading ? 'Processing...' : 'Apply for Founding Partnership'} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button 
               onClick={() => handleCheckout('premium_sponsor')}
@@ -1034,7 +1034,7 @@ export default function PartnersPage() {
               className="border-2 border-white text-white hover:bg-white hover:text-[#C9A24A] rounded-md hover:scale-105 transition-all"
               disabled={loading}
             >
-              Premium Sponsor — £5,000
+              Apply for Premium Sponsorship
             </Button>
           </div>
           
