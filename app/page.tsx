@@ -215,7 +215,7 @@ export default function HomePage() {
             London's exclusive relocation network founded in 2024
           </p>
           <p className="text-sm sm:text-base text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-            Vetted partners and white-glove 24/7 concierge, curated by international relocation specialist, with years orchestrating executive moves for Fortune 500 firms and HNW clients.
+            Property, schools, and lifestyle handled in days, not months—for executives and the teams who move them.
           </p>
 
 
