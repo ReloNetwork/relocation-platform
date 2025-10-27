@@ -381,6 +381,26 @@ export default function ExecutiveIntakePage() {
                       required
                     />
                   </div>
+                  <div>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Phone number</label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      placeholder="e.g., +44 20 3105 9566"
+                      className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Current location</label>
+                    <input
+                      type="text"
+                      value={formData.currentLocation}
+                      onChange={(e) => handleInputChange('currentLocation', e.target.value)}
+                      placeholder="e.g., New York, USA"
+                      className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
