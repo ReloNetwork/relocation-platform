@@ -7,6 +7,7 @@ import Layout from '../../components/Layout'
 import { getAllDirectorySchemas } from '../../lib/seo/directory-schemas'
 import { checkoutFunctions } from '../../lib/checkout'
 import ExecutiveIntakeNudge from '../../components/ExecutiveIntakeNudge'
+import AuthGuard from './auth-guard'
 
 const LondonAreaCard = ({ 
   area, 
@@ -1252,7 +1253,8 @@ export default function DirectoryPage() {
   ]
 
   return (
-    <Layout className="bg-[#FAFAF9]" showFooter={false}>
+    <AuthGuard requiredLevel="any">
+      <Layout className="bg-[#FAFAF9]" showFooter={false}>
       {/* Enhanced Structured Data for Directory Authority */}
       {schemas.map((schema, index) => (
         <script
@@ -2145,6 +2147,7 @@ export default function DirectoryPage() {
         trigger="partner_views"
         nudgeText="Get 3 warm intros + a 30-day execution plan."
       />
-    </Layout>
+      </Layout>
+    </AuthGuard>
   )
 }
