@@ -432,8 +432,8 @@ export default function HomePage() {
 
           {/* Client Results Section */}
           <div className="mb-16 max-w-7xl mx-auto px-4" id="client-results">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <div className="text-center mb-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1B2B] mb-3" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                 Client Results
               </h2>
               <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
@@ -441,44 +441,44 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
               {/* Partner SLA Card */}
               <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group hover:scale-[1.02] fade-in">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
-                      <svg className="h-6 w-6 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-8 h-8 bg-[#C9A24A]/10 rounded-lg flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                      <svg className="h-4 w-4 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <Badge variant="secondary" className="text-[#16A34A] bg-[#16A34A]/10 px-4 py-2">SLA Guaranteed</Badge>
+                    <Badge variant="secondary" className="text-[#16A34A] bg-[#16A34A]/10 px-2 py-1 text-xs">SLA Guaranteed</Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold text-[#0B1B2B] text-left">Partner SLAs</CardTitle>
+                  <CardTitle className="text-lg font-bold text-[#0B1B2B] text-left">Partner SLAs</CardTitle>
                 </CardHeader>
                 <CardContent 
-                  className="space-y-4"
+                  className="space-y-2"
                   aria-label="Service level agreements with vetted partners"
                 >
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
-                      <span className="text-[#6B7280] text-sm">Property Agents</span>
-                      <span className="font-medium text-[#0B1B2B]">24h response</span>
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center py-1 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-xs">Property Agents</span>
+                      <span className="font-medium text-[#0B1B2B] text-xs">24h response</span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
-                      <span className="text-[#6B7280] text-sm">Legal Services</span>
-                      <span className="font-medium text-[#0B1B2B]">48h review</span>
+                    <div className="flex justify-between items-center py-1 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-xs">Legal Services</span>
+                      <span className="font-medium text-[#0B1B2B] text-xs">48h review</span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
-                      <span className="text-[#6B7280] text-sm">School Placement</span>
-                      <span className="font-medium text-[#0B1B2B]">72h shortlist</span>
+                    <div className="flex justify-between items-center py-1 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-xs">School Placement</span>
+                      <span className="font-medium text-[#0B1B2B] text-xs">72h shortlist</span>
                     </div>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-[#6B7280] text-sm font-medium">Banking Setup</span>
-                      <span className="font-bold text-[#C9A24A]">5-day live</span>
+                    <div className="flex justify-between items-center py-1">
+                      <span className="text-[#6B7280] text-xs font-medium">Banking Setup</span>
+                      <span className="font-bold text-[#C9A24A] text-xs">5-day live</span>
                     </div>
                   </div>
-                  <div className="bg-[#16A34A]/10 border border-[#16A34A]/20 rounded-lg p-3">
-                    <p className="text-sm font-semibold text-[#0B1B2B] text-center">
+                  <div className="bg-[#16A34A]/10 border border-[#16A34A]/20 rounded-lg p-2">
+                    <p className="text-xs font-semibold text-[#0B1B2B] text-center">
                       Written guarantees • 47 vetted partners
                     </p>
                   </div>
@@ -486,48 +486,48 @@ export default function HomePage() {
               </Card>
               {/* Timeline Card */}
               <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group hover:scale-[1.02] fade-in">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
-                      <svg className="h-6 w-6 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-8 h-8 bg-[#C9A24A]/10 rounded-lg flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                      <svg className="h-4 w-4 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 px-4 py-2">Speed Record</Badge>
+                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 px-2 py-1 text-xs">Speed Record</Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold text-[#0B1B2B] text-left">Landed Sun → Keys Fri</CardTitle>
+                  <CardTitle className="text-lg font-bold text-[#0B1B2B] text-left">Landed Sun → Keys Fri</CardTitle>
                 </CardHeader>
                 <CardContent 
-                  className="space-y-4"
+                  className="space-y-2"
                   aria-label="Executive relocation timeline showing 5-day completion"
                 >
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
-                      <span className="text-[#6B7280] text-sm">Landed</span>
-                      <span className="font-medium text-[#0B1B2B]">Sun, Oct 13</span>
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center py-1 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-xs">Landed</span>
+                      <span className="font-medium text-[#0B1B2B] text-xs">Sun, Oct 13</span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
-                      <span className="text-[#6B7280] text-sm">Viewings</span>
-                      <span className="font-medium text-[#0B1B2B]">Mon-Wed</span>
+                    <div className="flex justify-between items-center py-1 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-xs">Viewings</span>
+                      <span className="font-medium text-[#0B1B2B] text-xs">Mon-Wed</span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
-                      <span className="text-[#6B7280] text-sm">Offer Accepted</span>
-                      <span className="font-medium text-[#0B1B2B]">Thu, Oct 17</span>
+                    <div className="flex justify-between items-center py-1 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-xs">Offer Accepted</span>
+                      <span className="font-medium text-[#0B1B2B] text-xs">Thu, Oct 17</span>
                     </div>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-[#6B7280] text-sm font-medium">Keys Received</span>
-                      <span className="font-bold text-[#C9A24A]">Fri, Oct 18</span>
+                    <div className="flex justify-between items-center py-1">
+                      <span className="text-[#6B7280] text-xs font-medium">Keys Received</span>
+                      <span className="font-bold text-[#C9A24A] text-xs">Fri, Oct 18</span>
                     </div>
                   </div>
-                  <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3 space-y-2">
-                    <p className="text-sm font-semibold text-[#0B1B2B] text-center">
+                  <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-2">
+                    <p className="text-xs font-semibold text-[#0B1B2B] text-center">
                       5 days • Mayfair • £8.5k/month
                     </p>
-                    <div className="flex items-center justify-center text-xs text-[#6B7280]">
+                    <div className="flex items-center justify-center text-xs text-[#6B7280] mt-1">
                       <svg className="w-3 h-3 mr-1 text-[#16A34A]" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
-                      Verified by landlord confirmation • Fortune 500 CFO
+                      Verified • Fortune 500 CFO
                     </div>
                   </div>
                 </CardContent>
@@ -535,47 +535,31 @@ export default function HomePage() {
 
               {/* Document Card */}
               <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group hover:scale-[1.02] fade-in">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
-                      <svg className="h-6 w-6 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-8 h-8 bg-[#C9A24A]/10 rounded-lg flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                      <svg className="h-4 w-4 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                     </div>
-                    <Badge variant="secondary" className="text-[#16A34A] bg-[#16A34A]/10 px-4 py-2">Verified</Badge>
+                    <Badge variant="secondary" className="text-[#16A34A] bg-[#16A34A]/10 px-2 py-1 text-xs">Verified</Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold text-[#0B1B2B] text-left">Offer Accepted</CardTitle>
+                  <CardTitle className="text-lg font-bold text-[#0B1B2B] text-left">Offer Accepted</CardTitle>
                 </CardHeader>
                 <CardContent 
-                  className="space-y-4"
+                  className="space-y-2"
                   aria-label="Offer acceptance email confirmation"
                 >
-                  <div className="bg-[#F8F9FA] border border-[#E5E7EB] rounded-lg p-4 font-mono text-xs leading-relaxed">
-                    <div className="mb-3 pb-2 border-b border-[#E5E7EB]">
-                      <div className="text-[#6B7280]">From: lettings@███████.co.uk</div>
-                      <div className="text-[#6B7280]">To: client@therelonetwork.com</div>
-                      <div className="text-[#6B7280]">Date: Thu, 17 Oct 2024, 14:23 GMT</div>
-                      <div className="text-[#6B7280]">Subject: URGENT - Offer Accepted - ████ Mews</div>
-                    </div>
-                    <div className="space-y-2 text-[#0B1B2B]">
-                      <p>Dear ████████,</p>
-                      <p>We are delighted to confirm that your offer of <span className="font-bold">£8,500 pcm</span> for the property at ████ ████ Mews, Mayfair, London W1K ███ has been <span className="text-[#16A34A] font-bold">ACCEPTED</span> by the landlord.</p>
-                      <p>Your tenancy will commence on <span className="font-bold">01 November 2024</span>.</p>
-                      <p>Reference checks initiated. AST drafting begins tomorrow. Keys handover scheduled for Friday 18 Oct.</p>
-                      <div className="bg-[#FEF3C7] border-l-4 border-[#F59E0B] pl-2 py-1 mt-2">
-                        <p className="text-[#92400E]">PRIORITY: Executive relocation - expedited processing approved</p>
-                      </div>
-                      <p className="pt-2">Congratulations & best regards,<br/>████████ Lettings<br/>███ ████ Square, Mayfair</p>
+                  <div className="bg-[#F8F9FA] border border-[#E5E7EB] rounded-lg p-2 text-xs">
+                    <div className="space-y-1 text-[#0B1B2B]">
+                      <p>Offer of <span className="font-bold text-[#16A34A]">£8,500 pcm</span> for Mayfair property <span className="font-bold text-[#16A34A]">ACCEPTED</span></p>
+                      <p>Tenancy start: <span className="font-bold">01 November 2024</span></p>
+                      <p>Keys received: <span className="font-bold">Friday 18 Oct</span></p>
                     </div>
                   </div>
-                  <div className="text-center space-y-2">
-                    <span className="inline-flex items-center text-sm text-[#16A34A] font-medium">
-                      <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Email verified • Client consent on file
-                    </span>
-                    <div className="text-xs text-[#6B7280]">Partner: Knight Frank Mayfair • Offer positioning by Relo Network</div>
+                  <div className="text-center">
+                    <div className="text-xs text-[#16A34A] font-medium">✓ Email verified</div>
+                    <div className="text-xs text-[#6B7280]">Knight Frank Mayfair</div>
                   </div>
                 </CardContent>
               </Card>
@@ -589,18 +573,18 @@ export default function HomePage() {
                 role="button"
                 aria-label="Play testimonial video from executive client"
               >
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
-                      <svg className="h-6 w-6 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-8 h-8 bg-[#C9A24A]/10 rounded-lg flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                      <svg className="h-4 w-4 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                       </svg>
                     </div>
-                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 px-4 py-2">Testimonial</Badge>
+                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 px-2 py-1 text-xs">Testimonial</Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold text-[#0B1B2B] text-left">Client Testimonial</CardTitle>
+                  <CardTitle className="text-lg font-bold text-[#0B1B2B] text-left">Client Testimonial</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-2">
                   <div className="relative bg-gradient-to-br from-[#0B1B2B] to-[#1F2937] rounded-lg overflow-hidden aspect-video">
                     <img 
                       src="/assets/proof-testimonial.jpg" 
@@ -608,26 +592,17 @@ export default function HomePage() {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                        <svg className="w-6 h-6 text-[#0B1B2B] ml-1" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                        <svg className="w-4 h-4 text-[#0B1B2B] ml-1" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                         </svg>
                       </div>
                     </div>
                   </div>
-                  <div className="text-center space-y-2">
-                    <p className="text-sm text-[#6B7280] mb-2 italic">"Exceeded every expectation. From landing Sunday to signing Friday—remarkable."</p>
-                    <div className="space-y-1">
-                      <span className="text-sm font-medium text-[#0B1B2B] block">Fortune 500 CFO • Oct 2024</span>
-                      <div className="text-xs text-[#6B7280]">Filmed 30 days post-settlement • Identity verified</div>
-                      <div className="flex items-center justify-center text-xs text-[#C9A24A] font-medium">
-                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                          <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
-                        </svg>
-                        Watch full case study (45s)
-                      </div>
-                    </div>
+                  <div className="text-center">
+                    <p className="text-xs text-[#6B7280] italic">"Exceeded every expectation. Sunday to Friday—remarkable."</p>
+                    <div className="text-xs font-medium text-[#0B1B2B] mt-1">Fortune 500 CFO • Oct 2024</div>
+                    <div className="text-xs text-[#C9A24A] font-medium mt-1">▶ Watch case study (45s)</div>
                   </div>
                 </CardContent>
               </Card>
