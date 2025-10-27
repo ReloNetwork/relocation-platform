@@ -111,7 +111,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
 ### Core Pages
 - **Homepage (`/`)**: Hero section with dual-track ICP messaging and service offerings
-- **72-Hour Setup Audit (`/executive-intake`)**: Area analysis, property shortlist, viewings route, and tenancy rider review
+- **72-Hour Setup Audit (`/executive-intake`)**: Area analysis, property shortlist, viewings route, and tenancy agreement review
 - **Corporate Assessment**: 15-minute needs assessment for HR teams managing relocations
 - **Terms (`/terms`)**: Service terms, refund policy, and milestone guarantees
 
@@ -125,7 +125,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application.
 - **Stripe**: Payment processing for 72-Hour Setup Audits and Executive Relocation packages
 - **Cal.com**: Strategy call booking for audit clients
 - **Partner Network**: Vetted service providers with SLA guarantees
-- **Legal Review**: Tenancy rider analysis and property investment guidance
+- **Legal Review**: Tenancy agreement analysis and property investment guidance
 
 ## 🎨 Design System
 

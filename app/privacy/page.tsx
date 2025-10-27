@@ -152,7 +152,7 @@ export default function PrivacyPage() {
               <ul className="space-y-2 text-[#6B7280]">
                 <li>• Estate agents: Area preferences and property shortlist requirements</li>
                 <li>• Schools: Family details for admissions guidance and school visits</li>
-                <li>• Legal advisors: Tenancy requirements for rider review</li>
+                <li>• Legal advisors: Tenancy requirements for agreement review</li>
                 <li>• Service providers: Specific requirements for viewing routes and logistics</li>
                 <li>• Financial advisors: Employment context for mortgage and investment analysis</li>
               </ul>
