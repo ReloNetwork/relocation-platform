@@ -72,6 +72,11 @@ export async function POST(req: NextRequest) {
     if (cadence !== 'one_time') {
       lookup_key = `${plan}_${cadence}`;
     }
+    
+    // Use updated lookup key for 72hour_audit
+    if (plan === '72hour_audit') {
+      lookup_key = '72hour_audit_v3497';
+    }
 
     // Find price by lookup key
     console.log(`Searching for price with lookup_key: ${lookup_key}`);
@@ -98,12 +103,12 @@ export async function POST(req: NextRequest) {
         },
         '72hour_audit': {
           id: 'price_mock_72hour_audit',
-          unit_amount: 250000, // £2,500 in pence
+          unit_amount: 349700, // £3,497 in pence
           currency: 'gbp'
         },
         'executive_intake': {
           id: 'price_mock_executive_intake',
-          unit_amount: 250000, // £2,500 in pence (same as 72hour_audit)
+          unit_amount: 349700, // £3,497 in pence (same as 72hour_audit)
           currency: 'gbp'
         }
       };

@@ -149,7 +149,7 @@ Shared components in `packages/ui/src/`:
 ## 🗄️ Database Schema
 
 ### Core Services
-- **72-Hour Setup Audit** - £2,500 comprehensive area analysis and property shortlist
+- **72-Hour Setup Audit** - £3,497 comprehensive area analysis and property shortlist
 - **Executive Relocation Packages** - £7,500-£15,000 full-service relocations (audit credit applied)
 - **Corporate Relocation Programs** - End-to-end employee relocation for HR teams
 - **Partner Network** - Vetted providers with milestone-based service guarantees
@@ -182,7 +182,7 @@ pnpm db:reset         # Drop and recreate database
 ## 📊 Service Offerings
 
 **2025 Pricing Model:**
-- **72-Hour Setup Audit**: £2,500 (credited toward full service if booked within 90 days)
+- **72-Hour Setup Audit**: £3,497 (credited toward full service if booked within 90 days)
 - **Executive Relocation**: £7,500-£15,000 comprehensive packages
 - **Corporate Programs**: Custom pricing for HR teams
 - **Milestone Guarantees**: 10% service credit for missed deadlines
