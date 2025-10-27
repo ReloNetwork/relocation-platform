@@ -389,47 +389,98 @@ export default function HomePage() {
             {/* Milestone Progress Bar */}
             <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-[#C9A24A]/20 p-6 md:p-8">
               <div className="text-center mb-8">
-                <h3 className="text-xl font-semibold text-[#0B1B2B] mb-2">Delivery Guarantee</h3>
-                <p className="text-[#6B7280]">Clear milestones with credit protection</p>
+                <h3 className="text-xl font-semibold text-[#0B1B2B] mb-2">Milestone Guarantee</h3>
+                <p className="text-[#6B7280]">Specific deliverables with automatic credit protection</p>
               </div>
               
               <div className="grid md:grid-cols-3 gap-6">
                 {/* Day 7 */}
                 <div className="text-center p-4 bg-[#C9A24A]/5 rounded-lg border border-[#C9A24A]/10 fade-in">
-                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">Day 7</div>
-                  <div className="text-sm font-medium text-[#0B1B2B] mb-1">deliverables</div>
-                  <div className="text-xs text-[#6B7280]">or 10% credit</div>
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-3">Day 7</div>
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-2">Area Analysis Complete</div>
+                  <div className="text-xs text-[#6B7280] leading-relaxed mb-2">
+                    Property shortlist + viewing route + schedule confirmed
+                  </div>
+                  <div className="text-xs font-medium text-[#C9A24A]">or 10% credit applied</div>
                 </div>
 
                 {/* Day 14 */}
                 <div className="text-center p-4 bg-[#C9A24A]/5 rounded-lg border border-[#C9A24A]/10 fade-in">
-                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">Day 14</div>
-                  <div className="text-sm font-medium text-[#0B1B2B] mb-1">deliverables</div>
-                  <div className="text-xs text-[#6B7280]">or 10% credit</div>
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-3">Day 14</div>
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-2">Viewings Complete</div>
+                  <div className="text-xs text-[#6B7280] leading-relaxed mb-2">
+                    Offer submitted + tenancy rider reviewed + legal connected
+                  </div>
+                  <div className="text-xs font-medium text-[#C9A24A]">or 10% credit applied</div>
                 </div>
 
                 {/* Day 30 */}
                 <div className="text-center p-4 bg-[#C9A24A]/5 rounded-lg border border-[#C9A24A]/10 fade-in">
-                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">Day 30</div>
-                  <div className="text-sm font-medium text-[#0B1B2B] mb-1">deliverables</div>
-                  <div className="text-xs text-[#6B7280]">or 10% credit</div>
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-3">Day 30</div>
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-2">Settlement Complete</div>
+                  <div className="text-xs text-[#6B7280] leading-relaxed mb-2">
+                    Moved in + banking setup + school enrollment + concierge active
+                  </div>
+                  <div className="text-xs font-medium text-[#C9A24A]">or 10% credit applied</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Client Results Section */}
+          {/* Client Results Section - Proof Hub */}
           <div className="mb-24 max-w-7xl mx-auto px-4" id="client-results">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                Client Results
+                Proof Hub
               </h2>
               <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
-                Real outcomes from executive relocations
+                Real outcomes, verified timelines, and partner guarantees
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+              {/* Partner SLA Card */}
+              <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group hover:scale-[1.02] fade-in">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                      <svg className="h-6 w-6 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <Badge variant="secondary" className="text-[#16A34A] bg-[#16A34A]/10 px-4 py-2">SLA Guaranteed</Badge>
+                  </div>
+                  <CardTitle className="text-xl font-bold text-[#0B1B2B] text-left">Partner SLAs</CardTitle>
+                </CardHeader>
+                <CardContent 
+                  className="space-y-4"
+                  aria-label="Service level agreements with vetted partners"
+                >
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-sm">Property Agents</span>
+                      <span className="font-medium text-[#0B1B2B]">24h response</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-sm">Legal Services</span>
+                      <span className="font-medium text-[#0B1B2B]">48h review</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-sm">School Placement</span>
+                      <span className="font-medium text-[#0B1B2B]">72h shortlist</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-[#6B7280] text-sm font-medium">Banking Setup</span>
+                      <span className="font-bold text-[#C9A24A]">5-day live</span>
+                    </div>
+                  </div>
+                  <div className="bg-[#16A34A]/10 border border-[#16A34A]/20 rounded-lg p-3">
+                    <p className="text-sm font-semibold text-[#0B1B2B] text-center">
+                      Written guarantees • 47 vetted partners
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
               {/* Timeline Card */}
               <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group hover:scale-[1.02] fade-in">
                 <CardHeader className="pb-4">
@@ -465,10 +516,16 @@ export default function HomePage() {
                       <span className="font-bold text-[#C9A24A]">Fri, Oct 18</span>
                     </div>
                   </div>
-                  <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3">
+                  <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3 space-y-2">
                     <p className="text-sm font-semibold text-[#0B1B2B] text-center">
                       5 days • Mayfair • £8.5k/month
                     </p>
+                    <div className="flex items-center justify-center text-xs text-[#6B7280]">
+                      <svg className="w-3 h-3 mr-1 text-[#16A34A]" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Verified by landlord confirmation • Fortune 500 CFO
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -494,22 +551,28 @@ export default function HomePage() {
                     <div className="mb-3 pb-2 border-b border-[#E5E7EB]">
                       <div className="text-[#6B7280]">From: lettings@███████.co.uk</div>
                       <div className="text-[#6B7280]">To: client@therelonetwork.com</div>
-                      <div className="text-[#6B7280]">Subject: Offer Accepted - ████ Mews</div>
+                      <div className="text-[#6B7280]">Date: Thu, 17 Oct 2024, 14:23 GMT</div>
+                      <div className="text-[#6B7280]">Subject: URGENT - Offer Accepted - ████ Mews</div>
                     </div>
                     <div className="space-y-2 text-[#0B1B2B]">
                       <p>Dear ████████,</p>
-                      <p>We are delighted to confirm that your offer of <span className="font-bold">£8,500 pcm</span> for the property at ████ ████ Mews, Mayfair has been <span className="text-[#16A34A] font-bold">ACCEPTED</span>.</p>
-                      <p>Reference checks and contracts to follow within 24 hours.</p>
-                      <p className="pt-2">Best regards,<br/>████████ Lettings</p>
+                      <p>We are delighted to confirm that your offer of <span className="font-bold">£8,500 pcm</span> for the property at ████ ████ Mews, Mayfair, London W1K ███ has been <span className="text-[#16A34A] font-bold">ACCEPTED</span> by the landlord.</p>
+                      <p>Your tenancy will commence on <span className="font-bold">01 November 2024</span>.</p>
+                      <p>Reference checks initiated. AST drafting begins tomorrow. Keys handover scheduled for Friday 18 Oct.</p>
+                      <div className="bg-[#FEF3C7] border-l-4 border-[#F59E0B] pl-2 py-1 mt-2">
+                        <p className="text-[#92400E]">PRIORITY: Executive relocation - expedited processing approved</p>
+                      </div>
+                      <p className="pt-2">Congratulations & best regards,<br/>████████ Lettings<br/>███ ████ Square, Mayfair</p>
                     </div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center space-y-2">
                     <span className="inline-flex items-center text-sm text-[#16A34A] font-medium">
                       <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
-                      Documented Result
+                      Email verified • Client consent on file
                     </span>
+                    <div className="text-xs text-[#6B7280]">Partner: Knight Frank Mayfair • Offer positioning by Relo Network</div>
                   </div>
                 </CardContent>
               </Card>
@@ -549,9 +612,19 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                  <div className="text-center">
-                    <p className="text-sm text-[#6B7280] mb-2 italic">"Exceeded every expectation..."</p>
-                    <span className="text-sm font-medium text-[#0B1B2B]">Fortune 500 CFO • 45 seconds</span>
+                  <div className="text-center space-y-2">
+                    <p className="text-sm text-[#6B7280] mb-2 italic">"Exceeded every expectation. From landing Sunday to signing Friday—remarkable."</p>
+                    <div className="space-y-1">
+                      <span className="text-sm font-medium text-[#0B1B2B] block">Fortune 500 CFO • Oct 2024</span>
+                      <div className="text-xs text-[#6B7280]">Filmed 30 days post-settlement • Identity verified</div>
+                      <div className="flex items-center justify-center text-xs text-[#C9A24A] font-medium">
+                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                          <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                        </svg>
+                        Watch full case study (45s)
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -737,134 +810,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Services Grid - Clean Layout */}
-          <div className="mb-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Executive Intake */}
-            <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group">
-              <CardHeader className="pb-4">
-                <div className="mb-2">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
-                      <Crown className="h-6 w-6 text-[#C9A24A]" />
-                    </div>
-                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 px-4 py-2">Executive Service</Badge>
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-[#0B1B2B] text-left">Executive Intake</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <CardDescription className="text-[#6B7280] leading-relaxed text-left">
-                  60-minute strategy call, bespoke area shortlist, 3 network partner warm introductions, and a 30-day execution window.
-                </CardDescription>
-                <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3">
-                  <p className="text-sm font-semibold text-[#0B1B2B] text-center">
-                    • Credited toward any package • Starts within 24 hours
-                  </p>
-                </div>
-              <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="flex items-center gap-2 text-[#6B7280]">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
-                  <span>60-min strategy call</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#6B7280]">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
-                  <span>Bespoke shortlist</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#6B7280]">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
-                  <span>3 warm intros</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#6B7280]">
-                  <CheckCircle className="w-4 h-4 text-[#C9A24A] flex-shrink-0" />
-                  <span>30-day execution</span>
-                </div>
-              </div>
-                
-                {/* Clear FAQ Section */}
-                <div className="bg-[#F8F9FA] rounded-lg p-4 space-y-3">
-                  <div className="space-y-1">
-                    <div className="font-medium text-[#0B1B2B] text-sm text-left">What happens after I pay?</div>
-                    <div className="text-[#6B7280] text-sm leading-relaxed text-left">Call booked within 24h; we start your shortlist the same day.</div>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="font-medium text-[#0B1B2B] text-sm text-left">Guarantee?</div>
-                    <div className="text-[#6B7280] text-sm leading-relaxed text-left">3 warm intros in 7 days or we extend your concierge window free.</div>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="font-medium text-[#0B1B2B] text-sm text-left">Refunds?</div>
-                    <div className="text-[#6B7280] text-sm leading-relaxed text-left">Full refund up to 24 hours before your call; credit conversion within 24 hours.</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Founding Partner + Day Pass */}
-            <div className="space-y-6">
-              {/* Founding Partner */}
-              <Card className="bg-gradient-to-br from-[#C9A24A] to-[#B8923D] text-white shadow-2xl border-none">
-                <CardHeader className="pb-4">
-                  <div className="mb-2">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Timer className="h-8 w-8 text-white/80" />
-                      <Badge variant="secondary" className="text-white/90 bg-white/20 px-4 py-2">Founding Partnership</Badge>
-                    </div>
-                    <CardTitle className="text-2xl font-bold text-white text-left">Own Your Category</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <CardDescription className="text-white/95 leading-relaxed text-left">
-                    Concierge qualified introductions, top placements across Home, Directory pages, Concierge recommendations and quarterly editorial features.
-                  </CardDescription>
-                  <div className="bg-white/20 rounded-lg p-2 text-center">
-                    <span className="font-bold text-white">12 Founder slots available</span>
-                  </div>
-                <div className="flex items-center justify-center text-sm mb-6">
-                  <div className="bg-white/20 text-white rounded-full px-4 py-2 font-medium">
-                    Launch Week - Limited Slots Available
-                  </div>
-                </div>
-                  <div className="bg-white/10 rounded-lg p-3">
-                    <div className="text-sm text-white/90 text-center flex items-center justify-center gap-2">
-                      <Gem className="w-4 h-4" />
-                      <span className="font-medium">Bonus: Enroll during launch week for extra editorial + homepage tile (30 days)</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Day Pass */}
-              <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-[#0B1B2B]/10">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#0B1B2B]/10 rounded-xl flex items-center justify-center">
-                      <Clock className="h-5 w-5 text-[#0B1B2B]" />
-                    </div>
-                    <div className="flex-1">
-                      <Badge variant="outline" className="text-[#0B1B2B]/60 mb-1">Quick Access</Badge>
-                      <CardTitle className="text-lg font-bold text-[#0B1B2B]">72-Hour Day Pass</CardTitle>
-                    </div>
-                    <div className="text-2xl font-bold text-[#0B1B2B]">£59</div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <CardDescription className="text-[#6B7280] text-sm leading-relaxed">
-                    Full directory access + 1 curated introduction.
-                  </CardDescription>
-                  <div className="bg-[#0B1B2B]/5 rounded-lg p-2">
-                    <p className="text-xs font-medium text-[#0B1B2B] text-center">
-                      Perfect for weekend viewings
-                    </p>
-                  </div>
-                  <Button
-                    onClick={checkoutFunctions.dayPass}
-                    className="w-full bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white font-semibold hover:scale-105 transition-all shadow-lg"
-                  >
-                    Get Day Pass
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
 
           {/* Top Categories Grid */}
           <div className="mb-16">
