@@ -338,7 +338,7 @@ export default function HomePage() {
 
           {/* How it works Section */}
           <div className="mb-24 max-w-7xl mx-auto px-4" id="how-it-works">
-            <div className="text-center mb-16">
+            <div className="text-center mb-8">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                 How it works
               </h2>
