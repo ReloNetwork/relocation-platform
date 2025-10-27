@@ -82,10 +82,9 @@ export default function ExecutiveIntakePage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          plan: 'executive_intake',
+          plan: '72hour_audit',
           cadence: 'one_time',
-          email: formData.email,
-          credit: dayPassCredit ? parseInt(dayPassCredit) : 0
+          email: formData.email
         }),
       })
 
@@ -110,10 +109,10 @@ export default function ExecutiveIntakePage() {
             <span className="text-[#C9A24A] text-sm font-medium">Executive Service</span>
           </div>
           <h1 className="text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            Executive Intake
+            72-Hour Setup Audit
           </h1>
           <p className="text-xl text-[#6B7280] mb-8">
-            60-min strategy call, bespoke shortlist, 3 warm intros, 30-day execution window
+            Area fit analysis, property shortlist, viewings route, tenancy rider review
           </p>
           
           {/* Progress */}
@@ -140,7 +139,7 @@ export default function ExecutiveIntakePage() {
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#E5E7EB]">
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
               <Calendar className="w-6 h-6 text-[#C9A24A]" />
-              Tell us about your move (2 minutes)
+              Setup your audit (90 seconds)
             </h2>
             
             <div className="space-y-8">
@@ -242,18 +241,18 @@ export default function ExecutiveIntakePage() {
                 </div>
               </div>
 
-              {/* Priorities */}
+              {/* Key Requirements */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Priorities</h3>
-                <div className="grid md:grid-cols-2 gap-6">
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Key Requirements</h3>
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Property type</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Property type preference</label>
                     <select
                       value={formData.propertyType}
                       onChange={(e) => handleInputChange('propertyType', e.target.value)}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     >
-                      <option value="">Select type</option>
+                      <option value="">Any type</option>
                       <option value="flat">Flat/Apartment</option>
                       <option value="house">House</option>
                       <option value="serviced">Serviced Apartment</option>
@@ -261,89 +260,27 @@ export default function ExecutiveIntakePage() {
                       <option value="townhouse">Townhouse</option>
                     </select>
                   </div>
-                  <div className="space-y-4">
-                    {['Property', 'Schools', 'Visa'].map((priority) => (
-                      <div key={priority}>
-                        <label className="block text-sm font-medium text-[#6B7280] mb-2">{priority} priority</label>
-                        <select
-                          value={formData[`${priority.toLowerCase()}Priority` as keyof typeof formData] as string}
-                          onChange={(e) => handleInputChange(`${priority.toLowerCase()}Priority`, e.target.value)}
-                          className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                        >
-                          <option value="low">Low</option>
-                          <option value="medium">Medium</option>
-                          <option value="high">High</option>
-                          <option value="critical">Critical</option>
-                        </select>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Family Details */}
-              <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4 flex items-center gap-2">
-                  <Users className="w-5 h-5 text-[#C9A24A]" />
-                  Family Details
-                </h3>
-                <div className="grid md:grid-cols-3 gap-4 mb-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Adults</label>
-                    <select
-                      value={formData.adults}
-                      onChange={(e) => handleInputChange('adults', e.target.value)}
-                      className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4+">4+</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Children</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Family situation</label>
                     <select
                       value={formData.children}
                       onChange={(e) => handleInputChange('children', e.target.value)}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     >
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4+">4+</option>
+                      <option value="0">No children</option>
+                      <option value="1">1 child</option>
+                      <option value="2">2 children</option>
+                      <option value="3+">3+ children</option>
                     </select>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Children ages (if any)</label>
-                    <input
-                      type="text"
-                      value={formData.childrenAges}
-                      onChange={(e) => handleInputChange('childrenAges', e.target.value)}
-                      placeholder="e.g., 5, 8, 12"
-                      className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                    />
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="pets"
-                    checked={formData.pets}
-                    onChange={(e) => handleInputChange('pets', e.target.checked)}
-                    className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
-                  />
-                  <label htmlFor="pets" className="ml-2 text-sm text-[#6B7280]">
-                    We have pets
-                  </label>
                 </div>
               </div>
 
-              {/* Contact & Urgency */}
+
+              {/* Contact Details */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Contact & Urgency</h3>
-                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Contact Details</h3>
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#6B7280] mb-2">Name *</label>
                     <input
@@ -364,47 +301,6 @@ export default function ExecutiveIntakePage() {
                       required
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Phone</label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Current location</label>
-                    <input
-                      type="text"
-                      value={formData.currentLocation}
-                      onChange={(e) => handleInputChange('currentLocation', e.target.value)}
-                      placeholder="City, Country"
-                      className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                    />
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-[#6B7280] mb-2">Urgency level</label>
-                  <select
-                    value={formData.urgency}
-                    onChange={(e) => handleInputChange('urgency', e.target.value)}
-                    className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                  >
-                    <option value="normal">Normal (30+ days)</option>
-                    <option value="urgent">Urgent (14-30 days)</option>
-                    <option value="emergency">Emergency (under 14 days)</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-[#6B7280] mb-2">Special requirements (optional)</label>
-                  <textarea
-                    value={formData.specialRequirements}
-                    onChange={(e) => handleInputChange('specialRequirements', e.target.value)}
-                    rows={3}
-                    placeholder="Any specific needs, accessibility requirements, etc."
-                    className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                  />
                 </div>
               </div>
             </div>
@@ -432,23 +328,27 @@ export default function ExecutiveIntakePage() {
             
             {/* Service Summary */}
             <div className="bg-[#FAFAF9] rounded-xl p-6 mb-8">
-              <h3 className="text-lg font-bold text-[#0B1B2B] mb-4">Executive Intake Service</h3>
+              <h3 className="text-lg font-bold text-[#0B1B2B] mb-4">72-Hour Setup Audit</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>60-min strategy call (within 24 hours)</span>
+                  <span>Area fit analysis (150+ data points)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Bespoke area shortlist</span>
+                  <span>Curated property shortlist with investment analysis</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>3 warm introductions</span>
+                  <span>Optimized viewing route with pre-negotiated slots</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>30-day execution window</span>
+                  <span>Tenancy rider review with legal recommendations</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
+                  <span>Written report + 60-min strategy call</span>
                 </div>
               </div>
               
@@ -456,16 +356,8 @@ export default function ExecutiveIntakePage() {
                 <div className="flex justify-between items-center text-lg">
                   <span className="font-semibold">Total</span>
                   <div className="text-right">
-                    {sessionStorage.getItem('day_pass_credit_available') && (
-                      <>
-                        <div className="text-sm text-[#6B7280] line-through">£1,500</div>
-                        <div className="text-sm text-[#C9A24A] font-medium">-£59 Day Pass Credit</div>
-                        <div className="text-2xl font-bold text-[#0B1B2B]">£1,441</div>
-                      </>
-                    )}
-                    {!sessionStorage.getItem('day_pass_credit_available') && (
-                      <div className="text-2xl font-bold text-[#0B1B2B]">£1,500</div>
-                    )}
+                    <div className="text-2xl font-bold text-[#0B1B2B]">£2,500</div>
+                    <div className="text-sm text-[#6B7280]">One-time payment</div>
                   </div>
                 </div>
               </div>
@@ -477,18 +369,18 @@ export default function ExecutiveIntakePage() {
               <div className="space-y-4 text-sm">
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">What happens after I pay?</div>
-                  <div className="text-[#6B7280]">Call booked within 24h; we start your shortlist the same day.</div>
+                  <div className="text-[#6B7280]">We begin your area analysis immediately. Written report delivered within 72 hours, call scheduled within 24h.</div>
                 </div>
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-1">Guarantee?</div>
-                  <div className="text-[#6B7280]">3 warm intros in 7 days or we extend your concierge window free.</div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">What if I want the full relocation service?</div>
+                  <div className="text-[#6B7280]">The £2,500 audit fee is fully credited toward our Executive Relocation package (£7,500-£15,000).</div>
                 </div>
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-3">Refunds & Cancellations</div>
                   <div className="text-[#6B7280] space-y-2 text-sm">
-                    <div><strong>Cash refund:</strong> Available until 24 hours before your strategy call.</div>
-                    <div><strong>Within 24 hours:</strong> No cash refunds. We issue account credit valid for 12 months (usable on any Relo service).</div>
-                    <div><strong>After the call starts:</strong> Non-refundable. We may offer account credit only at our discretion.</div>
+                    <div><strong>Cash refund:</strong> Available until we begin your area analysis (typically within 2-4 hours of payment).</div>
+                    <div><strong>After analysis begins:</strong> No cash refunds. We issue account credit valid for 12 months (usable on any Relo service).</div>
+                    <div><strong>After report delivery:</strong> Non-refundable. We may offer account credit only at our discretion.</div>
                     <div className="text-xs text-[#6B7280] mt-2">
                       <strong>Note:</strong> Credit is non-transferable and not redeemable for cash.
                     </div>

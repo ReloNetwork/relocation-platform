@@ -12,8 +12,9 @@ const VALID_PLANS = {
   'founding_partner': { name: 'Founding Partner Charter', mode: 'payment' },
   'premium_sponsor': { name: 'Premium Sponsor', mode: 'payment' },
   
-  // Directory Access
-  'executive_intake': { name: 'Executive Intake', mode: 'payment' },
+  // Core Services
+  '72hour_audit': { name: '72-Hour Setup Audit', mode: 'payment' },
+  'executive_intake': { name: 'Executive Intake', mode: 'payment' }, // Legacy support
   'plus': { name: 'Plus Directory Access', mode: 'subscription' },
   'pro': { name: 'Pro Directory Access', mode: 'subscription' },
   
@@ -108,10 +109,10 @@ export async function POST(req: NextRequest) {
       allow_promotion_codes: true,
       line_items: lineItems,
       discounts: discounts.length > 0 ? discounts : undefined,
-      success_url: plan === 'executive_intake' 
+      success_url: (plan === 'executive_intake' || plan === '72hour_audit')
         ? `${siteUrl}/executive-intake/success?session_id={CHECKOUT_SESSION_ID}`
         : `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=${plan}`,
-      cancel_url: plan === 'executive_intake'
+      cancel_url: (plan === 'executive_intake' || plan === '72hour_audit')
         ? `${siteUrl}/executive-intake`
         : `${siteUrl}/checkout/cancelled?plan=${plan}`,
       customer_email: email || undefined,
@@ -133,6 +134,13 @@ export async function POST(req: NextRequest) {
         custom_text: {
           submit: {
             message: 'Premium Sponsor - 90 days featured placement'
+          }
+        }
+      }),
+      ...(plan === '72hour_audit' && {
+        custom_text: {
+          submit: {
+            message: '72-Hour Setup Audit - Area analysis, property shortlist, viewings route, tenancy rider review'
           }
         }
       }),

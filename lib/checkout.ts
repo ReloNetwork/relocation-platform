@@ -38,7 +38,8 @@ export async function redirectToCheckout(options: CheckoutOptions) {
 export const checkoutFunctions = {
   foundingPartner: () => redirectToCheckout({ plan: 'founding_partner' }),
   premiumSponsor: () => redirectToCheckout({ plan: 'premium_sponsor' }),
-  executiveIntake: () => window.location.href = '/executive-intake', // Redirect to 3-step flow
+  executiveIntake: () => window.location.href = '/executive-intake', // Redirect to 72-Hour Audit flow
+  setupAudit: () => window.location.href = '/executive-intake', // New 72-Hour Setup Audit
   plusMonthly: () => redirectToCheckout({ plan: 'plus', cadence: 'monthly' }),
   plusAnnual: () => redirectToCheckout({ plan: 'plus', cadence: 'annual' }),
   proMonthly: () => redirectToCheckout({ plan: 'pro', cadence: 'monthly' }),
