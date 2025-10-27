@@ -35,21 +35,28 @@ export default function TermsPage() {
               <div>
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Relo Network Services</h3>
                 <ul className="space-y-2 text-[#6B7280]">
-                  <li>• Executive Intake Service: Strategy calls and bespoke relocation planning</li>
-                  <li>• Luxury Relocation Packages: Comprehensive end-to-end services</li>
-                  <li>• AI-Powered Assistance: 24/7 Relo AI support and guidance</li>
-                  <li>• Partner Network Access: Connections to vetted service providers</li>
-                  <li>• Ongoing Concierge Support: Continuous assistance throughout your journey</li>
+                  <li>• <strong>72-Hour Setup Audit:</strong> Area fit analysis, property shortlist, viewings route, tenancy rider review with written report and 60-min strategy call</li>
+                  <li>• <strong>Executive Relocation Packages:</strong> Comprehensive 7-30 day relocation services for executives and their families</li>
+                  <li>• <strong>Corporate Relocation Programs:</strong> End-to-end employee relocation solutions for businesses and HR teams</li>
+                  <li>• <strong>Partner Network Access:</strong> Connections to vetted service providers with written SLAs</li>
+                  <li>• <strong>Ongoing Concierge Support:</strong> Continuous assistance throughout your London settlement</li>
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Service Commitment</h3>
-                <p className="text-[#6B7280]">
+                <p className="text-[#6B7280] mb-4">
                   Relo Network is committed to delivering exceptional relocation services with transparency, 
                   professionalism, and attention to detail. All services are provided according to the specific 
                   package terms agreed upon booking.
                 </p>
+                <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-4">
+                  <h4 className="font-semibold text-[#0B1B2B] mb-2">Milestone Guarantees</h4>
+                  <p className="text-[#6B7280] text-sm">
+                    We guarantee specific deliverables by agreed milestones. If we miss any milestone deadline, 
+                    you receive a 10% service credit automatically applied to your account, cumulative across services.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -63,29 +70,37 @@ export default function TermsPage() {
             
             <div className="space-y-6">
               <div className="bg-[#F8F9FA] rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Cancellation Timeline</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">72-Hour Setup Audit - Cancellation Timeline</h3>
                 <div className="space-y-4">
                   <div className="flex gap-4">
                     <div className="w-4 h-4 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
                     <div>
-                      <div className="font-medium text-[#0B1B2B]">Up to 24 hours before your call</div>
-                      <div className="text-[#6B7280] text-sm">Full refund available</div>
+                      <div className="font-medium text-[#0B1B2B]">Before area analysis begins</div>
+                      <div className="text-[#6B7280] text-sm">Full refund available (typically within 2-4 hours of payment)</div>
                     </div>
                   </div>
                   <div className="flex gap-4">
                     <div className="w-4 h-4 bg-yellow-500 rounded-full mt-1 flex-shrink-0"></div>
                     <div>
-                      <div className="font-medium text-[#0B1B2B]">Within 24 hours of your call</div>
+                      <div className="font-medium text-[#0B1B2B]">After analysis begins</div>
                       <div className="text-[#6B7280] text-sm">Payment converted to account credit (valid 12 months)</div>
                     </div>
                   </div>
                   <div className="flex gap-4">
                     <div className="w-4 h-4 bg-red-500 rounded-full mt-1 flex-shrink-0"></div>
                     <div>
-                      <div className="font-medium text-[#0B1B2B]">After your call has started</div>
-                      <div className="text-[#6B7280] text-sm">Payments are non-refundable; unused value may be credited at our discretion</div>
+                      <div className="font-medium text-[#0B1B2B]">After report delivery</div>
+                      <div className="text-[#6B7280] text-sm">Non-refundable; unused value may be credited at our discretion</div>
                     </div>
                   </div>
+                </div>
+                
+                <div className="mt-6 p-4 bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg">
+                  <h4 className="font-semibold text-[#0B1B2B] mb-2">Audit Credit Toward Full Service</h4>
+                  <p className="text-[#6B7280] text-sm">
+                    The £2,500 audit fee is fully credited toward our Executive Relocation packages (£7,500-£15,000) 
+                    if booked within 90 days of audit completion.
+                  </p>
                 </div>
               </div>
 

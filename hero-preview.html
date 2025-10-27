@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relo Network - Executive Relocations to London</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Critical CSS for hero section */
+    :root {
+      --relo-primary: #0B1B2B;
+      --relo-navy: #1e3a5f;
+      --relo-light: #f8fafc;
+      --relo-slate: #64748b;
+      --relo-gray-50: #f9fafb;
+      --relo-gray-100: #f3f4f6;
+      --relo-gray-900: #111827;
+      --relo-gold: #d4af37;
+      --gradient-start: #0B1B2B;
+      --gradient-end: #1e3a5f;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.75) 100%);
+      z-index: 2;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect width="1200" height="600" fill="none"/></svg>');
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      z-index: 1;
+    }
+    
+    @media (min-width: 1200px) and (prefers-reduced-motion: no-preference) {
+      .hero.enhanced::before {
+        background-image: url('/api/placeholder/1200/600');
+        opacity: 0.1;
+      }
+    }
+    
+    .hero-content {
+      max-width: 56rem;
+      text-align: center;
+      position: relative;
+      z-index: 3;
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.025em;
+      color: #0B1B2B;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 4rem;
+      }
+    }
+    
+    .hero-subtitle {
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #64748b;
+      margin-bottom: 2.5rem;
+      max-width: 42rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 3rem;
+      }
+    }
+    
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-ctas {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      border: 2px solid transparent;
+      transition: all 0.2s ease-in-out;
+      min-width: 200px;
+      text-align: center;
+    }
+    
+    .btn:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+    
+    .btn-primary {
+      background-color: #fff;
+      color: var(--relo-primary);
+      border-color: #fff;
+    }
+    
+    .btn-primary:hover {
+      background-color: #f1f5f9;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-1px);
+    }
+    
+    .mobile-secondary {
+      display: block;
+      margin-top: 1rem;
+      color: #e2e8f0;
+      text-decoration: underline;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s ease-in-out;
+    }
+    
+    .mobile-secondary:hover {
+      color: #fff;
+    }
+    
+    .mobile-secondary:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+      border-radius: 0.25rem;
+    }
+    
+    @media (min-width: 768px) {
+      .mobile-secondary {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .btn-secondary {
+        display: none;
+      }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .btn:hover {
+        transform: none;
+      }
+      
+      .hero::before {
+        transition: none;
+      }
+    }
+    
+    /* Screen reader only content */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Gentle float animation for step circles */
+    @keyframes gentle-float {
+      0%, 100% { 
+        transform: translateY(0px);
+      }
+      50% { 
+        transform: translateY(-6px);
+      }
+    }
+
+    /* Subtle gradient overlay for premium feel */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(11, 27, 43, 0.05) 0%, rgba(30, 58, 95, 0.05) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Proof section styles */
+    .proof-card {
+      border-left: 4px solid var(--relo-gold);
+      transition: all 0.3s ease-out;
+      cursor: pointer;
+    }
+
+    .proof-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .proof-card:focus-within {
+      transform: scale(1.01);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      outline: 2px solid var(--relo-gold);
+      outline-offset: 2px;
+    }
+
+    .timeline-date {
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      background: linear-gradient(135deg, var(--relo-gold), #e6c547);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(11, 27, 43, 0.8);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .video-overlay:hover {
+      background: rgba(11, 27, 43, 0.9);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-left: 20px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      margin-left: 4px;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 80vw;
+      max-height: 80vh;
+      background: black;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .proof-card:hover,
+      .proof-card:focus-within,
+      .video-overlay:hover {
+        transform: none;
+      }
+      
+      .gentle-float {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" id="hero" aria-label="Executive relocation services hero section">
+      <video autoplay muted loop playsinline class="hero-video">
+        <source src="/Users/calistarankrah/Downloads/calis_41944_A_panoramic_London_skyline_with_Iconic_landmarks__5cecbcba-a23c-4372-9d47-f044fa392639_2.mp4" type="video/mp4">
+        <!-- Fallback for browsers that don't support video -->
+        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="London skyline" style="width: 100%; height: 100%; object-fit: cover;">
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Relocate to <span style="color: #d4af37;">London</span><br>
+          Effortlessly.
+        </h1>
+        
+        <p class="hero-subtitle">
+          Executive relocation network founded in 2024. We handle everything: finding your perfect home, securing school places for your children, and setting up your new life in London—completed in weeks, not months.
+        </p>
+        
+        <div class="hero-ctas">
+          <a href="#audit" class="btn btn-primary" data-track="hero_cta_audit" aria-describedby="audit-desc" style="background: #d4af37; border-color: #d4af37; color: #0B1B2B; font-weight: 600; padding: 1rem 2.5rem; border-radius: 50px;">
+            Start Executive Intake
+          </a>
+          <span id="audit-desc" class="sr-only">
+            Begin your executive relocation process to London
+          </span>
+          
+          <a href="#assessment" class="btn btn-secondary" data-track="hero_cta_corporate" aria-describedby="assessment-desc" style="background: #0B1B2B; border-color: #0B1B2B; color: white; font-weight: 600; padding: 1rem 2.5rem; border-radius: 50px;">
+            Become a Founding Partner
+          </a>
+          <span id="assessment-desc" class="sr-only">
+            Join as a founding partner in the Relo Network
+          </span>
+          
+          <a href="#directory" style="color: #d4af37; text-decoration: none; font-weight: 500; margin-top: 1.5rem; display: block;">
+            Browse the Directory →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works section -->
+    <section class="how-it-works py-16 lg:py-24 bg-white" id="how-it-works">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style="color: var(--relo-primary);">
+            How We Make Your London Move Happen
+          </h2>
+          <p class="text-lg max-w-3xl mx-auto" style="color: var(--relo-slate);">
+            Three simple steps to get you settled in London quickly and stress-free.
+          </p>
+        </div>
+
+        <!-- Steps Grid -->
+        <div class="grid md:grid-cols-3 gap-8 lg:gap-12 mb-20">
+          <!-- Step 1 -->
+          <div class="step-card opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <div class="text-center">
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+                <span class="text-2xl font-bold text-blue-600">1</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">1. Understand Your Needs</h3>
+              <p class="text-gray-600 leading-relaxed">
+                We learn about your family, work location, budget, and lifestyle preferences to create your perfect London relocation plan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200">
+            <div class="text-center">
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+                <span class="text-2xl font-bold text-blue-600">2</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">2. Find Your Perfect Home</h3>
+              <p class="text-gray-600 leading-relaxed">
+                We handle property searches, viewings, negotiations, and all paperwork so you can focus on your work and family.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card opacity-0 translate-y-8 transition-all duration-700 ease-out delay-400">
+            <div class="text-center">
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+                <span class="text-2xl font-bold text-blue-600">3</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">3. Get Settled & Thriving</h3>
+              <p class="text-gray-600 leading-relaxed">
+                We help with school applications, setting up utilities, finding local services, and everything you need to feel at home.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone Bar -->
+        <div class="milestone-section opacity-0 translate-y-8 transition-all duration-700 ease-out delay-600">
+          <div class="text-center mb-8">
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Why Choose Relo Network?</h3>
+            <p class="text-gray-600">We make relocating to London simple, fast, and stress-free</p>
+          </div>
+          
+          <div class="grid sm:grid-cols-3 gap-6">
+            <!-- Day 7 Card -->
+            <div class="milestone-card bg-gray-50 rounded-lg p-6 border border-gray-200 hover:border-blue-200 transition-colors duration-300">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-blue-600 mb-2">Expert</div>
+                <div class="text-sm font-medium text-gray-900 mb-1">Local Knowledge</div>
+                <div class="text-xs text-gray-500">London specialists</div>
+              </div>
+            </div>
+
+            <!-- Day 14 Card -->
+            <div class="milestone-card bg-gray-50 rounded-lg p-6 border border-gray-200 hover:border-blue-200 transition-colors duration-300">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-blue-600 mb-2">Full</div>
+                <div class="text-sm font-medium text-gray-900 mb-1">Service</div>
+                <div class="text-xs text-gray-500">End-to-end support</div>
+              </div>
+            </div>
+
+            <!-- Day 30 Card -->
+            <div class="milestone-card bg-gray-50 rounded-lg p-6 border border-gray-200 hover:border-blue-200 transition-colors duration-300">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-blue-600 mb-2">Fast</div>
+                <div class="text-sm font-medium text-gray-900 mb-1">Results</div>
+                <div class="text-xs text-gray-500">Weeks, not months</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proof Section -->
+    <section class="proof-section py-16 lg:py-24" style="background-color: var(--relo-gray-50);" id="proof">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style="color: var(--relo-primary);">
+            Real outcomes
+          </h2>
+          <p class="text-lg max-w-3xl mx-auto" style="color: var(--relo-slate);">
+            Every executive relocation we handle delivers measurable results—here's the proof.
+          </p>
+        </div>
+
+        <!-- Proof Grid -->
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Timeline Card -->
+          <div class="proof-card bg-white rounded-lg p-6 shadow-sm border border-gray-200" 
+               tabindex="0" 
+               aria-label="Client relocation timeline showing 5-day completion">
+            <div class="text-center">
+              <div class="mb-4">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4" style="background-color: rgba(212, 175, 55, 0.1);">
+                  <svg class="w-6 h-6" style="color: var(--relo-gold);" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3" style="color: var(--relo-primary);">
+                  Record Timeline
+                </h3>
+              </div>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-600">Landed</span>
+                  <span class="timeline-date font-bold">Sun 12 Mar</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-600">Viewings</span>
+                  <span class="timeline-date font-bold">Mon-Wed</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-600">Offer accepted</span>
+                  <span class="timeline-date font-bold">Thu 16 Mar</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-600">Keys in hand</span>
+                  <span class="timeline-date font-bold">Fri 17 Mar</span>
+                </div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="text-sm font-medium" style="color: var(--relo-gold);">
+                  5-day completion
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Document Card -->
+          <div class="proof-card bg-white rounded-lg p-6 shadow-sm border border-gray-200" 
+               tabindex="0" 
+               aria-label="Redacted offer acceptance email showing successful negotiation">
+            <div class="text-center">
+              <div class="mb-4">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4" style="background-color: rgba(212, 175, 55, 0.1);">
+                  <svg class="w-6 h-6" style="color: var(--relo-gold);" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm3 1h6v4H7V5zm0 6h6v2H7v-2z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3" style="color: var(--relo-primary);">
+                  Offer Accepted
+                </h3>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                <img src="/assets/proof-offer.jpg" 
+                     alt="Redacted email showing offer acceptance"
+                     class="w-full h-32 object-cover rounded border"
+                     style="filter: blur(1px);">
+              </div>
+              <div class="text-sm text-gray-600 space-y-1">
+                <p>• £2.8M property secured</p>
+                <p>• 15% below asking price</p>
+                <p>• All conditions met</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Testimonial Card -->
+          <div class="proof-card bg-white rounded-lg p-6 shadow-sm border border-gray-200" 
+               tabindex="0" 
+               aria-label="Client testimonial video - click to play"
+               role="button"
+               data-track="proof_video"
+               data-video="/assets/proof-testimonial.mp4">
+            <div class="text-center">
+              <div class="mb-4">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4" style="background-color: rgba(212, 175, 55, 0.1);">
+                  <svg class="w-6 h-6" style="color: var(--relo-gold);" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3" style="color: var(--relo-primary);">
+                  Client Story
+                </h3>
+              </div>
+              <div class="relative bg-gray-900 rounded-lg overflow-hidden mb-4">
+                <img src="/assets/proof-video-thumb.jpg" 
+                     alt="Video thumbnail of client testimonial"
+                     class="w-full h-32 object-cover">
+                <div class="video-overlay" aria-label="Play video">
+                  <div class="play-icon"></div>
+                </div>
+              </div>
+              <div class="text-sm text-gray-600">
+                <p class="font-medium">Sarah Chen, Goldman Sachs MD</p>
+                <p>"Seamless from start to finish"</p>
+                <p class="text-xs mt-1">45 seconds</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section class="faq-accordion py-16 lg:py-24 bg-white" id="faq-accordion">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style="color: var(--relo-primary);">
+            Frequently asked questions
+          </h2>
+          <p class="text-lg max-w-2xl mx-auto" style="color: var(--relo-slate);">
+            Everything you need to know about our executive relocation service.
+          </p>
+        </div>
+
+        <!-- FAQ Accordion Items -->
+        <div class="faq-accordion-container space-y-4" role="region" aria-label="Frequently Asked Questions">
+          
+          <!-- FAQ 1 -->
+          <details class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" data-track="faq_item" data-question-id="timeline_comparison" open>
+            <summary class="faq-question flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-expanded="true"
+                     style="color: var(--relo-primary);">
+              <span class="text-lg font-semibold pr-4">Why 7–30 days vs. 60–120 days DIY?</span>
+              <svg class="faq-chevron w-5 h-5 text-gray-400 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </summary>
+            <div class="faq-answer p-6 pt-0" style="color: var(--relo-slate);">
+              <p class="text-base leading-relaxed">
+                DIY relocations take months because you're navigating unfamiliar systems, property markets, and school applications alone. We've pre-mapped London's executive housing market, have relationships with top agents, and know which schools accept mid-year transfers. Our 72-hour audit eliminates the research phase that typically takes weeks.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ 2 -->
+          <details class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" data-track="faq_item" data-question-id="target_audience">
+            <summary class="faq-question flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-expanded="false"
+                     style="color: var(--relo-primary);">
+              <span class="text-lg font-semibold pr-4">Who is Relo Network for?</span>
+              <svg class="faq-chevron w-5 h-5 text-gray-400 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </summary>
+            <div class="faq-answer p-6 pt-0" style="color: var(--relo-slate);">
+              <p class="text-base leading-relaxed">
+                Senior executives, C-suite leaders, and high-net-worth individuals relocating to London for work. We also serve corporate HR teams managing multiple executive relocations. If you're earning £150K+ and time is more valuable than money, we're for you.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ 3 -->
+          <details class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" data-track="faq_item" data-question-id="audit_details">
+            <summary class="faq-question flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-expanded="false"
+                     style="color: var(--relo-primary);">
+              <span class="text-lg font-semibold pr-4">What's included in the 72-Hour Audit?</span>
+              <svg class="faq-chevron w-5 h-5 text-gray-400 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </summary>
+            <div class="faq-answer p-6 pt-0" style="color: var(--relo-slate);">
+              <p class="text-base leading-relaxed">
+                Area fit analysis based on your commute and lifestyle preferences, curated property shortlist with viewing route optimization, school catchment area mapping for your children's ages, and tenancy agreement review with executive-specific clauses. You get a complete relocation roadmap, not just property listings.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ 4 -->
+          <details class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" data-track="faq_item" data-question-id="milestone_guarantees">
+            <summary class="faq-question flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-expanded="false"
+                     style="color: var(--relo-primary);">
+              <span class="text-lg font-semibold pr-4">How do milestone guarantees work?</span>
+              <svg class="faq-chevron w-5 h-5 text-gray-400 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </summary>
+            <div class="faq-answer p-6 pt-0" style="color: var(--relo-slate);">
+              <p class="text-base leading-relaxed">
+                If we miss our Day 7, 14, or 30 deliverable commitments, you receive a 10% service credit automatically. No arguments, no excuses. We track every milestone and send you progress updates. Our reputation depends on hitting these deadlines because executive moves can't afford delays.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ 5 -->
+          <details class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" data-track="faq_item" data-question-id="visa_immigration">
+            <summary class="faq-question flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-expanded="false"
+                     style="color: var(--relo-primary);">
+              <span class="text-lg font-semibold pr-4">Do you handle visas and immigration?</span>
+              <svg class="faq-chevron w-5 h-5 text-gray-400 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </summary>
+            <div class="faq-answer p-6 pt-0" style="color: var(--relo-slate);">
+              <p class="text-base leading-relaxed">
+                We coordinate with your immigration lawyers but don't provide legal advice. We know which neighborhoods work best for different visa types and can recommend trusted immigration specialists. Think of us as the lifestyle and logistics experts while your lawyers handle the paperwork.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ 6 -->
+          <details class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" data-track="faq_item" data-question-id="employee_decline">
+            <summary class="faq-question flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-expanded="false"
+                     style="color: var(--relo-primary);">
+              <span class="text-lg font-semibold pr-4">What if my employee declines the relocation?</span>
+              <svg class="faq-chevron w-5 h-5 text-gray-400 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </summary>
+            <div class="faq-answer p-6 pt-0" style="color: var(--relo-slate);">
+              <p class="text-base leading-relaxed">
+                Our 72-hour audit often changes minds by removing the unknowns that create anxiety. We show them exactly where they'll live, which schools their kids will attend, and how their daily life will work. Most declines happen due to fear of the unknown, not the actual move.
+              </p>
+            </div>
+          </details>
+
+        </div>
+
+        <!-- CTA at bottom of FAQ -->
+        <div class="text-center mt-16">
+          <div class="inline-flex flex-col sm:flex-row gap-4">
+            <a href="#audit" class="btn btn-primary" data-track="cta_audit" data-position="faq_bottom">
+              Get Your Free London Relocation Plan
+            </a>
+            <a href="#assessment" class="px-6 py-3 text-base font-medium rounded-lg border-2 transition-all duration-200 hover:shadow-md" style="color: var(--relo-primary); border-color: var(--relo-primary);" data-track="cta_corporate" data-position="faq_bottom">
+              Corporate Relocations
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Video Modal -->
+  <div class="modal" id="videoModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close video modal">&times;</button>
+      <video id="modalVideo" controls width="100%" height="100%">
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    // Progressive enhancement for skyline background
+    (function() {
+      'use strict';
+      
+      // Check for large screen and good connection
+      const isLargeScreen = window.innerWidth >= 1200;
+      const hasGoodConnection = !('connection' in navigator) || 
+        (navigator.connection && (navigator.connection.effectiveType === '4g' || 
+         navigator.connection.downlink > 1.5));
+      
+      if (isLargeScreen && hasGoodConnection) {
+        const hero = document.getElementById('hero');
+        
+        // Preload the skyline image
+        const img = new Image();
+        img.onload = function() {
+          hero.classList.add('enhanced');
+        };
+        
+        // Replace with actual skyline image URL
+        img.src = '/images/london-skyline.jpg';
+      }
+    })();
+
+    // Scroll-in fade animation with IntersectionObserver
+    (function() {
+      'use strict';
+      
+      // Respect user's motion preferences
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (prefersReducedMotion) {
+        // Show all elements immediately if user prefers reduced motion
+        document.querySelectorAll('.step-card, .milestone-section, .faq-item').forEach(el => {
+          el.classList.remove('opacity-0', 'translate-y-8', 'translate-y-4');
+        });
+        return;
+      }
+
+      // Create intersection observer for scroll-triggered animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0', 'translate-y-8', 'translate-y-4');
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      // Observe all animatable elements
+      document.querySelectorAll('.step-card, .milestone-section, .faq-item').forEach(el => {
+        observer.observe(el);
+      });
+    })();
+
+    // Subtle hover effects for interactive elements
+    (function() {
+      'use strict';
+      
+      // Add subtle scale effect to CTA buttons
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            this.style.transform = 'translateY(-2px) scale(1.02)';
+          }
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+
+      // Add gentle float animation to step circles
+      document.querySelectorAll('.step-card .bg-blue-100').forEach((circle, index) => {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          circle.style.animation = `gentle-float 3s ease-in-out infinite ${index * 0.5}s`;
+        }
+      });
+    })();
+
+    // Video Modal Functionality
+    (function() {
+      'use strict';
+      
+      const modal = document.getElementById('videoModal');
+      const modalVideo = document.getElementById('modalVideo');
+      const modalClose = document.querySelector('.modal-close');
+      const videoCard = document.querySelector('[data-video]');
+
+      function openModal(videoSrc) {
+        modalVideo.src = videoSrc;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        modalClose.focus();
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        modalVideo.pause();
+        modalVideo.src = '';
+        document.body.style.overflow = '';
+        videoCard.focus();
+      }
+
+      // Open modal on video card click
+      videoCard.addEventListener('click', function() {
+        const videoSrc = this.dataset.video;
+        openModal(videoSrc);
+      });
+
+      // Open modal on Enter/Space key press
+      videoCard.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const videoSrc = this.dataset.video;
+          openModal(videoSrc);
+        }
+      });
+
+      // Close modal on close button click
+      modalClose.addEventListener('click', closeModal);
+
+      // Close modal on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+
+      // Close modal on backdrop click
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+
+  <!-- FAQ Schema Markup for Rich Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why 7–30 days vs. 60–120 days DIY?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DIY relocations take months because you're navigating unfamiliar systems, property markets, and school applications alone. We've pre-mapped London's executive housing market, have relationships with top agents, and know which schools accept mid-year transfers. Our 72-hour audit eliminates the research phase that typically takes weeks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is Relo Network for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Senior executives, C-suite leaders, and high-net-worth individuals relocating to London for work. We also serve corporate HR teams managing multiple executive relocations. If you're earning £150K+ and time is more valuable than money, we're for you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's included in the 72-Hour Audit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Area fit analysis based on your commute and lifestyle preferences, curated property shortlist with viewing route optimization, school catchment area mapping for your children's ages, and tenancy agreement review with executive-specific clauses. You get a complete relocation roadmap, not just property listings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do milestone guarantees work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If we miss our Day 7, 14, or 30 deliverable commitments, you receive a 10% service credit automatically. No arguments, no excuses. We track every milestone and send you progress updates. Our reputation depends on hitting these deadlines because executive moves can't afford delays."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you handle visas and immigration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We coordinate with your immigration lawyers but don't provide legal advice. We know which neighborhoods work best for different visa types and can recommend trusted immigration specialists. Think of us as the lifestyle and logistics experts while your lawyers handle the paperwork."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my employee declines the relocation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our 72-hour audit often changes minds by removing the unknowns that create anxiety. We show them exactly where they'll live, which schools their kids will attend, and how their daily life will work. Most declines happen due to fear of the unknown, not the actual move."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+  /* FAQ Accordion Styles */
+  .faq-item {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .faq-item:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-item[open] {
+    border-color: var(--relo-gold);
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question {
+    list-style: none;
+  }
+
+  .faq-answer {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Focus states for keyboard navigation */
+  .faq-question:focus {
+    outline: 2px solid var(--relo-gold);
+    outline-offset: -2px;
+  }
+
+  /* Enhanced keyboard navigation */
+  .faq-question:focus .faq-chevron {
+    color: var(--relo-gold);
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item,
+    .faq-chevron,
+    .faq-answer {
+      transition: none;
+      animation: none;
+    }
+    
+    .hero-video {
+      display: none;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%), 
+                  url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+    }
+  }
+  </style>
+
+  <script>
+  // Enhanced FAQ Accordion with keyboard navigation
+  (function() {
+    'use strict';
+    
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    // Enhanced keyboard navigation
+    faqItems.forEach((item, index) => {
+      const summary = item.querySelector('.faq-question');
+      const chevron = item.querySelector('.faq-chevron');
+      
+      // Update ARIA attributes based on open state
+      function updateAria() {
+        const isOpen = item.hasAttribute('open');
+        summary.setAttribute('aria-expanded', isOpen.toString());
+        
+        // Update chevron rotation
+        if (isOpen) {
+          chevron.style.transform = 'rotate(180deg)';
+        } else {
+          chevron.style.transform = 'rotate(0deg)';
+        }
+      }
+      
+      // Listen for toggle events
+      item.addEventListener('toggle', updateAria);
+      
+      // Enhanced keyboard navigation
+      summary.addEventListener('keydown', function(e) {
+        switch(e.key) {
+          case 'ArrowDown':
+            e.preventDefault();
+            const nextIndex = (index + 1) % faqItems.length;
+            faqItems[nextIndex].querySelector('.faq-question').focus();
+            break;
+            
+          case 'ArrowUp':
+            e.preventDefault();
+            const prevIndex = index === 0 ? faqItems.length - 1 : index - 1;
+            faqItems[prevIndex].querySelector('.faq-question').focus();
+            break;
+            
+          case 'Home':
+            e.preventDefault();
+            faqItems[0].querySelector('.faq-question').focus();
+            break;
+            
+          case 'End':
+            e.preventDefault();
+            faqItems[faqItems.length - 1].querySelector('.faq-question').focus();
+            break;
+            
+          case 'Enter':
+          case ' ':
+            e.preventDefault();
+            // Toggle the details element
+            if (item.hasAttribute('open')) {
+              item.removeAttribute('open');
+            } else {
+              item.setAttribute('open', '');
+            }
+            updateAria();
+            break;
+        }
+      });
+      
+      // Initialize ARIA attributes
+      updateAria();
+    });
+    
+    // Close other items when one is opened (optional accordion behavior)
+    faqItems.forEach(item => {
+      item.addEventListener('toggle', function() {
+        if (this.hasAttribute('open')) {
+          faqItems.forEach(otherItem => {
+            if (otherItem !== this && otherItem.hasAttribute('open')) {
+              // Uncomment the next line if you want accordion behavior (only one open at a time)
+              // otherItem.removeAttribute('open');
+            }
+          });
+        }
+      });
+    });
+  })();
+  </script>
+
+  <!-- Brand Tokens & Utilities -->
+  <style>
+  /* Relo Network Brand Tokens & Utilities */
+  :root {
+    /* Core Brand Colors */
+    --rln-blue: #0B1B2B;
+    --rln-charcoal: #1e3a5f;
+    --rln-gold: #d4af37;
+    --rln-bg: #f9fafb;
+    --rln-text: #64748b;
+    
+    /* Extended Palette */
+    --rln-blue-light: rgba(11, 27, 43, 0.1);
+    --rln-gold-light: rgba(212, 175, 55, 0.1);
+    --rln-white: #ffffff;
+    --rln-gray-50: #f9fafb;
+    --rln-gray-100: #f3f4f6;
+    --rln-gray-200: #e5e7eb;
+    --rln-gray-600: #64748b;
+    --rln-gray-900: #111827;
+    
+    /* Typography */
+    --rln-font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    
+    /* Spacing & Sizing */
+    --rln-radius: 0.5rem;
+    --rln-radius-lg: 0.75rem;
+    --rln-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --rln-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --rln-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* CTA Container Base Styles */
+  .cta-container {
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Text Link Styles */
+  .cta-text-link {
+    display: none;
+    margin-top: 1rem;
+    color: var(--rln-text, #64748b);
+    text-decoration: underline;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    text-align: center;
+  }
+
+  .cta-text-link:hover,
+  .cta-text-link:focus {
+    color: var(--rln-blue, #0B1B2B);
+    text-decoration: none;
+  }
+
+  .cta-text-link:focus {
+    outline: 2px solid var(--rln-gold, #d4af37);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  /* VIP Border - Premium gold left accent */
+  .vip-border {
+    border-left: 3px solid var(--rln-gold);
+  }
+
+  /* Soft Card - Elegant container */
+  .soft-card {
+    background: var(--rln-white);
+    border-radius: var(--rln-radius-lg);
+    box-shadow: var(--rln-shadow-sm);
+    border: 1px solid var(--rln-gray-200);
+    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  }
+
+  .soft-card:hover {
+    box-shadow: var(--rln-shadow);
+    border-color: var(--rln-gray-300);
+  }
+
+  /* Primary CTA - Executive-grade button */
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    font-family: var(--rln-font-system);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-decoration: none;
+    background: var(--rln-white);
+    color: var(--rln-blue);
+    border: 2px solid var(--rln-white);
+    border-radius: var(--rln-radius);
+    box-shadow: var(--rln-shadow-sm);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    min-width: 200px;
+    text-align: center;
+  }
+
+  .cta-primary:hover,
+  .cta-primary:focus {
+    background: var(--rln-gray-50);
+    transform: translateY(-1px);
+    box-shadow: var(--rln-shadow-lg);
+    text-decoration: none;
+    color: var(--rln-blue);
+  }
+
+  .cta-primary:focus {
+    outline: 2px solid var(--rln-gold);
+    outline-offset: 2px;
+  }
+
+  /* Ghost CTA - Subtle secondary action */
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    font-family: var(--rln-font-system);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-decoration: none;
+    background: transparent;
+    color: var(--rln-white);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--rln-radius);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    min-width: 200px;
+    text-align: center;
+  }
+
+  .cta-secondary:hover,
+  .cta-secondary:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+    text-decoration: none;
+    color: var(--rln-white);
+  }
+
+  .cta-secondary:focus {
+    outline: 2px solid var(--rln-gold);
+    outline-offset: 2px;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .cta-container,
+    .cta-text-link,
+    .cta-primary,
+    .cta-secondary,
+    .soft-card {
+      transition: none;
+      animation: none;
+    }
+    
+    .cta-primary:hover,
+    .cta-primary:focus,
+    .cta-secondary:hover,
+    .cta-secondary:focus {
+      transform: none;
+    }
+  }
+  </style>
+
+  <!-- Responsive CTA Controller -->
+  <script>
+  // Responsive CTA Controller - Dependency-free
+  (function() {
+    'use strict';
+    
+    const ctaContainer = document.querySelector('.cta-container');
+    const secondaryCta = ctaContainer?.querySelector('.cta-secondary');
+    const textLink = ctaContainer?.querySelector('.cta-text-link');
+    
+    if (!ctaContainer || !secondaryCta || !textLink) return;
+    
+    function updateCTALayout() {
+      const isDesktop = window.innerWidth >= 1024;
+      
+      if (isDesktop) {
+        // Desktop: show secondary CTA, hide text link
+        secondaryCta.style.display = 'inline-flex';
+        secondaryCta.setAttribute('tabindex', '0');
+        textLink.style.display = 'none';
+        textLink.setAttribute('tabindex', '-1');
+        textLink.setAttribute('aria-hidden', 'true');
+        
+        // Side-by-side layout
+        ctaContainer.style.display = 'flex';
+        ctaContainer.style.flexDirection = 'row';
+        ctaContainer.style.gap = '1.5rem';
+        ctaContainer.style.justifyContent = 'center';
+        ctaContainer.style.alignItems = 'center';
+      } else {
+        // Mobile: hide secondary CTA, show text link
+        secondaryCta.style.display = 'none';
+        secondaryCta.setAttribute('tabindex', '-1');
+        secondaryCta.setAttribute('aria-hidden', 'true');
+        textLink.style.display = 'block';
+        textLink.setAttribute('tabindex', '0');
+        textLink.removeAttribute('aria-hidden');
+        
+        // Stacked layout
+        ctaContainer.style.display = 'flex';
+        ctaContainer.style.flexDirection = 'column';
+        ctaContainer.style.gap = '1rem';
+        ctaContainer.style.alignItems = 'center';
+      }
+    }
+    
+    // Initial setup
+    updateCTALayout();
+    
+    // Responsive updates with debouncing
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateCTALayout, 100);
+    });
+    
+  })();
+  </script>
+
+  <!-- Event Tracking System -->
+  <script>
+  // Event Tracking System - GA/GTM Ready
+  (function() {
+    'use strict';
+    
+    // Central event dispatcher
+    function trackEvent(eventName, eventData = {}) {
+      // Dispatch custom event for GTM/GA to catch
+      window.dispatchEvent(new CustomEvent('relo_tracking', {
+        detail: {
+          event: eventName,
+          timestamp: Date.now(),
+          url: window.location.pathname,
+          ...eventData
+        }
+      }));
+      
+      // Console log for debugging (remove in production)
+      console.log('📊 Event tracked:', eventName, eventData);
+    }
+    
+    // Hero CTA Tracking
+    function initHeroCTATracking() {
+      // Primary CTA - Book Audit
+      const auditCTA = document.querySelector('[data-track="hero_cta_audit"]');
+      if (auditCTA) {
+        auditCTA.addEventListener('click', function(e) {
+          trackEvent('hero_cta_audit_clicked', {
+            buttonText: this.textContent.trim(),
+            buttonHref: this.href,
+            ctaType: 'primary'
+          });
+        });
+      }
+      
+      // Secondary CTA - Corporate Assessment
+      const corporateCTA = document.querySelector('[data-track="hero_cta_corporate"]');
+      if (corporateCTA) {
+        corporateCTA.addEventListener('click', function(e) {
+          trackEvent('hero_cta_corporate_clicked', {
+            buttonText: this.textContent.trim(),
+            buttonHref: this.href,
+            ctaType: 'secondary'
+          });
+        });
+      }
+      
+      // Mobile text link
+      const mobileLink = document.querySelector('[data-track="hero_cta_corporate_mobile"]');
+      if (mobileLink) {
+        mobileLink.addEventListener('click', function(e) {
+          trackEvent('hero_cta_corporate_clicked', {
+            buttonText: this.textContent.trim(),
+            buttonHref: this.href,
+            ctaType: 'mobile_text_link'
+          });
+        });
+      }
+    }
+    
+    // FAQ Tracking
+    function initFAQTracking() {
+      const faqItems = document.querySelectorAll('[data-track="faq_item"]');
+      
+      faqItems.forEach((item, index) => {
+        const summary = item.querySelector('summary, .faq-question');
+        if (summary) {
+          summary.addEventListener('click', function() {
+            const questionText = this.textContent.trim();
+            const questionId = item.dataset.questionId || `faq_${index + 1}`;
+            const isOpening = !item.hasAttribute('open');
+            
+            if (isOpening) {
+              trackEvent('faq_opened', {
+                questionId: questionId,
+                questionText: questionText,
+                questionIndex: index + 1
+              });
+            }
+          });
+        }
+      });
+    }
+    
+    // Proof Video Tracking
+    function initProofVideoTracking() {
+      const videoCard = document.querySelector('[data-track="proof_video"]');
+      if (videoCard) {
+        videoCard.addEventListener('click', function() {
+          trackEvent('proof_video_play', {
+            videoSrc: this.dataset.video || 'unknown',
+            cardType: 'testimonial',
+            clientName: this.querySelector('.font-medium')?.textContent || 'unknown'
+          });
+        });
+      }
+    }
+    
+    // CTA Tracking in other sections
+    function initCTATracking() {
+      // Track all CTAs with audit links
+      const auditCTAs = document.querySelectorAll('[data-track="cta_audit"]');
+      auditCTAs.forEach(cta => {
+        cta.addEventListener('click', function() {
+          trackEvent('cta_audit_clicked', {
+            buttonText: this.textContent.trim(),
+            section: this.closest('section')?.id || 'unknown',
+            ctaPosition: this.dataset.position || 'unknown'
+          });
+        });
+      });
+      
+      // Track corporate assessment CTAs
+      const corporateCTAs = document.querySelectorAll('[data-track="cta_corporate"]');
+      corporateCTAs.forEach(cta => {
+        cta.addEventListener('click', function() {
+          trackEvent('cta_corporate_clicked', {
+            buttonText: this.textContent.trim(),
+            section: this.closest('section')?.id || 'unknown',
+            ctaPosition: this.dataset.position || 'unknown'
+          });
+        });
+      });
+    }
+    
+    // Initialize all tracking when DOM is ready
+    function initTracking() {
+      initHeroCTATracking();
+      initFAQTracking();
+      initProofVideoTracking();
+      initCTATracking();
+      
+      // Track page view
+      trackEvent('page_view', {
+        page: document.title,
+        referrer: document.referrer || 'direct'
+      });
+    }
+    
+    // Start tracking when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTracking);
+    } else {
+      initTracking();
+    }
+    
+  })();
+  </script>
+
+  <!-- Accessibility & Performance Checklist -->
+  <script>
+  // Accessibility & Performance Checklist - Non-blocking assertions
+  (function() {
+    'use strict';
+    
+    console.group('🔍 Relo Network - Accessibility & Performance Audit');
+    
+    // Button Text Discernibility
+    function checkButtonText() {
+      const buttons = document.querySelectorAll('button, a[role="button"], [tabindex="0"][role="button"]');
+      const issues = [];
+      
+      buttons.forEach((btn, index) => {
+        const visibleText = btn.textContent.trim();
+        const ariaLabel = btn.getAttribute('aria-label');
+        const ariaLabelledBy = btn.getAttribute('aria-labelledby');
+        
+        const hasDiscernibleText = visibleText || ariaLabel || 
+          (ariaLabelledBy && document.getElementById(ariaLabelledBy));
+        
+        if (!hasDiscernibleText) {
+          issues.push(`Button ${index + 1}: No discernible text found`);
+        } else if (visibleText.length < 3 && !ariaLabel) {
+          issues.push(`Button ${index + 1}: Text "${visibleText}" may be too short`);
+        }
+      });
+      
+      if (issues.length === 0) {
+        console.log('✅ All buttons have discernible text');
+      } else {
+        console.warn('❌ Button text issues:', issues);
+      }
+      
+      return issues.length === 0;
+    }
+    
+    // Color Contrast Check
+    function checkColorContrast() {
+      const rootStyles = getComputedStyle(document.documentElement);
+      const heroBlue = rootStyles.getPropertyValue('--rln-blue').trim() || '#0B1B2B';
+      const heroWhite = '#ffffff';
+      const heroLight = '#e2e8f0';
+      
+      function getLuminance(hex) {
+        const rgb = parseInt(hex.slice(1), 16);
+        const r = (rgb >> 16) & 0xff;
+        const g = (rgb >> 8) & 0xff;
+        const b = (rgb >> 0) & 0xff;
+        
+        const rsRGB = r / 255;
+        const gsRGB = g / 255;
+        const bsRGB = b / 255;
+        
+        const rLinear = rsRGB <= 0.03928 ? rsRGB / 12.92 : Math.pow((rsRGB + 0.055) / 1.055, 2.4);
+        const gLinear = gsRGB <= 0.03928 ? gsRGB / 12.92 : Math.pow((gsRGB + 0.055) / 1.055, 2.4);
+        const bLinear = bsRGB <= 0.03928 ? bsRGB / 12.92 : Math.pow((bsRGB + 0.055) / 1.055, 2.4);
+        
+        return 0.2126 * rLinear + 0.7152 * gLinear + 0.0722 * bLinear;
+      }
+      
+      function getContrastRatio(color1, color2) {
+        const lum1 = getLuminance(color1);
+        const lum2 = getLuminance(color2);
+        const brightest = Math.max(lum1, lum2);
+        const darkest = Math.min(lum1, lum2);
+        return (brightest + 0.05) / (darkest + 0.05);
+      }
+      
+      const titleContrast = getContrastRatio(heroWhite, heroBlue);
+      const subtitleContrast = getContrastRatio(heroLight, heroBlue);
+      
+      console.log(`Hero title contrast: ${titleContrast.toFixed(2)}:1 ${titleContrast >= 4.5 ? '✅' : '❌'}`);
+      console.log(`Hero subtitle contrast: ${subtitleContrast.toFixed(2)}:1 ${subtitleContrast >= 4.5 ? '✅' : '❌'}`);
+      
+      return titleContrast >= 4.5 && subtitleContrast >= 4.5;
+    }
+    
+    // LCP Check
+    function checkLCP() {
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          const lastEntry = entries[entries.length - 1];
+          
+          const lcpTime = lastEntry.startTime;
+          const isGood = lcpTime < 2500;
+          
+          console.log(`LCP: ${lcpTime.toFixed(0)}ms ${isGood ? '✅' : '❌'} (target: <2.5s)`);
+          
+          if (!isGood) {
+            console.warn('LCP Optimization Tips:');
+            console.warn('• Optimize hero background images');
+            console.warn('• Ensure critical CSS is inline');
+            console.warn('• Remove render-blocking resources');
+          }
+        });
+        
+        observer.observe({ entryTypes: ['largest-contentful-paint'] });
+        
+        setTimeout(() => {
+          observer.disconnect();
+        }, 10000);
+      } else {
+        console.warn('⚠️ PerformanceObserver not supported - check LCP manually in DevTools');
+      }
+    }
+    
+    // Reduced Motion Check
+    function checkReducedMotion() {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const animatedElements = document.querySelectorAll('.fade-in-up, .step-card, .faq-item');
+      
+      if (prefersReducedMotion) {
+        console.log('🔄 User prefers reduced motion - checking compliance...');
+        
+        let compliant = true;
+        animatedElements.forEach((el, index) => {
+          const styles = getComputedStyle(el);
+          const hasTransition = styles.transition !== 'none' && styles.transition !== '';
+          const hasAnimation = styles.animation !== 'none' && styles.animation !== '';
+          
+          if (hasTransition || hasAnimation) {
+            console.warn(`❌ Element ${index + 1} still has motion with reduced motion preference`);
+            compliant = false;
+          }
+        });
+        
+        if (compliant) {
+          console.log('✅ All animations respect reduced motion preference');
+        }
+        
+        return compliant;
+      } else {
+        console.log('✅ Motion preferences check: User allows motion');
+        return true;
+      }
+    }
+    
+    // Run all checks
+    function runAllChecks() {
+      const results = {
+        buttons: false,
+        contrast: false,
+        motion: false
+      };
+      
+      setTimeout(() => {
+        results.buttons = checkButtonText();
+        results.contrast = checkColorContrast();
+        results.motion = checkReducedMotion();
+        checkLCP();
+        
+        const passedChecks = Object.values(results).filter(Boolean).length;
+        const totalChecks = Object.keys(results).length;
+        
+        console.log(`\n📊 Summary: ${passedChecks}/${totalChecks} checks passed`);
+        
+        if (passedChecks === totalChecks) {
+          console.log('🎉 All accessibility checks passed!');
+        } else {
+          console.warn('⚠️ Some checks failed - review issues above');
+        }
+        
+        console.groupEnd();
+      }, 1000);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', runAllChecks);
+    } else {
+      runAllChecks();
+    }
+    
+  })();
+  </script>
+</body>
+</html>

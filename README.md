@@ -1,8 +1,8 @@
 # Relo Network - AskRelo MVP
 
-**Relocate to London. Effortlessly.**
+**Your concierge for executive relocations to London.**
 
-Vetted experts, elite services, and a 24/7 AI concierge—one accountable partner from landing to "I live here."
+Property, schools, and lifestyle handled in days, not months, for executives and the teams who move them.
 
 ## 🏗️ Architecture
 
@@ -110,25 +110,22 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application.
 ## 📱 Features Implemented
 
 ### Core Pages
-- **Homepage (`/`)**: Hero section with brand messaging and waitlist signup
-- **Concierge (`/concierge`)**: Human-assisted service tiers and pricing
-- **Directory (`/directory`)**: Vetted supplier listings with filtering
-- **Account (`/account`)**: Client dashboard with case timeline, tasks, messages
+- **Homepage (`/`)**: Hero section with dual-track ICP messaging and service offerings
+- **72-Hour Setup Audit (`/executive-intake`)**: Area analysis, property shortlist, viewings route, and tenancy rider review
+- **Corporate Assessment**: 15-minute needs assessment for HR teams managing relocations
+- **Terms (`/terms`)**: Service terms, refund policy, and milestone guarantees
 
 ### API Routes
-- **`/api/waitlist`**: Join waiting list with email validation
-- **`/api/messages`**: Send/receive case messages
-- **`/api/tasks`**: Create and update relocation tasks
-- **`/api/suppliers/list`**: Get filtered supplier listings
-- **`/api/suppliers/checkout`**: Create Stripe checkout sessions
-- **`/api/webhooks/stripe`**: Handle payment events
-- **`/api/webhooks/cal`**: Handle booking events
+- **`/api/checkout`**: Create Stripe checkout sessions for all service plans
+- **`/api/webhooks/stripe`**: Handle payment events and subscription updates
+- **`/api/audit-form`**: Process 72-Hour Setup Audit submissions
+- **`/api/corporate-assessment`**: Handle corporate team inquiries
 
 ### Integrations
-- **Supabase**: User authentication, database, file storage
-- **Stripe**: Subscription billing for supplier partners
-- **Cal.com**: Appointment booking and scheduling
-- **Resend**: Transactional email templates
+- **Stripe**: Payment processing for 72-Hour Setup Audits and Executive Relocation packages
+- **Cal.com**: Strategy call booking for audit clients
+- **Partner Network**: Vetted service providers with SLA guarantees
+- **Legal Review**: Tenancy rider analysis and property investment guidance
 
 ## 🎨 Design System
 
@@ -151,14 +148,11 @@ Shared components in `packages/ui/src/`:
 
 ## 🗄️ Database Schema
 
-### Core Tables
-- `users` - User accounts with roles (client, concierge, supplier, admin)
-- `client_profiles` - Extended client information and preferences
-- `move_cases` - Individual relocation cases with status tracking
-- `tasks` - Actionable items with assignments and due dates
-- `messages` - Case communication between stakeholders
-- `suppliers` - Vetted service providers with categories and ratings
-- `supplier_subscriptions` - Stripe billing for supplier partnerships
+### Core Services
+- **72-Hour Setup Audit** - £2,500 comprehensive area analysis and property shortlist
+- **Executive Relocation Packages** - £7,500-£15,000 full-service relocations (audit credit applied)
+- **Corporate Relocation Programs** - End-to-end employee relocation for HR teams
+- **Partner Network** - Vetted providers with milestone-based service guarantees
 
 ### Key Features
 - **Row Level Security (RLS)**: Ensures users only see their own data
@@ -185,15 +179,13 @@ pnpm db:reset         # Drop and recreate database
 ./scripts/db-setup.sh stripe  # Setup Stripe products
 ```
 
-## 📊 Demo Data
+## 📊 Service Offerings
 
-The seed script creates:
-- **4 demo users**: Admin, concierge, client, supplier
-- **1 active case**: NY → London relocation in progress
-- **5 tasks**: Mix of completed, in-progress, and pending
-- **6 suppliers**: Across movers, housing, and local experts
-- **3 pricing plans**: Starter (£395), Featured (£795), Sponsored (£1,495)
-- **Sample messages**: Realistic conversation between client and concierge
+**2025 Pricing Model:**
+- **72-Hour Setup Audit**: £2,500 (credited toward full service if booked within 90 days)
+- **Executive Relocation**: £7,500-£15,000 comprehensive packages
+- **Corporate Programs**: Custom pricing for HR teams
+- **Milestone Guarantees**: 10% service credit for missed deadlines
 
 ## 🚢 Deployment
 
@@ -231,18 +223,18 @@ Ensure all environment variables from `.env.example` are configured in your depl
 ## 📝 Next Steps
 
 ### Immediate Priorities
-- [ ] Implement authentication flows
-- [ ] Add file upload functionality
-- [ ] Create supplier onboarding flow
-- [ ] Build admin dashboard
-- [ ] Add search and filtering
+- [x] Update homepage for dual-track ICP strategy
+- [x] Transform Executive Intake to 72-Hour Setup Audit
+- [x] Update Terms of Service and Privacy Policy
+- [ ] Implement corporate assessment flow
+- [ ] Add partner network portal
 
 ### Future Enhancements
-- [ ] Mobile app (React Native)
-- [ ] AI chat integration
-- [ ] Multi-corridor support (NYC, Paris, etc.)
-- [ ] Advanced analytics dashboard
-- [ ] Third-party API integrations
+- [ ] Automated audit report generation
+- [ ] Partner SLA tracking dashboard
+- [ ] Corporate portal for HR teams
+- [ ] Multi-corridor expansion (NYC, Paris, etc.)
+- [ ] Advanced property investment analysis
 
 ## 📞 Support
 

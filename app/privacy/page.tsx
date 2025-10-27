@@ -52,10 +52,11 @@ export default function PrivacyPage() {
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Personal Information</h3>
                 <ul className="space-y-2 text-[#6B7280]">
                   <li>• Name, email address, and phone number</li>
-                  <li>• Employment details and relocation requirements</li>
-                  <li>• Family information (when relevant to services)</li>
-                  <li>• Preferences for housing, schools, and lifestyle</li>
-                  <li>• Communication history and service feedback</li>
+                  <li>• Employment details and relocation timeline</li>
+                  <li>• Family information (when relevant to setup audit or full relocation)</li>
+                  <li>• Area preferences and lifestyle requirements</li>
+                  <li>• Property viewing history and feedback</li>
+                  <li>• Communication history and service satisfaction data</li>
                 </ul>
               </div>
 
@@ -64,8 +65,9 @@ export default function PrivacyPage() {
                 <ul className="space-y-2 text-[#6B7280]">
                   <li>• Website usage data and analytics</li>
                   <li>• Device information and browser type</li>
-                  <li>• AI chat interactions with Relo Assistant</li>
-                  <li>• Service platform usage patterns</li>
+                  <li>• Audit form completion and interaction data</li>
+                  <li>• 72-Hour Setup Audit progress tracking</li>
+                  <li>• Partner network connection history</li>
                 </ul>
               </div>
             </div>
@@ -82,20 +84,22 @@ export default function PrivacyPage() {
               <div className="bg-[#F8F9FA] rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Service Delivery</h3>
                 <ul className="space-y-2 text-[#6B7280]">
-                  <li>• Providing personalized relocation recommendations</li>
-                  <li>• Connecting you with vetted service partners</li>
-                  <li>• Managing your relocation timeline and support</li>
-                  <li>• Improving our AI assistance capabilities</li>
+                  <li>• Conducting comprehensive 72-Hour Setup Audits</li>
+                  <li>• Providing area fit analysis and property shortlists</li>
+                  <li>• Connecting you with vetted service partners via warm introductions</li>
+                  <li>• Managing Executive Relocation packages and milestone delivery</li>
+                  <li>• Facilitating corporate relocation programs for HR teams</li>
                 </ul>
               </div>
 
               <div className="bg-[#F8F9FA] rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Communication</h3>
                 <ul className="space-y-2 text-[#6B7280]">
-                  <li>• Sending service updates and confirmations</li>
-                  <li>• Providing support and answering questions</li>
-                  <li>• Sharing relevant relocation insights (with consent)</li>
-                  <li>• Processing feedback and service improvements</li>
+                  <li>• Scheduling strategy calls and audit deliverables</li>
+                  <li>• Providing milestone updates and service confirmations</li>
+                  <li>• Facilitating partner introductions and connections</li>
+                  <li>• Sharing audit reports and relocation insights</li>
+                  <li>• Processing feedback for service improvements</li>
                 </ul>
               </div>
             </div>
@@ -126,8 +130,9 @@ export default function PrivacyPage() {
                   and comply with legal requirements:
                 </p>
                 <ul className="space-y-2 text-[#6B7280]">
-                  <li>• Active service period: Full data retention</li>
-                  <li>• Post-service: 3 years for support and analytics</li>
+                  <li>• 72-Hour Setup Audit: 12 months for credit application and follow-up</li>
+                  <li>• Executive Relocation packages: Duration of service plus 3 years</li>
+                  <li>• Corporate programs: As per contractual agreements</li>
                   <li>• Marketing consent: Until withdrawn</li>
                   <li>• Legal requirements: As mandated by law</li>
                 </ul>
@@ -142,13 +147,14 @@ export default function PrivacyPage() {
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
               <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Service Partners</h3>
               <p className="text-[#6B7280] mb-3">
-                We share relevant information with vetted partners to facilitate your relocation:
+                We share relevant information with vetted partners to facilitate your 72-Hour Setup Audit and relocation services:
               </p>
               <ul className="space-y-2 text-[#6B7280]">
-                <li>• Estate agents: Property preferences and contact details</li>
-                <li>• Schools: Family information for admissions support</li>
-                <li>• Service providers: Specific requirements for bookings</li>
-                <li>• Financial advisors: Employment and relocation context</li>
+                <li>• Estate agents: Area preferences and property shortlist requirements</li>
+                <li>• Schools: Family details for admissions guidance and school visits</li>
+                <li>• Legal advisors: Tenancy requirements for rider review</li>
+                <li>• Service providers: Specific requirements for viewing routes and logistics</li>
+                <li>• Financial advisors: Employment context for mortgage and investment analysis</li>
               </ul>
               <p className="text-[#6B7280] text-sm mt-3">
                 <strong>All partners sign confidentiality agreements and adhere to strict data protection standards.</strong>
