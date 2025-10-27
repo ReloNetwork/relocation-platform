@@ -117,8 +117,8 @@ export default function CorporateAssessmentThankYouPage() {
           </div>
 
           {/* Corporate Success Stats */}
-          <div className="bg-[#0B1B2B] rounded-lg p-6 text-white">
-            <h3 className="text-lg font-bold mb-6 text-center">Why Companies Trust Relo Network</h3>
+          <div className="bg-[#0B1B2B] rounded-lg p-8 text-white">
+            <h3 className="text-xl font-bold mb-8 text-center pt-2">Why Companies Trust Relo Network</h3>
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>
                 <div className="text-3xl font-bold text-[#C9A24A] mb-2">96%</div>
