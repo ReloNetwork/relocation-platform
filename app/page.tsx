@@ -227,25 +227,23 @@ export default function HomePage() {
                 size="lg"
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg md:text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25 w-full sm:w-auto"
               >
-                <span className="hidden sm:inline">Start Executive Intake</span>
-                <span className="sm:hidden">Executive Intake</span>
+                Book Your 72-Hour Audit
               </Button>
               <Button
                 onClick={() => window.location.href = '/partners'}
                 size="lg"
-                className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg md:text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25 w-full sm:w-auto"
+                className="hidden md:block bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg md:text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25 w-full sm:w-auto"
               >
-                <span className="hidden sm:inline">Become a Founding Partner</span>
-                <span className="sm:hidden">Founding Partner</span>
+                Corporate Assessment (15 min)
               </Button>
             </div>
-            <div className="text-center mb-24">
+            <div className="text-center mb-24 md:hidden">
               <Button
                 variant="link"
-                onClick={() => window.location.href = '/directory'}
+                onClick={() => window.location.href = '/partners'}
                 className="text-[#C9A24A] hover:text-[#B8923D] font-semibold text-lg"
               >
-                Browse the Directory →
+                Corporate Assessment (15 min)
               </Button>
             </div>
           </div>
