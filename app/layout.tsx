@@ -171,7 +171,7 @@ export default function RootLayout({
                   "name": "What is the average cost of relocating to London?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Professional London relocation costs vary by service level. Relo Network's managed service costs £8,500, executive service costs £15,000, while DIY relocations typically cost £25,000+ when including all hidden expenses and time investment.",
+                    "text": "Professional London relocation costs vary by service level and individual requirements. Relo Network provides personalized pricing based on specific needs, while DIY relocations typically cost £25,000+ when including all hidden expenses and time investment.",
                     "author": {
                       "@type": "Organization",
                       "name": "Relo Network"
@@ -232,24 +232,18 @@ export default function RootLayout({
                 "itemListElement": [
                   {
                     "@type": "Offer",
-                    "name": "AI Concierge Service",
-                    "price": "295",
-                    "priceCurrency": "GBP",
-                    "description": "24/7 AI-powered relocation assistant with property recommendations and visa advice"
+                    "name": "Executive Relocation Assessment",
+                    "description": "Comprehensive relocation assessment with area analysis and strategy consultation"
                   },
                   {
                     "@type": "Offer", 
-                    "name": "Managed Service",
-                    "price": "8500",
-                    "priceCurrency": "GBP",
-                    "description": "Full-service relocation management with dedicated account manager"
+                    "name": "Corporate Relocation Programs",
+                    "description": "Full-service corporate relocation management with dedicated account teams"
                   },
                   {
                     "@type": "Offer",
-                    "name": "Executive Service", 
-                    "price": "15000",
-                    "priceCurrency": "GBP",
-                    "description": "White-glove corporate solutions with priority visa processing"
+                    "name": "Concierge Services", 
+                    "description": "24/7 relocation support and property advisory services"
                   }
                 ]
               },
@@ -338,7 +332,7 @@ export default function RootLayout({
                   "description": "Relo Network transformed our family's move from overwhelming to effortless. Their AI system found our perfect Marylebone flat in 48 hours.",
                   "itemReviewed": {
                     "@type": "Service",
-                    "name": "Managed Service Package"
+                    "name": "Executive Relocation Service"
                   }
                 },
                 {
@@ -360,7 +354,7 @@ export default function RootLayout({
                   "description": "As a senior partner relocating from Singapore, I needed white-glove service. Relo Network's executive package exceeded all expectations.",
                   "itemReviewed": {
                     "@type": "Service",
-                    "name": "Executive Service Package"
+                    "name": "Corporate Relocation Service"
                   }
                 }
               ]
@@ -459,7 +453,7 @@ export default function RootLayout({
                   }
                 ]
               },
-              "priceRange": "£295-£15000",
+              "priceRange": "Contact for pricing",
               "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
               "currenciesAccepted": "GBP"
             })
