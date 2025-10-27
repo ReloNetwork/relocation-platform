@@ -216,21 +216,21 @@ export default function HomePage() {
         />
       ))}
 
-      {/* Countdown Banner */}
+      {/* Announcement Banner */}
       <div className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white py-4 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 text-center relative">
           <div className="text-[#C9A24A] font-semibold text-sm uppercase tracking-wide mb-2 flex items-center justify-center gap-2">
             <svg className="w-4 h-4 fill-current animate-pulse" viewBox="0 0 24 24">
               <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8L14,13H10L12,8Z"/>
             </svg>
-            Launch Week
+            Now Live
           </div>
           <div className="text-white text-lg mb-3">
-            <strong>Founding Partner Charter now open — 12 category-exclusive slots available.</strong>
+            <strong>72-Hour London Setup Audit — Executive relocations starting at £2,500.</strong>
           </div>
           <div className="flex justify-center items-center text-white">
             <div className="text-center">
-              <div className="text-[#C9A24A] font-semibold">Apply now to secure your category-exclusive partnership</div>
+              <div className="text-[#C9A24A] font-semibold">Book your audit call • Corporate assessments available</div>
             </div>
           </div>
         </div>
