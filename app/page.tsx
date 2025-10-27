@@ -362,11 +362,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Proof Section */}
-          <div className="mb-24 max-w-7xl mx-auto px-4" id="proof">
+          {/* Client Results Section */}
+          <div className="mb-24 max-w-7xl mx-auto px-4" id="client-results">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                Proof
+                Client Results
               </h2>
               <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
                 Real outcomes from executive relocations
@@ -375,12 +375,22 @@ export default function HomePage() {
 
             <div className="grid md:grid-cols-3 gap-8">
               {/* Timeline Card */}
-              <div 
-                className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border-l-4 border-[#C9A24A] p-6 hover:scale-[1.01] hover:shadow-xl transition-all duration-300 fade-in group"
-                aria-label="Executive relocation timeline showing 5-day completion"
-              >
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-[#0B1B2B] mb-2">Speed Record</h3>
+              <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group hover:scale-[1.02] fade-in">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                      <svg className="h-6 w-6 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 px-4 py-2">Speed Record</Badge>
+                  </div>
+                  <CardTitle className="text-xl font-bold text-[#0B1B2B] text-left">Landed Sun → Keys Fri</CardTitle>
+                </CardHeader>
+                <CardContent 
+                  className="space-y-4"
+                  aria-label="Executive relocation timeline showing 5-day completion"
+                >
                   <div className="space-y-3">
                     <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
                       <span className="text-[#6B7280] text-sm">Landed</span>
@@ -399,19 +409,31 @@ export default function HomePage() {
                       <span className="font-bold text-[#C9A24A]">Fri, Oct 18</span>
                     </div>
                   </div>
-                </div>
-                <div className="bg-[#C9A24A]/10 rounded-lg p-3 text-center">
-                  <span className="text-sm font-semibold text-[#0B1B2B]">5 days • Mayfair • £8.5k/month</span>
-                </div>
-              </div>
+                  <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-3">
+                    <p className="text-sm font-semibold text-[#0B1B2B] text-center">
+                      5 days • Mayfair • £8.5k/month
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
 
               {/* Document Card */}
-              <div 
-                className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border-l-4 border-[#C9A24A] p-6 hover:scale-[1.01] hover:shadow-xl transition-all duration-300 fade-in"
-                aria-label="Offer acceptance email confirmation"
-              >
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Offer Accepted</h3>
+              <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group hover:scale-[1.02] fade-in">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                      <svg className="h-6 w-6 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <Badge variant="secondary" className="text-[#16A34A] bg-[#16A34A]/10 px-4 py-2">Verified</Badge>
+                  </div>
+                  <CardTitle className="text-xl font-bold text-[#0B1B2B] text-left">Offer Accepted</CardTitle>
+                </CardHeader>
+                <CardContent 
+                  className="space-y-4"
+                  aria-label="Offer acceptance email confirmation"
+                >
                   <div className="bg-[#F8F9FA] border border-[#E5E7EB] rounded-lg p-4 font-mono text-xs leading-relaxed">
                     <div className="mb-3 pb-2 border-b border-[#E5E7EB]">
                       <div className="text-[#6B7280]">From: lettings@███████.co.uk</div>
@@ -425,37 +447,46 @@ export default function HomePage() {
                       <p className="pt-2">Best regards,<br/>████████ Lettings</p>
                     </div>
                   </div>
-                </div>
-                <div className="text-center">
-                  <span className="inline-flex items-center text-sm text-[#16A34A] font-medium">
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    Verified Outcome
-                  </span>
-                </div>
-              </div>
+                  <div className="text-center">
+                    <span className="inline-flex items-center text-sm text-[#16A34A] font-medium">
+                      <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Documented Result
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
 
               {/* Video Testimonial Card */}
-              <div 
-                className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border-l-4 border-[#C9A24A] p-6 hover:scale-[1.01] hover:shadow-xl transition-all duration-300 fade-in cursor-pointer group"
+              <Card 
+                className="bg-white/95 backdrop-blur-sm shadow-2xl border-[#C9A24A]/20 hover:shadow-[#C9A24A]/10 transition-all group hover:scale-[1.02] fade-in cursor-pointer"
                 onClick={() => document.getElementById('video-modal')?.classList.remove('hidden')}
                 onKeyDown={(e) => e.key === 'Enter' && document.getElementById('video-modal')?.classList.remove('hidden')}
                 tabIndex={0}
                 role="button"
                 aria-label="Play testimonial video from executive client"
               >
-                <div className="relative">
-                  <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Client Testimonial</h3>
-                  <div className="relative bg-gradient-to-br from-[#0B1B2B] to-[#1F2937] rounded-lg overflow-hidden aspect-video mb-4">
-                    {/* Video placeholder - replace src with /assets/proof-testimonial.mp4 */}
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#C9A24A]/20 transition-colors">
+                      <svg className="h-6 w-6 text-[#C9A24A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <Badge variant="secondary" className="text-[#C9A24A] bg-[#C9A24A]/10 px-4 py-2">Testimonial</Badge>
+                  </div>
+                  <CardTitle className="text-xl font-bold text-[#0B1B2B] text-left">Client Testimonial</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="relative bg-gradient-to-br from-[#0B1B2B] to-[#1F2937] rounded-lg overflow-hidden aspect-video">
                     <img 
                       src="/assets/proof-testimonial.jpg" 
                       alt="Executive client testimonial video thumbnail"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
                         <svg className="w-6 h-6 text-[#0B1B2B] ml-1" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                         </svg>
@@ -463,11 +494,11 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-[#6B7280] mb-2">"Exceeded every expectation..."</p>
+                    <p className="text-sm text-[#6B7280] mb-2 italic">"Exceeded every expectation..."</p>
                     <span className="text-sm font-medium text-[#0B1B2B]">Fortune 500 CFO • 45 seconds</span>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
 
