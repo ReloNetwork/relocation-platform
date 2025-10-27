@@ -66,7 +66,63 @@ const AudienceCard = ({
 )
 
 export default function HomePage() {
-  const schemas = [...getAllEnhancedSchemas(), ...getAllHomepageSchemas(), ...getAICitationSchemas(), getCommunityEngagementSchema()]
+  // FAQ Schema for SEO and LLM Citations
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why 7–30 days vs. 60–120 days DIY?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our vetted network partners and established relationships with premium property agents, solicitors, and service providers eliminate the learning curve. Where DIY relocators spend weeks researching areas, comparing properties, and navigating bureaucracy, we provide immediate access to insider knowledge and expedited processes that typically take months to develop independently."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is Relo Network for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "C-suite executives, senior professionals, and high-net-worth individuals relocating to London who value their time and expect premium service. Our clients typically earn £150k+ annually and require white-glove assistance with property, schools, lifestyle integration, and ongoing concierge support. We also serve HR teams managing executive relocations with guaranteed delivery timelines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's included in the 72-Hour Audit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Area fit analysis based on commute, lifestyle preferences, and family needs. Curated property shortlist with detailed investment analysis. Optimized viewing route with pre-negotiated viewing slots. Tenancy agreement rider review with legal recommendations. School catchment area mapping for families. Transportation and lifestyle accessibility assessment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do milestone guarantees work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We commit to specific deliverables by Days 7, 14, and 30. If we miss any milestone deadline, you receive a 10% service credit automatically applied to your account. This includes property shortlist delivery, viewing coordination, offer positioning, essential services activation, and ongoing concierge setup. Credits are cumulative and can be applied to additional services or future relocations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you handle visas and immigration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We coordinate with premium immigration law firms for visa applications, but we don't provide legal services directly. Our network includes specialists in Skilled Worker visas, Global Talent visas, and investor routes. We handle document preparation coordination, timeline management, and ensure your move timeline aligns with visa approval. Legal fees are separate from our service packages."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my employee declines the relocation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For corporate clients, we offer a 30-day cooling-off period. If an employee withdraws after starting our process, you receive a full refund minus any third-party costs already incurred (property deposits, legal fees, etc.). We also provide family consultation calls to address concerns and demonstrate London lifestyle benefits, which often resolves initial hesitation about international moves."
+        }
+      }
+    ]
+  }
+
+  const schemas = [...getAllEnhancedSchemas(), ...getAllHomepageSchemas(), ...getAICitationSchemas(), getCommunityEngagementSchema(), faqSchema]
 
   // Intersection Observer for fade-in animation with reduced motion support
   useEffect(() => {
@@ -532,6 +588,152 @@ export default function HomePage() {
                 <source src="/assets/proof-testimonial.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mb-24 max-w-4xl mx-auto px-4" id="faq">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
+                Everything you need to know about executive relocation to London
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {/* FAQ Item 1 */}
+              <details className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-[#C9A24A]/20 overflow-hidden group fade-in">
+                <summary 
+                  className="flex justify-between items-center p-6 cursor-pointer hover:bg-[#C9A24A]/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:ring-inset"
+                  role="button"
+                  aria-expanded="false"
+                  tabIndex={0}
+                >
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] pr-4">
+                    Why 7–30 days vs. 60–120 days DIY?
+                  </h3>
+                  <svg className="w-6 h-6 text-[#C9A24A] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-[#6B7280] leading-relaxed">
+                    Our vetted network partners and established relationships with premium property agents, solicitors, and service providers eliminate the learning curve. Where DIY relocators spend weeks researching areas, comparing properties, and navigating bureaucracy, we provide immediate access to insider knowledge and expedited processes that typically take months to develop independently.
+                  </p>
+                </div>
+              </details>
+
+              {/* FAQ Item 2 */}
+              <details className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-[#C9A24A]/20 overflow-hidden group fade-in">
+                <summary 
+                  className="flex justify-between items-center p-6 cursor-pointer hover:bg-[#C9A24A]/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:ring-inset"
+                  role="button"
+                  aria-expanded="false"
+                  tabIndex={0}
+                >
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] pr-4">
+                    Who is Relo Network for?
+                  </h3>
+                  <svg className="w-6 h-6 text-[#C9A24A] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-[#6B7280] leading-relaxed">
+                    C-suite executives, senior professionals, and high-net-worth individuals relocating to London who value their time and expect premium service. Our clients typically earn £150k+ annually and require white-glove assistance with property, schools, lifestyle integration, and ongoing concierge support. We also serve HR teams managing executive relocations with guaranteed delivery timelines.
+                  </p>
+                </div>
+              </details>
+
+              {/* FAQ Item 3 */}
+              <details className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-[#C9A24A]/20 overflow-hidden group fade-in">
+                <summary 
+                  className="flex justify-between items-center p-6 cursor-pointer hover:bg-[#C9A24A]/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:ring-inset"
+                  role="button"
+                  aria-expanded="false"
+                  tabIndex={0}
+                >
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] pr-4">
+                    What's included in the 72-Hour Audit?
+                  </h3>
+                  <svg className="w-6 h-6 text-[#C9A24A] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-[#6B7280] leading-relaxed">
+                    Area fit analysis based on commute, lifestyle preferences, and family needs. Curated property shortlist with detailed investment analysis. Optimized viewing route with pre-negotiated viewing slots. Tenancy agreement rider review with legal recommendations. School catchment area mapping for families. Transportation and lifestyle accessibility assessment.
+                  </p>
+                </div>
+              </details>
+
+              {/* FAQ Item 4 */}
+              <details className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-[#C9A24A]/20 overflow-hidden group fade-in">
+                <summary 
+                  className="flex justify-between items-center p-6 cursor-pointer hover:bg-[#C9A24A]/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:ring-inset"
+                  role="button"
+                  aria-expanded="false"
+                  tabIndex={0}
+                >
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] pr-4">
+                    How do milestone guarantees work?
+                  </h3>
+                  <svg className="w-6 h-6 text-[#C9A24A] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-[#6B7280] leading-relaxed">
+                    We commit to specific deliverables by Days 7, 14, and 30. If we miss any milestone deadline, you receive a 10% service credit automatically applied to your account. This includes property shortlist delivery, viewing coordination, offer positioning, essential services activation, and ongoing concierge setup. Credits are cumulative and can be applied to additional services or future relocations.
+                  </p>
+                </div>
+              </details>
+
+              {/* FAQ Item 5 */}
+              <details className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-[#C9A24A]/20 overflow-hidden group fade-in">
+                <summary 
+                  className="flex justify-between items-center p-6 cursor-pointer hover:bg-[#C9A24A]/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:ring-inset"
+                  role="button"
+                  aria-expanded="false"
+                  tabIndex={0}
+                >
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] pr-4">
+                    Do you handle visas and immigration?
+                  </h3>
+                  <svg className="w-6 h-6 text-[#C9A24A] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-[#6B7280] leading-relaxed">
+                    We coordinate with premium immigration law firms for visa applications, but we don't provide legal services directly. Our network includes specialists in Skilled Worker visas, Global Talent visas, and investor routes. We handle document preparation coordination, timeline management, and ensure your move timeline aligns with visa approval. Legal fees are separate from our service packages.
+                  </p>
+                </div>
+              </details>
+
+              {/* FAQ Item 6 */}
+              <details className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-[#C9A24A]/20 overflow-hidden group fade-in">
+                <summary 
+                  className="flex justify-between items-center p-6 cursor-pointer hover:bg-[#C9A24A]/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:ring-inset"
+                  role="button"
+                  aria-expanded="false"
+                  tabIndex={0}
+                >
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] pr-4">
+                    What if my employee declines the relocation?
+                  </h3>
+                  <svg className="w-6 h-6 text-[#C9A24A] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-[#6B7280] leading-relaxed">
+                    For corporate clients, we offer a 30-day cooling-off period. If an employee withdraws after starting our process, you receive a full refund minus any third-party costs already incurred (property deposits, legal fees, etc.). We also provide family consultation calls to address concerns and demonstrate London lifestyle benefits, which often resolves initial hesitation about international moves.
+                  </p>
+                </div>
+              </details>
             </div>
           </div>
 
