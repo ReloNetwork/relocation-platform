@@ -430,11 +430,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Client Results Section - Proof Hub */}
-          <div className="mb-24 max-w-7xl mx-auto px-4" id="client-results">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                Proof Hub
+          {/* Client Results Section */}
+          <div className="mb-16 max-w-7xl mx-auto px-4" id="client-results">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Client Results
               </h2>
               <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
                 Real outcomes, verified timelines, and partner guarantees
