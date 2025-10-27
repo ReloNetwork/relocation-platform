@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout'
+import Layout from '../../components/Layout'
 import { Check, Star, ArrowRight, Shield, Clock, Users, Phone, Mail, Calendar, Building, User, FileText } from 'lucide-react'
 import type { Metadata } from 'next'
 
