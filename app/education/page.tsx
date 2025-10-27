@@ -3830,7 +3830,6 @@ export default function EducationPortal() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="space-y-1">
-                          <div className="text-sm font-medium text-[#0B1B2B]">{school.fees}</div>
                           <div className="flex items-center gap-1">
                             <Star className="w-4 h-4 text-yellow-500" />
                             <span className="text-sm text-[#6B7280]">{school.ofsted_rating}</span>
