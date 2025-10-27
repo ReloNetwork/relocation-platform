@@ -186,7 +186,7 @@ export async function POST(req: NextRequest) {
       ...(plan === '72hour_audit' && {
         custom_text: {
           submit: {
-            message: '72-Hour Setup Audit - Area analysis, property shortlist, viewings route, tenancy agreement review'
+            message: '72-Hour Setup Audit - Area analysis, property shortlist, viewings itinerary, tenancy agreement review'
           }
         }
       }),

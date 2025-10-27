@@ -92,7 +92,7 @@ export default function HomePage() {
         "name": "What's included in the 72-Hour Audit?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Area fit analysis based on commute, lifestyle preferences, and family needs. Curated property shortlist with detailed investment analysis. Optimized viewing route with pre-negotiated viewing slots. Tenancy agreement review with legal recommendations. School catchment area mapping for families. Transportation and lifestyle accessibility assessment."
+          "text": "Area fit analysis based on commute, lifestyle preferences, and family needs. Curated property shortlist with detailed investment analysis. Optimized viewing itinerary with pre-negotiated viewing slots. Tenancy agreement review with legal recommendations. School catchment area mapping for families. Transportation and lifestyle accessibility assessment."
         }
       },
       {
@@ -357,7 +357,7 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-2xl font-bold text-[#0B1B2B] mb-3">72-Hour Audit</h3>
                   <p className="text-[#6B7280] leading-relaxed">
-                    Area fit, property shortlist, viewings route, tenancy agreement review.
+                    Area fit, property shortlist, viewings itinerary, tenancy agreement review.
                   </p>
                 </div>
               </div>
@@ -402,7 +402,7 @@ export default function HomePage() {
                   <div className="text-2xl font-bold text-[#C9A24A] mb-3">Day 7</div>
                   <div className="text-sm font-medium text-[#0B1B2B] mb-2">Area Analysis Complete</div>
                   <div className="text-xs text-[#6B7280] leading-relaxed mb-2">
-                    Property shortlist + viewing route + schedule confirmed
+                    Property shortlist + viewing itinerary + schedule confirmed
                   </div>
                   <div className="text-xs font-medium text-[#C9A24A]">or 10% credit applied</div>
                 </div>
@@ -740,7 +740,7 @@ export default function HomePage() {
                 </summary>
                 <div className="px-6 pb-6">
                   <p className="text-[#6B7280] leading-relaxed">
-                    Area fit analysis based on commute, lifestyle preferences, and family needs. Curated property shortlist with detailed investment analysis. Optimized viewing route with pre-negotiated viewing slots. Tenancy agreement review with legal recommendations. School catchment area mapping for families. Transportation and lifestyle accessibility assessment.
+                    Area fit analysis based on commute, lifestyle preferences, and family needs. Curated property shortlist with detailed investment analysis. Optimized viewing itinerary with pre-negotiated viewing slots. Tenancy agreement review with legal recommendations. School catchment area mapping for families. Transportation and lifestyle accessibility assessment.
                   </p>
                 </div>
               </details>

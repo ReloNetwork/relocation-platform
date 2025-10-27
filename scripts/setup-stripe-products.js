@@ -42,7 +42,7 @@ async function createProduct() {
     // Create the product
     const product = await stripe.products.create({
       name: '72-Hour Setup Audit',
-      description: 'Area fit analysis, property shortlist, viewings route, tenancy agreement review',
+      description: 'Area fit analysis, property shortlist, viewings itinerary, tenancy agreement review',
       metadata: {
         service_type: 'audit',
         delivery_time: '72_hours'
@@ -59,7 +59,7 @@ async function createProduct() {
       lookup_key: '72hour_audit',
       metadata: {
         plan_name: '72-Hour Setup Audit',
-        includes: 'Area analysis, property shortlist, viewing route, tenancy agreement review, 60-min strategy call'
+        includes: 'Area analysis, property shortlist, viewing itinerary, tenancy agreement review, 60-min strategy call'
       }
     });
     

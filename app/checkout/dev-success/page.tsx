@@ -73,7 +73,7 @@ export default function DevSuccessPage() {
                 <div className="w-8 h-8 bg-[#C9A24A] rounded-full flex items-center justify-center text-white text-sm font-bold">4</div>
                 <div>
                   <h3 className="font-semibold text-[#0B1B2B] mb-2">Report Delivery</h3>
-                  <p className="text-[#6B7280]">Your comprehensive written report with property shortlist and viewing route delivered within 72 hours.</p>
+                  <p className="text-[#6B7280]">Your comprehensive written report with property shortlist and viewing itinerary delivered within 72 hours.</p>
                 </div>
               </div>
             </div>

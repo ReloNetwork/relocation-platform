@@ -111,7 +111,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
 ### Core Pages
 - **Homepage (`/`)**: Hero section with dual-track ICP messaging and service offerings
-- **72-Hour Setup Audit (`/executive-intake`)**: Area analysis, property shortlist, viewings route, and tenancy agreement review
+- **72-Hour Setup Audit (`/executive-intake`)**: Area analysis, property shortlist, viewings itinerary, and tenancy agreement review
 - **Corporate Assessment**: 15-minute needs assessment for HR teams managing relocations
 - **Terms (`/terms`)**: Service terms, refund policy, and milestone guarantees
 

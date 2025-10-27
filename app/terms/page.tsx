@@ -35,7 +35,7 @@ export default function TermsPage() {
               <div>
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Relo Network Services</h3>
                 <ul className="space-y-2 text-[#6B7280]">
-                  <li>• <strong>72-Hour Setup Audit:</strong> Area fit analysis, property shortlist, viewings route, tenancy agreement review with written report and 60-min strategy call</li>
+                  <li>• <strong>72-Hour Setup Audit:</strong> Area fit analysis, property shortlist, viewings itinerary, tenancy agreement review with written report and 60-min strategy call</li>
                   <li>• <strong>Executive Relocation Packages:</strong> Comprehensive 7-30 day relocation services for executives and their families</li>
                   <li>• <strong>Corporate Relocation Programs:</strong> End-to-end employee relocation solutions for businesses and HR teams</li>
                   <li>• <strong>Partner Network Access:</strong> Connections to vetted service providers with written SLAs</li>

@@ -129,7 +129,7 @@ export default function ExecutiveIntakePage() {
             72-Hour Setup Audit
           </h1>
           <p className="text-xl text-[#6B7280] mb-8">
-            Area fit analysis, property shortlist, viewings route, tenancy agreement review
+            Area fit analysis, property shortlist, viewings itinerary, tenancy agreement review
           </p>
           
           {/* Progress */}
@@ -440,7 +440,7 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Optimized viewing route with pre-negotiated slots</span>
+                  <span>Optimized viewing itinerary with pre-negotiated slots</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />

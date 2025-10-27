@@ -153,7 +153,7 @@ export default function PrivacyPage() {
                 <li>• Estate agents: Area preferences and property shortlist requirements</li>
                 <li>• Schools: Family details for admissions guidance and school visits</li>
                 <li>• Legal advisors: Tenancy requirements for agreement review</li>
-                <li>• Service providers: Specific requirements for viewing routes and logistics</li>
+                <li>• Service providers: Specific requirements for viewing itineraries and logistics</li>
                 <li>• Financial advisors: Employment context for mortgage and investment analysis</li>
               </ul>
               <p className="text-[#6B7280] text-sm mt-3">
