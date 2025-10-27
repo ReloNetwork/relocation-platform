@@ -32,6 +32,14 @@ export default function ExecutiveIntakePage() {
     childrenAges: '',
     pets: false,
     
+    // Support requirements
+    visaSupport: false,
+    taxationSupport: false,
+    bankingSupport: false,
+    schoolingSupport: false,
+    lifestyleSupport: false,
+    otherRequirements: '',
+    
     // Urgency
     urgency: 'normal',
     specialRequirements: '',
@@ -70,11 +78,14 @@ export default function ExecutiveIntakePage() {
   }
 
   const handleSubmit = async () => {
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.moveDate || !formData.budget || formData.preferredAreas.length === 0) {
+      alert('Please complete all required fields before proceeding.')
+      return
+    }
+
     // Store form data for checkout
     sessionStorage.setItem('executive_intake_data', JSON.stringify(formData))
-    
-    // Check for Day Pass credit
-    const dayPassCredit = sessionStorage.getItem('day_pass_credit_available')
     
     // Redirect to Stripe checkout
     try {
@@ -89,15 +100,21 @@ export default function ExecutiveIntakePage() {
       })
 
       const data = await response.json()
+      
       if (response.ok && data.checkoutUrl) {
         window.location.href = data.checkoutUrl
+      } else {
+        console.error('Checkout error:', data)
+        alert('Unable to start checkout. Please try again or contact support at hello@therelonetwork.com')
       }
     } catch (error) {
-      console.error('Checkout error:', error)
+      console.error('Checkout request failed:', error)
+      alert('Unable to start checkout. Please check your connection and try again.')
     }
   }
 
   const isStep1Complete = formData.moveDate && formData.budget && formData.preferredAreas.length > 0 && formData.name && formData.email
+  const isStep2Complete = true // Step 2 has no required fields, all optional
 
   return (
     <Layout className="bg-[#FAFAF9] min-h-screen">
@@ -276,6 +293,69 @@ export default function ExecutiveIntakePage() {
                 </div>
               </div>
 
+              {/* Additional Support Requirements */}
+              <div>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Additional Support Requirements</h3>
+                <div className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.visaSupport}
+                        onChange={(e) => handleInputChange('visaSupport', e.target.checked)}
+                        className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
+                      />
+                      <span className="text-[#6B7280]">Visa & immigration guidance</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.taxationSupport}
+                        onChange={(e) => handleInputChange('taxationSupport', e.target.checked)}
+                        className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
+                      />
+                      <span className="text-[#6B7280]">UK taxation advice</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.bankingSupport}
+                        onChange={(e) => handleInputChange('bankingSupport', e.target.checked)}
+                        className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
+                      />
+                      <span className="text-[#6B7280]">Banking & finance setup</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.schoolingSupport}
+                        onChange={(e) => handleInputChange('schoolingSupport', e.target.checked)}
+                        className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
+                      />
+                      <span className="text-[#6B7280]">School admissions support</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer md:col-span-2">
+                      <input
+                        type="checkbox"
+                        checked={formData.lifestyleSupport}
+                        onChange={(e) => handleInputChange('lifestyleSupport', e.target.checked)}
+                        className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
+                      />
+                      <span className="text-[#6B7280]">Lifestyle integration (clubs, healthcare, social connections)</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Other specific requirements</label>
+                    <textarea
+                      value={formData.otherRequirements}
+                      onChange={(e) => handleInputChange('otherRequirements', e.target.value)}
+                      placeholder="Any other specific needs, preferences, or circumstances we should know about..."
+                      rows={3}
+                      className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    />
+                  </div>
+                </div>
+              </div>
 
               {/* Contact Details */}
               <div>
@@ -420,6 +500,13 @@ export default function ExecutiveIntakePage() {
               <CreditCard className="w-5 h-5" />
               Complete Payment
             </button>
+            
+            {/* Debug info for testing */}
+            <div className="mt-4 p-4 bg-gray-100 rounded text-xs text-gray-600">
+              <div>Debug: Plan = 72hour_audit</div>
+              <div>Email = {formData.email}</div>
+              <div>Terms accepted = {termsAccepted ? 'Yes' : 'No'}</div>
+            </div>
           </div>
         )}
       </div>
