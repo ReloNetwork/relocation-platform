@@ -68,6 +68,35 @@ const AudienceCard = ({
 export default function HomePage() {
   const schemas = [...getAllEnhancedSchemas(), ...getAllHomepageSchemas(), ...getAICitationSchemas(), getCommunityEngagementSchema()]
 
+  // Intersection Observer for fade-in animation with reduced motion support
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
+    if (prefersReducedMotion) {
+      // Skip animations for users who prefer reduced motion
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-visible')
+          }
+        })
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    )
+
+    const fadeElements = document.querySelectorAll('.fade-in')
+    fadeElements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
 
   const audienceCards = [
     {
@@ -248,6 +277,90 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* How it works Section */}
+          <div className="mb-24 max-w-7xl mx-auto px-4" id="how-it-works">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                How it works
+              </h2>
+              <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
+                Executive relocation simplified into three clear phases
+              </p>
+            </div>
+
+            {/* 3-Step Process */}
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {/* Step 1 */}
+              <div className="text-center fade-in" data-step="1">
+                <div className="mb-6">
+                  <div className="w-16 h-16 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                    1
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#0B1B2B] mb-3">72-Hour Audit</h3>
+                  <p className="text-[#6B7280] leading-relaxed">
+                    Area fit, property shortlist, viewings route, tenancy rider review.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="text-center fade-in" data-step="2">
+                <div className="mb-6">
+                  <div className="w-16 h-16 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                    2
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#0B1B2B] mb-3">7-Day Setup</h3>
+                  <p className="text-[#6B7280] leading-relaxed">
+                    Viewings, offer positioning, solicitor coordination, utilities and essentials live.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="text-center fade-in" data-step="3">
+                <div className="mb-6">
+                  <div className="w-16 h-16 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                    3
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#0B1B2B] mb-3">Settle & Elevate</h3>
+                  <p className="text-[#6B7280] leading-relaxed">
+                    Schools shortlist, spouse support, drivers, clubs—ongoing concierge.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Milestone Progress Bar */}
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-[#C9A24A]/20 p-6 md:p-8">
+              <div className="text-center mb-8">
+                <h3 className="text-xl font-semibold text-[#0B1B2B] mb-2">Delivery Guarantee</h3>
+                <p className="text-[#6B7280]">Clear milestones with credit protection</p>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-6">
+                {/* Day 7 */}
+                <div className="text-center p-4 bg-[#C9A24A]/5 rounded-lg border border-[#C9A24A]/10 fade-in">
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">Day 7</div>
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-1">deliverables</div>
+                  <div className="text-xs text-[#6B7280]">or 10% credit</div>
+                </div>
+
+                {/* Day 14 */}
+                <div className="text-center p-4 bg-[#C9A24A]/5 rounded-lg border border-[#C9A24A]/10 fade-in">
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">Day 14</div>
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-1">deliverables</div>
+                  <div className="text-xs text-[#6B7280]">or 10% credit</div>
+                </div>
+
+                {/* Day 30 */}
+                <div className="text-center p-4 bg-[#C9A24A]/5 rounded-lg border border-[#C9A24A]/10 fade-in">
+                  <div className="text-2xl font-bold text-[#C9A24A] mb-2">Day 30</div>
+                  <div className="text-sm font-medium text-[#0B1B2B] mb-1">deliverables</div>
+                  <div className="text-xs text-[#6B7280]">or 10% credit</div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Services Grid - Clean Layout */}
           <div className="mb-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
