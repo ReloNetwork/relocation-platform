@@ -28,8 +28,10 @@ const VALID_CADENCES = ['monthly', 'annual', 'one_time'];
 
 export async function POST(req: NextRequest) {
   try {
-    // Check if we're in development mode with placeholder key
-    const isPlaceholderKey = !stripeKey || stripeKey.includes('Placeholder') || stripeKey === 'sk_test_51PlaceholderKeyForDevelopmentMode123456789ABCDEF';
+    // Check if we're in development mode with placeholder key  
+    const isPlaceholderKey = !stripeKey || 
+                            stripeKey.includes('Placeholder') || 
+                            stripeKey === 'sk_test_51PlaceholderKeyForDevelopmentMode123456789ABCDEF';
     
     if (!stripeKey) {
       console.error('Stripe secret key not configured');

@@ -12,6 +12,7 @@ out/
 
 # Environment files
 .env*.local
+.env.vercel
 
 # Other common ignores
 .DS_Store
