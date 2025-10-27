@@ -28,12 +28,31 @@ const VALID_CADENCES = ['monthly', 'annual', 'one_time'];
 
 export async function POST(req: NextRequest) {
   try {
+    // Check if we're in development mode with placeholder key
+    const isPlaceholderKey = !stripeKey || stripeKey.includes('Placeholder') || stripeKey === 'sk_test_51PlaceholderKeyForDevelopmentMode123456789ABCDEF';
+    
     if (!stripeKey) {
       console.error('Stripe secret key not configured');
       return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });
     }
     
     console.log('Stripe key configured:', stripeKey ? 'Yes' : 'No');
+    console.log('Using placeholder/dev mode:', isPlaceholderKey);
+    
+    // In development mode with placeholder key, return mock checkout URL
+    if (isPlaceholderKey) {
+      const { plan, email } = await req.json();
+      console.log('Development mode: simulating checkout for plan:', plan);
+      
+      // Simulate successful checkout creation
+      return NextResponse.json({ 
+        url: `${siteUrl}/checkout/dev-success?plan=${plan}&email=${email}`,
+        checkoutUrl: `${siteUrl}/checkout/dev-success?plan=${plan}&email=${email}`,
+        sessionId: 'dev_session_' + Date.now(),
+        mode: 'development'
+      }, { status: 200 });
+    }
+    
     const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
 
     const { plan, cadence = 'one_time', email, credit = 0 } = await req.json();
