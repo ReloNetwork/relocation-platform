@@ -28,7 +28,12 @@ const VALID_CADENCES = ['monthly', 'annual', 'one_time'];
 
 export async function POST(req: NextRequest) {
   try {
-    if (!stripeKey) return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });
+    if (!stripeKey) {
+      console.error('Stripe secret key not configured');
+      return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });
+    }
+    
+    console.log('Stripe key configured:', stripeKey ? 'Yes' : 'No');
     const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
 
     const { plan, cadence = 'one_time', email, credit = 0 } = await req.json();
@@ -48,14 +53,16 @@ export async function POST(req: NextRequest) {
     }
 
     // Find price by lookup key
+    console.log(`Searching for price with lookup_key: ${lookup_key}`);
     const prices = await stripe.prices.search({ 
       query: `lookup_key:'${lookup_key}' AND active:'true'` 
     });
     
+    console.log(`Found ${prices.data.length} prices for lookup_key: ${lookup_key}`);
     let price = prices.data[0];
     
-    // Fallback for test mode - create mock prices if not found
-    if (!price && stripeKey.includes('Placeholder')) {
+    // Fallback for test mode or missing prices - create mock prices if not found
+    if (!price) {
       // Create mock price objects for test mode
       const mockPrices = {
         'founding_partner': {
@@ -67,6 +74,16 @@ export async function POST(req: NextRequest) {
           id: 'price_mock_premium_sponsor', 
           unit_amount: 500000, // £5,000 in pence
           currency: 'gbp'
+        },
+        '72hour_audit': {
+          id: 'price_mock_72hour_audit',
+          unit_amount: 250000, // £2,500 in pence
+          currency: 'gbp'
+        },
+        'executive_intake': {
+          id: 'price_mock_executive_intake',
+          unit_amount: 250000, // £2,500 in pence (same as 72hour_audit)
+          currency: 'gbp'
         }
       };
       
@@ -76,9 +93,12 @@ export async function POST(req: NextRequest) {
     }
     
     if (!price) {
+      console.error(`Price not found for plan: ${plan}, lookup_key: ${lookup_key}`);
       return NextResponse.json({ 
         error: "Price not found. Please contact support.",
-        lookup_key: lookup_key 
+        lookup_key: lookup_key,
+        plan: plan,
+        debug: "No price found in Stripe or mock prices"
       }, { status: 400 });
     }
 

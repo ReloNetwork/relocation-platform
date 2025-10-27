@@ -520,13 +520,6 @@ export default function ExecutiveIntakePage() {
               <CreditCard className="w-5 h-5" />
               Complete Payment
             </button>
-            
-            {/* Debug info for testing */}
-            <div className="mt-4 p-4 bg-gray-100 rounded text-xs text-gray-600">
-              <div>Debug: Plan = 72hour_audit</div>
-              <div>Email = {formData.email}</div>
-              <div>Terms accepted = {termsAccepted ? 'Yes' : 'No'}</div>
-            </div>
           </div>
         )}
       </div>
