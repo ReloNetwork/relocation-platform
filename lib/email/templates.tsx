@@ -293,7 +293,7 @@ export function createPartnerSubscriptionEmail(
           <p>Partners who complete their profile setup within 24 hours receive 3x more leads in their first month!</p>
         </div>
         
-        <p>Questions? Reply to this email or call our partner success team at +44 20 7123 4567.</p>
+        <p>Questions? Reply to this email or call our partner success team at +44 20 3105 9566.</p>
         
         <p>Best regards,<br>
         The Relo Network Team</p>
@@ -441,7 +441,7 @@ export function createCorporateInquiryEmail(
           <a href="https://therelonetwork.com/corporate/resources" class="button">View Resources</a>
         </div>
         
-        <p>Questions before our call? Contact our enterprise team directly at corporate@therelonetwork.com or +44 20 7123 4567.</p>
+        <p>Questions before our call? Contact our team directly at hello@therelonetwork.com or +44 20 3105 9566.</p>
         
         <p>Best regards,<br>
         Sarah Chen<br>

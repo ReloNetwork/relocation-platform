@@ -151,7 +151,7 @@ export default function CorporateAssessmentThankYouPage() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#C9A24A]" />
-                <span><strong>Corporate Team:</strong> corporate@therelonetwork.com</span>
+                <span><strong>Email:</strong> hello@therelonetwork.com</span>
               </div>
               <div><strong>Hours:</strong> Monday-Friday 8:00-20:00 GMT</div>
             </div>
