@@ -333,6 +333,9 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Spacer for better visual separation */}
+          <div className="mb-36"></div>
+
           {/* How it works Section */}
           <div className="mb-24 max-w-7xl mx-auto px-4" id="how-it-works">
             <div className="text-center mb-16">
