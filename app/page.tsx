@@ -362,6 +362,148 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Proof Section */}
+          <div className="mb-24 max-w-7xl mx-auto px-4" id="proof">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Proof
+              </h2>
+              <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
+                Real outcomes from executive relocations
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Timeline Card */}
+              <div 
+                className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border-l-4 border-[#C9A24A] p-6 hover:scale-[1.01] hover:shadow-xl transition-all duration-300 fade-in group"
+                aria-label="Executive relocation timeline showing 5-day completion"
+              >
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] mb-2">Speed Record</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-sm">Landed</span>
+                      <span className="font-medium text-[#0B1B2B]">Sun, Oct 13</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-sm">Viewings</span>
+                      <span className="font-medium text-[#0B1B2B]">Mon-Wed</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-[#C9A24A]/10">
+                      <span className="text-[#6B7280] text-sm">Offer Accepted</span>
+                      <span className="font-medium text-[#0B1B2B]">Thu, Oct 17</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-[#6B7280] text-sm font-medium">Keys Received</span>
+                      <span className="font-bold text-[#C9A24A]">Fri, Oct 18</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[#C9A24A]/10 rounded-lg p-3 text-center">
+                  <span className="text-sm font-semibold text-[#0B1B2B]">5 days • Mayfair • £8.5k/month</span>
+                </div>
+              </div>
+
+              {/* Document Card */}
+              <div 
+                className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border-l-4 border-[#C9A24A] p-6 hover:scale-[1.01] hover:shadow-xl transition-all duration-300 fade-in"
+                aria-label="Offer acceptance email confirmation"
+              >
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Offer Accepted</h3>
+                  <div className="bg-[#F8F9FA] border border-[#E5E7EB] rounded-lg p-4 font-mono text-xs leading-relaxed">
+                    <div className="mb-3 pb-2 border-b border-[#E5E7EB]">
+                      <div className="text-[#6B7280]">From: lettings@███████.co.uk</div>
+                      <div className="text-[#6B7280]">To: client@therelonetwork.com</div>
+                      <div className="text-[#6B7280]">Subject: Offer Accepted - ████ Mews</div>
+                    </div>
+                    <div className="space-y-2 text-[#0B1B2B]">
+                      <p>Dear ████████,</p>
+                      <p>We are delighted to confirm that your offer of <span className="font-bold">£8,500 pcm</span> for the property at ████ ████ Mews, Mayfair has been <span className="text-[#16A34A] font-bold">ACCEPTED</span>.</p>
+                      <p>Reference checks and contracts to follow within 24 hours.</p>
+                      <p className="pt-2">Best regards,<br/>████████ Lettings</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <span className="inline-flex items-center text-sm text-[#16A34A] font-medium">
+                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Verified Outcome
+                  </span>
+                </div>
+              </div>
+
+              {/* Video Testimonial Card */}
+              <div 
+                className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border-l-4 border-[#C9A24A] p-6 hover:scale-[1.01] hover:shadow-xl transition-all duration-300 fade-in cursor-pointer group"
+                onClick={() => document.getElementById('video-modal')?.classList.remove('hidden')}
+                onKeyDown={(e) => e.key === 'Enter' && document.getElementById('video-modal')?.classList.remove('hidden')}
+                tabIndex={0}
+                role="button"
+                aria-label="Play testimonial video from executive client"
+              >
+                <div className="relative">
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Client Testimonial</h3>
+                  <div className="relative bg-gradient-to-br from-[#0B1B2B] to-[#1F2937] rounded-lg overflow-hidden aspect-video mb-4">
+                    {/* Video placeholder - replace src with /assets/proof-testimonial.mp4 */}
+                    <img 
+                      src="/assets/proof-testimonial.jpg" 
+                      alt="Executive client testimonial video thumbnail"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <svg className="w-6 h-6 text-[#0B1B2B] ml-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm text-[#6B7280] mb-2">"Exceeded every expectation..."</p>
+                    <span className="text-sm font-medium text-[#0B1B2B]">Fortune 500 CFO • 45 seconds</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Video Modal */}
+          <div 
+            id="video-modal" 
+            className="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            onClick={(e) => e.target === e.currentTarget && e.currentTarget.classList.add('hidden')}
+            onKeyDown={(e) => e.key === 'Escape' && e.currentTarget.classList.add('hidden')}
+            tabIndex={-1}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Testimonial video player"
+          >
+            <div className="relative bg-white rounded-2xl overflow-hidden max-w-4xl w-full max-h-[90vh]">
+              <button 
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
+                onClick={() => document.getElementById('video-modal')?.classList.add('hidden')}
+                aria-label="Close video"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <video 
+                controls 
+                autoPlay 
+                className="w-full h-auto"
+                aria-label="Executive client testimonial about relocation experience"
+              >
+                <source src="/assets/proof-testimonial.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
           {/* Services Grid - Clean Layout */}
           <div className="mb-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Executive Intake */}
