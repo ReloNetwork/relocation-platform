@@ -18,7 +18,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="text-xl text-[#6B7280]">
-            How Relo Network protects and manages your personal information
+            How we protect and manage your personal information securely
           </p>
         </div>
 
@@ -34,8 +34,8 @@ export default function PrivacyPage() {
             </p>
             <div className="bg-[#C9A24A]/10 rounded-lg p-6">
               <p className="text-[#0B1B2B]">
-                <strong>Key Principle:</strong> We only collect information necessary to provide exceptional 
-                relocation services and will never sell your personal data to third parties.
+                <strong>Key Principle:</strong> We only collect information necessary for professional 
+                relocation services and never sell personal data to third parties.
               </p>
             </div>
           </section>
@@ -84,21 +84,21 @@ export default function PrivacyPage() {
               <div className="bg-[#F8F9FA] rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Service Delivery</h3>
                 <ul className="space-y-2 text-[#6B7280]">
-                  <li>• Conducting comprehensive 72-Hour Setup Audits</li>
+                  <li>• Conducting comprehensive relocation assessments</li>
                   <li>• Providing area fit analysis and property shortlists</li>
-                  <li>• Connecting you with vetted service partners via warm introductions</li>
-                  <li>• Managing Executive Relocation packages and milestone delivery</li>
-                  <li>• Facilitating corporate relocation programs for HR teams</li>
+                  <li>• Connecting you with vetted service partners</li>
+                  <li>• Managing relocation packages and milestone delivery</li>
+                  <li>• Facilitating corporate relocation programs</li>
                 </ul>
               </div>
 
               <div className="bg-[#F8F9FA] rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Communication</h3>
                 <ul className="space-y-2 text-[#6B7280]">
-                  <li>• Scheduling strategy calls and audit deliverables</li>
+                  <li>• Scheduling strategy calls and service deliverables</li>
                   <li>• Providing milestone updates and service confirmations</li>
                   <li>• Facilitating partner introductions and connections</li>
-                  <li>• Sharing audit reports and relocation insights</li>
+                  <li>• Sharing reports and relocation insights</li>
                   <li>• Processing feedback for service improvements</li>
                 </ul>
               </div>
@@ -130,8 +130,8 @@ export default function PrivacyPage() {
                   and comply with legal requirements:
                 </p>
                 <ul className="space-y-2 text-[#6B7280]">
-                  <li>• 72-Hour Setup Audit: 12 months for credit application and follow-up</li>
-                  <li>• Executive Relocation packages: Duration of service plus 3 years</li>
+                  <li>• Relocation assessments: 12 months for follow-up services</li>
+                  <li>• Executive packages: Duration of service plus 3 years</li>
                   <li>• Corporate programs: As per contractual agreements</li>
                   <li>• Marketing consent: Until withdrawn</li>
                   <li>• Legal requirements: As mandated by law</li>
@@ -147,7 +147,7 @@ export default function PrivacyPage() {
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
               <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">Service Partners</h3>
               <p className="text-[#6B7280] mb-3">
-                We share relevant information with vetted partners to facilitate your 72-Hour Setup Audit and relocation services:
+                We share relevant information with vetted partners to facilitate your relocation services:
               </p>
               <ul className="space-y-2 text-[#6B7280]">
                 <li>• Estate agents: Area preferences and property shortlist requirements</li>
