@@ -22,7 +22,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Simon Henderson",
     age_range: "13-18",
     day_boarding: "Boarding",
-    fees: "£49,998 per year",
+    fees: "Contact for fees",
     notable_alumni: "Prince William, Boris Johnson",
     ofsted_rating: "Outstanding"
   },
@@ -38,7 +38,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dr Gary Savage",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£46,980 per year",
+    fees: "Contact for fees",
     notable_alumni: "Stephen Hawking, Andrew Lloyd Webber",
     ofsted_rating: "Outstanding"
   },
@@ -54,7 +54,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mark Bailey",
     age_range: "13-18",
     day_boarding: "Day",
-    fees: "£43,434 per year",
+    fees: "Contact for fees",
     notable_alumni: "George Osborne, Mo Farah",
     ofsted_rating: "Outstanding"
   },
@@ -70,7 +70,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dr Tim Hands",
     age_range: "13-18",
     day_boarding: "Boarding",
-    fees: "£48,000 per year",
+    fees: "Contact for fees",
     notable_alumni: "Rishi Sunak, Geoffrey Howe",
     ofsted_rating: "Outstanding"
   },
@@ -86,7 +86,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Alastair Land",
     age_range: "13-18",
     day_boarding: "Boarding",
-    fees: "£48,000 per year",
+    fees: "Contact for fees",
     notable_alumni: "Winston Churchill, Benedict Cumberbatch",
     ofsted_rating: "Outstanding"
   },
@@ -104,7 +104,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dr Anthony Wallersteiner",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£46,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "Richard Branson, Henry Cavill",
     ofsted_rating: "Outstanding"
   },
@@ -120,7 +120,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Richard Russell",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£21,450 per year",
+    fees: "Contact for fees",
     notable_alumni: "Bob Hope, Ernest Shackleton",
     ofsted_rating: "Outstanding"
   },
@@ -136,7 +136,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Peter Green",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£45,540 per year",
+    fees: "Contact for fees",
     notable_alumni: "Lewis Carroll, Salman Rushdie",
     ofsted_rating: "Outstanding"
   },
@@ -152,7 +152,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Alex Peterken",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£47,400 per year",
+    fees: "Contact for fees",
     notable_alumni: "Jonathan Swift, Ralph Vaughan Williams",
     ofsted_rating: "Outstanding"
   },
@@ -168,7 +168,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Louise Moelwyn-Hughes",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£46,890 per year",
+    fees: "Contact for fees",
     notable_alumni: "Kate Middleton, John Betjeman",
     ofsted_rating: "Outstanding"
   },
@@ -184,7 +184,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dr Dominic Luckett",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£44,550 per year",
+    fees: "Contact for fees",
     notable_alumni: "Alan Turing, Jeremy Irons",
     ofsted_rating: "Outstanding"
   },
@@ -200,7 +200,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Sarah Kerr-Dineen",
     age_range: "11-18",
     day_boarding: "Boarding & Day",
-    fees: "£42,330 per year",
+    fees: "Contact for fees",
     notable_alumni: "Peter Scott, Bruce Dickinson",
     ofsted_rating: "Outstanding"
   },
@@ -216,7 +216,7 @@ const SCHOOLS_DATA = [
     head_teacher: "John Moule",
     age_range: "13-18",
     day_boarding: "Boarding",
-    fees: "£47,160 per year",
+    fees: "Contact for fees",
     notable_alumni: "Andrew Strauss, Peter Phillips",
     ofsted_rating: "Outstanding"
   },
@@ -232,7 +232,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Joe Spence",
     age_range: "7-18",
     day_boarding: "Day & Boarding",
-    fees: "£41,820 per year",
+    fees: "Contact for fees",
     notable_alumni: "P.G. Wodehouse, Chiwetel Ejiofor",
     ofsted_rating: "Outstanding"
   },
@@ -248,7 +248,7 @@ const SCHOOLS_DATA = [
     head_teacher: "James Dahl",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£46,020 per year",
+    fees: "Contact for fees",
     notable_alumni: "George Orwell, Will Young",
     ofsted_rating: "Outstanding"
   },
@@ -264,7 +264,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Richard Maloney",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£45,900 per year",
+    fees: "Contact for fees",
     notable_alumni: "Stephen Fry, Roald Dahl",
     ofsted_rating: "Outstanding"
   },
@@ -280,7 +280,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Nicola Huggett",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£44,280 per year",
+    fees: "Contact for fees",
     notable_alumni: "Brian Jones, James Bond author Ian Fleming",
     ofsted_rating: "Outstanding"
   },
@@ -296,7 +296,7 @@ const SCHOOLS_DATA = [
     head_teacher: "James Priory",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£46,818 per year",
+    fees: "Contact for fees",
     notable_alumni: "E.M. Forster, Vikram Seth",
     ofsted_rating: "Outstanding"
   },
@@ -312,7 +312,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mark Semmence",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£43,470 per year",
+    fees: "Contact for fees",
     notable_alumni: "Roald Dahl, Jeremy Clarkson",
     ofsted_rating: "Outstanding"
   },
@@ -328,7 +328,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Samantha Price",
     age_range: "11-18",
     day_boarding: "Boarding & Day",
-    fees: "£45,120 per year",
+    fees: "Contact for fees",
     notable_alumni: "Princess Anne, Rachel Weisz",
     ofsted_rating: "Outstanding"
   },
@@ -344,7 +344,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jo Duncan",
     age_range: "11-18",
     day_boarding: "Boarding & Day",
-    fees: "£45,900 per year",
+    fees: "Contact for fees",
     notable_alumni: "Georgina Bloomberg, Lady Helen Taylor",
     ofsted_rating: "Outstanding"
   },
@@ -360,7 +360,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Katy Ricks",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£42,120 per year",
+    fees: "Contact for fees",
     notable_alumni: "Kim Philby, Vita Sackville-West",
     ofsted_rating: "Outstanding"
   },
@@ -378,7 +378,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Richard Cairns",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£44,280 per year",
+    fees: "Contact for fees",
     notable_alumni: "Gyles Brandreth, Aubrey Beardsley",
     ofsted_rating: "Outstanding"
   },
@@ -394,7 +394,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Oliver Blond",
     age_range: "11-18",
     day_boarding: "Boarding & Day",
-    fees: "£45,360 per year",
+    fees: "Contact for fees",
     notable_alumni: "Miriam Margolyes, Anne Reid",
     ofsted_rating: "Outstanding"
   },
@@ -410,7 +410,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Andrew Halls",
     age_range: "7-18",
     day_boarding: "Day",
-    fees: "£28,590 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Stuart Mill, Robert Pattinson",
     ofsted_rating: "Outstanding"
   },
@@ -426,7 +426,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Alan Bird",
     age_range: "10-18",
     day_boarding: "Day",
-    fees: "£22,662 per year",
+    fees: "Contact for fees",
     notable_alumni: "Kingsley Amis, Daniel Radcliffe",
     ofsted_rating: "Outstanding"
   },
@@ -442,7 +442,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jane Lunnon",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£25,416 per year",
+    fees: "Contact for fees",
     notable_alumni: "Ernest Shackleton, Michael Ondaatje",
     ofsted_rating: "Outstanding"
   },
@@ -458,7 +458,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Louise Angus",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£46,200 per year",
+    fees: "Contact for fees",
     notable_alumni: "Peter Snow, Anthony Eden",
     ofsted_rating: "Outstanding"
   },
@@ -474,7 +474,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Simon Everson",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£24,615 per year",
+    fees: "Contact for fees",
     notable_alumni: "Clive Owen, David Walliams",
     ofsted_rating: "Outstanding"
   },
@@ -490,7 +490,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Robin Dyer",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£41,760 per year",
+    fees: "Contact for fees",
     notable_alumni: "Rupert Everett, Cardinal Basil Hume",
     ofsted_rating: "Outstanding"
   },
@@ -506,7 +506,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Lisa Kerr",
     age_range: "6-18",
     day_boarding: "Boarding & Day",
-    fees: "£46,980 per year",
+    fees: "Contact for fees",
     notable_alumni: "Prince Philip, Prince Charles",
     ofsted_rating: "Outstanding"
   },
@@ -522,7 +522,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Michael Spens",
     age_range: "7-18",
     day_boarding: "Boarding & Day",
-    fees: "£43,695 per year",
+    fees: "Contact for fees",
     notable_alumni: "Tony Blair, Tilda Swinton",
     ofsted_rating: "Outstanding"
   },
@@ -538,7 +538,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Gordon Conn",
     age_range: "12-18",
     day_boarding: "Boarding & Day",
-    fees: "£41,625 per year",
+    fees: "Contact for fees",
     notable_alumni: "Archie Gemmill, Patrick Thistle",
     ofsted_rating: "Outstanding"
   },
@@ -554,7 +554,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dominic Oliver",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£45,450 per year",
+    fees: "Contact for fees",
     notable_alumni: "Evelyn Waugh, David Hockney",
     ofsted_rating: "Outstanding"
   },
@@ -570,7 +570,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Leo Winkley",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£44,910 per year",
+    fees: "Contact for fees",
     notable_alumni: "Charles Darwin, Michael Heseltine",
     ofsted_rating: "Outstanding"
   },
@@ -586,7 +586,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Keith Metcalfe",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£45,330 per year",
+    fees: "Contact for fees",
     notable_alumni: "C.S. Lewis, James Hilton",
     ofsted_rating: "Outstanding"
   },
@@ -602,7 +602,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dan Harrison",
     age_range: "13-18",
     day_boarding: "Boarding & Day",
-    fees: "£43,830 per year",
+    fees: "Contact for fees",
     notable_alumni: "Adam Hart-Davis, Will Carling",
     ofsted_rating: "Outstanding"
   },
@@ -618,7 +618,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jeremy Quartermain",
     age_range: "2-18",
     day_boarding: "Boarding & Day",
-    fees: "£39,750 per year",
+    fees: "Contact for fees",
     notable_alumni: "Rex Harrison, Walter Tull",
     ofsted_rating: "Outstanding"
   },
@@ -634,7 +634,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mike Turnbull",
     age_range: "3-18",
     day_boarding: "Boarding & Day",
-    fees: "£39,450 per year",
+    fees: "Contact for fees",
     notable_alumni: "Russell Harty, Geoffrey Boycott",
     ofsted_rating: "Outstanding"
   },
@@ -650,7 +650,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Chris Jeffery",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,520 per year",
+    fees: "Contact for fees",
     notable_alumni: "Judi Dench, David Bradley",
     ofsted_rating: "Outstanding"
   },
@@ -666,7 +666,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Tim Greene",
     age_range: "2-18",
     day_boarding: "Day & Boarding",
-    fees: "£42,750 per year",
+    fees: "Contact for fees",
     notable_alumni: "Douglas Haig, John Cleese",
     ofsted_rating: "Outstanding"
   },
@@ -682,7 +682,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Peter Roberts",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£43,485 per year",
+    fees: "Contact for fees",
     notable_alumni: "Christopher Marlowe, Somerset Maugham",
     ofsted_rating: "Outstanding"
   },
@@ -698,7 +698,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Brad Jayne",
     age_range: "2-18",
     day_boarding: "Day & Boarding",
-    fees: "£41,340 per year",
+    fees: "Contact for fees",
     notable_alumni: "Francis Chichester, Christopher Cockerell",
     ofsted_rating: "Outstanding"
   },
@@ -714,7 +714,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Martin Collier",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£43,770 per year",
+    fees: "Contact for fees",
     notable_alumni: "Clement Attlee, Joseph Conrad",
     ofsted_rating: "Outstanding"
   },
@@ -730,7 +730,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Bart Wielenga",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "R.D. Blackmore, Frederick Temple",
     ofsted_rating: "Outstanding"
   },
@@ -746,7 +746,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Craig Considine",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£44,850 per year",
+    fees: "Contact for fees",
     notable_alumni: "Lily James, Gareth Edwards",
     ofsted_rating: "Outstanding"
   },
@@ -762,7 +762,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Graham Hawley",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,685 per year",
+    fees: "Contact for fees",
     notable_alumni: "Frederick Lugard, John Pitt",
     ofsted_rating: "Outstanding"
   },
@@ -778,7 +778,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Chris Gatherer",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£36,750 per year",
+    fees: "Contact for fees",
     notable_alumni: "Michael Foot, Tom Sharpe",
     ofsted_rating: "Outstanding"
   },
@@ -794,7 +794,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Steven Jones",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£44,625 per year",
+    fees: "Contact for fees",
     notable_alumni: "Guy Ritchie, Laurence Olivier",
     ofsted_rating: "Outstanding"
   },
@@ -810,7 +810,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Michael Windsor",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£22,440 per year",
+    fees: "Contact for fees",
     notable_alumni: "Radiohead members, Tim Henman",
     ofsted_rating: "Outstanding"
   },
@@ -826,7 +826,7 @@ const SCHOOLS_DATA = [
     head_teacher: "James Kenworthy",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£23,430 per year",
+    fees: "Contact for fees",
     notable_alumni: "Stephen Hawking, Adrian Mole creator Sue Townsend",
     ofsted_rating: "Outstanding"
   },
@@ -842,7 +842,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Shaun Fenton",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£22,995 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Galsworthy, Lewis Hamilton",
     ofsted_rating: "Outstanding"
   },
@@ -858,7 +858,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jon Cox",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£22,980 per year",
+    fees: "Contact for fees",
     notable_alumni: "Edward Thomas, Hugh Dennis",
     ofsted_rating: "Outstanding"
   },
@@ -874,7 +874,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Barnaby Sandow",
     age_range: "10-18",
     day_boarding: "Day",
-    fees: "£25,194 per year",
+    fees: "Contact for fees",
     notable_alumni: "Samuel Johnson, Danny John-Jules",
     ofsted_rating: "Outstanding"
   },
@@ -890,7 +890,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Alasdair Kennedy",
     age_range: "10-18",
     day_boarding: "Day",
-    fees: "£22,002 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Cleese, Richard Attenborough",
     ofsted_rating: "Outstanding"
   },
@@ -906,7 +906,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Robert Milne",
     age_range: "10-18",
     day_boarding: "Day",
-    fees: "£23,259 per year",
+    fees: "Contact for fees",
     notable_alumni: "Tim Rice, Jeremy Hunt",
     ofsted_rating: "Outstanding"
   },
@@ -922,7 +922,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Marcus Cliff Hodges",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£23,142 per year",
+    fees: "Contact for fees",
     notable_alumni: "JG Ballard, Ray Winstone",
     ofsted_rating: "Outstanding"
   },
@@ -938,7 +938,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Adam Pettitt",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£25,740 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Betjeman, T.S. Eliot",
     ofsted_rating: "Outstanding"
   },
@@ -954,7 +954,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mark Beard",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£26,451 per year",
+    fees: "Contact for fees",
     notable_alumni: "Ricky Gervais, Ben Elton",
     ofsted_rating: "Outstanding"
   },
@@ -970,7 +970,7 @@ const SCHOOLS_DATA = [
     head_teacher: "David Goodhew",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£25,020 per year",
+    fees: "Contact for fees",
     notable_alumni: "Hugh Grant, Alan Rickman",
     ofsted_rating: "Outstanding"
   },
@@ -986,7 +986,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Kevin Knibbs",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£24,270 per year",
+    fees: "Contact for fees",
     notable_alumni: "David Lammy, Bear Grylls",
     ofsted_rating: "Outstanding"
   },
@@ -1002,7 +1002,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Emma Pattison",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£41,865 per year",
+    fees: "Contact for fees",
     notable_alumni: "Tim Brooke-Taylor, Nigel Farage",
     ofsted_rating: "Outstanding"
   },
@@ -1018,7 +1018,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Martin Reader",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£44,460 per year",
+    fees: "Contact for fees",
     notable_alumni: "Oliver Reed, John le Carré",
     ofsted_rating: "Outstanding"
   },
@@ -1034,7 +1034,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mark Hoskins",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,760 per year",
+    fees: "Contact for fees",
     notable_alumni: "Trevor Bailey, Freddie Mercury",
     ofsted_rating: "Outstanding"
   },
@@ -1050,7 +1050,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Ben Figgis",
     age_range: "2-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,320 per year",
+    fees: "Contact for fees",
     notable_alumni: "Christopher Robin Milne, David Yelland",
     ofsted_rating: "Outstanding"
   },
@@ -1066,7 +1066,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Tom Lawson",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£42,585 per year",
+    fees: "Contact for fees",
     notable_alumni: "Frederick Forsyth, Gary Neville",
     ofsted_rating: "Outstanding"
   },
@@ -1082,7 +1082,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Tim Manly",
     age_range: "4-18",
     day_boarding: "Day & Boarding",
-    fees: "£39,750 per year",
+    fees: "Contact for fees",
     notable_alumni: "Nicholas Lyndhurst, Charles Saatchi",
     ofsted_rating: "Outstanding"
   },
@@ -1098,7 +1098,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Stuart McPherson",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,350 per year",
+    fees: "Contact for fees",
     notable_alumni: "David Frost, Alexander Chancellor",
     ofsted_rating: "Outstanding"
   },
@@ -1114,7 +1114,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Robert Russell",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£41,970 per year",
+    fees: "Contact for fees",
     notable_alumni: "Mo Farah, Jeremy Irvine",
     ofsted_rating: "Outstanding"
   },
@@ -1130,7 +1130,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Ceri Jones",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,370 per year",
+    fees: "Contact for fees",
     notable_alumni: "Peter Sellers, Ian Fleming",
     ofsted_rating: "Outstanding"
   },
@@ -1146,7 +1146,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Ben Horan",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£39,645 per year",
+    fees: "Contact for fees",
     notable_alumni: "Peter Gabriel, Chris Patten",
     ofsted_rating: "Outstanding"
   },
@@ -1162,7 +1162,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Richard Backhouse",
     age_range: "2-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,325 per year",
+    fees: "Contact for fees",
     notable_alumni: "Terry Jones, Jonathan Edwards",
     ofsted_rating: "Outstanding"
   },
@@ -1178,7 +1178,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mark Romanes",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,460 per year",
+    fees: "Contact for fees",
     notable_alumni: "Boris Karloff, John Arlott",
     ofsted_rating: "Outstanding"
   },
@@ -1194,7 +1194,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Ian Wilmshurst",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£39,270 per year",
+    fees: "Contact for fees",
     notable_alumni: "Michael Eavis, George Orwell",
     ofsted_rating: "Outstanding"
   },
@@ -1210,7 +1210,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Lee Glaser",
     age_range: "0-18",
     day_boarding: "Day & Boarding",
-    fees: "£37,965 per year",
+    fees: "Contact for fees",
     notable_alumni: "Gary Barlow, Chris de Burgh",
     ofsted_rating: "Outstanding"
   },
@@ -1226,7 +1226,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Richard Biggs",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,260 per year",
+    fees: "Contact for fees",
     notable_alumni: "Douglas Adams, Tim Smit",
     ofsted_rating: "Outstanding"
   },
@@ -1242,7 +1242,7 @@ const SCHOOLS_DATA = [
     head_teacher: "John Vick",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£36,480 per year",
+    fees: "Contact for fees",
     notable_alumni: "Jeremy Thorpe, Alan Pascoe",
     ofsted_rating: "Outstanding"
   },
@@ -1258,7 +1258,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dave Evans",
     age_range: "7-18",
     day_boarding: "Day",
-    fees: "£18,690 per year",
+    fees: "Contact for fees",
     notable_alumni: "JK Rowling, Desmond Tutu",
     ofsted_rating: "Outstanding"
   },
@@ -1274,7 +1274,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Paul Sanderson",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "Laurie Lee, Philip Pullman",
     ofsted_rating: "Outstanding"
   },
@@ -1290,7 +1290,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Peter Clague",
     age_range: "7-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,200 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Mortimer, Digby Jones",
     ofsted_rating: "Outstanding"
   },
@@ -1306,7 +1306,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mark Fenton",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£15,120 per year",
+    fees: "Contact for fees",
     notable_alumni: "JRR Tolkien, Enoch Powell",
     ofsted_rating: "Outstanding"
   },
@@ -1322,7 +1322,7 @@ const SCHOOLS_DATA = [
     head_teacher: "David Lloyd",
     age_range: "7-18",
     day_boarding: "Day",
-    fees: "£16,737 per year",
+    fees: "Contact for fees",
     notable_alumni: "Julian Fellowes, Richard Hammond",
     ofsted_rating: "Outstanding"
   },
@@ -1338,7 +1338,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Nicky Lloyd",
     age_range: "7-18",
     day_boarding: "Day",
-    fees: "£15,879 per year",
+    fees: "Contact for fees",
     notable_alumni: "Jeremy Vine, Steve Redgrave",
     ofsted_rating: "Outstanding"
   },
@@ -1354,7 +1354,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Gareth Doodes",
     age_range: "2-18",
     day_boarding: "Day & Boarding",
-    fees: "£37,380 per year",
+    fees: "Contact for fees",
     notable_alumni: "Stanley Baldwin, Edward Elgar",
     ofsted_rating: "Outstanding"
   },
@@ -1370,7 +1370,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Henry Price",
     age_range: "10-18",
     day_boarding: "Day & Boarding",
-    fees: "£39,690 per year",
+    fees: "Contact for fees",
     notable_alumni: "William Lamb, Christopher Cockerell",
     ofsted_rating: "Outstanding"
   },
@@ -1386,7 +1386,7 @@ const SCHOOLS_DATA = [
     head_teacher: "David Derbyshire",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£37,470 per year",
+    fees: "Contact for fees",
     notable_alumni: "Francis Thompson, Tim Brooke-Taylor",
     ofsted_rating: "Outstanding"
   },
@@ -1402,7 +1402,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Paul Taylor",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£39,990 per year",
+    fees: "Contact for fees",
     notable_alumni: "Frederick Forsyth, Diana Wynne Jones",
     ofsted_rating: "Outstanding"
   },
@@ -1418,7 +1418,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Simon Lockyer",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,775 per year",
+    fees: "Contact for fees",
     notable_alumni: "Captain Scott, Michael Crawford",
     ofsted_rating: "Outstanding"
   },
@@ -1434,7 +1434,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Neil Tetley",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£20,490 per year",
+    fees: "Contact for fees",
     notable_alumni: "Benjamin Britten, Damon Hill",
     ofsted_rating: "Outstanding"
   },
@@ -1450,7 +1450,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Chris Townsend",
     age_range: "4-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,350 per year",
+    fees: "Contact for fees",
     notable_alumni: "Lord Cromwell, John Galway",
     ofsted_rating: "Outstanding"
   },
@@ -1466,7 +1466,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Michael Bond",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,790 per year",
+    fees: "Contact for fees",
     notable_alumni: "Douglas Hurd, Jack Whitehall",
     ofsted_rating: "Outstanding"
   },
@@ -1482,7 +1482,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Michael Punt",
     age_range: "4-18",
     day_boarding: "Day & Boarding",
-    fees: "£24,420 per year",
+    fees: "Contact for fees",
     notable_alumni: "William Penn, James Blunt",
     ofsted_rating: "Outstanding"
   },
@@ -1498,7 +1498,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Matthew Mostyn",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£35,685 per year",
+    fees: "Contact for fees",
     notable_alumni: "Alfred Hitchcock, Nicholas Winton",
     ofsted_rating: "Outstanding"
   },
@@ -1514,7 +1514,7 @@ const SCHOOLS_DATA = [
     head_teacher: "James Fowler",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,325 per year",
+    fees: "Contact for fees",
     notable_alumni: "Warren Mitchell, Simon Ward",
     ofsted_rating: "Outstanding"
   },
@@ -1530,7 +1530,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Richard Backhouse",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£34,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "Graham Greene, Clive Anderson",
     ofsted_rating: "Outstanding"
   },
@@ -1546,7 +1546,7 @@ const SCHOOLS_DATA = [
     head_teacher: "David Buxton",
     age_range: "4-18",
     day_boarding: "Day & Boarding",
-    fees: "£36,900 per year",
+    fees: "Contact for fees",
     notable_alumni: "Adrian Edmondson, Charlie Simpson",
     ofsted_rating: "Outstanding"
   },
@@ -1562,7 +1562,7 @@ const SCHOOLS_DATA = [
     head_teacher: "James Hodgson",
     age_range: "7-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,325 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Le Mesurier, Alastair Cook",
     ofsted_rating: "Outstanding"
   },
@@ -1578,7 +1578,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jenny Brown",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£20,064 per year",
+    fees: "Contact for fees",
     notable_alumni: "Helen Fielding, Sue Perkins",
     ofsted_rating: "Outstanding"
   },
@@ -1594,7 +1594,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Helen Pike",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£23,490 per year",
+    fees: "Contact for fees",
     notable_alumni: "Rachel Weisz, Helena Bonham Carter",
     ofsted_rating: "Outstanding"
   },
@@ -1610,7 +1610,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Sarah Fletcher",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£29,718 per year",
+    fees: "Contact for fees",
     notable_alumni: "Harriet Harman, Polly Toynbee",
     ofsted_rating: "Outstanding"
   },
@@ -1626,7 +1626,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Lucy Elphinstone",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£26,280 per year",
+    fees: "Contact for fees",
     notable_alumni: "Nigella Lawson, Jemima Khan",
     ofsted_rating: "Outstanding"
   },
@@ -1642,7 +1642,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Ruth Mercer",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£25,746 per year",
+    fees: "Contact for fees",
     notable_alumni: "Kate Beckinsale, Davina McCall",
     ofsted_rating: "Outstanding"
   },
@@ -1658,7 +1658,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jane Lunnon",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£22,389 per year",
+    fees: "Contact for fees",
     notable_alumni: "Tara Palmer-Tomkinson, Sophie Dahl",
     ofsted_rating: "Outstanding"
   },
@@ -1674,7 +1674,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Suzie Longstaff",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£22,698 per year",
+    fees: "Contact for fees",
     notable_alumni: "Amy Winehouse, Kirstie Allsopp",
     ofsted_rating: "Outstanding"
   },
@@ -1690,7 +1690,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Matthew Shoults",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£21,936 per year",
+    fees: "Contact for fees",
     notable_alumni: "Zadie Smith, Claudia Winkleman",
     ofsted_rating: "Outstanding"
   },
@@ -1706,7 +1706,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Susan Cameron",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£27,690 per year",
+    fees: "Contact for fees",
     notable_alumni: "Susanna Reid, Sophie Ellis-Bextor",
     ofsted_rating: "Outstanding"
   },
@@ -1722,7 +1722,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Amanda Leach",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£26,850 per year",
+    fees: "Contact for fees",
     notable_alumni: "Sarah Ferguson, Lady Helen Taylor",
     ofsted_rating: "Outstanding"
   },
@@ -1738,7 +1738,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Sally-Anne Huang",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£21,588 per year",
+    fees: "Contact for fees",
     notable_alumni: "Jacqueline Wilson, Joan Littlewood",
     ofsted_rating: "Outstanding"
   },
@@ -1754,7 +1754,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Kathryn Pullen",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£20,226 per year",
+    fees: "Contact for fees",
     notable_alumni: "Floella Benjamin, Celia Imrie",
     ofsted_rating: "Outstanding"
   },
@@ -1770,7 +1770,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Emma Pattison",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£20,457 per year",
+    fees: "Contact for fees",
     notable_alumni: "Edith Nesbit, Gertrude Bell",
     ofsted_rating: "Outstanding"
   },
@@ -1786,7 +1786,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dr Millan Sachania",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£19,959 per year",
+    fees: "Contact for fees",
     notable_alumni: "Vera Brittain, Christina Foyle",
     ofsted_rating: "Outstanding"
   },
@@ -1802,7 +1802,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Carrie Longton",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£20,322 per year",
+    fees: "Contact for fees",
     notable_alumni: "Antonia Fraser, Diana Quick",
     ofsted_rating: "Outstanding"
   },
@@ -1920,7 +1920,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Neil McLaughlan",
     age_range: "4-13",
     day_boarding: "Day & Boarding",
-    fees: "£21,120 per year",
+    fees: "Contact for fees",
     notable_alumni: "Andrew Lloyd Webber, David Hemmings",
     ofsted_rating: "Outstanding"
   },
@@ -1936,7 +1936,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Simon Larter-Evans",
     age_range: "4-13",
     day_boarding: "Day",
-    fees: "£19,677 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Blow, Maurice Greene",
     ofsted_rating: "Outstanding"
   },
@@ -1952,7 +1952,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Alastair Tighe",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,460 per year",
+    fees: "Contact for fees",
     notable_alumni: "Catrin Finch, Alison Balsom",
     ofsted_rating: "Outstanding"
   },
@@ -1968,7 +1968,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Peter Lynas",
     age_range: "3-13",
     day_boarding: "Day & Boarding",
-    fees: "£25,305 per year",
+    fees: "Contact for fees",
     notable_alumni: "Orlando Gibbons, Thomas Tallis",
     ofsted_rating: "Outstanding"
   },
@@ -1986,7 +1986,7 @@ const SCHOOLS_DATA = [
     head_teacher: "John O'Neill",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£13,695 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Buchan, Colin Campbell",
     ofsted_rating: "Outstanding"
   },
@@ -2002,7 +2002,7 @@ const SCHOOLS_DATA = [
     head_teacher: "David Knapman",
     age_range: "5-18",
     day_boarding: "Day & Boarding",
-    fees: "£35,280 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Boyd Orr, Sandy Lyle",
     ofsted_rating: "Outstanding"
   },
@@ -2018,7 +2018,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Graham Hawley",
     age_range: "0-18",
     day_boarding: "Day & Boarding",
-    fees: "£37,890 per year",
+    fees: "Contact for fees",
     notable_alumni: "Lord Hailsham, Iain Banks",
     ofsted_rating: "Outstanding"
   },
@@ -2034,7 +2034,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mark Lauder",
     age_range: "9-18",
     day_boarding: "Day & Boarding",
-    fees: "£39,435 per year",
+    fees: "Contact for fees",
     notable_alumni: "Irvine Welsh, Jackie Stewart",
     ofsted_rating: "Outstanding"
   },
@@ -2050,7 +2050,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Gareth Warren",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£32,850 per year",
+    fees: "Contact for fees",
     notable_alumni: "David Stirling, John Grierson",
     ofsted_rating: "Outstanding"
   },
@@ -2068,7 +2068,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Gareth Pearson",
     age_range: "7-18",
     day_boarding: "Day & Boarding",
-    fees: "£36,900 per year",
+    fees: "Contact for fees",
     notable_alumni: "Roald Dahl, Julian Hodge",
     ofsted_rating: "Outstanding"
   },
@@ -2084,7 +2084,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Tim Haynes",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£34,620 per year",
+    fees: "Contact for fees",
     notable_alumni: "Rockley Wilson, Charles Rolls",
     ofsted_rating: "Outstanding"
   },
@@ -2100,7 +2100,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Guy Ayling",
     age_range: "4-18",
     day_boarding: "Day & Boarding",
-    fees: "£35,775 per year",
+    fees: "Contact for fees",
     notable_alumni: "Llywelyn ap Gruffudd, John Nash",
     ofsted_rating: "Outstanding"
   },
@@ -2116,7 +2116,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Caroline Pascoe",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£33,480 per year",
+    fees: "Contact for fees",
     notable_alumni: "Sarah Waters, Imogen Thomas",
     ofsted_rating: "Outstanding"
   },
@@ -2134,7 +2134,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Robert Robinson",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£12,540 per year",
+    fees: "Contact for fees",
     notable_alumni: "CS Lewis, Lord Trimble",
     ofsted_rating: "Outstanding"
   },
@@ -2150,7 +2150,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Grace Ladner",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£8,469 per year",
+    fees: "Contact for fees",
     notable_alumni: "Van Morrison, Nobel Prize winners",
     ofsted_rating: "Outstanding"
   },
@@ -2184,7 +2184,7 @@ const SCHOOLS_DATA = [
     head_teacher: "David Elstone",
     age_range: "8-18",
     day_boarding: "Day",
-    fees: "£12,642 per year",
+    fees: "Contact for fees",
     notable_alumni: "William Wilberforce, Philip Larkin",
     ofsted_rating: "Outstanding"
   },
@@ -2200,7 +2200,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Simon Hinchliffe",
     age_range: "6-18",
     day_boarding: "Day",
-    fees: "£14,940 per year",
+    fees: "Contact for fees",
     notable_alumni: "JB Priestley, David Hockney",
     ofsted_rating: "Outstanding"
   },
@@ -2216,7 +2216,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Sue Woodroofe",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£15,996 per year",
+    fees: "Contact for fees",
     notable_alumni: "Alan Bennett, Keith Waterhouse",
     ofsted_rating: "Outstanding"
   },
@@ -2232,7 +2232,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mrs M. Barratt",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£12,663 per year",
+    fees: "Contact for fees",
     notable_alumni: "Barbara Hepworth, Jessica Ennis-Hill",
     ofsted_rating: "Outstanding"
   },
@@ -2248,7 +2248,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Nina Gunson",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£14,595 per year",
+    fees: "Contact for fees",
     notable_alumni: "Helen Sharman, Jilly Cooper",
     ofsted_rating: "Outstanding"
   },
@@ -2266,7 +2266,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Nigel Heslop",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£13,962 per year",
+    fees: "Contact for fees",
     notable_alumni: "Frank Whittle, Philip Larkin",
     ofsted_rating: "Outstanding"
   },
@@ -2282,7 +2282,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Susan Hannam",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£16,749 per year",
+    fees: "Contact for fees",
     notable_alumni: "David Garrick, Samuel Johnson",
     ofsted_rating: "Outstanding"
   },
@@ -2298,7 +2298,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Chris King",
     age_range: "10-18",
     day_boarding: "Day",
-    fees: "£13,692 per year",
+    fees: "Contact for fees",
     notable_alumni: "Attenborough brothers, Joe Orton",
     ofsted_rating: "Outstanding"
   },
@@ -2314,7 +2314,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Kevin Fear",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£15,387 per year",
+    fees: "Contact for fees",
     notable_alumni: "DH Lawrence, Lord Byron",
     ofsted_rating: "Outstanding"
   },
@@ -2332,7 +2332,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Gareth Doodes",
     age_range: "7-18",
     day_boarding: "Day",
-    fees: "£14,940 per year",
+    fees: "Contact for fees",
     notable_alumni: "Buzz Aldrin, Ben Kingsley",
     ofsted_rating: "Outstanding"
   },
@@ -2348,7 +2348,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mrs Melanie Ammerlaan",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£13,800 per year",
+    fees: "Contact for fees",
     notable_alumni: "Emmeline Pankhurst, Jeanette Winterson",
     ofsted_rating: "Outstanding"
   },
@@ -2364,7 +2364,7 @@ const SCHOOLS_DATA = [
     head_teacher: "George Hartley",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£16,695 per year",
+    fees: "Contact for fees",
     notable_alumni: "Lewis Carroll, Chester Zoo founder",
     ofsted_rating: "Outstanding"
   },
@@ -2380,7 +2380,7 @@ const SCHOOLS_DATA = [
     head_teacher: "John Browne",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£39,792 per year",
+    fees: "Contact for fees",
     notable_alumni: "Arthur Conan Doyle, Charles Waterton",
     ofsted_rating: "Outstanding"
   },
@@ -2396,7 +2396,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Philip Britton",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£13,650 per year",
+    fees: "Contact for fees",
     notable_alumni: "Ian McKellen, Peter Smithson",
     ofsted_rating: "Outstanding"
   },
@@ -2414,7 +2414,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Geoffrey Stanford",
     age_range: "7-18",
     day_boarding: "Day",
-    fees: "£14,313 per year",
+    fees: "Contact for fees",
     notable_alumni: "Rowan Atkinson, Lord Armstrong",
     ofsted_rating: "Outstanding"
   },
@@ -2430,7 +2430,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Hilary French",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£13,533 per year",
+    fees: "Contact for fees",
     notable_alumni: "Catherine Cookson, Winifred Holtby",
     ofsted_rating: "Outstanding"
   },
@@ -2446,7 +2446,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Kieran McLaughlin",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£36,870 per year",
+    fees: "Contact for fees",
     notable_alumni: "Mo Mowlam, John Meade Falkner",
     ofsted_rating: "Outstanding"
   },
@@ -2462,7 +2462,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jill Stoker",
     age_range: "2-18",
     day_boarding: "Day",
-    fees: "£11,886 per year",
+    fees: "Contact for fees",
     notable_alumni: "Dame Catherine Tizard, Barbara Castle",
     ofsted_rating: "Outstanding"
   },
@@ -2480,7 +2480,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jenny Dwyer",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£44,100 per year",
+    fees: "Contact for fees",
     notable_alumni: "Emma Thompson, Sarah Outen",
     ofsted_rating: "Outstanding"
   },
@@ -2496,7 +2496,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dr John Whitehead",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£39,600 per year",
+    fees: "Contact for fees",
     notable_alumni: "Auberon Waugh, Sting",
     ofsted_rating: "Outstanding"
   },
@@ -2512,7 +2512,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Sarah Thomas",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£46,140 per year",
+    fees: "Contact for fees",
     notable_alumni: "Lucian Freud, Freddie Fox",
     ofsted_rating: "Outstanding"
   },
@@ -2528,7 +2528,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Ben Vessey",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£45,360 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Le Mesurier, Bear Grylls",
     ofsted_rating: "Outstanding"
   },
@@ -2544,7 +2544,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Ian Wilmshurst",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£39,270 per year",
+    fees: "Contact for fees",
     notable_alumni: "Michael Eavis, George Orwell",
     ofsted_rating: "Outstanding"
   },
@@ -2562,7 +2562,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Hannah Gillespie",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£29,400 per year",
+    fees: "Contact for fees",
     notable_alumni: "International diplomats, Global leaders",
     ofsted_rating: "Outstanding"
   },
@@ -2578,7 +2578,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Robin Appleby",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£32,980 per year",
+    fees: "Contact for fees",
     notable_alumni: "Hollywood stars, Business leaders",
     ofsted_rating: "Outstanding"
   },
@@ -2594,7 +2594,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Bryan Nixon",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£44,650 per year",
+    fees: "Contact for fees",
     notable_alumni: "International business leaders",
     ofsted_rating: "Outstanding"
   },
@@ -2610,7 +2610,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Craig Powell",
     age_range: "2-18",
     day_boarding: "Day & Boarding",
-    fees: "£33,650 per year",
+    fees: "Contact for fees",
     notable_alumni: "Global corporate executives",
     ofsted_rating: "Outstanding"
   },
@@ -2694,7 +2694,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Neil McLaughlan",
     age_range: "4-13",
     day_boarding: "Day & Boarding",
-    fees: "£20,850 per year",
+    fees: "Contact for fees",
     notable_alumni: "Cathedral choristers",
     ofsted_rating: "Outstanding"
   },
@@ -2710,7 +2710,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Simon Larter-Evans",
     age_range: "4-13",
     day_boarding: "Day",
-    fees: "£19,380 per year",
+    fees: "Contact for fees",
     notable_alumni: "Cathedral choristers",
     ofsted_rating: "Outstanding"
   },
@@ -2726,7 +2726,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Alastair Tighe",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£37,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "Cathedral choristers",
     ofsted_rating: "Outstanding"
   },
@@ -2744,7 +2744,7 @@ const SCHOOLS_DATA = [
     head_teacher: "David Knopp",
     age_range: "5-18",
     day_boarding: "Day & Boarding",
-    fees: "£34,980 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Buchan, Colin Campbell",
     ofsted_rating: "Outstanding"
   },
@@ -2760,7 +2760,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Graham Hawley",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£36,450 per year",
+    fees: "Contact for fees",
     notable_alumni: "Field Marshal Douglas Haig",
     ofsted_rating: "Outstanding"
   },
@@ -2776,7 +2776,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Robin McFarlane",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£14,370 per year",
+    fees: "Contact for fees",
     notable_alumni: "Lord Byron, Annie Lennox",
     ofsted_rating: "Outstanding"
   },
@@ -2794,7 +2794,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Gareth Pearson",
     age_range: "7-18",
     day_boarding: "Day & Boarding",
-    fees: "£33,750 per year",
+    fees: "Contact for fees",
     notable_alumni: "Bernard Montgomery, Julian Hodge",
     ofsted_rating: "Outstanding"
   },
@@ -2810,7 +2810,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dr Andrew Daniel",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£29,700 per year",
+    fees: "Contact for fees",
     notable_alumni: "Henry V, David Davies",
     ofsted_rating: "Outstanding"
   },
@@ -2826,7 +2826,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dominic Findlay",
     age_range: "4-18",
     day_boarding: "Day & Boarding",
-    fees: "£31,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "Max Boyce, Dylan Thomas",
     ofsted_rating: "Outstanding"
   },
@@ -2844,7 +2844,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Robert Robinson",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£16,290 per year",
+    fees: "Contact for fees",
     notable_alumni: "CS Lewis, Louis MacNeice",
     ofsted_rating: "Outstanding"
   },
@@ -2860,7 +2860,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Pamela McBride",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£8,055 per year",
+    fees: "Contact for fees",
     notable_alumni: "Van Morrison, Chaim Herzog",
     ofsted_rating: "Outstanding"
   },
@@ -2894,7 +2894,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mark Devlin",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£24,750 per year",
+    fees: "Contact for fees",
     notable_alumni: "International diplomats",
     ofsted_rating: "Outstanding"
   },
@@ -2910,7 +2910,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Coreen Hester",
     age_range: "4-18",
     day_boarding: "Day",
-    fees: "£32,980 per year",
+    fees: "Contact for fees",
     notable_alumni: "Christian Bale, Sosie Bacon",
     ofsted_rating: "Outstanding"
   },
@@ -2926,7 +2926,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Bryan Nixon",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£54,800 per year",
+    fees: "Contact for fees",
     notable_alumni: "International executives",
     ofsted_rating: "Outstanding"
   },
@@ -2944,7 +2944,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Chris Ramsey",
     age_range: "10-18",
     day_boarding: "Day",
-    fees: "£22,932 per year",
+    fees: "Contact for fees",
     notable_alumni: "Samuel Coleridge-Taylor, John Gallagher Jr",
     ofsted_rating: "Outstanding"
   },
@@ -2960,7 +2960,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Simon Lockyer",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,940 per year",
+    fees: "Contact for fees",
     notable_alumni: "Naval officers, Thomas Coram",
     ofsted_rating: "Outstanding"
   },
@@ -2976,7 +2976,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Emma Pattison",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£41,292 per year",
+    fees: "Contact for fees",
     notable_alumni: "Sir Michael Caine, Sir Adrian Boult",
     ofsted_rating: "Outstanding"
   },
@@ -2992,7 +2992,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Shaun Fenton",
     age_range: "11-18",
     day_boarding: "Day",
-    fees: "£19,665 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Gallagher Jr, Michael Hordern",
     ofsted_rating: "Outstanding"
   },
@@ -3008,7 +3008,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Paul Sanderson",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£37,590 per year",
+    fees: "Contact for fees",
     notable_alumni: "Sebastian Coe, Tom Hollander",
     ofsted_rating: "Outstanding"
   },
@@ -3024,7 +3024,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Anthony Wallersteiner",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£42,840 per year",
+    fees: "Contact for fees",
     notable_alumni: "Richard Branson, David Niven",
     ofsted_rating: "Outstanding"
   },
@@ -3040,7 +3040,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dr Christopher Stevens",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£41,280 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Betjeman, Piers Morgan",
     ofsted_rating: "Outstanding"
   },
@@ -3056,7 +3056,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Martin Reader",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£41,850 per year",
+    fees: "Contact for fees",
     notable_alumni: "Oliver Reed, Jack Whitehall",
     ofsted_rating: "Outstanding"
   },
@@ -3072,7 +3072,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Paul Taylor",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£35,700 per year",
+    fees: "Contact for fees",
     notable_alumni: "Ed Sheeran, Sir John Mills",
     ofsted_rating: "Outstanding"
   },
@@ -3088,7 +3088,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Tom Lawson",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "Frederick Forsyth, James Blunt",
     ofsted_rating: "Outstanding"
   },
@@ -3104,7 +3104,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Tim Manly",
     age_range: "4-18",
     day_boarding: "Day & Boarding",
-    fees: "£37,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "Nicholas Lyndhurst, Stuart Broad",
     ofsted_rating: "Outstanding"
   },
@@ -3120,7 +3120,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Ben Figgis",
     age_range: "2-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,850 per year",
+    fees: "Contact for fees",
     notable_alumni: "Timothy West, David Shepherd",
     ofsted_rating: "Outstanding"
   },
@@ -3136,7 +3136,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Peter Goodyer",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,710 per year",
+    fees: "Contact for fees",
     notable_alumni: "Tim Henman, Kwame Kwei-Armah",
     ofsted_rating: "Outstanding"
   },
@@ -3152,7 +3152,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Stuart McPherson",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,370 per year",
+    fees: "Contact for fees",
     notable_alumni: "Lord Windsor, Christopher Lee",
     ofsted_rating: "Outstanding"
   },
@@ -3168,7 +3168,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Dominic Oliver",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£41,850 per year",
+    fees: "Contact for fees",
     notable_alumni: "Evelyn Waugh, David Hockney",
     ofsted_rating: "Outstanding"
   },
@@ -3184,7 +3184,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Richard Maloney",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£43,200 per year",
+    fees: "Contact for fees",
     notable_alumni: "Stephen Fry, C.S. Lewis",
     ofsted_rating: "Outstanding"
   },
@@ -3200,7 +3200,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Peter Clague",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£37,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "Sir Michael Bishop, Nasser Hussain",
     ofsted_rating: "Outstanding"
   },
@@ -3216,7 +3216,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Keith Metcalfe",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£40,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "C.S. Lewis, James Dyson",
     ofsted_rating: "Outstanding"
   },
@@ -3232,7 +3232,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Gavin Horgan",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£36,450 per year",
+    fees: "Contact for fees",
     notable_alumni: "Sir Clement Freud, David Lloyd George",
     ofsted_rating: "Outstanding"
   },
@@ -3248,7 +3248,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Bill Penty",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£33,450 per year",
+    fees: "Contact for fees",
     notable_alumni: "Harold Larwood, Lord Sainsbury",
     ofsted_rating: "Outstanding"
   },
@@ -3264,7 +3264,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mark Semmence",
     age_range: "13-18",
     day_boarding: "Day & Boarding",
-    fees: "£42,300 per year",
+    fees: "Contact for fees",
     notable_alumni: "Roald Dahl, Jeremy Clarkson",
     ofsted_rating: "Outstanding"
   },
@@ -3280,7 +3280,7 @@ const SCHOOLS_DATA = [
     head_teacher: "David Derbyshire",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£35,550 per year",
+    fees: "Contact for fees",
     notable_alumni: "Sir Gareth Edwards, Lord Denning",
     ofsted_rating: "Outstanding"
   },
@@ -3296,7 +3296,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Daniel Marley",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£13,260 per year",
+    fees: "Contact for fees",
     notable_alumni: "John Peel, Lord Justice Moses",
     ofsted_rating: "Outstanding"
   },
@@ -3312,7 +3312,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jeremy Quartermain",
     age_range: "2-18",
     day_boarding: "Day & Boarding",
-    fees: "£38,520 per year",
+    fees: "Contact for fees",
     notable_alumni: "Walter Tull, Sir Patrick Moore",
     ofsted_rating: "Outstanding"
   },
@@ -3328,7 +3328,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Neil Harrison",
     age_range: "3-18",
     day_boarding: "Day",
-    fees: "£13,050 per year",
+    fees: "Contact for fees",
     notable_alumni: "Hugh Walpole, Derek Jacobi",
     ofsted_rating: "Outstanding"
   },
@@ -3344,7 +3344,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Mike Turnbull",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£36,450 per year",
+    fees: "Contact for fees",
     notable_alumni: "Russell Harty, Geoffrey Boycott",
     ofsted_rating: "Outstanding"
   },
@@ -3360,7 +3360,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Chris Jeffery",
     age_range: "11-18",
     day_boarding: "Day & Boarding",
-    fees: "£35,700 per year",
+    fees: "Contact for fees",
     notable_alumni: "Dame Judi Dench, Joseph Rowntree",
     ofsted_rating: "Outstanding"
   },
@@ -3376,7 +3376,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Richard Marshall",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£32,850 per year",
+    fees: "Contact for fees",
     notable_alumni: "Alan Ayckbourn, Sir Alec Issigonis",
     ofsted_rating: "Outstanding"
   },
@@ -3392,7 +3392,7 @@ const SCHOOLS_DATA = [
     head_teacher: "David Elstone",
     age_range: "8-18",
     day_boarding: "Day",
-    fees: "£12,690 per year",
+    fees: "Contact for fees",
     notable_alumni: "Tom Courtenay, Sir Alan Bates",
     ofsted_rating: "Outstanding"
   },
@@ -3408,7 +3408,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Jaideep Barot",
     age_range: "7-18",
     day_boarding: "Day",
-    fees: "£13,950 per year",
+    fees: "Contact for fees",
     notable_alumni: "Jeremy Paxman, John Godber",
     ofsted_rating: "Outstanding"
   },
@@ -3424,7 +3424,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Geoffrey Stanford",
     age_range: "7-18",
     day_boarding: "Day",
-    fees: "£15,120 per year",
+    fees: "Contact for fees",
     notable_alumni: "Rowan Atkinson, Sir Ridley Scott",
     ofsted_rating: "Outstanding"
   },
@@ -3440,7 +3440,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Kieran McLaughlin",
     age_range: "3-18",
     day_boarding: "Day & Boarding",
-    fees: "£34,650 per year",
+    fees: "Contact for fees",
     notable_alumni: "Bill Bryson, John Meade Falkner",
     ofsted_rating: "Outstanding"
   },
@@ -3456,7 +3456,7 @@ const SCHOOLS_DATA = [
     head_teacher: "Tony Jackson",
     age_range: "4-18",
     day_boarding: "Day & Boarding",
-    fees: "£33,450 per year",
+    fees: "Contact for fees",
     notable_alumni: "Dominic Cummings, John Braine",
     ofsted_rating: "Outstanding"
   }

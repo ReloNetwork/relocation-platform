@@ -456,7 +456,7 @@ export default function ExecutiveIntakePage() {
                 <div className="flex justify-between items-center text-lg">
                   <span className="font-semibold">Total</span>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-[#0B1B2B]">£3,497</div>
+                    <div className="text-2xl font-bold text-[#0B1B2B]">Contact for Pricing</div>
                     <div className="text-sm text-[#6B7280]">One-time payment</div>
                   </div>
                 </div>
@@ -473,7 +473,7 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">What if I want the full relocation service?</div>
-                  <div className="text-[#6B7280]">The £3,497 audit fee is fully credited toward our Executive Relocation package (£7,500-£15,000).</div>
+                  <div className="text-[#6B7280]">The audit fee is fully credited toward our Complete Executive Relocation service. Contact us for detailed pricing information.</div>
                 </div>
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-3">Refunds & Cancellations</div>

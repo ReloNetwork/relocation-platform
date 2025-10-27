@@ -1,11 +1,11 @@
 import Layout from '@/components/Layout'
-import { Check, Star, ArrowRight, Shield, Clock, Users } from 'lucide-react'
+import { Check, Star, ArrowRight, Shield, Clock, Users, Phone, Mail, Calendar, Building, User, FileText } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Pricing | Relo Network - Transparent London Relocation Service Costs',
-  description: 'Transparent pricing for London relocation services. AI Concierge £295/month, Managed Service £8,500, Executive Service £15,000. No hidden fees, 100% money-back guarantee.',
-  keywords: 'London relocation costs, relocation service pricing, luxury moving costs London, executive relocation pricing, corporate relocation costs, AI concierge service pricing, transparent relocation fees',
+  title: 'Service Consultations | Relo Network - London Relocation Solutions',
+  description: 'Discover our London relocation services designed for executives and corporate teams. Contact us for personalized pricing and comprehensive relocation solutions.',
+  keywords: 'London relocation services, executive relocation consultation, corporate relocation solutions, relocation service inquiry, professional relocation London',
   authors: [{ name: 'Relo Network', url: 'https://therelonetwork.com' }],
   creator: 'Relo Network',
   publisher: 'Relo Network',
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     url: 'https://therelonetwork.com/pricing',
     siteName: 'Relo Network',
-    title: 'Transparent Pricing | London Relocation Service Costs',
-    description: 'Clear, transparent pricing for London relocation services. From AI-assisted moves to white-glove executive service. No hidden fees, guaranteed results.',
+    title: 'Service Consultations | London Relocation Solutions',
+    description: 'Professional London relocation services for executives and corporate teams. Contact us for personalized consultation and transparent pricing.',
     images: [
       {
-        url: '/images/og-pricing-transparent.jpg',
+        url: '/images/og-services-consultation.jpg',
         width: 1200,
         height: 630,
-        alt: 'Relo Network Transparent Pricing - London Relocation Service Costs'
+        alt: 'Relo Network Service Consultations - London Relocation Solutions'
       }
     ]
   },
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@ReloNetwork',
     creator: '@ReloNetwork',
-    title: 'Transparent Pricing | London Relocation Service Costs',
-    description: 'Clear pricing for London relocation: AI Concierge £295/mo, Managed £8.5k, Executive £15k. No hidden fees, money-back guarantee.'
+    title: 'Service Consultations | London Relocation Solutions',
+    description: 'Professional London relocation services for executives and corporate teams. Contact for personalized consultation.'
   },
   robots: {
     index: true,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function PricingPage() {
+export default function ServicesPage() {
   return (
     <Layout>
       <div className="min-h-screen bg-[#FAFAF9] py-16">
@@ -61,336 +61,208 @@ export default function PricingPage() {
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Transparent Pricing for Your London Move
+              London Relocation Services
             </h1>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto mb-8">
-              Professional relocation services with no hidden fees. Choose the service level that matches your needs and timeline.
+              Professional relocation solutions tailored for executives and corporate teams. Contact us for personalized consultation and transparent pricing.
             </p>
             <div className="flex items-center justify-center gap-2 text-sm text-[#059669]">
               <Shield className="w-4 h-4" />
-              <span>100% Money-Back Guarantee • No Hidden Fees • Fixed Pricing</span>
+              <span>96% Success Rate • Service Guarantees • Transparent Pricing</span>
             </div>
           </div>
 
-          {/* Pricing Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {/* AI Concierge */}
-            <div className="bg-white rounded-xl p-8 shadow-sm border border-[#E5E7EB] relative">
-              <div className="text-center mb-6">
-                <div className="w-12 h-12 bg-[#EFF6FF] rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-6 h-6 text-[#2563EB]" />
+          {/* Service Categories - Dual Track ICP */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {/* Executive Track */}
+            <div className="bg-gradient-to-br from-[#C9A24A] to-[#B8923D] rounded-xl p-8 shadow-lg text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full transform translate-x-16 -translate-y-16"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
+                  <User className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">AI Concierge</h3>
-                <p className="text-[#6B7280] text-sm">Self-service with AI guidance</p>
-              </div>
-              
-              <div className="text-center mb-6">
-                <div className="text-3xl font-bold text-[#0B1B2B]">£295</div>
-                <div className="text-sm text-[#6B7280]">per month</div>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">AI-powered area recommendations</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Property search platform access</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Digital move checklist</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Partner directory access</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Email support</span>
-                </li>
-              </ul>
-
-              <button className="w-full bg-[#E5E7EB] text-[#0B1B2B] px-6 py-3 rounded-lg font-medium hover:bg-[#D1D5DB] transition-colors">
-                Get Started
-              </button>
-            </div>
-
-            {/* Managed Service - Most Popular */}
-            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-[#C9A24A] relative">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <div className="bg-[#C9A24A] text-white px-4 py-1 rounded-full text-sm font-medium">
-                  Most Popular
-                </div>
-              </div>
-              
-              <div className="text-center mb-6">
-                <div className="w-12 h-12 bg-[#FEF3C7] rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-[#C9A24A]" />
-                </div>
-                <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">Managed Service</h3>
-                <p className="text-[#6B7280] text-sm">Dedicated concierge support</p>
-              </div>
-              
-              <div className="text-center mb-6">
-                <div className="text-3xl font-bold text-[#0B1B2B]">£8,500</div>
-                <div className="text-sm text-[#6B7280]">per move</div>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Everything in AI Concierge</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Dedicated concierge manager</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Property viewings coordination</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">School placement assistance</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Phone & video support</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Moving company coordination</span>
-                </li>
-              </ul>
-
-              <button className="w-full bg-[#C9A24A] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#B8932A] transition-colors">
-                Get Started
-              </button>
-            </div>
-
-            {/* Executive */}
-            <div className="bg-white rounded-xl p-8 shadow-sm border border-[#E5E7EB] relative">
-              <div className="text-center mb-6">
-                <div className="w-12 h-12 bg-[#F3F4F6] rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-6 h-6 text-[#0B1B2B]" />
-                </div>
-                <h3 className="text-xl font-bold text-[#0B1B2B] mb-2">Executive</h3>
-                <p className="text-[#6B7280] text-sm">White-glove service</p>
-              </div>
-              
-              <div className="text-center mb-6">
-                <div className="text-3xl font-bold text-[#0B1B2B]">£15,000</div>
-                <div className="text-sm text-[#6B7280]">per move</div>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Everything in Managed Service</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">24/7 priority support</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Personal property tours</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Visa & immigration support</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Family settling services</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-[#059669] flex-shrink-0" />
-                  <span className="text-sm text-[#6B7280]">Post-move support (3 months)</span>
-                </li>
-              </ul>
-
-              <button className="w-full bg-[#0B1B2B] text-[#C9A24A] px-6 py-3 rounded-lg font-medium hover:bg-[#0B1B2B]/90 transition-colors">
-                Get Started
-              </button>
-            </div>
-          </div>
-
-          {/* Corporate Packages */}
-          <div className="bg-gradient-to-r from-[#0B1B2B] to-[#1F2937] rounded-xl p-8 mb-16">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-white mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                Corporate Packages
-              </h2>
-              <p className="text-[#D1D5DB] max-w-2xl mx-auto">
-                Volume discounts and dedicated account management for companies relocating multiple employees.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-6 text-center">
-              <div className="bg-white/10 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-white mb-2">Essential Executive</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">£15,000</p>
-                <p className="text-sm text-[#D1D5DB]">per employee</p>
-              </div>
-              <div className="bg-white/10 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-white mb-2">Complete Executive</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">£25,000</p>
-                <p className="text-sm text-[#D1D5DB]">per employee</p>
-              </div>
-              <div className="bg-white/10 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-white mb-2">C-Suite Elite</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">£45,000</p>
-                <p className="text-sm text-[#D1D5DB]">per employee</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Directory Access */}
-          <div className="mb-16">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                Partner Directory Access
-              </h2>
-              <p className="text-[#6B7280] max-w-2xl mx-auto">
-                Access our vetted network of 150+ premium service providers for your London relocation.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#E5E7EB] text-center">
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Preview Access</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">Free</p>
-                <p className="text-sm text-[#6B7280] mb-4">3 partners per month</p>
-                <ul className="text-xs text-[#6B7280] space-y-1">
-                  <li>Basic contact info</li>
-                  <li>Limited reviews</li>
-                </ul>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm border-2 border-[#C9A24A] text-center relative">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-[#C9A24A] text-white px-3 py-1 rounded-full text-xs font-medium">
-                    Popular
+                <h3 className="text-2xl font-bold mb-4">Executive Services</h3>
+                <p className="text-white/90 text-lg mb-6">
+                  For individual executives, professionals, and entrepreneurs relocating to London.
+                </p>
+                
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-white flex-shrink-0" />
+                    <span className="text-white/90">72-Hour Setup Audit</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-white flex-shrink-0" />
+                    <span className="text-white/90">Complete relocation service</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-white flex-shrink-0" />
+                    <span className="text-white/90">Family integration support</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-white flex-shrink-0" />
+                    <span className="text-white/90">Personal account manager</span>
                   </div>
                 </div>
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Premium Access</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">£47</p>
-                <p className="text-sm text-[#6B7280] mb-4">per month</p>
-                <ul className="text-xs text-[#6B7280] space-y-1">
-                  <li>Full partner directory</li>
-                  <li>Direct contact details</li>
-                  <li>Detailed reviews</li>
-                </ul>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#E5E7EB] text-center">
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">VIP Access</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">£147</p>
-                <p className="text-sm text-[#6B7280] mb-4">per month</p>
-                <ul className="text-xs text-[#6B7280] space-y-1">
-                  <li>Priority support</li>
-                  <li>Personal recommendations</li>
-                  <li>Exclusive partners</li>
-                </ul>
+
+                <div className="space-y-4">
+                  <button 
+                    onClick={() => window.location.href = '/executive-intake'}
+                    className="w-full bg-white text-[#C9A24A] font-semibold py-3 rounded-lg hover:bg-white/90 transition-all"
+                  >
+                    Start Your Assessment
+                  </button>
+                  <button 
+                    onClick={() => window.location.href = '/executive'}
+                    className="w-full bg-white/20 text-white font-semibold py-3 rounded-lg hover:bg-white/30 transition-all border border-white/30"
+                  >
+                    Learn More
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Partner Network */}
-            <div className="bg-[#F9FAFB] rounded-xl p-8 text-center">
-              <h3 className="text-xl font-bold text-[#0B1B2B] mb-4">Join Our Partner Network</h3>
-              <p className="text-[#6B7280] mb-6 max-w-xl mx-auto">
-                Premium service providers can join our exclusive network to access high-value London relocations.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <div className="text-center">
-                  <div className="text-lg font-semibold text-[#0B1B2B]">Featured Partnership</div>
-                  <div className="text-2xl font-bold text-[#C9A24A]">£375/month</div>
-                  <div className="text-sm text-[#6B7280]">50% founding discount</div>
+            {/* Corporate Track */}
+            <div className="bg-gradient-to-br from-[#0B1B2B] to-[#1a2b3b] rounded-xl p-8 shadow-lg text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full transform translate-x-16 -translate-y-16"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
+                  <Building className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-[#D1D5DB] hidden sm:block">|</div>
-                <div className="text-center">
-                  <div className="text-lg font-semibold text-[#0B1B2B]">Founding Partner</div>
-                  <div className="text-2xl font-bold text-[#C9A24A]">£25,000</div>
-                  <div className="text-sm text-[#6B7280]">12 months exclusivity</div>
+                <h3 className="text-2xl font-bold mb-4">Corporate Programs</h3>
+                <p className="text-white/90 text-lg mb-6">
+                  For HR teams managing employee relocations and corporate mobility programs.
+                </p>
+                
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-white flex-shrink-0" />
+                    <span className="text-white/90">15-minute needs assessment</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-white flex-shrink-0" />
+                    <span className="text-white/90">Dedicated account management</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-white flex-shrink-0" />
+                    <span className="text-white/90">Volume pricing & SLAs</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-white flex-shrink-0" />
+                    <span className="text-white/90">Executive reporting dashboard</span>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <button 
+                    onClick={() => window.location.href = '/corporate-assessment'}
+                    className="w-full bg-white text-[#0B1B2B] font-semibold py-3 rounded-lg hover:bg-white/90 transition-all"
+                  >
+                    Start Corporate Assessment
+                  </button>
+                  <button 
+                    onClick={() => window.location.href = '/corporate'}
+                    className="w-full bg-white/20 text-white font-semibold py-3 rounded-lg hover:bg-white/30 transition-all border border-white/30"
+                  >
+                    Learn More
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Add-on Services */}
-          <div className="mb-16">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                Add-on Services
-              </h2>
-              <p className="text-[#6B7280] max-w-2xl mx-auto">
-                Additional services available for any package level to customize your relocation experience.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#E5E7EB] text-center">
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Expedited Service</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">+£2,500</p>
-                <p className="text-sm text-[#6B7280]">48-hour turnaround</p>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#E5E7EB] text-center">
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Pet Relocation</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">£1,500</p>
-                <p className="text-sm text-[#6B7280]">Full pet moving service</p>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#E5E7EB] text-center">
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Temp Housing</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">£500</p>
-                <p className="text-sm text-[#6B7280]">Short-term arrangements</p>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#E5E7EB] text-center">
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Cultural Training</h3>
-                <p className="text-2xl font-bold text-[#C9A24A] mb-2">£750</p>
-                <p className="text-sm text-[#6B7280]">UK lifestyle orientation</p>
-              </div>
-            </div>
-          </div>
-
-          {/* FAQ Section */}
+          {/* Service Features */}
           <div className="bg-white rounded-xl p-8 shadow-sm border border-[#E5E7EB] mb-16">
-            <h2 className="text-2xl font-bold text-[#0B1B2B] mb-8 text-center" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Frequently Asked Questions
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">What's included in the base price?</h3>
-                <p className="text-sm text-[#6B7280] mb-4">All core services listed in each tier. No hidden fees or surprise charges.</p>
-                
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">When do I pay?</h3>
-                <p className="text-sm text-[#6B7280] mb-4">50% upfront to secure service, 50% upon completion. Corporate clients can arrange monthly billing.</p>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                What's Included in Our Services
+              </h2>
+              <p className="text-[#6B7280] text-lg">
+                Comprehensive relocation support designed to make your London move seamless
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileText className="w-6 h-6 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-[#0B1B2B] mb-3">Assessment & Planning</h3>
+                <ul className="space-y-2 text-sm text-[#6B7280]">
+                  <li>• Comprehensive needs analysis</li>
+                  <li>• Area recommendations</li>
+                  <li>• Timeline planning</li>
+                  <li>• Budget consultation</li>
+                </ul>
               </div>
-              <div>
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">What if I'm not satisfied?</h3>
-                <p className="text-sm text-[#6B7280] mb-4">100% money-back guarantee if you're not completely satisfied within the first 14 days.</p>
-                
-                <h3 className="font-semibold text-[#0B1B2B] mb-2">Can I upgrade my package?</h3>
-                <p className="text-sm text-[#6B7280]">Yes, you can upgrade at any time. We'll credit what you've already paid toward the new package.</p>
+
+              <div className="text-center">
+                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-6 h-6 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-[#0B1B2B] mb-3">Dedicated Support</h3>
+                <ul className="space-y-2 text-sm text-[#6B7280]">
+                  <li>• Personal account manager</li>
+                  <li>• Specialist team assignment</li>
+                  <li>• 24/7 support hotline</li>
+                  <li>• Progress tracking</li>
+                </ul>
+              </div>
+
+              <div className="text-center">
+                <div className="w-12 h-12 bg-[#C9A24A]/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-6 h-6 text-[#C9A24A]" />
+                </div>
+                <h3 className="font-bold text-[#0B1B2B] mb-3">Service Guarantees</h3>
+                <ul className="space-y-2 text-sm text-[#6B7280]">
+                  <li>• 96% success rate</li>
+                  <li>• Milestone guarantees</li>
+                  <li>• Service credits for delays</li>
+                  <li>• Quality assurance</li>
+                </ul>
               </div>
             </div>
           </div>
 
-          {/* CTA Section */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Ready to Start Your London Journey?
+          {/* Contact for Pricing */}
+          <div className="bg-gradient-to-r from-[#0B1B2B] to-[#1a2b3b] rounded-xl p-8 text-white text-center">
+            <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Ready to Get Started?
             </h2>
-            <p className="text-xl text-[#6B7280] mb-8 max-w-2xl mx-auto">
-              Book a free 30-minute consultation to discuss your specific needs and get personalized recommendations.
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              Contact us for a personalized consultation and transparent pricing tailored to your specific relocation needs.
             </p>
+
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+              <div className="text-center">
+                <Phone className="w-8 h-8 text-[#C9A24A] mx-auto mb-3" />
+                <div className="font-semibold mb-1">Call Direct</div>
+                <div className="text-white/80">+44 20 3105 9566</div>
+              </div>
+              <div className="text-center">
+                <Mail className="w-8 h-8 text-[#C9A24A] mx-auto mb-3" />
+                <div className="font-semibold mb-1">Email Us</div>
+                <div className="text-white/80">hello@therelonetwork.com</div>
+              </div>
+              <div className="text-center">
+                <Calendar className="w-8 h-8 text-[#C9A24A] mx-auto mb-3" />
+                <div className="font-semibold mb-1">Available</div>
+                <div className="text-white/80">Mon-Fri 8:00-20:00 GMT</div>
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-[#C9A24A] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#B8932A] transition-colors flex items-center justify-center gap-2">
-                Book Free Consultation
-                <ArrowRight className="w-4 h-4" />
+              <button 
+                onClick={() => window.location.href = '/executive-intake'}
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 rounded-lg font-semibold transition-all"
+              >
+                Executive Services
               </button>
-              <button className="bg-white text-[#0B1B2B] px-8 py-4 rounded-lg font-semibold border border-[#E5E7EB] hover:bg-[#F9FAFB] transition-colors">
-                Contact Us
+              <button 
+                onClick={() => window.location.href = '/corporate-assessment'}
+                className="bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-semibold transition-all border border-white/30"
+              >
+                Corporate Programs
               </button>
             </div>
           </div>
