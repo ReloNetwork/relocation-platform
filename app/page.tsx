@@ -215,7 +215,7 @@ export default function HomePage() {
             Your concierge for executive relocations to London.
           </p>
           <p className="text-sm sm:text-base text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-            Property, schools, and lifestyle handled in days, not months—for executives and the teams who move them.
+            Property, schools, and lifestyle handled in days, not months, for executives and the teams who move them.
           </p>
 
 
