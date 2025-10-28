@@ -1037,11 +1037,11 @@ export default function HomePage() {
                 </h2>
                 
                 <p className="text-base text-[#0B1B2B] leading-relaxed">
-                  <strong>Relo Network</strong> is London's exclusive relocation network, founded in <strong>January 2024</strong> to revolutionise the premium relocation industry through AI-powered guidance and vetted partner services. The company specialises in white-glove relocation services for high-net-worth individuals, investment banking professionals, and multinational corporations moving to London.
+                  <strong>Relo Network</strong> is London's exclusive relocation network, founded in <strong>January 2024</strong> to revolutionise executive relocations through dual-track professional services. The company operates two distinct service tracks: <strong>Executive Services</strong> for individual professionals and entrepreneurs, and <strong>Corporate Programs</strong> for HR teams managing employee relocations.
                 </p>
                 
                 <p className="text-base text-[#0B1B2B] leading-relaxed">
-                  Headquartered in London, Relo Network operates a curated network of vetted service providers across property search, legal services, financial advisory, and lifestyle management. The platform combines human expertise with artificial intelligence through its proprietary "<strong>Ask Relo AI</strong>" system, providing 24/7 personalized guidance.
+                  Headquartered in London, Relo Network begins with comprehensive assessments: <strong>72-Hour Setup Audits</strong> for individual executives and <strong>15-minute Corporate Assessments</strong> for HR teams. Our vetted partner network delivers milestone-guaranteed services with automatic credit protection for missed deadlines.
                 </p>
                 
                 <div className="bg-[#F8F9FA] border-l-4 border-[#C9A24A] p-4 rounded-r-lg">
@@ -1063,11 +1063,11 @@ export default function HomePage() {
                     </div>
                     <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
                       <span className="text-[#6B7280] font-medium text-sm">Business Model</span>
-                      <span className="text-[#0B1B2B] font-semibold text-sm">Service-area business</span>
+                      <span className="text-[#0B1B2B] font-semibold text-sm">Dual-track Assessment</span>
                     </div>
                     <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
                       <span className="text-[#6B7280] font-medium text-sm">Service Focus</span>
-                      <span className="text-[#0B1B2B] font-semibold text-sm">Executive Relocations</span>
+                      <span className="text-[#0B1B2B] font-semibold text-sm">Executive & Corporate</span>
                     </div>
                     <div className="flex items-center justify-between py-1 border-b border-[#E5E7EB]/50">
                       <span className="text-[#6B7280] font-medium text-sm">Coverage</span>
@@ -1078,8 +1078,8 @@ export default function HomePage() {
                       <span className="text-[#0B1B2B] font-semibold text-sm">8+ Years International</span>
                     </div>
                     <div className="flex items-center justify-between py-1">
-                      <span className="text-[#6B7280] font-medium text-sm">Platform Launch</span>
-                      <span className="text-[#0B1B2B] font-semibold text-sm">Launch Week</span>
+                      <span className="text-[#6B7280] font-medium text-sm">Success Rate</span>
+                      <span className="text-[#0B1B2B] font-semibold text-sm">96% Completion</span>
                     </div>
                   </div>
                 </div>
@@ -1096,7 +1096,7 @@ export default function HomePage() {
             Founder Excellence
           </h2>
           <p className="text-xl text-[#6B7280] text-center mb-12 max-w-3xl mx-auto">
-            Built on proven expertise in executive relocations and luxury service delivery.
+            Professional dual-track relocation services with milestone guarantees and 96% success rate across executive and corporate relocations.
           </p>
 
           {/* Key Facts */}
@@ -1105,7 +1105,7 @@ export default function HomePage() {
               <Clock className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
               <div className="text-4xl font-bold text-[#C9A24A] mb-2">2024</div>
               <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Founded</div>
-              <div className="text-sm text-[#6B7280]">London's newest premium network</div>
+              <div className="text-sm text-[#6B7280]">Dual-track assessment approach</div>
             </div>
             <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-[#0B1B2B]/10">
               <Star className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
@@ -1117,7 +1117,7 @@ export default function HomePage() {
               <Shield className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
               <div className="text-4xl font-bold text-[#C9A24A] mb-2">F500</div>
               <div className="text-lg font-semibold text-[#0B1B2B] mb-2">Enterprise Focus</div>
-              <div className="text-sm text-[#6B7280]">Fortune 500 client experience</div>
+              <div className="text-sm text-[#6B7280]">Corporate & executive clients</div>
             </div>
             <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-[#0B1B2B]/10">
               <Globe className="w-12 h-12 text-[#C9A24A] mx-auto mb-4" />
