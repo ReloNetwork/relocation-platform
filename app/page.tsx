@@ -553,7 +553,7 @@ export default function HomePage() {
                   <div className="bg-[#F8F9FA] border border-[#E5E7EB] rounded-lg p-2 text-xs">
                     <div className="space-y-1 text-[#0B1B2B]">
                       <p>Offer of <span className="font-bold text-[#16A34A]">£8,500 pcm</span> for Mayfair property <span className="font-bold text-[#16A34A]">ACCEPTED</span></p>
-                      <p>Tenancy start: <span className="font-bold">01 November 2024</span></p>
+                      <p>Tenancy start: <span className="font-bold">01 November 2025</span></p>
                       <p>Keys received: <span className="font-bold">Friday 18 Oct</span></p>
                     </div>
                   </div>
@@ -601,7 +601,7 @@ export default function HomePage() {
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-[#6B7280] italic">"Exceeded every expectation. Sunday to Friday—remarkable."</p>
-                    <div className="text-xs font-medium text-[#0B1B2B] mt-1">Fortune 500 CFO • Oct 2024</div>
+                    <div className="text-xs font-medium text-[#0B1B2B] mt-1">Fortune 500 CFO • Oct 2025</div>
                     <div className="text-xs text-[#C9A24A] font-medium mt-1">▶ Watch case study (45s)</div>
                   </div>
                 </CardContent>
