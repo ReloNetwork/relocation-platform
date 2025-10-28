@@ -191,7 +191,7 @@ export default function SimplePaymentPage() {
               
               <button 
                 onClick={() => {
-                  document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })
+                  document.getElementById('packages')?.scrollIntoView({ behaviour: 'smooth' })
                 }}
                 className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 px-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center gap-2"
               >

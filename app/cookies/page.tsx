@@ -35,7 +35,7 @@ export default function CookiesPage() {
                   Quick Summary
                 </h2>
                 <p className="text-[#6B7280] mb-4">
-                  We use cookies to provide you with the best possible experience on our website, analyze how you use our services, and improve our platform for relocating to London.
+                  We use cookies to provide you with the best possible experience on our website, analyse how you use our services, and improve our platform for relocating to London.
                 </p>
                 <div className="bg-gray-50 rounded-lg p-4">
                   <h3 className="font-semibold text-[#0B1B2B] mb-2">What we use cookies for:</h3>
@@ -94,7 +94,7 @@ export default function CookiesPage() {
               <div className="bg-gray-50 rounded-lg p-4">
                 <h4 className="font-semibold text-[#0B1B2B] mb-2">Google Analytics:</h4>
                 <ul className="text-sm text-[#6B7280] space-y-1">
-                  <li>• Page views and user behavior</li>
+                  <li>• Page views and user behaviour</li>
                   <li>• Conversion tracking for business goals</li>
                   <li>• Client dashboard access metrics</li>
                   <li>• Package type preferences</li>
@@ -150,7 +150,7 @@ export default function CookiesPage() {
                   </a>
                 </div>
                 <p className="text-sm text-[#6B7280]">
-                  Web analytics service that tracks website usage and user behavior to help us improve our services.
+                  Web analytics service that tracks website usage and user behaviour to help us improve our services.
                 </p>
               </div>
             </div>

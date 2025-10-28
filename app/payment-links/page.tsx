@@ -313,7 +313,7 @@ export default function PaymentLinksPage() {
         <div className="mt-12 bg-[#0B1B2B] text-white p-6 rounded-lg text-center">
           <h3 className="text-xl font-bold mb-2">Ready to Convert Partners?</h3>
           <p className="text-white/80 mb-4">
-            These payment links are optimized for maximum conversion and include detailed product information, 
+            These payment links are optimised for maximum conversion and include detailed product information, 
             founding member pricing, and special annual offers.
           </p>
           <p className="text-sm text-[#C9A24A]">
