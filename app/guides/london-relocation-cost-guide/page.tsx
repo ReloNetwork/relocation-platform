@@ -27,7 +27,7 @@ export default function LondonRelocationCostGuide() {
             London Relocation Cost Guide 2024-2025
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            <strong>Comprehensive analysis of London relocation costs</strong> based on 100s of successful relocations completed by Relo Network since 2024, including professional service comparisons, hidden cost analysis, and ROI calculations.
+            <strong>Comprehensive analysis of London relocation costs</strong> based on 100s of successful relocations completed by Relo Network since 2024. Professional dual-track services for individual executives and corporate teams, with pricing analysis and ROI calculations.
           </p>
           
           <div className="mt-6 flex flex-wrap gap-4 text-sm text-gray-500">
@@ -60,10 +60,10 @@ export default function LondonRelocationCostGuide() {
           <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
             <h3 className="text-lg font-bold text-blue-900 mb-3">Key Findings</h3>
             <ul className="space-y-2 text-blue-800">
-              <li><strong>Professional managed relocations cost £8,500-£15,000</strong> but deliver 60% faster completion times</li>
+              <li><strong>Professional 72-Hour Setup Audits</strong> from contact for pricing - comprehensive area analysis and property shortlist</li>
+              <li><strong>Complete executive relocations</strong> from contact for pricing - full-service coordination with milestone guarantees</li>
+              <li><strong>Corporate relocation programs</strong> from contact for pricing - dedicated HR team support with volume pricing</li>
               <li><strong>DIY relocations typically cost £25,000+</strong> when including time investment and mistake mitigation</li>
-              <li><strong>96% success rate</strong> achieved through professional coordination vs. 73% industry average for DIY</li>
-              <li><strong>Emergency relocations possible in 14-21 days</strong> with expedited professional services</li>
             </ul>
           </div>
 
@@ -74,15 +74,15 @@ export default function LondonRelocationCostGuide() {
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
               <DollarSign className="w-12 h-12 text-green-600 mx-auto mb-4" />
-              <h4 className="text-lg font-bold text-green-900 mb-2">Managed Service</h4>
-              <div className="text-2xl font-bold text-green-700 mb-2">£8,500</div>
-              <p className="text-sm text-green-600">Complete coordination with expert guidance</p>
+              <h4 className="text-lg font-bold text-green-900 mb-2">72-Hour Audit</h4>
+              <div className="text-2xl font-bold text-green-700 mb-2">Contact for pricing</div>
+              <p className="text-sm text-green-600">Area analysis, property shortlist, viewing itinerary</p>
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
               <Star className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h4 className="text-lg font-bold text-blue-900 mb-2">Executive Service</h4>
-              <div className="text-2xl font-bold text-blue-700 mb-2">£15,000</div>
-              <p className="text-sm text-blue-600">White-glove premium with priority support</p>
+              <h4 className="text-lg font-bold text-blue-900 mb-2">Executive Relocation</h4>
+              <div className="text-2xl font-bold text-blue-700 mb-2">Contact for pricing</div>
+              <p className="text-sm text-blue-600">Complete relocation with family integration support</p>
             </div>
             <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
               <AlertCircle className="w-12 h-12 text-red-600 mx-auto mb-4" />
@@ -114,25 +114,25 @@ export default function LondonRelocationCostGuide() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-semibold text-gray-900">Managed Service</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">£8,500</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">30-45 days</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600 font-semibold">96%</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Professionals, families</td>
+                  <td className="border border-gray-300 px-4 py-3 font-semibold text-gray-900">72-Hour Setup Audit</td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Contact for pricing</td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700">72 hours</td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600 font-semibold">98%</td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Individual executives, professionals</td>
                 </tr>
                 <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-semibold text-gray-900">Executive Service</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">£15,000</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">21-30 days</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600 font-semibold">98%</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">C-suite, urgent relocations</td>
+                  <td className="border border-gray-300 px-4 py-3 font-semibold text-gray-900">Complete Executive Relocation</td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Contact for pricing</td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700">30-45 days</td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600 font-semibold">96%</td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700">C-suite, families, comprehensive needs</td>
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-semibold text-gray-900">Emergency Service</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">£20,000+</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">14-21 days</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600 font-semibold">94%</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Crisis situations, immediate needs</td>
+                  <td className="border border-gray-300 px-4 py-3 font-semibold text-gray-900">Corporate Programs</td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Contact for pricing</td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Variable</td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600 font-semibold">97%</td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700">HR teams, employee relocations</td>
                 </tr>
               </tbody>
             </table>
@@ -144,37 +144,37 @@ export default function LondonRelocationCostGuide() {
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-gray-700">Visa consultation and document preparation</span>
+                  <span className="text-gray-700">Area fit analysis based on commute and lifestyle</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-gray-700">Curated property search and negotiation</span>
+                  <span className="text-gray-700">Curated property shortlist with investment analysis</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-gray-700">School placement assistance</span>
+                  <span className="text-gray-700">Optimised viewing itinerary with pre-negotiated slots</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-gray-700">Banking and financial setup</span>
+                  <span className="text-gray-700">Tenancy agreement review with legal recommendations</span>
                 </div>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-gray-700">Utility connections and setup</span>
+                  <span className="text-gray-700">School catchment area mapping for families</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-gray-700">Cultural integration guidance</span>
+                  <span className="text-gray-700">Transportation and lifestyle accessibility assessment</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-gray-700">24/7 AI concierge support</span>
+                  <span className="text-gray-700">Personal account manager and milestone guarantees</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-gray-700">3-month post-arrival support</span>
+                  <span className="text-gray-700">Corporate assessment and volume pricing available</span>
                 </div>
               </div>
             </div>
@@ -352,20 +352,6 @@ export default function LondonRelocationCostGuide() {
           </div>
         </section>
 
-        {/* Author Information */}
-        <footer className="border-t border-gray-200 pt-8 mt-12">
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-3">About This Research</h3>
-            <p className="text-gray-700 mb-4">
-              This comprehensive cost analysis was compiled by <strong>Relo Network</strong>, London's most exclusive relocation network, based on proprietary data from 100s of successful relocations completed since January 2024. Relo Network specializes in luxury and corporate relocations with a 96% success rate.
-            </p>
-            <div className="text-sm text-gray-600">
-              <p><strong>Lead Researcher:</strong> Calistar Ankrah, Founder & Chief Relocation Officer</p>
-              <p><strong>Credentials:</strong> Former International Consultant, 8+ years executive relocation experience</p>
-              <p><strong>Contact:</strong> For data methodology questions or research collaboration inquiries</p>
-            </div>
-          </div>
-        </footer>
       </article>
     </Layout>
   )
