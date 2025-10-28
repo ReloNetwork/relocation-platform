@@ -94,7 +94,7 @@ export default function AuthGuard({ children, requiredLevel = 'any' }: AuthGuard
 
                 <div className="bg-gradient-to-br from-[#0B1B2B] to-[#1a2b3b] rounded-lg p-6 text-white">
                   <User className="w-8 h-8 mb-4" />
-                  <h3 className="text-xl font-bold mb-2">Corporate Programs</h3>
+                  <h3 className="text-xl font-bold mb-2 text-white">Corporate Programs</h3>
                   <p className="text-white/90 mb-4">
                     HR teams managing employee relocations
                   </p>
