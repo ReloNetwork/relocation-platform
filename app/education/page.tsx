@@ -1,11 +1,13 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Layout from '../../components/Layout'\nimport AuthGuard from '../directory/auth-guard'
+import Layout from '../../components/Layout'
+import AuthGuard from '../directory/auth-guard'
 import { Search, Filter, Download, MapPin, Phone, Globe, Star, Users, Calendar, Award } from 'lucide-react'
 import { Button } from '../../ui/components/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/components/card'
-import { Badge } from '../../ui/components/badge'\nimport { createClient } from '@supabase/supabase-js'
+import { Badge } from '../../ui/components/badge'
+import { createClient } from '@supabase/supabase-js'
 
 // Comprehensive UK Schools Database
 const SCHOOLS_DATA = [
