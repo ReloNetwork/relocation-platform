@@ -3477,8 +3477,8 @@ export default function EducationPortal() {
 
   // Check authentication status
   useEffect(() => {
-    const authStatus = localStorage.getItem('educationPortalAuth')
-    setIsAuthenticated(authStatus === 'true')
+    // Force authentication requirement - no localStorage bypass
+    setIsAuthenticated(false)
   }, [])
 
   // Filter schools based on search and filters
