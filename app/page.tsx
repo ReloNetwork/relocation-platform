@@ -156,48 +156,33 @@ export default function HomePage() {
 
   const audienceCards = [
     {
-      title: "I'm Relocating to London",
-      description: "Get expert guidance for your luxury London relocation with AI-powered assistance and white-glove service.",
+      title: "Executive Services",
+      description: "Individual executives, professionals, and entrepreneurs relocating to London. Start with our comprehensive assessment.",
       icon: Users,
       href: "/executive-intake",
       features: [
-        "24/7 AI relocation concierge",
-        "Expert property recommendations", 
-        "Visa and legal support",
-        "School placement assistance",
-        "Cultural integration guidance"
+        "72-Hour Setup Audit",
+        "Complete relocation service",
+        "Family integration support",
+        "Personal account manager",
+        "Contact for pricing"
       ],
       bgGradient: "bg-gradient-to-br from-[#C9A24A] to-[#B8923D]",
       iconBg: "bg-white/20"
     },
     {
-      title: "I'm a Service Provider",
-      description: "Join London's most exclusive relocation network and access premium clients through our vetted partner program.",
-      icon: Building,
-      href: "/partners",
-      features: [
-        "Premium Sponsor guaranteed leads",
-        "Founding Partner exclusivity",
-        "Premium client network access",
-        "AI-powered client matching",
-        "Revenue sharing opportunities"
-      ],
-      bgGradient: "bg-gradient-to-br from-[#0B1B2B] to-[#1F2937]",
-      iconBg: "bg-[#C9A24A]"
-    },
-    {
-      title: "I'm in HR/Talent",
-      description: "Corporate relocation packages from £15,000 to £45,000 per employee with 33% emergency pricing discount.",
+      title: "Corporate Programs",
+      description: "HR teams managing employee relocations and corporate mobility programs. Get your personalized assessment.",
       icon: Briefcase,
-      href: "/corporate",
+      href: "/corporate-assessment",
       features: [
-        "Essential Executive: £15,000 per employee",
-        "Complete Executive: £25,000 per employee", 
-        "C-Suite Elite: £45,000 per employee",
-        "30-day settling guarantee",
-        "Emergency pricing - limited time"
+        "15-minute needs assessment",
+        "Dedicated account management",
+        "Volume pricing & SLAs",
+        "Executive reporting dashboard",
+        "Contact for pricing"
       ],
-      bgGradient: "bg-gradient-to-br from-[#059669] to-[#047857]",
+      bgGradient: "bg-gradient-to-br from-[#0B1B2B] to-[#1a2b3b]",
       iconBg: "bg-white/20"
     }
   ]
@@ -846,14 +831,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Audience Selection Cards */}
+          {/* Service Selection Cards */}
           <div className="mb-12">
-            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4 text-center">Choose Your Path</h2>
-            <p className="text-xl text-[#6B7280] mb-12 text-center max-w-2xl mx-auto">
-              Select the option that best describes you to access tailored solutions
+            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4 text-center">Professional Relocation Services</h2>
+            <p className="text-xl text-[#6B7280] mb-12 text-center max-w-3xl mx-auto">
+              Choose your service track for personalized London relocation support. Start with a comprehensive assessment tailored to your specific needs.
             </p>
             
-            <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {audienceCards.map((card, index) => (
                 <AudienceCard key={index} {...card} />
               ))}
