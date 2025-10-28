@@ -789,19 +789,27 @@ export default function HomePage() {
           </div>
 
 
-          {/* Top Categories Grid */}
+          {/* Partner Directory Categories */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4 text-center">Top Categories</h2>
+            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4 text-center">Partner Directory</h2>
             <div className="text-center mb-8">
-              <p className="text-lg text-[#6B7280] mb-4 max-w-3xl mx-auto">
-                Not sure who to pick? We'll run it for you.
+              <p className="text-lg text-[#6B7280] mb-6 max-w-3xl mx-auto">
+                Access our vetted network of London relocation specialists. Start with a personalized assessment for your specific needs.
               </p>
-              <Button
-                onClick={checkoutFunctions.executiveIntake}
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 font-semibold hover:scale-105 transition-all shadow-lg"
-              >
-                Start Executive Intake
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  onClick={checkoutFunctions.executiveIntake}
+                  className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 font-semibold hover:scale-105 transition-all shadow-lg"
+                >
+                  Executive Assessment
+                </Button>
+                <Button
+                  onClick={() => window.location.href = '/corporate-assessment'}
+                  className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-8 py-3 font-semibold hover:scale-105 transition-all shadow-lg"
+                >
+                  Corporate Assessment
+                </Button>
+              </div>
             </div>
             <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 max-w-7xl mx-auto">
               {[
