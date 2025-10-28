@@ -868,29 +868,53 @@ export default function HomePage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-8">
-                <p className="text-[#0B1B2B] leading-relaxed mb-4">
-                  <strong>Professional London relocations are tailored to different executive needs and family situations.</strong> Our tiered service approach ensures each move receives the appropriate level of support, from individual professionals to senior leadership requiring white-glove treatment.
+                <p className="text-[#0B1B2B] leading-relaxed mb-6">
+                  <strong>Professional London relocations are tailored through our dual-track service approach.</strong> We offer personalized assessments for both individual executives and corporate teams to ensure each relocation receives the appropriate level of support.
                 </p>
-                <div className="grid md:grid-cols-3 gap-6 mb-6">
-                  <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB]">
-                    <div className="text-lg font-bold text-[#C9A24A] mb-2">Essential Executive</div>
-                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Individual Professional Moves</div>
-                    <div className="text-xs text-[#6B7280] leading-relaxed">Perfect for single professionals or couples without children. Includes dedicated relocation manager, property search assistance, visa support, and basic neighbourhood orientation.</div>
+                <div className="grid md:grid-cols-2 gap-8 mb-6">
+                  <div className="bg-gradient-to-br from-[#C9A24A]/10 to-[#C9A24A]/5 rounded-xl p-6 border border-[#C9A24A]/20">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-[#C9A24A] rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-[#C9A24A]">Executive Services</div>
+                        <div className="text-sm text-[#6B7280]">Individual professionals & entrepreneurs</div>
+                      </div>
+                    </div>
+                    <ul className="text-sm text-[#0B1B2B] space-y-2">
+                      <li>• 72-Hour Setup Audit</li>
+                      <li>• Complete relocation service</li>
+                      <li>• Family integration support</li>
+                      <li>• Personal account manager</li>
+                      <li>• Contact for personalized pricing</li>
+                    </ul>
                   </div>
-                  <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB] ring-2 ring-[#C9A24A]">
-                    <div className="text-xs bg-[#C9A24A] text-white px-2 py-1 rounded-full mb-2">MOST POPULAR</div>
-                    <div className="text-lg font-bold text-[#C9A24A] mb-2">Complete Executive</div>
-                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Family Integration Moves</div>
-                    <div className="text-xs text-[#6B7280] leading-relaxed">Comprehensive service for families with children. Includes everything in Essential plus school placement, family orientation tours, spouse career support, and ongoing integration assistance.</div>
-                  </div>
-                  <div className="bg-[#FAFAF9] rounded-xl p-6 text-center border border-[#E5E7EB]">
-                    <div className="text-lg font-bold text-[#C9A24A] mb-2">C-Suite Elite</div>
-                    <div className="text-sm font-semibold text-[#0B1B2B] mb-2">Senior Leadership Moves</div>
-                    <div className="text-xs text-[#6B7280] leading-relaxed">White-glove service for C-level executives. Includes personal relocation director, luxury property portfolio access, private club introductions, and 12-month dedicated account management.</div>
+                  <div className="bg-gradient-to-br from-[#0B1B2B]/10 to-[#0B1B2B]/5 rounded-xl p-6 border border-[#0B1B2B]/20">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-[#0B1B2B] rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-[#0B1B2B]">Corporate Programs</div>
+                        <div className="text-sm text-[#6B7280]">HR teams & corporate mobility</div>
+                      </div>
+                    </div>
+                    <ul className="text-sm text-[#0B1B2B] space-y-2">
+                      <li>• 15-minute needs assessment</li>
+                      <li>• Dedicated account management</li>
+                      <li>• Volume pricing & SLAs</li>
+                      <li>• Executive reporting dashboard</li>
+                      <li>• Contact for corporate pricing</li>
+                    </ul>
                   </div>
                 </div>
                 <p className="text-[#6B7280] text-sm italic">
-                  *Services include visa support, property search, school placement, and comprehensive post-arrival support. Professional coordination typically prevents costly mistakes and reduces overall relocation timeline by 60%.
+                  *All services include comprehensive support from initial assessment through post-arrival integration. Professional coordination typically reduces relocation timeline by 60%.
                 </p>
               </CardContent>
             </Card>
