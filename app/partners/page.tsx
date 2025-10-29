@@ -97,16 +97,6 @@ const ProcessStep = ({ number, title, description }: { number: string, title: st
 )
 
 
-const LaunchWeekBanner = () => {
-  return (
-    <div className="text-center">
-      <div className="bg-[#C9A24A] text-white px-6 py-3 rounded-lg inline-block">
-        <div className="text-lg font-bold">Launch Week Now Open</div>
-        <div className="text-sm opacity-90">Professional Partnership Network</div>
-      </div>
-    </div>
-  )
-}
 
 export default function PartnersPage() {
   const [loading, setLoading] = useState(false)
@@ -335,18 +325,6 @@ export default function PartnersPage() {
               />
             </div>
 
-            {/* Urgency Timer */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto">
-              <div className="text-[#C9A24A] font-semibold mb-2 flex items-center justify-center gap-2">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8L14,13H10L12,8Z"/>
-                </svg>
-                Founding Partnership Status:
-              </div>
-              <LaunchWeekBanner />
-              <div className="text-sm text-white/90 mt-3 font-medium">Professional Network 2025</div>
-              <div className="text-sm text-white/70 mt-1">Professional Partnership Network</div>
-            </div>
           </div>
         </div>
       </div>
