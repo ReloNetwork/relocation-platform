@@ -186,7 +186,7 @@ function PartnerApplicationContent() {
           {/* Dual-Track Platform Explanation */}
           <div className="bg-gradient-to-br from-[#0B1B2B] to-[#1a2b3b] rounded-2xl p-8 text-white mb-16">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              <h2 className="text-3xl font-bold mb-4 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                 Our Dual-Track Service Platform
               </h2>
               <p className="text-white/90 text-lg max-w-3xl mx-auto">
