@@ -179,10 +179,10 @@ export default function PartnersPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-6 px-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Own Your Category in London's Most Vetted Relocation Network
+              Join London's Most Vetted Professional Relocation Network
             </h1>
             <p className="text-xl text-[#6B7280] max-w-3xl mx-auto mb-6">
-              Category exclusivity, concierge qualified introductions, directory and homepage placements. 12 Founder slots only. Launch week enrollment open.
+              Category exclusivity, concierge qualified introductions, directory and homepage placements. Professional partnership network with quality standards.
             </p>
             
             
@@ -194,7 +194,7 @@ export default function PartnersPage() {
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-xl hover:shadow-2xl transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Apply for Founding Partnership'}
+                {loading ? 'Processing...' : 'Apply for Professional Partnership'}
               </Button>
               <Button 
                 onClick={() => handleCheckout('premium_sponsor')}
@@ -1002,7 +1002,7 @@ export default function PartnersPage() {
               className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
               disabled={loading}
             >
-              {loading ? 'Processing...' : 'Apply for Founding Partnership'} <ArrowRight className="ml-2 h-4 w-4" />
+              {loading ? 'Processing...' : 'Apply for Professional Partnership'} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button 
               onClick={() => handleCheckout('premium_sponsor')}

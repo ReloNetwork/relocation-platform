@@ -326,7 +326,7 @@ export function createVoiceSubscriptionEmail(
         
         <h3>Ready to start your London journey?</h3>
         <ul>
-          <li><strong>Voice Chat:</strong> Ask anything about London neighborhoods, transport, or properties</li>
+          <li><strong>Voice Chat:</strong> Ask anything about London neighbourhoods, transport, or properties</li>
           <li><strong>Property Search:</strong> Get real-time property recommendations</li>
           <li><strong>Commute Analysis:</strong> Optimize your location based on work/lifestyle</li>
           ${planName === 'Concierge' ? '<li><strong>Human Backup:</strong> Escalate to expert concierges anytime</li>' : ''}

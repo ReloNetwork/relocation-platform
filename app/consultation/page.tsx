@@ -13,7 +13,7 @@ interface ConsultationFormData {
   timeline: string
   propertyBudget: string
   propertyType: string
-  neighborhoods: string
+  neighbourhoods: string
   familySituation: string
   employer: string
   isEmployerPaying: string
@@ -31,7 +31,7 @@ export default function PremiumConsultationPage() {
     timeline: '',
     propertyBudget: '',
     propertyType: '',
-    neighborhoods: '',
+    neighbourhoods: '',
     familySituation: '',
     employer: '',
     isEmployerPaying: '',
@@ -65,7 +65,7 @@ export default function PremiumConsultationPage() {
           timeline: '',
           propertyBudget: '',
           propertyType: '',
-          neighborhoods: '',
+          neighbourhoods: '',
           familySituation: '',
           employer: '',
           isEmployerPaying: '',
@@ -117,7 +117,7 @@ export default function PremiumConsultationPage() {
               <div className="text-center">
                 <MapPin className="h-12 w-12 text-[#C9A24A] mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-[#0B1220] mb-2">Area Expertise</h3>
-                <p className="text-[#6B7280]">Detailed neighborhood insights and recommendations from local specialists</p>
+                <p className="text-[#6B7280]">Detailed neighbourhood insights and recommendations from local specialists</p>
               </div>
               <div className="text-center">
                 <Calendar className="h-12 w-12 text-[#C9A24A] mx-auto mb-4" />
@@ -251,9 +251,9 @@ export default function PremiumConsultationPage() {
                 <div className="mt-4">
                   <textarea
                     rows={3}
-                    placeholder="Preferred neighborhoods or areas (e.g., Kensington, Canary Wharf, etc.) *"
-                    value={formData.neighborhoods}
-                    onChange={(e) => setFormData({ ...formData, neighborhoods: e.target.value })}
+                    placeholder="Preferred neighbourhoods or areas (e.g., Kensington, Canary Wharf, etc.) *"
+                    value={formData.neighbourhoods}
+                    onChange={(e) => setFormData({ ...formData, neighbourhoods: e.target.value })}
                     className="w-full px-4 py-3 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     required
                   />

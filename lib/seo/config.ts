@@ -155,9 +155,9 @@ export const PAGE_SEO_CONFIG = {
   concierge: {
     title: '24/7 London Relocation Concierge - AI Assistant',
     description: 'Speak naturally to our AI concierge for instant London relocation advice. 2.3s response time, 47K+ properties, 98% accuracy. Professional, Free Trial, Concierge tiers.',
-    keywords: 'AI relocation assistant, London property search, voice concierge, relocation AI, London neighborhoods',
+    keywords: 'AI relocation assistant, London property search, voice concierge, relocation AI, London neighbourhoods',
     ogTitle: 'Your 24/7 London Relocation Concierge',
-    ogDescription: 'AI-powered relocation assistant with instant expert advice on London properties and neighborhoods.'
+    ogDescription: 'AI-powered relocation assistant with instant expert advice on London properties and neighbourhoods.'
   },
 
   directory: {

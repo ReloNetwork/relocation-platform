@@ -649,7 +649,7 @@ What would you like to know about relocating to London?`,
                   </div>
                   <h3 className="text-lg font-semibold text-[#0B1B2B] mb-2">Welcome to Ask Relo!</h3>
                   <p className="text-[#6B7280] text-sm max-w-sm mx-auto">
-                    I'm here to help with your London relocation questions. Ask me about housing, schools, visas, neighborhoods, or anything else!
+                    I'm here to help with your London relocation questions. Ask me about housing, schools, visas, neighbourhoods, or anything else!
                   </p>
                 </div>
               ) : (

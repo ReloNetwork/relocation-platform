@@ -13,7 +13,7 @@ interface ClientFormData {
   timeline: string
   budget: string
   bedrooms: string
-  neighborhoods: string
+  neighbourhoods: string
   familySize: string
   hasChildren: string
   hasPets: string
@@ -80,7 +80,7 @@ export default function PremiumClientForm() {
     timeline: '',
     budget: '',
     bedrooms: '',
-    neighborhoods: '',
+    neighbourhoods: '',
     familySize: '',
     hasChildren: '',
     hasPets: '',
@@ -135,7 +135,7 @@ export default function PremiumClientForm() {
         timeline: '',
         budget: '',
         bedrooms: '',
-        neighborhoods: '',
+        neighbourhoods: '',
         familySize: '',
         hasChildren: '',
         hasPets: '',
@@ -336,8 +336,8 @@ export default function PremiumClientForm() {
             
             <FormField
               label="Preferred Neighborhoods"
-              name="neighborhoods"
-              value={formData.neighborhoods}
+              name="neighbourhoods"
+              value={formData.neighbourhoods}
               onChange={handleChange}
               placeholder="e.g., Canary Wharf, Kensington, Clapham"
               icon={<MapPin className="h-4 w-4" />}
