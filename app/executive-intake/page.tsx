@@ -95,7 +95,8 @@ export default function ExecutiveIntakePage() {
         body: JSON.stringify({
           plan: '72hour_audit',
           cadence: 'one_time',
-          email: formData.email
+          email: formData.email,
+          formData: formData // Include form data for webhook processing
         }),
       })
 

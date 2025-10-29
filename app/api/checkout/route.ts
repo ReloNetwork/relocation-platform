@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     
     const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
 
-    const { plan, cadence = 'one_time', email, credit = 0 } = await req.json();
+    const { plan, cadence = 'one_time', email, credit = 0, formData } = await req.json();
     
     if (!plan || !(plan in VALID_PLANS)) {
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
@@ -166,7 +166,11 @@ export async function POST(req: NextRequest) {
         plan, 
         cadence, 
         lookup_key,
-        plan_name: planConfig.name 
+        plan_name: planConfig.name,
+        // Include form data for executive intake/72hour audit
+        ...(formData && (plan === '72hour_audit' || plan === 'executive_intake') && {
+          formData: JSON.stringify(formData)
+        })
       },
       // Custom text based on plan
       ...(plan === 'founding_partner' && {

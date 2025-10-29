@@ -33,6 +33,12 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ ok: true });
       }
       
+      // Handle executive intake/72-hour audit payments
+      if (session.metadata?.plan === '72hour_audit' || session.metadata?.plan === 'executive_intake') {
+        await handleExecutiveIntakePayment(session);
+        return NextResponse.json({ ok: true });
+      }
+      
       // Handle supplier subscriptions (existing logic)
       const plan = session.metadata?.plan as 'starter'|'featured'|'sponsored'|undefined;
       const cadence = session.metadata?.cadence as 'monthly'|'annual'|undefined;
@@ -338,5 +344,209 @@ async function handleClientRelocationPurchase(session: Stripe.Checkout.Session) 
 
   } catch (error) {
     console.error('Error processing client relocation purchase:', error);
+  }
+}
+
+async function handleExecutiveIntakePayment(session: Stripe.Checkout.Session) {
+  try {
+    console.log('Processing executive intake payment:', session.id);
+    
+    const supa = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+
+    // Parse form data from metadata
+    let formData = null;
+    if (session.metadata?.formData) {
+      try {
+        formData = JSON.parse(session.metadata.formData);
+      } catch (e) {
+        console.error('Error parsing form data from metadata:', e);
+      }
+    }
+
+    if (!formData) {
+      console.error('No form data found in session metadata');
+      return;
+    }
+
+    // Generate reference ID
+    const referenceId = `EX-${Date.now().toString().slice(-8)}`;
+    
+    // Prepare data for database insertion
+    const intakeData = {
+      reference_id: referenceId,
+      name: formData.name,
+      email: formData.email || session.customer_email,
+      phone: formData.phone,
+      move_date: formData.moveDate,
+      flexibility: formData.flexibility,
+      urgency: formData.urgency,
+      budget: formData.budget,
+      budget_flexible: formData.budgetFlexible || false,
+      preferred_areas: formData.preferredAreas || [],
+      avoid_areas: formData.avoidAreas,
+      property_type: formData.propertyType,
+      property_priority: formData.propertyPriority,
+      adults: formData.adults,
+      children: formData.children,
+      children_ages: formData.childrenAges,
+      pets: formData.pets || false,
+      schools_priority: formData.schoolsPriority,
+      visa_priority: formData.visaPriority,
+      visa_support: formData.visaSupport || false,
+      taxation_support: formData.taxationSupport || false,
+      banking_support: formData.bankingSupport || false,
+      schooling_support: formData.schoolingSupport || false,
+      lifestyle_support: formData.lifestyleSupport || false,
+      other_requirements: formData.otherRequirements,
+      special_requirements: formData.specialRequirements,
+      stripe_session_id: session.id,
+      stripe_customer_id: typeof session.customer === 'string' ? session.customer : null,
+      amount_paid: session.amount_total,
+      payment_status: 'completed',
+      submitted_at: new Date().toISOString()
+    };
+
+    // Save to database
+    const { data, error } = await supa
+      .from('executive_intakes')
+      .insert([intakeData])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error saving executive intake to database:', error);
+      return;
+    }
+
+    console.log('Executive intake saved successfully:', {
+      id: data.id,
+      referenceId: referenceId,
+      email: formData.email,
+      amount: session.amount_total
+    });
+
+    // Send notification emails
+    if (process.env.RESEND_API_KEY) {
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      
+      // Send admin notification
+      await resend.emails.send({
+        from: 'Executive Team <executive@therelonetwork.com>',
+        to: ['hello@therelonetwork.com', 'executive@therelonetwork.com'],
+        subject: `🎯 NEW 72-Hour Audit Purchase - ${formData.name}`,
+        html: `
+          <div style="background: #C9A24A; color: white; padding: 20px; text-align: center;">
+            <h1>🎯 NEW 72-HOUR AUDIT PURCHASED</h1>
+            <p>IMMEDIATE CUSTOMER ONBOARDING REQUIRED</p>
+          </div>
+          
+          <div style="padding: 20px;">
+            <h2>Payment Confirmed</h2>
+            <p><strong>Customer:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Reference:</strong> ${referenceId}</p>
+            <p><strong>Amount:</strong> £${session.amount_total ? (session.amount_total / 100).toLocaleString() : 'Unknown'}</p>
+            <p><strong>Move Date:</strong> ${formData.moveDate}</p>
+            <p><strong>Urgency:</strong> ${formData.urgency}</p>
+            
+            <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
+              <h3 style="color: #92400E;">⚡ IMMEDIATE ACTIONS REQUIRED:</h3>
+              <ol style="color: #92400E;">
+                <li>Contact customer within ${formData.urgency === 'emergency' ? '2 hours' : formData.urgency === 'urgent' ? '12 hours' : '24 hours'}</li>
+                <li>Schedule 60-minute strategy call</li>
+                <li>Begin area shortlist preparation</li>
+                <li>Activate executive support protocol</li>
+              </ol>
+            </div>
+            
+            <h3>Customer Requirements Summary:</h3>
+            <ul>
+              <li><strong>Budget:</strong> ${formData.budget}</li>
+              <li><strong>Preferred Areas:</strong> ${formData.preferredAreas?.join(', ') || 'Not specified'}</li>
+              <li><strong>Property Type:</strong> ${formData.propertyType || 'Not specified'}</li>
+              <li><strong>Family Size:</strong> ${formData.adults} adults, ${formData.children} children</li>
+              <li><strong>Support Needed:</strong> ${[
+                formData.visaSupport && 'Visa',
+                formData.schoolingSupport && 'Schools',
+                formData.bankingSupport && 'Banking',
+                formData.taxationSupport && 'Tax',
+                formData.lifestyleSupport && 'Lifestyle'
+              ].filter(Boolean).join(', ') || 'Basic relocation only'}</li>
+            </ul>
+            
+            <p><strong>Session ID:</strong> ${session.id}</p>
+          </div>
+        `
+      });
+
+      // Send customer confirmation
+      await resend.emails.send({
+        from: 'Executive Team <executive@therelonetwork.com>',
+        to: [formData.email],
+        subject: 'Welcome to Executive Service - Your 72-Hour Audit Begins Now',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background: #C9A24A; color: white; padding: 30px; text-align: center;">
+              <h1 style="margin: 0;">Welcome to Executive Service</h1>
+              <p style="margin: 10px 0 0 0;">Your 72-Hour Setup Audit has begun</p>
+            </div>
+            
+            <div style="padding: 30px; background: white;">
+              <h2 style="color: #0B1B2B;">Dear ${formData.name},</h2>
+              
+              <p>Your payment has been confirmed and your 72-Hour Setup Audit is now active. Our executive team is already reviewing your requirements.</p>
+              
+              <div style="background: #C9A24A; background: linear-gradient(135deg, #C9A24A 0%, #B8923D 100%); color: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin: 0 0 10px 0;">Your Reference: ${referenceId}</h3>
+                <p style="margin: 0;">Please save this reference for all future communications</p>
+              </div>
+              
+              <h3 style="color: #0B1B2B;">What Happens Next:</h3>
+              <ol style="color: #6B7280; line-height: 1.6;">
+                <li><strong>Strategy Call (Within ${formData.urgency === 'emergency' ? '2 hours' : formData.urgency === 'urgent' ? '12 hours' : '24 hours'}):</strong> Our team will call you to schedule your 60-minute consultation</li>
+                <li><strong>Shortlist Preparation (Day 1-2):</strong> We begin curating your bespoke area analysis and property shortlist</li>
+                <li><strong>Warm Introductions (Within 7 days):</strong> Direct connections to 3 vetted partners matching your requirements</li>
+                <li><strong>30-Day Support Window:</strong> Ongoing guidance throughout your relocation process</li>
+              </ol>
+              
+              <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
+                <p style="margin: 0; color: #92400E;"><strong>Guarantee:</strong> If we don't provide 3 qualified introductions within 7 days, we'll extend your concierge window at no additional cost.</p>
+              </div>
+              
+              <h3 style="color: #0B1B2B;">Your Requirements Summary:</h3>
+              <ul style="color: #6B7280;">
+                <li><strong>Move Date:</strong> ${formData.moveDate}</li>
+                <li><strong>Budget:</strong> ${formData.budget}</li>
+                <li><strong>Preferred Areas:</strong> ${formData.preferredAreas?.join(', ') || 'Open to recommendations'}</li>
+                <li><strong>Urgency Level:</strong> ${formData.urgency}</li>
+              </ul>
+              
+              <h3 style="color: #0B1B2B;">Your Executive Team:</h3>
+              <ul style="color: #6B7280;">
+                <li><strong>Priority Support:</strong> +44 20 3105 9566</li>
+                <li><strong>Direct Email:</strong> executive@therelonetwork.com</li>
+                <li><strong>Reference:</strong> ${referenceId}</li>
+              </ul>
+              
+              <p>We're excited to make your London relocation effortless.</p>
+              
+              <p>Best regards,<br>
+              <strong>The Executive Team</strong><br>
+              Relo Network</p>
+            </div>
+            
+            <div style="background: #FAFAF9; padding: 20px; text-align: center; color: #6B7280; font-size: 12px;">
+              <p>© 2025 Relo Network Ltd. London, United Kingdom.</p>
+            </div>
+          </div>
+        `
+      });
+    }
+
+  } catch (error) {
+    console.error('Error processing executive intake payment:', error);
   }
 }
