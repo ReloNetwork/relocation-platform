@@ -106,9 +106,11 @@ export default function PartnersPage() {
     setLoading(true)
     try {
       if (priceId === 'founding_partner') {
-        checkoutFunctions.foundingPartner()
+        // Direct to partner benefits form instead of checkout
+        window.location.href = '/partner-application?tier=professional'
       } else if (priceId === 'premium_sponsor') {
-        checkoutFunctions.premiumSponsor()
+        // Direct to partner benefits form instead of checkout
+        window.location.href = '/partner-application?tier=sponsor'
       } else {
         // Fallback to partner application form
         document.getElementById('partner-application')?.scrollIntoView({ behavior: 'smooth' })
@@ -126,12 +128,12 @@ export default function PartnersPage() {
 
   const partnershipTiers = [
     {
-      name: 'Founding Partner',
+      name: 'Professional Partner',
       price: 'Contact for pricing',
       duration: '12 months',
       description: 'Category exclusivity with homepage placement',
       isPopular: true,
-      priceId: 'founding_partner',
+      priceId: 'professional_partner',
       features: [
         'Category exclusivity (12 months) in your service area',
         'Top placement across Home & Directory pages',
@@ -189,12 +191,12 @@ export default function PartnersPage() {
             {/* Above the fold CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button 
-                onClick={() => handleCheckout('founding_partner')}
+                onClick={() => handleCheckout('professional_partner')}
                 size="lg"
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-xl hover:shadow-2xl transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Apply for Professional Partnership'}
+                {loading ? 'Processing...' : 'View Professional Partnership Benefits'}
               </Button>
               <Button 
                 onClick={() => handleCheckout('premium_sponsor')}
@@ -202,7 +204,7 @@ export default function PartnersPage() {
                 className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-md hover:scale-105 shadow-xl hover:shadow-2xl transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Apply for Premium Sponsorship'}
+                {loading ? 'Processing...' : 'View Premium Sponsorship Benefits'}
               </Button>
             </div>
           </div>
@@ -286,15 +288,15 @@ export default function PartnersPage() {
           <div className="text-center">
             <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
               <Star className="h-4 w-4 text-[#C9A24A] mr-2" />
-              <span className="text-[#C9A24A] text-sm font-medium">Founding Partner Program - Limited Time</span>
+              <span className="text-[#C9A24A] text-sm font-medium">Professional Partner Network - London's Elite</span>
             </div>
             
             <h2 className="text-5xl lg:text-6xl font-bold mb-6 text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Join London's Most <span className="text-[#C9A24A]">Exclusive</span> Relocation Network
+              London's Premier <span className="text-[#C9A24A]">Professional</span> Relocation Network
             </h2>
             
             <p className="text-xl text-white/80 max-w-3xl mx-auto mb-12">
-              Connect with high-value clients relocating to London. Premium leads, verified opportunities, and exclusive partnerships that drive real revenue.
+              Connect with executive and corporate relocations through our dual-track service platform. Professional partnerships designed for established service providers.
             </p>
 
             {/* Professional Network Stats */}
@@ -429,7 +431,7 @@ export default function PartnersPage() {
                   <Trophy className="h-8 w-8" />
                 </div>
                 <div>
-                  <h4 className="text-2xl font-bold text-[#0B1B2B]">Founding Partner</h4>
+                  <h4 className="text-2xl font-bold text-[#0B1B2B]">Professional Partner</h4>
                   <p className="text-[#C9A24A] font-semibold">Category Exclusivity & Premium Placement</p>
                 </div>
               </div>
@@ -514,7 +516,7 @@ export default function PartnersPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="bg-white rounded-lg p-6 border-2 border-[#C9A24A]/20">
-              <h4 className="font-semibold text-[#0B1B2B] mb-4 text-center text-lg">Founding Partner</h4>
+              <h4 className="font-semibold text-[#0B1B2B] mb-4 text-center text-lg">Professional Partner</h4>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-[#6B7280]">Investment</span>
@@ -748,12 +750,12 @@ export default function PartnersPage() {
 
           <div className="space-y-8">
             <div className="border border-[#E5E7EB] rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What is included in Founding Partner membership?</h3>
+              <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What is included in Professional Partner membership?</h3>
               <p className="text-[#6B7280] leading-relaxed mb-4">
                 Professional Partners receive category exclusivity within their service area, homepage placement, concierge-routed introductions, and territory protection. This partnership provides access to our vetted professional network with dedicated support.
               </p>
               <div className="bg-[#FAFAF9] rounded-lg p-4 border border-[#E5E7EB]">
-                <div className="text-sm font-medium text-[#0B1B2B] mb-2">Founding Partner Benefits:</div>
+                <div className="text-sm font-medium text-[#0B1B2B] mb-2">Professional Partner Benefits:</div>
                 <div className="grid grid-cols-2 gap-4 text-xs">
                   <div>
                     <div className="font-semibold text-[#C9A24A]">Category Exclusivity</div>
@@ -764,8 +766,8 @@ export default function PartnersPage() {
                     <div className="text-[#6B7280]">Featured positioning for visibility</div>
                   </div>
                   <div>
-                    <div className="font-semibold text-[#C9A24A]">Concierge Routing</div>
-                    <div className="text-[#6B7280]">Direct introduction pathway</div>
+                    <div className="font-semibold text-[#C9A24A]">Client Routing</div>
+                    <div className="text-[#6B7280]">Direct executive & corporate introductions</div>
                   </div>
                   <div>
                     <div className="font-semibold text-[#C9A24A]">Professional Support</div>
@@ -1002,7 +1004,7 @@ export default function PartnersPage() {
               className="bg-white text-[#C9A24A] hover:bg-gray-100 rounded-md hover:scale-105 shadow-lg hover:shadow-xl transition-all"
               disabled={loading}
             >
-              {loading ? 'Processing...' : 'Apply for Professional Partnership'} <ArrowRight className="ml-2 h-4 w-4" />
+              {loading ? 'Processing...' : 'View Professional Partnership Benefits'} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button 
               onClick={() => handleCheckout('premium_sponsor')}
@@ -1015,8 +1017,8 @@ export default function PartnersPage() {
           </div>
           
           <div className="flex flex-wrap justify-center gap-8 text-sm text-white/80 mb-6">
-            <div>• Professional partnership rates available</div>
-            <div>• Professional partnership terms</div>
+            <div>• Executive & corporate client access</div>
+            <div>• Dual-track service platform</div>
             <div>• Vetted partner network with quality standards</div>
           </div>
           

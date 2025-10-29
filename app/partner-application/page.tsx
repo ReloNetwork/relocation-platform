@@ -1,622 +1,574 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Layout from '@/components/Layout'
-import { Clock } from 'lucide-react'
-import { Button } from '../../ui/components/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/components/card'
-import { Badge } from '../../ui/components/badge'
-import { Input } from '../../ui/components/input'
-import { Textarea } from '../../ui/components/textarea'
+import { useSearchParams } from 'next/navigation'
+import { Check, Star, ArrowRight, Users, Clock, Shield, Trophy, Target, Building, Globe, Mail, Phone, User, Briefcase } from 'lucide-react'
+import { Button } from '@/ui/components/button'
+import Layout from '../../components/Layout'
+
+interface PartnerFormData {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  company: string
+  serviceCategory: string
+  experienceYears: string
+  currentClientBase: string
+  londonExperience: string
+  insuranceCoverage: string
+  certifications: string
+  revenueExpectation: string
+  partnershipTier: string
+  message: string
+}
 
 export default function PartnerApplicationPage() {
+  const searchParams = useSearchParams()
+  const tier = searchParams?.get('tier') || 'professional'
+  
   const [currentStep, setCurrentStep] = useState(1)
-  const [formData, setFormData] = useState({
-    // Company Information
-    companyName: '',
-    contactPerson: '',
+  const [formData, setFormData] = useState<PartnerFormData>({
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
-    website: '',
-    businessRegistration: '',
-    
-    // Services
-    category: '',
-    services: [] as string[],
-    description: '',
-    
-    // Credentials
-    insurance: '',
-    certifications: [] as string[],
-    
-    // References
-    references: [
-      { name: '', company: '', email: '', phone: '' }
-    ],
-    
-    // Membership
-    membershipTier: 'leadmachine' as 'leadmachine' | 'marketdominator'
+    company: '',
+    serviceCategory: '',
+    experienceYears: '',
+    currentClientBase: '',
+    londonExperience: '',
+    insuranceCoverage: '',
+    certifications: '',
+    revenueExpectation: '',
+    partnershipTier: tier,
+    message: ''
   })
-
   const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState('')
-  const [timeRemaining, setTimeRemaining] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  })
 
-  // Countdown timer effect
-  useEffect(() => {
-    const launchDate = new Date('2025-10-06T14:00:00Z').getTime()
-    
-    const updateCountdown = () => {
-      const now = new Date().getTime()
-      const distance = launchDate - now
-      
-      if (distance > 0) {
-        setTimeRemaining({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000)
-        })
-      }
-    }
-
-    updateCountdown()
-    const interval = setInterval(updateCountdown, 1000)
-    
-    return () => clearInterval(interval)
-  }, [])
-
-  const categories = [
-    { value: 'property-specialists', label: 'Property Specialists' },
-    { value: 'luxury-movers', label: 'Luxury Movers' },
-    { value: 'legal-visa', label: 'Legal & Visa' },
-    { value: 'financial-services', label: 'Financial Services' },
-    { value: 'education-consultants', label: 'Education Consultants' },
-    { value: 'lifestyle-concierge', label: 'Lifestyle Concierge' },
-    { value: 'transportation', label: 'Transportation' },
-    { value: 'home-services', label: 'Home Services' },
-    { value: 'lifestyle-services', label: 'Lifestyle Services' },
-    { value: 'pet-relocation', label: 'Pet Relocation' },
-    { value: 'other', label: 'Other (please specify)' }
-  ]
-
-  const membershipTiers = [
-    {
-      tier: 'leadmachine',
-      name: 'Lead Machine',
-      originalPrice: '£997/mo',
-      foundingPrice: '£497/mo',
-      annualPrice: '£4,970',
-      savings: '67% OFF',
-      features: [
-        '8-15 guaranteed qualified leads/month',
-        'AI concierge mentions you by name for expertise',
-        'Premium directory placement (top 3 position)',
-        'Authority content collaboration & co-creation',
-        'Expert positioning in your service category',
-        'Performance dashboard with lead analytics',
-        'Email list inclusion (25k+ luxury subscribers)',
-        'Social media authority features & mentions',
-        'EXCLUSIVE territory protection rights',
-        'Client testimonial & case study development'
+  const partnershipTiers = {
+    professional: {
+      name: 'Professional Partner',
+      duration: '12 months',
+      description: 'Category exclusivity with homepage placement',
+      price: 'Contact for pricing',
+      benefits: [
+        'Category exclusivity (12 months) in your service area',
+        'Top placement across Home & Directory pages',
+        'Direct client routing from executive & corporate tracks',
+        '4× editorial features throughout membership',
+        'Quarterly pipeline reviews with dedicated support',
+        'Territory protection rights',
+        'Performance tracking and reporting',
+        'Guarantee: qualified opportunities in 90 days or extended exclusivity'
+      ],
+      clientTypes: [
+        'C-suite executives relocating to London',
+        'HR teams managing corporate relocations',
+        'High-net-worth individuals and families',
+        'Fortune 500 company employees',
+        'International business owners'
       ]
     },
-    {
-      tier: 'marketdominator',
-      name: 'Market Dominator',
-      originalPrice: '£2,997/mo',
-      foundingPrice: '£1,497/mo',
-      annualPrice: '£14,970',
-      savings: '67% OFF',
-      features: [
-        'Everything in Lead Machine tier',
-        'EXCLUSIVE category ownership (no competitors)',
-        'AI citations as "preferred industry partner"',
-        'Citation insurance against competitor mentions',
-        'Co-branded luxury marketing content creation',
-        'White-label platform integration options',
-        'Priority Concierge tier client recommendations',
-        '15% revenue sharing on all closed deals',
-        'Quarterly strategic business reviews with CEO',
-        'Industry thought leadership positioning',
-        'Premium press mention opportunities',
-        'Executive networking event access'
+    sponsor: {
+      name: 'Premium Sponsor',
+      duration: '90 days',
+      description: 'Professional referral access with priority placement',
+      price: 'Contact for pricing',
+      benefits: [
+        'Priority referral placement',
+        'Professional network access',
+        'Marketing exposure opportunities',
+        'Performance tracking',
+        'Partnership support',
+        'Networking event access',
+        'Professional development resources'
+      ],
+      clientTypes: [
+        'Professional relocations',
+        'Corporate employee relocations',
+        'Executive transfers',
+        'Business relocations',
+        'Family relocations'
       ]
     }
-  ]
+  }
 
-  const handleInputChange = (field: string, value: any) => {
+  const currentTier = partnershipTiers[tier as keyof typeof partnershipTiers] || partnershipTiers.professional
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
       ...prev,
-      [field]: value
+      [e.target.name]: e.target.value
     }))
   }
 
-  const handleArrayInputChange = (field: string, value: string) => {
-    const items = value.split(',').map(item => item.trim()).filter(item => item.length > 0)
-    setFormData(prev => ({
-      ...prev,
-      [field]: items
-    }))
-  }
-
-  const addReference = () => {
-    setFormData(prev => ({
-      ...prev,
-      references: [...prev.references, { name: '', company: '', email: '', phone: '' }]
-    }))
-  }
-
-  const updateReference = (index: number, field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      references: prev.references.map((ref, i) => 
-        i === index ? { ...ref, [field]: value } : ref
-      )
-    }))
-  }
-
-  const removeReference = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      references: prev.references.filter((_, i) => i !== index)
-    }))
-  }
-
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     setLoading(true)
-    setMessage('')
-
+    
     try {
-      const response = await fetch('/api/partners/applications', {
+      const response = await fetch('/api/partner-application/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
 
-      const result = await response.json()
-
-      if (result.ok) {
-        setMessage('Application submitted successfully! We will review your application and contact you within 3-5 business days.')
-        setCurrentStep(5) // Show success step
+      if (response.ok) {
+        setCurrentStep(3) // Success step
       } else {
-        setMessage(`Error: ${result.error}`)
+        throw new Error('Submission failed')
       }
     } catch (error) {
-      setMessage('An error occurred while submitting your application. Please try again.')
+      console.error('Error submitting application:', error)
+      alert('There was an error submitting your application. Please try again or contact us directly.')
     } finally {
       setLoading(false)
     }
   }
 
-  const nextStep = () => {
-    if (currentStep < 4) {
-      setCurrentStep(currentStep + 1)
-    } else {
-      handleSubmit()
-    }
-  }
-
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1)
-    }
-  }
-
-  const isStepValid = () => {
-    switch (currentStep) {
-      case 1:
-        return formData.companyName && formData.contactPerson && formData.email && formData.phone
-      case 2:
-        return formData.category && formData.services.length > 0 && formData.description
-      case 3:
-        return formData.insurance && formData.certifications.length > 0
-      case 4:
-        return formData.membershipTier
-      default:
-        return true
-    }
-  }
-
-  return (
-    <Layout>
-      <div className="min-h-screen bg-[#FAFAF9] py-12 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Partner Application
+  if (currentStep === 1) {
+    return (
+      <Layout className="bg-[#FAFAF9]" showFooter={false}>
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          {/* Partnership Benefits Overview */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
+              <Star className="h-4 w-4 text-[#C9A24A] mr-2" />
+              <span className="text-[#C9A24A] text-sm font-medium">{currentTier.name} Benefits Overview</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              {currentTier.name} Partnership
             </h1>
-            <p className="text-[#6B7280] text-lg">
-              Join our network of trusted relocation service providers
+            
+            <p className="text-xl text-[#6B7280] max-w-3xl mx-auto mb-8">
+              {currentTier.description} • {currentTier.duration} • {currentTier.price}
             </p>
           </div>
 
-          {/* Progress Bar */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              {[1, 2, 3, 4].map((step) => (
-                <div key={step} className="flex items-center">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
-                    step <= currentStep 
-                      ? 'bg-[#C9A24A] text-white' 
-                      : 'bg-gray-200 text-gray-600'
-                  }`}>
-                    {step}
-                  </div>
-                  {step < 4 && (
-                    <div className={`w-16 h-1 mx-2 ${
-                      step < currentStep ? 'bg-[#C9A24A]' : 'bg-gray-200'
-                    }`} />
-                  )}
-                </div>
-              ))}
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            {/* Benefits Section */}
+            <div className="bg-white rounded-2xl p-8 border border-[#0B1B2B]/10 shadow-lg">
+              <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center">
+                <Trophy className="w-6 h-6 text-[#C9A24A] mr-3" />
+                Partnership Benefits
+              </h2>
+              <ul className="space-y-4">
+                {currentTier.benefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-[#6B7280]">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="flex justify-between text-sm text-[#6B7280]">
-              <span>Company Info</span>
-              <span>Services</span>
-              <span>Credentials</span>
-              <span>Membership</span>
+
+            {/* Client Types Section */}
+            <div className="bg-white rounded-2xl p-8 border border-[#0B1B2B]/10 shadow-lg">
+              <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center">
+                <Users className="w-6 h-6 text-[#C9A24A] mr-3" />
+                Client Types You'll Serve
+              </h2>
+              <ul className="space-y-4">
+                {currentTier.clientTypes.map((clientType, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <Target className="h-5 w-5 text-[#C9A24A] mt-0.5 flex-shrink-0" />
+                    <span className="text-[#6B7280]">{clientType}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {currentStep !== 5 && (
-            <Card className="shadow-sm">
-              <CardContent className="p-8">
-                {/* Step 1: Company Information */}
-                {currentStep === 1 && (
-                  <div className="space-y-6">
-                    <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-6">Company Information</CardTitle>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                        Company Name *
-                      </label>
-                      <Input
-                        type="text"
-                        value={formData.companyName}
-                        onChange={(e) => handleInputChange('companyName', e.target.value)}
-                        placeholder="Your Company Ltd"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                        Contact Person *
-                      </label>
-                      <Input
-                        type="text"
-                        value={formData.contactPerson}
-                        onChange={(e) => handleInputChange('contactPerson', e.target.value)}
-                        placeholder="John Smith"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                        Email Address *
-                      </label>
-                      <Input
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                        placeholder="john@company.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                        Phone Number *
-                      </label>
-                      <Input
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
-                        placeholder="+44 20 1234 5678"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                        Website
-                      </label>
-                      <Input
-                        type="url"
-                        value={formData.website}
-                        onChange={(e) => handleInputChange('website', e.target.value)}
-                        placeholder="https://www.company.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                        Business Registration
-                      </label>
-                      <Input
-                        type="text"
-                        value={formData.businessRegistration}
-                        onChange={(e) => handleInputChange('businessRegistration', e.target.value)}
-                        placeholder="Companies House Number: 12345678"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-                {/* Step 2: Services */}
-                {currentStep === 2 && (
-                  <div className="space-y-6">
-                    <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-6">Services & Expertise</CardTitle>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                      Service Category *
-                    </label>
-                    <select
-                      value={formData.category}
-                      onChange={(e) => handleInputChange('category', e.target.value)}
-                      className="w-full border border-[#E5E7EB] rounded-xl p-3 focus:border-[#C9A24A] focus:ring-2 focus:ring-[#C9A24A]/20 outline-none transition-all"
-                    >
-                      <option value="">Select a category</option>
-                      {categories.map(cat => (
-                        <option key={cat.value} value={cat.value}>{cat.label}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                      Services Offered * <span className="text-sm text-[#6B7280]">(comma-separated)</span>
-                    </label>
-                    <Input
-                      type="text"
-                      value={formData.services.join(', ')}
-                      onChange={(e) => handleArrayInputChange('services', e.target.value)}
-                      placeholder="visa applications, work permits, residency permits"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                      Company Description *
-                    </label>
-                    <Textarea
-                      value={formData.description}
-                      onChange={(e) => handleInputChange('description', e.target.value)}
-                      rows={4}
-                      placeholder="Describe your company's expertise and what makes you unique..."
-                    />
-                  </div>
-                </div>
-              )}
-
-                {/* Step 3: Credentials */}
-                {currentStep === 3 && (
-                  <div className="space-y-6">
-                    <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-6">Credentials & References</CardTitle>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                      Professional Insurance *
-                    </label>
-                    <Input
-                      type="text"
-                      value={formData.insurance}
-                      onChange={(e) => handleInputChange('insurance', e.target.value)}
-                      placeholder="Professional Indemnity: £2M, Public Liability: £1M"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
-                      Certifications * <span className="text-sm text-[#6B7280]">(comma-separated)</span>
-                    </label>
-                    <Input
-                      type="text"
-                      value={formData.certifications.join(', ')}
-                      onChange={(e) => handleArrayInputChange('certifications', e.target.value)}
-                      placeholder="ACCA, CIOT, Law Society, etc."
-                    />
-                  </div>
-
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <label className="block text-sm font-medium text-[#0B1B2B]">
-                        Client References
-                      </label>
-                      <Button
-                        type="button"
-                        onClick={addReference}
-                        className="bg-[#C9A24A] hover:bg-[#C9A24A]/90 text-white text-sm"
-                        size="sm"
-                      >
-                        Add Reference
-                      </Button>
-                    </div>
-                    
-                    {formData.references.map((ref, index) => (
-                      <div key={index} className="border border-[#E5E7EB] rounded-xl p-4 mb-4">
-                        <div className="flex justify-between items-center mb-3">
-                          <h4 className="font-medium text-[#0B1B2B]">Reference {index + 1}</h4>
-                          {formData.references.length > 1 && (
-                            <button
-                              type="button"
-                              onClick={() => removeReference(index)}
-                              className="text-red-600 hover:text-red-800 text-sm"
-                            >
-                              Remove
-                            </button>
-                          )}
-                        </div>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <input
-                            type="text"
-                            value={ref.name}
-                            onChange={(e) => updateReference(index, 'name', e.target.value)}
-                            className="w-full border border-[#E5E7EB] rounded-lg p-2 focus:border-[#C9A24A] focus:ring-1 focus:ring-[#C9A24A]/20 outline-none transition-all"
-                            placeholder="Contact Name"
-                          />
-                          <input
-                            type="text"
-                            value={ref.company}
-                            onChange={(e) => updateReference(index, 'company', e.target.value)}
-                            className="w-full border border-[#E5E7EB] rounded-lg p-2 focus:border-[#C9A24A] focus:ring-1 focus:ring-[#C9A24A]/20 outline-none transition-all"
-                            placeholder="Company Name"
-                          />
-                          <input
-                            type="email"
-                            value={ref.email}
-                            onChange={(e) => updateReference(index, 'email', e.target.value)}
-                            className="w-full border border-[#E5E7EB] rounded-lg p-2 focus:border-[#C9A24A] focus:ring-1 focus:ring-[#C9A24A]/20 outline-none transition-all"
-                            placeholder="Email"
-                          />
-                          <input
-                            type="tel"
-                            value={ref.phone}
-                            onChange={(e) => updateReference(index, 'phone', e.target.value)}
-                            className="w-full border border-[#E5E7EB] rounded-lg p-2 focus:border-[#C9A24A] focus:ring-1 focus:ring-[#C9A24A]/20 outline-none transition-all"
-                            placeholder="Phone"
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-                {/* Step 4: Membership Selection */}
-                {currentStep === 4 && (
-                  <div className="space-y-6">
-                    <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-6">Choose Your Founding Partner Membership</CardTitle>
-                  
-                  {/* Countdown Timer */}
-                  <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6">
-                    <div className="text-center">
-                      <h3 className="text-lg font-semibold text-red-800 mb-2 flex items-center gap-2">
-                        <Clock className="w-5 h-5" />
-                        Founding Partner Pricing Ends Soon!
-                      </h3>
-                      <p className="text-red-700 mb-4">Prices go up on Monday, 6th October at 14:00 GMT</p>
-                      <div className="flex justify-center space-x-4">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-red-800">{timeRemaining.days}</div>
-                          <div className="text-sm text-red-600">Days</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-red-800">{timeRemaining.hours}</div>
-                          <div className="text-sm text-red-600">Hours</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-red-800">{timeRemaining.minutes}</div>
-                          <div className="text-sm text-red-600">Minutes</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-red-800">{timeRemaining.seconds}</div>
-                          <div className="text-sm text-red-600">Seconds</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {membershipTiers.map((tier) => (
-                      <Card
-                        key={tier.tier}
-                        className={`cursor-pointer transition-all border-2 ${
-                          formData.membershipTier === tier.tier
-                            ? 'border-[#C9A24A] bg-[#C9A24A]/5'
-                            : 'border-[#E5E7EB] hover:border-[#C9A24A]/50'
-                        }`}
-                        onClick={() => handleInputChange('membershipTier', tier.tier)}
-                      >
-                        <CardContent className="p-6">
-                        <div className="text-center mb-4">
-                          <h3 className="text-xl font-semibold text-[#0B1B2B] mb-2">{tier.name}</h3>
-                          <div className="mb-2">
-                            <span className="text-lg text-gray-500 line-through">{tier.originalPrice}</span>
-                            <span className="ml-2 bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">{tier.savings}</span>
-                          </div>
-                          <div className="text-2xl font-bold text-[#C9A24A] mb-1">{tier.foundingPrice}</div>
-                          <div className="text-sm text-[#6B7280]">Annual: {tier.annualPrice} (10 months upfront)</div>
-                        </div>
-                        <ul className="space-y-2">
-                          {tier.features.map((feature, index) => (
-                            <li key={index} className="flex items-center text-sm text-[#6B7280]">
-                              <svg className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-                {/* Navigation Buttons */}
-                <div className="flex justify-between pt-8 border-t border-[#E5E7EB]">
-                  <Button
-                    variant="outline"
-                    onClick={prevStep}
-                    disabled={currentStep === 1}
-                    className="text-[#6B7280]"
-                  >
-                    Previous
-                  </Button>
-                  
-                  <Button
-                    onClick={nextStep}
-                    disabled={!isStepValid() || loading}
-                    className="bg-[#0B1B2B] text-[#C9A24A] hover:bg-[#0B1B2B]/90 font-semibold"
-                  >
-                    {loading ? 'Submitting...' : currentStep === 4 ? 'Submit Application' : 'Next'}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Success Message */}
-          {currentStep === 5 && (
-            <Card className="shadow-sm text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <CardTitle className="text-2xl font-semibold text-[#0B1B2B] mb-4">Application Submitted!</CardTitle>
-                <CardDescription className="text-[#6B7280] mb-6">
-                  Thank you for your interest in becoming a Relo Network partner. We will review your application and contact you within 1-3 business days.
-                </CardDescription>
-                <Button
-                  onClick={() => window.location.href = '/'}
-                  className="bg-[#0B1B2B] text-[#C9A24A] hover:bg-[#0B1B2B]/90 font-semibold"
-                >
-                  Return to Homepage
-                </Button>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Error/Success Message */}
-          {message && currentStep !== 5 && (
-            <div className={`mt-6 p-4 rounded-xl border ${
-              message.includes('successfully')
-                ? 'bg-green-50 border-green-200 text-green-800'
-                : 'bg-red-50 border-red-200 text-red-800'
-            }`}>
-              <div className="text-sm font-medium">{message}</div>
+          {/* Dual-Track Platform Explanation */}
+          <div className="bg-gradient-to-br from-[#0B1B2B] to-[#1a2b3b] rounded-2xl p-8 text-white mb-16">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                Our Dual-Track Service Platform
+              </h2>
+              <p className="text-white/90 text-lg max-w-3xl mx-auto">
+                As a partner, you'll receive clients from both our executive and corporate service tracks
+              </p>
             </div>
-          )}
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white/10 rounded-xl p-6 border border-white/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-[#C9A24A] rounded-lg flex items-center justify-center">
+                    <User className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white">Executive Services Track</h3>
+                    <p className="text-white/80 text-sm">Individual professionals & entrepreneurs</p>
+                  </div>
+                </div>
+                <ul className="text-white/90 space-y-2 text-sm">
+                  <li>• 72-Hour Setup Audits</li>
+                  <li>• Complete relocation services</li>
+                  <li>• Family integration support</li>
+                  <li>• Personal account management</li>
+                </ul>
+              </div>
+
+              <div className="bg-white/10 rounded-xl p-6 border border-white/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-[#C9A24A] rounded-lg flex items-center justify-center">
+                    <Briefcase className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white">Corporate Programmes Track</h3>
+                    <p className="text-white/80 text-sm">HR teams & corporate mobility</p>
+                  </div>
+                </div>
+                <ul className="text-white/90 space-y-2 text-sm">
+                  <li>• 15-minute corporate assessments</li>
+                  <li>• Dedicated account management</li>
+                  <li>• Volume pricing & SLAs</li>
+                  <li>• Executive reporting dashboards</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Metrics */}
+          <div className="bg-white rounded-2xl p-8 border border-[#0B1B2B]/10 shadow-lg mb-16">
+            <h2 className="text-2xl font-bold text-[#0B1B2B] text-center mb-8">
+              Partnership Network Performance
+            </h2>
+            <div className="grid md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#C9A24A] mb-2">73%</div>
+                <div className="text-[#6B7280] font-medium">Lead Conversion Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#C9A24A] mb-2">42%</div>
+                <div className="text-[#6B7280] font-medium">Repeat Client Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#C9A24A] mb-2">33</div>
+                <div className="text-[#6B7280] font-medium">London Boroughs</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#C9A24A] mb-2">96%</div>
+                <div className="text-[#6B7280] font-medium">Client Satisfaction</div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA to proceed */}
+          <div className="text-center">
+            <Button 
+              onClick={() => setCurrentStep(2)}
+              size="lg"
+              className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-12 py-4 text-lg font-semibold hover:scale-105 transition-all shadow-xl"
+            >
+              Apply for {currentTier.name} Partnership
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <p className="text-[#6B7280] text-sm mt-4">
+              Complete our application form • Our team will contact you within 24 hours
+            </p>
+          </div>
+        </div>
+      </Layout>
+    )
+  }
+
+  if (currentStep === 2) {
+    return (
+      <Layout className="bg-[#FAFAF9]" showFooter={false}>
+        <div className="max-w-4xl mx-auto px-4 py-16">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              {currentTier.name} Application
+            </h1>
+            <p className="text-xl text-[#6B7280]">
+              Tell us about your business and experience
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 border border-[#0B1B2B]/10 shadow-lg">
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                  First Name *
+                </label>
+                <input
+                  type="text"
+                  name="firstName"
+                  required
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                  Last Name *
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  required
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                Company Name *
+              </label>
+              <input
+                type="text"
+                name="company"
+                required
+                value={formData.company}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              />
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                  Service Category *
+                </label>
+                <select
+                  name="serviceCategory"
+                  required
+                  value={formData.serviceCategory}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                >
+                  <option value="">Select Category</option>
+                  <option value="Property Search">Property Search</option>
+                  <option value="Legal & Visa">Legal & Visa Services</option>
+                  <option value="Luxury Movers">Luxury Moving Services</option>
+                  <option value="Education Consultants">Education Consultants</option>
+                  <option value="Financial Services">Financial Services</option>
+                  <option value="Healthcare">Healthcare Services</option>
+                  <option value="Lifestyle Concierge">Lifestyle Concierge</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                  Years of Experience *
+                </label>
+                <select
+                  name="experienceYears"
+                  required
+                  value={formData.experienceYears}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                >
+                  <option value="">Select Experience</option>
+                  <option value="1-2 years">1-2 years</option>
+                  <option value="3-5 years">3-5 years</option>
+                  <option value="5-10 years">5-10 years</option>
+                  <option value="10+ years">10+ years</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                Current Client Base Description *
+              </label>
+              <textarea
+                name="currentClientBase"
+                required
+                rows={3}
+                value={formData.currentClientBase}
+                onChange={handleInputChange}
+                placeholder="Describe your current client base and typical project scope"
+                className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              />
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                London Market Experience *
+              </label>
+              <select
+                name="londonExperience"
+                required
+                value={formData.londonExperience}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              >
+                <option value="">Select Experience Level</option>
+                <option value="New to London market">New to London market</option>
+                <option value="1-2 years London experience">1-2 years London experience</option>
+                <option value="3-5 years London experience">3-5 years London experience</option>
+                <option value="5+ years London experience">5+ years London experience</option>
+                <option value="London native/lifelong">London native/lifelong</option>
+              </select>
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                Professional Insurance Coverage *
+              </label>
+              <select
+                name="insuranceCoverage"
+                required
+                value={formData.insuranceCoverage}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              >
+                <option value="">Select Coverage Level</option>
+                <option value="£1M+ Professional Indemnity">£1M+ Professional Indemnity</option>
+                <option value="£2M+ Professional Indemnity">£2M+ Professional Indemnity</option>
+                <option value="£5M+ Professional Indemnity">£5M+ Professional Indemnity</option>
+                <option value="Other/Will obtain">Other/Will obtain</option>
+              </select>
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-[#0B1B2B] mb-2">
+                Additional Message
+              </label>
+              <textarea
+                name="message"
+                rows={4}
+                value={formData.message}
+                onChange={handleInputChange}
+                placeholder="Tell us more about your business, goals, and why you'd like to join our professional network"
+                className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+              />
+            </div>
+
+            <div className="flex gap-4 pt-6 border-t border-[#E5E7EB]">
+              <Button
+                type="button"
+                onClick={() => setCurrentStep(1)}
+                variant="outline"
+                className="flex-1 border-[#E5E7EB] text-[#6B7280] hover:bg-gray-50"
+              >
+                Back to Benefits
+              </Button>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="flex-1 bg-[#C9A24A] hover:bg-[#B8923D] text-white"
+              >
+                {loading ? 'Submitting...' : 'Submit Application'}
+              </Button>
+            </div>
+          </form>
+        </div>
+      </Layout>
+    )
+  }
+
+  // Success Step
+  return (
+    <Layout className="bg-[#FAFAF9]" showFooter={false}>
+      <div className="max-w-4xl mx-auto px-4 py-16">
+        <div className="text-center">
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
+            <Check className="w-10 h-10 text-green-600" />
+          </div>
+          
+          <h1 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            Application Submitted Successfully
+          </h1>
+          
+          <p className="text-xl text-[#6B7280] mb-8 max-w-2xl mx-auto">
+            Thank you for your interest in our {currentTier.name} partnership. Our team will review your application and contact you within 24 hours.
+          </p>
+
+          <div className="bg-white rounded-2xl p-8 border border-[#0B1B2B]/10 shadow-lg mb-8">
+            <h2 className="text-xl font-bold text-[#0B1B2B] mb-4">Next Steps</h2>
+            <div className="space-y-4 text-left">
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">1</div>
+                <div>
+                  <div className="font-medium text-[#0B1B2B]">Application Review (24 hours)</div>
+                  <div className="text-[#6B7280] text-sm">Our partnership team will review your application and credentials</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">2</div>
+                <div>
+                  <div className="font-medium text-[#0B1B2B]">Partnership Consultation</div>
+                  <div className="text-[#6B7280] text-sm">Schedule a call to discuss partnership details and answer your questions</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-[#C9A24A] text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">3</div>
+                <div>
+                  <div className="font-medium text-[#0B1B2B]">Partnership Activation</div>
+                  <div className="text-[#6B7280] text-sm">Complete onboarding and begin receiving qualified client referrals</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={() => window.location.href = '/partners'}
+              variant="outline"
+              className="border-[#E5E7EB] text-[#6B7280] hover:bg-gray-50"
+            >
+              Back to Partnerships
+            </Button>
+            <Button
+              onClick={() => window.location.href = '/'}
+              className="bg-[#C9A24A] hover:bg-[#B8923D] text-white"
+            >
+              Return to Homepage
+            </Button>
+          </div>
+
+          <div className="mt-8 p-4 bg-[#C9A24A]/10 rounded-lg border border-[#C9A24A]/20">
+            <p className="text-sm text-[#0B1B2B]">
+              <strong>Questions?</strong> Contact our partnership team at{' '}
+              <a href="mailto:hello@therelonetwork.com" className="text-[#C9A24A] hover:underline">
+                hello@therelonetwork.com
+              </a>{' '}
+              or{' '}
+              <a href="tel:+442031059566" className="text-[#C9A24A] hover:underline">
+                +44 20 3105 9566
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </Layout>
