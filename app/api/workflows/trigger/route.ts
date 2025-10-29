@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getWorkflowForService, serviceDeliveryChecklists } from '../../../lib/workflows/service-delivery'
+import { getWorkflowForService, serviceDeliveryChecklists } from '../../../../lib/workflows/service-delivery'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
