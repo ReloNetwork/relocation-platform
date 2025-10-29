@@ -1,12 +1,11 @@
 'use client'
 
-// NUCLEAR REBUILD - PARTNERS PAGE v3.0 - 2025-09-25
+// PARTNERS PAGE - Professional Network - 2025
 import React, { useState, useEffect } from 'react'
 import { Check, Star, ArrowRight, Users, Clock, Zap, Timer, Shield, Trophy, Target, Building, Globe, Calculator, Mail } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../components/Layout'
 import { getAllPartnershipSchemas } from '../../lib/seo/partnership-schemas'
-import CharterPartnershipForm from '../../components/forms/CharterPartnershipForm'
 import { checkoutFunctions } from '../../lib/checkout'
 
 const PartnershipTier = ({ 
@@ -47,7 +46,7 @@ const PartnershipTier = ({
         </div>
         <p className="text-lg text-[#6B7280] mt-1">{duration}</p>
         <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded px-3 py-1 text-sm text-[#C9A24A] font-medium mt-2 inline-block">
-          Charter Rate - Expires 31 Oct
+          Contact for pricing
         </div>
       </div>
 
@@ -103,7 +102,7 @@ const LaunchWeekBanner = () => {
     <div className="text-center">
       <div className="bg-[#C9A24A] text-white px-6 py-3 rounded-lg inline-block">
         <div className="text-lg font-bold">Launch Week Now Open</div>
-        <div className="text-sm opacity-90">Limited Charter Positions Available</div>
+        <div className="text-sm opacity-90">Professional Partnership Network</div>
       </div>
     </div>
   )
@@ -123,13 +122,13 @@ export default function PartnersPage() {
       } else {
         // Fallback to partner application form
         document.getElementById('partner-application')?.scrollIntoView({ behavior: 'smooth' })
-        alert('Please fill out the partner application form below, and our team will contact you within 24 hours to complete your charter partnership.')
+        alert('Please fill out the partner application form below, and our team will contact you within 24 hours to complete your partnership application.')
       }
     } catch (error) {
       console.error('Checkout error:', error)
       // Fallback to partner application form
       document.getElementById('partner-application')?.scrollIntoView({ behavior: 'smooth' })
-      alert('Checkout temporarily unavailable. Please fill out the partner application form below, and our team will contact you within 24 hours to complete your charter partnership.')
+      alert('Checkout temporarily unavailable. Please fill out the partner application form below, and our team will contact you within 24 hours to complete your partnership application.')
     } finally {
       setLoading(false)
     }
@@ -262,7 +261,7 @@ export default function PartnersPage() {
                 <div className="space-y-4 text-sm">
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Network Launch</div>
-                    <div className="text-[#0B1B2B] font-semibold">January 2024</div>
+                    <div className="text-[#0B1B2B] font-semibold">January 2025</div>
                   </div>
                   <div>
                     <div className="text-[#6B7280] font-medium mb-1">Network Partners</div>
@@ -345,8 +344,8 @@ export default function PartnersPage() {
                 Founding Partnership Status:
               </div>
               <LaunchWeekBanner />
-              <div className="text-sm text-white/90 mt-3 font-medium">Launch Week 2025</div>
-              <div className="text-sm text-white/70 mt-1">Charter Rate - Limited to 12 founding positions</div>
+              <div className="text-sm text-white/90 mt-3 font-medium">Professional Network 2025</div>
+              <div className="text-sm text-white/70 mt-1">Professional Partnership Network</div>
             </div>
           </div>
         </div>
@@ -437,7 +436,7 @@ export default function PartnersPage() {
         <div className="mt-16 bg-white rounded-2xl p-8 border border-[#0B1B2B]/10">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Charter Partnership Tiers
+              Partnership Network Tiers
             </h3>
             <p className="text-xl text-[#6B7280] max-w-4xl mx-auto">
               Choose your level of network participation and territorial access
@@ -773,7 +772,7 @@ export default function PartnersPage() {
             <div className="border border-[#E5E7EB] rounded-lg p-6">
               <h3 className="text-lg font-semibold text-[#0B1B2B] mb-3">What is included in Founding Partner membership?</h3>
               <p className="text-[#6B7280] leading-relaxed mb-4">
-                Founding Partners receive category exclusivity within their service area, homepage placement, concierge-routed introductions, and territory protection. This 12-month charter membership provides access to our vetted professional network with dedicated partnership support.
+                Professional Partners receive category exclusivity within their service area, homepage placement, concierge-routed introductions, and territory protection. This partnership provides access to our vetted professional network with dedicated support.
               </p>
               <div className="bg-[#FAFAF9] rounded-lg p-4 border border-[#E5E7EB]">
                 <div className="text-sm font-medium text-[#0B1B2B] mb-2">Founding Partner Benefits:</div>
@@ -1005,7 +1004,6 @@ export default function PartnersPage() {
       {/* Partner Application Form */}
       <section id="partner-application" className="py-20 bg-[#FAFAF9]">
         <div className="max-w-4xl mx-auto px-4">
-          <CharterPartnershipForm />
         </div>
       </section>
 
@@ -1016,7 +1014,7 @@ export default function PartnersPage() {
             Start Earning Premium Revenue Today
           </h3>
           <p className="text-lg mb-8 text-white/90">
-            Join our vetted partner network. Limited charter partnership positions available.
+            Join our vetted professional partner network. Applications reviewed on a rolling basis.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -1039,13 +1037,13 @@ export default function PartnersPage() {
           </div>
           
           <div className="flex flex-wrap justify-center gap-8 text-sm text-white/80 mb-6">
-            <div>• Charter rates available during launch week</div>
+            <div>• Professional partnership rates available</div>
             <div>• Professional partnership terms</div>
-            <div>• Limited to 12 charter positions</div>
+            <div>• Vetted partner network with quality standards</div>
           </div>
           
           <div className="text-white/80 text-sm">
-            © 2024 Relo Network Ltd. All rights reserved. London, United Kingdom.
+            © 2025 Relo Network Ltd. All rights reserved. London, United Kingdom.
           </div>
         </div>
       </div>
