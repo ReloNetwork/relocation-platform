@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Check, Star, ArrowRight, Users, Clock, Shield, Trophy, Target, Building, Globe, Mail, Phone, User, Briefcase } from 'lucide-react'
 import { Button } from '@/ui/components/button'
@@ -23,7 +23,7 @@ interface PartnerFormData {
   message: string
 }
 
-export default function PartnerApplicationPage() {
+function PartnerApplicationContent() {
   const searchParams = useSearchParams()
   const tier = searchParams?.get('tier') || 'professional'
   
@@ -572,5 +572,22 @@ export default function PartnerApplicationPage() {
         </div>
       </div>
     </Layout>
+  )
+}
+
+export default function PartnerApplicationPage() {
+  return (
+    <Suspense fallback={
+      <Layout className="bg-[#FAFAF9]" showFooter={false}>
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#C9A24A] mx-auto mb-4"></div>
+            <p className="text-[#6B7280]">Loading...</p>
+          </div>
+        </div>
+      </Layout>
+    }>
+      <PartnerApplicationContent />
+    </Suspense>
   )
 }
