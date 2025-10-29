@@ -105,22 +105,20 @@ export default function PartnersPage() {
   const handleCheckout = async (priceId: string) => {
     setLoading(true)
     try {
-      if (priceId === 'founding_partner') {
+      if (priceId === 'professional_partner') {
         // Direct to partner benefits form instead of checkout
         window.location.href = '/partner-application?tier=professional'
       } else if (priceId === 'premium_sponsor') {
         // Direct to partner benefits form instead of checkout
         window.location.href = '/partner-application?tier=sponsor'
       } else {
-        // Fallback to partner application form
-        document.getElementById('partner-application')?.scrollIntoView({ behavior: 'smooth' })
-        alert('Please fill out the partner application form below, and our team will contact you within 24 hours to complete your partnership application.')
+        // Fallback to professional partner application
+        window.location.href = '/partner-application?tier=professional'
       }
     } catch (error) {
       console.error('Checkout error:', error)
-      // Fallback to partner application form
-      document.getElementById('partner-application')?.scrollIntoView({ behavior: 'smooth' })
-      alert('Checkout temporarily unavailable. Please fill out the partner application form below, and our team will contact you within 24 hours to complete your partnership application.')
+      // Fallback to partner application page
+      window.location.href = '/partner-application?tier=professional'
     } finally {
       setLoading(false)
     }
