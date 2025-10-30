@@ -571,23 +571,27 @@ export default function HomePage() {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="relative bg-gradient-to-br from-[#0B1B2B] to-[#1F2937] rounded-lg overflow-hidden aspect-video">
-                    <img 
-                      src="/assets/proof-testimonial.jpg" 
-                      alt="Executive client testimonial video thumbnail"
+                    <video 
+                      src="/videos/London Relocation Solved.mov" 
                       className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                      <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                        <svg className="w-4 h-4 text-[#0B1B2B] ml-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                        </svg>
-                      </div>
+                      controls
+                      preload="metadata"
+                      poster="/assets/proof-testimonial.jpg"
+                      style={{
+                        objectFit: 'cover',
+                        objectPosition: 'center center'
+                      }}
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
+                      45s
                     </div>
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-[#6B7280] italic">"Exceeded every expectation. Sunday to Friday—remarkable."</p>
                     <div className="text-xs font-medium text-[#0B1B2B] mt-1">Fortune 500 CFO • Oct 2025</div>
-                    <div className="text-xs text-[#C9A24A] font-medium mt-1">▶ Watch case study (45s)</div>
+                    <div className="text-xs text-[#C9A24A] font-medium mt-1">▶ Client testimonial (45s)</div>
                   </div>
                 </CardContent>
               </Card>
