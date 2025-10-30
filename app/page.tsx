@@ -570,20 +570,54 @@ export default function HomePage() {
                   <CardTitle className="text-lg font-bold text-[#0B1B2B] text-left">Client Testimonial</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <div className="relative bg-gradient-to-br from-[#0B1B2B] to-[#1F2937] rounded-lg overflow-hidden aspect-video">
+                  <div className="relative bg-gradient-to-br from-[#0B1B2B] to-[#1F2937] rounded-lg overflow-hidden aspect-video cursor-pointer group" onClick={() => {
+                    const video = document.querySelector('#testimonial-video') as HTMLVideoElement;
+                    if (video) {
+                      if (video.paused) {
+                        video.play();
+                      } else {
+                        video.pause();
+                      }
+                    }
+                  }}>
                     <video 
-                      src="/videos/London Relocation Solved.mov" 
+                      id="testimonial-video"
                       className="w-full h-full object-cover"
-                      controls
                       preload="metadata"
                       poster="/assets/proof-testimonial.jpg"
+                      playsInline
+                      webkit-playsinline="true"
                       style={{
                         objectFit: 'cover',
                         objectPosition: 'center center'
                       }}
+                      onLoadStart={() => console.log('Video loading started')}
+                      onCanPlay={() => console.log('Video can play')}
+                      onError={(e) => console.error('Video error:', e)}
+                      onPlay={() => {
+                        const overlay = document.querySelector('#play-overlay');
+                        if (overlay) overlay.classList.add('hidden');
+                      }}
+                      onPause={() => {
+                        const overlay = document.querySelector('#play-overlay');
+                        if (overlay) overlay.classList.remove('hidden');
+                      }}
+                      onEnded={() => {
+                        const overlay = document.querySelector('#play-overlay');
+                        if (overlay) overlay.classList.remove('hidden');
+                      }}
                     >
+                      <source src="/videos/London Relocation Solved.mov" type="video/quicktime" />
+                      <source src="/videos/London Relocation Solved.mov" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/10 transition-colors" id="play-overlay">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                        <svg className="w-6 h-6 text-[#0B1B2B] ml-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                        </svg>
+                      </div>
+                    </div>
                     <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
                       45s
                     </div>
