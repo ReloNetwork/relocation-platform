@@ -570,7 +570,7 @@ export default function HomePage() {
                   <CardTitle className="text-lg font-bold text-[#0B1B2B] text-left">Client Testimonial</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <div className="relative bg-gradient-to-br from-[#0B1B2B] to-[#1F2937] rounded-lg overflow-hidden aspect-video cursor-pointer group" onClick={() => {
+                  <div className="relative bg-gradient-to-br from-[#0B1B2B] to-[#1F2937] rounded-lg overflow-hidden aspect-video cursor-pointer group p-2" onClick={() => {
                     const video = document.querySelector('#testimonial-video') as HTMLVideoElement;
                     if (video) {
                       if (video.paused) {
@@ -582,13 +582,13 @@ export default function HomePage() {
                   }}>
                     <video 
                       id="testimonial-video"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain rounded-md"
                       preload="metadata"
                       poster="/assets/proof-testimonial.jpg"
                       playsInline
                       webkit-playsinline="true"
                       style={{
-                        objectFit: 'cover',
+                        objectFit: 'contain',
                         objectPosition: 'center center'
                       }}
                       onLoadStart={() => console.log('Video loading started')}
@@ -632,38 +632,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Video Modal */}
-          <div 
-            id="video-modal" 
-            className="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-            onClick={(e) => e.target === e.currentTarget && e.currentTarget.classList.add('hidden')}
-            onKeyDown={(e) => e.key === 'Escape' && e.currentTarget.classList.add('hidden')}
-            tabIndex={-1}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Testimonial video player"
-          >
-            <div className="relative bg-white rounded-2xl overflow-hidden max-w-4xl w-full max-h-[90vh]">
-              <button 
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
-                onClick={() => document.getElementById('video-modal')?.classList.add('hidden')}
-                aria-label="Close video"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-              <video 
-                controls 
-                autoPlay 
-                className="w-full h-auto"
-                aria-label="Executive client testimonial about relocation experience"
-              >
-                <source src="/assets/proof-testimonial.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
 
           {/* FAQ Section */}
           <div className="mb-24 max-w-4xl mx-auto px-4" id="faq">
