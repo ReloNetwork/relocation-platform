@@ -22,8 +22,8 @@ export async function redirectToCheckout(options: CheckoutOptions) {
 
     const data = await response.json();
 
-    if (response.ok && data.checkoutUrl) {
-      window.location.href = data.checkoutUrl;
+    if (response.ok && (data.checkoutUrl || data.url)) {
+      window.location.href = data.checkoutUrl || data.url;
     } else {
       console.error('Checkout error:', data);
       alert('Unable to start checkout. Please try again or contact support.');
