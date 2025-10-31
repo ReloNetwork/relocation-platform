@@ -103,7 +103,7 @@ export default function ReloSolutionsPage() {
                 <CardTitle className="text-lg">Empathy</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-[#6B7280]">You understand their business challenges as a service provider yourself</p>
+                <p className="text-[#6B7280]">We understand your business challenges as a service provider ourself</p>
               </CardContent>
             </Card>
 
