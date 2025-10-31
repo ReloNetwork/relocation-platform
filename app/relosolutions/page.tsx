@@ -38,12 +38,14 @@ export default function ReloSolutionsPage() {
 
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-16">
             <Button
+              onClick={() => window.location.href = '/consultation'}
               size="lg"
               className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 text-lg font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25"
             >
               Get Your Custom AI Assistant
             </Button>
             <Button
+              onClick={() => window.location.href = '/contact'}
               variant="outline"
               size="lg"
               className="border-[#0B1B2B] text-[#0B1B2B] hover:bg-[#0B1B2B] hover:text-white px-8 py-4 text-lg font-semibold hover:scale-105 transition-all"
@@ -183,6 +185,7 @@ export default function ReloSolutionsPage() {
                 </div>
 
                 <Button 
+                  onClick={() => window.location.href = '/consultation?tier=executive'}
                   className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold"
                   size="lg"
                 >
@@ -239,6 +242,7 @@ export default function ReloSolutionsPage() {
                 </div>
 
                 <Button 
+                  onClick={() => window.location.href = '/consultation?tier=enterprise'}
                   className="w-full bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white font-semibold"
                   size="lg"
                 >
@@ -298,6 +302,7 @@ export default function ReloSolutionsPage() {
                 </div>
 
                 <Button 
+                  onClick={() => window.location.href = '/consultation?tier=showcase'}
                   className="w-full bg-gradient-to-r from-[#C9A24A] to-[#0B1B2B] hover:from-[#B8923D] hover:to-[#1a2b3b] text-white font-semibold"
                   size="lg"
                 >
@@ -376,12 +381,14 @@ export default function ReloSolutionsPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
+              onClick={() => window.location.href = '/consultation'}
               size="lg"
               className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 text-lg font-semibold hover:scale-105 transition-all shadow-2xl"
             >
               Schedule Your Consultation
             </Button>
             <Button
+              onClick={() => window.location.href = '/contact'}
               variant="outline"
               size="lg"
               className="border-white text-white hover:bg-white hover:text-[#0B1B2B] px-8 py-4 text-lg font-semibold hover:scale-105 transition-all"
