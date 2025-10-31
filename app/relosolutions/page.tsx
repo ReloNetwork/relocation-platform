@@ -38,14 +38,14 @@ export default function ReloSolutionsPage() {
 
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-16">
             <Button
-              onClick={() => window.location.href = '/consultation'}
+              onClick={() => window.location.href = '/ai-demo'}
               size="lg"
               className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 text-lg font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25"
             >
               Get Your Custom AI Assistant
             </Button>
             <Button
-              onClick={() => window.location.href = '/contact'}
+              onClick={() => window.location.href = '/ai-demo'}
               variant="outline"
               size="lg"
               className="border-[#0B1B2B] text-[#0B1B2B] hover:bg-[#0B1B2B] hover:text-white px-8 py-4 text-lg font-semibold hover:scale-105 transition-all"
