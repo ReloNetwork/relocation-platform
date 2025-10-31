@@ -79,7 +79,7 @@ export default function ReloSolutionsPage() {
                 <CardTitle className="text-lg">Social Proof</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-[#6B7280]">You use the technology yourself for high-stakes Fortune 500 consultations</p>
+                <p className="text-[#6B7280]">We use the same technology for high-stakes Fortune 500 consultations</p>
               </CardContent>
             </Card>
 
