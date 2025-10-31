@@ -53,7 +53,7 @@ const AI_PLANS = {
   }
 };
 
-async function createAICheckoutSession(req: NextRequest, plan: string, siteUrl: string) {
+async function createAICheckoutSession(plan: string, email: string, siteUrl: string) {
   try {
     if (!stripeKey || stripeKey.includes('Placeholder')) {
       // Development mode - redirect to demo
@@ -66,7 +66,6 @@ async function createAICheckoutSession(req: NextRequest, plan: string, siteUrl: 
     }
 
     const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
-    const { email } = await req.json();
     const aiPlan = AI_PLANS[plan as keyof typeof AI_PLANS];
     
     if (!aiPlan) {
@@ -208,7 +207,7 @@ export async function POST(req: NextRequest) {
       console.log('AI plan detected - creating Stripe checkout:', plan);
       
       // Create checkout session with setup fee + subscription
-      return await createAICheckoutSession(req, plan, actualSiteUrl);
+      return await createAICheckoutSession(plan, email, actualSiteUrl);
     }
 
     // Check if we're in development mode with placeholder key  
