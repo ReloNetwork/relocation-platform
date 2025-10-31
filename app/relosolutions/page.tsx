@@ -6,6 +6,7 @@ import { Button } from '../../ui/components/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/components/card'
 import { Badge } from '../../ui/components/badge'
 import { CheckCircle, Star, ArrowRight, Mic, Users, Building, Phone, MessageSquare, BarChart3, TrendingUp, Zap, Shield, Award } from 'lucide-react'
+import { checkoutFunctions } from '../../lib/checkout'
 
 export default function ReloSolutionsPage() {
   return (
@@ -185,7 +186,7 @@ export default function ReloSolutionsPage() {
                 </div>
 
                 <Button 
-                  onClick={() => window.location.href = '/consultation?tier=executive'}
+                  onClick={checkoutFunctions.aiExecutive}
                   className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold"
                   size="lg"
                 >
@@ -242,7 +243,7 @@ export default function ReloSolutionsPage() {
                 </div>
 
                 <Button 
-                  onClick={() => window.location.href = '/consultation?tier=enterprise'}
+                  onClick={checkoutFunctions.aiEnterprise}
                   className="w-full bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white font-semibold"
                   size="lg"
                 >
@@ -302,7 +303,7 @@ export default function ReloSolutionsPage() {
                 </div>
 
                 <Button 
-                  onClick={() => window.location.href = '/consultation?tier=showcase'}
+                  onClick={checkoutFunctions.aiShowcase}
                   className="w-full bg-gradient-to-r from-[#C9A24A] to-[#0B1B2B] hover:from-[#B8923D] hover:to-[#1a2b3b] text-white font-semibold"
                   size="lg"
                 >

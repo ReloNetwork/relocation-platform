@@ -18,6 +18,11 @@ const VALID_PLANS = {
   'plus': { name: 'Plus Directory Access', mode: 'subscription' },
   'pro': { name: 'Pro Directory Access', mode: 'subscription' },
   
+  // AI Solutions
+  'ai_executive': { name: 'Executive Voice AI', mode: 'payment' },
+  'ai_enterprise': { name: 'Enterprise Voice AI', mode: 'payment' },
+  'ai_showcase': { name: 'Relo Network Showcase', mode: 'payment' },
+  
   // Accelerators
   'day_pass': { name: '72-Hour Day Pass', mode: 'payment' },
   'intro_pack_3': { name: 'Intro Pack (3)', mode: 'payment' },
@@ -110,6 +115,21 @@ export async function POST(req: NextRequest) {
           id: 'price_mock_executive_intake',
           unit_amount: 349700, // £3,497 in pence (same as 72hour_audit)
           currency: 'gbp'
+        },
+        'ai_executive': {
+          id: 'price_mock_ai_executive',
+          unit_amount: 249700, // £2,497 setup fee in pence
+          currency: 'gbp'
+        },
+        'ai_enterprise': {
+          id: 'price_mock_ai_enterprise',
+          unit_amount: 499700, // £4,997 setup fee in pence
+          currency: 'gbp'
+        },
+        'ai_showcase': {
+          id: 'price_mock_ai_showcase',
+          unit_amount: 999700, // £9,997 setup fee in pence
+          currency: 'gbp'
         }
       };
       
@@ -157,9 +177,13 @@ export async function POST(req: NextRequest) {
       discounts: discounts.length > 0 ? discounts : undefined,
       success_url: (plan === 'executive_intake' || plan === '72hour_audit')
         ? `${siteUrl}/executive-intake/success?session_id={CHECKOUT_SESSION_ID}`
+        : (plan === 'ai_executive' || plan === 'ai_enterprise' || plan === 'ai_showcase')
+        ? `${siteUrl}/ai-solutions/success?session_id={CHECKOUT_SESSION_ID}&plan=${plan}`
         : `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=${plan}`,
       cancel_url: (plan === 'executive_intake' || plan === '72hour_audit')
         ? `${siteUrl}/executive-intake`
+        : (plan === 'ai_executive' || plan === 'ai_enterprise' || plan === 'ai_showcase')
+        ? `${siteUrl}/relosolutions`
         : `${siteUrl}/checkout/cancelled?plan=${plan}`,
       customer_email: email || undefined,
       metadata: { 
@@ -198,6 +222,27 @@ export async function POST(req: NextRequest) {
         custom_text: {
           submit: {
             message: 'Executive Intake - 60-min strategy call, bespoke shortlist, 3 warm intros'
+          }
+        }
+      }),
+      ...(plan === 'ai_executive' && {
+        custom_text: {
+          submit: {
+            message: 'Executive Voice AI - £2,497 setup + £497/month. Custom AI agent with calendar integration and 30-day optimization.'
+          }
+        }
+      }),
+      ...(plan === 'ai_enterprise' && {
+        custom_text: {
+          submit: {
+            message: 'Enterprise Voice AI - £4,997 setup + £997/month. Multiple AI agents with advanced CRM integration and dedicated account manager.'
+          }
+        }
+      }),
+      ...(plan === 'ai_showcase' && {
+        custom_text: {
+          submit: {
+            message: 'Relo Network Showcase - £9,997 setup + £1,997/month. Complete Fortune 500-level AI system with full website integration.'
           }
         }
       }),

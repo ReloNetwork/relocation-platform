@@ -47,6 +47,10 @@ export const checkoutFunctions = {
   dayPass: () => redirectToCheckout({ plan: 'day_pass' }),
   introPack3: () => redirectToCheckout({ plan: 'intro_pack_3' }),
   introPack10: () => redirectToCheckout({ plan: 'intro_pack_10' }),
+  // AI Solutions
+  aiExecutive: () => redirectToCheckout({ plan: 'ai_executive' }),
+  aiEnterprise: () => redirectToCheckout({ plan: 'ai_enterprise' }),
+  aiShowcase: () => redirectToCheckout({ plan: 'ai_showcase' }),
 };
 
 // Convenience function for form submissions
