@@ -297,7 +297,7 @@ export default function ReloSolutionsPage() {
                 
                 <div className="bg-gradient-to-r from-[#C9A24A]/10 to-[#0B1B2B]/10 border border-[#C9A24A]/20 rounded-lg p-4">
                   <p className="text-sm font-semibold text-[#0B1B2B] text-center">
-                    The exact system I trust to serve Fortune 500 executives. Complete client acquisition engine.
+                    The exact system we trust to serve Fortune 500 executives. Complete client acquisition engine.
                   </p>
                 </div>
 
