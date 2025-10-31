@@ -31,6 +31,169 @@ const VALID_PLANS = {
 
 const VALID_CADENCES = ['monthly', 'annual', 'one_time'];
 
+// AI Plan pricing configuration
+const AI_PLANS = {
+  'ai_executive': {
+    name: 'Executive Voice AI',
+    setupFee: 249700, // £2,497 in pence
+    monthlyFee: 49700, // £497 in pence
+    description: 'Perfect for dentists, med spas, law firms'
+  },
+  'ai_enterprise': {
+    name: 'Enterprise Voice AI', 
+    setupFee: 499700, // £4,997 in pence
+    monthlyFee: 99700, // £997 in pence
+    description: 'For franchises & high-volume operations'
+  },
+  'ai_showcase': {
+    name: 'Relo Network Showcase',
+    setupFee: 999700, // £9,997 in pence
+    monthlyFee: 199700, // £1,997 in pence
+    description: 'Complete Fortune 500-level AI system'
+  }
+};
+
+async function createAICheckoutSession(req: NextRequest, plan: string, siteUrl: string) {
+  try {
+    if (!stripeKey || stripeKey.includes('Placeholder')) {
+      // Development mode - redirect to demo
+      return NextResponse.json({ 
+        url: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
+        checkoutUrl: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
+        sessionId: 'dev_session_' + Date.now(),
+        mode: 'development'
+      }, { status: 200 });
+    }
+
+    const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
+    const { email } = await req.json();
+    const aiPlan = AI_PLANS[plan as keyof typeof AI_PLANS];
+    
+    if (!aiPlan) {
+      return NextResponse.json({ error: "Invalid AI plan" }, { status: 400 });
+    }
+
+    // Create customer first
+    const customer = await stripe.customers.create({
+      email: email,
+      metadata: {
+        plan: plan,
+        plan_name: aiPlan.name
+      }
+    });
+
+    // Create one-time setup fee product
+    const setupProduct = await stripe.products.create({
+      name: `${aiPlan.name} - Setup Fee`,
+      description: `One-time setup fee for ${aiPlan.description}`,
+      metadata: {
+        type: 'setup_fee',
+        plan: plan
+      }
+    });
+
+    const setupPrice = await stripe.prices.create({
+      product: setupProduct.id,
+      unit_amount: aiPlan.setupFee,
+      currency: 'gbp',
+      metadata: {
+        type: 'setup_fee',
+        plan: plan
+      }
+    });
+
+    // Create recurring subscription product
+    const subscriptionProduct = await stripe.products.create({
+      name: `${aiPlan.name} - Monthly Service`,
+      description: `Monthly recurring service for ${aiPlan.description}`,
+      metadata: {
+        type: 'monthly_service',
+        plan: plan
+      }
+    });
+
+    const subscriptionPrice = await stripe.prices.create({
+      product: subscriptionProduct.id,
+      unit_amount: aiPlan.monthlyFee,
+      currency: 'gbp',
+      recurring: {
+        interval: 'month'
+      },
+      metadata: {
+        type: 'monthly_service',
+        plan: plan
+      }
+    });
+
+    // Create checkout session with both setup fee and subscription
+    const session = await stripe.checkout.sessions.create({
+      customer: customer.id,
+      mode: 'subscription',
+      line_items: [
+        {
+          price: subscriptionPrice.id,
+          quantity: 1,
+        }
+      ],
+      subscription_data: {
+        metadata: {
+          plan: plan,
+          plan_name: aiPlan.name
+        }
+      },
+      invoice_creation: {
+        enabled: true,
+        invoice_data: {
+          metadata: {
+            plan: plan,
+            setup_fee_applied: 'true'
+          }
+        }
+      },
+      success_url: `${siteUrl}/ai-solutions/success?session_id={CHECKOUT_SESSION_ID}&plan=${plan}`,
+      cancel_url: `${siteUrl}/relosolutions`,
+      billing_address_collection: 'required',
+      metadata: {
+        plan: plan,
+        plan_name: aiPlan.name,
+        setup_fee: aiPlan.setupFee.toString(),
+        monthly_fee: aiPlan.monthlyFee.toString()
+      },
+      custom_text: {
+        submit: {
+          message: `${aiPlan.name} - £${(aiPlan.setupFee/100).toLocaleString()} setup + £${(aiPlan.monthlyFee/100).toLocaleString()}/month. Setup fee will be added to your first invoice.`
+        }
+      }
+    });
+
+    // Add setup fee to the first invoice
+    await stripe.invoiceItems.create({
+      customer: customer.id,
+      price: setupPrice.id,
+      description: `${aiPlan.name} - One-time setup fee`,
+      metadata: {
+        type: 'setup_fee',
+        plan: plan,
+        session_id: session.id
+      }
+    });
+
+    return NextResponse.json({
+      url: session.url,
+      checkoutUrl: session.url,
+      sessionId: session.id,
+      customerId: customer.id
+    }, { status: 200 });
+
+  } catch (error) {
+    console.error('AI Checkout error:', error);
+    return NextResponse.json({ 
+      error: "Failed to create AI checkout session",
+      details: (error as Error).message
+    }, { status: 500 });
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { plan, cadence = 'one_time', email, credit = 0, formData } = await req.json();
@@ -40,15 +203,12 @@ export async function POST(req: NextRequest) {
     const protocol = req.headers.get('x-forwarded-proto') || 'https';
     const actualSiteUrl = host ? `${protocol}://${host}` : siteUrl;
     
-    // For AI plans, redirect to demo page until Stripe products are properly configured
+    // For AI plans, create Stripe checkout with setup fee + subscription
     if (plan === 'ai_executive' || plan === 'ai_enterprise' || plan === 'ai_showcase') {
-      console.log('AI plan detected - redirecting to demo page:', plan);
-      return NextResponse.json({ 
-        url: `${actualSiteUrl}/ai-demo?plan=${plan}&source=checkout`,
-        checkoutUrl: `${actualSiteUrl}/ai-demo?plan=${plan}&source=checkout`,
-        sessionId: 'ai_demo_' + Date.now(),
-        mode: 'development'
-      }, { status: 200 });
+      console.log('AI plan detected - creating Stripe checkout:', plan);
+      
+      // Create checkout session with setup fee + subscription
+      return await createAICheckoutSession(req, plan, actualSiteUrl);
     }
 
     // Check if we're in development mode with placeholder key  
