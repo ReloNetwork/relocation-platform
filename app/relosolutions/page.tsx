@@ -455,24 +455,6 @@ export default function ReloSolutionsPage() {
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
             Join premium service businesses already using AI to capture every opportunity and scale their revenue.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              onClick={() => window.location.href = '/consultation'}
-              size="lg"
-              className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-4 text-lg font-semibold hover:scale-105 transition-all shadow-2xl"
-            >
-              Schedule Your Consultation
-            </Button>
-            <Button
-              onClick={() => window.location.href = '/contact'}
-              variant="outline"
-              size="lg"
-              className="border-white text-white hover:bg-white hover:text-[#0B1B2B] px-8 py-4 text-lg font-semibold hover:scale-105 transition-all"
-            >
-              Download Case Studies
-            </Button>
-          </div>
         </div>
       </section>
     </Layout>
