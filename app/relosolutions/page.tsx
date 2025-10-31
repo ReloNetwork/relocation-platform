@@ -369,6 +369,82 @@ export default function ReloSolutionsPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
+              Everything you need to know about our AI voice assistant solutions
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                question: "How quickly can the AI be implemented?",
+                answer: "Implementation typically takes 2-4 weeks depending on your tier. Executive Voice AI can be live within 2 weeks, while Enterprise and Showcase tiers require 3-4 weeks for full customization and integration with your existing systems."
+              },
+              {
+                question: "What makes this different from other AI phone systems?",
+                answer: "Our AI is specifically trained on Fortune 500 executive interactions and premium service business scenarios. Unlike generic chatbots, it understands context, handles complex inquiries, and maintains the professional tone your high-value clients expect."
+              },
+              {
+                question: "Can it integrate with our existing CRM and scheduling system?",
+                answer: "Yes, we integrate with all major CRM platforms (Salesforce, HubSpot, Pipedrive) and scheduling systems (Calendly, Acuity, custom systems). During setup, we'll configure seamless data flow between the AI and your existing tools."
+              },
+              {
+                question: "What happens if the AI can't handle a call?",
+                answer: "The AI is programmed to recognize when it needs human assistance and will seamlessly transfer complex calls to your team. It also logs detailed notes about the interaction so your staff has full context when they take over."
+              },
+              {
+                question: "How do you ensure the AI maintains our brand voice?",
+                answer: "During the setup process, we train the AI on your specific business terminology, service offerings, and communication style. We also provide scripts and responses that match your brand personality, whether that's formal and professional or warm and conversational."
+              },
+              {
+                question: "What's the difference between the three tiers?",
+                answer: "Executive Voice AI is perfect for single-location premium businesses like dental practices or law firms. Enterprise Voice AI adds multiple agents and multi-location support for franchises. Relo Network Showcase includes full website integration and our complete Fortune 500-level system."
+              },
+              {
+                question: "Do you provide training for our team?",
+                answer: "Absolutely. All tiers include comprehensive team training on how the AI works, how to review call logs, and how to optimize performance. Enterprise and Showcase tiers also include ongoing optimization sessions with your dedicated account manager."
+              },
+              {
+                question: "What's your success rate with premium service businesses?",
+                answer: "Our AI typically captures 85-95% of missed calls that would have been lost forever. Clients see an average of 23% increase in booked appointments within the first month, with some seeing increases of 40% or more in high-demand periods."
+              }
+            ].map((faq, idx) => (
+              <details key={idx} className="bg-[#FAFAF9] rounded-lg shadow-sm border border-[#C9A24A]/20 overflow-hidden group">
+                <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-[#C9A24A]/5 transition-colors">
+                  <h3 className="text-lg font-semibold text-[#0B1B2B] pr-4">{faq.question}</h3>
+                  <svg className="w-6 h-6 text-[#C9A24A] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-[#6B7280] leading-relaxed">{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+
+          {/* CTA within FAQ */}
+          <div className="text-center mt-12">
+            <p className="text-lg text-[#6B7280] mb-6">
+              Still have questions? We're here to help.
+            </p>
+            <button
+              onClick={() => window.location.href = '/ai-demo'}
+              className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-all shadow-lg"
+            >
+              Get Your Questions Answered
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-[#0B1B2B] to-[#1a2b3b]">
         <div className="max-w-4xl mx-auto px-4 text-center">
