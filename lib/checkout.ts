@@ -8,6 +8,8 @@ interface CheckoutOptions {
 
 export async function redirectToCheckout(options: CheckoutOptions) {
   try {
+    console.log('Starting checkout with options:', options);
+    
     const response = await fetch('/api/checkout', {
       method: 'POST',
       headers: {
@@ -20,12 +22,19 @@ export async function redirectToCheckout(options: CheckoutOptions) {
       }),
     });
 
+    console.log('Checkout response status:', response.status);
     const data = await response.json();
+    console.log('Checkout response data:', data);
 
     if (response.ok && (data.checkoutUrl || data.url)) {
+      console.log('Redirecting to:', data.checkoutUrl || data.url);
       window.location.href = data.checkoutUrl || data.url;
     } else {
-      console.error('Checkout error:', data);
+      console.error('Checkout error - Response not OK or no URL:', { 
+        responseOk: response.ok, 
+        hasUrl: !!(data.checkoutUrl || data.url),
+        data 
+      });
       alert('Unable to start checkout. Please try again or contact support.');
     }
   } catch (error) {
@@ -47,10 +56,20 @@ export const checkoutFunctions = {
   dayPass: () => redirectToCheckout({ plan: 'day_pass' }),
   introPack3: () => redirectToCheckout({ plan: 'intro_pack_3' }),
   introPack10: () => redirectToCheckout({ plan: 'intro_pack_10' }),
-  // AI Solutions
-  aiExecutive: () => redirectToCheckout({ plan: 'ai_executive' }),
-  aiEnterprise: () => redirectToCheckout({ plan: 'ai_enterprise' }),
-  aiShowcase: () => redirectToCheckout({ plan: 'ai_showcase' }),
+  // AI Solutions - Temporary direct checkout for testing
+  aiExecutive: () => {
+    console.log('AI Executive button clicked');
+    // Temporary: redirect to a test page to verify button works
+    window.location.href = '/ai-demo?plan=executive';
+  },
+  aiEnterprise: () => {
+    console.log('AI Enterprise button clicked');
+    window.location.href = '/ai-demo?plan=enterprise';
+  },
+  aiShowcase: () => {
+    console.log('AI Showcase button clicked');
+    window.location.href = '/ai-demo?plan=showcase';
+  },
 };
 
 // Convenience function for form submissions
