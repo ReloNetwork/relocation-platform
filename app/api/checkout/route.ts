@@ -140,15 +140,6 @@ async function createAICheckoutSession(plan: string, email: string, siteUrl: str
           plan_name: aiPlan.name
         }
       },
-      invoice_creation: {
-        enabled: true,
-        invoice_data: {
-          metadata: {
-            plan: plan,
-            setup_fee_applied: 'true'
-          }
-        }
-      },
       success_url: `${siteUrl}/ai-solutions/success?session_id={CHECKOUT_SESSION_ID}&plan=${plan}`,
       cancel_url: `${siteUrl}/relosolutions`,
       billing_address_collection: 'required',
