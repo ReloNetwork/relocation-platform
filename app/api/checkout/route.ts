@@ -47,11 +47,21 @@ export async function POST(req: NextRequest) {
     console.log('Using placeholder/dev mode:', isPlaceholderKey);
     
     // In development mode with placeholder key, return mock checkout URL
-    if (isPlaceholderKey) {
+    if (isPlaceholderKey || !stripeKey || stripeKey.length < 10) {
       const { plan, email } = await req.json();
       console.log('Development mode: simulating checkout for plan:', plan);
       
-      // Simulate successful checkout creation
+      // For AI plans, redirect to demo page for now
+      if (plan && plan.startsWith('ai_')) {
+        return NextResponse.json({ 
+          url: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
+          checkoutUrl: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
+          sessionId: 'dev_session_' + Date.now(),
+          mode: 'development'
+        }, { status: 200 });
+      }
+      
+      // Simulate successful checkout creation for other plans
       return NextResponse.json({ 
         url: `${siteUrl}/checkout/dev-success?plan=${plan}&email=${email}`,
         checkoutUrl: `${siteUrl}/checkout/dev-success?plan=${plan}&email=${email}`,
