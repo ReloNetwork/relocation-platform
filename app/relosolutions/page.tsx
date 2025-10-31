@@ -91,7 +91,7 @@ export default function ReloSolutionsPage() {
                 <CardTitle className="text-lg">Credibility</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-[#6B7280]">You serve Fortune 500 executives - the highest caliber of clients</p>
+                <p className="text-[#6B7280]">We serve Fortune 500 executives - the highest caliber of clients</p>
               </CardContent>
             </Card>
 
