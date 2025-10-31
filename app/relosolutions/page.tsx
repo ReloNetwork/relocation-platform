@@ -127,7 +127,7 @@ export default function ReloSolutionsPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-              Premium AI Solutions: <span className="text-[#C9A24A]">£2,000+ Setup Fees</span>
+              Premium AI Solutions
             </h2>
             <p className="text-xl text-[#6B7280] max-w-4xl mx-auto leading-relaxed">
               Your services are not a commodity; they are a bespoke, high-value solution. Price them accordingly.
