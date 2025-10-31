@@ -35,7 +35,10 @@ export async function redirectToCheckout(options: CheckoutOptions) {
         hasUrl: !!(data.checkoutUrl || data.url),
         data 
       });
-      alert('Unable to start checkout. Please try again or contact support.');
+      
+      // Provide more specific error message if available
+      const errorMessage = data.error || data.message || 'Unable to start checkout. Please try again or contact support.';
+      alert(`Checkout Error: ${errorMessage}`);
     }
   } catch (error) {
     console.error('Checkout request failed:', error);
@@ -56,20 +59,10 @@ export const checkoutFunctions = {
   dayPass: () => redirectToCheckout({ plan: 'day_pass' }),
   introPack3: () => redirectToCheckout({ plan: 'intro_pack_3' }),
   introPack10: () => redirectToCheckout({ plan: 'intro_pack_10' }),
-  // AI Solutions - Temporary direct checkout for testing
-  aiExecutive: () => {
-    console.log('AI Executive button clicked');
-    // Temporary: redirect to a test page to verify button works
-    window.location.href = '/ai-demo?plan=executive';
-  },
-  aiEnterprise: () => {
-    console.log('AI Enterprise button clicked');
-    window.location.href = '/ai-demo?plan=enterprise';
-  },
-  aiShowcase: () => {
-    console.log('AI Showcase button clicked');
-    window.location.href = '/ai-demo?plan=showcase';
-  },
+  // AI Solutions
+  aiExecutive: () => redirectToCheckout({ plan: 'ai_executive' }),
+  aiEnterprise: () => redirectToCheckout({ plan: 'ai_enterprise' }),
+  aiShowcase: () => redirectToCheckout({ plan: 'ai_showcase' }),
 };
 
 // Convenience function for form submissions
