@@ -33,6 +33,19 @@ const VALID_CADENCES = ['monthly', 'annual', 'one_time'];
 
 export async function POST(req: NextRequest) {
   try {
+    const { plan, cadence = 'one_time', email, credit = 0, formData } = await req.json();
+    
+    // For AI plans, redirect to demo page until Stripe products are properly configured
+    if (plan === 'ai_executive' || plan === 'ai_enterprise' || plan === 'ai_showcase') {
+      console.log('AI plan detected - redirecting to demo page:', plan);
+      return NextResponse.json({ 
+        url: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
+        checkoutUrl: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
+        sessionId: 'ai_demo_' + Date.now(),
+        mode: 'development'
+      }, { status: 200 });
+    }
+
     // Check if we're in development mode with placeholder key  
     const isPlaceholderKey = !stripeKey || 
                             stripeKey.includes('Placeholder') || 
@@ -48,7 +61,6 @@ export async function POST(req: NextRequest) {
     
     // In development mode with placeholder key, return mock checkout URL
     if (isPlaceholderKey || !stripeKey || stripeKey.length < 10) {
-      const { plan, email } = await req.json();
       console.log('Development mode: simulating checkout for plan:', plan);
       
       // For AI plans, redirect to demo page for now
@@ -71,8 +83,6 @@ export async function POST(req: NextRequest) {
     }
     
     const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
-
-    const { plan, cadence = 'one_time', email, credit = 0, formData } = await req.json();
     
     if (!plan || !(plan in VALID_PLANS)) {
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
@@ -102,6 +112,17 @@ export async function POST(req: NextRequest) {
     console.log(`Found ${prices.data.length} prices for lookup_key: ${lookup_key}`);
     let price = prices.data[0];
     
+    // If no price found and this is an AI plan, use development mode
+    if (!price && (plan === 'ai_executive' || plan === 'ai_enterprise' || plan === 'ai_showcase')) {
+      console.log('AI plan detected with no Stripe price - using development mode');
+      return NextResponse.json({ 
+        url: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
+        checkoutUrl: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
+        sessionId: 'dev_session_' + Date.now(),
+        mode: 'development'
+      }, { status: 200 });
+    }
+
     // Fallback for test mode or missing prices - create mock prices if not found
     if (!price) {
       // Create mock price objects for test mode
