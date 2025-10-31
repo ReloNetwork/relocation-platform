@@ -64,8 +64,8 @@ export default function ReloSolutionsPage() {
               Your New Brand: <span className="text-[#C9A24A]">AI-Powered Consultant</span>
             </h2>
             <p className="text-xl text-[#6B7280] max-w-4xl mx-auto leading-relaxed">
-              "I built an AI assistant that handles consultations for Fortune 500 executives relocating to London. 
-              Now, I help other premium service businesses implement the same technology to capture every client inquiry 24/7 and recover lost revenue."
+              "We built an AI assistant that handles consultations for Fortune 500 executives relocating to London. 
+              Now, We help other premium service businesses implement the same technology to capture every client inquiry 24/7 and recover lost revenue."
             </p>
           </div>
 
