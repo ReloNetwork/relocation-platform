@@ -43,8 +43,8 @@ export default function AISuccessPage() {
             
             <p className="text-sm text-[#6B7280]">
               Questions? Contact our team at{' '}
-              <a href="mailto:support@therelonetwork.com" className="text-[#C9A24A] hover:underline">
-                support@therelonetwork.com
+              <a href="mailto:hello@therelonetwork.com" className="text-[#C9A24A] hover:underline">
+                hello@therelonetwork.com
               </a>
             </p>
           </div>
