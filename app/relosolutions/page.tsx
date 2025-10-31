@@ -115,7 +115,7 @@ export default function ReloSolutionsPage() {
                 <CardTitle className="text-lg">ROI-Focused</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-[#6B7280]">You're selling revenue recovery and growth, not just software</p>
+                <p className="text-[#6B7280]">Our solution offers revenue recovery and growth, not just software</p>
               </CardContent>
             </Card>
           </div>
