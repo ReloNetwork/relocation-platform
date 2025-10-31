@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripeKey = process.env.STRIPE_SECRET_KEY || "";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://therelonetwork.com";
 
 export const runtime = "nodejs";
 
@@ -35,12 +35,17 @@ export async function POST(req: NextRequest) {
   try {
     const { plan, cadence = 'one_time', email, credit = 0, formData } = await req.json();
     
+    // Get the actual site URL from the request or use fallback
+    const host = req.headers.get('host');
+    const protocol = req.headers.get('x-forwarded-proto') || 'https';
+    const actualSiteUrl = host ? `${protocol}://${host}` : siteUrl;
+    
     // For AI plans, redirect to demo page until Stripe products are properly configured
     if (plan === 'ai_executive' || plan === 'ai_enterprise' || plan === 'ai_showcase') {
       console.log('AI plan detected - redirecting to demo page:', plan);
       return NextResponse.json({ 
-        url: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
-        checkoutUrl: `${siteUrl}/ai-demo?plan=${plan}&source=checkout`,
+        url: `${actualSiteUrl}/ai-demo?plan=${plan}&source=checkout`,
+        checkoutUrl: `${actualSiteUrl}/ai-demo?plan=${plan}&source=checkout`,
         sessionId: 'ai_demo_' + Date.now(),
         mode: 'development'
       }, { status: 200 });
