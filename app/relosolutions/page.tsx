@@ -130,7 +130,7 @@ export default function ReloSolutionsPage() {
               Premium AI Solutions
             </h2>
             <p className="text-xl text-[#6B7280] max-w-4xl mx-auto leading-relaxed">
-              Your services are not a commodity; they are a bespoke, high-value solution. Price them accordingly.
+              Our services are not a commodity; they are a bespoke, high-value solutions, priced accordingly.
             </p>
           </div>
 
