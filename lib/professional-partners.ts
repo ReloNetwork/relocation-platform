@@ -17,7 +17,7 @@ export interface ProfessionalPartner {
   name: string
   category: string
   description: string
-  heroImage: string
+  heroImage?: string
   logo?: string
   website?: string
   specialization: string
@@ -43,7 +43,7 @@ export const professionalPartners: ProfessionalPartner[] = [
     name: 'The Chancery Rosewood',
     category: 'Luxury Accommodation',
     description: 'Ultra-luxury Mayfair suites providing executive accommodation for Fortune 500 relocations',
-    heroImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80',
+    // heroImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80', // Temporarily removed
     logo: '/partners/chancery-rosewood-logo.png',
     website: 'https://chanceryrosewood.com',
     specialization: 'Executive Short-Term Accommodation',
@@ -131,7 +131,7 @@ export const professionalPartners: ProfessionalPartner[] = [
     name: 'Coutts International',
     category: 'Private Banking',
     description: 'Royal warrant private bank providing wealth management for high-net-worth individuals',
-    heroImage: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80',
+    // heroImage: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80', // Temporarily removed
     logo: '/partners/coutts-logo.png',
     website: 'https://coutts.com',
     specialization: 'Private Banking & Wealth Management',
