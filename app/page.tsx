@@ -65,7 +65,7 @@ const AudienceCard = ({
       </Button>
     </CardContent>
   </Card>
-)
+);
 
 export default function HomePage() {
   // FAQ Schema for SEO and LLM Citations
@@ -268,6 +268,7 @@ export default function HomePage() {
 
           {/* Spacer for better visual separation */}
           <div className="mb-36"></div>
+        </div>
       </DynamicHeroBackground>
 
       {/* Professional Partner Editorial Banner */}
@@ -802,8 +803,6 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </div>
-      </div>
 
 
       {/* Enhanced FAQ Section for AI Citations */}
