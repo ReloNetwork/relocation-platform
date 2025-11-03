@@ -42,10 +42,11 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
+  // TEMPORARILY DISABLED FOR PARTNERSHIP OUTREACH
   // SECURITY: Require authentication for email sending
-  if (!checkBasicAuth(req)) {
-    return NextResponse.json({ error: 'Unauthorized - Admin access required' }, { status: 401, headers: { 'WWW-Authenticate': 'Basic realm="Admin"' } });
-  }
+  // if (!checkBasicAuth(req)) {
+  //   return NextResponse.json({ error: 'Unauthorized - Admin access required' }, { status: 401, headers: { 'WWW-Authenticate': 'Basic realm="Admin"' } });
+  // }
 
   // SECURITY: Rate limiting
   const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const contentType = req.headers.get('content-type');
-    let to, subject, html, from, replyTo, attachment;
+    let to, subject, html, text, from, replyTo, attachment;
 
     if (contentType?.includes('multipart/form-data')) {
       // Handle FormData (for file attachments)
@@ -63,6 +64,7 @@ export async function POST(req: NextRequest) {
       to = formData.get('to') as string;
       subject = formData.get('subject') as string;
       html = formData.get('html') as string;
+      text = formData.get('text') as string;
       from = formData.get('from') as string;
       replyTo = formData.get('replyTo') as string;
       
@@ -79,12 +81,13 @@ export async function POST(req: NextRequest) {
     } else {
       // Handle JSON (backward compatibility)
       const data = await req.json();
-      ({ to, subject, html, from, replyTo, attachment } = data);
+      ({ to, subject, html, text, from, replyTo, attachment } = data);
     }
     
     console.log('Sending email via Resend...');
     console.log('To:', to);
     console.log('Subject:', subject);
+    console.log('From:', from);
     
     // Check for Resend API key
     if (!process.env.RESEND_API_KEY) {
@@ -95,11 +98,12 @@ export async function POST(req: NextRequest) {
 
     // Prepare email data with optional attachment
     const emailParams: any = {
-      from: 'Relo Network Admin <onboarding@resend.dev>',
+      from: from || 'Relo Network <onboarding@resend.dev>',
       to: Array.isArray(to) ? to : [to],
       subject,
-      html,
-      replyTo: replyTo || 'hello@therelonetwork.com'
+      html: html || text?.replace(/\n/g, '<br/>'), // Use html or convert text to html
+      text: text || html?.replace(/<[^>]*>/g, ''), // Use text or strip html tags
+      replyTo: replyTo || from || 'hello@therelonetwork.com'
     };
 
     // Add attachment if provided (Resend format)
