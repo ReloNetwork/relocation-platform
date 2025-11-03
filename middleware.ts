@@ -52,14 +52,18 @@ export default function middleware(req: NextRequest) {
   try {
     const { pathname } = req.nextUrl;
     
-    // TEMPORARILY DISABLED FOR PARTNERSHIP OUTREACH
+    // TEMPORARILY DISABLED FOR PARTNERSHIP OUTREACH - CHECK FIRST
     if (pathname.startsWith('/admin/partnership-outreach') || pathname === '/api/send-email') {
+      console.log('Partnership outreach path detected, bypassing auth:', pathname);
       return NextResponse.next(); // Skip auth for partnership outreach
     }
     
+    // TEMPORARILY DISABLE AUTH FOR PARTNERSHIP OUTREACH TESTING
     // Gate the portal hosts
     const host = req.nextUrl.hostname;
-    const requireAuth = host === "app.therelonetwork.com" || host === "therelonetwork.com" || host === "www.therelonetwork.com";
+    // TEMP: Disable auth for all Vercel deployments during partnership outreach
+    const isVercelDeployment = host.includes('vercel.app');
+    const requireAuth = !isVercelDeployment && (host === "app.therelonetwork.com" || host === "therelonetwork.com" || host === "www.therelonetwork.com");
     // const requireAuth = true; // TEMP: gate all hosts to prove middleware is running
     if (requireAuth) {
       const gate = basicAuthCheck(req);
