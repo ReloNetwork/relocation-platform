@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/ui/components/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/components/card'
 import { Badge } from '@/ui/components/badge'
-import { Send, CheckCircle, AlertCircle, Loader2, Building } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle, Loader2, Building, Eye, X, Copy, Mail } from 'lucide-react'
 import Layout from '@/components/Layout'
 
 const contacts = [
@@ -54,6 +54,8 @@ const contacts = [
 export default function PartnershipOutreach() {
   const [sendingStatus, setSendingStatus] = useState<Record<number, 'idle' | 'sending' | 'sent' | 'error'>>({})
   const [selectedContacts, setSelectedContacts] = useState<number[]>([])
+  const [previewContact, setPreviewContact] = useState<typeof contacts[0] | null>(null)
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false)
 
   const emailTemplate = (contact: typeof contacts[0]) => {
     const companyReference = contact.properties 
@@ -144,9 +146,87 @@ hello@therelonetwork.com
     setSelectedContacts([])
   }
 
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text)
+    setCopiedToClipboard(true)
+    setTimeout(() => setCopiedToClipboard(false), 2000)
+  }
+
   return (
     <Layout>
       <div className="min-h-screen bg-gradient-to-br from-[#FAFAF9] to-white py-12">
+        {/* Email Preview Modal */}
+        {previewContact && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-start">
+                <div>
+                  <h2 className="text-2xl font-bold text-[#0B1B2B] mb-2">Email Preview</h2>
+                  <p className="text-sm text-[#6B7280]">Review before sending to {previewContact.name}</p>
+                </div>
+                <Button
+                  onClick={() => setPreviewContact(null)}
+                  variant="ghost"
+                  size="sm"
+                >
+                  <X className="w-5 h-5" />
+                </Button>
+              </div>
+              
+              <div className="p-6">
+                {/* Email Header Info */}
+                <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                  <div className="space-y-2">
+                    <div className="flex items-start">
+                      <span className="text-sm font-semibold text-gray-600 w-20">To:</span>
+                      <span className="text-sm text-gray-800">{previewContact.email}</span>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-sm font-semibold text-gray-600 w-20">From:</span>
+                      <span className="text-sm text-gray-800">hello@therelonetwork.com</span>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-sm font-semibold text-gray-600 w-20">Subject:</span>
+                      <span className="text-sm text-gray-800 font-medium">
+                        {emailTemplate(previewContact).subject}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Email Body */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <pre className="whitespace-pre-wrap font-sans text-sm text-gray-800 leading-relaxed">
+                    {emailTemplate(previewContact).body}
+                  </pre>
+                </div>
+                
+                {/* Actions */}
+                <div className="flex gap-4 mt-6">
+                  <Button
+                    onClick={() => copyToClipboard(emailTemplate(previewContact).body)}
+                    variant="outline"
+                    className="flex-1"
+                  >
+                    <Copy className="w-4 h-4 mr-2" />
+                    {copiedToClipboard ? 'Copied!' : 'Copy Email'}
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      sendEmail(previewContact)
+                      setPreviewContact(null)
+                    }}
+                    className="flex-1 bg-[#C9A24A] hover:bg-[#B8923D] text-white"
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    Send Email
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
@@ -227,13 +307,23 @@ hello@therelonetwork.com
 
                       <div className="flex items-center gap-4">
                         {status === 'idle' && (
-                          <Button 
-                            onClick={() => sendEmail(contact)}
-                            className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white"
-                          >
-                            <Send className="w-4 h-4 mr-2" />
-                            Send Email
-                          </Button>
+                          <>
+                            <Button 
+                              onClick={() => setPreviewContact(contact)}
+                              variant="outline"
+                              className="border-[#C9A24A] text-[#C9A24A] hover:bg-[#C9A24A]/10"
+                            >
+                              <Eye className="w-4 h-4 mr-2" />
+                              Preview
+                            </Button>
+                            <Button 
+                              onClick={() => sendEmail(contact)}
+                              className="bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white"
+                            >
+                              <Send className="w-4 h-4 mr-2" />
+                              Send Email
+                            </Button>
+                          </>
                         )}
                         
                         {status === 'sending' && (
