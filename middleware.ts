@@ -27,7 +27,8 @@ function basicAuthCheck(req: NextRequest) {
     /^\/api\/client\/.*$/,  // Allow client API endpoints
     /^\/client\/.*$/,       // Allow client dashboard routes
     /^\/payment-success$/,  // Allow payment success page
-    /^\/admin\/partnership-outreach$/ // Temporarily allow partnership outreach
+    /^\/admin\/partnership-outreach.*$/, // Temporarily allow partnership outreach and all its resources
+    /^\/api\/send-email$/ // Allow email sending endpoint
   ];
   if (exempt.some((rx) => rx.test(pathname))) return null;
 
@@ -49,9 +50,9 @@ function basicAuthCheck(req: NextRequest) {
 
 export default function middleware(req: NextRequest) {
   try {
-    // Gate ONLY the portal host so askrelo.vercel.app remains open
+    // Gate the portal hosts
     const host = req.nextUrl.hostname;
-    const requireAuth = host === "app.therelonetwork.com";
+    const requireAuth = host === "app.therelonetwork.com" || host === "therelonetwork.com" || host === "www.therelonetwork.com";
     // const requireAuth = true; // TEMP: gate all hosts to prove middleware is running
     if (requireAuth) {
       const gate = basicAuthCheck(req);
