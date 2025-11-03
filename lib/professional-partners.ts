@@ -1,0 +1,203 @@
+// Professional Partners Data Structure
+// These partners get homepage hero background placement and editorial spotlight
+
+export interface PartnerArticle {
+  id: string
+  title: string
+  slug: string
+  excerpt: string
+  category: string
+  publishedDate: string
+  readTime: string
+  featured: boolean
+}
+
+export interface ProfessionalPartner {
+  id: string
+  name: string
+  category: string
+  description: string
+  heroImage: string
+  logo?: string
+  website?: string
+  specialization: string
+  placement: 'homepage' | 'directory'
+  articles: PartnerArticle[]
+  metadata: {
+    founded?: string
+    location?: string
+    employees?: string
+    awards?: string[]
+  }
+  seo: {
+    title: string
+    description: string
+    keywords: string[]
+  }
+}
+
+// Current Professional Partners with homepage hero placement
+export const professionalPartners: ProfessionalPartner[] = [
+  {
+    id: 'chancery-rosewood',
+    name: 'The Chancery Rosewood',
+    category: 'Luxury Accommodation',
+    description: 'Ultra-luxury Mayfair suites providing executive accommodation for Fortune 500 relocations',
+    heroImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80',
+    logo: '/partners/chancery-rosewood-logo.png',
+    website: 'https://chanceryrosewood.com',
+    specialization: 'Executive Short-Term Accommodation',
+    placement: 'homepage',
+    articles: [
+      {
+        id: 'chancery-rosewood-mayfair-suites',
+        title: 'The Chancery Rosewood: Where Fortune 500 Executives Call Home in London',
+        slug: 'chancery-rosewood-mayfair-executive-suites',
+        excerpt: 'Discover why C-suite executives choose The Chancery Rosewood for their London relocations. From bespoke concierge services to Mayfair location advantages.',
+        category: 'accommodation-insights',
+        publishedDate: '2025-01-08',
+        readTime: '6 min read',
+        featured: true
+      },
+      {
+        id: 'mayfair-location-guide',
+        title: 'Mayfair Living: The Executive\'s Guide to London\'s Most Prestigious Address',
+        slug: 'mayfair-executive-living-guide',
+        excerpt: 'Why 40% of Fortune 500 relocations choose W1 addresses. Exclusive insights into Mayfair\'s business advantages and lifestyle benefits.',
+        category: 'area-spotlight',
+        publishedDate: '2025-01-06',
+        readTime: '8 min read',
+        featured: true
+      }
+    ],
+    metadata: {
+      founded: '2018',
+      location: 'Mayfair, London W1',
+      employees: '50-100',
+      awards: ['Best Luxury Serviced Apartments London 2024', 'Forbes Travel Guide Recommended']
+    },
+    seo: {
+      title: 'The Chancery Rosewood - Executive Accommodation Partner | Relo Network',
+      description: 'Professional Partner spotlight: The Chancery Rosewood provides ultra-luxury Mayfair suites for Fortune 500 executive relocations to London.',
+      keywords: ['luxury accommodation London', 'executive suites Mayfair', 'corporate housing', 'serviced apartments', 'Fortune 500 accommodation']
+    }
+  },
+  {
+    id: 'fragomen-london',
+    name: 'Fragomen London',
+    category: 'Immigration Law',
+    description: 'Global immigration law firm specializing in corporate relocations and executive visa processing',
+    heroImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80',
+    logo: '/partners/fragomen-logo.png',
+    website: 'https://fragomen.com',
+    specialization: 'Corporate Immigration & Executive Visas',
+    placement: 'homepage',
+    articles: [
+      {
+        id: 'fragomen-immigration-excellence',
+        title: 'Corporate Immigration Excellence: How Leading London Firms Transform Executive Visa Processing',
+        slug: 'fragomen-corporate-immigration-excellence',
+        excerpt: 'Discover how global immigration expertise delivers sophisticated visa solutions and seamless corporate relocations for Fortune 500 executives.',
+        category: 'immigration-insights',
+        publishedDate: '2025-01-05',
+        readTime: '5 min read',
+        featured: true
+      },
+      {
+        id: 'executive-visa-guide-2025',
+        title: 'Executive Visa Guide 2025: Navigate UK Immigration with Confidence',
+        slug: 'executive-visa-guide-2025',
+        excerpt: 'Comprehensive guide to UK executive visas, processing timelines, and corporate immigration strategies for Fortune 500 relocations.',
+        category: 'immigration-insights',
+        publishedDate: '2025-01-04',
+        readTime: '7 min read',
+        featured: false
+      }
+    ],
+    metadata: {
+      founded: '1951',
+      location: 'City of London',
+      employees: '500+',
+      awards: ['Chambers Global Immigration Law Firm 2024', 'Legal 500 Tier 1 Immigration']
+    },
+    seo: {
+      title: 'Fragomen London - Immigration Law Partner | Relo Network',
+      description: 'Professional Partner spotlight: Fragomen London provides expert corporate immigration and executive visa services for Fortune 500 relocations.',
+      keywords: ['immigration law London', 'corporate visa services', 'executive immigration', 'UK work permits', 'business immigration']
+    }
+  },
+  {
+    id: 'coutts-international',
+    name: 'Coutts International',
+    category: 'Private Banking',
+    description: 'Royal warrant private bank providing wealth management for high-net-worth individuals',
+    heroImage: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80',
+    logo: '/partners/coutts-logo.png',
+    website: 'https://coutts.com',
+    specialization: 'Private Banking & Wealth Management',
+    placement: 'homepage',
+    articles: [
+      {
+        id: 'coutts-wealth-management',
+        title: 'Coutts International: Royal Banking Excellence for Executive Relocations',
+        slug: 'coutts-private-banking-executives',
+        excerpt: 'How royal warrant private banking supports Fortune 500 executives with comprehensive wealth management during London relocations.',
+        category: 'banking-insights',
+        publishedDate: '2025-01-07',
+        readTime: '5 min read',
+        featured: true
+      }
+    ],
+    metadata: {
+      founded: '1692',
+      location: 'Strand, London WC2',
+      employees: '3000+',
+      awards: ['Royal Warrant Holder', 'Private Banker International Awards 2024']
+    },
+    seo: {
+      title: 'Coutts International - Private Banking Partner | Relo Network',
+      description: 'Professional Partner spotlight: Coutts International provides royal warrant private banking and wealth management for executive relocations.',
+      keywords: ['private banking London', 'wealth management', 'executive banking', 'high net worth banking', 'royal warrant banking']
+    }
+  }
+]
+
+// Get all articles from professional partners for newsletter integration
+export const getProfessionalPartnerArticles = (): PartnerArticle[] => {
+  return professionalPartners.flatMap(partner => 
+    partner.articles.map(article => ({
+      ...article,
+      partnerName: partner.name,
+      partnerCategory: partner.category,
+      partnerLogo: partner.logo
+    }))
+  ).sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime())
+}
+
+// Get current featured partner for hero
+export const getCurrentFeaturedPartner = (): ProfessionalPartner => {
+  const homepagePartners = professionalPartners.filter(p => p.placement === 'homepage')
+  return homepagePartners[0] || professionalPartners[0]
+}
+
+// Get rotating hero partners
+export const getHeroPartners = (): ProfessionalPartner[] => {
+  return professionalPartners.filter(p => p.placement === 'homepage')
+}
+
+// Get partner by ID
+export const getPartnerById = (id: string): ProfessionalPartner | undefined => {
+  return professionalPartners.find(p => p.id === id)
+}
+
+// Get partner articles by category
+export const getPartnerArticlesByCategory = (category: string): PartnerArticle[] => {
+  return getProfessionalPartnerArticles().filter(article => article.category === category)
+}
+
+// Get featured partner articles for homepage banner
+export const getFeaturedPartnerArticles = (limit: number = 3): PartnerArticle[] => {
+  return getProfessionalPartnerArticles()
+    .filter(article => article.featured)
+    .slice(0, limit)
+}

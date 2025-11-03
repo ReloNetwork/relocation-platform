@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Layout from '@/components/Layout'
 import { ArrowRight, Mail, Calendar, User, Tag, ExternalLink, Star, TrendingUp, Globe } from 'lucide-react'
 import Head from 'next/head'
+import { getProfessionalPartnerArticles, professionalPartners } from '@/lib/professional-partners'
 
 interface Article {
   id: string
@@ -25,17 +26,37 @@ export default function NewsletterPage() {
   const [email, setEmail] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
 
+  // Get Professional Partner articles
+  const partnerArticles = getProfessionalPartnerArticles()
+  
   const categories = [
-    { id: 'all', name: 'All Articles', count: 6 },
-    { id: 'launch-announcement', name: 'Launch Updates', count: 1 },
-    { id: 'area-spotlight', name: 'Area Spotlights', count: 1 },
-    { id: 'partner-features', name: 'Partner Features', count: 2 },
-    { id: 'education-partners', name: 'Education', count: 1 },
-    { id: 'transport-partners', name: 'Transport', count: 1 },
-    { id: 'market-insights', name: 'Market Insights', count: 1 }
-  ]
+    { id: 'all', name: 'All Articles', count: partnerArticles.length + 4 },
+    { id: 'accommodation-insights', name: 'Accommodation', count: partnerArticles.filter(a => a.category === 'accommodation-insights').length },
+    { id: 'area-spotlight', name: 'Area Spotlights', count: partnerArticles.filter(a => a.category === 'area-spotlight').length + 1 },
+    { id: 'immigration-insights', name: 'Immigration', count: partnerArticles.filter(a => a.category === 'immigration-insights').length + 1 },
+    { id: 'banking-insights', name: 'Banking & Wealth', count: partnerArticles.filter(a => a.category === 'banking-insights').length },
+    { id: 'education-insights', name: 'Education', count: 1 },
+    { id: 'transport-insights', name: 'Transport', count: 1 },
+    { id: 'market-insights', name: 'Market Insights', count: 1 },
+    { id: 'launch-announcement', name: 'Launch Updates', count: 1 }
+  ].filter(cat => cat.count > 0)
 
+  // Get featured articles from partner articles + custom articles
+  const featuredPartnerArticles = partnerArticles.filter(article => article.featured)
+  
   const featuredArticles: Article[] = [
+    // Partner articles (transformed to match Article interface)
+    ...featuredPartnerArticles.map(article => ({
+      ...article,
+      author: article.partnerName || 'Professional Partner',
+      date: article.publishedDate,
+      image: `/images/${article.slug}.jpg`,
+      partnerSpotlight: {
+        partner: article.partnerName || '',
+        service: article.partnerCategory || ''
+      }
+    })),
+    // Custom launch article
     {
       id: 'launch-newsletter',
       title: 'The Executive\'s London Has Arrived - Relo Network Launch Edition',
@@ -50,40 +71,25 @@ export default function NewsletterPage() {
         partner: 'The Chancery Rosewood',
         service: 'Ultra-Luxury Executive Suites'
       }
-    },
-    {
-      id: 'mayfair-executive-guide',
-      title: 'Mayfair: The Executive\'s London - Complete Relocation Guide 2025',
-      excerpt: 'Why 40% of C-suite relocations choose W1 addresses. From The Chancery Rosewood to exclusive private members\' clubs, discover London\'s most prestigious postcode.',
-      category: 'area-spotlight',
-      author: 'London Relocation Experts',
-      date: '2025-01-06',
-      readTime: '8 min read',
-      image: '/images/mayfair-executive-guide.jpg',
-      featured: true,
-      partnerSpotlight: {
-        partner: 'Coutts International',
-        service: 'Private Banking & Wealth Management'
-      }
     }
   ]
 
+  // Get non-featured partner articles + custom articles
+  const nonFeaturedPartnerArticles = partnerArticles.filter(article => !article.featured)
+  
   const recentArticles: Article[] = [
-    {
-      id: 'fragomen-immigration-guide',
-      title: 'Corporate Immigration Excellence: How Leading London Firms Transform Executive Visa Processing',
-      excerpt: 'Discover how global immigration expertise delivers sophisticated visa solutions and seamless corporate relocations for Fortune 500 executives.',
-      category: 'immigration-insights',
-      author: 'Immigration Law Specialists',
-      date: '2025-01-05',
-      readTime: '5 min read',
-      image: '/images/fragomen-partnership.jpg',
-      featured: false,
-      serviceSpotlight: {
-        focus: 'Executive Immigration Services',
-        service: 'Corporate Immigration & Visa Services'
+    // Non-featured partner articles
+    ...nonFeaturedPartnerArticles.map(article => ({
+      ...article,
+      author: article.partnerName || 'Professional Partner',
+      date: article.publishedDate,
+      image: `/images/${article.slug}.jpg`,
+      partnerSpotlight: {
+        partner: article.partnerName || '',
+        service: article.partnerCategory || ''
       }
-    },
+    })),
+    // Custom articles
     {
       id: 'american-school-london-guide',
       title: 'American School in London: Seamless Education Transition for Executive Families',
@@ -93,11 +99,7 @@ export default function NewsletterPage() {
       date: '2025-01-04',
       readTime: '6 min read',
       image: '/images/asl-partnership.jpg',
-      featured: false,
-      serviceSpotlight: {
-        focus: 'International Education Excellence',
-        service: 'International Education & Family Support'
-      }
+      featured: false
     },
     {
       id: 'london-luxury-transport',
@@ -108,11 +110,7 @@ export default function NewsletterPage() {
       date: '2025-01-03',
       readTime: '4 min read',
       image: '/images/luxury-transport.jpg',
-      featured: false,
-      serviceSpotlight: {
-        focus: 'Executive Transport Services',
-        service: 'Executive Chauffeur Services'
-      }
+      featured: false
     },
     {
       id: 'london-property-trends-2025',
@@ -298,18 +296,12 @@ export default function NewsletterPage() {
                     Featured Partners
                   </h3>
                   <div className="space-y-3">
-                    <div className="p-3 bg-[#F8F9FA] rounded-lg">
-                      <div className="text-sm font-semibold text-[#0B1B2B]">The Chancery Rosewood</div>
-                      <div className="text-xs text-[#6B7280]">Ultra-Luxury Mayfair Suites</div>
-                    </div>
-                    <div className="p-3 bg-[#F8F9FA] rounded-lg">
-                      <div className="text-sm font-semibold text-[#0B1B2B]">Fragomen London</div>
-                      <div className="text-xs text-[#6B7280]">Corporate Immigration Law</div>
-                    </div>
-                    <div className="p-3 bg-[#F8F9FA] rounded-lg">
-                      <div className="text-sm font-semibold text-[#0B1B2B]">Coutts International</div>
-                      <div className="text-xs text-[#6B7280]">Private Banking & Wealth</div>
-                    </div>
+                    {professionalPartners.slice(0, 3).map((partner) => (
+                      <div key={partner.id} className="p-3 bg-[#F8F9FA] rounded-lg">
+                        <div className="text-sm font-semibold text-[#0B1B2B]">{partner.name}</div>
+                        <div className="text-xs text-[#6B7280]">{partner.specialization}</div>
+                      </div>
+                    ))}
                   </div>
                   <button className="w-full mt-4 px-4 py-2 border border-[#C9A24A] text-[#C9A24A] hover:bg-[#C9A24A] hover:text-white font-semibold rounded-lg transition-colors text-sm">
                     View All Partners
@@ -328,7 +320,7 @@ export default function NewsletterPage() {
                 </h2>
                 <div className="grid lg:grid-cols-2 gap-8">
                   {featuredArticles.map((article) => (
-                    <article key={article.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E5E7EB] hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = article.id === 'launch-newsletter' ? '/newsletter/launch-edition' : '/newsletter/mayfair-guide'}>
+                    <article key={article.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E5E7EB] hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = `/newsletter/${article.slug || article.id}`}>
                       <div className="aspect-video relative flex items-center justify-center overflow-hidden">
                         {/* Background Image */}
                         <div 
@@ -374,9 +366,9 @@ export default function NewsletterPage() {
                         <p className="text-[#6B7280] mb-4 line-clamp-3">
                           {article.excerpt}
                         </p>
-                        {article.partnerSpotlight && (
+                        {article.partnerSpotlight && article.partnerSpotlight.partner && (
                           <div className="mb-4 p-3 bg-[#F8F9FA] rounded-lg">
-                            <div className="text-xs text-[#6B7280] mb-1">Featured Partner</div>
+                            <div className="text-xs text-[#6B7280] mb-1">Professional Partner</div>
                             <div className="text-sm font-semibold text-[#0B1B2B]">{article.partnerSpotlight.partner}</div>
                             <div className="text-xs text-[#6B7280]">{article.partnerSpotlight.service}</div>
                           </div>
@@ -409,7 +401,7 @@ export default function NewsletterPage() {
                 </h2>
                 <div className="space-y-6">
                   {recentArticles.map((article) => (
-                    <article key={article.id} className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E7EB] hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = `/newsletter/${article.id}`}>
+                    <article key={article.id} className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E7EB] hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = `/newsletter/${article.slug || article.id}`}>
                       <div className="flex flex-col md:flex-row gap-6">
                         <div className="md:w-48 flex-shrink-0">
                           <div className="aspect-video md:aspect-square rounded-lg relative flex items-center justify-center overflow-hidden">
@@ -458,9 +450,9 @@ export default function NewsletterPage() {
                           <p className="text-[#6B7280] mb-4">
                             {article.excerpt}
                           </p>
-                          {article.partnerSpotlight && (
+                          {article.partnerSpotlight && article.partnerSpotlight.partner && (
                             <div className="mb-4 p-3 bg-[#F8F9FA] rounded-lg">
-                              <div className="text-xs text-[#6B7280] mb-1">Featured Partner</div>
+                              <div className="text-xs text-[#6B7280] mb-1">Professional Partner</div>
                               <div className="text-sm font-semibold text-[#0B1B2B]">{article.partnerSpotlight.partner}</div>
                               <div className="text-xs text-[#6B7280]">{article.partnerSpotlight.service}</div>
                             </div>

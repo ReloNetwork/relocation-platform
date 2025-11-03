@@ -13,6 +13,8 @@ import { Button } from '../ui/components/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/components/card'
 import { Badge } from '../ui/components/badge'
 import { Separator } from '../ui/components/separator'
+import DynamicHeroBackground from '../components/DynamicHeroBackground'
+import ProfessionalPartnerBanner from '../components/ProfessionalPartnerBanner'
 
 const AudienceCard = ({ 
   title, 
@@ -185,7 +187,7 @@ export default function HomePage() {
       bgGradient: "bg-gradient-to-br from-[#0B1B2B] to-[#1a2b3b]",
       iconBg: "bg-white/20"
     }
-  ]
+  ];
   
   return (
     <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden" showFooter={false}>
@@ -221,73 +223,19 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Enhanced Hero Section with Video Background */}
-      <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-32 sm:pt-16">
-        {/* Video Background */}
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-contain md:object-contain sm:object-cover"
-          style={{ 
-            objectPosition: 'center top',
-            filter: 'brightness(1.2) contrast(0.9)',
-            opacity: '0.8',
-            marginTop: '-128px',
-            '@media (max-width: 768px)': {
-              marginTop: '-64px',
-              objectFit: 'cover'
-            }
-          }}
-          poster="/london-skyline-hero.mp4"
-        >
-          <source src="/london-skyline-hero.mp4" type="video/mp4" />
-          {/* Fallback for browsers that don't support video */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-white to-[#F8F9FA]"></div>
-        </video>
-        
-        {/* Light overlay to maintain professional brand */}
-        <div className="absolute top-0 left-0 w-full h-full bg-white/30 md:-mt-32 sm:-mt-16"></div>
-        
-        {/* Additional light gradient overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#FAFAF9]/50 via-white/40 to-[#F8F9FA]/50 md:-mt-32 sm:-mt-16"></div>
-        
-        {/* Elegant Translucent Overlays for sophistication */}
-        <div className="absolute inset-0">
-          {/* Large circle - top right */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-[#C9A24A]/15 to-[#C9A24A]/5 blur-3xl"></div>
-          
-          {/* Medium circle - bottom left */}
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-[#0B1B2B]/8 to-[#0B1B2B]/3 blur-2xl"></div>
-          
-          {/* Small accent - center left */}
-          <div className="absolute top-1/3 -left-20 w-56 h-56 rounded-full bg-gradient-to-r from-[#C9A24A]/10 to-transparent blur-xl"></div>
-          
-          {/* Additional accent - center right */}
-          <div className="absolute top-2/3 -right-16 w-48 h-48 rounded-full bg-gradient-to-l from-[#0B1B2B]/6 to-transparent blur-xl"></div>
-          
-          {/* Geometric shapes for sophistication */}
-          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#C9A24A]/40 rounded-full animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/3 w-2 h-2 bg-[#0B1B2B]/40 rounded-full animate-pulse delay-1000"></div>
-          <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-[#C9A24A]/35 rounded-full animate-pulse delay-2000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#0B1B2B]/30 rounded-full animate-pulse delay-3000"></div>
-        </div>
-        
-        {/* Content with higher z-index */}
+      {/* Dynamic Professional Partner Hero Background */}
+      <DynamicHeroBackground className="min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-32 sm:pt-16">
         <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#0B1B2B] mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Relocate to <span className="text-[#C9A24A]">London</span><br />
-            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#4B5563]">Effortlessly.</span>
+            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/90">Effortlessly.</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-[#0B1B2B] mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4">
+          <p className="text-lg sm:text-xl md:text-2xl text-white mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4">
             Your concierge for executive relocations to London.
           </p>
-          <p className="text-sm sm:text-base text-[#6B7280] mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="text-sm sm:text-base text-white/80 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
             Property, schools, and lifestyle handled in days, not months, for executives and the teams who move them.
           </p>
-
 
           {/* Main CTAs - Hero Style */}
           <div className="mb-16">
@@ -302,7 +250,7 @@ export default function HomePage() {
               <Button
                 onClick={() => window.location.href = '/corporate-assessment'}
                 size="lg"
-                className="hidden md:block bg-[#0B1B2B] hover:bg-[#1a2b3b] text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg md:text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#0B1B2B]/25 w-full sm:w-auto"
+                className="hidden md:block bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg md:text-xl font-semibold hover:scale-105 transition-all shadow-2xl border border-white/30 w-full sm:w-auto"
               >
                 Corporate Assessment (15 min)
               </Button>
@@ -311,7 +259,7 @@ export default function HomePage() {
               <Button
                 variant="link"
                 onClick={() => window.location.href = '/corporate-assessment'}
-                className="text-[#C9A24A] hover:text-[#B8923D] font-semibold text-lg"
+                className="text-[#C9A24A] hover:text-white font-semibold text-lg"
               >
                 Corporate Assessment (15 min)
               </Button>
@@ -320,6 +268,10 @@ export default function HomePage() {
 
           {/* Spacer for better visual separation */}
           <div className="mb-36"></div>
+      </DynamicHeroBackground>
+
+      {/* Professional Partner Editorial Banner */}
+      <ProfessionalPartnerBanner />
 
           {/* How it works Section */}
           <div className="mb-24 max-w-7xl mx-auto px-4" id="how-it-works">
@@ -584,6 +536,7 @@ export default function HomePage() {
                       id="testimonial-video"
                       className="w-full h-full object-contain rounded-md"
                       preload="metadata"
+                      poster="/assets/proof-testimonial.jpg"
                       playsInline
                       webkit-playsinline="true"
                       style={{
