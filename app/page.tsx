@@ -13,7 +13,6 @@ import { Button } from '../ui/components/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/components/card'
 import { Badge } from '../ui/components/badge'
 import { Separator } from '../ui/components/separator'
-import DynamicHeroBackground from '../components/DynamicHeroBackground'
 import ProfessionalPartnerBanner from '../components/ProfessionalPartnerBanner'
 
 const AudienceCard = ({ 
@@ -223,8 +222,22 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Dynamic Professional Partner Hero Background */}
-      <DynamicHeroBackground className="min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-32 sm:pt-16">
+      {/* Hero Section with Video Background */}
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-32 sm:pt-16">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="https://res.cloudinary.com/drr8adpj8/video/upload/v1733074862/london-timelapse_hupuif.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1B2B]/70 via-[#0B1B2B]/50 to-[#0B1B2B]/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B2B]/60 via-transparent to-[#0B1B2B]/40" />
         <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Relocate to <span className="text-[#C9A24A]">London</span><br />
@@ -266,13 +279,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Spacer for better visual separation */}
-          <div className="mb-36"></div>
+          {/* Professional Partner Editorial Banner - Positioned at bottom of hero */}
+          <div className="absolute bottom-0 left-0 right-0 z-20">
+            <ProfessionalPartnerBanner />
+          </div>
         </div>
-      </DynamicHeroBackground>
-
-      {/* Professional Partner Editorial Banner */}
-      <ProfessionalPartnerBanner />
+      </div>
 
           {/* How it works Section */}
           <div className="mb-24 max-w-7xl mx-auto px-4" id="how-it-works">
