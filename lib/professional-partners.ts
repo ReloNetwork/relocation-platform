@@ -39,47 +39,47 @@ export interface ProfessionalPartner {
 // Current Professional Partners with homepage hero placement
 export const professionalPartners: ProfessionalPartner[] = [
   {
-    id: 'chancery-rosewood',
-    name: 'The Chancery Rosewood',
-    category: 'Luxury Accommodation',
-    description: 'Ultra-luxury Mayfair suites providing executive accommodation for Fortune 500 relocations',
-    // heroImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80', // Temporarily removed
-    logo: '/partners/chancery-rosewood-logo.png',
-    website: 'https://chanceryrosewood.com',
-    specialization: 'Executive Short-Term Accommodation',
+    id: 'knight-frank',
+    name: 'Knight Frank',
+    category: 'Property Advisory',
+    description: 'Global property consultancy specializing in prime London residential and executive relocations',
+    heroImage: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80',
+    logo: '/partners/knight-frank-logo.png',
+    website: 'https://knightfrank.com',
+    specialization: 'Prime Property & Relocation Services',
     placement: 'homepage',
     articles: [
       {
-        id: 'chancery-rosewood-mayfair-suites',
-        title: 'The Chancery Rosewood: Where Fortune 500 Executives Call Home in London',
-        slug: 'chancery-rosewood-mayfair-executive-suites',
-        excerpt: 'Discover why C-suite executives choose The Chancery Rosewood for their London relocations. From bespoke concierge services to Mayfair location advantages.',
-        category: 'accommodation-insights',
+        id: 'knight-frank-property-insights',
+        title: 'Knight Frank: Navigating London\'s Prime Property Market for Executive Relocations',
+        slug: 'knight-frank-prime-property-guide',
+        excerpt: 'Expert insights on securing prime London residences for C-suite executives. From Mayfair to Belgravia, discover the perfect neighborhoods for your relocation.',
+        category: 'property-insights',
         publishedDate: '2025-01-08',
         readTime: '6 min read',
         featured: true
       },
       {
-        id: 'mayfair-location-guide',
-        title: 'Mayfair Living: The Executive\'s Guide to London\'s Most Prestigious Address',
-        slug: 'mayfair-executive-living-guide',
-        excerpt: 'Why 40% of Fortune 500 relocations choose W1 addresses. Exclusive insights into Mayfair\'s business advantages and lifestyle benefits.',
-        category: 'area-spotlight',
+        id: 'london-property-market-2025',
+        title: 'London Property Market 2025: Executive Housing Trends and Opportunities',
+        slug: 'london-executive-housing-trends',
+        excerpt: 'Knight Frank\'s analysis of London\'s prime residential market, rental yields, and investment opportunities for international executives.',
+        category: 'market-analysis',
         publishedDate: '2025-01-06',
         readTime: '8 min read',
         featured: true
       }
     ],
     metadata: {
-      founded: '2018',
+      founded: '1896',
       location: 'Mayfair, London W1',
-      employees: '50-100',
-      awards: ['Best Luxury Serviced Apartments London 2024', 'Forbes Travel Guide Recommended']
+      employees: '20,000+',
+      awards: ['International Property Awards 2024', 'Best Global Property Consultancy']
     },
     seo: {
-      title: 'The Chancery Rosewood - Executive Accommodation Partner | Relo Network',
-      description: 'Professional Partner spotlight: The Chancery Rosewood provides ultra-luxury Mayfair suites for Fortune 500 executive relocations to London.',
-      keywords: ['luxury accommodation London', 'executive suites Mayfair', 'corporate housing', 'serviced apartments', 'Fortune 500 accommodation']
+      title: 'Knight Frank - Property Advisory Partner | Relo Network',
+      description: 'Professional Partner spotlight: Knight Frank provides expert property consultancy and prime residential services for executive relocations to London.',
+      keywords: ['property consultancy London', 'executive property search', 'prime residential', 'relocation services', 'luxury property advisory']
     }
   },
   {
