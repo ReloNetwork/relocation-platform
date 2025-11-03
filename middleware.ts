@@ -26,7 +26,8 @@ function basicAuthCheck(req: NextRequest) {
     /^\/api\/webhooks\/.*$/,
     /^\/api\/client\/.*$/,  // Allow client API endpoints
     /^\/client\/.*$/,       // Allow client dashboard routes
-    /^\/payment-success$/   // Allow payment success page
+    /^\/payment-success$/,  // Allow payment success page
+    /^\/admin\/partnership-outreach$/ // Temporarily allow partnership outreach
   ];
   if (exempt.some((rx) => rx.test(pathname))) return null;
 
