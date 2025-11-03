@@ -224,22 +224,22 @@ export default function HomePage() {
       </div>
 
       {/* Dynamic Professional Partner Hero Background */}
-      <DynamicHeroBackground className="h-[85vh] flex items-center justify-center overflow-hidden pt-20 md:pt-24">
+      <DynamicHeroBackground className="h-[70vh] md:h-[75vh] flex items-center justify-center overflow-hidden pt-16">
         <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Relocate to <span className="text-[#C9A24A]">London</span><br />
-            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/90">Effortlessly.</span>
+            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white/90">Effortlessly.</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4">
+          <p className="text-base sm:text-lg md:text-xl text-white mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4">
             Your concierge for executive relocations to London.
           </p>
-          <p className="text-sm sm:text-base text-white/80 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="text-sm sm:text-base text-white/80 mb-6 max-w-4xl mx-auto leading-relaxed px-4">
             Property, schools, and lifestyle handled in days, not months, for executives and the teams who move them.
           </p>
 
           {/* Main CTAs - Hero Style */}
-          <div className="mb-12">
-            <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-8">
+          <div className="mb-8">
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-6">
               <Button
                 onClick={checkoutFunctions.executiveIntake}
                 size="lg"
@@ -255,7 +255,7 @@ export default function HomePage() {
                 Corporate Assessment (15 min)
               </Button>
             </div>
-            <div className="text-center mb-12 md:hidden">
+            <div className="text-center mb-8 md:hidden">
               <Button
                 variant="link"
                 onClick={() => window.location.href = '/corporate-assessment'}
@@ -266,8 +266,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Spacer for better visual separation */}
-          <div className="mb-20"></div>
+          {/* Reduced spacer */}
+          <div className="mb-8"></div>
         </div>
       </DynamicHeroBackground>
 
