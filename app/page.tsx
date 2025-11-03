@@ -584,7 +584,6 @@ export default function HomePage() {
                       id="testimonial-video"
                       className="w-full h-full object-contain rounded-md"
                       preload="metadata"
-                      poster="/assets/proof-testimonial.jpg"
                       playsInline
                       webkit-playsinline="true"
                       style={{

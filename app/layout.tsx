@@ -98,6 +98,9 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
         
+        {/* RSS Feed Discovery */}
+        <link rel="alternate" type="application/rss+xml" title="The London Relocation Report" href="/rss.xml" />
+        
         {/* Theme colors for luxury branding */}
         <meta name="theme-color" content="#0B1B2B" />
         <meta name="msapplication-TileColor" content="#0B1B2B" />

@@ -127,6 +127,16 @@ export default function NewsletterPage() {
     }
   ]
 
+  const scrollToEmailInput = () => {
+    const emailInput = document.querySelector('input[type="email"]')
+    if (emailInput) {
+      emailInput.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      setTimeout(() => {
+        (emailInput as HTMLInputElement).focus()
+      }, 500)
+    }
+  }
+
   const handleNewsletterSignup = async (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -272,7 +282,10 @@ export default function NewsletterPage() {
                     <p className="text-white text-sm mb-4">
                       Get the latest relocation trends, partner spotlights, and exclusive London insights.
                     </p>
-                    <button className="w-full px-4 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-colors text-sm">
+                    <button 
+                      onClick={scrollToEmailInput}
+                      className="w-full px-4 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-colors text-sm hover:scale-105 hover:shadow-lg transition-all duration-300"
+                    >
                       Subscribe Now
                     </button>
                   </div>
@@ -485,7 +498,10 @@ export default function NewsletterPage() {
             Get expert guidance, trusted partners, and insider knowledge delivered weekly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <button className="px-8 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-colors">
+            <button 
+              onClick={scrollToEmailInput}
+              className="px-8 py-3 bg-[#C9A24A] hover:bg-[#B8923D] text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
               Subscribe to Newsletter
             </button>
             <button className="px-8 py-3 border border-white text-white hover:bg-white hover:text-[#0B1B2B] font-semibold rounded-lg transition-colors">

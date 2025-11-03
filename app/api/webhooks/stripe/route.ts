@@ -39,6 +39,12 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ ok: true });
       }
       
+      // Handle AI solution payments
+      if (session.metadata?.plan === 'ai_executive' || session.metadata?.plan === 'ai_enterprise' || session.metadata?.plan === 'ai_showcase') {
+        await handleAIPayment(session);
+        return NextResponse.json({ ok: true });
+      }
+      
       // Handle supplier subscriptions (existing logic)
       const plan = session.metadata?.plan as 'starter'|'featured'|'sponsored'|undefined;
       const cadence = session.metadata?.cadence as 'monthly'|'annual'|undefined;
@@ -66,6 +72,169 @@ export async function POST(req: NextRequest) {
   } catch (err: any) {
     console.error('stripe webhook error', err?.message);
     return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
+  }
+}
+
+async function handleAIPayment(session: Stripe.Checkout.Session) {
+  try {
+    console.log('Processing AI solution payment:', session.id);
+    
+    const { plan, plan_name, setup_fee, monthly_fee } = session.metadata || {};
+    const customerEmail = session.customer_email;
+    
+    if (!customerEmail) {
+      console.error('No customer email in AI payment session');
+      return;
+    }
+
+    // AI plan details
+    const aiPlans = {
+      'ai_executive': {
+        name: 'Executive Voice AI',
+        setupFee: '£2,497',
+        monthlyFee: '£497',
+        description: 'Perfect for dentists, med spas, law firms'
+      },
+      'ai_enterprise': {
+        name: 'Enterprise Voice AI', 
+        setupFee: '£4,997',
+        monthlyFee: '£997',
+        description: 'For franchises & high-volume operations'
+      },
+      'ai_showcase': {
+        name: 'Relo Network Showcase',
+        setupFee: '£9,997',
+        monthlyFee: '£1,997',
+        description: 'Complete Fortune 500-level AI system'
+      }
+    };
+
+    const aiPlan = aiPlans[plan as keyof typeof aiPlans];
+    if (!aiPlan) {
+      console.error('Unknown AI plan:', plan);
+      return;
+    }
+
+    // Send customer confirmation email
+    if (process.env.RESEND_API_KEY) {
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      
+      await resend.emails.send({
+        from: 'AI Solutions <ai@therelonetwork.com>',
+        to: [customerEmail],
+        subject: `Payment Confirmed - Your ${aiPlan.name} is Being Prepared`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background: #C9A24A; color: white; padding: 30px; text-align: center;">
+              <h1 style="margin: 0;">Payment Successful!</h1>
+              <p style="margin: 10px 0 0 0;">Your AI voice assistant solution is being activated</p>
+            </div>
+            
+            <div style="padding: 30px; background: white;">
+              <h2 style="color: #0B1B2B;">Thank you for choosing ${aiPlan.name}</h2>
+              
+              <p>Your payment has been processed successfully. Our implementation team is already preparing your custom AI assistant.</p>
+              
+              <div style="background: #C9A24A; background: linear-gradient(135deg, #C9A24A 0%, #B8923D 100%); color: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin: 0 0 10px 0;">Your Purchase Details</h3>
+                <p style="margin: 5px 0;"><strong>Plan:</strong> ${aiPlan.name}</p>
+                <p style="margin: 5px 0;"><strong>Setup Fee:</strong> ${aiPlan.setupFee}</p>
+                <p style="margin: 5px 0;"><strong>Monthly Fee:</strong> ${aiPlan.monthlyFee}</p>
+                <p style="margin: 5px 0;"><strong>Session ID:</strong> ${session.id}</p>
+              </div>
+              
+              <h3 style="color: #0B1B2B;">What happens next?</h3>
+              <ol style="color: #6B7280; line-height: 1.6;">
+                <li><strong>Implementation Team Contact (24 hours):</strong> Our team will reach out to schedule your onboarding call</li>
+                <li><strong>System Setup (Week 1):</strong> We'll configure your AI assistant and integrate it with your systems</li>
+                <li><strong>Training & Optimization (Week 2-4):</strong> Fine-tuning your AI to match your business needs</li>
+                <li><strong>Go Live (Within 2-4 weeks):</strong> Your AI assistant will be fully operational</li>
+                <li><strong>Monthly Billing:</strong> Recurring charges begin after your first month of service</li>
+              </ol>
+              
+              <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
+                <p style="margin: 0; color: #92400E;"><strong>Need immediate assistance?</strong> Contact our AI implementation team directly at ai@therelonetwork.com or call +44 20 3105 9566</p>
+              </div>
+              
+              <h3 style="color: #0B1B2B;">About Your ${aiPlan.name}:</h3>
+              <p style="color: #6B7280;">${aiPlan.description}</p>
+              
+              <p>We're excited to transform your customer experience with AI!</p>
+              
+              <p>Best regards,<br>
+              <strong>The AI Solutions Team</strong><br>
+              Relo Network</p>
+            </div>
+            
+            <div style="background: #FAFAF9; padding: 20px; text-align: center; color: #6B7280; font-size: 12px;">
+              <p>© 2025 Relo Network Ltd. London, United Kingdom.</p>
+              <p>Questions? Contact us at <a href="mailto:hello@therelonetwork.com" style="color: #C9A24A;">hello@therelonetwork.com</a></p>
+            </div>
+          </div>
+        `
+      });
+
+      // Send admin notification email
+      await resend.emails.send({
+        from: 'AI Sales <ai@therelonetwork.com>',
+        to: ['hello@therelonetwork.com', 'ai@therelonetwork.com'],
+        subject: `🚀 NEW AI SOLUTION PURCHASED - ${aiPlan.name}`,
+        html: `
+          <div style="background: #C9A24A; color: white; padding: 20px; text-align: center;">
+            <h1>🚀 NEW AI SOLUTION PURCHASED</h1>
+            <p>IMMEDIATE IMPLEMENTATION REQUIRED</p>
+          </div>
+          
+          <div style="padding: 20px;">
+            <h2>AI Solution Payment Confirmed</h2>
+            <p><strong>Customer Email:</strong> ${customerEmail}</p>
+            <p><strong>Plan:</strong> ${aiPlan.name}</p>
+            <p><strong>Setup Fee:</strong> ${aiPlan.setupFee}</p>
+            <p><strong>Monthly Fee:</strong> ${aiPlan.monthlyFee}</p>
+            <p><strong>Description:</strong> ${aiPlan.description}</p>
+            <p><strong>Session ID:</strong> ${session.id}</p>
+            <p><strong>Customer ID:</strong> ${typeof session.customer === 'string' ? session.customer : 'N/A'}</p>
+            <p><strong>Subscription ID:</strong> ${typeof session.subscription === 'string' ? session.subscription : 'N/A'}</p>
+            
+            <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
+              <h3 style="color: #92400E;">⚡ IMMEDIATE ACTIONS REQUIRED:</h3>
+              <ol style="color: #92400E;">
+                <li>Contact customer within 24 hours to schedule onboarding call</li>
+                <li>Assign dedicated AI implementation specialist</li>
+                <li>Begin system integration planning</li>
+                <li>Set up customer success monitoring</li>
+                <li>Add to AI implementation pipeline</li>
+              </ol>
+            </div>
+            
+            <div style="background: #EBF8FF; border-left: 4px solid #3B82F6; padding: 15px; margin: 20px 0;">
+              <h3 style="color: #1E40AF;">📋 IMPLEMENTATION CHECKLIST:</h3>
+              <ul style="color: #1E40AF;">
+                <li>□ Initial consultation call scheduled</li>
+                <li>□ Technical requirements gathered</li>
+                <li>□ AI system configured</li>
+                <li>□ Integration testing completed</li>
+                <li>□ Training and optimization phase</li>
+                <li>□ Go-live preparation</li>
+                <li>□ Customer handover completed</li>
+              </ul>
+            </div>
+            
+            <p><strong>Payment Date:</strong> ${new Date().toLocaleString('en-GB')}</p>
+          </div>
+        `
+      });
+    }
+
+    console.log('AI solution payment processed successfully:', {
+      plan,
+      customerEmail,
+      sessionId: session.id,
+      planName: aiPlan.name
+    });
+
+  } catch (error) {
+    console.error('Error processing AI solution payment:', error);
   }
 }
 
