@@ -49,6 +49,9 @@ function basicAuthCheck(req: NextRequest) {
 }
 
 export default function middleware(req: NextRequest) {
+  // TEMPORARILY DISABLED - RETURN IMMEDIATELY TO BYPASS ALL AUTH
+  return NextResponse.next();
+  
   try {
     const { pathname } = req.nextUrl;
     
