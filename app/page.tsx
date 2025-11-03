@@ -188,7 +188,7 @@ export default function HomePage() {
       iconBg: "bg-white/20"
     }
   ];
-  
+
   return (
     <Layout className="bg-[#FAFAF9] text-[#0B1220] overflow-x-hidden" showFooter={false}>
       <AuthRedirect />
