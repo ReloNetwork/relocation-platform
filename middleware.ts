@@ -50,6 +50,13 @@ function basicAuthCheck(req: NextRequest) {
 
 export default function middleware(req: NextRequest) {
   try {
+    const { pathname } = req.nextUrl;
+    
+    // TEMPORARILY DISABLED FOR PARTNERSHIP OUTREACH
+    if (pathname.startsWith('/admin/partnership-outreach') || pathname === '/api/send-email') {
+      return NextResponse.next(); // Skip auth for partnership outreach
+    }
+    
     // Gate the portal hosts
     const host = req.nextUrl.hostname;
     const requireAuth = host === "app.therelonetwork.com" || host === "therelonetwork.com" || host === "www.therelonetwork.com";
@@ -60,7 +67,6 @@ export default function middleware(req: NextRequest) {
     }
 
     // Your existing dev-route guard (kept from your file)
-    const { pathname } = req.nextUrl;
     const isDevPath = pathname.startsWith("/api/dev") || pathname.startsWith("/integrations");
     const devEnabled = process.env.DEV_TOOLS === "1" && process.env.NODE_ENV !== "production";
     if (isDevPath && !devEnabled) {
