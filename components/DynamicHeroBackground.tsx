@@ -54,20 +54,11 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
           }}
         />
         
-        {/* Gradient Overlays for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1B2B]/70 via-[#0B1B2B]/50 to-[#0B1B2B]/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B2B]/60 via-transparent to-[#0B1B2B]/40" />
+        {/* Light gradient overlays for better image visibility */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1B2B]/40 via-[#0B1B2B]/30 to-[#0B1B2B]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B2B]/30 via-transparent to-[#0B1B2B]/20" />
         
-        {/* Professional Partner Attribution (subtle) */}
-        {currentPartner && (
-          <div className="absolute bottom-4 right-4 z-10">
-            <div className="bg-black/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
-              <p className="text-white/70 text-xs">
-                Featured Partner: <span className="text-[#C9A24A] font-medium">{currentPartner.name}</span>
-              </p>
-            </div>
-          </div>
-        )}
+        {/* Partner attribution removed */}
 
         {/* Partner transition indicators */}
         {heroPartners.length > 1 && (
