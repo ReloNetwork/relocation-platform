@@ -224,7 +224,7 @@ export default function HomePage() {
       </div>
 
       {/* Dynamic Professional Partner Hero Background */}
-      <DynamicHeroBackground className="min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-32 sm:pt-16">
+      <DynamicHeroBackground className="h-[85vh] flex items-center justify-center overflow-hidden pt-20 md:pt-24">
         <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
             Relocate to <span className="text-[#C9A24A]">London</span><br />
@@ -238,7 +238,7 @@ export default function HomePage() {
           </p>
 
           {/* Main CTAs - Hero Style */}
-          <div className="mb-16">
+          <div className="mb-12">
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-8">
               <Button
                 onClick={checkoutFunctions.executiveIntake}
@@ -255,7 +255,7 @@ export default function HomePage() {
                 Corporate Assessment (15 min)
               </Button>
             </div>
-            <div className="text-center mb-24 md:hidden">
+            <div className="text-center mb-12 md:hidden">
               <Button
                 variant="link"
                 onClick={() => window.location.href = '/corporate-assessment'}
@@ -267,13 +267,15 @@ export default function HomePage() {
           </div>
 
           {/* Spacer for better visual separation */}
-          <div className="mb-36"></div>
+          <div className="mb-20"></div>
         </div>
       </DynamicHeroBackground>
 
       {/* Professional Partner Editorial Banner */}
       <ProfessionalPartnerBanner />
 
+      {/* Spacing between banner and How it Works */}
+      <div className="py-16">
           {/* How it works Section */}
           <div className="mb-24 max-w-7xl mx-auto px-4" id="how-it-works">
             <div className="text-center mb-4">
@@ -803,6 +805,7 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+      </div>
 
 
       {/* Enhanced FAQ Section for AI Citations */}
