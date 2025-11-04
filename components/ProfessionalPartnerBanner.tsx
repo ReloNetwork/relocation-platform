@@ -32,20 +32,20 @@ const ProfessionalPartnerBanner = () => {
   }
 
   return (
-    <div className="bg-gradient-to-r from-[#0B1B2B] via-[#0B1B2B]/95 to-[#0B1B2B] border-y border-[#C9A24A]/20 py-4">
+    <div className="bg-gradient-to-r from-[#0B1B2B] via-[#0B1B2B]/95 to-[#0B1B2B] border-y border-[#C9A24A]/20 py-3 md:py-4">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-0">
           {/* Left Section - Branding */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-[#C9A24A] rounded-full flex items-center justify-center">
-                <Newspaper className="w-4 h-4 text-white" />
+              <div className="w-6 h-6 md:w-8 md:h-8 bg-[#C9A24A] rounded-full flex items-center justify-center">
+                <Newspaper className="w-3 h-3 md:w-4 md:h-4 text-white" />
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#C9A24A] font-bold text-sm uppercase tracking-wide">
+                <span className="text-[#C9A24A] font-bold text-xs md:text-sm uppercase tracking-wide">
                   CURRENT: Relo News
                 </span>
-                <Badge variant="outline" className="bg-[#C9A24A]/10 border-[#C9A24A]/30 text-[#C9A24A] text-xs">
+                <Badge variant="outline" className="hidden md:inline-flex bg-[#C9A24A]/10 border-[#C9A24A]/30 text-[#C9A24A] text-xs">
                   Professional Partners
                 </Badge>
               </div>
@@ -54,10 +54,10 @@ const ProfessionalPartnerBanner = () => {
 
           {/* Center Section - Rotating Article */}
           <div 
-            className="flex-1 mx-6 cursor-pointer group transition-all duration-300 hover:scale-105"
+            className="flex-1 mx-2 md:mx-6 cursor-pointer group transition-all duration-300 md:hover:scale-105"
             onClick={handleArticleClick}
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 md:gap-3">
               {/* Partner indicator */}
               <div className="hidden md:flex items-center gap-2">
                 <Star className="w-4 h-4 text-[#C9A24A]" />
@@ -67,7 +67,7 @@ const ProfessionalPartnerBanner = () => {
               </div>
 
               {/* Article title */}
-              <h3 className="text-white font-semibold text-sm md:text-base line-clamp-1 group-hover:text-[#C9A24A] transition-colors duration-300">
+              <h3 className="text-white font-semibold text-xs md:text-sm lg:text-base line-clamp-1 group-hover:text-[#C9A24A] transition-colors duration-300">
                 {currentArticle.title}
               </h3>
 
