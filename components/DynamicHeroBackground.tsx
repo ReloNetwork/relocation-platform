@@ -16,9 +16,21 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
   useEffect(() => {
     // Ensure video plays on mount
     if (videoRef.current) {
-      videoRef.current.play().catch(err => {
-        console.log('Video autoplay failed:', err)
-      })
+      // Force load and play on mobile
+      videoRef.current.load()
+      const playPromise = videoRef.current.play()
+      
+      if (playPromise !== undefined) {
+        playPromise.catch(err => {
+          console.log('Video autoplay failed, retrying:', err)
+          // Try to play again after user interaction
+          setTimeout(() => {
+            videoRef.current?.play().catch(() => {
+              console.log('Video requires user interaction to play')
+            })
+          }, 1000)
+        })
+      }
     }
   }, [])
 
@@ -29,13 +41,14 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          webkit-playsinline="true"
+          autoPlay={true}
+          muted={true}
+          loop={true}
+          playsInline={true}
+          controls={false}
           preload="auto"
           poster="https://images.unsplash.com/photo-1520986606214-8b456906c813?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80"
+          style={{ objectFit: 'cover' }}
         >
           <source src="/videos/london-skyline-panoramic.mp4" type="video/mp4" />
           {/* Fallback for browsers that don't support mp4 */}
