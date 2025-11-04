@@ -36,11 +36,13 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
 
   return (
     <div className={`relative ${className}`}>
-      {/* Video Background Layer */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Video Background Layer - Works on all devices */}
+      <div className="absolute inset-0 overflow-hidden bg-black">
+        {/* Hide any background images and ensure video is visible */}
+        <div className="absolute inset-0 bg-black" />
         <video
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover z-10"
           autoPlay={true}
           muted={true}
           loop={true}
@@ -48,7 +50,14 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
           controls={false}
           preload="auto"
           poster="https://images.unsplash.com/photo-1520986606214-8b456906c813?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80"
-          style={{ objectFit: 'cover' }}
+          style={{ 
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }}
         >
           <source src="/videos/london-skyline-panoramic.mp4" type="video/mp4" />
           {/* Fallback for browsers that don't support mp4 */}
