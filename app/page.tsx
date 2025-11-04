@@ -225,8 +225,8 @@ export default function HomePage() {
 
       {/* Dynamic Professional Partner Hero Background */}
       <DynamicHeroBackground className="h-[70vh] md:h-[75vh] flex items-center justify-center overflow-hidden pt-16">
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          <div className="backdrop-blur-sm bg-[#0B1B2B]/20 rounded-2xl p-8 md:p-10">
+        <div className="relative z-10 text-center max-w-6xl mx-auto px-3 sm:px-4">
+          <div className="backdrop-blur-sm bg-[#0B1B2B]/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" style={{ 
               fontFamily: 'Playfair Display, Georgia, serif',
               textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
@@ -250,23 +250,24 @@ export default function HomePage() {
               <Button
                 onClick={checkoutFunctions.executiveIntake}
                 size="lg"
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg md:text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25 w-full sm:w-auto"
+                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 sm:px-6 md:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg lg:text-xl font-semibold hover:scale-105 transition-all shadow-2xl hover:shadow-[#C9A24A]/25 w-full sm:w-auto"
               >
                 Book Your 72-Hour Audit
               </Button>
               <Button
                 onClick={() => window.location.href = '/corporate-assessment'}
                 size="lg"
-                className="hidden md:block bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg md:text-xl font-semibold hover:scale-105 transition-all shadow-2xl border border-white/30 w-full sm:w-auto"
+                className="hidden md:block bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-4 sm:px-6 md:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg lg:text-xl font-semibold hover:scale-105 transition-all shadow-2xl border border-white/30 w-full sm:w-auto"
               >
                 Corporate Assessment (15 min)
               </Button>
             </div>
-            <div className="text-center md:hidden">
+            <div className="text-center md:hidden mt-2">
               <Button
                 variant="link"
                 onClick={() => window.location.href = '/corporate-assessment'}
-                className="text-[#C9A24A] hover:text-white font-semibold text-lg"
+                className="text-[#C9A24A] hover:text-white font-semibold text-base sm:text-lg"
+                style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}
               >
                 Corporate Assessment (15 min)
               </Button>

@@ -33,6 +33,7 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
           muted
           loop
           playsInline
+          webkit-playsinline="true"
           preload="auto"
           poster="https://images.unsplash.com/photo-1520986606214-8b456906c813?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80"
         >
