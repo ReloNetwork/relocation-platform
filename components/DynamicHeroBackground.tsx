@@ -41,11 +41,11 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
           <source src="/videos/london-skyline-panoramic.webm" type="video/webm" />
         </video>
         
-        {/* Very light gradient overlays for maximum video visibility */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1B2B]/20 via-[#0B1B2B]/10 to-[#0B1B2B]/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B2B]/15 via-transparent to-[#0B1B2B]/10" />
+        {/* Minimal gradient overlays - extremely light for maximum video brightness */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1B2B]/10 via-transparent to-[#0B1B2B]/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B2B]/10 via-transparent to-transparent" />
         
-        {/* Mobile optimization: Very subtle overlay on mobile for text visibility */}
+        {/* Mobile optimization: Minimal overlay for text contrast */}
         <div className="absolute inset-0 bg-[#0B1B2B]/5 md:bg-transparent" />
       </div>
 
