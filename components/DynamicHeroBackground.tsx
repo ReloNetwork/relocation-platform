@@ -41,13 +41,8 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
           <source src="/videos/london-skyline-panoramic.webm" type="video/webm" />
         </video>
         
-        {/* Ultra minimal overlay - just enough for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1B2B]/5 via-transparent to-[#0B1B2B]/5" />
-        
-        {/* Text shadow backdrop for readability without darkening video */}
-        <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse at center top, rgba(11, 27, 43, 0.05) 0%, transparent 50%)'
-        }} />
+        {/* NO OVERLAY - Video at full brightness */}
+        {/* Text will use shadows for readability */}
       </div>
 
       {/* Content Layer */}
