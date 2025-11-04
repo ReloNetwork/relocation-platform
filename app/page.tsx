@@ -226,27 +226,27 @@ export default function HomePage() {
       {/* Dynamic Professional Partner Hero Background */}
       <DynamicHeroBackground className="h-[70vh] md:h-[75vh] flex items-center justify-center overflow-hidden pt-16">
         <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" style={{ 
-            fontFamily: 'Playfair Display, Georgia, serif',
-            textShadow: '2px 2px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.5)'
-          }}>
-            Relocate to <span className="text-[#C9A24A]" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>London</span><br />
-            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white/90">Effortlessly.</span>
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4" style={{
-            textShadow: '1px 1px 6px rgba(0,0,0,0.7), 0 0 15px rgba(0,0,0,0.5)'
-          }}>
-            Your concierge for executive relocations to London.
-          </p>
-          <p className="text-sm sm:text-base text-white/80 mb-6 max-w-4xl mx-auto leading-relaxed px-4" style={{
-            textShadow: '1px 1px 4px rgba(0,0,0,0.7), 0 0 10px rgba(0,0,0,0.5)'
-          }}>
-            Property, schools, and lifestyle handled in days, not months, for executives and the teams who move them.
-          </p>
+          <div className="backdrop-blur-sm bg-[#0B1B2B]/20 rounded-2xl p-8 md:p-10">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" style={{ 
+              fontFamily: 'Playfair Display, Georgia, serif',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+            }}>
+              Relocate to <span className="text-[#C9A24A]" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>London</span><br />
+              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white">Effortlessly.</span>
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-white mb-2 max-w-4xl mx-auto leading-relaxed font-medium px-4" style={{
+              textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
+            }}>
+              Your concierge for executive relocations to London.
+            </p>
+            <p className="text-sm sm:text-base text-white/90 mb-6 max-w-4xl mx-auto leading-relaxed px-4" style={{
+              textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+            }}>
+              Property, schools, and lifestyle handled in days, not months, for executives and the teams who move them.
+            </p>
 
-          {/* Main CTAs - Hero Style */}
-          <div className="mb-8">
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-6">
+            {/* Main CTAs - Hero Style */}
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mt-6">
               <Button
                 onClick={checkoutFunctions.executiveIntake}
                 size="lg"
@@ -262,7 +262,7 @@ export default function HomePage() {
                 Corporate Assessment (15 min)
               </Button>
             </div>
-            <div className="text-center mb-8 md:hidden">
+            <div className="text-center md:hidden">
               <Button
                 variant="link"
                 onClick={() => window.location.href = '/corporate-assessment'}
@@ -272,9 +272,6 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
-
-          {/* Reduced spacer */}
-          <div className="mb-8"></div>
         </div>
       </DynamicHeroBackground>
 
