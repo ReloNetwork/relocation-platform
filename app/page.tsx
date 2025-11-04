@@ -13,7 +13,7 @@ import { Button } from '../ui/components/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/components/card'
 import { Badge } from '../ui/components/badge'
 import { Separator } from '../ui/components/separator'
-import DynamicHeroBackground from '../components/DynamicHeroBackground'
+import VideoHeroBackground from '../components/VideoHeroBackground'
 import ProfessionalPartnerBanner from '../components/ProfessionalPartnerBanner'
 
 const AudienceCard = ({ 
@@ -223,8 +223,8 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Dynamic Professional Partner Hero Background */}
-      <DynamicHeroBackground className="h-[70vh] md:h-[75vh] flex items-center justify-center overflow-hidden pt-16">
+      {/* Video Hero Background */}
+      <VideoHeroBackground className="h-[70vh] md:h-[75vh] flex items-center justify-center overflow-hidden pt-16">
         <div className="relative z-10 text-center max-w-6xl mx-auto px-3 sm:px-4">
           <div className="backdrop-blur-sm bg-[#0B1B2B]/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" style={{ 
@@ -274,7 +274,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </DynamicHeroBackground>
+      </VideoHeroBackground>
 
       {/* Professional Partner Editorial Banner */}
       <ProfessionalPartnerBanner />
