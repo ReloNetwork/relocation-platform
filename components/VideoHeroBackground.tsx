@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 interface VideoHeroBackgroundProps {
   children: React.ReactNode
@@ -11,6 +11,39 @@ const VideoHeroBackground: React.FC<VideoHeroBackgroundProps> = ({
   children, 
   className = "" 
 }) => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    // Force video to play on mobile
+    const attemptPlay = () => {
+      video.play().catch(() => {
+        // If autoplay fails, try on user interaction
+        const playOnInteraction = () => {
+          video.play()
+          document.removeEventListener('touchstart', playOnInteraction)
+          document.removeEventListener('click', playOnInteraction)
+        }
+        document.addEventListener('touchstart', playOnInteraction)
+        document.addEventListener('click', playOnInteraction)
+      })
+    }
+
+    // Try to play immediately
+    attemptPlay()
+
+    // Also try after a short delay
+    setTimeout(attemptPlay, 100)
+
+    // Try on visibility change (for when tab becomes active)
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        attemptPlay()
+      }
+    })
+  }, [])
   return (
     <div className={`relative ${className}`}>
       {/* Simple Video Background - No conditions, always show */}
@@ -27,6 +60,7 @@ const VideoHeroBackground: React.FC<VideoHeroBackgroundProps> = ({
           }}
         />
         <video
+          ref={videoRef}
           className="min-w-full min-h-full w-auto h-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover"
           style={{
             position: 'absolute',
@@ -40,13 +74,15 @@ const VideoHeroBackground: React.FC<VideoHeroBackgroundProps> = ({
             objectFit: 'cover',
             zIndex: 1
           }}
-          autoPlay
-          muted
-          loop
-          playsInline
+          autoPlay={true}
+          muted={true}
+          loop={true}
+          playsInline={true}
+          controls={false}
+          preload="auto"
           poster=""
         >
-          <source src={`/videos/london-skyline-panoramic.mp4?v=${Date.now()}`} type="video/mp4" />
+          <source src="/videos/london-skyline-panoramic.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
