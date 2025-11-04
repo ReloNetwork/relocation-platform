@@ -15,15 +15,38 @@ const VideoHeroBackground: React.FC<VideoHeroBackgroundProps> = ({
     <div className={`relative ${className}`}>
       {/* Simple Video Background - No conditions, always show */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
+        {/* Force video display with inline styles to override any CSS */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#000'
+          }}
+        />
         <video
           className="min-w-full min-h-full w-auto h-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            minWidth: '100%',
+            minHeight: '100%',
+            width: 'auto',
+            height: 'auto',
+            objectFit: 'cover',
+            zIndex: 1
+          }}
           autoPlay
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1520986606214-8b456906c813?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80"
+          poster=""
         >
-          <source src="/videos/london-skyline-panoramic.mp4" type="video/mp4" />
+          <source src={`/videos/london-skyline-panoramic.mp4?v=${Date.now()}`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
