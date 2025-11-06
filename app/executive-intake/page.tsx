@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { Crown, ArrowRight, CheckCircle, Calendar, Users, MapPin, GraduationCap, CreditCard } from 'lucide-react'
 
@@ -57,6 +57,30 @@ export default function ExecutiveIntakePage() {
     'Hammersmith', 'Fulham', 'Islington', 'Camden', 'Notting Hill',
     'South Kensington', 'Paddington', 'King\'s Cross', 'Bermondsey', 'Wimbledon'
   ]
+
+  // Load transferred data from AI Talent Assessment form
+  useEffect(() => {
+    const transferData = sessionStorage.getItem('ai_talent_transfer_data')
+    if (transferData) {
+      try {
+        const data = JSON.parse(transferData)
+        setFormData(prev => ({
+          ...prev,
+          name: data.name || '',
+          email: data.email || '',
+          phone: data.phone || '',
+          currentLocation: data.currentLocation || '',
+          moveDate: data.moveDate || '',
+          budget: data.budget || '',
+          otherRequirements: data.otherRequirements || ''
+        }))
+        // Clear the transfer data after loading
+        sessionStorage.removeItem('ai_talent_transfer_data')
+      } catch (error) {
+        console.error('Error loading transfer data:', error)
+      }
+    }
+  }, [])
 
   const handleAreaToggle = (area: string) => {
     setFormData(prev => ({
@@ -457,7 +481,7 @@ export default function ExecutiveIntakePage() {
                 <div className="flex justify-between items-center text-lg">
                   <span className="font-semibold">Total</span>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-[#0B1B2B]">Contact for Pricing</div>
+                    <div className="text-2xl font-bold text-[#0B1B2B]">£3,497</div>
                     <div className="text-sm text-[#6B7280]">One-time payment</div>
                   </div>
                 </div>

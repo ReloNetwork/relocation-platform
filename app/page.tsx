@@ -503,7 +503,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs text-[#16A34A] font-medium">✓ Email verified</div>
+                    <div className="text-xs text-[#16A34A] font-medium">Email verified</div>
                     <div className="text-xs text-[#6B7280]">Knight Frank Mayfair</div>
                   </div>
                 </CardContent>

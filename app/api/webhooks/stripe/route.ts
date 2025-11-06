@@ -178,10 +178,10 @@ async function handleAIPayment(session: Stripe.Checkout.Session) {
       await resend.emails.send({
         from: 'AI Sales <ai@therelonetwork.com>',
         to: ['hello@therelonetwork.com', 'ai@therelonetwork.com'],
-        subject: `🚀 NEW AI SOLUTION PURCHASED - ${aiPlan.name}`,
+        subject: `NEW AI SOLUTION PURCHASED - ${aiPlan.name}`,
         html: `
           <div style="background: #C9A24A; color: white; padding: 20px; text-align: center;">
-            <h1>🚀 NEW AI SOLUTION PURCHASED</h1>
+            <h1>NEW AI SOLUTION PURCHASED</h1>
             <p>IMMEDIATE IMPLEMENTATION REQUIRED</p>
           </div>
           
@@ -197,7 +197,7 @@ async function handleAIPayment(session: Stripe.Checkout.Session) {
             <p><strong>Subscription ID:</strong> ${typeof session.subscription === 'string' ? session.subscription : 'N/A'}</p>
             
             <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
-              <h3 style="color: #92400E;">⚡ IMMEDIATE ACTIONS REQUIRED:</h3>
+              <h3 style="color: #92400E;">IMMEDIATE ACTIONS REQUIRED:</h3>
               <ol style="color: #92400E;">
                 <li>Contact customer within 24 hours to schedule onboarding call</li>
                 <li>Assign dedicated AI implementation specialist</li>
@@ -208,7 +208,7 @@ async function handleAIPayment(session: Stripe.Checkout.Session) {
             </div>
             
             <div style="background: #EBF8FF; border-left: 4px solid #3B82F6; padding: 15px; margin: 20px 0;">
-              <h3 style="color: #1E40AF;">📋 IMPLEMENTATION CHECKLIST:</h3>
+              <h3 style="color: #1E40AF;">IMPLEMENTATION CHECKLIST:</h3>
               <ul style="color: #1E40AF;">
                 <li>□ Initial consultation call scheduled</li>
                 <li>□ Technical requirements gathered</li>
@@ -277,10 +277,10 @@ async function handleCorporateEmergencyPayment(session: Stripe.Checkout.Session)
       await resend.emails.send({
         from: 'emergency@therelonetwork.com',
         to: ['emergency@therelonetwork.com', 'ops@therelonetwork.com'],
-        subject: `💰 EMERGENCY PACKAGE PURCHASED - ${companyName}`,
+        subject: `EMERGENCY PACKAGE PURCHASED - ${companyName}`,
         html: `
           <div style="background: #059669; color: white; padding: 20px; text-align: center;">
-            <h1>🚨 EMERGENCY PACKAGE PURCHASED</h1>
+            <h1>EMERGENCY PACKAGE PURCHASED</h1>
             <p>IMMEDIATE SERVICE ACTIVATION REQUIRED</p>
           </div>
           
@@ -294,7 +294,7 @@ async function handleCorporateEmergencyPayment(session: Stripe.Checkout.Session)
             <p><strong>Session ID:</strong> ${session.id}</p>
             
             <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
-              <h3 style="color: #92400E;">⚡ IMMEDIATE ACTIONS REQUIRED:</h3>
+              <h3 style="color: #92400E;">IMMEDIATE ACTIONS REQUIRED:</h3>
               <ol style="color: #92400E;">
                 <li>Contact client within 2 hours as guaranteed</li>
                 <li>Assign dedicated emergency specialist</li>
@@ -426,10 +426,10 @@ async function handleClientRelocationPurchase(session: Stripe.Checkout.Session) 
       await resend.emails.send({
         from: 'welcome@therelonetwork.com',
         to: session.customer_email,
-        subject: `Welcome to Relo Network - Your Relocation Journey Begins! 🏠`,
+        subject: `Welcome to Relo Network - Your Relocation Journey Begins!`,
         html: `
           <div style="background: #059669; color: white; padding: 20px; text-align: center;">
-            <h1>🎉 Welcome to Relo Network!</h1>
+            <h1>Welcome to Relo Network!</h1>
             <p>Your relocation service has been activated</p>
           </div>
           
@@ -439,7 +439,7 @@ async function handleClientRelocationPurchase(session: Stripe.Checkout.Session) 
             <p>Thank you for choosing Relo Network for your relocation to London. Your payment has been confirmed and your dedicated dashboard is ready!</p>
             
             <div style="background: #F3F4F6; border-left: 4px solid #059669; padding: 15px; margin: 20px 0;">
-              <h3 style="color: #059669;">🚀 Your Next Steps:</h3>
+              <h3 style="color: #059669;">Your Next Steps:</h3>
               <ol style="color: #374151;">
                 <li><strong>Access your dashboard:</strong> <a href="${dashboardLink}" style="color: #059669;">Click here to view your relocation dashboard</a></li>
                 <li><strong>Complete your profile:</strong> Help us understand your needs better</li>
@@ -449,7 +449,7 @@ async function handleClientRelocationPurchase(session: Stripe.Checkout.Session) 
             </div>
             
             <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
-              <h3 style="color: #92400E;">📋 Your Purchase Details:</h3>
+              <h3 style="color: #92400E;">Your Purchase Details:</h3>
               <p style="color: #92400E;"><strong>Service:</strong> ${serviceType || 'Relocation Service'}</p>
               <p style="color: #92400E;"><strong>Route:</strong> ${routeFrom || 'TBD'} → ${routeTo || 'London, UK'}</p>
               <p style="color: #92400E;"><strong>Amount Paid:</strong> £${session.amount_total ? (session.amount_total / 100).toLocaleString() : 'Unknown'}</p>
@@ -470,10 +470,10 @@ async function handleClientRelocationPurchase(session: Stripe.Checkout.Session) 
       await resend.emails.send({
         from: 'alerts@therelonetwork.com',
         to: ['ops@therelonetwork.com', 'concierge@therelonetwork.com'],
-        subject: `🎯 NEW CLIENT ONBOARDED - ${fullName || session.customer_email}`,
+        subject: `NEW CLIENT ONBOARDED - ${fullName || session.customer_email}`,
         html: `
           <div style="background: #059669; color: white; padding: 20px; text-align: center;">
-            <h1>🎯 NEW CLIENT PURCHASE</h1>
+            <h1>NEW CLIENT PURCHASE</h1>
             <p>Client dashboard and move case created successfully</p>
           </div>
           
@@ -491,7 +491,7 @@ async function handleClientRelocationPurchase(session: Stripe.Checkout.Session) 
             <p><strong>User ID:</strong> ${userId}</p>
             
             <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
-              <h3 style="color: #92400E;">⚡ IMMEDIATE ACTIONS REQUIRED:</h3>
+              <h3 style="color: #92400E;">IMMEDIATE ACTIONS REQUIRED:</h3>
               <ol style="color: #92400E;">
                 <li>Assign dedicated concierge within 24 hours</li>
                 <li>Send welcome call invitation</li>
@@ -605,10 +605,10 @@ async function handleExecutiveIntakePayment(session: Stripe.Checkout.Session) {
       await resend.emails.send({
         from: 'Executive Team <executive@therelonetwork.com>',
         to: ['hello@therelonetwork.com', 'executive@therelonetwork.com'],
-        subject: `🎯 NEW 72-Hour Audit Purchase - ${formData.name}`,
+        subject: `NEW 72-Hour Audit Purchase - ${formData.name}`,
         html: `
           <div style="background: #C9A24A; color: white; padding: 20px; text-align: center;">
-            <h1>🎯 NEW 72-HOUR AUDIT PURCHASED</h1>
+            <h1>NEW 72-HOUR AUDIT PURCHASED</h1>
             <p>IMMEDIATE CUSTOMER ONBOARDING REQUIRED</p>
           </div>
           
@@ -622,7 +622,7 @@ async function handleExecutiveIntakePayment(session: Stripe.Checkout.Session) {
             <p><strong>Urgency:</strong> ${formData.urgency}</p>
             
             <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
-              <h3 style="color: #92400E;">⚡ IMMEDIATE ACTIONS REQUIRED:</h3>
+              <h3 style="color: #92400E;">IMMEDIATE ACTIONS REQUIRED:</h3>
               <ol style="color: #92400E;">
                 <li>Contact customer within ${formData.urgency === 'emergency' ? '2 hours' : formData.urgency === 'urgent' ? '12 hours' : '24 hours'}</li>
                 <li>Schedule 60-minute strategy call</li>

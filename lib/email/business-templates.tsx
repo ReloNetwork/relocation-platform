@@ -5,13 +5,13 @@ export const socialMediaPosts = {
   linkedin: {
     executive: {
       title: "Executive London Relocation Services",
-      content: `🎯 London calling? Moving to the capital as a C-suite executive shouldn't feel like navigating a maze.
+      content: `London calling? Moving to the capital as a C-suite executive shouldn't feel like navigating a maze.
 
 Our 72-Hour Setup Audit takes the guesswork out of executive relocations:
-✅ Bespoke area analysis (not generic recommendations)
-✅ Property shortlist within 48 hours
-✅ 3 warm introductions to vetted partners
-✅ 30-day concierge support
+• Bespoke area analysis (not generic recommendations)
+• Property shortlist within 48 hours
+• 3 warm introductions to vetted partners
+• 30-day concierge support
 
 Last month: Found a Managing Director their perfect Marylebone flat in 48 hours.
 This week: Helped a Senior Partner navigate Singapore to London seamlessly.
@@ -24,7 +24,7 @@ Executive relocations require executive service.
     
     corporate: {
       title: "Corporate Relocation Solutions for HR Teams",
-      content: `📊 HR teams: Tired of employee relocations becoming 6-month ordeals?
+      content: `HR teams: Tired of employee relocations becoming 6-month ordeals?
 
 Our 15-minute Corporate Assessment identifies exactly what your team needs:
 • Volume pricing with SLAs you can actually rely on
@@ -42,7 +42,7 @@ Ready to transform your corporate mobility programme?
     
     valueProposition: {
       title: "Dual-Track Relocation Strategy",
-      content: `💡 Why London relocations fail: Most services treat a Goldman Sachs MD the same as a university student.
+      content: `Why London relocations fail: Most services treat a Goldman Sachs MD the same as a university student.
 
 We don't.
 
@@ -83,8 +83,8 @@ Best regards,
 Executive Services Team
 Relo Network
 
-📞 +44 20 3105 9566
-📧 executive@therelonetwork.com`
+Phone: +44 20 3105 9566
+Email: executive@therelonetwork.com`
   },
   
   corporate: {
@@ -110,8 +110,8 @@ Best regards,
 Corporate Services Team
 Relo Network
 
-📞 +44 20 3105 9566
-📧 corporate@therelonetwork.com`
+Phone: +44 20 3105 9566
+Email: corporate@therelonetwork.com`
   }
 }
 
