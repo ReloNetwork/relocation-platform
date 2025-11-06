@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { ArrowLeft, Clock, DollarSign, Users, TrendingUp, MapPin, Briefcase } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'The $690k AI Talent War: Why London is the New Battleground | Relo Network',
-  description: 'xAI, OpenAI, and Anthropic are paying up to $690k for AI talent. Learn how 7-day relocations are winning the talent war in London\'s booming AI scene.',
+  title: 'The £690k AI Talent War: Why London is the New Battleground | Relo Network',
+  description: 'xAI, OpenAI, and Anthropic are paying up to £690k for AI talent. Learn how 7-day relocations are winning the talent war in London\'s booming AI scene.',
   keywords: 'AI talent relocation London, xAI London office, OpenAI UK, Anthropic London, AI engineer relocation, Silicon Valley to London, Piccadilly AI office, St Pauls tech hub',
   openGraph: {
-    title: 'The $690k AI Talent War: London Edition',
+    title: 'The £690k AI Talent War: London Edition',
     description: 'How xAI, OpenAI, and Anthropic are transforming London into an AI powerhouse',
     type: 'article',
     publishedTime: '2025-11-04T10:00:00Z',
@@ -51,7 +51,7 @@ export default function AITalentWarPost() {
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold text-[#0B1220] mb-6 leading-tight">
-            The $690k AI Talent War: Why London is the New Battleground
+            The £690k AI Talent War: Why London is the New Battleground
           </h1>
           
         </header>
@@ -77,7 +77,7 @@ export default function AITalentWarPost() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="text-center">
             <DollarSign className="h-8 w-8 text-[#C9A24A] mx-auto mb-2" />
-            <div className="text-2xl font-bold text-[#0B1220]">$690k</div>
+            <div className="text-2xl font-bold text-[#0B1220]">£690k</div>
             <div className="text-sm text-gray-600">Top-end AI researcher compensation packages</div>
           </div>
           <div className="text-center">
@@ -117,7 +117,7 @@ export default function AITalentWarPost() {
               xAI – Piccadilly
             </h3>
             <ul className="space-y-2 text-gray-700">
-              <li>• $180k–$440k for engineers and SREs</li>
+              <li>• £180k–£440k for engineers and SREs</li>
               <li>• Former Twitter office, heart of the West End</li>
             </ul>
           </div>
@@ -128,7 +128,7 @@ export default function AITalentWarPost() {
               OpenAI – near St Paul's
             </h3>
             <ul className="space-y-2 text-gray-700">
-              <li>• $200k–$530k for research and engineering</li>
+              <li>• £200k–£530k for research and engineering</li>
               <li>• Co-founder level involvement in recruiting</li>
             </ul>
           </div>
@@ -139,7 +139,7 @@ export default function AITalentWarPost() {
               Anthropic – St Paul's area
             </h3>
             <ul className="space-y-2 text-gray-700">
-              <li>• $300k–$690k for top researchers</li>
+              <li>• £300k–£690k for top researchers</li>
               <li>• Aggressive London build-out alongside major funding rounds</li>
             </ul>
           </div>
@@ -184,7 +184,7 @@ export default function AITalentWarPost() {
           </div>
 
           <p className="text-gray-700 mb-8">
-            By the time your process clears, that $690k hire may be emotionally checked out, or somewhere else entirely.
+            By the time your process clears, that £690k hire may be emotionally checked out, or somewhere else entirely.
           </p>
 
           <h2 className="text-3xl font-bold text-[#0B1220] mt-12 mb-6">
@@ -266,7 +266,7 @@ export default function AITalentWarPost() {
           <ul className="space-y-2 mb-6 text-gray-700">
             <li>• Two school-age children</li>
             <li>• Partner with a strong career of their own</li>
-            <li>• Compensation north of $500k</li>
+            <li>• Compensation north of £500k</li>
           </ul>
 
           <p className="text-gray-700 mb-6">
@@ -316,7 +316,7 @@ export default function AITalentWarPost() {
             <div className="bg-white border border-gray-200 rounded-xl p-6">
               <h4 className="font-bold text-[#0B1220] mb-2">Productivity</h4>
               <p className="text-gray-700 text-sm">
-                Every week in temporary accommodation is a week your $690k asset is operating at 50–70%, not 100%.
+                Every week in temporary accommodation is a week your £690k asset is operating at 50–70%, not 100%.
               </p>
             </div>
             
@@ -383,7 +383,7 @@ export default function AITalentWarPost() {
               <strong>• More global AI players announcing London offices</strong>
             </li>
             <li className="text-gray-700">
-              <strong>• Salary bands at the top end nudging towards $1m for exceptional talent</strong>
+              <strong>• Salary bands at the top end nudging towards £1m for exceptional talent</strong>
             </li>
             <li className="text-gray-700">
               <strong>• Purpose-built AI campuses and dedicated R&D hubs</strong>
