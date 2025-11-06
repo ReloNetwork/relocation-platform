@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, Clock, DollarSign, Users, TrendingUp, MapPin, Briefcase } from 'lucide-react'
+import { useState } from 'react'
 
 export const metadata: Metadata = {
   title: 'The £690k AI Talent War: Why London is the New Battleground | Relo Network',
@@ -15,7 +16,41 @@ export const metadata: Metadata = {
   },
 }
 
+'use client'
+
 export default function AITalentWarPost() {
+  const [email, setEmail] = useState('')
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      // Submit to your newsletter/lead capture system
+      const response = await fetch('/api/newsletter-signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email, 
+          source: 'ai-talent-article',
+          utm_source: 'linkedin',
+          content: 'AI Talent War Article Lead Magnet'
+        }),
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        setEmail('')
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error)
+    }
+    
+    setIsSubmitting(false)
+  }
+
   return (
     <div className="min-h-screen bg-[#FAFAF9]">
       {/* Header */}
@@ -99,6 +134,45 @@ export default function AITalentWarPost() {
           <p className="text-gray-600 text-center mt-6 text-sm">
             At those salary levels, every week of delay is tens of thousands burned on partial productivity, family friction, and competitors circling.
           </p>
+        </div>
+
+        {/* Lead Capture Gate */}
+        <div className="bg-gradient-to-r from-[#C9A24A]/10 to-[#0B1220]/5 rounded-2xl p-8 my-12 border border-[#C9A24A]/20">
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="text-2xl font-bold text-[#0B1220] mb-4">
+              Get the Full AI Talent Salary Breakdown
+            </h3>
+            <p className="text-gray-700 mb-6">
+              See exactly what xAI, OpenAI, and Anthropic are paying across all levels in London. Plus get our exclusive 2025 AI talent relocation playbook.
+            </p>
+            {!isSubmitted ? (
+              <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your work email"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  required
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-[#C9A24A] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#B8913A] transition-colors whitespace-nowrap disabled:opacity-50"
+                >
+                  {isSubmitting ? 'Sending...' : 'Get Full Report'}
+                </button>
+              </form>
+            ) : (
+              <div className="text-center">
+                <div className="text-green-600 text-lg font-semibold mb-2">✅ Report on its way!</div>
+                <p className="text-gray-600">Check your email for the full AI salary breakdown and relocation playbook.</p>
+              </div>
+            )}
+            <p className="text-xs text-gray-500 mt-3">
+              Free report • No spam • Used by 500+ tech executives
+            </p>
+          </div>
         </div>
 
         {/* Main Content */}
