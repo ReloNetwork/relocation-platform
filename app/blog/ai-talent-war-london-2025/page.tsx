@@ -208,9 +208,6 @@ export default function AITalentWarPost() {
             </ul>
           </div>
 
-          <p className="text-gray-700 mb-8">
-            This is becoming London's main AI corridor. For companies hiring into it, the question is no longer "Can we afford them?" but "Can we land them fast enough?"
-          </p>
 
           <h2 className="text-3xl font-bold text-[#0B1220] mt-12 mb-6">
             Why Traditional Relocation Fails in 2025
