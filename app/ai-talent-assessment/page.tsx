@@ -716,10 +716,10 @@ export default function AITalentAssessment() {
                     className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                   >
                     <option value="">Select drop-off rate</option>
-                    <option value="none">< 10%</option>
+                    <option value="none">&lt; 10%</option>
                     <option value="one">10-20%</option>
                     <option value="multiple">20-30%</option>
-                    <option value="counter">> 30%</option>
+                    <option value="counter">&gt; 30%</option>
                   </select>
                 </div>
                 <div>
@@ -913,10 +913,10 @@ export default function AITalentAssessment() {
                     className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                   >
                     <option value="">Select percentage</option>
-                    <option value="single">< 25%</option>
+                    <option value="single">&lt; 25%</option>
                     <option value="couple">25-50%</option>
                     <option value="family-small">50-75%</option>
-                    <option value="family-large">> 75%</option>
+                    <option value="family-large">&gt; 75%</option>
                   </select>
                 </div>
                 <div>
