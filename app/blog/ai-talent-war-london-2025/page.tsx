@@ -127,7 +127,7 @@ export default function AITalentWarPost() {
         </div>
 
         {/* Lead Capture Gate */}
-        <div className="bg-gradient-to-r from-[#C9A24A]/10 to-[#0B1220]/5 rounded-2xl p-8 my-12 border border-[#C9A24A]/20">
+        <div id="lead-capture" className="bg-gradient-to-r from-[#C9A24A]/10 to-[#0B1220]/5 rounded-2xl p-8 my-12 border border-[#C9A24A]/20">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl font-bold text-[#0B1220] mb-4">
               Is Your Relocation Velocity Costing You Candidates?
@@ -466,54 +466,64 @@ export default function AITalentWarPost() {
           </h2>
 
           <p className="text-gray-700 mb-6">
-            When AI researchers earn as much as top athletes, 60-day relocations put you at a serious disadvantage.
+            When AI researchers earn as much as top athletes, 60–120 day relocations put you at a serious disadvantage.
           </p>
 
           <p className="text-gray-700 mb-6">
-            The Relo Network specialises in rapid executive relocations for AI and tech companies expanding to London.
-          </p>
-
-          <p className="text-gray-700 mb-8">
-            We focus on one clear outcome:
+            The Relo Network specialises in rapid executive relocations for AI and tech companies expanding to London. We focus on one clear outcome:
           </p>
 
           <div className="bg-[#C9A24A]/10 border border-[#C9A24A] rounded-xl p-6 mb-8">
             <p className="text-lg font-bold text-[#0B1220] text-center">
-              From offer letter to fully operational in London in 7 days, once the visa is in place.
+              From offer accepted to fully operational in London in 7–14 days, once the visa is in place.
             </p>
           </div>
 
-          <div className="bg-[#0B1220] text-white rounded-xl p-8 my-12">
-            <h3 className="text-2xl font-bold mb-4 text-white">Book a 20-Minute London Landing Briefing</h3>
-            <p className="text-lg leading-relaxed text-white/95 mb-6">
-              We'll map your current relocation process, show you what a 7-day landing looks like, and outline a pilot for your next senior hire.
+          {/* Option 1: Get the London Relocation Index */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-[#0B1220] mb-4">1. Get the London Relocation Index (early access)</h3>
+            <p className="text-gray-700 mb-4">
+              See how your Relocation Velocity compares to other AI and tech teams hiring into London – including early benchmarks on timelines, candidate drop-off and time-to-productivity.
             </p>
-            <p className="text-white/90">
-              Learn more at therelonetwork.com
-            </p>
+            <a 
+              href="#lead-capture" 
+              className="inline-flex items-center text-[#C9A24A] font-medium hover:text-[#B8913A] transition"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('lead-capture')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              → Get early access to the London Relocation Index
+            </a>
           </div>
-        </div>
 
-        {/* Call to Action */}
-        <div className="bg-gradient-to-r from-[#C9A24A] to-[#B8913A] rounded-xl p-8 mt-12">
-          <h3 className="text-2xl font-bold mb-4 text-[#0B1220]">Ready to Win the AI Talent War?</h3>
-          <p className="mb-6 text-[#0B1220]/80">
-            We relocate AI researchers and engineers from Silicon Valley to London in 7 days. 
-            While competitors process paperwork, your talent is already productive.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          {/* Option 2: Book a Relocation Velocity Assessment */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-[#0B1220] mb-4">2. Book a Relocation Velocity Assessment</h3>
+            <p className="text-gray-700 mb-4">
+              If you're hiring senior AI talent into London in the next 3–6 months, we'll:
+            </p>
+            <ul className="text-gray-700 mb-4 space-y-2">
+              <li>• Map your current relocation process</li>
+              <li>• Identify where velocity – and candidates – are being lost</li>
+              <li>• Outline a 7-day London landing pilot for your next senior hire</li>
+            </ul>
             <Link 
               href="/ai-talent-assessment" 
-              className="bg-white text-[#0B1220] px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition inline-block text-center"
+              className="inline-flex items-center text-[#C9A24A] font-medium hover:text-[#B8913A] transition"
             >
-              Start Your 7-Day Relocation
+              → Book a 20-minute Relocation Velocity Briefing
             </Link>
-            <Link 
-              href="/" 
-              className="border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition inline-block text-center"
-            >
-              Learn More
-            </Link>
+          </div>
+
+          {/* B2C Hook */}
+          <div className="border-t border-gray-200 pt-8">
+            <p className="text-gray-700 mb-2">
+              <strong>Relocating yourself as an AI professional?</strong>
+            </p>
+            <p className="text-gray-700">
+              Start your 7-Day London Landing and get personal support for housing, schools and first-30-day setup.
+            </p>
           </div>
         </div>
 
