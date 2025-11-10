@@ -257,7 +257,7 @@ export default function AITalentWarPost() {
           </p>
           
           <p className="text-gray-700 mb-6">
-            We focus on what happens after the visa is approved: the first 7 days in London.
+            We focus on what happens after the visa is approved: the first 7-14 days in London.
           </p>
 
           <div className="bg-[#0B1220] text-white rounded-xl p-8 my-12">
