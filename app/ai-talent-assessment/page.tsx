@@ -9,12 +9,13 @@ export default function AITalentAssessment() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [submissionData, setSubmissionData] = useState<any>(null)
   const [userType, setUserType] = useState<'company' | 'individual'>('company')
+  const [addToIndex, setAddToIndex] = useState(false)
   const [formData, setFormData] = useState({
     // Company Information
     companyName: '',
     companyWebsite: '',
     industry: 'AI/Machine Learning',
-    officeLocation: '',
+    officeLocation: ''
     
     // Contact Information
     contactName: '',
@@ -90,7 +91,7 @@ export default function AITalentAssessment() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, userType }),
+        body: JSON.stringify({ ...formData, userType, addToIndex }),
       })
       
       // Even if response is 500, still try to show confirmation
@@ -324,12 +325,10 @@ export default function AITalentAssessment() {
             <span className="text-[#C9A24A] font-semibold">AI TALENT FAST-TRACK</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            AI Talent Relocation Assessment
+            {userType === 'company' ? 'AI Talent Relocation Assessment' : 'London Landing Package'}
           </h1>
           <p className="text-xl text-gray-200 mb-8">
-            {userType === 'company' 
-              ? 'Supporting companies hiring top-tier AI professionals from leading tech firms worldwide. Get your new talent operational in London within 7 days.'
-              : 'Relocating to London with your AI compensation package? Get settled within 7 days with priority access to properties and schools.'}
+            Supporting companies hiring top-tier AI professionals and the talent relocating. Get new hires fully operational in London within 7 days.
           </p>
           
           {/* Key Benefits */}
@@ -379,7 +378,7 @@ export default function AITalentAssessment() {
               >
                 <Briefcase className="h-8 w-8 mb-3 mx-auto text-[#C9A24A]" />
                 <h3 className="font-semibold text-lg mb-2">A Company Hiring AI Talent</h3>
-                <p className="text-sm text-gray-600">I'm recruiting AI professionals and need relocation support for our new hires</p>
+                <p className="text-sm text-gray-600">I want a Relocation Velocity Assessment for our AI hires into London.</p>
               </button>
               <button
                 type="button"
@@ -392,9 +391,46 @@ export default function AITalentAssessment() {
               >
                 <User className="h-8 w-8 mb-3 mx-auto text-[#C9A24A]" />
                 <h3 className="font-semibold text-lg mb-2">An AI Professional Relocating</h3>
-                <p className="text-sm text-gray-600">I've received a relocation package and need help moving to London</p>
+                <p className="text-sm text-gray-600">I want a London Landing Package to get settled in 7 days.</p>
               </button>
             </div>
+            
+            {/* Conditional Content Based on Selection */}
+            {userType === 'company' ? (
+              <div className="mt-6 bg-gray-50 rounded-lg p-6">
+                <ul className="space-y-3 text-gray-700 mb-6">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>Map your current relocation process</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>Identify drop-off and delay risk</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>Get a 30-day action plan</span>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <div className="mt-6 bg-gray-50 rounded-lg p-6">
+                <ul className="space-y-3 text-gray-700 mb-6">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>72-hour housing shortlist</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>Schooling / neighbourhood guidance</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>30-day concierge support</span>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
           
           {/* Company Information */}
@@ -769,6 +805,24 @@ export default function AITalentAssessment() {
             </div>
           </div>
 
+          {/* London Relocation Index Checkbox for Companies */}
+          {userType === 'company' && (
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="addToIndex"
+                  checked={addToIndex}
+                  onChange={(e) => setAddToIndex(e.target.checked)}
+                  className="mt-1 h-4 w-4 text-[#C9A24A] border-gray-300 rounded focus:ring-[#C9A24A]"
+                />
+                <label htmlFor="addToIndex" className="text-sm text-gray-700 cursor-pointer">
+                  Also add me to the London Relocation Index early-access list.
+                </label>
+              </div>
+            </div>
+          )}
+
           {/* Urgency Banner */}
           <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 p-6 rounded-lg">
             <div className="flex items-start gap-3">
@@ -791,7 +845,7 @@ export default function AITalentAssessment() {
               disabled={isSubmitting}
               className="bg-[#C9A24A] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#B8913A] transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'Submitting...' : 'Get 2-Hour Response Time'}
+              {isSubmitting ? 'Submitting...' : (userType === 'company' ? 'Book a Relocation Velocity Assessment' : 'Apply for a London Landing Package')}
             </button>
             <button
               type="button"
