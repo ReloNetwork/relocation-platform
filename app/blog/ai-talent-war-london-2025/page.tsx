@@ -67,7 +67,7 @@ export default function AITalentWarPost() {
       <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
         <header className="mb-12">
           <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-            <time dateTime="2025-11-04">November 4, 2025</time>
+            <time dateTime="2025-11-10">November 10, 2025</time>
             <span>•</span>
             <span>8 min read</span>
             <span>•</span>
