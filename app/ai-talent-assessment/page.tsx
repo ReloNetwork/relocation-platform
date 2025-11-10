@@ -174,12 +174,14 @@ export default function AITalentAssessment() {
             </div>
             
             <h1 className="text-3xl md:text-4xl font-bold text-[#0B1220] mb-4">
-              Assessment Received!
+              {userType === 'company' ? 'Velocity Assessment Received!' : 'Assessment Received!'}
             </h1>
             
             <p className="text-lg text-gray-600 mb-8">
               Thank you, <strong>{submissionData.contactName}</strong>. 
-              Your AI talent relocation assessment has been prioritised.
+              {userType === 'company' 
+                ? 'Your Relocation Velocity Assessment request has been prioritised.' 
+                : 'Your AI talent relocation assessment has been prioritised.'}
             </p>
             
             <div className="bg-gradient-to-r from-[#0B1220] to-[#1a2332] text-white rounded-xl p-8 mb-8 relative">
@@ -195,7 +197,9 @@ export default function AITalentAssessment() {
                 </h2>
                 <div className="text-center space-y-2">
                   <p className="text-gray-200 leading-relaxed">
-                    An AI relocation specialist will contact you at
+                    {userType === 'company' 
+                      ? 'A relocation velocity specialist will contact you at'
+                      : 'An AI relocation specialist will contact you at'}
                   </p>
                   <p className="text-[#C9A24A] font-semibold text-lg tracking-wide">
                     {submissionData.contactEmail}
@@ -210,22 +214,45 @@ export default function AITalentAssessment() {
             <div className="bg-gray-50 rounded-xl p-6 mb-8">
               <h3 className="font-semibold text-[#0B1220] mb-4">What Happens Next?</h3>
               <div className="space-y-3 text-left max-w-md mx-auto">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-sm text-gray-700">Your assessment is being reviewed by our AI relocation team</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-sm text-gray-700">Property shortlist being prepared based on your requirements</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-sm text-gray-700">School availability being checked for your timeline</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-sm text-gray-700">7-day relocation plan being customised</p>
-                </div>
+                {userType === 'company' ? (
+                  <>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-700">Your current relocation process is being analysed</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-700">Velocity benchmarks being prepared for your industry</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-700">Drop-off risk assessment being calculated</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-700">30-day improvement plan being customised</p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-700">Your assessment is being reviewed by our AI relocation team</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-700">Property shortlist being prepared based on your requirements</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-700">School availability being checked for your timeline</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-700">7-day relocation plan being customised</p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             
@@ -280,7 +307,9 @@ export default function AITalentAssessment() {
                   href="/blog/ai-talent-war-london-2025"
                   className="bg-white text-[#0B1220] border-2 border-[#0B1220] px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition"
                 >
-                  Read: AI Talent Relocation Guide
+                  {userType === 'company' 
+                    ? 'Read: Relocation Velocity Guide'
+                    : 'Read: AI Talent Relocation Guide'}
                 </Link>
               </div>
             </div>
