@@ -45,44 +45,49 @@ export async function POST(req: NextRequest) {
       await resend.emails.send({
         from: process.env.RESEND_FROM_EMAIL || 'hello@therelonetwork.com',
         to: email,
-        subject: 'Your London Relocation Index is on its way',
+        subject: "You're in – London Relocation Index early access",
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h1 style="color: #0B1220; font-size: 24px; margin-bottom: 20px;">Thank you for your interest in the London Relocation Index</h1>
-            
-            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">Hi there,</p>
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
+              Thanks for joining the early-access list for the London Relocation Index.
+            </p>
             
             <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
-              Thank you for requesting early access to the London Relocation Index. We're putting the finishing touches on the report, which includes:
+              We're currently interviewing HR / People leaders and AI talent relocating into London to benchmark three things:
             </p>
             
             <ul style="color: #374151; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
-              <li>Benchmarks on Relocation Velocity for AI and tech hires</li>
-              <li>Candidate drop-off rates at each stage</li>
-              <li>Time-to-productivity metrics</li>
-              <li>2025 AI talent salary snapshot for London</li>
+              <li><strong>Relocation Velocity</strong> - days from offer accepted to fully productive in London</li>
+              <li><strong>Candidate drop-off</strong> - during relocation</li>
+              <li><strong>Time to feel settled</strong> - for executives and their families</li>
             </ul>
             
             <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
-              You'll receive the report within the next 24-48 hours.
+              Over the next few weeks, we'll share:
             </p>
+            
+            <ol style="color: #374151; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+              <li>A short Index preview with early benchmarks</li>
+              <li>A simple Relocation Velocity self-assessment you can run on your own process</li>
+              <li>An invite to a small roundtable for AI/tech HR leaders hiring into London</li>
+            </ol>
             
             <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
-              In the meantime, if you're actively hiring AI talent and need help with relocations, you can:
+              If you're happy to contribute data (anonymised), just hit reply with:
             </p>
             
-            <div style="background-color: #FEF3C7; border-left: 4px solid #C9A24A; padding: 16px; margin: 20px 0;">
-              <p style="color: #92400E; font-size: 14px; margin: 0;">
-                <strong>Book a 20-Minute London Landing Briefing</strong><br>
-                Learn how we relocate AI talent from Silicon Valley to London in 7 days.<br>
-                <a href="https://therelonetwork.com/ai-talent-assessment" style="color: #C9A24A; font-weight: bold; text-decoration: none;">Start your assessment →</a>
-              </p>
-            </div>
+            <ul style="color: #374151; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+              <li>How many AI/tech hires you're bringing into London in the next 12 months</li>
+              <li>Your biggest headache in relocating them</li>
+            </ul>
+            
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
+              We'll keep you posted as soon as the preview is ready.
+            </p>
             
             <p style="color: #6B7280; font-size: 14px; line-height: 1.5; margin-top: 30px; padding-top: 20px; border-top: 1px solid #E5E7EB;">
-              Best regards,<br>
-              The Relo Network Team<br>
-              <a href="https://therelonetwork.com" style="color: #C9A24A;">therelonetwork.com</a>
+              Best Regards<br>
+              The Relo Network Team
             </p>
           </div>
         `
