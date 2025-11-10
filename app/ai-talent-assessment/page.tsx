@@ -15,7 +15,7 @@ export default function AITalentAssessment() {
     companyName: '',
     companyWebsite: '',
     industry: 'AI/Machine Learning',
-    officeLocation: ''
+    officeLocation: '',
     
     // Contact Information
     contactName: '',
