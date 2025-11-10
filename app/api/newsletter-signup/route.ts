@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
             <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
-              Thanks for joining the early-access list for the London Relocation Index.
+              <strong>Thank you for joining the early access list for the London Relocation Index.</strong>
             </p>
             
             <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
@@ -81,13 +81,18 @@ export async function POST(req: NextRequest) {
               <li>Your biggest headache in relocating them</li>
             </ul>
             
-            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 30px;">
               We'll keep you posted as soon as the preview is ready.
             </p>
             
-            <p style="color: #6B7280; font-size: 14px; line-height: 1.5; margin-top: 30px; padding-top: 20px; border-top: 1px solid #E5E7EB;">
-              Best Regards<br>
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 8px;">
+              Best regards,
+            </p>
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 8px;">
               The Relo Network Team
+            </p>
+            <p style="margin-bottom: 0;">
+              <a href="https://therelonetwork.com" style="color: #C9A24A; text-decoration: none;">therelonetwork.com</a>
             </p>
           </div>
         `
