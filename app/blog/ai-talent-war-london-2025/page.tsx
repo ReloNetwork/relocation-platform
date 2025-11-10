@@ -107,7 +107,7 @@ export default function AITalentWarPost() {
           </div>
           <div className="text-center">
             <Clock className="h-8 w-8 text-[#C9A24A] mx-auto mb-2" />
-            <div className="text-2xl font-bold text-[#0B1220]">7 days</div>
+            <div className="text-2xl font-bold text-[#0B1220]">7-14 days</div>
             <div className="text-sm text-gray-600">Our standard London landing window for senior talent (post-visa)</div>
           </div>
           <div className="text-center">
