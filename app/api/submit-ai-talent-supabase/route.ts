@@ -1,253 +1,276 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { NextRequest, NextResponse } from "next/server"
+import { createServiceSupabase } from '@/lib/supabase'
+import { Resend } from 'resend'
 
-// Initialize Supabase client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const formData = await request.json()
+    const data = await req.json()
+    const { userType, addToIndex, ...formData } = data
     
-    // Initialize Supabase client with service role key (for server-side operations)
-    const supabase = createClient(supabaseUrl, supabaseServiceKey)
+    // Initialize Supabase client
+    const supabase = createServiceSupabase()
     
-    // Insert into Supabase
-    const { data, error } = await supabase
-      .from('ai_talent_submissions')
-      .insert([{
-        // User Type
-        user_type: formData.userType || 'company',
-        
-        // Company Information
-        company_name: formData.companyName,
-        company_website: formData.companyWebsite,
-        industry: formData.industry || 'AI/Machine Learning',
-        office_location: formData.officeLocation,
-        
-        // Contact Information
-        contact_name: formData.contactName,
-        contact_role: formData.contactRole,
-        contact_email: formData.contactEmail,
-        contact_phone: formData.contactPhone,
-        
-        // AI Talent Requirements
-        talent_role: formData.talentRole,
-        seniority_level: formData.seniorityLevel,
-        current_location: formData.currentLocation,
-        target_start_date: formData.targetStartDate,
-        salary_range: formData.salaryRange,
-        
-        // Relocation Needs
-        employee_count: formData.employeeCount || '1',
-        family_size: formData.familySize,
-        children_ages: formData.childrenAges,
-        spouse_employment: formData.spouseEmployment,
-        
-        // 72-Hour Priorities
-        housing_budget: formData.housingBudget,
-        preferred_areas: formData.preferredAreas || [],
-        school_requirement: formData.schoolRequirement,
-        
-        // Timeline
-        urgency_level: formData.urgencyLevel || 'urgent',
-        competing_offers: formData.competingOffers,
-        
-        // Additional Requirements
-        visa_status: formData.visaStatus,
-        pet_relocation: formData.petRelocation,
-        special_requirements: formData.specialRequirements,
-        
-        // Meta
-        referral_source: formData.referralSource,
-        submission_status: 'new'
-      }])
+    // Generate reference number
+    const referenceNumber = userType === 'company' 
+      ? `VEL-${Date.now().toString(36).toUpperCase()}`
+      : `AI-${Date.now().toString(36).toUpperCase()}`
+    
+    // Prepare submission data
+    const submissionData = {
+      reference_number: referenceNumber,
+      user_type: userType,
+      company_name: formData.companyName,
+      contact_name: formData.contactName,
+      contact_role: formData.contactRole,
+      contact_email: formData.contactEmail,
+      contact_phone: formData.contactPhone,
+      talent_role: formData.talentRole,
+      current_location: formData.currentLocation,
+      salary_range: formData.salaryRange,
+      target_start_date: formData.targetStartDate,
+      competing_offers: formData.competingOffers,
+      visa_status: formData.visaStatus,
+      urgency_level: formData.urgencyLevel,
+      employee_count: formData.employeeCount,
+      housing_budget: formData.housingBudget,
+      family_size: formData.familySize,
+      preferred_areas: formData.preferredAreas || [],
+      school_requirement: formData.schoolRequirement,
+      spouse_employment: formData.spouseEmployment,
+      pet_relocation: formData.petRelocation,
+      special_requirements: formData.specialRequirements,
+      referral_source: formData.referralSource,
+      office_location: formData.officeLocation,
+      add_to_index: addToIndex || false,
+      ip_address: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown',
+      user_agent: req.headers.get('user-agent') || 'unknown'
+    }
+
+    // Save to Supabase
+    const { data: savedSubmission, error: dbError } = await supabase
+      .from('ai_talent_assessments')
+      .insert([submissionData])
       .select()
       .single()
-    
-    if (error) {
-      console.error('Supabase error:', error)
-      throw error
+
+    if (dbError) {
+      console.error('Database error:', dbError)
+      throw new Error('Failed to save assessment')
     }
-    
-    console.log('AI Talent submission saved to Supabase:', data.reference_number)
-    
-    // Send notification emails
+
+    // Send confirmation email to submitter
     try {
-      // Send email to Relo Network team
-      const teamEmailResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/send-email`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          to: 'hello@therelonetwork.com',
-          subject: `New AI Talent Assessment - ${data.user_type === 'individual' ? 'Individual AI Professional' : data.company_name} - 2 Hour Response Required`,
-          html: `
-            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #0B1220;">New AI Talent Relocation Assessment</h2>
-              <div style="background: #ff4444; color: white; padding: 15px; border-radius: 8px; margin: 20px 0;">
-                <strong>2-HOUR RESPONSE REQUIRED</strong>
-              </div>
-              
-              <h3>${data.user_type === 'individual' ? 'Individual Details:' : 'Company Details:'}</h3>
-              <ul>
-                <li><strong>${data.user_type === 'individual' ? 'Name' : 'Company'}:</strong> ${data.user_type === 'individual' ? data.contact_name : data.company_name}</li>
-                <li><strong>${data.user_type === 'individual' ? 'Current/New Employer' : 'Contact'}:</strong> ${data.user_type === 'individual' ? data.company_name : `${data.contact_name} (${data.contact_role})`}</li>
-                <li><strong>Email:</strong> ${data.contact_email}</li>
-                <li><strong>Phone:</strong> ${data.contact_phone}</li>
-                <li><strong>Office Location:</strong> ${data.office_location || 'Not specified'}</li>
-              </ul>
-              
-              <h3>AI Talent Requirements:</h3>
-              <ul>
-                <li><strong>Role:</strong> ${data.talent_role}</li>
-                <li><strong>Seniority:</strong> ${data.seniority_level}</li>
-                <li><strong>Current Location:</strong> ${data.current_location}</li>
-                <li><strong>Target Start Date:</strong> ${data.target_start_date}</li>
-                <li><strong>Salary Range:</strong> ${data.salary_range}</li>
-                <li><strong>Employee Count:</strong> ${data.employee_count || '1'}</li>
-              </ul>
-              
-              <h3>Relocation Priorities:</h3>
-              <ul>
-                <li><strong>Housing Budget:</strong> ${data.housing_budget}</li>
-                <li><strong>Preferred Areas:</strong> ${data.preferred_areas?.join(', ') || 'Not specified'}</li>
-                <li><strong>Family Size:</strong> ${data.family_size}</li>
-                <li><strong>School Requirement:</strong> ${data.school_requirement || 'Not specified'}</li>
-                <li><strong>Competing Offers:</strong> ${data.competing_offers || 'Not specified'}</li>
-              </ul>
-              
-              <p style="margin-top: 30px;">
-                <strong>Reference Number:</strong> ${data.reference_number}<br>
-                <strong>Response Deadline:</strong> ${new Date(data.response_deadline).toLocaleString()}
-              </p>
-              
-              <div style="background: #f0f0f0; padding: 15px; border-radius: 8px; margin-top: 20px;">
-                <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/admin/submissions" 
-                   style="background: #C9A24A; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
-                   View All Submissions
-                </a>
-              </div>
-            </div>
-          `
-        })
-      })
-      console.log('Team notification email sent')
+      const isCompany = userType === 'company'
+      const emailSubject = isCompany 
+        ? "Relocation Velocity Assessment Received – Next Steps"
+        : "AI Talent Relocation Assessment Received – Next Steps"
       
-      // Send confirmation email to client
-      const clientEmailResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/send-email`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          to: data.contact_email,
-          subject: `Your AI Talent Relocation Assessment - The Relo Network`,
-          html: `
-            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #0B1220;">Assessment Received - 2 Hour Response Guaranteed</h2>
-              
-              <p>Dear ${data.contact_name},</p>
-              
-              <p>Thank you for submitting your AI talent relocation assessment. ${data.user_type === 'individual' ? 'Our specialist team is now preparing your personal relocation plan.' : 'Our specialist team is now reviewing your talent relocation requirements.'}</p>
-              
-              <div style="background: #0B1220; color: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <h3 style="color: #C9A24A; margin-top: 0;">What Happens Next?</h3>
-                <p>• Your dedicated AI relocation specialist will contact you within 2 hours</p>
-                <p>• Property shortlist being prepared based on your £${data.housing_budget} budget</p>
-                <p>• School availability being confirmed for ${data.target_start_date}</p>
-                <p>• Complete 7-day relocation plan being customised</p>
-              </div>
-              
-              <h3>Your Submission Details:</h3>
-              <ul>
-                <li><strong>Reference Number:</strong> ${data.reference_number}</li>
-                <li><strong>AI Talent Role:</strong> ${data.talent_role}</li>
-                <li><strong>Relocating From:</strong> ${data.current_location}</li>
-                <li><strong>Target Start Date:</strong> ${data.target_start_date}</li>
-              </ul>
-              
-              <p style="margin-top: 30px;">
-                <strong>We will contact you by: ${new Date(data.response_deadline).toLocaleTimeString()}</strong>
+      await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL || 'hello@therelonetwork.com',
+        to: formData.contactEmail,
+        subject: emailSubject,
+        html: `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #0B1220; margin-bottom: 20px;">
+              ${isCompany ? 'Velocity Assessment' : 'Assessment'} Received!
+            </h2>
+            
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
+              Dear ${formData.contactName},
+            </p>
+            
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 20px;">
+              Thank you for submitting your ${isCompany ? 'Relocation Velocity Assessment' : 'AI talent relocation assessment'}. 
+              Your request has been prioritised and assigned reference number: <strong>${referenceNumber}</strong>
+            </p>
+            
+            <div style="background-color: #0B1220; color: white; border-radius: 8px; padding: 24px; margin: 20px 0;">
+              <h3 style="color: #C9A24A; margin-top: 0; margin-bottom: 16px; font-size: 20px;">
+                ⏰ 2-Hour Response Guarantee
+              </h3>
+              <p style="color: #E5E7EB; font-size: 16px; line-height: 1.5; margin: 0;">
+                ${isCompany 
+                  ? 'A relocation velocity specialist' 
+                  : 'An AI relocation specialist'} will contact you within 2 hours to discuss:
               </p>
-              
-              <p>If you have any urgent questions, please call us on +44 20 3105 9566.</p>
-              
-              <p>Best regards,<br>
-              The Relo Network Team<br>
-              AI Talent Relocation Specialists</p>
             </div>
-          `
-        })
+            
+            ${isCompany ? `
+              <div style="background-color: #F9FAFB; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <h3 style="color: #0B1220; margin-top: 0; margin-bottom: 16px;">What We'll Cover:</h3>
+                <ul style="color: #374151; font-size: 16px; line-height: 1.8; margin: 0;">
+                  <li><strong>Current Process Analysis</strong> - Mapping your relocation timeline</li>
+                  <li><strong>Velocity Benchmarks</strong> - How you compare to industry standards</li>
+                  <li><strong>Drop-off Risk Assessment</strong> - Identifying candidate loss points</li>
+                  <li><strong>30-Day Action Plan</strong> - Quick wins to improve velocity</li>
+                </ul>
+              </div>
+            ` : `
+              <div style="background-color: #F9FAFB; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <h3 style="color: #0B1220; margin-top: 0; margin-bottom: 16px;">What We'll Cover:</h3>
+                <ul style="color: #374151; font-size: 16px; line-height: 1.8; margin: 0;">
+                  <li><strong>72-Hour Housing Shortlist</strong> - Properties matching your requirements</li>
+                  <li><strong>School Placement</strong> - Availability and application support</li>
+                  <li><strong>Neighbourhood Guidance</strong> - Area insights and commute planning</li>
+                  <li><strong>7-Day Setup Plan</strong> - Complete relocation timeline</li>
+                </ul>
+              </div>
+            `}
+            
+            <div style="background-color: #FEF3C7; border-left: 4px solid #C9A24A; padding: 16px; margin: 20px 0;">
+              <p style="color: #92400E; font-size: 14px; margin: 0;">
+                <strong>Need immediate assistance?</strong><br>
+                Our 24/7 concierge is available at +44 20 7946 0958
+              </p>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #E5E7EB;">
+              <p style="color: #6B7280; font-size: 14px; margin: 8px 0;">
+                <strong>Your Details:</strong>
+              </p>
+              <ul style="color: #6B7280; font-size: 14px; line-height: 1.6; margin: 8px 0;">
+                ${isCompany ? `
+                  <li>Company: ${formData.companyName}</li>
+                  <li>AI Hires: ${formData.employeeCount}</li>
+                  <li>Primary Roles: ${formData.talentRole}</li>
+                  <li>Source Markets: ${formData.currentLocation}</li>
+                ` : `
+                  <li>Employer: ${formData.companyName}</li>
+                  <li>Role: ${formData.talentRole}</li>
+                  <li>Current Location: ${formData.currentLocation}</li>
+                  <li>Start Date: ${formData.targetStartDate}</li>
+                `}
+              </ul>
+            </div>
+            
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-top: 30px; margin-bottom: 8px;">
+              Best regards,
+            </p>
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 8px;">
+              The Relo Network Team
+            </p>
+            <p style="margin-bottom: 0;">
+              <a href="https://therelonetwork.com" style="color: #C9A24A; text-decoration: none;">therelonetwork.com</a>
+            </p>
+          </div>
+        `
       })
-      console.log('Client confirmation email sent')
+
+      // Update confirmation sent timestamp
+      await supabase
+        .from('ai_talent_assessments')
+        .update({ 
+          confirmation_sent: true,
+          confirmation_sent_at: new Date().toISOString() 
+        })
+        .eq('id', savedSubmission.id)
+
     } catch (emailError) {
-      console.error('Email sending error (non-blocking):', emailError)
+      console.error('Failed to send confirmation email:', emailError)
+      // Don't throw - we still saved the submission
     }
+
+    // Send notification email to admin
+    try {
+      const isCompany = userType === 'company'
+      await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL || 'hello@therelonetwork.com',
+        to: 'hello@therelonetwork.com',
+        reply_to: formData.contactEmail,
+        subject: `🚨 New ${isCompany ? 'Velocity Assessment' : 'AI Talent Assessment'} - ${formData.contactName} - ${formData.companyName}`,
+        html: `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px;">
+            <h2 style="color: #0B1220; margin-bottom: 20px;">
+              New ${isCompany ? 'Relocation Velocity Assessment' : 'AI Talent Assessment'}
+            </h2>
+            
+            <div style="background-color: #FEF3C7; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+              <p style="margin: 0; color: #92400E; font-size: 18px;">
+                <strong>⏰ 2-Hour Response Required!</strong>
+              </p>
+            </div>
+            
+            <div style="background-color: #F9FAFB; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+              <h3 style="color: #0B1220; margin-top: 0;">Contact Information:</h3>
+              <p style="margin: 8px 0;"><strong>Name:</strong> ${formData.contactName}</p>
+              <p style="margin: 8px 0;"><strong>Role:</strong> ${formData.contactRole}</p>
+              <p style="margin: 8px 0;"><strong>Email:</strong> ${formData.contactEmail}</p>
+              <p style="margin: 8px 0;"><strong>Phone:</strong> ${formData.contactPhone}</p>
+              <p style="margin: 8px 0;"><strong>Company:</strong> ${formData.companyName}</p>
+              <p style="margin: 8px 0;"><strong>Reference:</strong> ${referenceNumber}</p>
+            </div>
+            
+            ${isCompany ? `
+              <div style="background-color: #F9FAFB; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+                <h3 style="color: #0B1220; margin-top: 0;">Company Assessment Details:</h3>
+                <p style="margin: 8px 0;"><strong>AI Hires (Next 12 Months):</strong> ${formData.employeeCount}</p>
+                <p style="margin: 8px 0;"><strong>Primary Roles:</strong> ${formData.talentRole}</p>
+                <p style="margin: 8px 0;"><strong>Source Markets:</strong> ${formData.currentLocation}</p>
+                <p style="margin: 8px 0;"><strong>Salary Range:</strong> ${formData.salaryRange || 'Not specified'}</p>
+                <p style="margin: 8px 0;"><strong>Current Time to Start:</strong> ${formData.urgencyLevel}</p>
+                <p style="margin: 8px 0;"><strong>Drop-off Rate:</strong> ${formData.competingOffers}</p>
+                <p style="margin: 8px 0;"><strong>Current Support:</strong> ${formData.visaStatus}</p>
+                <p style="margin: 8px 0;"><strong>Biggest Challenge:</strong> ${formData.specialRequirements || 'Not specified'}</p>
+                <p style="margin: 8px 0;"><strong>Improvement Priority:</strong> ${formData.petRelocation || 'Not specified'}</p>
+                ${addToIndex ? '<p style="margin: 8px 0; color: #C9A24A;"><strong>✓ Added to London Relocation Index</strong></p>' : ''}
+              </div>
+            ` : `
+              <div style="background-color: #F9FAFB; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+                <h3 style="color: #0B1220; margin-top: 0;">Relocation Details:</h3>
+                <p style="margin: 8px 0;"><strong>Role:</strong> ${formData.talentRole}</p>
+                <p style="margin: 8px 0;"><strong>Current Location:</strong> ${formData.currentLocation}</p>
+                <p style="margin: 8px 0;"><strong>Target Start Date:</strong> ${formData.targetStartDate}</p>
+                <p style="margin: 8px 0;"><strong>Salary Range:</strong> ${formData.salaryRange || 'Not specified'}</p>
+                <p style="margin: 8px 0;"><strong>Competing Offers:</strong> ${formData.competingOffers || 'Not specified'}</p>
+                <p style="margin: 8px 0;"><strong>Visa Status:</strong> ${formData.visaStatus || 'Not specified'}</p>
+                <p style="margin: 8px 0;"><strong>Housing Budget:</strong> ${formData.housingBudget || 'Not specified'}</p>
+                <p style="margin: 8px 0;"><strong>Family Size:</strong> ${formData.familySize || 'Not specified'}</p>
+                <p style="margin: 8px 0;"><strong>Preferred Areas:</strong> ${formData.preferredAreas?.join(', ') || 'Not specified'}</p>
+                <p style="margin: 8px 0;"><strong>School Requirements:</strong> ${formData.schoolRequirement || 'Not specified'}</p>
+                <p style="margin: 8px 0;"><strong>Pet Relocation:</strong> ${formData.petRelocation || 'None'}</p>
+                <p style="margin: 8px 0;"><strong>Special Requirements:</strong> ${formData.specialRequirements || 'None'}</p>
+              </div>
+            `}
+            
+            <div style="background-color: #F9FAFB; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+              <p style="margin: 8px 0;"><strong>Referral Source:</strong> ${formData.referralSource || 'Not specified'}</p>
+              <p style="margin: 8px 0;"><strong>IP Address:</strong> ${submissionData.ip_address}</p>
+              <p style="margin: 8px 0;"><strong>Submitted:</strong> ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })}</p>
+            </div>
+            
+            <p style="margin-top: 20px;">
+              <a href="mailto:${formData.contactEmail}?subject=Your%20${isCompany ? 'Relocation%20Velocity%20Assessment' : 'AI%20Talent%20Relocation%20Assessment'}%20-%20${referenceNumber}" 
+                 style="display: inline-block; background-color: #C9A24A; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px;">
+                Reply to ${formData.contactName}
+              </a>
+            </p>
+          </div>
+        `
+      })
+    } catch (notificationError) {
+      console.error('Failed to send admin notification:', notificationError)
+      // Don't throw - this is not critical
+    }
+
+    console.log('New AI talent assessment saved:', savedSubmission.id)
     
-    return NextResponse.json({
-      success: true,
+    return NextResponse.json({ 
+      success: true, 
       message: 'Assessment submitted successfully',
       data: {
-        referenceNumber: data.reference_number,
-        responseTime: '2 hours',
-        contactName: data.contact_name,
-        contactEmail: data.contact_email,
-        id: data.id
+        referenceNumber,
+        contactName: formData.contactName,
+        contactEmail: formData.contactEmail,
+        responseTime: '2 hours'
       }
     })
-    
-  } catch (error) {
-    console.error('Error processing AI talent assessment:', error)
-    return NextResponse.json(
-      { 
-        success: false, 
-        message: 'There was an error submitting your assessment. Please try again.',
-        error: error instanceof Error ? error.message : 'Unknown error'
-      },
-      { status: 500 }
-    )
-  }
-}
 
-// GET endpoint to retrieve submissions (for admin)
-export async function GET(request: NextRequest) {
-  try {
-    const supabase = createClient(supabaseUrl, supabaseServiceKey)
-    
-    // Get query parameters
-    const searchParams = request.nextUrl.searchParams
-    const status = searchParams.get('status') || 'all'
-    const limit = parseInt(searchParams.get('limit') || '50')
-    
-    let query = supabase
-      .from('ai_talent_submissions')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(limit)
-    
-    if (status !== 'all') {
-      query = query.eq('submission_status', status)
-    }
-    
-    const { data, error } = await query
-    
-    if (error) {
-      console.error('Supabase error:', error)
-      throw error
-    }
-    
-    return NextResponse.json({
-      success: true,
-      submissions: data || [],
-      count: data?.length || 0
-    })
-    
   } catch (error) {
-    console.error('Error fetching submissions:', error)
+    console.error('AI talent assessment submission error:', error)
     return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Failed to fetch submissions',
-        submissions: [] 
-      },
+      { error: 'Failed to submit assessment' }, 
       { status: 500 }
     )
   }
