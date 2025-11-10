@@ -1,22 +1,11 @@
-import { Metadata } from 'next'
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Clock, DollarSign, Users, TrendingUp, MapPin, Briefcase } from 'lucide-react'
-import { useState } from 'react'
 
-export const metadata: Metadata = {
-  title: 'The £690k AI Talent War: Why London is the New Battleground | Relo Network',
-  description: 'xAI, OpenAI, and Anthropic are paying up to £690k for AI talent. Learn how 7-day relocations are winning the talent war in London\'s booming AI scene.',
-  keywords: 'AI talent relocation London, xAI London office, OpenAI UK, Anthropic London, AI engineer relocation, Silicon Valley to London, Piccadilly AI office, St Pauls tech hub',
-  openGraph: {
-    title: 'The £690k AI Talent War: London Edition',
-    description: 'How xAI, OpenAI, and Anthropic are transforming London into an AI powerhouse',
-    type: 'article',
-    publishedTime: '2025-11-04T10:00:00Z',
-    authors: ['The Relo Network Team'],
-  },
-}
-
-'use client'
+// Metadata should be handled in a layout.tsx file or in a server component wrapper
+// For now, we'll use the page as a client component for the lead capture functionality
 
 export default function AITalentWarPost() {
   const [email, setEmail] = useState('')
