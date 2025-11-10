@@ -101,8 +101,9 @@ export default function AITalentWarPost() {
             London is no longer "catching up" to Silicon Valley, it <span className="font-bold">IS</span> the new battleground for AI talent.
           </p>
           
+          <h3 className="text-xl font-semibold text-[#0B1220] mb-4">Introducing Relocation Velocity</h3>
           <p className="text-gray-700 mb-8">
-            In that environment, the constraint isn't money. It's time. Relo Network exists partially to move senior Tech/AI hires from offer accepted, to fully operational in London in 7 days, not 60-120.
+            In that environment and at these salary levels, the real differentiator isn't how much you pay, it's how fast you can move a hire from "offer accepted" to "fully operational in London". At Relo Network, we call this Relocation Velocity and we're benchmarking it in our upcoming London Relocation Index for AI and tech companies.
           </p>
         </div>
 
