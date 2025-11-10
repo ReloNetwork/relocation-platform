@@ -81,11 +81,23 @@ export async function POST(req: NextRequest) {
               <li>Your biggest headache in relocating them</li>
             </ul>
             
-            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 30px;">
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 20px;">
               We'll keep you posted as soon as the preview is ready.
             </p>
             
-            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 8px;">
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 16px;">
+              In the meantime, if you're actively hiring AI talent and need help with relocations, you can:
+            </p>
+            
+            <div style="background-color: #FEF3C7; border-left: 4px solid #C9A24A; padding: 16px; margin: 20px 0;">
+              <p style="color: #92400E; font-size: 14px; margin: 0;">
+                <strong>Book a 20-Minute London Landing Briefing</strong><br>
+                Learn how we relocate AI talent from Silicon Valley to London in 7 days.<br>
+                <a href="https://therelonetwork.com/ai-talent-assessment" style="color: #C9A24A; font-weight: bold; text-decoration: none;">Start your assessment →</a>
+              </p>
+            </div>
+            
+            <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 8px; margin-top: 30px;">
               Best regards,
             </p>
             <p style="color: #374151; font-size: 16px; line-height: 1.5; margin-bottom: 8px;">
