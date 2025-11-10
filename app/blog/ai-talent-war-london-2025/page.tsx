@@ -130,7 +130,7 @@ export default function AITalentWarPost() {
         <div className="bg-gradient-to-r from-[#C9A24A]/10 to-[#0B1220]/5 rounded-2xl p-8 my-12 border border-[#C9A24A]/20">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl font-bold text-[#0B1220] mb-4">
-              Get Early Access to the London Relocation Index
+              Is Your Relocation Velocity Costing You Candidates?
             </h3>
             <p className="text-gray-700 mb-6">
               Benchmarks on Relocation Velocity, candidate drop-off and time-to-productivity for AI hires into London, plus a concise 2025 AI talent salary snapshot.
