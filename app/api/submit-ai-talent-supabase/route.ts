@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
             
             <div style="background-color: #0B1220; color: white; border-radius: 8px; padding: 24px; margin: 20px 0;">
               <h3 style="color: #C9A24A; margin-top: 0; margin-bottom: 16px; font-size: 20px;">
-                ⏰ 2-Hour Response Guarantee
+                2-Hour Response Guarantee
               </h3>
               <p style="color: #E5E7EB; font-size: 16px; line-height: 1.5; margin: 0;">
                 ${isCompany 
@@ -122,7 +122,7 @@ export async function POST(req: NextRequest) {
             <div style="background-color: #FEF3C7; border-left: 4px solid #C9A24A; padding: 16px; margin: 20px 0;">
               <p style="color: #92400E; font-size: 14px; margin: 0;">
                 <strong>Need immediate assistance?</strong><br>
-                Our 24/7 concierge is available at +44 20 7946 0958
+                Call us at +44 20 3105 9566
               </p>
             </div>
             
@@ -179,7 +179,7 @@ export async function POST(req: NextRequest) {
         from: process.env.RESEND_FROM_EMAIL || 'hello@therelonetwork.com',
         to: 'hello@therelonetwork.com',
         reply_to: formData.contactEmail,
-        subject: `🚨 New ${isCompany ? 'Velocity Assessment' : 'AI Talent Assessment'} - ${formData.contactName} - ${formData.companyName}`,
+        subject: `URGENT: New ${isCompany ? 'Velocity Assessment' : 'AI Talent Assessment'} - ${formData.contactName} - ${formData.companyName}`,
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px;">
             <h2 style="color: #0B1220; margin-bottom: 20px;">
@@ -188,7 +188,7 @@ export async function POST(req: NextRequest) {
             
             <div style="background-color: #FEF3C7; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
               <p style="margin: 0; color: #92400E; font-size: 18px;">
-                <strong>⏰ 2-Hour Response Required!</strong>
+                <strong>2-Hour Response Required!</strong>
               </p>
             </div>
             
@@ -214,7 +214,7 @@ export async function POST(req: NextRequest) {
                 <p style="margin: 8px 0;"><strong>Current Support:</strong> ${formData.visaStatus}</p>
                 <p style="margin: 8px 0;"><strong>Biggest Challenge:</strong> ${formData.specialRequirements || 'Not specified'}</p>
                 <p style="margin: 8px 0;"><strong>Improvement Priority:</strong> ${formData.petRelocation || 'Not specified'}</p>
-                ${addToIndex ? '<p style="margin: 8px 0; color: #C9A24A;"><strong>✓ Added to London Relocation Index</strong></p>' : ''}
+                ${addToIndex ? '<p style="margin: 8px 0; color: #C9A24A;"><strong>Added to London Relocation Index</strong></p>' : ''}
               </div>
             ` : `
               <div style="background-color: #F9FAFB; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
