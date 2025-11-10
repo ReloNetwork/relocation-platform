@@ -92,7 +92,7 @@ export default function AITalentWarPost() {
           
           <h3 className="text-xl font-semibold text-[#0B1220] mb-4">Introducing Relocation Velocity</h3>
           <p className="text-gray-700 mb-8">
-            In that environment and at these salary levels, the real differentiator isn't how much you pay, it's how fast you can move a hire from "offer accepted" to "fully operational in London". At Relo Network, we call this Relocation Velocity and we're benchmarking it in our upcoming London Relocation Index for AI and tech companies.
+            In this environment and at these salary levels, the real differentiator isn't how much you pay, it's how fast you can move a hire from "offer accepted" to "fully operational in London". At Relo Network, we call this Relocation Velocity and we're benchmarking it in our upcoming London Relocation Index for AI and tech companies.
           </p>
         </div>
 
@@ -133,7 +133,7 @@ export default function AITalentWarPost() {
               Is Your Relocation Velocity Costing You Candidates?
             </h3>
             <p className="text-gray-700 mb-6">
-              Benchmarks on Relocation Velocity, candidate drop-off and time-to-productivity for AI hires into London, plus a concise 2025 AI talent salary snapshot.
+              Get the London Relocation Index and see how your timelines compare.
             </p>
             {!isSubmitted ? (
               <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
