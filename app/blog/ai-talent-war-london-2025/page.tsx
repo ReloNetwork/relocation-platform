@@ -518,9 +518,15 @@ export default function AITalentWarPost() {
             <p className="text-gray-700 mb-2">
               <strong>Relocating yourself as an AI professional?</strong>
             </p>
-            <p className="text-gray-700">
+            <p className="text-gray-700 mb-4">
               Start your 7-Day London Landing and get personal support for housing, schools and first-30-day setup.
             </p>
+            <Link 
+              href="/ai-talent-assessment" 
+              className="inline-flex items-center text-[#C9A24A] font-medium hover:text-[#B8913A] transition"
+            >
+              → Get your personal relocation support
+            </Link>
           </div>
         </div>
 
