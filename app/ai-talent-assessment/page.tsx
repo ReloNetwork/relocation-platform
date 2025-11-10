@@ -434,376 +434,727 @@ export default function AITalentAssessment() {
           </div>
           
           {/* Company Information */}
-          <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-            <h2 className="text-2xl font-bold text-[#0B1220] mb-6 flex items-center gap-2">
-              <Briefcase className="h-6 w-6 text-[#C9A24A]" />
-              {userType === 'company' ? 'Company Information' : 'Your Information'}
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {userType === 'company' ? 'Company Name *' : 'Current/New Employer *'}
-                </label>
-                <input
-                  type="text"
-                  name="companyName"
-                  value={formData.companyName}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                  placeholder="e.g., xAI, OpenAI, Anthropic"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {userType === 'company' ? 'London Office Location' : 'Your London Office Location'}
-                </label>
-                <select
-                  name="officeLocation"
-                  value={formData.officeLocation}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">Select location</option>
-                  <option value="piccadilly">Piccadilly</option>
-                  <option value="st-pauls">St Paul's</option>
-                  <option value="kings-cross">King's Cross</option>
-                  <option value="shoreditch">Shoreditch</option>
-                  <option value="canary-wharf">Canary Wharf</option>
-                  <option value="paddington">Paddington</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {userType === 'company' ? 'Contact Name *' : 'Your Full Name *'}
-                </label>
-                <input
-                  type="text"
-                  name="contactName"
-                  value={formData.contactName}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Role *
-                </label>
-                <input
-                  type="text"
-                  name="contactRole"
-                  value={formData.contactRole}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                  placeholder={userType === 'company' ? 'e.g., Head of Talent, VP People' : 'e.g., ML Engineer, Research Scientist'}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  name="contactEmail"
-                  value={formData.contactEmail}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number *
-                </label>
-                <input
-                  type="tel"
-                  name="contactPhone"
-                  value={formData.contactPhone}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* AI Talent Details */}
-          <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-            <h2 className="text-2xl font-bold text-[#0B1220] mb-6 flex items-center gap-2">
-              <Users className="h-6 w-6 text-[#C9A24A]" />
-              {userType === 'company' ? 'AI Talent Details' : 'Your Role Details'}
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {userType === 'company' ? 'Role Being Relocated *' : 'Your Role *'}
-                </label>
-                <select
-                  name="talentRole"
-                  value={formData.talentRole}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">Select role</option>
-                  <option value="ai-researcher">AI Researcher</option>
-                  <option value="ml-engineer">ML Engineer</option>
-                  <option value="ai-safety">AI Safety Specialist</option>
-                  <option value="principal-engineer">Principal Engineer</option>
-                  <option value="engineering-director">Engineering Director</option>
-                  <option value="vp-engineering">VP Engineering</option>
-                  <option value="cto">CTO</option>
-                  <option value="other">Other Senior Role</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {userType === 'company' ? "Candidate's Current Location *" : 'Your Current Location *'}
-                </label>
-                <input
-                  type="text"
-                  name="currentLocation"
-                  value={formData.currentLocation}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                  placeholder="e.g., San Francisco, New York, Seattle"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Salary Range (USD)
-                </label>
-                <select
-                  name="salaryRange"
-                  value={formData.salaryRange}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">Select range</option>
-                  <option value="200-300k">$200,000 - $300,000</option>
-                  <option value="300-400k">$300,000 - $400,000</option>
-                  <option value="400-500k">$400,000 - $500,000</option>
-                  <option value="500-600k">$500,000 - $600,000</option>
-                  <option value="600k+">$600,000+</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Target Start Date *
-                </label>
-                <input
-                  type="date"
-                  name="targetStartDate"
-                  value={formData.targetStartDate}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {userType === 'company' ? 'Candidate Has Competing Offers?' : 'Do You Have Competing Offers?'}
-                </label>
-                <select
-                  name="competingOffers"
-                  value={formData.competingOffers}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">Select</option>
-                  <option value="none">No competing offers</option>
-                  <option value="one">One other offer</option>
-                  <option value="multiple">Multiple offers</option>
-                  <option value="counter">Expecting counter-offer</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Visa Status
-                </label>
-                <select
-                  name="visaStatus"
-                  value={formData.visaStatus}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">Select status</option>
-                  <option value="approved">Visa approved</option>
-                  <option value="pending">Visa pending</option>
-                  <option value="applying">Will apply</option>
-                  <option value="uk-citizen">UK citizen</option>
-                  <option value="eu-citizen">EU citizen</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {/* 72-Hour Priorities */}
-          <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-            <h2 className="text-2xl font-bold text-[#0B1220] mb-6 flex items-center gap-2">
-              <Home className="h-6 w-6 text-[#C9A24A]" />
-              72-Hour Setup Priorities
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Monthly Housing Budget (£)
-                </label>
-                <select
-                  name="housingBudget"
-                  value={formData.housingBudget}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">Select budget</option>
-                  <option value="3000-5000">£3,000 - £5,000</option>
-                  <option value="5000-7500">£5,000 - £7,500</option>
-                  <option value="7500-10000">£7,500 - £10,000</option>
-                  <option value="10000-15000">£10,000 - £15,000</option>
-                  <option value="15000+">£15,000+</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Family Size
-                </label>
-                <select
-                  name="familySize"
-                  value={formData.familySize}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">Select</option>
-                  <option value="single">Single</option>
-                  <option value="couple">Couple</option>
-                  <option value="family-small">Family (1-2 children)</option>
-                  <option value="family-large">Family (3+ children)</option>
-                </select>
-              </div>
-            </div>
-            
-            <div className="mt-6">
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                Preferred Areas (check all that apply)
-              </label>
-              <div className="grid md:grid-cols-3 gap-4">
-                {[
-                  'Mayfair',
-                  'Belgravia', 
-                  'Kensington',
-                  'Chelsea',
-                  'Notting Hill',
-                  'Marylebone',
-                  'Bloomsbury',
-                  'Shoreditch',
-                  'Canary Wharf'
-                ].map(area => (
-                  <label key={area} className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={formData.preferredAreas.includes(area)}
-                      onChange={() => handleCheckboxChange(area)}
-                      className="rounded text-[#C9A24A] focus:ring-[#C9A24A]"
-                    />
-                    <span className="text-sm text-gray-700">{area}</span>
+          {userType === 'company' ? (
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#0B1220] mb-6 flex items-center gap-2">
+                <Briefcase className="h-6 w-6 text-[#C9A24A]" />
+                Company & Contact Information
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Company Name *
                   </label>
-                ))}
+                  <input
+                    type="text"
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., xAI, OpenAI, Anthropic"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Number of AI Hires (Next 12 Months) *
+                  </label>
+                  <select
+                    name="employeeCount"
+                    value={formData.employeeCount}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="1">1-2 hires</option>
+                    <option value="3-5">3-5 hires</option>
+                    <option value="6-10">6-10 hires</option>
+                    <option value="11-20">11-20 hires</option>
+                    <option value="20+">20+ hires</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="contactName"
+                    value={formData.contactName}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Role *
+                  </label>
+                  <input
+                    type="text"
+                    name="contactRole"
+                    value={formData.contactRole}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., Head of Talent, VP People, CHRO"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Work Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="contactEmail"
+                    value={formData.contactEmail}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    name="contactPhone"
+                    value={formData.contactPhone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  />
+                </div>
               </div>
             </div>
+          ) : (
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#0B1220] mb-6 flex items-center gap-2">
+                <Briefcase className="h-6 w-6 text-[#C9A24A]" />
+                Your Information
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Current/New Employer *
+                  </label>
+                  <input
+                    type="text"
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., xAI, OpenAI, Anthropic"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your London Office Location
+                  </label>
+                  <select
+                    name="officeLocation"
+                    value={formData.officeLocation}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select location</option>
+                    <option value="piccadilly">Piccadilly</option>
+                    <option value="st-pauls">St Paul's</option>
+                    <option value="kings-cross">King's Cross</option>
+                    <option value="shoreditch">Shoreditch</option>
+                    <option value="canary-wharf">Canary Wharf</option>
+                    <option value="paddington">Paddington</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="contactName"
+                    value={formData.contactName}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Role *
+                  </label>
+                  <input
+                    type="text"
+                    name="contactRole"
+                    value={formData.contactRole}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., ML Engineer, Research Scientist"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="contactEmail"
+                    value={formData.contactEmail}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    name="contactPhone"
+                    value={formData.contactPhone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
 
-            <div className="grid md:grid-cols-2 gap-6 mt-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  School Requirements
-                </label>
-                <select
-                  name="schoolRequirement"
-                  value={formData.schoolRequirement}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">Select</option>
-                  <option value="american-school">American School London (ASL)</option>
-                  <option value="international">International School</option>
-                  <option value="british-private">British Private School</option>
-                  <option value="state">State School</option>
-                  <option value="none">No children</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Spouse Employment Support?
-                </label>
-                <select
-                  name="spouseEmployment"
-                  value={formData.spouseEmployment}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">Select</option>
-                  <option value="yes-tech">Yes - Tech industry</option>
-                  <option value="yes-finance">Yes - Finance</option>
-                  <option value="yes-other">Yes - Other industry</option>
-                  <option value="no">Not needed</option>
-                </select>
+          {/* AI Talent Details / Relocation Process Assessment */}
+          {userType === 'company' ? (
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#0B1220] mb-6 flex items-center gap-2">
+                <Users className="h-6 w-6 text-[#C9A24A]" />
+                Current Relocation Process Assessment
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Primary AI Roles You're Hiring *
+                  </label>
+                  <select
+                    name="talentRole"
+                    value={formData.talentRole}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select primary role type</option>
+                    <option value="ai-researcher">AI Researchers</option>
+                    <option value="ml-engineer">ML Engineers</option>
+                    <option value="ai-safety">AI Safety Specialists</option>
+                    <option value="principal-engineer">Principal Engineers</option>
+                    <option value="engineering-director">Engineering Directors</option>
+                    <option value="vp-engineering">VP Engineering</option>
+                    <option value="cto">C-Suite (CTO/CPO)</option>
+                    <option value="mixed">Mixed Roles</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Primary Source Markets *
+                  </label>
+                  <input
+                    type="text"
+                    name="currentLocation"
+                    value={formData.currentLocation}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., San Francisco, NYC, Seattle"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Typical Salary Range (USD)
+                  </label>
+                  <select
+                    name="salaryRange"
+                    value={formData.salaryRange}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select range</option>
+                    <option value="200-300k">$200,000 - $300,000</option>
+                    <option value="300-400k">$300,000 - $400,000</option>
+                    <option value="400-500k">$400,000 - $500,000</option>
+                    <option value="500-600k">$500,000 - $600,000</option>
+                    <option value="600k+">$600,000+</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Current Time from Offer to Start *
+                  </label>
+                  <select
+                    name="urgencyLevel"
+                    value={formData.urgencyLevel}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="urgent">30-60 days</option>
+                    <option value="moderate">60-90 days</option>
+                    <option value="flexible">90-120 days</option>
+                    <option value="long">120+ days</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Candidate Drop-off Rate
+                  </label>
+                  <select
+                    name="competingOffers"
+                    value={formData.competingOffers}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select drop-off rate</option>
+                    <option value="none">< 10%</option>
+                    <option value="one">10-20%</option>
+                    <option value="multiple">20-30%</option>
+                    <option value="counter">> 30%</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Current Relocation Support
+                  </label>
+                  <select
+                    name="visaStatus"
+                    value={formData.visaStatus}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select support level</option>
+                    <option value="approved">Full-service provider</option>
+                    <option value="pending">Basic package + allowance</option>
+                    <option value="applying">Allowance only</option>
+                    <option value="uk-citizen">Internal team manages</option>
+                    <option value="eu-citizen">No formal support</option>
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#0B1220] mb-6 flex items-center gap-2">
+                <Users className="h-6 w-6 text-[#C9A24A]" />
+                Your Role Details
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Role *
+                  </label>
+                  <select
+                    name="talentRole"
+                    value={formData.talentRole}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select role</option>
+                    <option value="ai-researcher">AI Researcher</option>
+                    <option value="ml-engineer">ML Engineer</option>
+                    <option value="ai-safety">AI Safety Specialist</option>
+                    <option value="principal-engineer">Principal Engineer</option>
+                    <option value="engineering-director">Engineering Director</option>
+                    <option value="vp-engineering">VP Engineering</option>
+                    <option value="cto">CTO</option>
+                    <option value="other">Other Senior Role</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Current Location *
+                  </label>
+                  <input
+                    type="text"
+                    name="currentLocation"
+                    value={formData.currentLocation}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., San Francisco, New York, Seattle"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Salary Range (USD)
+                  </label>
+                  <select
+                    name="salaryRange"
+                    value={formData.salaryRange}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select range</option>
+                    <option value="200-300k">$200,000 - $300,000</option>
+                    <option value="300-400k">$300,000 - $400,000</option>
+                    <option value="400-500k">$400,000 - $500,000</option>
+                    <option value="500-600k">$500,000 - $600,000</option>
+                    <option value="600k+">$600,000+</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Target Start Date *
+                  </label>
+                  <input
+                    type="date"
+                    name="targetStartDate"
+                    value={formData.targetStartDate}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Do You Have Competing Offers?
+                  </label>
+                  <select
+                    name="competingOffers"
+                    value={formData.competingOffers}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select</option>
+                    <option value="none">No competing offers</option>
+                    <option value="one">One other offer</option>
+                    <option value="multiple">Multiple offers</option>
+                    <option value="counter">Expecting counter-offer</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Visa Status
+                  </label>
+                  <select
+                    name="visaStatus"
+                    value={formData.visaStatus}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select status</option>
+                    <option value="approved">Visa approved</option>
+                    <option value="pending">Visa pending</option>
+                    <option value="applying">Will apply</option>
+                    <option value="uk-citizen">UK citizen</option>
+                    <option value="eu-citizen">EU citizen</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          )}
 
-          {/* Special Requirements */}
-          <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-            <h2 className="text-2xl font-bold text-[#0B1220] mb-6">
-              Additional Requirements
-            </h2>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Pet Relocation
-                </label>
-                <select
-                  name="petRelocation"
-                  value={formData.petRelocation}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                >
-                  <option value="">None</option>
-                  <option value="dog">Dog(s)</option>
-                  <option value="cat">Cat(s)</option>
-                  <option value="both">Multiple pets</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Special Requirements or Concerns
-                </label>
-                <textarea
-                  name="specialRequirements"
-                  value={formData.specialRequirements}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                  placeholder="e.g., Medical needs, accessibility requirements, specific amenities needed..."
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  How did you hear about The Relo Network?
-                </label>
-                <input
-                  type="text"
-                  name="referralSource"
-                  value={formData.referralSource}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
-                  placeholder="e.g., LinkedIn, colleague referral, search..."
-                />
+          {/* 72-Hour Priorities / Pain Points */}
+          {userType === 'company' ? (
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#0B1220] mb-6 flex items-center gap-2">
+                <Home className="h-6 w-6 text-[#C9A24A]" />
+                Relocation Pain Points & Priorities
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Biggest Relocation Challenge *
+                  </label>
+                  <select
+                    name="specialRequirements"
+                    value={formData.specialRequirements}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select main challenge</option>
+                    <option value="timeline">Timeline too long</option>
+                    <option value="dropoff">Candidate drop-off</option>
+                    <option value="housing">Housing issues</option>
+                    <option value="schools">School placement</option>
+                    <option value="family">Family settlement</option>
+                    <option value="cost">Cost overruns</option>
+                    <option value="coordination">Poor coordination</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Typical Housing Budget (£/month)
+                  </label>
+                  <select
+                    name="housingBudget"
+                    value={formData.housingBudget}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select budget</option>
+                    <option value="3000-5000">£3,000 - £5,000</option>
+                    <option value="5000-7500">£5,000 - £7,500</option>
+                    <option value="7500-10000">£7,500 - £10,000</option>
+                    <option value="10000-15000">£10,000 - £15,000</option>
+                    <option value="15000+">£15,000+</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    % of Hires with Families
+                  </label>
+                  <select
+                    name="familySize"
+                    value={formData.familySize}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select percentage</option>
+                    <option value="single">< 25%</option>
+                    <option value="couple">25-50%</option>
+                    <option value="family-small">50-75%</option>
+                    <option value="family-large">> 75%</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    School Placement Issues?
+                  </label>
+                  <select
+                    name="schoolRequirement"
+                    value={formData.schoolRequirement}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select</option>
+                    <option value="american-school">Major issue - ASL waitlists</option>
+                    <option value="international">Moderate issue</option>
+                    <option value="british-private">Minor issue</option>
+                    <option value="none">Not an issue</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Spouse Career Support Needed?
+                  </label>
+                  <select
+                    name="spouseEmployment"
+                    value={formData.spouseEmployment}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select</option>
+                    <option value="yes-tech">Yes - frequently</option>
+                    <option value="yes-finance">Yes - occasionally</option>
+                    <option value="yes-other">Rarely</option>
+                    <option value="no">Never</option>
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#0B1220] mb-6 flex items-center gap-2">
+                <Home className="h-6 w-6 text-[#C9A24A]" />
+                72-Hour Setup Priorities
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Monthly Housing Budget (£)
+                  </label>
+                  <select
+                    name="housingBudget"
+                    value={formData.housingBudget}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select budget</option>
+                    <option value="3000-5000">£3,000 - £5,000</option>
+                    <option value="5000-7500">£5,000 - £7,500</option>
+                    <option value="7500-10000">£7,500 - £10,000</option>
+                    <option value="10000-15000">£10,000 - £15,000</option>
+                    <option value="15000+">£15,000+</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Family Size
+                  </label>
+                  <select
+                    name="familySize"
+                    value={formData.familySize}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select</option>
+                    <option value="single">Single</option>
+                    <option value="couple">Couple</option>
+                    <option value="family-small">Family (1-2 children)</option>
+                    <option value="family-large">Family (3+ children)</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div className="mt-6">
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Preferred Areas (check all that apply)
+                </label>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {[
+                    'Mayfair',
+                    'Belgravia', 
+                    'Kensington',
+                    'Chelsea',
+                    'Notting Hill',
+                    'Marylebone',
+                    'Bloomsbury',
+                    'Shoreditch',
+                    'Canary Wharf'
+                  ].map(area => (
+                    <label key={area} className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.preferredAreas.includes(area)}
+                        onChange={() => handleCheckboxChange(area)}
+                        className="rounded text-[#C9A24A] focus:ring-[#C9A24A]"
+                      />
+                      <span className="text-sm text-gray-700">{area}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mt-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    School Requirements
+                  </label>
+                  <select
+                    name="schoolRequirement"
+                    value={formData.schoolRequirement}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select</option>
+                    <option value="american-school">American School London (ASL)</option>
+                    <option value="international">International School</option>
+                    <option value="british-private">British Private School</option>
+                    <option value="state">State School</option>
+                    <option value="none">No children</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Spouse Employment Support?
+                  </label>
+                  <select
+                    name="spouseEmployment"
+                    value={formData.spouseEmployment}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">Select</option>
+                    <option value="yes-tech">Yes - Tech industry</option>
+                    <option value="yes-finance">Yes - Finance</option>
+                    <option value="yes-other">Yes - Other industry</option>
+                    <option value="no">Not needed</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Special Requirements / Additional Information */}
+          {userType === 'company' ? (
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#0B1220] mb-6">
+                Additional Information
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    What would improve your relocation velocity most? *
+                  </label>
+                  <textarea
+                    name="petRelocation"
+                    value={formData.petRelocation}
+                    onChange={handleInputChange}
+                    required
+                    rows={3}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., Faster housing, better school access, reduced timeline, family support..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    How did you hear about The Relo Network?
+                  </label>
+                  <input
+                    type="text"
+                    name="referralSource"
+                    value={formData.referralSource}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., LinkedIn, colleague referral, industry event..."
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#0B1220] mb-6">
+                Additional Requirements
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Pet Relocation
+                  </label>
+                  <select
+                    name="petRelocation"
+                    value={formData.petRelocation}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                  >
+                    <option value="">None</option>
+                    <option value="dog">Dog(s)</option>
+                    <option value="cat">Cat(s)</option>
+                    <option value="both">Multiple pets</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Special Requirements or Concerns
+                  </label>
+                  <textarea
+                    name="specialRequirements"
+                    value={formData.specialRequirements}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., Medical needs, accessibility requirements, specific amenities needed..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    How did you hear about The Relo Network?
+                  </label>
+                  <input
+                    type="text"
+                    name="referralSource"
+                    value={formData.referralSource}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
+                    placeholder="e.g., LinkedIn, colleague referral, search..."
+                  />
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* London Relocation Index Checkbox for Companies */}
           {userType === 'company' && (
