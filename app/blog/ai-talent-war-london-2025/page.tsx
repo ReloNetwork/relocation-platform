@@ -130,10 +130,10 @@ export default function AITalentWarPost() {
         <div className="bg-gradient-to-r from-[#C9A24A]/10 to-[#0B1220]/5 rounded-2xl p-8 my-12 border border-[#C9A24A]/20">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl font-bold text-[#0B1220] mb-4">
-              Get the Full AI Talent Salary Breakdown
+              Get Early Access to the London Relocation Index
             </h3>
             <p className="text-gray-700 mb-6">
-              See exactly what xAI, OpenAI, and Anthropic are paying across all levels in London. Plus get our exclusive 2025 AI talent relocation playbook.
+              Benchmarks on Relocation Velocity, candidate drop-off and time-to-productivity for AI hires into London, plus a concise 2025 AI talent salary snapshot.
             </p>
             {!isSubmitted ? (
               <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -150,17 +150,17 @@ export default function AITalentWarPost() {
                   disabled={isSubmitting}
                   className="bg-[#C9A24A] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#B8913A] transition-colors whitespace-nowrap disabled:opacity-50"
                 >
-                  {isSubmitting ? 'Sending...' : 'Get Full Report'}
+                  {isSubmitting ? 'Sending...' : 'Get the Index'}
                 </button>
               </form>
             ) : (
               <div className="text-center">
-                <div className="text-green-600 text-lg font-semibold mb-2">✅ Report on its way!</div>
-                <p className="text-gray-600">Check your email for the full AI salary breakdown and relocation playbook.</p>
+                <div className="text-green-600 text-lg font-semibold mb-2">✅ Index on its way!</div>
+                <p className="text-gray-600">Check your email for the London Relocation Index early access.</p>
               </div>
             )}
             <p className="text-xs text-gray-500 mt-3">
-              Free report • No spam • Used by 500+ tech executives
+              Free early-access report · No spam · Built for HR, People & Mobility leaders hiring into London.
             </p>
           </div>
         </div>
