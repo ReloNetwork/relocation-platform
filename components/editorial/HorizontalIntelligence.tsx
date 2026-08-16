@@ -1,0 +1,110 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+
+const chapters = [
+  {
+    number: '01',
+    kicker: 'NEIGHBOURHOODS',
+    title: 'Choose a life,\nnot a postcode.',
+    text: 'Twelve areas decoded by commute, schools, pace, people and the version of London each one makes possible.',
+    image: '/images/editorial/london-street-hero.webp',
+    ask: 'Compare neighbourhoods',
+    href: '/live',
+  },
+  {
+    number: '02',
+    kicker: 'CULTURE & LIFESTYLE',
+    title: 'The city,\nproperly edited.',
+    text: 'Restaurants worth the booking, galleries worth the detour and clubs where introductions become community.',
+    image: '/images/editorial/london-table.webp',
+    ask: 'Build my London weekend',
+    href: '/discover',
+  },
+  {
+    number: '03',
+    kicker: 'DESIGN & LIVING',
+    title: 'Make it feel\nlike yours.',
+    text: 'Homes, interiors and trusted specialists who understand the difference between furnished and finished.',
+    image: '/images/editorial/london-interior.webp',
+    ask: 'Find trusted specialists',
+    href: '/network',
+  },
+  {
+    number: '04',
+    kicker: 'CITY INTELLIGENCE',
+    title: 'Every answer\nchanges the next.',
+    text: 'Ask Relo connects your brief, shortlist and decisions—so London becomes clearer every time you ask.',
+    image: '/images/editorial/london-arrival-cinematic.webp',
+    ask: 'Ask Relo now',
+    href: '/ask-relo',
+  },
+];
+
+export default function HorizontalIntelligence() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const rect = section.getBoundingClientRect();
+      const distance = section.offsetHeight - window.innerHeight;
+      setProgress(Math.min(1, Math.max(0, -rect.top / Math.max(1, distance))));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="intelligence-world">
+      <div className="intelligence-world__sticky">
+        <header>
+          <span className="vertical-label">THE LONDON INDEX</span>
+          <p className="eyebrow">LIVE CITY INTELLIGENCE</p>
+          <h2>THE LONDON YOU CAME FOR.</h2>
+          <div className="intelligence-world__progress">
+            <i style={{ width: `${progress * 100}%` }} />
+          </div>
+        </header>
+        <div
+          className="intelligence-world__track"
+          style={{ transform: `translate3d(-${progress * 75}%,0,0)` }}
+        >
+          {chapters.map((chapter) => (
+            <article key={chapter.number}>
+              <div className="intelligence-world__image">
+                <Image src={chapter.image} fill sizes="80vw" alt="" />
+                <span>{chapter.number}</span>
+              </div>
+              <div className="intelligence-world__text">
+                <p className="eyebrow">{chapter.kicker}</p>
+                <h3>
+                  {chapter.title.split('\n').map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </h3>
+                <p>{chapter.text}</p>
+                <Link href={chapter.href}>
+                  {chapter.ask} <span>→</span>
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
