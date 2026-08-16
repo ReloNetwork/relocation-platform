@@ -1,26 +1,28 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 interface PartnerFormData {
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  company: string
-  serviceCategory: string
-  experienceYears: string
-  currentClientBase: string
-  londonExperience: string
-  insuranceCoverage: string
-  partnershipTier: string
-  message: string
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  company: string;
+  serviceCategory: string;
+  experienceYears: string;
+  currentClientBase: string;
+  londonExperience: string;
+  insuranceCoverage: string;
+  partnershipTier: string;
+  message: string;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const data: PartnerFormData = await request.json()
+    const data: PartnerFormData = await request.json();
 
     // Send notification email to Relo Network team
     const adminEmailHtml = `
@@ -68,26 +70,30 @@ export async function POST(request: NextRequest) {
           <p style="background: white; padding: 10px; border-radius: 4px; border-left: 4px solid #C9A24A;">${data.currentClientBase}</p>
         </div>
         
-        ${data.message ? `
+        ${
+          data.message
+            ? `
           <div style="margin-top: 20px;">
             <h4 style="color: #0B1B2B;">Additional Message:</h4>
             <p style="background: white; padding: 10px; border-radius: 4px; border-left: 4px solid #C9A24A;">${data.message}</p>
           </div>
-        ` : ''}
+        `
+            : ''
+        }
       </div>
       
       <p style="color: #6B7280; font-size: 14px; margin-top: 20px;">
         This application was submitted through the ${data.partnershipTier === 'professional' ? 'Professional Partner' : 'Premium Sponsor'} application form.
         Please review and respond within 24 hours as promised to the applicant.
       </p>
-    `
+    `;
 
-    await resend.emails.send({
+    await resend?.emails.send({
       from: 'Relo Network <no-reply@therelonetwork.com>',
       to: ['hello@therelonetwork.com'],
       subject: `New ${data.partnershipTier === 'professional' ? 'Professional Partner' : 'Premium Sponsor'} Application - ${data.company}`,
       html: adminEmailHtml,
-    })
+    });
 
     // Send confirmation email to applicant
     const applicantEmailHtml = `
@@ -135,28 +141,27 @@ export async function POST(request: NextRequest) {
           <p>© 2025 Relo Network Ltd. London, United Kingdom.</p>
         </div>
       </div>
-    `
+    `;
 
     await resend.emails.send({
       from: 'Relo Network <hello@therelonetwork.com>',
       to: [data.email],
       subject: `Partnership Application Received - ${data.partnershipTier === 'professional' ? 'Professional Partner' : 'Premium Sponsor'}`,
       html: applicantEmailHtml,
-    })
+    });
 
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Application submitted successfully' 
-    })
-
+    return NextResponse.json({
+      success: true,
+      message: 'Application submitted successfully',
+    });
   } catch (error) {
-    console.error('Error processing partner application:', error)
+    console.error('Error processing partner application:', error);
     return NextResponse.json(
-      { 
-        success: false, 
-        message: 'Failed to submit application' 
-      }, 
+      {
+        success: false,
+        message: 'Failed to submit application',
+      },
       { status: 500 }
-    )
+    );
   }
 }

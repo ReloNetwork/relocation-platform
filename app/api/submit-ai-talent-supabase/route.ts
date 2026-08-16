@@ -1,22 +1,25 @@
-import { NextRequest, NextResponse } from "next/server"
-import { createServiceSupabase } from '@/lib/supabase'
-import { Resend } from 'resend'
+import { NextRequest, NextResponse } from 'next/server';
+import { createServiceSupabase } from '@/lib/supabase';
+import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json()
-    const { userType, addToIndex, ...formData } = data
-    
+    const data = await req.json();
+    const { userType, addToIndex, ...formData } = data;
+
     // Initialize Supabase client
-    const supabase = createServiceSupabase()
-    
+    const supabase = createServiceSupabase();
+
     // Generate reference number
-    const referenceNumber = userType === 'company' 
-      ? `VEL-${Date.now().toString(36).toUpperCase()}`
-      : `AI-${Date.now().toString(36).toUpperCase()}`
-    
+    const referenceNumber =
+      userType === 'company'
+        ? `VEL-${Date.now().toString(36).toUpperCase()}`
+        : `AI-${Date.now().toString(36).toUpperCase()}`;
+
     // Prepare submission data
     const submissionData = {
       reference_number: referenceNumber,
@@ -44,29 +47,32 @@ export async function POST(req: NextRequest) {
       referral_source: formData.referralSource,
       office_location: formData.officeLocation,
       add_to_index: addToIndex || false,
-      ip_address: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown',
-      user_agent: req.headers.get('user-agent') || 'unknown'
-    }
+      ip_address:
+        req.headers.get('x-forwarded-for') ||
+        req.headers.get('x-real-ip') ||
+        'unknown',
+      user_agent: req.headers.get('user-agent') || 'unknown',
+    };
 
     // Save to Supabase
     const { data: savedSubmission, error: dbError } = await supabase
       .from('ai_talent_assessments')
       .insert([submissionData])
       .select()
-      .single()
+      .single();
 
     if (dbError) {
-      console.error('Database error:', dbError)
-      throw new Error('Failed to save assessment')
+      console.error('Database error:', dbError);
+      throw new Error('Failed to save assessment');
     }
 
     // Send confirmation email to submitter
     try {
-      const isCompany = userType === 'company'
-      const emailSubject = isCompany 
-        ? "Relocation Velocity Assessment Received – Next Steps"
-        : "AI Talent Relocation Assessment Received – Next Steps"
-      
+      const isCompany = userType === 'company';
+      const emailSubject = isCompany
+        ? 'Relocation Velocity Assessment Received – Next Steps'
+        : 'AI Talent Relocation Assessment Received – Next Steps';
+
       await resend.emails.send({
         from: process.env.RESEND_FROM_EMAIL || 'hello@therelonetwork.com',
         to: formData.contactEmail,
@@ -91,13 +97,17 @@ export async function POST(req: NextRequest) {
                 2-Hour Response Guarantee
               </h3>
               <p style="color: #E5E7EB; font-size: 16px; line-height: 1.5; margin: 0;">
-                ${isCompany 
-                  ? 'A relocation velocity specialist' 
-                  : 'An AI relocation specialist'} will contact you within 2 hours to discuss:
+                ${
+                  isCompany
+                    ? 'A relocation velocity specialist'
+                    : 'An AI relocation specialist'
+                } will contact you within 2 hours to discuss:
               </p>
             </div>
             
-            ${isCompany ? `
+            ${
+              isCompany
+                ? `
               <div style="background-color: #F9FAFB; border-radius: 8px; padding: 20px; margin: 20px 0;">
                 <h3 style="color: #0B1220; margin-top: 0; margin-bottom: 16px;">What We'll Cover:</h3>
                 <ul style="color: #374151; font-size: 16px; line-height: 1.8; margin: 0;">
@@ -107,7 +117,8 @@ export async function POST(req: NextRequest) {
                   <li><strong>30-Day Action Plan</strong> - Quick wins to improve velocity</li>
                 </ul>
               </div>
-            ` : `
+            `
+                : `
               <div style="background-color: #F9FAFB; border-radius: 8px; padding: 20px; margin: 20px 0;">
                 <h3 style="color: #0B1220; margin-top: 0; margin-bottom: 16px;">What We'll Cover:</h3>
                 <ul style="color: #374151; font-size: 16px; line-height: 1.8; margin: 0;">
@@ -117,7 +128,8 @@ export async function POST(req: NextRequest) {
                   <li><strong>7-Day Setup Plan</strong> - Complete relocation timeline</li>
                 </ul>
               </div>
-            `}
+            `
+            }
             
             <div style="background-color: #FEF3C7; border-left: 4px solid #C9A24A; padding: 16px; margin: 20px 0;">
               <p style="color: #92400E; font-size: 14px; margin: 0;">
@@ -131,17 +143,21 @@ export async function POST(req: NextRequest) {
                 <strong>Your Details:</strong>
               </p>
               <ul style="color: #6B7280; font-size: 14px; line-height: 1.6; margin: 8px 0;">
-                ${isCompany ? `
+                ${
+                  isCompany
+                    ? `
                   <li>Company: ${formData.companyName}</li>
                   <li>AI Hires: ${formData.employeeCount}</li>
                   <li>Primary Roles: ${formData.talentRole}</li>
                   <li>Source Markets: ${formData.currentLocation}</li>
-                ` : `
+                `
+                    : `
                   <li>Employer: ${formData.companyName}</li>
                   <li>Role: ${formData.talentRole}</li>
                   <li>Current Location: ${formData.currentLocation}</li>
                   <li>Start Date: ${formData.targetStartDate}</li>
-                `}
+                `
+                }
               </ul>
             </div>
             
@@ -155,26 +171,25 @@ export async function POST(req: NextRequest) {
               <a href="https://therelonetwork.com" style="color: #C9A24A; text-decoration: none;">therelonetwork.com</a>
             </p>
           </div>
-        `
-      })
+        `,
+      });
 
       // Update confirmation sent timestamp
       await supabase
         .from('ai_talent_assessments')
-        .update({ 
+        .update({
           confirmation_sent: true,
-          confirmation_sent_at: new Date().toISOString() 
+          confirmation_sent_at: new Date().toISOString(),
         })
-        .eq('id', savedSubmission.id)
-
+        .eq('id', savedSubmission.id);
     } catch (emailError) {
-      console.error('Failed to send confirmation email:', emailError)
+      console.error('Failed to send confirmation email:', emailError);
       // Don't throw - we still saved the submission
     }
 
     // Send notification email to admin
     try {
-      const isCompany = userType === 'company'
+      const isCompany = userType === 'company';
       await resend.emails.send({
         from: process.env.RESEND_FROM_EMAIL || 'hello@therelonetwork.com',
         to: 'hello@therelonetwork.com',
@@ -202,7 +217,9 @@ export async function POST(req: NextRequest) {
               <p style="margin: 8px 0;"><strong>Reference:</strong> ${referenceNumber}</p>
             </div>
             
-            ${isCompany ? `
+            ${
+              isCompany
+                ? `
               <div style="background-color: #F9FAFB; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
                 <h3 style="color: #0B1220; margin-top: 0;">Company Assessment Details:</h3>
                 <p style="margin: 8px 0;"><strong>AI Hires (Next 12 Months):</strong> ${formData.employeeCount}</p>
@@ -216,7 +233,8 @@ export async function POST(req: NextRequest) {
                 <p style="margin: 8px 0;"><strong>Improvement Priority:</strong> ${formData.petRelocation || 'Not specified'}</p>
                 ${addToIndex ? '<p style="margin: 8px 0; color: #C9A24A;"><strong>Added to London Relocation Index</strong></p>' : ''}
               </div>
-            ` : `
+            `
+                : `
               <div style="background-color: #F9FAFB; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
                 <h3 style="color: #0B1220; margin-top: 0;">Relocation Details:</h3>
                 <p style="margin: 8px 0;"><strong>Role:</strong> ${formData.talentRole}</p>
@@ -232,7 +250,8 @@ export async function POST(req: NextRequest) {
                 <p style="margin: 8px 0;"><strong>Pet Relocation:</strong> ${formData.petRelocation || 'None'}</p>
                 <p style="margin: 8px 0;"><strong>Special Requirements:</strong> ${formData.specialRequirements || 'None'}</p>
               </div>
-            `}
+            `
+            }
             
             <div style="background-color: #F9FAFB; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
               <p style="margin: 8px 0;"><strong>Referral Source:</strong> ${formData.referralSource || 'Not specified'}</p>
@@ -247,31 +266,30 @@ export async function POST(req: NextRequest) {
               </a>
             </p>
           </div>
-        `
-      })
+        `,
+      });
     } catch (notificationError) {
-      console.error('Failed to send admin notification:', notificationError)
+      console.error('Failed to send admin notification:', notificationError);
       // Don't throw - this is not critical
     }
 
-    console.log('New AI talent assessment saved:', savedSubmission.id)
-    
-    return NextResponse.json({ 
-      success: true, 
+    console.log('New AI talent assessment saved:', savedSubmission.id);
+
+    return NextResponse.json({
+      success: true,
       message: 'Assessment submitted successfully',
       data: {
         referenceNumber,
         contactName: formData.contactName,
         contactEmail: formData.contactEmail,
-        responseTime: '2 hours'
-      }
-    })
-
+        responseTime: '2 hours',
+      },
+    });
   } catch (error) {
-    console.error('AI talent assessment submission error:', error)
+    console.error('AI talent assessment submission error:', error);
     return NextResponse.json(
-      { error: 'Failed to submit assessment' }, 
+      { error: 'Failed to submit assessment' },
       { status: 500 }
-    )
+    );
   }
 }

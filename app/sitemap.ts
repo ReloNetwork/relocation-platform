@@ -1,56 +1,20 @@
-import { MetadataRoute } from 'next'
-
+import type { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://askrelo.com'
-  
+  const base = 'https://www.therelonetwork.com';
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/guides/london-relocation-cost-guide`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/partners`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/case`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/ask-relo`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/newsletter`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/corporate`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/concierge`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    }
-  ]
+    '',
+    '/move',
+    '/live',
+    '/discover',
+    '/network',
+    '/journal',
+    '/about',
+    '/ask-relo',
+    '/london-landing-list',
+  ].map((path, index) => ({
+    url: `${base}${path}`,
+    lastModified: new Date(),
+    changeFrequency: index === 0 ? ('daily' as const) : ('weekly' as const),
+    priority: index === 0 ? 1 : path === '/london-landing-list' ? 0.9 : 0.8,
+  }));
 }

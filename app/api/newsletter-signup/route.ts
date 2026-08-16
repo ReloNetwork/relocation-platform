@@ -1,21 +1,27 @@
-import { NextRequest, NextResponse } from "next/server"
-import { createServiceSupabase } from '@/lib/supabase'
-import { Resend } from 'resend'
+import { NextRequest, NextResponse } from 'next/server';
+import { createServiceSupabase } from '@/lib/supabase';
+import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, source, utm_source, utm_medium, utm_campaign, content } = await req.json()
-    
+    const { email, source, utm_source, utm_medium, utm_campaign, content } =
+      await req.json();
+
     // Validate email
     if (!email || !email.includes('@')) {
-      return NextResponse.json({ error: 'Valid email required' }, { status: 400 })
+      return NextResponse.json(
+        { error: 'Valid email required' },
+        { status: 400 }
+      );
     }
 
     // Initialize Supabase client
-    const supabase = createServiceSupabase()
-    
+    const supabase = createServiceSupabase();
+
     // Prepare lead data
     const leadData = {
       email,
@@ -24,20 +30,23 @@ export async function POST(req: NextRequest) {
       utm_medium: utm_medium || null,
       utm_campaign: utm_campaign || null,
       content: content || 'London Relocation Index request',
-      ip_address: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown',
-      user_agent: req.headers.get('user-agent') || 'unknown'
-    }
+      ip_address:
+        req.headers.get('x-forwarded-for') ||
+        req.headers.get('x-real-ip') ||
+        'unknown',
+      user_agent: req.headers.get('user-agent') || 'unknown',
+    };
 
     // Save to Supabase
     const { data: savedLead, error: dbError } = await supabase
       .from('newsletter_leads')
       .insert([leadData])
       .select()
-      .single()
+      .single();
 
     if (dbError) {
-      console.error('Database error:', dbError)
-      throw new Error('Failed to save subscription')
+      console.error('Database error:', dbError);
+      throw new Error('Failed to save subscription');
     }
 
     // Send confirmation email to subscriber
@@ -107,20 +116,19 @@ export async function POST(req: NextRequest) {
               <a href="https://therelonetwork.com" style="color: #C9A24A; text-decoration: none;">therelonetwork.com</a>
             </p>
           </div>
-        `
-      })
+        `,
+      });
 
       // Update confirmation sent timestamp
       await supabase
         .from('newsletter_leads')
-        .update({ 
+        .update({
           confirmed: true,
-          confirmation_sent_at: new Date().toISOString() 
+          confirmation_sent_at: new Date().toISOString(),
         })
-        .eq('id', savedLead.id)
-
+        .eq('id', savedLead.id);
     } catch (emailError) {
-      console.error('Failed to send confirmation email:', emailError)
+      console.error('Failed to send confirmation email:', emailError);
       // Don't throw - we still saved the lead
     }
 
@@ -156,26 +164,22 @@ export async function POST(req: NextRequest) {
               </a>
             </p>
           </div>
-        `
-      })
+        `,
+      });
     } catch (notificationError) {
-      console.error('Failed to send admin notification:', notificationError)
+      console.error('Failed to send admin notification:', notificationError);
       // Don't throw - this is not critical
     }
 
-    console.log('New newsletter signup saved:', savedLead.id)
-    
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Successfully subscribed! Check your email for confirmation.',
-      leadId: savedLead.id
-    })
+    console.log('New newsletter signup saved:', savedLead.id);
 
+    return NextResponse.json({
+      success: true,
+      message: 'Successfully subscribed! Check your email for confirmation.',
+      leadId: savedLead.id,
+    });
   } catch (error) {
-    console.error('Newsletter signup error:', error)
-    return NextResponse.json(
-      { error: 'Failed to subscribe' }, 
-      { status: 500 }
-    )
+    console.error('Newsletter signup error:', error);
+    return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
   }
 }

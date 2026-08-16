@@ -1,8 +1,6 @@
-import { MetadataRoute } from 'next'
-
+import type { MetadataRoute } from 'next';
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://askrelo.com'
-  
+  const base = 'https://www.therelonetwork.com';
   return {
     rules: [
       {
@@ -10,35 +8,24 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/api/',
-          '/_next/',
           '/admin/',
-          '/private/',
-          '*.pdf',
-          '/temp/'
+          '/client/',
+          '/supplier/',
+          '/partner-dashboard/',
         ],
       },
       {
-        userAgent: 'ChatGPT-User',
+        userAgent: [
+          'OAI-SearchBot',
+          'ChatGPT-User',
+          'PerplexityBot',
+          'ClaudeBot',
+          'GoogleOther',
+        ],
         allow: '/',
-        crawlDelay: 1,
       },
-      {
-        userAgent: 'PerplexityBot', 
-        allow: '/',
-        crawlDelay: 1,
-      },
-      {
-        userAgent: 'ClaudeBot',
-        allow: '/',
-        crawlDelay: 1,
-      },
-      {
-        userAgent: 'GoogleOther',
-        allow: '/',
-        crawlDelay: 2,
-      }
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
-  }
+    sitemap: `${base}/sitemap.xml`,
+    host: base,
+  };
 }

@@ -3,18 +3,20 @@ import { Resend } from 'resend';
 
 export const runtime = 'nodejs';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 export async function POST(req: NextRequest) {
   try {
     const { email, source } = await req.json();
-    
+
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
     // Send blueprint delivery email
-    const emailResult = await resend.emails.send({
+    const emailResult = await resend?.emails.send({
       from: 'hello@therelonetwork.com',
       to: email,
       subject: 'Your £180K Platform Blueprint (Download Inside)',
@@ -99,22 +101,24 @@ export async function POST(req: NextRequest) {
             </p>
           </div>
         </div>
-      `
+      `,
     });
 
     // Add to ConvertKit or email list (you'll need to set this up)
     // await addToEmailList(email, source);
 
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Blueprint sent successfully!' 
+    return NextResponse.json({
+      success: true,
+      message: 'Blueprint sent successfully!',
     });
-
   } catch (error: any) {
     console.error('Blueprint download error:', error);
-    return NextResponse.json({ 
-      error: 'Failed to send blueprint', 
-      details: error.message 
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: 'Failed to send blueprint',
+        details: error.message,
+      },
+      { status: 500 }
+    );
   }
 }

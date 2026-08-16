@@ -1,41 +1,57 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { getWorkflowForService, serviceDeliveryChecklists } from '@/lib/workflows/service-delivery'
-import { Resend } from 'resend'
+import { NextRequest, NextResponse } from 'next/server';
+import {
+  getWorkflowForService,
+  serviceDeliveryChecklists,
+} from '@/lib/workflows/service-delivery';
+import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 interface WorkflowTriggerRequest {
-  serviceType: string
-  urgency?: string
-  customerId: string
-  customerEmail: string
-  customerName: string
-  referenceId: string
-  triggerType: 'payment_confirmed' | 'strategy_call_booked' | 'assessment_completed'
-  additionalData?: any
+  serviceType: string;
+  urgency?: string;
+  customerId: string;
+  customerEmail: string;
+  customerName: string;
+  referenceId: string;
+  triggerType:
+    | 'payment_confirmed'
+    | 'strategy_call_booked'
+    | 'assessment_completed';
+  additionalData?: any;
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const data: WorkflowTriggerRequest = await req.json()
-    
-    const { serviceType, urgency, customerId, customerEmail, customerName, referenceId, triggerType } = data
-    
+    const data: WorkflowTriggerRequest = await req.json();
+
+    const {
+      serviceType,
+      urgency,
+      customerId,
+      customerEmail,
+      customerName,
+      referenceId,
+      triggerType,
+    } = data;
+
     // Get appropriate workflow
-    const workflow = getWorkflowForService(serviceType, urgency)
+    const workflow = getWorkflowForService(serviceType, urgency);
     if (!workflow) {
       return NextResponse.json(
         { error: `Workflow not found for service: ${serviceType}` },
         { status: 404 }
-      )
+      );
     }
-    
+
     // Get checklist for the trigger
-    const checklist = getChecklistForTrigger(serviceType, triggerType)
-    
+    const checklist = getChecklistForTrigger(serviceType, triggerType);
+
     // Send appropriate notification emails
-    await sendWorkflowNotifications(data, workflow, checklist)
-    
+    await sendWorkflowNotifications(data, workflow, checklist);
+
     // Log workflow trigger for tracking
     console.log('Workflow triggered:', {
       serviceType,
@@ -43,54 +59,56 @@ export async function POST(req: NextRequest) {
       customerId,
       referenceId,
       triggerType,
-      workflowName: workflow.name
-    })
-    
+      workflowName: workflow.name,
+    });
+
     return NextResponse.json({
       success: true,
       workflow: {
         name: workflow.name,
         totalDuration: workflow.totalDuration,
-        nextSteps: workflow.steps.slice(0, 2).map(step => ({
+        nextSteps: workflow.steps.slice(0, 2).map((step) => ({
           title: step.title,
           timeline: step.timeline,
-          assignee: step.assignee
-        }))
+          assignee: step.assignee,
+        })),
       },
-      checklist
-    })
-    
+      checklist,
+    });
   } catch (error) {
-    console.error('Workflow trigger error:', error)
+    console.error('Workflow trigger error:', error);
     return NextResponse.json(
       { error: 'Failed to trigger workflow' },
       { status: 500 }
-    )
+    );
   }
 }
 
-function getChecklistForTrigger(serviceType: string, triggerType: string): string[] {
+function getChecklistForTrigger(
+  serviceType: string,
+  triggerType: string
+): string[] {
   if (serviceType === '72hour_audit' || serviceType === 'executive_intake') {
     switch (triggerType) {
       case 'payment_confirmed':
-        return serviceDeliveryChecklists.executive.paymentReceived
+        return serviceDeliveryChecklists.executive.paymentReceived;
       case 'strategy_call_booked':
-        return serviceDeliveryChecklists.executive.strategyCall
+        return serviceDeliveryChecklists.executive.strategyCall;
       default:
-        return []
+        return [];
     }
   }
-  
+
   if (serviceType === 'corporate_assessment') {
     switch (triggerType) {
       case 'assessment_completed':
-        return serviceDeliveryChecklists.corporate.assessmentReceived
+        return serviceDeliveryChecklists.corporate.assessmentReceived;
       default:
-        return []
+        return [];
     }
   }
-  
-  return []
+
+  return [];
 }
 
 async function sendWorkflowNotifications(
@@ -98,41 +116,65 @@ async function sendWorkflowNotifications(
   workflow: any,
   checklist: string[]
 ) {
-  if (!process.env.RESEND_API_KEY) return
-  
-  const { serviceType, customerEmail, customerName, referenceId, urgency } = data
-  
+  if (!process.env.RESEND_API_KEY) return;
+
+  const { serviceType, customerEmail, customerName, referenceId, urgency } =
+    data;
+
   // Send customer notification
-  if (serviceType === '72hour_audit' && data.triggerType === 'payment_confirmed') {
+  if (
+    serviceType === '72hour_audit' &&
+    data.triggerType === 'payment_confirmed'
+  ) {
     await resend.emails.send({
       from: 'Executive Team <executive@therelonetwork.com>',
       to: [customerEmail],
       subject: 'Welcome to Executive Service - Your 72-Hour Audit Begins Now',
-      html: generateExecutiveWelcomeEmail(customerName, referenceId, urgency || 'normal')
-    })
+      html: generateExecutiveWelcomeEmail(
+        customerName,
+        referenceId,
+        urgency || 'normal'
+      ),
+    });
   }
-  
-  if (serviceType === 'corporate_assessment' && data.triggerType === 'assessment_completed') {
+
+  if (
+    serviceType === 'corporate_assessment' &&
+    data.triggerType === 'assessment_completed'
+  ) {
     await resend.emails.send({
       from: 'Corporate Team <corporate@therelonetwork.com>',
       to: [customerEmail],
       subject: 'Corporate Assessment Received - Proposal Within 24 Hours',
-      html: generateCorporateWelcomeEmail(customerName, data.additionalData?.companyName || 'Your Company', referenceId)
-    })
+      html: generateCorporateWelcomeEmail(
+        customerName,
+        data.additionalData?.companyName || 'Your Company',
+        referenceId
+      ),
+    });
   }
-  
+
   // Send internal team notification
   await resend.emails.send({
     from: 'Workflow System <workflows@therelonetwork.com>',
     to: ['hello@therelonetwork.com', 'ops@therelonetwork.com'],
     subject: `🚀 ${workflow.name} - ${data.triggerType.replace('_', ' ').toUpperCase()}`,
-    html: generateInternalNotificationEmail(data, workflow, checklist)
-  })
+    html: generateInternalNotificationEmail(data, workflow, checklist),
+  });
 }
 
-function generateExecutiveWelcomeEmail(name: string, referenceId: string, urgency: string): string {
-  const responseTime = urgency === 'emergency' ? '2 hours' : urgency === 'urgent' ? '12 hours' : '24 hours'
-  
+function generateExecutiveWelcomeEmail(
+  name: string,
+  referenceId: string,
+  urgency: string
+): string {
+  const responseTime =
+    urgency === 'emergency'
+      ? '2 hours'
+      : urgency === 'urgent'
+        ? '12 hours'
+        : '24 hours';
+
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <div style="background: #C9A24A; color: white; padding: 30px; text-align: center;">
@@ -172,10 +214,14 @@ function generateExecutiveWelcomeEmail(name: string, referenceId: string, urgenc
         Relo Network</p>
       </div>
     </div>
-  `
+  `;
 }
 
-function generateCorporateWelcomeEmail(name: string, companyName: string, referenceId: string): string {
+function generateCorporateWelcomeEmail(
+  name: string,
+  companyName: string,
+  referenceId: string
+): string {
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <div style="background: #0B1B2B; color: white; padding: 30px; text-align: center;">
@@ -214,7 +260,7 @@ function generateCorporateWelcomeEmail(name: string, companyName: string, refere
         Relo Network</p>
       </div>
     </div>
-  `
+  `;
 }
 
 function generateInternalNotificationEmail(
@@ -241,16 +287,20 @@ function generateInternalNotificationEmail(
         
         <h3>Immediate Action Items:</h3>
         <ul>
-          ${checklist.map(item => `<li>${item}</li>`).join('')}
+          ${checklist.map((item) => `<li>${item}</li>`).join('')}
         </ul>
         
         <h3>Workflow Timeline:</h3>
         <p><strong>Total Duration:</strong> ${workflow.totalDuration}</p>
         <p><strong>Next Steps:</strong></p>
         <ol>
-          ${workflow.steps.slice(0, 3).map((step: any) => 
-            `<li><strong>${step.title}</strong> (${step.timeline}) - ${step.assignee}</li>`
-          ).join('')}
+          ${workflow.steps
+            .slice(0, 3)
+            .map(
+              (step: any) =>
+                `<li><strong>${step.title}</strong> (${step.timeline}) - ${step.assignee}</li>`
+            )
+            .join('')}
         </ol>
         
         <div style="background: #FEF3CD; border-left: 4px solid #F59E0B; padding: 15px; margin: 20px 0;">
@@ -263,5 +313,5 @@ function generateInternalNotificationEmail(
         </div>
       </div>
     </div>
-  `
+  `;
 }
