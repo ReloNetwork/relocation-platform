@@ -1,32 +1,15 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import Layout from '@/components/Layout';
-import ScrollFlightHero from '@/components/editorial/ScrollFlightHero';
+import CinematicJourney from '@/components/editorial/CinematicJourney';
+import HorizontalIntelligence from '@/components/editorial/HorizontalIntelligence';
 import AskReloBand from '@/components/editorial/AskReloBand';
 import LandingListSignup from '@/components/editorial/LandingListSignup';
 
-const cards = [
-  [
-    'NEIGHBOURHOODS',
-    'Twelve areas, walked and written up: who lives there, what it costs and how it changes at night.',
-    '/images/editorial/london-street-hero.webp',
-  ],
-  [
-    'CULTURE & LIFESTYLE',
-    'Tables worth booking, galleries worth the detour and the members’ rooms that still let you think.',
-    '/images/editorial/london-table.webp',
-  ],
-  [
-    'DESIGN & LIVING',
-    'Architects, joiners and dealers we trust with a period flat and a short deadline.',
-    '/images/editorial/london-interior.webp',
-  ],
-];
 export default function HomePage() {
   return (
     <Layout>
       <main>
-        <ScrollFlightHero />
+        <CinematicJourney />
         <section className="home-intro">
           <div>
             <p className="eyebrow">THE RELO NETWORK</p>
@@ -50,32 +33,7 @@ export default function HomePage() {
             height={1200}
           />
         </section>
-        <section className="ask-feature">
-          <h2>ASK RELO</h2>
-          <p>Your London, intelligently answered.</p>
-          <Link className="button button--light" href="/ask-relo">
-            ASK A QUESTION →
-          </Link>
-        </section>
-        <section className="discover-section">
-          <span className="vertical-label">DISCOVER</span>
-          <h2>
-            THE LONDON
-            <br />
-            YOU CAME FOR.
-          </h2>
-          <div className="discover-cards">
-            {cards.map(([title, text, image]) => (
-              <article key={title}>
-                <Image src={image} width={900} height={900} alt="" />
-                <div>
-                  <h3>{title} →</h3>
-                  <p>{text}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+        <HorizontalIntelligence />
         <section className="programme">
           <h2>
             MAKE THE
