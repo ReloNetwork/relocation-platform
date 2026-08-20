@@ -4,30 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 
 const DESKTOP_FILM = '/films/relo-continuous-flight-desktop.mp4';
 
-let sharedFilmUrl: string | null = null;
-let sharedFilmRequest: Promise<string> | null = null;
-
-function getSharedFilmUrl() {
-  if (sharedFilmUrl) return Promise.resolve(sharedFilmUrl);
-  if (sharedFilmRequest) return sharedFilmRequest;
-
-  sharedFilmRequest = fetch(DESKTOP_FILM)
-    .then((response) => {
-      if (!response.ok) throw new Error(`Film request failed: ${response.status}`);
-      return response.blob();
-    })
-    .then((blob) => {
-      sharedFilmUrl = URL.createObjectURL(blob);
-      return sharedFilmUrl;
-    })
-    .catch((error) => {
-      sharedFilmRequest = null;
-      throw error;
-    });
-
-  return sharedFilmRequest;
-}
-
 export default function FlightFilm({
   progress,
   fallback,
@@ -38,15 +14,11 @@ export default function FlightFilm({
   const videoRef = useRef<HTMLVideoElement>(null);
   const seekFrame = useRef(0);
   const pendingTime = useRef<number | null>(null);
-  const [isPhone, setIsPhone] = useState<boolean | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
-  const [filmUrl, setFilmUrl] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    const compactViewport = window.matchMedia('(max-width: 900px)');
-    const coarsePointer = window.matchMedia('(pointer: coarse)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const connection = (navigator as Navigator & {
       connection?: { saveData?: boolean; effectiveType?: string };
@@ -56,46 +28,16 @@ export default function FlightFilm({
         connection?.saveData ||
         connection?.effectiveType === 'slow-2g' ||
         connection?.effectiveType === '2g';
-      // A narrow desktop preview pane is not a phone. Requiring both a compact
-      // viewport and a coarse primary pointer keeps the native desktop film
-      // visible in split-pane browsers while phones retain the still fallback.
-      const phone = compactViewport.matches && coarsePointer.matches;
-      setIsPhone(phone);
-      setShouldLoad(!phone && !reducedMotion.matches && !constrained);
+      // The cinematic is part of the product on desktop and mobile. Only explicit
+      // accessibility or data-saving preferences should replace it with a still.
+      setShouldLoad(!reducedMotion.matches && !constrained);
     };
     update();
-    compactViewport.addEventListener('change', update);
-    coarsePointer.addEventListener('change', update);
     reducedMotion.addEventListener('change', update);
     return () => {
-      compactViewport.removeEventListener('change', update);
-      coarsePointer.removeEventListener('change', update);
       reducedMotion.removeEventListener('change', update);
     };
   }, []);
-
-  useEffect(() => {
-    if (isPhone !== false || !shouldLoad) {
-      setFilmUrl(null);
-      return;
-    }
-
-    let cancelled = false;
-    setReady(false);
-    setFailed(false);
-
-    getSharedFilmUrl()
-      .then((url) => {
-        if (!cancelled) setFilmUrl(url);
-      })
-      .catch(() => {
-        if (!cancelled) setFailed(true);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [isPhone, shouldLoad]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -119,7 +61,7 @@ export default function FlightFilm({
         className={`flight-film__fallback ${ready && !failed ? '' : 'is-active'}`}
         style={{ backgroundImage: `url(${fallback})` }}
       />
-      {!failed && isPhone === false && filmUrl && (
+      {!failed && shouldLoad && (
         <video
           ref={videoRef}
           className={ready ? 'is-ready' : ''}
@@ -127,7 +69,7 @@ export default function FlightFilm({
           playsInline
           preload="auto"
           poster={fallback}
-          src={filmUrl}
+          src={DESKTOP_FILM}
           onLoadedMetadata={(event) => {
             event.currentTarget.currentTime = 0.001;
           }}
