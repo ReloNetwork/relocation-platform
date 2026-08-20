@@ -15,6 +15,7 @@ export default function FlightFilm({
   const seekFrame = useRef(0);
   const pendingTime = useRef<number | null>(null);
   const primed = useRef(false);
+  const paintRequest = useRef(0);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -50,10 +51,43 @@ export default function FlightFilm({
         pendingTime.current = nextTime;
         return;
       }
-      if (Math.abs(video.currentTime - nextTime) > 0.025) video.currentTime = nextTime;
+      // Stop the tiny compositor-play below before asking the decoder for the next
+      // scroll position. This keeps the film locked to the page rather than time.
+      if (!video.paused) video.pause();
+      if (Math.abs(video.currentTime - nextTime) > 0.025) {
+        video.currentTime = nextTime;
+      } else {
+        paintDecodedFrame(video);
+      }
     });
     return () => window.cancelAnimationFrame(seekFrame.current);
   }, [progress, ready]);
+
+  function paintDecodedFrame(video: HTMLVideoElement) {
+    const request = ++paintRequest.current;
+    const finish = () => {
+      if (request !== paintRequest.current) return;
+      video.pause();
+    };
+
+    // Chromium can decode a seek successfully without replacing the poster/stale
+    // GPU texture. Let one decoded video frame enter the compositor, then pause on
+    // it. Muted inline playback is permitted without user interaction.
+    const playback = video.play();
+    if (!playback) return;
+    playback
+      .then(() => {
+        if ('requestVideoFrameCallback' in video) {
+          video.requestVideoFrameCallback(finish);
+        } else {
+          window.requestAnimationFrame(finish);
+        }
+      })
+      .catch(() => {
+        // The still fallback remains visible if a browser explicitly blocks muted
+        // inline playback; normal desktop and mobile browsers take the path above.
+      });
+  }
 
   function revealAndPrime(video: HTMLVideoElement) {
     setReady(true);
@@ -101,11 +135,14 @@ export default function FlightFilm({
           onCanPlay={(event) => revealAndPrime(event.currentTarget)}
           onSeeked={(event) => {
             const nextTime = pendingTime.current;
-            if (nextTime === null) return;
-            pendingTime.current = null;
-            if (Math.abs(event.currentTarget.currentTime - nextTime) > 0.025) {
-              event.currentTarget.currentTime = nextTime;
+            if (nextTime !== null) {
+              pendingTime.current = null;
+              if (Math.abs(event.currentTarget.currentTime - nextTime) > 0.025) {
+                event.currentTarget.currentTime = nextTime;
+                return;
+              }
             }
+            paintDecodedFrame(event.currentTarget);
           }}
           onError={() => setReady(false)}
         />
