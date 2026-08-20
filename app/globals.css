@@ -245,13 +245,13 @@ h3,
 }
 .flight-film video {
   z-index: 2;
-  filter: saturate(0.94) contrast(1.025);
+  filter: saturate(1.02) contrast(1.01) brightness(1.035);
 }
 .cinematic-world__wash {
   z-index: 3;
   background:
-    linear-gradient(90deg, rgba(9, 22, 39, 0.82) 0%, rgba(9, 22, 39, 0.53) 37%, rgba(9, 22, 39, 0.05) 72%),
-    linear-gradient(0deg, rgba(9, 22, 39, 0.62) 0%, transparent 36%);
+    linear-gradient(90deg, rgba(9, 22, 39, 0.58) 0%, rgba(9, 22, 39, 0.18) 42%, rgba(9, 22, 39, 0.02) 75%),
+    linear-gradient(0deg, rgba(9, 22, 39, 0.38) 0%, transparent 34%);
 }
 .cinematic-world__grain {
   z-index: 4;
@@ -964,8 +964,8 @@ h3,
   }
   .cinematic-world__wash {
     background:
-      linear-gradient(0deg, rgba(9,22,39,.88) 0%, rgba(9,22,39,.54) 58%, rgba(9,22,39,.05) 100%),
-      linear-gradient(90deg, rgba(9,22,39,.35), transparent);
+      linear-gradient(0deg, rgba(9,22,39,.68) 0%, rgba(9,22,39,.30) 58%, rgba(9,22,39,.02) 100%),
+      linear-gradient(90deg, rgba(9,22,39,.20), transparent);
   }
   .cinematic-world__rail {
     left: 4vw;
