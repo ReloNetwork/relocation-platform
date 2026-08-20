@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || 'missing-service-role-key'
-)
+import { createServiceClient } from '@/lib/supabase/service'
 
 interface PartnerOnboardingData {
   // Basic Information
@@ -166,6 +161,7 @@ function assignLocationTiers(primaryLocation: string, serviceAreas: string[]) {
 
 export async function POST(request: NextRequest) {
   try {
+    const supabase = createServiceClient()
     const formData: PartnerOnboardingData = await request.json()
     
     // Validate required fields
@@ -353,15 +349,20 @@ export async function POST(request: NextRequest) {
     }
 
     // Trigger workflow automation
-    await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/automation/execute`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        workflowType: 'partner_onboarding',
-        partnerId: partner.id,
-        triggerEvent: 'partner_signup'
-      })
-    }).catch(err => console.error('Workflow trigger failed:', err))
+    if (process.env.INTERNAL_API_SECRET && process.env.NEXT_PUBLIC_SITE_URL) {
+      await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/automation/execute`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.INTERNAL_API_SECRET}`,
+        },
+        body: JSON.stringify({
+          workflowType: 'partner_onboarding',
+          partnerId: partner.id,
+          triggerEvent: 'partner_signup'
+        })
+      }).catch(err => console.error('Workflow trigger failed:', err))
+    }
 
     return NextResponse.json({
       success: true,

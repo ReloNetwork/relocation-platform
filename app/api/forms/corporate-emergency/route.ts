@@ -1,25 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
-
-// Initialize services only if environment variables are available
-let resend: Resend | null = null
-let supabase: any = null
-
-try {
-  if (process.env.RESEND_API_KEY) {
-    resend = new Resend(process.env.RESEND_API_KEY)
-  }
-  
-  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
-    supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    )
-  }
-} catch (error) {
-  console.warn('Warning: Some services may not be available due to missing environment variables')
-}
+import { createServiceClient } from '@/lib/supabase/service'
 
 interface CorporateEmergencyData {
   companyName: string
@@ -158,6 +139,8 @@ const getInternalNotificationTemplate = (data: CorporateEmergencyData) => `
 
 export async function POST(request: NextRequest) {
   try {
+    const supabase = createServiceClient()
+    const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
     const data: CorporateEmergencyData = await request.json()
     
     // Validate required fields
@@ -174,56 +157,46 @@ export async function POST(request: NextRequest) {
     let dbData = null
     let requestId = `EMR-${Date.now()}`
 
-    // Try to store in Supabase database if available
-    if (supabase) {
-      try {
-        const { data: savedData, error: dbError } = await supabase
-          .from('corporate_emergency_requests')
-          .insert({
-            company_name: data.companyName,
-            contact_name: data.contactName,
-            contact_title: data.contactTitle,
-            employee_name: data.employeeName,
-            employee_role: data.employeeRole,
-            timeline: data.timeline,
-            budget: data.budget,
-            phone: data.phone,
-            email: data.email,
-            requirements: data.requirements || null,
-            form_type: data.formType,
-            urgent: data.urgent,
-            submitted_at: data.submittedAt,
-            status: 'new'
-          })
-          .select()
-          .single()
+    const { data: savedData, error: dbError } = await supabase
+      .from('corporate_emergency_requests')
+      .insert({
+        company_name: data.companyName,
+        contact_name: data.contactName,
+        contact_title: data.contactTitle,
+        employee_name: data.employeeName,
+        employee_role: data.employeeRole,
+        timeline: data.timeline,
+        budget: data.budget,
+        phone: data.phone,
+        email: data.email,
+        requirements: data.requirements || null,
+        form_type: data.formType,
+        urgent: data.urgent,
+        submitted_at: data.submittedAt,
+        status: 'new'
+      })
+      .select()
+      .single()
 
-        if (dbError) {
-          console.error('Supabase error:', dbError)
-          // Log the data but don't fail the request
-          console.log('Fallback: Corporate request data (DB unavailable):', JSON.stringify(data, null, 2))
-        } else {
-          dbData = savedData
-          requestId = savedData.id
-        }
-      } catch (error) {
-        console.error('Database connection failed:', error)
-        console.log('Fallback: Corporate request data (DB failed):', JSON.stringify(data, null, 2))
-      }
-    } else {
-      console.warn('Database not configured - logging request data')
-      console.log('Corporate Emergency Request (No DB):', JSON.stringify(data, null, 2))
+    if (dbError || !savedData) {
+      console.error('Supabase error:', dbError)
+      return NextResponse.json({ error: 'Failed to save emergency request' }, { status: 500 })
     }
 
+    dbData = savedData
+    requestId = savedData.id
+
     // Send confirmation email to client
+    let confirmationSent = false
     if (resend) {
       try {
-        await resend.emails.send({
+        const confirmation = await resend.emails.send({
           from: 'emergency@therelonetwork.com',
           to: [data.email],
           subject: `Emergency Relocation Request Confirmed - ${data.companyName}`,
           html: getConfirmationEmailTemplate(data)
         })
+        confirmationSent = !confirmation.error
       } catch (emailError) {
         console.error('Client confirmation email error:', emailError)
         // Don't fail the request if email fails - data is already saved
@@ -263,7 +236,7 @@ export async function POST(request: NextRequest) {
       message: 'Emergency relocation request received and processed',
       requestId: requestId,
       responseTime: '2 hours',
-      confirmationSent: true,
+      confirmationSent,
       databaseStored: !!dbData
     })
 

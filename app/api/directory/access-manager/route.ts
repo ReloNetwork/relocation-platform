@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { hasInternalAccess } from '@/lib/api-auth'
+import { createServiceClient } from '@/lib/supabase/service'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || 'missing-service-role-key'
-)
+const getSupabase = () => createServiceClient()
 
 interface AccessUpdateData {
   userId?: string
@@ -56,12 +54,8 @@ const ACCESS_PERMISSIONS = {
 }
 
 export async function POST(request: NextRequest) {
-  // Check environment variables
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-    return NextResponse.json({
-      success: true,
-      message: 'Mock access manager response'
-    })
+  if (!hasInternalAccess(request)) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
   }
 
   try {
@@ -91,7 +85,7 @@ async function updateClientAccess(data: AccessUpdateData) {
   const permissions = ACCESS_PERMISSIONS[data.accessTier]
   
   // Check if client access record exists
-  const { data: existingAccess } = await supabase
+  const { data: existingAccess } = await getSupabase()
     .from('client_access_levels')
     .select('*')
     .eq('email', data.email)
@@ -99,7 +93,7 @@ async function updateClientAccess(data: AccessUpdateData) {
 
   if (existingAccess) {
     // Update existing access
-    const { data: updated, error } = await supabase
+    const { data: updated, error } = await getSupabase()
       .from('client_access_levels')
       .update({
         access_tier: data.accessTier,
@@ -126,7 +120,7 @@ async function updateClientAccess(data: AccessUpdateData) {
     })
   } else {
     // Create new access record
-    const { data: created, error } = await supabase
+    const { data: created, error } = await getSupabase()
       .from('client_access_levels')
       .insert({
         user_id: data.userId || '',
@@ -155,7 +149,7 @@ async function updateClientAccess(data: AccessUpdateData) {
 }
 
 async function getClientAccess(data: { email: string }) {
-  const { data: access, error } = await supabase
+  const { data: access, error } = await getSupabase()
     .from('client_access_levels')
     .select('*')
     .eq('email', data.email)
@@ -185,7 +179,7 @@ async function filterPartnersByAccess(data: {
   offset?: number 
 }) {
   // Get client access level
-  const { data: access } = await supabase
+  const { data: access } = await getSupabase()
     .from('client_access_levels')
     .select('*')
     .eq('email', data.email)
@@ -195,7 +189,7 @@ async function filterPartnersByAccess(data: {
   const permissions = ACCESS_PERMISSIONS[accessTier as keyof typeof ACCESS_PERMISSIONS]
 
   // Build query based on access level
-  let query = supabase
+  let query = getSupabase()
     .from('partners')
     .select(`
       id, partner_id, company_name, business_description, 
@@ -273,7 +267,7 @@ async function filterPartnersByAccess(data: {
 }
 
 async function checkContactLimit(data: { email: string }) {
-  const { data: access } = await supabase
+  const { data: access } = await getSupabase()
     .from('client_access_levels')
     .select('monthly_contact_limit, monthly_contacts_used')
     .eq('email', data.email)
@@ -311,14 +305,14 @@ async function recordPartnerContact(data: {
   }
 
   // Get client access info
-  const { data: access } = await supabase
+  const { data: access } = await getSupabase()
     .from('client_access_levels')
     .select('*')
     .eq('email', data.email)
     .single()
 
   // Record the contact request
-  const { data: contactRequest, error: contactError } = await supabase
+  const { data: contactRequest, error: contactError } = await getSupabase()
     .from('partner_contact_requests')
     .insert({
       partner_id: data.partnerId,
@@ -337,7 +331,7 @@ async function recordPartnerContact(data: {
   }
 
   // Update monthly contact usage
-  await supabase
+  await getSupabase()
     .from('client_access_levels')
     .update({ 
       monthly_contacts_used: (access?.monthly_contacts_used || 0) + 1,
@@ -354,12 +348,8 @@ async function recordPartnerContact(data: {
 }
 
 export async function GET(request: NextRequest) {
-  // Check environment variables
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-    return NextResponse.json({
-      success: true,
-      message: 'Mock access manager response'
-    })
+  if (!hasInternalAccess(request)) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
   }
   const url = new URL(request.url)
   const email = url.searchParams.get('email')

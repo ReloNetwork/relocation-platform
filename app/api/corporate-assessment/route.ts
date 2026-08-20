@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
+import { createServiceClient } from '@/lib/supabase/service'
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,7 +9,7 @@ export async function POST(req: NextRequest) {
     const referenceId = `CA-${Date.now().toString().slice(-8)}`
     
     // Initialize Supabase client with service role key for server-side operations
-    const supabase = createClient(supabaseUrl, supabaseServiceKey)
+    const supabase = createServiceClient()
     
     // Prepare data for database insertion
     const assessmentData = {
@@ -48,13 +45,11 @@ export async function POST(req: NextRequest) {
     
     if (error) {
       console.error('Supabase insertion error:', error)
-      // Still return success to user, but log the error
       return NextResponse.json({ 
-        success: true,
-        message: 'Assessment submitted successfully',
-        referenceId: referenceId,
-        note: 'Data logged for manual processing'
-      })
+        success: false,
+        error: 'Failed to save assessment',
+        referenceId: referenceId
+      }, { status: 500 })
     }
     
     console.log('Corporate Assessment saved to Supabase:', {

@@ -14,7 +14,10 @@ const publicPaths = [
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const isDev =
-    pathname.startsWith('/api/dev') || pathname.startsWith('/integrations');
+    pathname.startsWith('/api/dev') ||
+    pathname.startsWith('/api/test-') ||
+    pathname.startsWith('/integrations') ||
+    pathname.startsWith('/debug-');
   if (
     isDev &&
     !(process.env.DEV_TOOLS === '1' && process.env.NODE_ENV !== 'production')

@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { beehiiv } from '@/lib/beehiiv';
+import { hasInternalAccess } from '@/lib/api-auth';
 
 export const runtime = 'nodejs';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  if (!hasInternalAccess(request)) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  }
+
   try {
     // Test 1: Check if API keys are configured
     const hasApiKey = !!process.env.BEEHIIV_API_KEY;

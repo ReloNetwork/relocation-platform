@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import Stripe from 'stripe'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || 'missing-service-role-key'
-)
+import { createServiceClient } from '@/lib/supabase/service'
 
 interface DirectorySignupFormData {
   firstName: string
@@ -38,6 +33,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const supabase = createServiceClient()
+
     const formData: DirectorySignupFormData = await request.json()
     
     // Validate required fields
@@ -54,14 +51,9 @@ export async function POST(request: NextRequest) {
     // Generate signup ID
     const signupId = `DIR-${Date.now()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`
 
-    // Try to store in database, with fallback for missing table
-    let data = null
-    let error = null
-
-    try {
-      const result = await supabase
-        .from('directory_signups')
-        .insert({
+    const { data, error } = await supabase
+      .from('directory_signups')
+      .insert({
           signup_id: signupId,
           first_name: formData.firstName,
           last_name: formData.lastName,
@@ -82,23 +74,9 @@ export async function POST(request: NextRequest) {
           marketing_consent: formData.marketingConsent,
           status: 'pending',
           created_at: new Date().toISOString()
-        })
-        .select()
-        .single()
-
-      data = result.data
-      error = result.error
-    } catch (dbError) {
-      console.error('Database operation failed:', dbError)
-      // If database fails, create a mock data object for the rest of the flow
-      data = { 
-        id: Date.now(), 
-        signup_id: signupId,
-        ...formData 
-      }
-      error = null // Don't fail the request if DB is having issues
-      console.log('Using fallback data storage, continuing with email notifications...')
-    }
+      })
+      .select()
+      .single()
 
     if (error) {
       console.error('Database error:', error)
@@ -108,6 +86,13 @@ export async function POST(request: NextRequest) {
           error: 'Database error - please contact support',
           details: process.env.NODE_ENV === 'development' ? error.message : 'Contact support with signup ID: ' + signupId
         },
+        { status: 500 }
+      )
+    }
+
+    if (!data) {
+      return NextResponse.json(
+        { error: 'Unable to confirm signup persistence' },
         { status: 500 }
       )
     }

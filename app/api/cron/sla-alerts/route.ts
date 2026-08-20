@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 import { calculateSLAStatus } from '@/lib/sla';
+import { hasCronAccess } from '@/lib/api-auth';
+import { createServiceClient } from '@/lib/supabase/service';
 
 export const dynamic = 'force-dynamic';
 
@@ -89,27 +91,13 @@ function generateEmailBody(alerts: SLAAlert[]): string {
 
 export async function GET(request: Request) {
   try {
-    // Simple API key authentication for cron jobs
-    const url = new URL(request.url);
-    const apiKey = url.searchParams.get('api_key') || request.headers.get('x-api-key');
-    
-    // For cron jobs, allow if API key matches or if called from localhost in development
-    const validApiKey = process.env.CRON_API_KEY || 'relo-sla-alerts-key';
-    const isLocalhost = url.hostname === 'localhost' || url.hostname === '127.0.0.1';
-    const isDevelopment = process.env.NODE_ENV === 'development';
-    
-    if (!isLocalhost || !isDevelopment) {
-      if (!apiKey || apiKey !== validApiKey) {
-        return NextResponse.json({ 
-          ok: false, 
-          error: 'Unauthorized - Valid API key required' 
-        }, { status: 401 });
-      }
+    if (!hasCronAccess(request)) {
+      return NextResponse.json({
+        ok: false,
+        error: 'Unauthorized'
+      }, { status: 401 });
     }
-    const sb = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
+    const sb = createServiceClient();
     const now = new Date();
     const soon = new Date(Date.now() + 24*60*60*1000); // next 24h
 

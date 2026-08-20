@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 'missing-resend-api-key');
-
 interface PartnerFormData {
   firstName: string;
   lastName: string;
@@ -20,7 +18,22 @@ interface PartnerFormData {
 
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json({ success: false, message: 'Email service is unavailable' }, { status: 503 });
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const data: PartnerFormData = await request.json();
+
+    const requiredFields: (keyof PartnerFormData)[] = [
+      'firstName', 'lastName', 'email', 'phone', 'company', 'serviceCategory',
+      'experienceYears', 'currentClientBase', 'londonExperience', 'insuranceCoverage',
+      'partnershipTier',
+    ];
+    const missingFields = requiredFields.filter((field) => !data[field]);
+    if (missingFields.length > 0) {
+      return NextResponse.json({ success: false, message: 'Missing required fields', missingFields }, { status: 400 });
+    }
 
     // Send notification email to Relo Network team
     const adminEmailHtml = `

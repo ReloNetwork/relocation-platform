@@ -3,10 +3,6 @@ import Stripe from 'stripe'
 
 const stripeKey = process.env.STRIPE_SECRET_KEY
 
-if (!stripeKey || stripeKey.includes('placeholder')) {
-  console.log('Demo mode: Stripe not configured, returning demo response')
-}
-
 const stripe = stripeKey && !stripeKey.includes('placeholder') 
   ? new Stripe(stripeKey, { apiVersion: '2023-10-16' })
   : null
@@ -14,12 +10,7 @@ const stripe = stripeKey && !stripeKey.includes('placeholder')
 export async function POST(request: NextRequest) {
   try {
     if (!stripeKey || stripeKey.includes('placeholder')) {
-      console.log('Demo mode: Stripe not configured, returning demo response')
-      return NextResponse.json({
-        url: '/concierge/demo-success?plan=demo',
-        demo: true,
-        message: 'Demo mode - Stripe payment processing not configured'
-      })
+      return NextResponse.json({ error: 'Payment processing is unavailable' }, { status: 503 })
     }
 
     if (!stripe) {
@@ -107,11 +98,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { 
         error: 'Failed to create checkout session',
-        details: error instanceof Error ? error.message : 'Unknown error',
-        debug: {
-          hasStripeKey: !!stripeKey,
-          stripeKeyPrefix: stripeKey?.substring(0, 8) + '...'
-        }
+        details: process.env.NODE_ENV === 'development' && error instanceof Error ? error.message : undefined,
       },
       { status: 500 }
     )

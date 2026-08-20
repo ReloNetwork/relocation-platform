@@ -1,6 +1,7 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import type { SupabaseClient } from '@supabase/supabase-js';
 import { createClientComponentClient, createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import { createServiceClient } from '@/lib/supabase/service';
 
 export type Database = {
   public: {
@@ -320,14 +321,5 @@ export { createClient as createServerClient } from '@/lib/supabase/server';
 // represented by the stale handwritten Database type above. Keep this client
 // untyped until the type is regenerated from the live Supabase project.
 export function createServiceSupabase(): SupabaseClient<any> {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    }
-  );
+  return createServiceClient();
 }

@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { PartnerApplicationFormData } from '@/lib/types'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || 'missing-service-role-key'
-)
+import { createServiceClient } from '@/lib/supabase/service'
 
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json({ error: 'Payment processing is unavailable' }, { status: 503 })
+    }
+
+    const supabase = createServiceClient()
     const formData: PartnerApplicationFormData = await request.json()
     
     // Validate required fields

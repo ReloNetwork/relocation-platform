@@ -100,15 +100,10 @@ Founding Member Rate: £497/month (Regular: £997/month)`,
       stripeError: error,
     });
 
-    // Return a more detailed error for debugging
     return NextResponse.json(
       {
         error: 'Failed to create Lead Machine checkout session',
-        details: error instanceof Error ? error.message : 'Unknown error',
-        debug: {
-          hasStripeKey: !!stripeKey,
-          stripeKeyPrefix: stripeKey?.substring(0, 8) + '...',
-        },
+        details: process.env.NODE_ENV === 'development' && error instanceof Error ? error.message : undefined,
       },
       { status: 500 }
     );

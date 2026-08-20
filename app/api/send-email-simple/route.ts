@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { hasBasicAdminAccess } from '@/lib/api-auth';
 
 export const runtime = 'nodejs';
 
@@ -26,6 +27,13 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
+  if (!hasBasicAdminAccess(req)) {
+    return NextResponse.json(
+      { error: 'Unauthorized - Admin access required' },
+      { status: 401, headers: { 'WWW-Authenticate': 'Basic realm="Admin"' } }
+    );
+  }
+
   // SECURITY: Rate limiting
   const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
   if (!checkRateLimit(clientIP)) {
@@ -83,7 +91,11 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  if (!hasBasicAdminAccess(req)) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  }
+
   return NextResponse.json({
     message: 'Partnership email sending endpoint',
     endpoint: 'POST /api/send-email-simple',
@@ -91,6 +103,6 @@ export async function GET() {
     required_fields: ['to', 'subject', 'html'],
     optional_fields: ['template'],
     rate_limit: '10 emails per hour',
-    note: 'No authentication required for partnership emails'
+    note: 'Admin authentication required'
   });
 }

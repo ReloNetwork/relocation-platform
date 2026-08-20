@@ -3,22 +3,6 @@ import { Resend } from 'resend';
 
 export const runtime = 'nodejs';
 
-// Security: Basic Auth check for admin endpoints (not needed for public contact form)
-function checkBasicAuth(req: NextRequest): boolean {
-  const auth = req.headers.get("authorization");
-  if (!auth) return false;
-  
-  const [type, value] = auth.split(" ");
-  if (type !== "Basic" || !value) return false;
-  
-  try {
-    const [user, pass] = atob(value).split(":");
-    return user === process.env.BASIC_AUTH_USER && pass === process.env.BASIC_AUTH_PASS;
-  } catch {
-    return false;
-  }
-}
-
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
@@ -121,9 +105,12 @@ export async function POST(req: NextRequest) {
 
       console.log('Confirmation email sent to customer via Resend');
 
-    } catch (emailError: any) {
+    } catch (emailError) {
       console.error('Email sending error:', emailError);
-      // Don't fail the entire request if email fails - log the contact anyway
+      return NextResponse.json(
+        { error: 'We could not deliver your message. Please call us directly at +44 20 3105 9566.' },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({ 

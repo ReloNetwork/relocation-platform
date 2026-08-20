@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { hasInternalAccess } from '@/lib/api-auth';
+import { createServiceClient } from '@/lib/supabase/service';
 
-export async function POST() {
+export async function POST(request: Request) {
+  if (!hasInternalAccess(request)) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  }
+
   try {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
+    const supabase = createServiceClient();
 
     // First, check if documents table exists and get its structure
     const { data: tableInfo, error: tableError } = await supabase

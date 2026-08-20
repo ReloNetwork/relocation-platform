@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { hasInternalAccess } from '@/lib/api-auth'
+import { createServiceClient } from '@/lib/supabase/service'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || 'missing-service-role-key'
-)
+const getSupabase = () => createServiceClient()
 
 interface WorkflowExecutionData {
   workflowType: string
@@ -53,6 +51,10 @@ const WORKFLOWS = {
 }
 
 export async function POST(request: NextRequest) {
+  if (!hasInternalAccess(request)) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     const data: WorkflowExecutionData = await request.json()
     
@@ -98,7 +100,7 @@ async function executePartnerOnboarding(data: WorkflowExecutionData) {
     results.push({ step: 'notify_relevant_clients', status: clientNotification.status, details: clientNotification })
     
     // Record workflow execution
-    await supabase
+    await getSupabase()
       .from('automated_workflows')
       .insert({
         workflow_name: 'partner_onboarding',
@@ -147,11 +149,19 @@ async function executeClientUpgrade(data: WorkflowExecutionData) {
   const results = []
   
   try {
+    if (!process.env.INTERNAL_API_SECRET) {
+      throw new Error('Internal API authentication is unavailable')
+    }
+
     // Update access permissions via access manager
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://relo-network.vercel.app'
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ||
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://relo-network.vercel.app')
     const accessUpdate = await fetch(`${siteUrl}/api/directory/access-manager`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.INTERNAL_API_SECRET}`,
+      },
       body: JSON.stringify({
         action: 'update_access',
         email: data.clientEmail,
@@ -207,7 +217,7 @@ async function executeReviewWorkflow(data: WorkflowExecutionData) {
 
 async function verifyPartnerCredentials(partnerId: number) {
   try {
-    const { data: partner } = await supabase
+    const { data: partner } = await getSupabase()
       .from('partners')
       .select('insurance_coverage, certifications, company_registration, vat_number')
       .eq('id', partnerId)
@@ -252,14 +262,14 @@ async function verifyPartnerCredentials(partnerId: number) {
 async function notifyRelevantClients(partnerId: number, eventType: string) {
   try {
     // Get partner details
-    const { data: partner } = await supabase
+    const { data: partner } = await getSupabase()
       .from('partners')
       .select('company_name, industry_category, service_areas, primary_location')
       .eq('id', partnerId)
       .single()
     
     // Find clients who might be interested (same location/category)
-    const { data: relevantClients } = await supabase
+    const { data: relevantClients } = await getSupabase()
       .from('client_access_levels')
       .select('email, access_tier, company_name')
       .eq('subscription_status', 'active')
@@ -303,7 +313,7 @@ async function notifyRelevantClients(partnerId: number, eventType: string) {
 
 async function updateDirectoryVisibility(partnerId: number) {
   try {
-    await supabase
+    await getSupabase()
       .from('partners')
       .update({ 
         visibility_level: 'premium',
@@ -320,7 +330,7 @@ async function updateDirectoryVisibility(partnerId: number) {
 
 async function sendPartnerApprovalEmail(partnerId: number) {
   try {
-    const { data: partner } = await supabase
+    const { data: partner } = await getSupabase()
       .from('partners')
       .select('contact_email, contact_name, company_name, partner_id')
       .eq('id', partnerId)
@@ -374,7 +384,7 @@ async function assignAccountManager(clientEmail: string) {
 async function moderateReview(reviewId: number) {
   // Simple auto-moderation logic
   try {
-    const { data: review } = await supabase
+    const { data: review } = await getSupabase()
       .from('partner_reviews')
       .select('review_text, overall_rating')
       .eq('id', reviewId)
@@ -388,7 +398,7 @@ async function moderateReview(reviewId: number) {
     
     const approved = !hasFlags && (review?.overall_rating || 0) >= 3
     
-    await supabase
+    await getSupabase()
       .from('partner_reviews')
       .update({
         moderation_status: approved ? 'approved' : 'pending',
@@ -407,7 +417,7 @@ async function moderateReview(reviewId: number) {
 async function updatePartnerRating(partnerId: number) {
   // Recalculate partner rating based on published reviews
   try {
-    const { data: reviews } = await supabase
+    const { data: reviews } = await getSupabase()
       .from('partner_reviews')
       .select('overall_rating')
       .eq('partner_id', partnerId)
@@ -416,7 +426,7 @@ async function updatePartnerRating(partnerId: number) {
     if (reviews && reviews.length > 0) {
       const avgRating = reviews.reduce((sum, r) => sum + r.overall_rating, 0) / reviews.length
       
-      await supabase
+      await getSupabase()
         .from('partners')
         .update({
           client_rating: Math.round(avgRating * 100) / 100,
