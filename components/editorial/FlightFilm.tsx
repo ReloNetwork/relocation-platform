@@ -15,7 +15,6 @@ export default function FlightFilm({
   const seekFrame = useRef(0);
   const pendingTime = useRef<number | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
-  const [source, setSource] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -41,36 +40,6 @@ export default function FlightFilm({
   }, []);
 
   useEffect(() => {
-    if (!shouldLoad) return;
-
-    const controller = new AbortController();
-    let objectUrl = '';
-
-    async function prepareSeekableFilm() {
-      try {
-        const response = await fetch(DESKTOP_FILM, {
-          signal: controller.signal,
-          cache: 'force-cache',
-        });
-        if (!response.ok) throw new Error(`Film request failed: ${response.status}`);
-        const blob = await response.blob();
-        objectUrl = URL.createObjectURL(blob);
-        setSource(objectUrl);
-      } catch (error) {
-        if (controller.signal.aborted) return;
-        // Keep a direct-source fallback for browsers that restrict Blob media URLs.
-        setSource(DESKTOP_FILM);
-      }
-    }
-
-    prepareSeekableFilm();
-    return () => {
-      controller.abort();
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
-    };
-  }, [shouldLoad]);
-
-  useEffect(() => {
     const video = videoRef.current;
     if (!video || !ready || !Number.isFinite(video.duration)) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -92,7 +61,7 @@ export default function FlightFilm({
         className={`flight-film__fallback ${ready && !failed ? '' : 'is-active'}`}
         style={{ backgroundImage: `url(${fallback})` }}
       />
-      {!failed && shouldLoad && source && (
+      {!failed && shouldLoad && (
         <video
           ref={videoRef}
           className={ready ? 'is-ready' : ''}
@@ -100,7 +69,7 @@ export default function FlightFilm({
           playsInline
           preload="auto"
           poster={fallback}
-          src={source}
+          src={DESKTOP_FILM}
           disablePictureInPicture
           onLoadedMetadata={(event) => {
             event.currentTarget.currentTime = 0.001;
@@ -123,14 +92,7 @@ export default function FlightFilm({
               event.currentTarget.currentTime = nextTime;
             }
           }}
-          onError={() => {
-            if (source !== DESKTOP_FILM) {
-              setReady(false);
-              setSource(DESKTOP_FILM);
-              return;
-            }
-            setFailed(true);
-          }}
+          onError={() => setFailed(true)}
         />
       )}
       {shouldLoad && !ready && !failed && (
