@@ -38,14 +38,15 @@ export default function FlightFilm({
   const videoRef = useRef<HTMLVideoElement>(null);
   const seekFrame = useRef(0);
   const pendingTime = useRef<number | null>(null);
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const [isPhone, setIsPhone] = useState<boolean | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [filmUrl, setFilmUrl] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia('(max-width: 900px)');
+    const compactViewport = window.matchMedia('(max-width: 900px)');
+    const coarsePointer = window.matchMedia('(pointer: coarse)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const connection = (navigator as Navigator & {
       connection?: { saveData?: boolean; effectiveType?: string };
@@ -55,20 +56,26 @@ export default function FlightFilm({
         connection?.saveData ||
         connection?.effectiveType === 'slow-2g' ||
         connection?.effectiveType === '2g';
-      setIsMobile(media.matches);
-      setShouldLoad(!media.matches && !reducedMotion.matches && !constrained);
+      // A narrow desktop preview pane is not a phone. Requiring both a compact
+      // viewport and a coarse primary pointer keeps the native desktop film
+      // visible in split-pane browsers while phones retain the still fallback.
+      const phone = compactViewport.matches && coarsePointer.matches;
+      setIsPhone(phone);
+      setShouldLoad(!phone && !reducedMotion.matches && !constrained);
     };
     update();
-    media.addEventListener('change', update);
+    compactViewport.addEventListener('change', update);
+    coarsePointer.addEventListener('change', update);
     reducedMotion.addEventListener('change', update);
     return () => {
-      media.removeEventListener('change', update);
+      compactViewport.removeEventListener('change', update);
+      coarsePointer.removeEventListener('change', update);
       reducedMotion.removeEventListener('change', update);
     };
   }, []);
 
   useEffect(() => {
-    if (isMobile !== false || !shouldLoad) {
+    if (isPhone !== false || !shouldLoad) {
       setFilmUrl(null);
       return;
     }
@@ -88,7 +95,7 @@ export default function FlightFilm({
     return () => {
       cancelled = true;
     };
-  }, [isMobile, shouldLoad]);
+  }, [isPhone, shouldLoad]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -112,7 +119,7 @@ export default function FlightFilm({
         className={`flight-film__fallback ${ready && !failed ? '' : 'is-active'}`}
         style={{ backgroundImage: `url(${fallback})` }}
       />
-      {!failed && isMobile === false && filmUrl && (
+      {!failed && isPhone === false && filmUrl && (
         <video
           ref={videoRef}
           className={ready ? 'is-ready' : ''}
