@@ -119,14 +119,9 @@ export default function FlightFilm({
     const canvas = canvasRef.current;
     const video = videoRef.current;
     if (!canvas || !video || !ready) return;
-    if ('ResizeObserver' in window) {
-      const observer = new ResizeObserver(() => drawDecodedFrame(video));
-      observer.observe(canvas);
-      return () => observer.disconnect();
-    }
-    const redraw = () => drawDecodedFrame(video);
-    window.addEventListener('resize', redraw);
-    return () => window.removeEventListener('resize', redraw);
+    const observer = new ResizeObserver(() => drawDecodedFrame(video));
+    observer.observe(canvas);
+    return () => observer.disconnect();
   }, [drawDecodedFrame, ready]);
 
   useEffect(() => {

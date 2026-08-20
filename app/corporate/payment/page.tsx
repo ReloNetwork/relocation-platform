@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { CheckCircle, Clock, Shield, Zap, Building2, CreditCard, Calendar, Phone } from 'lucide-react'
+import { AlertTriangle, CheckCircle, Clock, Shield, Zap, Building2, CreditCard, Calendar, Phone } from 'lucide-react'
 import { Button } from '@/ui/components/button'
 import Layout from '../../../components/Layout'
 
