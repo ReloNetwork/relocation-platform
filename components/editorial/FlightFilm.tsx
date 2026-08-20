@@ -14,7 +14,6 @@ export default function FlightFilm({
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const seekFrame = useRef(0);
-  const videoFrame = useRef(0);
   const pendingTime = useRef<number | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [ready, setReady] = useState(false);
@@ -81,16 +80,6 @@ export default function FlightFilm({
 
   const scheduleDecodedFrame = useCallback(
     (video: HTMLVideoElement) => {
-      if ('requestVideoFrameCallback' in video) {
-        if (videoFrame.current) {
-          video.cancelVideoFrameCallback(videoFrame.current);
-        }
-        videoFrame.current = video.requestVideoFrameCallback(() => {
-          videoFrame.current = 0;
-          drawDecodedFrame(video);
-        });
-        return;
-      }
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => drawDecodedFrame(video));
       });
