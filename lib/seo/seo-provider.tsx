@@ -8,8 +8,7 @@
 import { DefaultSeo } from 'next-seo'
 import { usePathname } from 'next/navigation'
 import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Script } from 'next/script'
+import Script from 'next/script'
 import seoConfig from './next-seo.config'
 import { getAllCoreSchemas, breadcrumbSchema } from './core-schemas'
 import { socialCardsByPage } from './social-cards'
@@ -134,10 +133,6 @@ export default function SEOProvider({ children }: SEOProviderProps) {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       
-      {/* Critical CSS Preload */}
-      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" />
-      
       {/* Luxury Brand Meta Tags */}
       <meta name="theme-color" content="#C9A24A" />
       <meta name="msapplication-TileColor" content="#0B1B2B" />
@@ -153,9 +148,8 @@ export default function SEOProvider({ children }: SEOProviderProps) {
       
       {children}
       
-      {/* Vercel Analytics & Speed Insights */}
+      {/* Vercel Analytics */}
       <Analytics />
-      <SpeedInsights />
       
       {/* Luxury Performance Tracking */}
       <Script id="luxury-analytics" strategy="afterInteractive">

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     'Thirty decisions to make before relocating to London—from neighbourhoods and schools to housing, healthcare and your first ninety days.',
   alternates: { canonical: '/london-landing-list' },
 };
-const sections = [
+const sections: Array<[string, string[]]> = [
   [
     'THE BRIEF',
     [

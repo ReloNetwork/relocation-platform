@@ -8,7 +8,7 @@ if (!stripeKey || stripeKey.includes('placeholder')) {
 }
 
 const stripe = stripeKey && !stripeKey.includes('placeholder') 
-  ? new Stripe(stripeKey, { apiVersion: '2024-06-20' })
+  ? new Stripe(stripeKey, { apiVersion: '2023-10-16' })
   : null
 
 export async function POST(request: NextRequest) {
@@ -20,6 +20,10 @@ export async function POST(request: NextRequest) {
         demo: true,
         message: 'Demo mode - Stripe payment processing not configured'
       })
+    }
+
+    if (!stripe) {
+      return NextResponse.json({ error: 'Payment processing is unavailable' }, { status: 503 })
     }
 
     const { priceId } = await request.json()

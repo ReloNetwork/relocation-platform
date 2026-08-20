@@ -221,7 +221,7 @@ export async function POST(request: NextRequest) {
     const data: PremiumClientData = await request.json()
     
     // Validate required fields
-    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'timeline', 'budget', 'bedrooms', 'familySize', 'relocationType']
+    const requiredFields: (keyof PremiumClientData)[] = ['firstName', 'lastName', 'email', 'phone', 'timeline', 'budget', 'bedrooms', 'familySize', 'relocationType']
     for (const field of requiredFields) {
       if (!data[field]) {
         return NextResponse.json(

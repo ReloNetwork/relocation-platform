@@ -8,7 +8,23 @@ import { Button } from '../../../ui/components/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../ui/components/card'
 import { Badge } from '../../../ui/components/badge'
 
-const TIER_DETAILS = {
+interface TierDetails {
+  name: string
+  subtitle: string
+  price: number
+  originalPrice?: number
+  urgencyPrice?: number
+  urgencyText?: string
+  bulkPrice?: string
+  description: string
+  features: string[]
+  stripeLink: string
+  targetAudience: string
+  popular?: boolean
+  exclusive?: boolean
+}
+
+const TIER_DETAILS: Record<string, TierDetails> = {
   family: {
     name: 'Premium Family Access',
     subtitle: 'Relo Network Schools Concierge Access',
@@ -104,7 +120,7 @@ function PaymentPageContent() {
     }
   }, [searchParams])
 
-  const currentTier = TIER_DETAILS[selectedTier as keyof typeof TIER_DETAILS]
+  const currentTier = TIER_DETAILS[selectedTier]
 
   const handlePayment = async () => {
     setIsLoading(true)

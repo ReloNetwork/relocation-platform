@@ -40,7 +40,11 @@ export async function getUserOrganization(userId: string): Promise<Organization 
     return null
   }
 
-  return membership.orgs as Organization
+  const organization = Array.isArray(membership.orgs)
+    ? membership.orgs[0]
+    : membership.orgs
+
+  return organization as Organization
 }
 
 export async function requireUserWithOrg(userId: string): Promise<{

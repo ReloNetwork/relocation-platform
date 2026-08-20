@@ -316,9 +316,11 @@ export function createServerSupabase() {
 export { createClient as createBrowserClient } from '@/lib/supabase/client';
 export { createClient as createServerClient } from '@/lib/supabase/server';
 
-// Service role client for admin operations
-export function createServiceSupabase(): SupabaseClient<Database> {
-  return createClient<Database>(
+// Service-role routes currently span several legacy schemas that are not
+// represented by the stale handwritten Database type above. Keep this client
+// untyped until the type is regenerated from the live Supabase project.
+export function createServiceSupabase(): SupabaseClient<any> {
+  return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
     {

@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
       const result = await resend.emails.send({
         from: 'Relo Network Contact <onboarding@resend.dev>',
         to: 'hello@therelonetwork.com',
-        replyTo: email,
+        reply_to: email,
         subject: `New Contact: ${name} - ${service || 'General Inquiry'}`,
         html: emailContent
       });

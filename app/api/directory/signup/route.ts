@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import Stripe from 'stripe'
 
-// const supabase = createClient(
-//  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-//  process.env.SUPABASE_SERVICE_ROLE_KEY!
-// )
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || 'missing-service-role-key'
+)
 
 interface DirectorySignupFormData {
   firstName: string
@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
         }
         
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-          apiVersion: '2024-06-20',
+          apiVersion: '2023-10-16',
         })
         
         const priceAmount = formData.accessTier === 'plus' ? 2900 : 9900 // £29 or £99

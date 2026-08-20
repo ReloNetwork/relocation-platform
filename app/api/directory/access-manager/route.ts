@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || 'missing-service-role-key'
+)
+
 interface AccessUpdateData {
   userId?: string
   email: string
@@ -239,7 +244,7 @@ async function filterPartnersByAccess(data: {
   }
 
   // Filter out sensitive information for lower tiers
-  const filteredPartners = partners?.map(partner => {
+  const filteredPartners = partners?.map((partner: Record<string, any>) => {
     const filtered: any = { ...partner }
     
     if (!permissions.canViewContactDetails) {

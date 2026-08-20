@@ -99,11 +99,17 @@ export async function POST(request: NextRequest) {
 
         const recipients = orgMembers
           .filter((member) => member.users)
-          .map((member) => ({
-            email: member.users.email,
-            full_name: member.users.full_name,
-            role: member.role,
-          }));
+          .map((member) => {
+            const relatedUser = Array.isArray(member.users)
+              ? member.users[0]
+              : member.users;
+            return {
+              email: relatedUser?.email,
+              full_name: relatedUser?.full_name,
+              role: member.role,
+            };
+          })
+          .filter((recipient) => recipient.email);
 
         // Send email to each recipient
         for (const recipient of recipients) {

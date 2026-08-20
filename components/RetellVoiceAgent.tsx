@@ -35,7 +35,7 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behaviour: 'smooth' })
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
   // Listen for openVoiceWidget event from navigation

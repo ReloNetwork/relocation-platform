@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
       to: email,
       subject: `Welcome to UK Elite Schools Directory 2026 - Your ${tierNames[tier as keyof typeof tierNames]} Account`,
       html: emailHtml,
-      replyTo: 'education@therelonetwork.com'
+      reply_to: 'education@therelonetwork.com'
     })
 
     if (emailData.error) {

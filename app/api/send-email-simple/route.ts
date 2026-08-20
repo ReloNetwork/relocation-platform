@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
       to: to,
       subject: subject,
       html: html,
-      replyTo: 'hello@therelonetwork.com'
+      reply_to: 'hello@therelonetwork.com'
     });
     
     if (emailData.error) {

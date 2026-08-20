@@ -15,7 +15,7 @@ export default function ExecutivePage() {
 
   const handleContactUs = () => {
     // Scroll to contact form
-    document.getElementById('contact-form')?.scrollIntoView({ behaviour: 'smooth' })
+    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (

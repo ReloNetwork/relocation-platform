@@ -8,6 +8,7 @@ import { getProfessionalPartnerArticles, professionalPartners } from '@/lib/prof
 
 interface Article {
   id: string
+  slug?: string
   title: string
   excerpt: string
   category: string

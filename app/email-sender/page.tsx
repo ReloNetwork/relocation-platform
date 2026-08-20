@@ -72,7 +72,7 @@ const EMAIL_TEMPLATES = {
 }
 
 export default function EmailSender() {
-  const [selectedTemplate, setSelectedTemplate] = useState('')
+  const [selectedTemplate, setSelectedTemplate] = useState<keyof typeof EMAIL_TEMPLATES | ''>('')
   const [customTo, setCustomTo] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -86,7 +86,7 @@ export default function EmailSender() {
     setIsLoading(true)
     setMessage('')
 
-    const template = EMAIL_TEMPLATES[selectedTemplate as keyof typeof EMAIL_TEMPLATES]
+    const template = EMAIL_TEMPLATES[selectedTemplate]
     const recipient = customTo || template.to
 
     try {
@@ -187,7 +187,7 @@ export default function EmailSender() {
                 </label>
                 <select
                   value={selectedTemplate}
-                  onChange={(e) => setSelectedTemplate(e.target.value)}
+                  onChange={(e) => setSelectedTemplate(e.target.value as keyof typeof EMAIL_TEMPLATES | '')}
                   className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                 >
                   <option value="">Choose a template...</option>

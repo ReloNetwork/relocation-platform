@@ -4,13 +4,48 @@ import React, { useState } from 'react'
 import { ArrowLeft, ArrowRight, Rocket, Clock, Users, CheckCircle, Building2, Briefcase, GraduationCap, Home, Globe, User } from 'lucide-react'
 import Link from 'next/link'
 
+interface AITalentFormData {
+  companyName: string
+  companyWebsite: string
+  industry: string
+  officeLocation: string
+  contactName: string
+  contactRole: string
+  contactEmail: string
+  contactPhone: string
+  talentRole: string
+  seniorityLevel: string
+  currentLocation: string
+  targetStartDate: string
+  salaryRange: string
+  employeeCount: string
+  familySize: string
+  childrenAges: string
+  spouseEmployment: string
+  housingBudget: string
+  preferredAreas: string[]
+  schoolRequirement: string
+  urgencyLevel: string
+  competingOffers: string
+  visaStatus: string
+  petRelocation: string
+  specialRequirements: string
+  referralSource: string
+}
+
+interface AssessmentResponse {
+  success: boolean
+  data: unknown
+  referenceNumber?: string
+}
+
 export default function AITalentAssessment() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [submissionData, setSubmissionData] = useState<any>(null)
   const [userType, setUserType] = useState<'company' | 'individual'>('company')
   const [addToIndex, setAddToIndex] = useState(false)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<AITalentFormData>({
     // Company Information
     companyName: '',
     companyWebsite: '',
@@ -95,7 +130,7 @@ export default function AITalentAssessment() {
       })
       
       // Even if response is 500, still try to show confirmation
-      let result = { success: false, data: null }
+      let result: AssessmentResponse = { success: false, data: null }
       try {
         result = await response.json()
       } catch (e) {

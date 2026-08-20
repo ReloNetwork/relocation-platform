@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
+export const dynamic = 'force-dynamic'
+
 // Check if Stripe is configured
 if (!process.env.STRIPE_SECRET_KEY) {
   console.error('Stripe secret key not configured')
 }
 
 const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2024-06-20',
+  apiVersion: '2023-10-16',
 }) : null
 
 export async function GET(request: NextRequest) {

@@ -10,7 +10,7 @@ export interface CallSession {
   status: 'connecting' | 'active' | 'ended'
   duration?: number
   transcript?: string[]
-  metadata?: {
+  metadata?: Record<string, string | undefined> & {
     userType?: string
     inquiryType?: string
     location?: string

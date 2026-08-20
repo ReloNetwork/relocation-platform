@@ -5,12 +5,22 @@ const stripeKey = process.env.STRIPE_SECRET_KEY;
 
 const stripe = stripeKey
   ? new Stripe(stripeKey, {
-      apiVersion: '2024-06-20',
+      apiVersion: '2023-10-16',
     })
   : null;
 
+interface ProductConfig {
+  name: string
+  description: string
+  amount: number
+  interval: 'month' | 'year'
+  features: string[]
+  originalPrice?: number
+  metadata: Record<string, string>
+}
+
 // Product configurations for Payment Links
-const PRODUCTS = {
+const PRODUCTS: Record<string, ProductConfig> = {
   'lead-machine': {
     name: 'Lead Machine Partnership',
     description:
@@ -264,8 +274,6 @@ export async function POST(request: NextRequest) {
         submit: {
           message: getCustomMessage(productKey),
         },
-        shipping_address: null,
-        terms_of_service_acceptance: null,
       },
       invoice_creation: {
         enabled: true,
@@ -285,7 +293,6 @@ export async function POST(request: NextRequest) {
       phone_number_collection: {
         enabled: true,
       },
-      shipping_address_collection: null,
       tax_id_collection: {
         enabled: true,
       },

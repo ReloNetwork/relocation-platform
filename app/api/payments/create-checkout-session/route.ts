@@ -8,7 +8,7 @@ function getStripe(): Stripe | null {
     if (process.env.STRIPE_SECRET_KEY) {
       console.log('Initializing Stripe with key length:', process.env.STRIPE_SECRET_KEY.length)
       return new Stripe(process.env.STRIPE_SECRET_KEY, {
-        apiVersion: '2024-06-20',
+        apiVersion: '2023-10-16',
       })
     } else {
       console.warn('STRIPE_SECRET_KEY environment variable not found')
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
     const data: CheckoutSessionData = await request.json()
     
     // Validate required fields
-    const requiredFields = ['packageId', 'price', 'requestId', 'companyName', 'successUrl', 'cancelUrl']
+    const requiredFields: (keyof CheckoutSessionData)[] = ['packageId', 'price', 'requestId', 'companyName', 'successUrl', 'cancelUrl']
     for (const field of requiredFields) {
       if (!data[field]) {
         return NextResponse.json(
@@ -204,7 +204,7 @@ export async function POST(request: NextRequest) {
     }
     
     return NextResponse.json(
-      { error: errorMessage, details: process.env.NODE_ENV === 'development' ? error.message : undefined },
+      { error: errorMessage, details: process.env.NODE_ENV === 'development' && error instanceof Error ? error.message : undefined },
       { status: 500 }
     )
   }

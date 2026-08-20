@@ -27,7 +27,7 @@ export default function AIChat({ variant = 'floating', className = '' }: AIChatP
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behaviour: 'smooth' })
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
   // Initialize chat with welcome message

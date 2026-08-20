@@ -9,7 +9,7 @@ const stripeKey = process.env.STRIPE_SECRET_KEY;
 
 const stripe = stripeKey
   ? new Stripe(stripeKey, {
-      apiVersion: '2024-06-20',
+      apiVersion: '2023-10-16',
     })
   : null;
 
@@ -129,7 +129,6 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const tier = body.tier || 'lead_machine';
 
     // Define tier-specific configurations
     const tierConfigs = {
@@ -173,7 +172,14 @@ Founding Member Rate: £1,497/month (Regular: £2,997/month)`,
       },
     };
 
-    const config = tierConfigs[tier] || tierConfigs['lead_machine'];
+    type TierKey = keyof typeof tierConfigs;
+    const requestedTier = body.tier as string | undefined;
+    const tier: TierKey =
+      requestedTier && requestedTier in tierConfigs
+        ? (requestedTier as TierKey)
+        : 'lead_machine';
+
+    const config = tierConfigs[tier];
 
     // Create Stripe Checkout Session with tier-specific data
     const session = await stripe.checkout.sessions.create({

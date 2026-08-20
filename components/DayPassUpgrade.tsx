@@ -7,9 +7,14 @@ import { checkoutFunctions } from '../lib/checkout'
 interface DayPassUpgradeProps {
   trigger: 'post_purchase' | 'time_based' // Immediately after purchase or at T+60h
   className?: string
+  nudgeText?: string
 }
 
-export default function DayPassUpgrade({ trigger, className = '' }: DayPassUpgradeProps) {
+export default function DayPassUpgrade({
+  trigger,
+  className = '',
+  nudgeText = "Convert your pass into full service — we'll quarterback the whole move.",
+}: DayPassUpgradeProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [hasTriggered, setHasTriggered] = useState(false)
 
@@ -70,7 +75,7 @@ export default function DayPassUpgrade({ trigger, className = '' }: DayPassUpgra
         <div className="flex-1">
           <h3 className="font-bold text-white text-sm mb-2">Don't lose momentum</h3>
           <p className="text-white/90 text-sm leading-relaxed">
-            Convert your pass into full service — we'll quarterback the whole move.
+            {nudgeText}
           </p>
         </div>
       </div>

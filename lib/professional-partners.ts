@@ -10,6 +10,15 @@ export interface PartnerArticle {
   publishedDate: string
   readTime: string
   featured: boolean
+  partnerName?: string
+  partnerCategory?: string
+  partnerLogo?: string
+}
+
+export type ProfessionalPartnerArticle = PartnerArticle & {
+  partnerName: string
+  partnerCategory: string
+  partnerLogo?: string
 }
 
 export interface ProfessionalPartner {
@@ -163,7 +172,7 @@ export const professionalPartners: ProfessionalPartner[] = [
 ]
 
 // Get all articles from professional partners for newsletter integration
-export const getProfessionalPartnerArticles = (): PartnerArticle[] => {
+export const getProfessionalPartnerArticles = (): ProfessionalPartnerArticle[] => {
   return professionalPartners.flatMap(partner => 
     partner.articles.map(article => ({
       ...article,

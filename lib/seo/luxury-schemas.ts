@@ -4,28 +4,11 @@
  * Maintains premium brand positioning throughout all schema implementations
  */
 
-import { 
-  WithContext, 
-  Organization, 
-  LocalBusiness,
-  WebSite,
-  Service,
-  BreadcrumbList,
-  FAQPage,
-  ContactPoint,
-  PostalAddress,
-  GeoCoordinates,
-  Review,
-  AggregateRating,
-  Offer,
-  Person,
-  ProfessionalService
-} from 'schema-dts'
-
 import { BRAND_CONFIG } from './config'
+import type { Schema } from './types'
 
 // Core Organization Schema with Luxury Positioning
-export const luxuryOrganizationSchema: WithContext<Organization> = {
+export const luxuryOrganizationSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${BRAND_CONFIG.url}#organization`,
@@ -151,7 +134,7 @@ export const luxuryOrganizationSchema: WithContext<Organization> = {
 }
 
 // LocalBusiness Schema for London Market Presence
-export const luxuryLocalBusinessSchema: WithContext<LocalBusiness> = {
+export const luxuryLocalBusinessSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': `${BRAND_CONFIG.url}#localbusiness`,
@@ -214,7 +197,7 @@ export const luxuryLocalBusinessSchema: WithContext<LocalBusiness> = {
 }
 
 // WebSite Schema with Sitelinks Search Box
-export const luxuryWebSiteSchema: WithContext<WebSite> = {
+export const luxuryWebSiteSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${BRAND_CONFIG.url}#website`,
@@ -264,7 +247,7 @@ export const luxuryWebSiteSchema: WithContext<WebSite> = {
 }
 
 // Professional Service Schema for Service Pages
-export const luxuryServiceSchema: WithContext<ProfessionalService> = {
+export const luxuryServiceSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': `${BRAND_CONFIG.url}/services#service`,
@@ -354,7 +337,7 @@ export const luxuryServiceSchema: WithContext<ProfessionalService> = {
 }
 
 // Generate Breadcrumb Schema for any page
-export function generateLuxuryBreadcrumbSchema(breadcrumbs: Array<{name: string, url: string}>): WithContext<BreadcrumbList> {
+export function generateLuxuryBreadcrumbSchema(breadcrumbs: Array<{name: string, url: string}>): Schema {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -369,7 +352,7 @@ export function generateLuxuryBreadcrumbSchema(breadcrumbs: Array<{name: string,
 }
 
 // Core FAQ Schema for Common Relocation Questions
-export const luxuryFAQSchema: WithContext<FAQPage> = {
+export const luxuryFAQSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   '@id': `${BRAND_CONFIG.url}#faq`,

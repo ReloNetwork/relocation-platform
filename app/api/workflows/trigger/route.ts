@@ -5,9 +5,7 @@ import {
 } from '@/lib/workflows/service-delivery';
 import { Resend } from 'resend';
 
-const resend = process.env.RESEND_API_KEY
-  ? new Resend(process.env.RESEND_API_KEY)
-  : null;
+const resend = new Resend(process.env.RESEND_API_KEY || 'missing-resend-api-key');
 
 interface WorkflowTriggerRequest {
   serviceType: string;

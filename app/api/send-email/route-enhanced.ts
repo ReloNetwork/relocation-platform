@@ -81,7 +81,7 @@ async function sendWithGmail(emailParams: any) {
     throw new Error('Gmail credentials not configured');
   }
 
-  const transporter = nodemailer.createTransporter({
+  const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.GMAIL_USER,

@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
     const data: CorporateEmergencyData = await request.json()
     
     // Validate required fields
-    const requiredFields = ['companyName', 'contactName', 'contactTitle', 'employeeName', 'employeeRole', 'timeline', 'budget', 'phone', 'email']
+    const requiredFields: (keyof CorporateEmergencyData)[] = ['companyName', 'contactName', 'contactTitle', 'employeeName', 'employeeRole', 'timeline', 'budget', 'phone', 'email']
     for (const field of requiredFields) {
       if (!data[field]) {
         return NextResponse.json(
