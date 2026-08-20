@@ -14,9 +14,12 @@ export default function FlightFilm({
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const seekFrame = useRef(0);
+  const paintRetry = useRef(0);
   const pendingTime = useRef<number | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [ready, setReady] = useState(false);
+
+  useEffect(() => () => window.clearTimeout(paintRetry.current), []);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -80,9 +83,13 @@ export default function FlightFilm({
 
   const scheduleDecodedFrame = useCallback(
     (video: HTMLVideoElement) => {
+      window.clearTimeout(paintRetry.current);
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => drawDecodedFrame(video));
       });
+      paintRetry.current = window.setTimeout(() => {
+        drawDecodedFrame(video);
+      }, 180);
     },
     [drawDecodedFrame]
   );
