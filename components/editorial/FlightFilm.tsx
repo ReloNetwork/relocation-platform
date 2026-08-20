@@ -4,26 +4,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const DESKTOP_FILM = '/films/relo-continuous-flight-desktop.mp4';
 
-const blobSources = new Map<string, Promise<string>>();
-
-function getSeekableSource(source: string) {
-  const cached = blobSources.get(source);
-  if (cached) return cached;
-  const request = fetch(source, { cache: 'force-cache' })
-    .then(async (response) => {
-      if (!response.ok) {
-        throw new Error(`Unable to load flight film (${response.status})`);
-      }
-      return URL.createObjectURL(await response.blob());
-    })
-    .catch((error) => {
-      blobSources.delete(source);
-      throw error;
-    });
-  blobSources.set(source, request);
-  return request;
-}
-
 export default function FlightFilm({
   progress,
   fallback,
@@ -35,10 +15,8 @@ export default function FlightFilm({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const seekFrame = useRef(0);
   const videoFrame = useRef(0);
-  const resumeTime = useRef<number | null>(null);
   const pendingTime = useRef<number | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
-  const [source, setSource] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -68,28 +46,6 @@ export default function FlightFilm({
       connection?.removeEventListener('change', update);
     };
   }, []);
-
-  useEffect(() => {
-    if (!shouldLoad) {
-      setSource(null);
-      setReady(false);
-      return;
-    }
-
-    let cancelled = false;
-    setSource(DESKTOP_FILM);
-    getSeekableSource(DESKTOP_FILM)
-      .then((seekableSource) => {
-        if (cancelled) return;
-        resumeTime.current = videoRef.current?.currentTime ?? null;
-        setSource(seekableSource);
-      })
-      .catch(() => undefined);
-
-    return () => {
-      cancelled = true;
-    };
-  }, [shouldLoad]);
 
   const drawDecodedFrame = useCallback((video: HTMLVideoElement) => {
     const canvas = canvasRef.current;
@@ -179,7 +135,7 @@ export default function FlightFilm({
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !source) return;
+    if (!video || !shouldLoad) return;
     if (!window.matchMedia('(pointer: coarse)').matches) return;
     const prime = () => {
       const time = video.currentTime;
@@ -196,7 +152,7 @@ export default function FlightFilm({
       passive: true,
     });
     return () => window.removeEventListener('pointerdown', prime);
-  }, [source]);
+  }, [shouldLoad]);
 
   function revealDecodedFrame(video: HTMLVideoElement) {
     video.removeAttribute('poster');
@@ -212,7 +168,7 @@ export default function FlightFilm({
         className={`flight-film__fallback ${ready ? '' : 'is-active'}`}
         style={{ backgroundImage: `url(${fallback})` }}
       />
-      {shouldLoad && source && (
+      {shouldLoad && (
         <>
           <canvas ref={canvasRef} className={ready ? 'is-ready' : ''} />
           <video
@@ -221,15 +177,12 @@ export default function FlightFilm({
             playsInline
             preload="auto"
             poster={ready ? undefined : fallback}
-            src={source}
+            src={DESKTOP_FILM}
             disablePictureInPicture
             onLoadedMetadata={(event) => {
-              const resumed = resumeTime.current;
-              resumeTime.current = null;
               const target =
-                resumed ??
                 Math.min(1, Math.max(0, progress)) *
-                  Math.max(0, event.currentTarget.duration - 0.06);
+                Math.max(0, event.currentTarget.duration - 0.06);
               event.currentTarget.currentTime = Math.max(0.001, target);
             }}
             onLoadedData={(event) => revealDecodedFrame(event.currentTarget)}

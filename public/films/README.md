@@ -11,11 +11,12 @@ Move, Live, Discover, Ask Relo. The homepage scrubs the complete film. Public
 editorial subpages reuse the cached master and open inside their relevant
 chapter.
 
-The desktop master is fetched into a seekable Blob URL and hardened for phone
-playback with coalesced seeks, first-touch priming and responsive canvas redraws.
-It is still centre-cropped on a phone and must not be described as the native
-mobile production. Replace it with a separately generated, frame-locked 9:16
-chain before treating mobile as final art direction.
+The desktop master is delivered directly from Vercel with HTTP byte-range
+support and hardened for phone playback with coalesced seeks, first-touch
+priming and responsive canvas redraws. It is still centre-cropped on a phone and
+must not be described as the native mobile production. Replace it with a
+separately generated, frame-locked 9:16 chain before treating mobile as final
+art direction.
 
 Until the masters are present, the player deliberately falls back to the
 approved high-resolution editorial stills. Missing film files therefore do not
