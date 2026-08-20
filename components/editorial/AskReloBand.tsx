@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation';
 
 export default function AskReloBand({
   compact = false,
+  placeholder = 'What’s the best neighbourhood for our family and commute?',
 }: {
   compact?: boolean;
+  placeholder?: string;
 }) {
   const [question, setQuestion] = useState('');
   const router = useRouter();
@@ -31,7 +33,7 @@ export default function AskReloBand({
           id="ask-relo-question"
           value={question}
           onChange={(event) => setQuestion(event.target.value)}
-          placeholder="What’s the best neighbourhood for our family and commute?"
+          placeholder={placeholder}
         />
         <button type="submit">
           ASK RELO <span>→</span>

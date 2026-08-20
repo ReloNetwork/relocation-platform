@@ -210,35 +210,42 @@ h3,
   background: #10243d;
 }
 .cinematic-world__media,
-.cinematic-world__scene,
-.cinematic-world__media video,
 .cinematic-world__wash,
 .cinematic-world__grain {
   position: absolute;
   inset: 0;
 }
-.cinematic-world__scene,
-.cinematic-world__media video {
+.flight-film,
+.flight-film__fallback,
+.flight-film video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+}
+.flight-film {
+  overflow: hidden;
+  background: #10243d;
+}
+.flight-film__fallback,
+.flight-film video {
   object-fit: cover;
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transition: opacity 700ms ease, transform 180ms linear;
+  transition: opacity 500ms ease;
   will-change: transform, opacity;
 }
-.cinematic-world__scene.is-active,
-.cinematic-world__media video.is-active {
+.flight-film__fallback {
+  transform: scale(1.035);
+}
+.flight-film__fallback.is-active,
+.flight-film video.is-ready {
   opacity: 1;
 }
-.cinematic-world__media video {
+.flight-film video {
   z-index: 2;
-  filter: saturate(0.92) contrast(1.03);
-}
-.cinematic-world__media video.is-active {
-  opacity: .74;
-  mix-blend-mode: multiply;
+  filter: saturate(0.94) contrast(1.025);
 }
 .cinematic-world__wash {
   z-index: 3;
@@ -545,6 +552,43 @@ h3,
   padding: 110px 7vw;
   position: relative;
 }
+.editorial-hero--film {
+  min-height: min(820px, calc(100dvh - 88px));
+}
+.editorial-hero__copy {
+  position: relative;
+  z-index: 2;
+}
+.editorial-hero__portal {
+  position: relative;
+  height: 540px;
+  overflow: hidden;
+  background: var(--navy);
+  box-shadow: 0 35px 90px rgba(9, 22, 39, .13);
+}
+.editorial-hero__portal:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, .18),
+    transparent 38%,
+    rgba(9, 22, 39, .1)
+  );
+}
+.editorial-hero__portal > span {
+  position: absolute;
+  z-index: 4;
+  right: 22px;
+  bottom: 18px;
+  color: white;
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-shadow: 0 1px 16px rgba(0,0,0,.45);
+}
 .home-intro {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -788,6 +832,37 @@ h3,
 .ask-relo-band__wheel:after {
   transform: rotate(90deg);
 }
+.ask-relo-orbit {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  z-index: 40;
+  transform: translateY(-50%);
+  width: 42px;
+  min-height: 148px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 0;
+  color: white;
+  background: var(--red);
+  box-shadow: 0 18px 50px rgba(111, 18, 23, .24);
+}
+.ask-relo-orbit span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 9px;
+  letter-spacing: .22em;
+}
+.ask-relo-orbit i {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: var(--gold);
+  font-style: normal;
+}
 .editorial-hero {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
@@ -1018,7 +1093,7 @@ h3,
     grid-template-columns: 1fr;
   }
   .home-intro img,
-  .editorial-hero img {
+  .editorial-hero__portal {
     height: 380px;
   }
   .discover-cards,
@@ -1045,6 +1120,26 @@ h3,
   .landing-signup button {
     padding: 18px;
   }
+  .ask-relo-orbit {
+    top: auto;
+    right: 14px;
+    bottom: 14px;
+    transform: none;
+    width: auto;
+    min-height: 46px;
+    height: 46px;
+    flex-direction: row;
+    padding: 0 0 0 16px;
+    gap: 14px;
+  }
+  .ask-relo-orbit span {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  .ask-relo-orbit i {
+    width: 46px;
+    height: 46px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1065,10 +1160,10 @@ h3,
     position: relative;
     top: 0;
   }
-  .cinematic-world__media video {
+  .flight-film video {
     display: none;
   }
-  .cinematic-world__scene,
+  .flight-film__fallback,
   .cinematic-world__copy {
     transition: none;
     animation: none;

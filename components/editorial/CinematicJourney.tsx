@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
+import FlightFilm from './FlightFilm';
 
 const scenes = [
   {
@@ -56,15 +57,18 @@ const scenes = [
   },
 ];
 
+// Chapter boundaries follow the actual seven-shot film rather than dividing
+// its duration into arbitrary equal slices.
+const chapterStarts = [0, 0.28, 0.43, 0.68, 0.86];
+
 export default function CinematicJourney() {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [progress, setProgress] = useState(0);
   const [question, setQuestion] = useState(scenes[0].prompt);
 
-  const active = Math.min(
-    scenes.length - 1,
-    Math.floor(progress * scenes.length)
+  const active = chapterStarts.reduce(
+    (chapter, start, index) => (progress >= start ? index : chapter),
+    0
   );
   const scene = scenes[active];
 
@@ -78,14 +82,6 @@ export default function CinematicJourney() {
       const distance = section.offsetHeight - window.innerHeight;
       const next = Math.min(1, Math.max(0, -rect.top / Math.max(1, distance)));
       setProgress(next);
-      const video = videoRef.current;
-      if (
-        video?.duration &&
-        !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
-        active === 0
-      ) {
-        video.currentTime = Math.min(1, next * scenes.length) * Math.max(0, video.duration - 0.08);
-      }
     };
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
@@ -102,11 +98,6 @@ export default function CinematicJourney() {
 
   useEffect(() => setQuestion(scene.prompt), [scene.prompt]);
 
-  const sceneProgress = useMemo(
-    () => progress * scenes.length - active,
-    [active, progress]
-  );
-
   function submit(event: FormEvent) {
     event.preventDefault();
     const query = question.trim();
@@ -120,7 +111,7 @@ export default function CinematicJourney() {
     if (!section) return;
     const distance = section.offsetHeight - window.innerHeight;
     window.scrollTo({
-      top: section.offsetTop + (index / scenes.length) * distance + 2,
+      top: section.offsetTop + chapterStarts[index] * distance + 2,
       behavior: 'smooth',
     });
   }
@@ -133,29 +124,7 @@ export default function CinematicJourney() {
     >
       <div className="cinematic-world__stage">
         <div className="cinematic-world__media" aria-hidden="true">
-          {scenes.map((item, index) => (
-            <div
-              className={`cinematic-world__scene ${index === active ? 'is-active' : ''}`}
-              key={item.id}
-              style={{
-                backgroundImage: `url(${item.image})`,
-                transform:
-                  index === active
-                    ? `scale(${1.07 - sceneProgress * 0.045})`
-                    : undefined,
-              }}
-            />
-          ))}
-          <video
-            ref={videoRef}
-            className={active === 0 ? 'is-active' : ''}
-            muted
-            playsInline
-            preload="metadata"
-            poster="/images/editorial/london-arrival-cinematic.webp"
-          >
-            <source src="/london-skyline-hero.mp4" type="video/mp4" />
-          </video>
+          <FlightFilm progress={progress} fallback={scene.image} />
         </div>
         <div className="cinematic-world__wash" />
         <div className="cinematic-world__grain" />

@@ -19,3 +19,6 @@ out/
 *.log
 .env.production
 .env.staging
+
+# Local high-bitrate film masters. Only browser-ready derivatives belong in Git.
+media-source/
