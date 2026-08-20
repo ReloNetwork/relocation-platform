@@ -217,6 +217,7 @@ h3,
 }
 .flight-film,
 .flight-film__fallback,
+.flight-film canvas,
 .flight-film video {
   position: absolute;
   inset: 0;
@@ -228,6 +229,7 @@ h3,
   background: #10243d;
 }
 .flight-film__fallback,
+.flight-film canvas,
 .flight-film video {
   object-fit: cover;
   background-size: cover;
@@ -240,11 +242,15 @@ h3,
   transform: scale(1.035);
 }
 .flight-film__fallback.is-active,
-.flight-film video.is-ready {
+.flight-film canvas.is-ready {
   opacity: 1;
 }
-.flight-film video {
+.flight-film canvas {
   z-index: 2;
+}
+.flight-film video {
+  z-index: 1;
+  opacity: 0;
   filter: saturate(1.02) contrast(1.01) brightness(1.035);
 }
 .flight-film__loading {
@@ -1253,7 +1259,8 @@ h3,
     position: relative;
     top: 0;
   }
-  .flight-film video {
+  .flight-film video,
+  .flight-film canvas {
     display: none;
   }
   .flight-film__fallback,
