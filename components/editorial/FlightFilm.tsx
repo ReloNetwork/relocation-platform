@@ -35,6 +35,7 @@ export default function FlightFilm({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const seekFrame = useRef(0);
   const videoFrame = useRef(0);
+  const resumeTime = useRef<number | null>(null);
   const pendingTime = useRef<number | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [source, setSource] = useState<string | null>(null);
@@ -76,16 +77,14 @@ export default function FlightFilm({
     }
 
     let cancelled = false;
-    setReady(false);
+    setSource(DESKTOP_FILM);
     getSeekableSource(DESKTOP_FILM)
       .then((seekableSource) => {
-        if (!cancelled) setSource(seekableSource);
+        if (cancelled) return;
+        resumeTime.current = videoRef.current?.currentTime ?? null;
+        setSource(seekableSource);
       })
-      .catch(() => {
-        // Vercel supports byte ranges, so the original URL is a safe fallback if
-        // Blob creation is blocked by a browser or an intermediary.
-        if (!cancelled) setSource(DESKTOP_FILM);
-      });
+      .catch(() => undefined);
 
     return () => {
       cancelled = true;
@@ -136,7 +135,9 @@ export default function FlightFilm({
         });
         return;
       }
-      window.requestAnimationFrame(() => drawDecodedFrame(video));
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => drawDecodedFrame(video));
+      });
     },
     [drawDecodedFrame]
   );
@@ -223,9 +224,12 @@ export default function FlightFilm({
             src={source}
             disablePictureInPicture
             onLoadedMetadata={(event) => {
+              const resumed = resumeTime.current;
+              resumeTime.current = null;
               const target =
+                resumed ??
                 Math.min(1, Math.max(0, progress)) *
-                Math.max(0, event.currentTarget.duration - 0.06);
+                  Math.max(0, event.currentTarget.duration - 0.06);
               event.currentTarget.currentTime = Math.max(0.001, target);
             }}
             onLoadedData={(event) => revealDecodedFrame(event.currentTarget)}
