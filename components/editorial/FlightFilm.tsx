@@ -12,10 +12,9 @@ export default function FlightFilm({
   fallback: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const seekFrame = useRef(0);
   const pendingTime = useRef<number | null>(null);
-  const primed = useRef(false);
-  const paintRequest = useRef(0);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -51,65 +50,49 @@ export default function FlightFilm({
         pendingTime.current = nextTime;
         return;
       }
-      // Stop the tiny compositor-play below before asking the decoder for the next
-      // scroll position. This keeps the film locked to the page rather than time.
-      if (!video.paused) video.pause();
       if (Math.abs(video.currentTime - nextTime) > 0.025) {
         video.currentTime = nextTime;
       } else {
-        paintDecodedFrame(video);
+        drawDecodedFrame(video);
       }
     });
     return () => window.cancelAnimationFrame(seekFrame.current);
   }, [progress, ready]);
 
-  function paintDecodedFrame(video: HTMLVideoElement) {
-    const request = ++paintRequest.current;
-    const finish = () => {
-      if (request !== paintRequest.current) return;
-      video.pause();
-    };
-
-    // Chromium can decode a seek successfully without replacing the poster/stale
-    // GPU texture. Let one decoded video frame enter the compositor, then pause on
-    // it. Muted inline playback is permitted without user interaction.
-    const playback = video.play();
-    if (!playback) return;
-    playback
-      .then(() => {
-        if ('requestVideoFrameCallback' in video) {
-          video.requestVideoFrameCallback(finish);
-        } else {
-          window.requestAnimationFrame(finish);
-        }
-      })
-      .catch(() => {
-        // The still fallback remains visible if a browser explicitly blocks muted
-        // inline playback; normal desktop and mobile browsers take the path above.
-      });
+  function drawDecodedFrame(video: HTMLVideoElement) {
+    const canvas = canvasRef.current;
+    if (!canvas || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) return;
+    const width = Math.max(1, canvas.clientWidth);
+    const height = Math.max(1, canvas.clientHeight);
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const outputWidth = Math.round(width * ratio);
+    const outputHeight = Math.round(height * ratio);
+    if (canvas.width !== outputWidth || canvas.height !== outputHeight) {
+      canvas.width = outputWidth;
+      canvas.height = outputHeight;
+    }
+    const context = canvas.getContext('2d', { alpha: false });
+    if (!context || !video.videoWidth || !video.videoHeight) return;
+    const sourceRatio = video.videoWidth / video.videoHeight;
+    const outputRatio = outputWidth / outputHeight;
+    let sx = 0;
+    let sy = 0;
+    let sw = video.videoWidth;
+    let sh = video.videoHeight;
+    if (sourceRatio > outputRatio) {
+      sw = video.videoHeight * outputRatio;
+      sx = (video.videoWidth - sw) / 2;
+    } else {
+      sh = video.videoWidth / outputRatio;
+      sy = (video.videoHeight - sh) / 2;
+    }
+    context.drawImage(video, sx, sy, sw, sh, 0, 0, outputWidth, outputHeight);
+    setReady(true);
   }
 
-  function revealAndPrime(video: HTMLVideoElement) {
-    setReady(true);
-    // A paused video can keep painting its poster even while currentTime changes.
-    // Remove it once decoded data exists, then briefly play/pause the muted film so
-    // Chrome and iOS both promote the video frame to the compositor.
+  function revealDecodedFrame(video: HTMLVideoElement) {
     video.removeAttribute('poster');
-    if (primed.current) return;
-    primed.current = true;
-    const targetTime = Math.min(1, Math.max(0, progress)) * Math.max(0, video.duration - 0.06);
-    const playback = video.play();
-    if (!playback) return;
-    playback
-      .then(() => {
-        video.pause();
-        video.currentTime = targetTime;
-      })
-      .catch(() => {
-        // Scroll seeking still works when autoplay policy blocks the prime. Removing
-        // the poster above is enough for desktop browsers to paint the decoded frame.
-        video.currentTime = targetTime;
-      });
+    drawDecodedFrame(video);
   }
 
   return (
@@ -119,33 +102,37 @@ export default function FlightFilm({
         style={{ backgroundImage: `url(${fallback})` }}
       />
       {shouldLoad && (
-        <video
-          ref={videoRef}
-          className={ready ? 'is-ready' : ''}
-          muted
-          playsInline
-          preload="auto"
-          poster={ready ? undefined : fallback}
-          src={DESKTOP_FILM}
-          disablePictureInPicture
-          onLoadedMetadata={(event) => {
-            event.currentTarget.currentTime = 0.001;
-          }}
-          onLoadedData={(event) => revealAndPrime(event.currentTarget)}
-          onCanPlay={(event) => revealAndPrime(event.currentTarget)}
-          onSeeked={(event) => {
-            const nextTime = pendingTime.current;
-            if (nextTime !== null) {
-              pendingTime.current = null;
-              if (Math.abs(event.currentTarget.currentTime - nextTime) > 0.025) {
-                event.currentTarget.currentTime = nextTime;
-                return;
+        <>
+          <canvas ref={canvasRef} className={ready ? 'is-ready' : ''} />
+          <video
+            ref={videoRef}
+            muted
+            playsInline
+            preload="auto"
+            poster={ready ? undefined : fallback}
+            src={DESKTOP_FILM}
+            disablePictureInPicture
+            onLoadedMetadata={(event) => {
+              event.currentTarget.currentTime = 0.001;
+            }}
+            onLoadedData={(event) => revealDecodedFrame(event.currentTarget)}
+            onCanPlay={(event) => revealDecodedFrame(event.currentTarget)}
+            onSeeked={(event) => {
+              const nextTime = pendingTime.current;
+              if (nextTime !== null) {
+                pendingTime.current = null;
+                if (Math.abs(event.currentTarget.currentTime - nextTime) > 0.025) {
+                  event.currentTarget.currentTime = nextTime;
+                  return;
+                }
               }
-            }
-            paintDecodedFrame(event.currentTarget);
-          }}
-          onError={() => setReady(false)}
-        />
+              drawDecodedFrame(event.currentTarget);
+            }}
+            onError={(event) => {
+              if (event.currentTarget.error) setReady(false);
+            }}
+          />
+        </>
       )}
       {shouldLoad && !ready && (
         <span className="flight-film__loading">PREPARING 35-SECOND FLIGHT</span>
