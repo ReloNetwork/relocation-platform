@@ -34,6 +34,7 @@ export default function FlightFilm({
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const seekFrame = useRef(0);
+  const videoFrame = useRef(0);
   const pendingTime = useRef<number | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [source, setSource] = useState<string | null>(null);
@@ -123,6 +124,23 @@ export default function FlightFilm({
     setReady(true);
   }, []);
 
+  const scheduleDecodedFrame = useCallback(
+    (video: HTMLVideoElement) => {
+      if ('requestVideoFrameCallback' in video) {
+        if (videoFrame.current) {
+          video.cancelVideoFrameCallback(videoFrame.current);
+        }
+        videoFrame.current = video.requestVideoFrameCallback(() => {
+          videoFrame.current = 0;
+          drawDecodedFrame(video);
+        });
+        return;
+      }
+      window.requestAnimationFrame(() => drawDecodedFrame(video));
+    },
+    [drawDecodedFrame]
+  );
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !ready || !Number.isFinite(video.duration)) return;
@@ -138,11 +156,11 @@ export default function FlightFilm({
       if (Math.abs(video.currentTime - nextTime) > 0.025) {
         video.currentTime = nextTime;
       } else {
-        drawDecodedFrame(video);
+        scheduleDecodedFrame(video);
       }
     });
     return () => window.cancelAnimationFrame(seekFrame.current);
-  }, [drawDecodedFrame, progress, ready]);
+  }, [progress, ready, scheduleDecodedFrame]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -161,6 +179,7 @@ export default function FlightFilm({
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !source) return;
+    if (!window.matchMedia('(pointer: coarse)').matches) return;
     const prime = () => {
       const time = video.currentTime;
       void video
@@ -180,7 +199,7 @@ export default function FlightFilm({
 
   function revealDecodedFrame(video: HTMLVideoElement) {
     video.removeAttribute('poster');
-    drawDecodedFrame(video);
+    scheduleDecodedFrame(video);
   }
 
   return (
@@ -222,7 +241,7 @@ export default function FlightFilm({
                   return;
                 }
               }
-              drawDecodedFrame(event.currentTarget);
+              scheduleDecodedFrame(event.currentTarget);
             }}
             onError={(event) => {
               if (event.currentTarget.error) setReady(false);
