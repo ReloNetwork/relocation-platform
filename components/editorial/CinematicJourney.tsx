@@ -61,6 +61,16 @@ const scenes = [
 // its duration into arbitrary equal slices.
 const chapterStarts = [0, 0.28, 0.43, 0.68, 0.86];
 
+const filmLegs = [
+  { time: '00:00', start: 0, label: 'LONDON AERIAL' },
+  { time: '00:05', start: 5.041667 / 35.291667, label: 'TOWER BRIDGE · RIVER' },
+  { time: '00:10', start: 10.083334 / 35.291667, label: 'RIVER · UNDERPASS' },
+  { time: '00:15', start: 15.125001 / 35.291667, label: 'UNDERPASS · WALKWAY' },
+  { time: '00:20', start: 20.166668 / 35.291667, label: 'WALKWAY · BLACK DOOR' },
+  { time: '00:25', start: 25.208335 / 35.291667, label: 'BLACK DOOR · BLUE DOOR' },
+  { time: '00:30', start: 30.270285 / 35.291667, label: 'BLUE DOOR · ENTRANCE' },
+];
+
 export default function CinematicJourney() {
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
@@ -71,6 +81,10 @@ export default function CinematicJourney() {
     0
   );
   const scene = scenes[active];
+  const activeLeg = filmLegs.reduce(
+    (leg, item, index) => (progress >= item.start ? index : leg),
+    0
+  );
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -112,6 +126,16 @@ export default function CinematicJourney() {
     const distance = section.offsetHeight - window.innerHeight;
     window.scrollTo({
       top: section.offsetTop + chapterStarts[index] * distance + 2,
+      behavior: 'smooth',
+    });
+  }
+
+  function goToFilmLeg(index: number) {
+    const section = sectionRef.current;
+    if (!section) return;
+    const distance = section.offsetHeight - window.innerHeight;
+    window.scrollTo({
+      top: section.offsetTop + filmLegs[index].start * distance + 2,
       behavior: 'smooth',
     });
   }
@@ -173,6 +197,28 @@ export default function CinematicJourney() {
           <span>{scene.number}</span>
           <small>{scene.label}</small>
         </div>
+
+        <nav className="cinematic-film-map" aria-label="Continuous flight film chapters">
+          <div className="cinematic-film-map__status">
+            <span>CONTINUOUS FLIGHT</span>
+            <b>{filmLegs[activeLeg].label}</b>
+            <small>{filmLegs[activeLeg].time} / 00:35</small>
+          </div>
+          <div className="cinematic-film-map__track">
+            {filmLegs.map((leg, index) => (
+              <button
+                type="button"
+                key={leg.label}
+                className={index === activeLeg ? 'is-active' : ''}
+                onClick={() => goToFilmLeg(index)}
+                aria-label={`Jump to ${leg.label} at ${leg.time}`}
+              >
+                <i />
+                <span>{String(index + 1).padStart(2, '0')}</span>
+              </button>
+            ))}
+          </div>
+        </nav>
 
         <form className="cinematic-ask" onSubmit={submit}>
           <div>
