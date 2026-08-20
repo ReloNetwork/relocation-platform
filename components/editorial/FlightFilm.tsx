@@ -16,7 +16,6 @@ export default function FlightFilm({
   const pendingTime = useRef<number | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [ready, setReady] = useState(false);
-  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -58,10 +57,10 @@ export default function FlightFilm({
   return (
     <div className={`flight-film ${ready ? 'is-ready' : 'is-loading'}`} aria-hidden="true">
       <div
-        className={`flight-film__fallback ${ready && !failed ? '' : 'is-active'}`}
+        className={`flight-film__fallback ${ready ? '' : 'is-active'}`}
         style={{ backgroundImage: `url(${fallback})` }}
       />
-      {!failed && shouldLoad && (
+      {shouldLoad && (
         <video
           ref={videoRef}
           className={ready ? 'is-ready' : ''}
@@ -74,16 +73,8 @@ export default function FlightFilm({
           onLoadedMetadata={(event) => {
             event.currentTarget.currentTime = 0.001;
           }}
-          onLoadedData={(event) => {
-            setReady(true);
-            // A muted play/pause primes frame-accurate seeking in Safari/WebKit.
-            const attempt = event.currentTarget.play();
-            if (attempt) {
-              attempt
-                .then(() => event.currentTarget.pause())
-                .catch(() => undefined);
-            }
-          }}
+          onLoadedData={() => setReady(true)}
+          onCanPlay={() => setReady(true)}
           onSeeked={(event) => {
             const nextTime = pendingTime.current;
             if (nextTime === null) return;
@@ -92,10 +83,10 @@ export default function FlightFilm({
               event.currentTarget.currentTime = nextTime;
             }
           }}
-          onError={() => setFailed(true)}
+          onError={() => setReady(false)}
         />
       )}
-      {shouldLoad && !ready && !failed && (
+      {shouldLoad && !ready && (
         <span className="flight-film__loading">PREPARING 35-SECOND FLIGHT</span>
       )}
     </div>
