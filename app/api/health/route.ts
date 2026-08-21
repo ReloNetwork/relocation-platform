@@ -14,6 +14,25 @@ export async function GET() {
     cal:{configured:false,ok:false,detail:''},
     resend:{configured:false,ok:false,detail:''},
     beehiiv:{configured:false,ok:false,detail:''},
+    executiveIntake:{configured:false,ok:false,detail:''},
+  };
+
+  const intakeConfiguration = {
+    supabaseUrl: has(process.env.NEXT_PUBLIC_SUPABASE_URL),
+    serviceRole: has(process.env.SUPABASE_SERVICE_ROLE_KEY),
+    resend: has(process.env.RESEND_API_KEY),
+    destination: has(process.env.EXECUTIVE_INTAKE_EMAIL),
+  };
+  const intakeConfigured = Object.values(intakeConfiguration).every(Boolean);
+  out.executiveIntake = {
+    configured: intakeConfigured,
+    ok: intakeConfigured,
+    detail: intakeConfigured
+      ? 'durable lead storage and email handoff configured'
+      : `missing ${Object.entries(intakeConfiguration)
+          .filter(([, configured]) => !configured)
+          .map(([name]) => name)
+          .join(', ')}`,
   };
 
   const beehiivConfigured = beehiiv.isConfigured();

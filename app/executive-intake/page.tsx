@@ -2,11 +2,13 @@
 
 import React, { useState, useEffect } from 'react'
 import Layout from '../../components/Layout'
-import { Crown, ArrowRight, CheckCircle, Calendar, Users, MapPin, GraduationCap, CreditCard } from 'lucide-react'
+import { Crown, ArrowRight, CheckCircle, Calendar, Users, MapPin, GraduationCap } from 'lucide-react'
 
 export default function ExecutiveIntakePage() {
   const [step, setStep] = useState(1)
-  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [consentAccepted, setConsentAccepted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const [formData, setFormData] = useState({
     // Move window
     moveDate: '',
@@ -108,38 +110,44 @@ export default function ExecutiveIntakePage() {
       return
     }
 
-    // Store form data for checkout
-    sessionStorage.setItem('executive_intake_data', JSON.stringify(formData))
-    
-    // Redirect to Stripe checkout
+    if (!consentAccepted) {
+      setSubmitError('Please confirm that we may review and respond to your brief.')
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitError('')
+
     try {
-      const response = await fetch('/api/checkout', {
+      const response = await fetch('/api/executive-intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          plan: '72hour_audit',
-          cadence: 'one_time',
-          email: formData.email,
-          formData: formData // Include form data for webhook processing
+          ...formData,
+          consent: true,
         }),
       })
 
       const data = await response.json()
       
-      if (response.ok && data.checkoutUrl) {
-        window.location.href = data.checkoutUrl
+      if (response.ok && data.success && data.referenceId) {
+        sessionStorage.setItem('executive_intake_data', JSON.stringify({
+          ...formData,
+          referenceId: data.referenceId,
+        }))
+        window.location.href = `/executive-intake/success?reference=${encodeURIComponent(data.referenceId)}`
       } else {
-        console.error('Checkout error:', data)
-        alert('Unable to start checkout. Please try again or contact support at hello@therelonetwork.com')
+        setSubmitError(data.error || 'We could not receive your brief. Please email hello@therelonetwork.com.')
       }
     } catch (error) {
-      console.error('Checkout request failed:', error)
-      alert('Unable to start checkout. Please check your connection and try again.')
+      console.error('Executive intake request failed:', error)
+      setSubmitError('We could not receive your brief. Please check your connection and try again.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
   const isStep1Complete = formData.moveDate && formData.budget && formData.preferredAreas.length > 0 && formData.name && formData.email
-  const isStep2Complete = true // Step 2 has no required fields, all optional
 
   return (
     <Layout className="bg-[#FAFAF9] min-h-screen">
@@ -151,10 +159,10 @@ export default function ExecutiveIntakePage() {
             <span className="text-[#C9A24A] text-sm font-medium">Executive Service</span>
           </div>
           <h1 className="text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            72-Hour Setup Audit
+            Begin Your London Move
           </h1>
           <p className="text-xl text-[#6B7280] mb-8">
-            Area fit analysis, property shortlist, viewings itinerary, tenancy agreement review
+            Share the essentials. We will review the fit and recommend the right level of private support.
           </p>
           
           {/* Progress */}
@@ -166,12 +174,7 @@ export default function ExecutiveIntakePage() {
             <div className={`w-12 h-0.5 ${step >= 2 ? 'bg-[#C9A24A]' : 'bg-[#E5E7EB]'}`} />
             <div className={`flex items-center gap-2 ${step >= 2 ? 'text-[#C9A24A]' : 'text-[#6B7280]'}`}>
               <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${step >= 2 ? 'border-[#C9A24A] bg-[#C9A24A] text-white' : 'border-[#6B7280]'}`}>2</div>
-              <span className="font-medium">Payment</span>
-            </div>
-            <div className={`w-12 h-0.5 ${step >= 3 ? 'bg-[#C9A24A]' : 'bg-[#E5E7EB]'}`} />
-            <div className={`flex items-center gap-2 ${step >= 3 ? 'text-[#C9A24A]' : 'text-[#6B7280]'}`}>
-              <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${step >= 3 ? 'border-[#C9A24A] bg-[#C9A24A] text-white' : 'border-[#6B7280]'}`}>3</div>
-              <span className="font-medium">Confirmation</span>
+              <span className="font-medium">Review</span>
             </div>
           </div>
         </div>
@@ -181,7 +184,7 @@ export default function ExecutiveIntakePage() {
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#E5E7EB]">
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
               <Calendar className="w-6 h-6 text-[#C9A24A]" />
-              Setup your audit (90 seconds)
+              Share your relocation brief
             </h2>
             
             <div className="space-y-8">
@@ -436,56 +439,47 @@ export default function ExecutiveIntakePage() {
                 disabled={!isStep1Complete}
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
-                Continue to Payment
+                Review Your Brief
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           </div>
         )}
 
-        {/* Step 2: Payment Confirmation */}
+        {/* Step 2: Review and consent */}
         {step === 2 && (
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#E5E7EB]">
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
-              <CreditCard className="w-6 h-6 text-[#C9A24A]" />
-              Confirm & Pay
+              <CheckCircle className="w-6 h-6 text-[#C9A24A]" />
+              Review & Send
             </h2>
             
             {/* Service Summary */}
             <div className="bg-[#FAFAF9] rounded-xl p-6 mb-8">
-              <h3 className="text-lg font-bold text-[#0B1B2B] mb-4">72-Hour Setup Audit</h3>
+              <h3 className="text-lg font-bold text-[#0B1B2B] mb-4">Your private relocation review</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Area fit analysis (150+ data points)</span>
+                  <span>We review your timing, household needs and housing brief</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Curated property shortlist with investment analysis</span>
+                  <span>We assess whether a private briefing, audit or full relocation engagement fits</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Optimized viewing itinerary with pre-negotiated slots</span>
+                  <span>We reply with the most appropriate scope and next step</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Tenancy agreement review with legal recommendations</span>
+                  <span>No payment is taken at this stage</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Written report + 60-min strategy call</span>
+                  <span>A secure payment link is issued only after fit and scope are agreed</span>
                 </div>
               </div>
               
-              <div className="border-t border-[#E5E7EB] mt-6 pt-6">
-                <div className="flex justify-between items-center text-lg">
-                  <span className="font-semibold">Total</span>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-[#0B1B2B]">£3,497</div>
-                    <div className="text-sm text-[#6B7280]">One-time payment</div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Micro-FAQ */}
@@ -493,30 +487,23 @@ export default function ExecutiveIntakePage() {
               <h4 className="font-bold text-[#0B1B2B] mb-4">Quick Questions</h4>
               <div className="space-y-4 text-sm">
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-1">What happens after I pay?</div>
-                  <div className="text-[#6B7280]">We begin your area analysis immediately. Written report delivered within 72 hours, call scheduled within 24h.</div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">What happens after I send this?</div>
+                  <div className="text-[#6B7280]">We review your brief and reply within one business day with the right next step.</div>
                 </div>
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-1">What if I want the full relocation service?</div>
-                  <div className="text-[#6B7280]">The audit fee is fully credited toward our Complete Executive Relocation service. Contact us for detailed pricing information.</div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">Will I be asked to pay now?</div>
+                  <div className="text-[#6B7280]">No. We confirm fit, scope and timing before issuing any payment link.</div>
                 </div>
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-3">Refunds & Cancellations</div>
-                  <div className="text-[#6B7280] space-y-2 text-sm">
-                    <div><strong>Cash refund:</strong> Available until we begin your area analysis (typically within 2-4 hours of payment).</div>
-                    <div><strong>After analysis begins:</strong> No cash refunds. We issue account credit valid for 12 months (usable on any Relo service).</div>
-                    <div><strong>After report delivery:</strong> Non-refundable. We may offer account credit only at our discretion.</div>
-                    <div className="text-xs text-[#6B7280] mt-2">
-                      <strong>Note:</strong> Credit is non-transferable and not redeemable for cash.
-                    </div>
-                  </div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">Is every brief accepted?</div>
+                  <div className="text-[#6B7280]">No. We only recommend an engagement when the need, timing and available support are genuinely aligned.</div>
                 </div>
               </div>
               
               <div className="mt-4 pt-4 border-t border-[#E5E7EB]">
                 <div className="text-xs text-[#6B7280]">
-                  By booking, you ask us to begin services immediately, which may affect statutory cooling-off rights. 
-                  <a href="/terms" className="text-[#C9A24A] hover:underline ml-1">View complete terms</a>
+                  Your information is used only to assess and respond to this relocation enquiry.
+                  <a href="/privacy" className="text-[#C9A24A] hover:underline ml-1">Read our privacy notice</a>
                 </div>
               </div>
             </div>
@@ -526,25 +513,35 @@ export default function ExecutiveIntakePage() {
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={termsAccepted}
-                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                  checked={consentAccepted}
+                  onChange={(e) => setConsentAccepted(e.target.checked)}
                   className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded mt-0.5"
                   required
                 />
                 <span className="text-sm text-[#6B7280]">
-                  I've read the Refunds & Cancellations policy and I want Relo to begin services immediately.
+                  I agree that The Relo Network may review this information and contact me about my relocation enquiry.
                 </span>
               </label>
             </div>
 
             <button
+              type="button"
+              onClick={() => setStep(1)}
+              className="mb-4 text-sm font-medium text-[#0B1B2B] underline underline-offset-4"
+            >
+              Edit my brief
+            </button>
+
+            <button
               onClick={handleSubmit}
-              disabled={!termsAccepted}
+              disabled={!consentAccepted || isSubmitting}
               className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white py-4 rounded-lg font-semibold text-lg hover:scale-105 transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
-              <CreditCard className="w-5 h-5" />
-              Complete Payment
+              {isSubmitting ? 'SENDING…' : 'SEND MY PRIVATE BRIEF'}
             </button>
+            {submitError && (
+              <p className="mt-4 text-sm text-red-700" role="alert">{submitError}</p>
+            )}
           </div>
         )}
       </div>
