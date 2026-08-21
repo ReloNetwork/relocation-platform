@@ -26,6 +26,7 @@ const INDEXABLE_ROUTES = new Set([
 const INDEXABLE_PREFIXES = ['/newsletter/']
 
 const LEGACY_REDIRECTS: Record<string, string> = {
+  '/api/newsletter-signup': '/api/newsletter/subscribe',
   '/ai-talent-assessment': '/executive-intake',
   '/articles': '/journal',
   '/ask': '/ask-relo',
@@ -41,6 +42,7 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   '/executive': '/executive-intake',
   '/guides/london-relocation-cost-guide': '/journal',
   '/join-waitlist': '/london-landing-list',
+  '/newsletter/get-started': '/newsletter',
   '/partners': '/network',
   '/partners/apply': '/partner-application',
   '/pricing': '/move',
@@ -75,6 +77,8 @@ const RETIRED_PAGE_PREFIXES = [
 ]
 
 const RETIRED_API_PREFIXES = [
+  '/api/beehiiv/launch-distribution',
+  '/api/beehiiv/test',
   '/api/ai-demo',
   '/api/client/validate',
   '/api/consultations/book',

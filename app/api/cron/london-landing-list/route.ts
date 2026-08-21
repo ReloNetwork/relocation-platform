@@ -10,6 +10,15 @@ export async function GET(req: NextRequest) {
       req.headers.get('x-cron-secret') !== secret)
   )
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (process.env.ENABLE_LEGACY_LANDING_LIST_SEQUENCE !== '1') {
+    return NextResponse.json({
+      success: true,
+      disabled: true,
+      sent: 0,
+      message:
+        'Legacy sequence is disabled; Beehiiv owns new automation enrolment.',
+    });
+  }
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL,
     key = process.env.SUPABASE_SERVICE_ROLE_KEY,
     resendKey = process.env.RESEND_API_KEY;

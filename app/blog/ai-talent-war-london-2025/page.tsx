@@ -18,14 +18,15 @@ export default function AITalentWarPost() {
 
     try {
       // Submit to your newsletter/lead capture system
-      const response = await fetch('/api/newsletter-signup', {
+      const response = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           email, 
           source: 'ai-talent-article',
-          utm_source: 'linkedin',
-          content: 'AI Talent War Article Lead Magnet'
+          campaign: 'relocation-index',
+          utmSource: 'linkedin',
+          utmCampaign: 'ai-talent-war-article'
         }),
       })
 

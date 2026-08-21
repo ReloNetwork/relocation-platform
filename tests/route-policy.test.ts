@@ -15,6 +15,8 @@ describe('route lifecycle policy', () => {
     expect(getRouteDecision('/concierge', production)).toEqual({ action: 'redirect', destination: '/ask-relo' })
     expect(getRouteDecision('/directory', production)).toEqual({ action: 'redirect', destination: '/network' })
     expect(getRouteDecision('/book-consultation', production)).toEqual({ action: 'redirect', destination: '/executive-intake' })
+    expect(getRouteDecision('/newsletter/get-started', production)).toEqual({ action: 'redirect', destination: '/newsletter' })
+    expect(getRouteDecision('/api/newsletter-signup', production)).toEqual({ action: 'redirect', destination: '/api/newsletter/subscribe' })
   })
 
   it('retires obsolete pages and hides mock APIs in production', () => {
@@ -22,6 +24,7 @@ describe('route lifecycle policy', () => {
     expect(getRouteDecision('/partners/lead-machine', production)).toEqual({ action: 'gone' })
     expect(getRouteDecision('/api/partners/recommendations', production)).toEqual({ action: 'not-found' })
     expect(getRouteDecision('/api/tasks/123', production)).toEqual({ action: 'not-found' })
+    expect(getRouteDecision('/api/beehiiv/launch-distribution', production)).toEqual({ action: 'not-found' })
   })
 
   it('allows development diagnostics only when explicitly enabled outside production', () => {

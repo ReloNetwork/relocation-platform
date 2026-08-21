@@ -8,12 +8,11 @@
 
 ### **Morning (9:00 AM - 12:00 PM)**
 
-**9:00 AM - Newsletter Distribution**
-Execute the Beehiiv launch distribution to add all 16 founding partners to the newsletter system. Use the command:
-```
-POST /api/beehiiv/launch-distribution
-```
-This will automatically subscribe all partners with proper tagging and custom fields for tracking.
+**9:00 AM - Newsletter Readiness**
+Complete the consented Beehiiv test-signup checklist in
+`docs/NEWSLETTER_LAUNCH.md`. Do not add outreach contacts to the newsletter
+without their explicit consent; partnership outreach remains a separate,
+one-to-one sales workflow.
 
 **9:30 AM - Social Media Launch**
 Publish the launch announcement across all platforms:

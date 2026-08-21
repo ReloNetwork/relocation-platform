@@ -1,64 +1,66 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { storeNewsletterSubscription } from '@/lib/newsletter-storage'
+import { NextRequest, NextResponse } from 'next/server';
+import {
+  newsletterSignupSchema,
+  processNewsletterSignup,
+} from '@/lib/newsletter-signup';
+
+export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
+  let body: Record<string, unknown>;
+
   try {
-    const { email, name, source, utmSource, utmMedium, utmCampaign } = await request.json()
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { success: false, error: 'A valid JSON body is required' },
+      { status: 400 }
+    );
+  }
 
-    if (!email) {
-      return NextResponse.json(
-        { success: false, error: 'Email is required' },
-        { status: 400 }
-      )
-    }
+  const parsed = newsletterSignupSchema.safeParse({
+    ...body,
+    utmSource: body.utmSource ?? body.utm_source,
+    utmMedium: body.utmMedium ?? body.utm_medium,
+    utmCampaign: body.utmCampaign ?? body.utm_campaign,
+    utmTerm: body.utmTerm ?? body.utm_term,
+    utmContent: body.utmContent ?? body.utm_content,
+    referringSite: body.referringSite ?? body.referring_site,
+  });
 
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { success: false, error: 'Invalid email address' },
-        { status: 400 }
-      )
-    }
+  if (!parsed.success) {
+    return NextResponse.json(
+      { success: false, error: 'Please enter a valid email address' },
+      { status: 400 }
+    );
+  }
 
-    // Store the subscription in Supabase
-    const result = await storeNewsletterSubscription({
-      email,
-      name,
-      source: source || 'website',
-      utm_source: utmSource || 'website',
-      utm_medium: utmMedium || 'organic',
-      utm_campaign: utmCampaign,
-      subscription_date: new Date().toISOString(),
-      source_page: source,
-    })
+  try {
+    const result = await processNewsletterSignup(parsed.data);
 
     if (!result.success) {
       return NextResponse.json(
         { success: false, error: result.message },
-        { status: 503 },
-      )
+        { status: result.status }
+      );
     }
 
     return NextResponse.json({
       success: true,
       message: result.message,
-    })
-
+    });
   } catch (error) {
-    console.error('Newsletter subscription error:', error)
+    console.error('Newsletter signup failed', error);
     return NextResponse.json(
-      { success: false, error: 'Internal server error' },
+      { success: false, error: 'Newsletter signup is temporarily unavailable' },
       { status: 500 }
-    )
+    );
   }
 }
 
 export async function GET() {
   return NextResponse.json({
-    message: 'Newsletter subscription endpoint',
+    message: 'The London Brief subscription endpoint',
     endpoint: 'POST /api/newsletter/subscribe',
-    required_fields: ['email'],
-    optional_fields: ['name', 'source', 'utmSource', 'utmMedium', 'utmCampaign']
-  })
+  });
 }

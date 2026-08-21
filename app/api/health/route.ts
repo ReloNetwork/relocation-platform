@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
+import { beehiiv } from '@/lib/beehiiv';
 
 export const runtime = 'nodejs';
 const has = (s?: string | null) => !!(s && s.trim().length > 0);
@@ -12,6 +13,18 @@ export async function GET() {
     stripe:{configured:false,ok:false,detail:''},
     cal:{configured:false,ok:false,detail:''},
     resend:{configured:false,ok:false,detail:''},
+    beehiiv:{configured:false,ok:false,detail:''},
+  };
+
+  const beehiivConfigured = beehiiv.isConfigured();
+  out.beehiiv = {
+    configured: beehiivConfigured,
+    ok: beehiivConfigured,
+    detail: beehiivConfigured
+      ? process.env.BEEHIIV_LANDING_LIST_AUTOMATION_ID
+        ? 'subscription API and Landing List automation configured'
+        : 'subscription API configured; Landing List automation missing'
+      : 'API key or publication ID missing',
   };
 
   // Supabase

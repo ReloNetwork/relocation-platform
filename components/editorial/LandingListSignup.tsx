@@ -10,10 +10,14 @@ export default function LandingListSignup() {
   async function submit(event: FormEvent) {
     event.preventDefault();
     setStatus('loading');
-    const response = await fetch('/api/london-landing-list', {
+    const response = await fetch('/api/newsletter/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({
+        email,
+        source: 'london-landing-list',
+        campaign: 'london-landing-list',
+      }),
     });
     setStatus(response.ok ? 'success' : 'error');
   }
