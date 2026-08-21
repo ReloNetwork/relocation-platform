@@ -1,10 +1,17 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import AskReloBand from './AskReloBand';
 import FlightFilm from './FlightFilm';
 
-type Item = { title: string; text: string; number?: string };
+type Item = {
+  title: string;
+  text: string;
+  number?: string;
+  href?: string;
+  action?: string;
+};
 
 export default function EditorialPage({
   label,
@@ -77,6 +84,11 @@ export default function EditorialPage({
               {item.number && <span>{item.number}</span>}
               <h3>{item.title}</h3>
               <p>{item.text}</p>
+              {item.href && (
+                <Link className="editorial-grid__link" href={item.href}>
+                  {item.action ?? 'Read more'} <span aria-hidden="true">↗</span>
+                </Link>
+              )}
             </article>
           ))}
         </div>

@@ -5,11 +5,6 @@ import Layout from '../../../components/Layout'
 import { Building, Calendar, Mail, Phone, Users, Clock, FileText } from 'lucide-react'
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
-
 interface CorporateAssessment {
   id: string
   reference_id: string
@@ -40,6 +35,14 @@ export default function CorporateAssessmentsAdminPage() {
 
   const fetchAssessments = async () => {
     try {
+      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      if (!url || !key) {
+        setError('Supabase is not configured')
+        setLoading(false)
+        return
+      }
+      const supabase = createClient(url, key)
       const { data, error } = await supabase
         .from('corporate_assessments')
         .select('*')

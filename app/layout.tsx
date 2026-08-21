@@ -20,11 +20,9 @@ export const metadata: Metadata = {
   },
   description:
     'Independent London relocation guidance, neighbourhood intelligence and trusted introductions for international professionals and families.',
-  alternates: { canonical: '/' },
   openGraph: {
     title: 'The Relo Network',
     description: 'London, intelligently answered.',
-    url: '/',
     siteName: 'The Relo Network',
     type: 'website',
     images: ['/images/editorial/london-street-hero.webp'],

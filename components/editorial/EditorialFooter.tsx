@@ -12,17 +12,22 @@ export default function EditorialFooter() {
         <Link href="/move">Move</Link>
         <Link href="/live">Live</Link>
         <Link href="/discover">Discover</Link>
+        <Link href="/executive-intake">Start your move</Link>
       </div>
       <div>
-        <b>COMPANY</b>
+        <b>READ &amp; CONNECT</b>
         <Link href="/network">Network</Link>
         <Link href="/journal">Journal</Link>
-        <Link href="/about">About</Link>
+        <Link href="/newsletter">The London Brief</Link>
+        <Link href="/partner-application">Partner with us</Link>
       </div>
       <div>
         <b>CONTACT</b>
         <a href="mailto:hello@therelonetwork.com">hello@therelonetwork.com</a>
         <span>London</span>
+        <Link href="/about">About</Link>
+        <Link href="/privacy">Privacy</Link>
+        <Link href="/terms">Terms</Link>
       </div>
     </footer>
   );

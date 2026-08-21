@@ -12,16 +12,25 @@ export default function Page() {
         sectionTitle="LATEST"
         items={[
           {
-            title: 'Notting Hill in the quiet months',
-            text: 'Which streets hold their light and what the school run costs in minutes.',
+            title: 'Mayfair: a resident’s guide',
+            text: 'Homes, private clubs, culture and the quieter rhythms behind London’s most recognised address.',
+            href: '/newsletter/mayfair-guide',
           },
           {
-            title: 'Twelve tables worth crossing town for',
-            text: 'Where our advisers book when the diary is tight.',
+            title: 'Marylebone: village life, central London',
+            text: 'A practical neighbourhood briefing for families and professionals considering the area.',
+            href: '/newsletter/marylebone-guide',
           },
           {
-            title: 'Furnishing a period flat in six weeks',
-            text: 'The trades to book first and what to buy second-hand.',
+            title: 'The London property market',
+            text: 'A relocation-focused reading of timing, supply and decision-making in the capital.',
+            href: '/newsletter/london-property-trends-2025',
+          },
+          {
+            title: 'The London Brief',
+            text: 'Neighbourhood notes, relocation intelligence and selected partner expertise, delivered by email.',
+            href: '/newsletter',
+            action: 'Browse and subscribe',
           },
         ]}
       />

@@ -1,178 +1,107 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextRequest, NextResponse } from 'next/server'
+import { Resend } from 'resend'
+import { z } from 'zod'
 
-interface PartnerFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  company: string;
-  serviceCategory: string;
-  experienceYears: string;
-  currentClientBase: string;
-  londonExperience: string;
-  insuranceCoverage: string;
-  partnershipTier: string;
-  message: string;
+const partnerEnquirySchema = z.object({
+  name: z.string().trim().min(2).max(100),
+  email: z.string().trim().email().max(254),
+  company: z.string().trim().min(2).max(160),
+  website: z.union([z.string().trim().url().max(500), z.literal('')]).optional(),
+  serviceCategory: z.string().trim().min(2).max(160),
+  partnershipInterest: z.enum(['editorial', 'network', 'ask-relo', 'unsure']),
+  message: z.string().trim().min(20).max(4000),
+  consent: z.literal('yes'),
+})
+
+const interestLabels = {
+  editorial: 'Editorial or newsletter partnership',
+  network: 'Professional network',
+  'ask-relo': 'Ask Relo knowledge collaboration',
+  unsure: 'Not sure yet',
+}
+
+function escapeHtml(value: string) {
+  return value.replace(/[&<>'"]/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#039;',
+    '"': '&quot;',
+  })[character] as string)
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    if (!process.env.RESEND_API_KEY) {
-      return NextResponse.json({ success: false, message: 'Email service is unavailable' }, { status: 503 });
-    }
-
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const data: PartnerFormData = await request.json();
-
-    const requiredFields: (keyof PartnerFormData)[] = [
-      'firstName', 'lastName', 'email', 'phone', 'company', 'serviceCategory',
-      'experienceYears', 'currentClientBase', 'londonExperience', 'insuranceCoverage',
-      'partnershipTier',
-    ];
-    const missingFields = requiredFields.filter((field) => !data[field]);
-    if (missingFields.length > 0) {
-      return NextResponse.json({ success: false, message: 'Missing required fields', missingFields }, { status: 400 });
-    }
-
-    // Send notification email to Relo Network team
-    const adminEmailHtml = `
-      <h2>New Partner Application Received</h2>
-      <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-        <h3 style="color: #0B1B2B; margin-bottom: 15px;">Partnership Tier: ${data.partnershipTier === 'professional' ? 'Professional Partner' : 'Premium Sponsor'}</h3>
-        
-        <table style="width: 100%; border-collapse: collapse;">
-          <tr style="border-bottom: 1px solid #e5e7eb;">
-            <td style="padding: 10px; font-weight: bold; color: #0B1B2B;">Name:</td>
-            <td style="padding: 10px;">${data.firstName} ${data.lastName}</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e5e7eb;">
-            <td style="padding: 10px; font-weight: bold; color: #0B1B2B;">Email:</td>
-            <td style="padding: 10px;">${data.email}</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e5e7eb;">
-            <td style="padding: 10px; font-weight: bold; color: #0B1B2B;">Phone:</td>
-            <td style="padding: 10px;">${data.phone}</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e5e7eb;">
-            <td style="padding: 10px; font-weight: bold; color: #0B1B2B;">Company:</td>
-            <td style="padding: 10px;">${data.company}</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e5e7eb;">
-            <td style="padding: 10px; font-weight: bold; color: #0B1B2B;">Service Category:</td>
-            <td style="padding: 10px;">${data.serviceCategory}</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e5e7eb;">
-            <td style="padding: 10px; font-weight: bold; color: #0B1B2B;">Experience:</td>
-            <td style="padding: 10px;">${data.experienceYears}</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e5e7eb;">
-            <td style="padding: 10px; font-weight: bold; color: #0B1B2B;">London Experience:</td>
-            <td style="padding: 10px;">${data.londonExperience}</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e5e7eb;">
-            <td style="padding: 10px; font-weight: bold; color: #0B1B2B;">Insurance Coverage:</td>
-            <td style="padding: 10px;">${data.insuranceCoverage}</td>
-          </tr>
-        </table>
-        
-        <div style="margin-top: 20px;">
-          <h4 style="color: #0B1B2B;">Current Client Base:</h4>
-          <p style="background: white; padding: 10px; border-radius: 4px; border-left: 4px solid #C9A24A;">${data.currentClientBase}</p>
-        </div>
-        
-        ${
-          data.message
-            ? `
-          <div style="margin-top: 20px;">
-            <h4 style="color: #0B1B2B;">Additional Message:</h4>
-            <p style="background: white; padding: 10px; border-radius: 4px; border-left: 4px solid #C9A24A;">${data.message}</p>
-          </div>
-        `
-            : ''
-        }
-      </div>
-      
-      <p style="color: #6B7280; font-size: 14px; margin-top: 20px;">
-        This application was submitted through the ${data.partnershipTier === 'professional' ? 'Professional Partner' : 'Premium Sponsor'} application form.
-        Please review and respond within 24 hours as promised to the applicant.
-      </p>
-    `;
-
-    await resend?.emails.send({
-      from: 'Relo Network <no-reply@therelonetwork.com>',
-      to: ['hello@therelonetwork.com'],
-      subject: `New ${data.partnershipTier === 'professional' ? 'Professional Partner' : 'Premium Sponsor'} Application - ${data.company}`,
-      html: adminEmailHtml,
-    });
-
-    // Send confirmation email to applicant
-    const applicantEmailHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: #0B1B2B; color: white; padding: 30px; text-align: center;">
-          <h1 style="margin: 0; font-size: 28px;">Application Received</h1>
-        </div>
-        
-        <div style="padding: 30px; background: white;">
-          <h2 style="color: #0B1B2B;">Dear ${data.firstName},</h2>
-          
-          <p>Thank you for your interest in our <strong>${data.partnershipTier === 'professional' ? 'Professional Partner' : 'Premium Sponsor'}</strong> programme. We have received your application and our partnership team will review it shortly.</p>
-          
-          <div style="background: #C9A24A; background: linear-gradient(135deg, #C9A24A 0%, #B8923D 100%); color: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="margin: 0 0 10px 0;">Next Steps</h3>
-            <ul style="margin: 0; padding-left: 20px;">
-              <li>Application review within 24 hours</li>
-              <li>Partnership consultation call</li>
-              <li>Onboarding and activation</li>
-            </ul>
-          </div>
-          
-          <p>Our partnership team will contact you within <strong>24 hours</strong> to discuss your application and answer any questions you may have about joining our professional network.</p>
-          
-          <div style="border-left: 4px solid #C9A24A; padding-left: 15px; margin: 20px 0;">
-            <h4 style="color: #0B1B2B; margin: 0 0 10px 0;">Your Application Summary:</h4>
-            <p style="margin: 5px 0;"><strong>Company:</strong> ${data.company}</p>
-            <p style="margin: 5px 0;"><strong>Service Category:</strong> ${data.serviceCategory}</p>
-            <p style="margin: 5px 0;"><strong>Partnership Tier:</strong> ${data.partnershipTier === 'professional' ? 'Professional Partner' : 'Premium Sponsor'}</p>
-          </div>
-          
-          <p>If you have any immediate questions, please don't hesitate to contact us:</p>
-          <ul>
-            <li><strong>Email:</strong> hello@therelonetwork.com</li>
-            <li><strong>Phone:</strong> +44 20 3105 9566</li>
-          </ul>
-          
-          <p>We look forward to discussing how we can work together to serve London's executive and corporate relocation market.</p>
-          
-          <p>Best regards,<br>
-          <strong>The Relo Network Partnership Team</strong></p>
-        </div>
-        
-        <div style="background: #FAFAF9; padding: 20px; text-align: center; color: #6B7280; font-size: 12px;">
-          <p>© 2025 Relo Network Ltd. London, United Kingdom.</p>
-        </div>
-      </div>
-    `;
-
-    await resend.emails.send({
-      from: 'Relo Network <hello@therelonetwork.com>',
-      to: [data.email],
-      subject: `Partnership Application Received - ${data.partnershipTier === 'professional' ? 'Professional Partner' : 'Premium Sponsor'}`,
-      html: applicantEmailHtml,
-    });
-
-    return NextResponse.json({
-      success: true,
-      message: 'Application submitted successfully',
-    });
-  } catch (error) {
-    console.error('Error processing partner application:', error);
+  if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
-      {
-        success: false,
-        message: 'Failed to submit application',
-      },
-      { status: 500 }
-    );
+      { success: false, message: 'Partner enquiries are temporarily unavailable. Please email hello@therelonetwork.com.' },
+      { status: 503 },
+    )
+  }
+
+  try {
+    const parsed = partnerEnquirySchema.safeParse(await request.json())
+    if (!parsed.success) {
+      return NextResponse.json(
+        { success: false, message: 'Please check the form and complete every required field.' },
+        { status: 400 },
+      )
+    }
+
+    const data = parsed.data
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    const safe = {
+      name: escapeHtml(data.name),
+      email: escapeHtml(data.email),
+      company: escapeHtml(data.company),
+      website: escapeHtml(data.website || 'Not provided'),
+      serviceCategory: escapeHtml(data.serviceCategory),
+      interest: escapeHtml(interestLabels[data.partnershipInterest]),
+      message: escapeHtml(data.message).replace(/\n/g, '<br />'),
+    }
+
+    const notification = await resend.emails.send({
+      from: 'The Relo Network <no-reply@therelonetwork.com>',
+      to: [process.env.PARTNER_ENQUIRY_EMAIL || 'hello@therelonetwork.com'],
+      reply_to: data.email,
+      subject: `Partner enquiry — ${data.company}`,
+      html: `<h1>New partner enquiry</h1>
+        <p><strong>Name:</strong> ${safe.name}</p>
+        <p><strong>Email:</strong> ${safe.email}</p>
+        <p><strong>Company:</strong> ${safe.company}</p>
+        <p><strong>Website:</strong> ${safe.website}</p>
+        <p><strong>Expertise:</strong> ${safe.serviceCategory}</p>
+        <p><strong>Interest:</strong> ${safe.interest}</p>
+        <p><strong>Enquiry:</strong><br />${safe.message}</p>`,
+    })
+
+    if (notification.error) {
+      console.error('Partner enquiry notification failed:', notification.error)
+      return NextResponse.json(
+        { success: false, message: 'Your enquiry could not be sent. Please email hello@therelonetwork.com.' },
+        { status: 502 },
+      )
+    }
+
+    const confirmation = await resend.emails.send({
+      from: 'The Relo Network <hello@therelonetwork.com>',
+      to: [data.email],
+      subject: 'We received your partner enquiry',
+      html: `<p>Dear ${safe.name},</p>
+        <p>Thank you for getting in touch about working with The Relo Network.</p>
+        <p>We’ll review the fit and reply with the relevant partner information. Paid placement never guarantees a client introduction or changes our independent recommendations.</p>
+        <p>The Relo Network<br />London</p>`,
+    })
+
+    if (confirmation.error) {
+      console.error('Partner enquiry confirmation failed:', confirmation.error)
+    }
+
+    return NextResponse.json({ success: true, message: 'Partner enquiry received' })
+  } catch (error) {
+    console.error('Partner enquiry failed:', error)
+    return NextResponse.json(
+      { success: false, message: 'Your enquiry could not be sent. Please email hello@therelonetwork.com.' },
+      { status: 500 },
+    )
   }
 }

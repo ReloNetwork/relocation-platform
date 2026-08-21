@@ -5,14 +5,11 @@ import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/ui/components/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/components/card'
 import Layout from '@/components/Layout'
-import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
-  const router = useRouter()
-  const supabase = createClient()
 
   const handleMagicLink = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -20,6 +17,7 @@ export default function LoginPage() {
     setMessage('')
 
     try {
+      const supabase = createClient()
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
@@ -36,26 +34,6 @@ export default function LoginPage() {
     } catch (error) {
       setMessage('An unexpected error occurred. Please try again.')
     } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleGoogleSignIn = async () => {
-    setLoading(true)
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`
-        }
-      })
-
-      if (error) {
-        setMessage(error.message)
-        setLoading(false)
-      }
-    } catch (error) {
-      setMessage('An unexpected error occurred')
       setLoading(false)
     }
   }
@@ -103,25 +81,6 @@ export default function LoginPage() {
                 </Button>
               </form>
 
-              {/* Development Access */}
-              <div className="bg-purple-50 border border-purple-200 rounded-md p-3 space-y-2">
-                <p className="text-sm text-purple-700 text-center mb-2">
-                  <strong>Development Access (No Auth Required)</strong>
-                </p>
-                <Button 
-                  onClick={() => router.push('/demo-dashboard')}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm"
-                >
-                  View Demo Dashboard (Interactive)
-                </Button>
-                <Button 
-                  onClick={() => window.open('/dashboard', '_blank')}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white font-medium text-sm"
-                >
-                  View Enhanced Dashboard (shadcn/ui)
-                </Button>
-              </div>
-              
               {/* Authentication Status */}
               <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
                 <p className="text-sm text-blue-700 text-center">

@@ -33,9 +33,16 @@ export async function POST(request: NextRequest) {
       source_page: source,
     })
 
+    if (!result.success) {
+      return NextResponse.json(
+        { success: false, error: result.message },
+        { status: 503 },
+      )
+    }
+
     return NextResponse.json({
       success: true,
-      message: 'Successfully subscribed to The Relo Network News!'
+      message: result.message,
     })
 
   } catch (error) {

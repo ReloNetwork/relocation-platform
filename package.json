@@ -11,12 +11,11 @@
     "test": "vitest run",
     "supabase:types": "test -n \"$SUPABASE_PROJECT_ID\" && npx --yes supabase@latest gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" --schema public > lib/supabase/database.types.ts",
     "stripe:seed": "node scripts/stripe-seed.js",
-    "sitemap": "next-sitemap --config next-sitemap.config.js",
     "analyze": "ANALYZE=true next build",
     "seo:validate": "node scripts/validate-seo.js",
     "luxury:validate": "node scripts/luxury-seo-validator.js",
     "luxury:build": "npm run luxury:validate && npm run build",
-    "luxury:deploy": "npm run luxury:validate && npm run sitemap && npm run build"
+    "luxury:deploy": "npm run luxury:validate && npm run build"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^15.5.2",
@@ -38,7 +37,6 @@
     "lucide-react": "^0.344.0",
     "next": "^14.2.0",
     "next-seo": "^6.8.0",
-    "next-sitemap": "^4.2.3",
     "nodemailer": "^7.0.9",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",

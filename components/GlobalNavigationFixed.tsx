@@ -26,7 +26,7 @@ export default function GlobalNavigationFixed() {
         <Link className="nav-ask" href="/ask-relo">
           ASK RELO
         </Link>
-        <Link className="nav-move" href="/move">
+        <Link className="nav-move" href="/executive-intake">
           START YOUR MOVE
         </Link>
       </nav>

@@ -7,7 +7,7 @@ export default function Page() {
       <EditorialPage
         label="NETWORK"
         title="A CITY RUNS ON PEOPLE."
-        intro="Vetted specialists across property, education, law and design—plus the members who use them. Introductions are made personally, never sold."
+        intro="Vetted specialists across property, education, law and design—plus the members who use them. Client introductions remain independent; selected partners can also collaborate with our editorial studio."
         image="/images/editorial/london-interior.webp"
         sectionTitle="PARTNERS"
         items={[
@@ -34,6 +34,12 @@ export default function Page() {
           {
             title: 'Corporate mobility',
             text: 'Programmes for firms relocating teams.',
+          },
+          {
+            title: 'Editorial partnerships',
+            text: 'Thoughtful features and sponsorships for brands serving international Londoners.',
+            href: '/partner-application',
+            action: 'Request the partner brief',
           },
         ]}
       />
