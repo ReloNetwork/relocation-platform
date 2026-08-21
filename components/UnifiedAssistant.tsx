@@ -48,6 +48,10 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [sessionId, setSessionId] = useState<string>('');
+    const [remainingQuestions, setRemainingQuestions] = useState(3);
+    const [limitReached, setLimitReached] = useState(false);
+    const voiceEnabled =
+      process.env.NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED === '1';
 
     // Voice state
     const [mode, setMode] = useState<'chat' | 'voice'>('chat');
@@ -111,22 +115,23 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
       if ((isOpen || variant === 'embedded') && messages.length === 0) {
         const welcomeMessage: ChatMessage = {
           role: 'assistant',
-          content: `Hello! I'm Relo, your London relocation assistant.
+          content: `Hello. I'm Relo, your London relocation guide.
 
-Choose how you'd like to communicate:
+I can help you compare neighbourhoods, frame housing and school decisions, and plan the practical sequence of your move.
 
-**Text Chat** - Perfect for quick questions and detailed information
-**Voice Chat** - Natural conversation for in-depth consultations
+You have three complimentary questions. Please do not share passport numbers, payment details or sensitive records.
 
-I can help with every aspect of your London relocation:
-Property & Housing • Visa & Legal • Education • Banking • Transport • Lifestyle
-
-What would you like to know about relocating to London?`,
+What would you like to understand about relocating to London?`,
           timestamp: new Date().toISOString(),
         };
         setMessages([welcomeMessage]);
       }
     }, [isOpen]);
+
+    useEffect(() => {
+      const storedSession = localStorage.getItem('ask_relo_session_id');
+      if (storedSession) setSessionId(storedSession);
+    }, []);
 
     useEffect(() => {
       if (initialQuestion) setInputValue(initialQuestion);
@@ -309,7 +314,13 @@ What would you like to know about relocating to London?`,
 
     // Send chat message
     const sendMessage = async () => {
-      if (!inputValue.trim() || isLoading) return;
+      if (!inputValue.trim() || isLoading || limitReached) return;
+
+      const activeSessionId = sessionId || crypto.randomUUID();
+      if (!sessionId) {
+        setSessionId(activeSessionId);
+        localStorage.setItem('ask_relo_session_id', activeSessionId);
+      }
 
       const userMessage: ChatMessage = {
         role: 'user',
@@ -329,11 +340,7 @@ What would you like to know about relocating to London?`,
           },
           body: JSON.stringify({
             messages: [...messages, userMessage],
-            sessionId,
-            context: {
-              userType: 'individual',
-              source: 'website',
-            },
+            sessionId: activeSessionId,
           }),
         });
 
@@ -342,7 +349,22 @@ What would you like to know about relocating to London?`,
         if (data.success) {
           setMessages((prev) => [...prev, data.message]);
           setSessionId(data.sessionId);
+          setRemainingQuestions(data.remaining);
         } else {
+          if (data.limitReached) {
+            setLimitReached(true);
+            setRemainingQuestions(0);
+            setMessages((prev) => [
+              ...prev,
+              {
+                role: 'assistant',
+                content:
+                  'Your complimentary preview is complete. For a move-specific plan and human review, share your private relocation brief.',
+                timestamp: new Date().toISOString(),
+              },
+            ]);
+            return;
+          }
           throw new Error(data.error || 'Failed to send message');
         }
       } catch (error) {
@@ -418,7 +440,7 @@ What would you like to know about relocating to London?`,
                 </div>
                 <div className="flex items-center gap-2">
                   {/* Mode Toggle */}
-                  {callStatus === 'idle' && (
+                  {voiceEnabled && callStatus === 'idle' && (
                     <div className="flex bg-white/20 rounded-lg p-1 border border-white/20">
                       <button
                         onClick={() => setMode('chat')}
@@ -695,19 +717,29 @@ What would you like to know about relocating to London?`,
                           onKeyPress={handleKeyPress}
                           placeholder="Ask about your London relocation..."
                           className="flex-1 px-3 py-2 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm"
-                          disabled={isLoading}
+                          disabled={isLoading || limitReached}
                         />
                         <button
                           onClick={sendMessage}
-                          disabled={!inputValue.trim() || isLoading}
+                          disabled={!inputValue.trim() || isLoading || limitReached}
                           className="px-4 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           <Send className="w-4 h-4" />
                         </button>
                       </div>
                       <p className="text-xs text-[#6B7280] mt-2 text-center">
-                        Switch to Voice Chat • Powered by Relo Network AI
+                        {limitReached
+                          ? 'Complimentary preview complete'
+                          : `${remainingQuestions} complimentary question${remainingQuestions === 1 ? '' : 's'} remaining`}
                       </p>
+                      {limitReached && (
+                        <a
+                          href="/executive-intake"
+                          className="mt-3 flex w-full items-center justify-center bg-[#0B1B2B] px-4 py-3 text-sm font-semibold text-white"
+                        >
+                          Share my private relocation brief
+                        </a>
+                      )}
                     </div>
                   )}
                 </>
@@ -736,7 +768,7 @@ What would you like to know about relocating to London?`,
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          {voiceEnabled && <div className="flex items-center gap-2">
             <button
               onClick={() => setMode(mode === 'chat' ? 'voice' : 'chat')}
               className={`p-2 rounded-lg transition-colors ${
@@ -752,7 +784,7 @@ What would you like to know about relocating to London?`,
                 <MessageCircle className="w-4 h-4" />
               )}
             </button>
-          </div>
+          </div>}
         </div>
 
         {/* Chat Content */}
@@ -855,19 +887,29 @@ What would you like to know about relocating to London?`,
                     onKeyPress={handleKeyPress}
                     placeholder="Ask about your London relocation..."
                     className="flex-1 px-3 py-2 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm"
-                    disabled={isLoading}
+                    disabled={isLoading || limitReached}
                   />
                   <button
                     onClick={sendMessage}
-                    disabled={!inputValue.trim() || isLoading}
+                    disabled={!inputValue.trim() || isLoading || limitReached}
                     className="px-4 py-2 bg-[#C9A24A] hover:bg-[#B8923D] text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-4 h-4" />
                   </button>
                 </div>
                 <p className="text-xs text-[#6B7280] mt-2 text-center">
-                  Switch to Voice Chat • Powered by Relo Network AI
+                  {limitReached
+                    ? 'Complimentary preview complete'
+                    : `${remainingQuestions} complimentary question${remainingQuestions === 1 ? '' : 's'} remaining`}
                 </p>
+                {limitReached && (
+                  <a
+                    href="/executive-intake"
+                    className="mt-3 flex w-full items-center justify-center bg-[#0B1B2B] px-4 py-3 text-sm font-semibold text-white"
+                  >
+                    Share my private relocation brief
+                  </a>
+                )}
               </div>
             </>
           ) : (

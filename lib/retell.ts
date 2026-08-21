@@ -225,22 +225,17 @@ Remember: You represent London's most exclusive relocation network. Maintain pro
 
   // Create web call (browser-to-agent)
   async createWebCall(agentId?: string): Promise<{ accessToken: string; callId: string }> {
-    // Use existing agent if no specific agent provided
-    const actualAgentId = agentId || 'agent_31b176c443ce1f449761c5a979'
+    const actualAgentId = agentId || process.env.RETELL_AGENT_ID
+
+    if (!this.apiKey || !actualAgentId) {
+      throw new Error('Retell voice configuration is unavailable')
+    }
     
     const webCallConfig = {
       agent_id: actualAgentId,
       metadata: {
         source: 'web_widget',
         timestamp: new Date().toISOString()
-      }
-    }
-
-    if (!this.apiKey) {
-      console.log('Demo mode: Creating mock web call')
-      return {
-        accessToken: 'demo_access_token_' + Date.now(),
-        callId: 'demo_web_call_' + Date.now()
       }
     }
 
@@ -294,7 +289,6 @@ export async function startVoiceConsultation(phoneNumber: string): Promise<CallS
 }
 
 export async function createWebVoiceCall(): Promise<{ accessToken: string; callId: string }> {
-  // Use the existing published agent ID directly
-  const agentId = 'agent_31b176c443ce1f449761c5a979'
+  const agentId = process.env.RETELL_AGENT_ID
   return retellAI.createWebCall(agentId)
 }

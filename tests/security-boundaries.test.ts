@@ -7,7 +7,6 @@ import { POST as executeAutomation } from '@/app/api/automation/execute/route'
 import { GET as getDirectoryAccess } from '@/app/api/directory/access-manager/route'
 import { GET as runSlaAlerts } from '@/app/api/cron/sla-alerts/route'
 import { POST as sendEmail } from '@/app/api/send-email/route'
-import { POST as askReloCheckout } from '@/app/api/ask-relo/checkout/route'
 import { POST as submitConsultation } from '@/app/api/consultations/submit/route'
 import { POST as submitContact } from '@/app/api/contact/route'
 
@@ -70,12 +69,6 @@ describe('sensitive route boundaries', () => {
 })
 
 describe('conversion routes', () => {
-  it('does not create a demo checkout when Stripe is unavailable', async () => {
-    const response = await askReloCheckout(jsonRequest('https://example.test', { priceId: 'price_quick_start' }))
-    expect(response.status).toBe(503)
-    await expect(response.json()).resolves.toMatchObject({ error: 'Payment processing is unavailable' })
-  })
-
   it('validates consultation and contact submissions before side effects', async () => {
     expect((await submitConsultation(jsonRequest('https://example.test'))).status).toBe(400)
     expect((await submitContact(jsonRequest('https://example.test'))).status).toBe(400)

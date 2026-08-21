@@ -15,6 +15,41 @@ export async function GET() {
     resend:{configured:false,ok:false,detail:''},
     beehiiv:{configured:false,ok:false,detail:''},
     executiveIntake:{configured:false,ok:false,detail:''},
+    askRelo:{configured:false,ok:false,detail:''},
+    askReloVoice:{configured:false,ok:false,detail:''},
+  };
+
+  const askReloConfiguration = {
+    openai: has(process.env.OPENAI_API_KEY),
+    usageSecret: has(process.env.ASK_RELO_USAGE_SECRET),
+    supabaseUrl: has(process.env.NEXT_PUBLIC_SUPABASE_URL),
+    serviceRole: has(process.env.SUPABASE_SERVICE_ROLE_KEY),
+  };
+  const askReloConfigured = Object.values(askReloConfiguration).every(Boolean);
+  out.askRelo = {
+    configured: askReloConfigured,
+    ok: askReloConfigured,
+    detail: askReloConfigured
+      ? 'answer generation and privacy-preserving usage limits configured'
+      : `missing ${Object.entries(askReloConfiguration)
+          .filter(([, configured]) => !configured)
+          .map(([name]) => name)
+          .join(', ')}`,
+  };
+
+  const voiceEnabled = process.env.NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED === '1';
+  const voiceConfigured =
+    voiceEnabled &&
+    has(process.env.RETELL_API_KEY) &&
+    has(process.env.RETELL_AGENT_ID);
+  out.askReloVoice = {
+    configured: voiceConfigured,
+    ok: voiceConfigured,
+    detail: voiceConfigured
+      ? 'published browser voice agent configured'
+      : voiceEnabled
+        ? 'voice enabled but Retell configuration is incomplete'
+        : 'voice intentionally disabled',
   };
 
   const intakeConfiguration = {

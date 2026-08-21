@@ -1,72 +1,54 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { startVoiceConsultation, createWebVoiceCall } from '@/lib/retell'
+import { createWebVoiceCall } from '@/lib/retell'
+
+export const runtime = 'nodejs'
 
 export async function POST(request: NextRequest) {
-  try {
-    const { type, phoneNumber } = await request.json()
-
-    if (type === 'phone') {
-      if (!phoneNumber) {
-        return NextResponse.json(
-          { error: 'Phone number is required for phone calls' },
-          { status: 400 }
-        )
-      }
-
-      const callSession = await startVoiceConsultation(phoneNumber)
-      
-      return NextResponse.json({
-        success: true,
-        callId: callSession.callId,
-        status: callSession.status,
-        message: 'Voice consultation call initiated'
-      })
-    }
-
-    if (type === 'web') {
-      console.log('🌐 Creating web voice call...')
-      try {
-        const webCall = await createWebVoiceCall()
-        console.log('✅ Web call created successfully:', webCall)
-        
-        return NextResponse.json({
-          success: true,
-          accessToken: webCall.accessToken,
-          callId: webCall.callId,
-          message: 'Web voice call created'
-        })
-      } catch (webCallError) {
-        console.error('❌ Web call creation failed:', webCallError)
-        return NextResponse.json({
-          success: false,
-          error: `Web call creation failed: ${webCallError}`,
-          message: 'Failed to create web voice call'
-        }, { status: 500 })
-      }
-    }
-
+  if (
+    process.env.NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED !== '1' ||
+    !process.env.RETELL_API_KEY ||
+    !process.env.RETELL_AGENT_ID
+  ) {
     return NextResponse.json(
-      { error: 'Invalid call type. Use "phone" or "web"' },
-      { status: 400 }
-    )
-
-  } catch (error) {
-    console.error('Retell call error:', error)
-    return NextResponse.json(
-      { error: 'Failed to initiate voice call' },
-      { status: 500 }
+      { success: false, error: 'Ask Relo voice is temporarily unavailable' },
+      { status: 503 },
     )
   }
-}
 
-export async function GET() {
-  return NextResponse.json({
-    message: 'Relo Voice Agent API',
-    endpoints: {
-      'POST /api/retell/call': 'Start voice consultation',
-      'GET /api/retell/call/{callId}': 'Get call details',
-      'POST /api/retell/llm-websocket': 'LLM websocket endpoint'
-    },
-    agent: 'Relo - 24/7 London Relocation Assistant'
-  })
+  let body: unknown
+  try {
+    body = await request.json()
+  } catch {
+    return NextResponse.json(
+      { success: false, error: 'A valid voice request is required' },
+      { status: 400 },
+    )
+  }
+
+  if (
+    !body ||
+    typeof body !== 'object' ||
+    !('type' in body) ||
+    body.type !== 'web'
+  ) {
+    return NextResponse.json(
+      { success: false, error: 'Only browser voice calls are supported' },
+      { status: 400 },
+    )
+  }
+
+  try {
+    const webCall = await createWebVoiceCall()
+    return NextResponse.json({
+      success: true,
+      accessToken: webCall.accessToken,
+      callId: webCall.callId,
+    })
+  } catch (error) {
+    console.error('Ask Relo voice call creation failed', error)
+    return NextResponse.json(
+      { success: false, error: 'Ask Relo voice could not connect' },
+      { status: 502 },
+    )
+  }
 }
