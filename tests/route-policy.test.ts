@@ -25,6 +25,8 @@ describe('route lifecycle policy', () => {
     expect(getRouteDecision('/api/partners/recommendations', production)).toEqual({ action: 'not-found' })
     expect(getRouteDecision('/api/tasks/123', production)).toEqual({ action: 'not-found' })
     expect(getRouteDecision('/api/beehiiv/launch-distribution', production)).toEqual({ action: 'not-found' })
+    expect(getRouteDecision('/api/partners/applications', production)).toEqual({ action: 'not-found' })
+    expect(getRouteDecision('/api/partners/checkout/founding-partner', production)).toEqual({ action: 'not-found' })
   })
 
   it('allows development diagnostics only when explicitly enabled outside production', () => {
@@ -39,5 +41,6 @@ describe('route lifecycle policy', () => {
     expect(getRouteDecision('/admin', production)).toEqual({ action: 'allow', indexable: false })
     expect(getRouteDecision('/checkout/success', production)).toEqual({ action: 'allow', indexable: false })
     expect(getRouteDecision('/future-route', production)).toEqual({ action: 'allow', indexable: false })
+    expect(getRouteDecision('/partner-application/media-pack', production)).toEqual({ action: 'allow', indexable: false })
   })
 })

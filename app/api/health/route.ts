@@ -17,6 +17,25 @@ export async function GET() {
     executiveIntake:{configured:false,ok:false,detail:''},
     askRelo:{configured:false,ok:false,detail:''},
     askReloVoice:{configured:false,ok:false,detail:''},
+    partnerSales:{configured:false,ok:false,detail:''},
+  };
+
+  const partnerSalesConfiguration = {
+    supabaseUrl: has(process.env.NEXT_PUBLIC_SUPABASE_URL),
+    serviceRole: has(process.env.SUPABASE_SERVICE_ROLE_KEY),
+    resend: has(process.env.RESEND_API_KEY),
+    destination: has(process.env.PARTNER_ENQUIRY_EMAIL),
+  };
+  const partnerSalesConfigured = Object.values(partnerSalesConfiguration).every(Boolean);
+  out.partnerSales = {
+    configured: partnerSalesConfigured,
+    ok: partnerSalesConfigured,
+    detail: partnerSalesConfigured
+      ? 'durable partner pipeline and media-pack delivery configured'
+      : `missing ${Object.entries(partnerSalesConfiguration)
+          .filter(([, configured]) => !configured)
+          .map(([name]) => name)
+          .join(', ')}`,
   };
 
   const askReloConfiguration = {

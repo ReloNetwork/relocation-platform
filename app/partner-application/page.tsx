@@ -3,7 +3,12 @@
 import { FormEvent, useState } from 'react'
 import Layout from '@/components/Layout'
 
-type Status = { state: 'idle' | 'submitting' | 'success' | 'error'; message: string }
+type Status = {
+  state: 'idle' | 'submitting' | 'success' | 'error'
+  message: string
+  referenceId?: string
+  mediaPackUrl?: string
+}
 
 export default function PartnerApplicationPage() {
   const [status, setStatus] = useState<Status>({ state: 'idle', message: '' })
@@ -26,7 +31,9 @@ export default function PartnerApplicationPage() {
       form.reset()
       setStatus({
         state: 'success',
-        message: 'Thank you. We’ll review the fit and reply with the relevant partner brief.',
+        message: 'Thank you. Your application is in review and your partner brief is ready.',
+        referenceId: body.referenceId,
+        mediaPackUrl: body.mediaPackUrl,
       })
     } catch (error) {
       setStatus({
@@ -54,14 +61,14 @@ export default function PartnerApplicationPage() {
           <div className="partner-editorial-notes">
             <span>WAYS TO WORK TOGETHER</span>
             <h2>Expertise before exposure.</h2>
-            <p>Editorial partnerships can include useful sponsored briefings, newsletter placements and carefully disclosed brand collaborations.</p>
+            <p>Editorial partnerships can include useful sponsored briefings, newsletter placements and carefully disclosed brand collaborations. Launch pilots begin at £2,500.</p>
             <ul>
-              <li>Editorial and newsletter sponsorship</li>
-              <li>Neighbourhood and service briefings</li>
-              <li>Ask Relo knowledge collaborations</li>
-              <li>Vetted professional network enquiries</li>
+              <li>One lead sponsor per London Brief issue</li>
+              <li>Up to two commissioned Journal briefings per month</li>
+              <li>Limited Editorial Partner Pilot places</li>
+              <li>Tracked links and post-campaign reporting</li>
             </ul>
-            <small>Paid placement never guarantees a client introduction or overrides our independent recommendations.</small>
+            <small>Every paid feature is disclosed. Payment never guarantees a client introduction or overrides our independent recommendations.</small>
           </div>
 
           <form className="partner-editorial-form" onSubmit={submit}>
@@ -75,6 +82,17 @@ export default function PartnerApplicationPage() {
                 <input name="email" type="email" autoComplete="email" required />
               </label>
             </div>
+            <label>
+              Your role
+              <select name="role" required defaultValue="">
+                <option value="" disabled>Select one</option>
+                <option value="founder">Founder or owner</option>
+                <option value="marketing">Marketing lead</option>
+                <option value="partnerships">Partnerships lead</option>
+                <option value="agency">Agency representative</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
             <div className="partner-editorial-form__row">
               <label>
                 Company
@@ -93,10 +111,54 @@ export default function PartnerApplicationPage() {
               What are you interested in?
               <select name="partnershipInterest" required defaultValue="">
                 <option value="" disabled>Select one</option>
-                <option value="editorial">Editorial or newsletter partnership</option>
+                <option value="editorial">Sponsored Journal briefing</option>
+                <option value="newsletter">The London Brief sponsorship</option>
                 <option value="network">Professional network</option>
                 <option value="ask-relo">Ask Relo knowledge collaboration</option>
                 <option value="unsure">Not sure yet</option>
+              </select>
+            </label>
+            <label>
+              Do you currently serve international professionals or families moving to London?
+              <select name="audienceFit" required defaultValue="">
+                <option value="" disabled>Select one</option>
+                <option value="yes">Yes, this is a core audience</option>
+                <option value="partly">Partly, and we want to grow it</option>
+                <option value="not-yet">Not yet</option>
+              </select>
+            </label>
+            <div className="partner-editorial-form__row">
+              <label>
+                Primary objective
+                <select name="objective" required defaultValue="">
+                  <option value="" disabled>Select one</option>
+                  <option value="authority">Build category authority</option>
+                  <option value="reach">Reach the right audience</option>
+                  <option value="enquiries">Generate qualified enquiries</option>
+                  <option value="thought-leadership">Publish thought leadership</option>
+                  <option value="knowledge">Contribute verified expertise</option>
+                </select>
+              </label>
+              <label>
+                Indicative budget
+                <select name="budget" required defaultValue="">
+                  <option value="" disabled>Select one</option>
+                  <option value="under-2500">Under £2,500</option>
+                  <option value="2500-5000">£2,500–£5,000</option>
+                  <option value="5000-15000">£5,000–£15,000</option>
+                  <option value="15000-plus">£15,000+</option>
+                  <option value="unsure">Not yet defined</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              Preferred timing
+              <select name="timing" required defaultValue="">
+                <option value="" disabled>Select one</option>
+                <option value="0-30">Within 30 days</option>
+                <option value="31-90">Within 31–90 days</option>
+                <option value="90-plus">More than 90 days</option>
+                <option value="exploring">Exploring for now</option>
               </select>
             </label>
             <label>
@@ -112,7 +174,13 @@ export default function PartnerApplicationPage() {
             </button>
             <p className={`partner-editorial-form__status is-${status.state}`} aria-live="polite">
               {status.message}
+              {status.referenceId ? <> Reference: <strong>{status.referenceId}</strong>.</> : null}
             </p>
+            {status.mediaPackUrl ? (
+              <a className="partner-editorial-form__download" href={status.mediaPackUrl}>
+                VIEW THE PARTNER MEDIA PACK
+              </a>
+            ) : null}
           </form>
         </section>
       </main>
