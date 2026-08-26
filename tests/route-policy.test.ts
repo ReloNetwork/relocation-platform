@@ -9,6 +9,7 @@ describe('route lifecycle policy', () => {
     expect(getRouteDecision('/executive-intake', production)).toEqual({ action: 'allow', indexable: true })
     expect(getRouteDecision('/newsletter/mayfair-guide', production)).toEqual({ action: 'allow', indexable: true })
     expect(getRouteDecision('/partner-application/', production)).toEqual({ action: 'allow', indexable: true })
+    expect(getRouteDecision('/editorial-policy', production)).toEqual({ action: 'allow', indexable: true })
   })
 
   it('redirects superseded public journeys to their editorial equivalents', () => {
@@ -22,11 +23,15 @@ describe('route lifecycle policy', () => {
   it('retires obsolete pages and hides mock APIs in production', () => {
     expect(getRouteDecision('/demo-dashboard', production)).toEqual({ action: 'gone' })
     expect(getRouteDecision('/partners/lead-machine', production)).toEqual({ action: 'gone' })
+    expect(getRouteDecision('/newsletter/launch-edition', production)).toEqual({ action: 'gone' })
     expect(getRouteDecision('/api/partners/recommendations', production)).toEqual({ action: 'not-found' })
     expect(getRouteDecision('/api/tasks/123', production)).toEqual({ action: 'not-found' })
     expect(getRouteDecision('/api/beehiiv/launch-distribution', production)).toEqual({ action: 'not-found' })
     expect(getRouteDecision('/api/partners/applications', production)).toEqual({ action: 'not-found' })
     expect(getRouteDecision('/api/partners/checkout/founding-partner', production)).toEqual({ action: 'not-found' })
+    expect(getRouteDecision('/api/checkout', production)).toEqual({ action: 'not-found' })
+    expect(getRouteDecision('/api/payment-links/create', production)).toEqual({ action: 'not-found' })
+    expect(getRouteDecision('/api/retell/llm-websocket/123', production)).toEqual({ action: 'not-found' })
   })
 
   it('allows development diagnostics only when explicitly enabled outside production', () => {

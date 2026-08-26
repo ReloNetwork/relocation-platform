@@ -1,5 +1,7 @@
 # 🚀 RELO NETWORK LAUNCH STRATEGY
 
+> **ARCHIVED — NOT A CURRENT LAUNCH PLAN.** Dates, metrics, prices and operational assumptions below require fresh approval and evidence.
+
 *Complete execution guide for tomorrow's launch and ongoing partnership development*
 
 ---

@@ -22,6 +22,7 @@ import {
   VolumeX,
 } from 'lucide-react';
 import { useRetellClient } from '@/hooks/useRetellClient';
+import { trackCommercialEvent } from '@/lib/commercial-analytics';
 
 interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
@@ -347,11 +348,15 @@ What would you like to understand about relocating to London?`,
         const data = await response.json();
 
         if (data.success) {
+          trackCommercialEvent('ask_relo_question_answered', 'ask_relo', {
+            remaining: data.remaining,
+          });
           setMessages((prev) => [...prev, data.message]);
           setSessionId(data.sessionId);
           setRemainingQuestions(data.remaining);
         } else {
           if (data.limitReached) {
+            trackCommercialEvent('ask_relo_limit_reached', 'ask_relo');
             setLimitReached(true);
             setRemainingQuestions(0);
             setMessages((prev) => [

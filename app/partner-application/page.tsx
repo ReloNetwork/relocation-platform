@@ -1,7 +1,8 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { FormEvent, useRef, useState } from 'react'
 import Layout from '@/components/Layout'
+import { trackCommercialEvent } from '@/lib/commercial-analytics'
 
 type Status = {
   state: 'idle' | 'submitting' | 'success' | 'error'
@@ -12,6 +13,13 @@ type Status = {
 
 export default function PartnerApplicationPage() {
   const [status, setStatus] = useState<Status>({ state: 'idle', message: '' })
+  const started = useRef(false)
+
+  const markStarted = () => {
+    if (started.current) return
+    started.current = true
+    trackCommercialEvent('partner_application_started', 'partner')
+  }
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -29,6 +37,9 @@ export default function PartnerApplicationPage() {
       if (!response.ok || !body.success) throw new Error(body.message || 'Your enquiry could not be sent.')
 
       form.reset()
+      trackCommercialEvent('partner_application_submitted', 'partner', {
+        interest: String(data.partnershipInterest || ''),
+      })
       setStatus({
         state: 'success',
         message: 'Thank you. Your application is in review and your partner brief is ready.',
@@ -71,7 +82,7 @@ export default function PartnerApplicationPage() {
             <small>Every paid feature is disclosed. Payment never guarantees a client introduction or overrides our independent recommendations.</small>
           </div>
 
-          <form className="partner-editorial-form" onSubmit={submit}>
+          <form className="partner-editorial-form" onSubmit={submit} onFocusCapture={markStarted}>
             <div className="partner-editorial-form__row">
               <label>
                 Your name

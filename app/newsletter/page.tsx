@@ -4,6 +4,7 @@ import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { articleUrl, editorialArticles } from '@/lib/editorial-articles'
+import { trackCommercialEvent } from '@/lib/commercial-analytics'
 
 type FormStatus = { state: 'idle' | 'submitting' | 'success' | 'error'; message: string }
 
@@ -25,6 +26,7 @@ export default function NewsletterPage() {
       if (!response.ok || !body.success) throw new Error(body.error || 'We could not add you just now.')
 
       setEmail('')
+      trackCommercialEvent('newsletter_submitted', 'newsletter')
       setStatus({ state: 'success', message: 'You’re on the list. Look out for The London Brief.' })
     } catch (error) {
       setStatus({

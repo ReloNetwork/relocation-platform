@@ -1299,6 +1299,73 @@ h3,
   letter-spacing: 0.14em;
   padding-bottom: 0.25rem;
 }
+.legal-document {
+  background: var(--ivory);
+  color: var(--forest);
+  min-height: 100vh;
+}
+.legal-document__header {
+  background: var(--forest);
+  color: var(--ivory);
+  padding: clamp(6rem, 11vw, 10rem) clamp(1.5rem, 10vw, 10rem);
+}
+.legal-document__header h1 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin: 2rem 0;
+  max-width: 60rem;
+}
+.legal-document__header > p {
+  color: #d9d0bc;
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  line-height: 1.65;
+  max-width: 48rem;
+}
+.legal-document__header small {
+  color: #aaa895;
+  display: block;
+  margin-top: 2.5rem;
+}
+.legal-document__body {
+  margin: 0 auto;
+  max-width: 78rem;
+  padding: clamp(3rem, 7vw, 7rem) clamp(1.5rem, 6vw, 5rem);
+}
+.legal-document__body section {
+  border-top: 1px solid rgba(20, 41, 31, 0.24);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  padding: 2.2rem 0 2.8rem;
+}
+.legal-document__body section > span {
+  color: var(--red);
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  padding-top: 0.5rem;
+}
+.legal-document__body h2 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 500;
+  margin: 0 0 1rem;
+}
+.legal-document__body p,
+.legal-document__body li {
+  color: #526058;
+  line-height: 1.75;
+  max-width: 52rem;
+}
+.legal-document__body ul {
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+}
+.legal-document__body li + li {
+  margin-top: 0.65rem;
+}
 .partner-pack {
   background: #f4f0e7;
   color: #14291f;

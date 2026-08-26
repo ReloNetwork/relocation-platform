@@ -5,6 +5,7 @@
   "framework": "nextjs",
   "outputDirectory": ".next",
   "crons": [
-    { "path": "/api/cron/london-landing-list", "schedule": "0 8 * * *" }
+    { "path": "/api/cron/london-landing-list", "schedule": "0 8 * * *" },
+    { "path": "/api/cron/data-retention", "schedule": "0 4 1 * *" }
   ]
 }

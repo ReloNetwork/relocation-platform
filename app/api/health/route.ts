@@ -18,6 +18,16 @@ export async function GET() {
     askRelo:{configured:false,ok:false,detail:''},
     askReloVoice:{configured:false,ok:false,detail:''},
     partnerSales:{configured:false,ok:false,detail:''},
+    commercialAnalytics:{configured:false,ok:false,detail:''},
+  };
+
+  const commercialAnalyticsConfigured = has(process.env.NEXT_PUBLIC_SUPABASE_URL) && has(process.env.SUPABASE_SERVICE_ROLE_KEY);
+  out.commercialAnalytics = {
+    configured: commercialAnalyticsConfigured,
+    ok: commercialAnalyticsConfigured,
+    detail: commercialAnalyticsConfigured
+      ? 'privacy-minimised conversion storage configured'
+      : 'Supabase service configuration missing',
   };
 
   const partnerSalesConfiguration = {

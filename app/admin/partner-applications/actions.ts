@@ -49,5 +49,14 @@ export async function updatePartnerLead(formData: FormData) {
     })
     .eq('id', parsed.data.id)
   if (error) throw new Error('The partner lead could not be updated')
+  if (parsed.data.status === 'proposal_sent' || parsed.data.status === 'won') {
+    await service.from('commercial_events').insert({
+      event: parsed.data.status === 'won' ? 'commercial_win_recorded' : 'proposal_sent',
+      journey: 'partner',
+      session_id: crypto.randomUUID(),
+      path: '/admin/partner-applications',
+      metadata: parsed.data.estimatedValue === '' ? {} : { estimated_value_gbp: parsed.data.estimatedValue },
+    })
+  }
   revalidatePath('/admin/partner-applications')
 }

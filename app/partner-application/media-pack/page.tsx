@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { PARTNER_MEDIA_PACK_VERSION, partnerInventory } from '@/lib/partner-sales'
+import CommercialEvent from '@/components/analytics/CommercialEvent'
 
 export const metadata = {
   title: 'Partner Media Pack | The Relo Network',
@@ -11,6 +12,7 @@ export default function PartnerMediaPackPage() {
   return (
     <Layout>
       <main className="partner-pack">
+        <CommercialEvent event="partner_media_pack_viewed" journey="partner" />
         <section className="partner-pack__cover">
           <p className="brief-eyebrow">PARTNER MEDIA PACK · {PARTNER_MEDIA_PACK_VERSION}</p>
           <h1>REACH PEOPLE<br />BUILDING A LIFE<br />IN LONDON.</h1>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { Crown, ArrowRight, CheckCircle, Calendar, Users, MapPin, GraduationCap } from 'lucide-react'
+import { trackCommercialEvent } from '@/lib/commercial-analytics'
 
 export default function ExecutiveIntakePage() {
   const [step, setStep] = useState(1)
@@ -99,6 +100,7 @@ export default function ExecutiveIntakePage() {
 
   const handleNext = () => {
     if (step < 2) {
+      trackCommercialEvent('relocation_intake_started', 'relocation')
       setStep(step + 1)
     }
   }
@@ -131,6 +133,10 @@ export default function ExecutiveIntakePage() {
       const data = await response.json()
       
       if (response.ok && data.success && data.referenceId) {
+        trackCommercialEvent('relocation_intake_submitted', 'relocation', {
+          urgency: formData.urgency,
+          budget: formData.budget,
+        })
         sessionStorage.setItem('executive_intake_data', JSON.stringify({
           ...formData,
           referenceId: data.referenceId,

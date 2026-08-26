@@ -11,6 +11,7 @@ const INDEXABLE_ROUTES = new Set([
   '/contact',
   '/cookies',
   '/discover',
+  '/editorial-policy',
   '/executive-intake',
   '/journal',
   '/live',
@@ -18,12 +19,17 @@ const INDEXABLE_ROUTES = new Set([
   '/move',
   '/network',
   '/newsletter',
+  '/newsletter/american-school-london-guide',
+  '/newsletter/canary-wharf-guide',
+  '/newsletter/london-property-trends-2025',
+  '/newsletter/marylebone-guide',
+  '/newsletter/mayfair-guide',
   '/partner-application',
   '/privacy',
   '/terms',
 ])
 
-const INDEXABLE_PREFIXES = ['/newsletter/']
+const INDEXABLE_PREFIXES: string[] = []
 
 const LEGACY_REDIRECTS: Record<string, string> = {
   '/api/newsletter-signup': '/api/newsletter/subscribe',
@@ -67,6 +73,9 @@ const RETIRED_PAGE_PREFIXES = [
   '/demo-dashboard',
   '/documents-demo',
   '/email-sender',
+  '/newsletter/fragomen-immigration-guide',
+  '/newsletter/launch-edition',
+  '/newsletter/london-luxury-transport',
   '/partners/lead-machine',
   '/partners/market-dominator',
   '/partners/onboard',
@@ -77,6 +86,12 @@ const RETIRED_PAGE_PREFIXES = [
 ]
 
 const RETIRED_API_PREFIXES = [
+  '/api/checkout',
+  '/api/directory/checkout',
+  '/api/education/create-checkout',
+  '/api/payment-links',
+  '/api/payments/create-checkout-session',
+  '/api/suppliers/checkout',
   '/api/beehiiv/launch-distribution',
   '/api/beehiiv/test',
   '/api/ai-demo',
@@ -93,6 +108,7 @@ const RETIRED_API_PREFIXES = [
   '/api/partners/market-dominator',
   '/api/partners/payment',
   '/api/partners/recommendations',
+  '/api/retell/llm-websocket',
   '/api/submit-ai-talent',
   '/api/tasks',
 ]

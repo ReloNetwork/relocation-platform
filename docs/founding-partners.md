@@ -1,5 +1,7 @@
 # 🤝 FOUNDING PARTNERS DATABASE
 
+> **ARCHIVED — DO NOT USE FOR OUTREACH.** Prospects and claims in this legacy planning document have not been verified. Use the qualified partner-sales pipeline.
+
 *Complete directory of ideal partners for Relo Network launch*
 
 ---

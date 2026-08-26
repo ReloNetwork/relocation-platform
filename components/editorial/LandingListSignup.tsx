@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { trackCommercialEvent } from '@/lib/commercial-analytics';
 
 export default function LandingListSignup() {
   const [email, setEmail] = useState('');
@@ -20,6 +21,7 @@ export default function LandingListSignup() {
       }),
     });
     setStatus(response.ok ? 'success' : 'error');
+    if (response.ok) trackCommercialEvent('landing_list_submitted', 'newsletter');
   }
   if (status === 'success')
     return (
