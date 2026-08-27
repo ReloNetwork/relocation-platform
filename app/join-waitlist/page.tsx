@@ -27,7 +27,7 @@ export default function JoinWaitlistPage() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data?.error || 'Error')
-      setStatus({ ok: true, msg: 'Thanks—check your inbox and expect a personal follow-up.' })
+      setStatus({ ok: true, msg: 'Thanks - check your inbox and expect a personal follow-up.' })
       ;(e.target as HTMLFormElement).reset()
     } catch (err: any) {
       setStatus({ ok: false, msg: err?.message || 'Something went wrong' })

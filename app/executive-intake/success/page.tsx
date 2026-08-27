@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle, Clock, Mail } from 'lucide-react'
 import Layout from '@/components/Layout'
+import { trackCommercialEvent } from '@/lib/commercial-analytics'
 
 type IntakeReceipt = {
   name?: string
@@ -74,11 +75,10 @@ export default function ExecutiveIntakeSuccessPage() {
             <div className="border-t border-[#E5E7EB] pt-5">
               <Mail className="w-5 h-5 text-[#C9A24A] mb-3" />
               <h2 className="font-semibold text-[#0B1B2B] mb-2">
-                A considered recommendation
+                A clear recommendation
               </h2>
               <p className="text-sm text-[#6B7280]">
-                We will recommend a briefing, audit or full engagement only
-                when it is the right fit.
+                We will only suggest paid help when we believe it will be useful.
               </p>
             </div>
           </div>
@@ -89,9 +89,10 @@ export default function ExecutiveIntakeSuccessPage() {
                 href={bookingUrl}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => trackCommercialEvent('qualification_call_booked', 'relocation')}
                 className="bg-[#C9A24A] text-white px-6 py-3 font-semibold inline-flex items-center justify-center gap-2"
               >
-                Request a private briefing
+                Book a private call
                 <ArrowRight className="w-4 h-4" />
               </a>
             )}

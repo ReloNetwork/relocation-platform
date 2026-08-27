@@ -168,7 +168,7 @@ export default function ExecutiveIntakePage() {
             Begin Your London Move
           </h1>
           <p className="text-xl text-[#6B7280] mb-8">
-            Share the essentials. We will review the fit and recommend the right level of private support.
+            Tell us about your move. We will review it and suggest the clearest next step.
           </p>
           
           {/* Progress */}
@@ -196,7 +196,7 @@ export default function ExecutiveIntakePage() {
             <div className="space-y-8">
               {/* Move Window */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Move Window</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">When are you moving?</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#6B7280] mb-2">Target move date</label>
@@ -262,7 +262,7 @@ export default function ExecutiveIntakePage() {
               <div>
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4 flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-[#C9A24A]" />
-                  Preferred Areas (select up to 5)
+                  Areas you are considering (choose up to 5)
                 </h3>
                 <div className="grid grid-cols-3 md:grid-cols-4 gap-2 mb-4">
                   {londonAreas.map((area) => (
@@ -294,7 +294,7 @@ export default function ExecutiveIntakePage() {
 
               {/* Key Requirements */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Key Requirements</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">What kind of home do you need?</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#6B7280] mb-2">Property type preference</label>
@@ -329,7 +329,7 @@ export default function ExecutiveIntakePage() {
 
               {/* Additional Support Requirements */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Additional Support Requirements</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">What else would help?</h3>
                 <div className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
                     <label className="flex items-center gap-3 cursor-pointer">
@@ -339,7 +339,7 @@ export default function ExecutiveIntakePage() {
                         onChange={(e) => handleInputChange('visaSupport', e.target.checked)}
                         className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
                       />
-                      <span className="text-[#6B7280]">Visa & immigration guidance</span>
+                      <span className="text-[#6B7280]">Help finding regulated immigration advice</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -348,7 +348,7 @@ export default function ExecutiveIntakePage() {
                         onChange={(e) => handleInputChange('taxationSupport', e.target.checked)}
                         className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
                       />
-                      <span className="text-[#6B7280]">UK taxation advice</span>
+                      <span className="text-[#6B7280]">Help finding regulated UK tax advice</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -357,7 +357,7 @@ export default function ExecutiveIntakePage() {
                         onChange={(e) => handleInputChange('bankingSupport', e.target.checked)}
                         className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
                       />
-                      <span className="text-[#6B7280]">Banking & finance setup</span>
+                      <span className="text-[#6B7280]">Help setting up banking</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -375,7 +375,7 @@ export default function ExecutiveIntakePage() {
                         onChange={(e) => handleInputChange('lifestyleSupport', e.target.checked)}
                         className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
                       />
-                      <span className="text-[#6B7280]">Lifestyle integration (clubs, healthcare, social connections)</span>
+                      <span className="text-[#6B7280]">Healthcare, clubs and getting to know the city</span>
                     </label>
                   </div>
                   <div>
@@ -383,7 +383,7 @@ export default function ExecutiveIntakePage() {
                     <textarea
                       value={formData.otherRequirements}
                       onChange={(e) => handleInputChange('otherRequirements', e.target.value)}
-                      placeholder="Any other specific needs, preferences, or circumstances we should know about..."
+                      placeholder="Tell us anything else that could affect your move."
                       rows={3}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     />
@@ -457,7 +457,7 @@ export default function ExecutiveIntakePage() {
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#E5E7EB]">
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
               <CheckCircle className="w-6 h-6 text-[#C9A24A]" />
-              Review & Send
+              Check and send
             </h2>
             
             {/* Service Summary */}
@@ -470,11 +470,11 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>We assess whether a private briefing, audit or full relocation engagement fits</span>
+                  <span>We decide whether a call, a focused review or full relocation support would help</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>We reply with the most appropriate scope and next step</span>
+                  <span>We reply with a clear next step</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
@@ -482,7 +482,7 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>A secure payment link is issued only after fit and scope are agreed</span>
+                  <span>We send a secure payment link only after we agree what you need and what it will cost</span>
                 </div>
               </div>
               
@@ -490,7 +490,7 @@ export default function ExecutiveIntakePage() {
 
             {/* Micro-FAQ */}
             <div className="bg-[#F8F9FA] rounded-xl p-6 mb-8">
-              <h4 className="font-bold text-[#0B1B2B] mb-4">Quick Questions</h4>
+              <h4 className="font-bold text-[#0B1B2B] mb-4">A few useful answers</h4>
               <div className="space-y-4 text-sm">
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">What happens after I send this?</div>
@@ -498,11 +498,11 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">Will I be asked to pay now?</div>
-                  <div className="text-[#6B7280]">No. We confirm fit, scope and timing before issuing any payment link.</div>
+                  <div className="text-[#6B7280]">No. We first agree what you need, when you need it and what it will cost.</div>
                 </div>
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">Is every brief accepted?</div>
-                  <div className="text-[#6B7280]">No. We only recommend an engagement when the need, timing and available support are genuinely aligned.</div>
+                  <div className="text-[#6B7280]">No. We only suggest paid help when we believe it will be useful and we have the right people available.</div>
                 </div>
               </div>
               

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site-url';
 export default function robots(): MetadataRoute.Robots {
-  const base = 'https://www.therelonetwork.com';
   const privateRoutes = [
     '/api/',
     '/account/',
@@ -34,7 +34,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: privateRoutes,
       },
     ],
-    sitemap: `${base}/sitemap.xml`,
-    host: base,
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

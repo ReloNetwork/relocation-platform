@@ -149,19 +149,14 @@ export async function GET() {
     catch (e:any){ out.resend.detail = e?.message ?? 'error'; }
   }
 
-  // Cal.com – check handle page or common event slugs
-  const CAL = process.env.NEXT_PUBLIC_CAL_USERNAME;
+  // Cal.com: this is the public booking path used by the intake receipt page.
+  const CAL = process.env.NEXT_PUBLIC_CAL_COM_EMBED_ID;
   if (has(CAL)) {
     out.cal.configured = true;
     try {
-      const tryUrls = [`https://cal.com/${CAL}`, `https://cal.com/${CAL}/15min`, `https://cal.com/${CAL}/intro`];
-      let ok = false, detail = '';
-      for (const u of tryUrls) {
-        const resp = await fetch(u, { method:'HEAD' });
-        if (resp.ok) { ok = true; detail = 'public page reachable'; break; }
-        detail = `status ${resp.status}`;
-      }
-      out.cal.ok = ok; out.cal.detail = detail;
+      const resp = await fetch(`https://cal.com/${CAL}`, { method:'HEAD' });
+      out.cal.ok = resp.ok;
+      out.cal.detail = resp.ok ? 'public booking page reachable' : `status ${resp.status}`;
     } catch (e:any){ out.cal.detail = e?.message ?? 'error'; }
   }
 

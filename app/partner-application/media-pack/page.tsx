@@ -17,23 +17,23 @@ export default function PartnerMediaPackPage() {
           <p className="brief-eyebrow">PARTNER MEDIA PACK · {PARTNER_MEDIA_PACK_VERSION}</p>
           <h1>REACH PEOPLE<br />BUILDING A LIFE<br />IN LONDON.</h1>
           <p className="partner-pack__lede">
-            The Relo Network is an editorial concierge for international professionals,
-            founders, executives and families moving to, visiting or settling in London.
+            The Relo Network helps international professionals and families make
+            clearer decisions about moving to and living in London.
           </p>
           <div className="partner-pack__principle">
-            Useful expertise earns attention. Payment buys defined media inventory—not
-            favourable advice, undisclosed coverage or client introductions.
+            Partners pay for clearly described placements. They do not pay for positive
+            recommendations, hidden coverage or access to client data.
           </div>
         </section>
 
         <section className="partner-pack__section">
           <div className="partner-pack__intro">
-            <p className="brief-eyebrow">LAUNCH INVENTORY</p>
-            <h2>Finite by design.</h2>
+            <p className="brief-eyebrow">PLACES AVAILABLE AT LAUNCH</p>
+            <h2>Starting small on purpose.</h2>
             <p>
-              We are opening a small number of launch placements while we establish
-              benchmark audience and campaign data. Every proposal states the exact
-              placement, delivery date and reporting scope.
+              We are offering a small number of placements while we build reliable
+              audience and campaign data. Every proposal lists what we will publish,
+              when it will appear and what we will report.
             </p>
           </div>
           <div className="partner-pack__inventory">
@@ -57,30 +57,30 @@ export default function PartnerMediaPackPage() {
             <div>
               <h3>Included</h3>
               <ul>
-                <li>Campaign briefing and suitability review</li>
-                <li>One disclosed sponsored Journal briefing</li>
-                <li>Two defined London Brief placements</li>
-                <li>Reviewed Network profile where appropriate</li>
-                <li>Tracked links and a closing campaign report</li>
+                <li>A planning call and fit check</li>
+                <li>One clearly labelled sponsored Journal article</li>
+                <li>Two agreed placements in The London Brief</li>
+                <li>A reviewed Network profile when suitable</li>
+                <li>Tracked links and a final report</li>
               </ul>
             </div>
             <div>
               <h3>Measured</h3>
               <ul>
-                <li>Delivered newsletter audience</li>
-                <li>Opens and unique clicks</li>
+                <li>How many emails were delivered</li>
+                <li>Opens and clicks</li>
                 <li>Article views and engaged visits</li>
                 <li>Tracked partner-site visits</li>
-                <li>Attributed enquiries where available</li>
+                <li>Enquiries linked to the campaign when available</li>
               </ul>
             </div>
             <div>
               <h3>Never sold</h3>
               <ul>
                 <li>Undisclosed editorial coverage</li>
-                <li>Guaranteed enquiries or revenue</li>
-                <li>Purchased Ask Relo recommendation rank</li>
-                <li>Unverified audience or performance claims</li>
+                <li>Promises of enquiries or revenue</li>
+                <li>Paid priority in Ask Relo recommendations</li>
+                <li>Audience or performance claims we cannot prove</li>
                 <li>Use of subscriber personal data</li>
               </ul>
             </div>
@@ -90,7 +90,7 @@ export default function PartnerMediaPackPage() {
         <section className="partner-pack__section">
           <div className="partner-pack__intro">
             <p className="brief-eyebrow">A GOOD FIT</p>
-            <h2>Brands that reduce relocation friction.</h2>
+            <h2>Businesses that make moving easier.</h2>
           </div>
           <div className="partner-pack__fit">
             <p>Property and accommodation</p>
@@ -104,13 +104,12 @@ export default function PartnerMediaPackPage() {
 
         <section className="partner-pack__cta">
           <p className="brief-eyebrow">NEXT STEP</p>
-          <h2>We qualify the fit before proposing the inventory.</h2>
+          <h2>We check the fit before suggesting a package.</h2>
           <p>
-            Tell us the audience you serve, the outcome you want and when you hope to
-            begin. Suitable applicants receive a scoped recommendation rather than a
-            generic rate card.
+            Tell us who you help, what you want to achieve and when you want to begin.
+            If there is a good fit, we will suggest a clear plan and price.
           </p>
-          <Link href="/partner-application">APPLY TO PARTNER</Link>
+          <Link href="/partner-application">SEND A PARTNER ENQUIRY</Link>
           <small>Questions: hello@therelonetwork.com</small>
         </section>
       </main>

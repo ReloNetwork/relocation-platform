@@ -28,7 +28,7 @@ export default function Page() {
           },
           {
             title: 'The London Brief',
-            text: 'Neighbourhood notes, relocation intelligence and selected partner expertise, delivered by email.',
+            text: 'Neighbourhood notes, practical moving advice and selected partner expertise, delivered by email.',
             href: '/newsletter',
             action: 'Browse and subscribe',
           },

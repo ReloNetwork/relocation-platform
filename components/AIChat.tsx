@@ -225,7 +225,7 @@ What would you like to know about relocating to London?`,
                             className="mt-3 w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white py-2 px-4 rounded-md text-sm font-semibold transition-colors flex items-center justify-center gap-2"
                           >
                             <Crown className="w-4 h-4" />
-                            Start Executive Intake — £1,500
+                            Start Executive Intake - £1,500
                           </button>
                         )}
                         <div className={`text-xs mt-2 ${

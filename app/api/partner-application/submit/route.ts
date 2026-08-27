@@ -108,11 +108,11 @@ export async function POST(request: NextRequest) {
       from,
       to: [process.env.PARTNER_ENQUIRY_EMAIL || 'hello@therelonetwork.com'],
       reply_to: application.email,
-      subject: `${qualification.quality.toUpperCase()} partner lead — ${application.company} — ${referenceId}`,
+      subject: `${qualification.quality.toUpperCase()} partner lead - ${application.company} - ${referenceId}`,
       html: `<h1>New partner application</h1>
         <p><strong>Reference:</strong> ${referenceId}</p>
         <p><strong>Fit:</strong> ${qualification.quality} (${qualification.score}/10)</p>
-        <p><strong>Contact:</strong> ${safe.name} — ${safe.email}</p>
+        <p><strong>Contact:</strong> ${safe.name} - ${safe.email}</p>
         <p><strong>Company:</strong> ${safe.company}</p>
         <p><strong>Category:</strong> ${safe.category}</p>
         <p><strong>Interest / objective:</strong> ${application.partnershipInterest} / ${application.objective}</p>
@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
     const confirmation = await resend.emails.send({
       from,
       to: [application.email],
-      subject: `Your Relo Network partner brief — ${referenceId}`,
+      subject: `Your Relo Network partner brief - ${referenceId}`,
       html: `<p>Dear ${safe.name},</p>
         <p>Thank you for applying to work with The Relo Network. Your reference is <strong>${referenceId}</strong>.</p>
         <p><a href="${mediaPackUrl}">View the current partner media pack</a>, including launch inventory, editorial safeguards and reporting.</p>

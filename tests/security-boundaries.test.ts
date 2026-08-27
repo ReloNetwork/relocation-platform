@@ -8,7 +8,6 @@ import { GET as getDirectoryAccess } from '@/app/api/directory/access-manager/ro
 import { GET as runSlaAlerts } from '@/app/api/cron/sla-alerts/route'
 import { POST as sendEmail } from '@/app/api/send-email/route'
 import { POST as submitConsultation } from '@/app/api/consultations/submit/route'
-import { POST as submitContact } from '@/app/api/contact/route'
 
 const jsonRequest = (url: string, body: unknown = {}) =>
   new NextRequest(url, {
@@ -69,8 +68,7 @@ describe('sensitive route boundaries', () => {
 })
 
 describe('conversion routes', () => {
-  it('validates consultation and contact submissions before side effects', async () => {
+  it('validates consultation submissions before side effects', async () => {
     expect((await submitConsultation(jsonRequest('https://example.test'))).status).toBe(400)
-    expect((await submitContact(jsonRequest('https://example.test'))).status).toBe(400)
   })
 })

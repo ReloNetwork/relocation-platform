@@ -13,7 +13,7 @@ interface DayPassUpgradeProps {
 export default function DayPassUpgrade({
   trigger,
   className = '',
-  nudgeText = "Convert your pass into full service — we'll quarterback the whole move.",
+  nudgeText = "Convert your pass into full service - we'll quarterback the whole move.",
 }: DayPassUpgradeProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [hasTriggered, setHasTriggered] = useState(false)

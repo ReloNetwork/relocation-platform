@@ -11,13 +11,12 @@ function AskReloContent() {
         <section className="editorial-hero">
           <span className="vertical-label">ASK RELO</span>
           <div>
-            <p className="eyebrow">LONDON, INTELLIGENTLY ANSWERED</p>
+            <p className="eyebrow">ASK RELO BETA</p>
             <h1>ASK THE CITY.</h1>
             <i />
             <p>
-              From comparing neighbourhoods to planning the practical sequence
-              of a move, Ask Relo turns your context into a clearer next
-              decision.
+              Ask about neighbourhoods, schools, housing or the order of your
+              move. You can ask three questions for free.
             </p>
           </div>
           <div style={{ minHeight: 560 }}>
@@ -31,13 +30,13 @@ function AskReloContent() {
               [
                 '01',
                 'COMPARE',
-                'Neighbourhoods, commute and lifestyle trade-offs.',
+                'Compare neighbourhoods, commutes and everyday life.',
               ],
-              ['02', 'PLAN', 'Schools, housing and your move sequence.'],
+              ['02', 'PLAN', 'Put schools, housing and practical tasks in the right order.'],
               [
                 '03',
                 'CONNECT',
-                'Understand when a vetted human specialist is useful.',
+                'Know when your question needs a qualified professional or human adviser.',
               ],
             ].map(([n, t, p]) => (
               <article key={n}>
@@ -57,9 +56,9 @@ function AskReloContent() {
             color: '#666',
           }}
         >
-          Ask Relo provides decision support and general information. Property,
-          legal, tax, immigration, school and financial decisions should be
-          verified with the appropriate qualified professional.
+          Ask Relo gives general information and can make mistakes. Check legal,
+          tax, immigration, school, financial and property decisions with the
+          relevant official source or qualified professional.
         </p>
       </main>
     </Layout>

@@ -2,6 +2,7 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import type { Metadata } from 'next';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
+import { SITE_URL } from '@/lib/site-url';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -13,7 +14,7 @@ const playfair = Playfair_Display({
   display: 'swap',
 });
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.therelonetwork.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'The Relo Network | London, intelligently answered',
     template: '%s | The Relo Network',
@@ -34,18 +35,18 @@ const structuredData = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://www.therelonetwork.com/#organisation',
+      '@id': `${SITE_URL}/#organisation`,
       name: 'The Relo Network',
-      url: 'https://www.therelonetwork.com',
+      url: SITE_URL,
       areaServed: 'London',
       email: 'hello@therelonetwork.com',
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://www.therelonetwork.com/#website',
-      url: 'https://www.therelonetwork.com',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
       name: 'The Relo Network',
-      publisher: { '@id': 'https://www.therelonetwork.com/#organisation' },
+      publisher: { '@id': `${SITE_URL}/#organisation` },
     },
   ],
 };

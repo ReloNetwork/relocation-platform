@@ -7,29 +7,29 @@ export default function Page() {
       <EditorialPage
         label="MOVE"
         title="ARRIVE ALREADY SETTLED."
-        intro="A managed relocation, from the first shortlist to the day the boxes go. We run the search, paperwork, schools and logistics in parallel."
+        intro="Tell us how you want to live in London. We can help with the home search, schools, paperwork and the practical parts of settling in."
         image="/images/editorial/london-street-hero.webp"
         sectionTitle="THE PROGRAMME"
         items={[
           {
             number: '01',
             title: 'Brief',
-            text: 'Priorities, budget, commute and school needs mapped.',
+            text: 'We learn your timing, budget, commute and family needs.',
           },
           {
             number: '02',
             title: 'Shortlist',
-            text: 'Neighbourhoods and a curated set of homes.',
+            text: 'You receive a focused list of areas and suitable homes.',
           },
           {
             number: '03',
             title: 'Secure',
-            text: 'Negotiation, referencing, contracts and applications.',
+            text: 'We help coordinate offers, references, contracts and applications.',
           },
           {
             number: '04',
             title: 'Settle',
-            text: 'Utilities, registrations and your first ninety days.',
+            text: 'We help organise utilities, registrations and your first weeks.',
           },
         ]}
       />

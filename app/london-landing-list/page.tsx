@@ -5,7 +5,7 @@ import AskReloBand from '@/components/editorial/AskReloBand';
 export const metadata: Metadata = {
   title: 'The London Landing List',
   description:
-    'Thirty decisions to make before relocating to London—from neighbourhoods and schools to housing, healthcare and your first ninety days.',
+    'Thirty decisions to make before relocating to London, covering neighbourhoods, schools, housing, healthcare and your first ninety days.',
   alternates: { canonical: '/london-landing-list' },
 };
 const sections: Array<[string, string[]]> = [
@@ -82,8 +82,8 @@ export default function Page() {
             <h1>LAND READY.</h1>
             <i />
             <p>
-              Thirty practical decisions, ordered to reduce expensive reversals
-              and unnecessary overwhelm.
+              Thirty practical decisions in a clear order, so you can avoid missed
+              steps and costly changes later.
             </p>
           </div>
           <div

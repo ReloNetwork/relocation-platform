@@ -7,7 +7,7 @@ export default function Page() {
       <EditorialPage
         label="DISCOVER"
         title="THE CITY, EDITED."
-        intro="Neighbourhoods, tables, galleries and interiors—the shortlists our advisers keep current through the people who live on those streets."
+        intro="Explore neighbourhoods, restaurants, galleries and interiors through shortlists shaped by people who know the city."
         image="/images/editorial/london-table.webp"
         sectionTitle="WHERE TO START"
         items={[

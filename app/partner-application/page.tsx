@@ -42,7 +42,7 @@ export default function PartnerApplicationPage() {
       })
       setStatus({
         state: 'success',
-        message: 'Thank you. Your application is in review and your partner brief is ready.',
+        message: 'Thank you. We have your application. You can now view the partner brief.',
         referenceId: body.referenceId,
         mediaPackUrl: body.mediaPackUrl,
       })
@@ -71,15 +71,15 @@ export default function PartnerApplicationPage() {
         <section className="partner-editorial-body">
           <div className="partner-editorial-notes">
             <span>WAYS TO WORK TOGETHER</span>
-            <h2>Expertise before exposure.</h2>
-            <p>Editorial partnerships can include useful sponsored briefings, newsletter placements and carefully disclosed brand collaborations. Launch pilots begin at £2,500.</p>
+            <h2>Useful work comes first.</h2>
+            <p>We offer clearly labelled sponsored articles and newsletter placements for businesses that genuinely help people moving to London. Launch pilots begin at £2,500.</p>
             <ul>
               <li>One lead sponsor per London Brief issue</li>
-              <li>Up to two commissioned Journal briefings per month</li>
+              <li>Up to two sponsored Journal articles per month</li>
               <li>Limited Editorial Partner Pilot places</li>
-              <li>Tracked links and post-campaign reporting</li>
+              <li>Tracked links and a report after the campaign</li>
             </ul>
-            <small>Every paid feature is disclosed. Payment never guarantees a client introduction or overrides our independent recommendations.</small>
+            <small>Every paid feature is labelled. Payment does not guarantee a client introduction and never changes our independent recommendations.</small>
           </div>
 
           <form className="partner-editorial-form" onSubmit={submit} onFocusCapture={markStarted}>
@@ -116,16 +116,16 @@ export default function PartnerApplicationPage() {
             </div>
             <label>
               Area of expertise
-              <input name="serviceCategory" placeholder="Property, education, legal, lifestyle…" required />
+                <input name="serviceCategory" placeholder="For example, property, education, legal or lifestyle" required />
             </label>
             <label>
               What are you interested in?
               <select name="partnershipInterest" required defaultValue="">
                 <option value="" disabled>Select one</option>
-                <option value="editorial">Sponsored Journal briefing</option>
+                <option value="editorial">Sponsored Journal article</option>
                 <option value="newsletter">The London Brief sponsorship</option>
-                <option value="network">Professional network</option>
-                <option value="ask-relo">Ask Relo knowledge collaboration</option>
+                <option value="network">A reviewed Network profile</option>
+                <option value="ask-relo">Providing checked information for Ask Relo</option>
                 <option value="unsure">Not sure yet</option>
               </select>
             </label>
@@ -140,18 +140,18 @@ export default function PartnerApplicationPage() {
             </label>
             <div className="partner-editorial-form__row">
               <label>
-                Primary objective
+                What would you like to achieve?
                 <select name="objective" required defaultValue="">
                   <option value="" disabled>Select one</option>
-                  <option value="authority">Build category authority</option>
+                  <option value="authority">Build trust in our area of expertise</option>
                   <option value="reach">Reach the right audience</option>
-                  <option value="enquiries">Generate qualified enquiries</option>
-                  <option value="thought-leadership">Publish thought leadership</option>
-                  <option value="knowledge">Contribute verified expertise</option>
+                  <option value="enquiries">Receive relevant enquiries</option>
+                  <option value="thought-leadership">Share useful expertise</option>
+                  <option value="knowledge">Provide information we can check</option>
                 </select>
               </label>
               <label>
-                Indicative budget
+                Working budget
                 <select name="budget" required defaultValue="">
                   <option value="" disabled>Select one</option>
                   <option value="under-2500">Under £2,500</option>
@@ -173,8 +173,8 @@ export default function PartnerApplicationPage() {
               </select>
             </label>
             <label>
-              Tell us about the fit
-              <textarea name="message" rows={6} required placeholder="Your audience, London expertise and what a useful collaboration could look like." />
+              Why could this be useful for our readers?
+              <textarea name="message" rows={6} required placeholder="Tell us who you help, what you know well and what you would like to create with us." />
             </label>
             <label className="partner-editorial-form__consent">
               <input name="consent" type="checkbox" value="yes" required />

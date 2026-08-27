@@ -7,7 +7,7 @@ export default function Page() {
       <EditorialPage
         label="NETWORK"
         title="A CITY RUNS ON PEOPLE."
-        intro="Vetted specialists across property, education, law and design—plus the members who use them. Client introductions remain independent; selected partners can also collaborate with our editorial studio."
+        intro="Find carefully reviewed specialists across property, education, law and design. Paid partnerships never decide who we recommend to a client."
         image="/images/editorial/london-interior.webp"
         sectionTitle="PARTNERS"
         items={[
@@ -37,7 +37,7 @@ export default function Page() {
           },
           {
             title: 'Editorial partnerships',
-            text: 'Thoughtful features and sponsorships for brands serving international Londoners.',
+            text: 'Clearly labelled articles and newsletter placements for businesses that help people settle in London.',
             href: '/partner-application',
             action: 'Request the partner brief',
           },

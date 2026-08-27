@@ -32,6 +32,7 @@ describe('route lifecycle policy', () => {
     expect(getRouteDecision('/api/checkout', production)).toEqual({ action: 'not-found' })
     expect(getRouteDecision('/api/payment-links/create', production)).toEqual({ action: 'not-found' })
     expect(getRouteDecision('/api/retell/llm-websocket/123', production)).toEqual({ action: 'not-found' })
+    expect(getRouteDecision('/api/contact', production)).toEqual({ action: 'not-found' })
   })
 
   it('allows development diagnostics only when explicitly enabled outside production', () => {
@@ -42,10 +43,16 @@ describe('route lifecycle policy', () => {
     })
   })
 
-  it('keeps private and unknown application routes reachable but out of search', () => {
+  it('keeps approved private routes reachable but out of search', () => {
     expect(getRouteDecision('/admin', production)).toEqual({ action: 'allow', indexable: false })
-    expect(getRouteDecision('/checkout/success', production)).toEqual({ action: 'allow', indexable: false })
-    expect(getRouteDecision('/future-route', production)).toEqual({ action: 'allow', indexable: false })
+    expect(getRouteDecision('/client/example-token', production)).toEqual({ action: 'allow', indexable: false })
     expect(getRouteDecision('/partner-application/media-pack', production)).toEqual({ action: 'allow', indexable: false })
+  })
+
+  it('retires unapproved legacy and unknown pages in production', () => {
+    expect(getRouteDecision('/corporate', production)).toEqual({ action: 'gone' })
+    expect(getRouteDecision('/payment-success', production)).toEqual({ action: 'gone' })
+    expect(getRouteDecision('/future-route', production)).toEqual({ action: 'gone' })
+    expect(getRouteDecision('/future-route', { isProduction: false, devToolsEnabled: false })).toEqual({ action: 'allow', indexable: false })
   })
 })

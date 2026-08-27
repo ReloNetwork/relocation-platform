@@ -11,7 +11,7 @@ import Layout from '@/components/Layout'
 const EMAIL_TEMPLATES = {
   cheval: {
     to: 'info@chevalcollection.com',
-    subject: 'Exclusive London Serviced Residence Placement — Confirmation Today',
+    subject: 'Exclusive London Serviced Residence Placement - Confirmation Today',
     html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
   <div style="background: #0B1B2B; color: white; padding: 20px; text-align: center;">
@@ -59,7 +59,7 @@ const EMAIL_TEMPLATES = {
   },
   otherhouse: {
     to: 'sales@otherhouse.com',
-    subject: 'Residents\' Club — Exclusive London Placement (Decision Today)',
+    subject: 'Residents\' Club - Exclusive London Placement (Decision Today)',
     html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
   <div style="background: #0B1B2B; color: white; padding: 20px; text-align: center;">
@@ -107,7 +107,7 @@ const EMAIL_TEMPLATES = {
   },
   cadogantate: {
     to: 'london@cadogantate.com',
-    subject: 'Exclusive UHNW Relocation Channel for London — Confirmation Today',
+    subject: 'Exclusive UHNW Relocation Channel for London - Confirmation Today',
     html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
   <div style="background: #0B1B2B; color: white; padding: 20px; text-align: center;">
@@ -118,7 +118,7 @@ const EMAIL_TEMPLATES = {
   <div style="padding: 30px 20px;">
     <p>Dear [Title] [Surname],</p>
     
-    <p>Relo Network routes UHNW and executive relocations—often involving fine-art and high-value effects—into London. We are appointing two category-exclusive Founding Partners in Luxury Moving / Fine-Art Logistics and propose Cadogan Tate for priority consideration.</p>
+    <p>Relo Network routes UHNW and executive relocations - often involving fine-art and high-value effects - into London. We are appointing two category-exclusive Founding Partners in Luxury Moving / Fine-Art Logistics and propose Cadogan Tate for priority consideration.</p>
     
     <div style="background: #F8F9FA; padding: 20px; border-left: 4px solid #C9A24A; margin: 20px 0;">
       <ul style="margin: 0; padding-left: 20px;">
@@ -155,7 +155,7 @@ const EMAIL_TEMPLATES = {
   },
   bishopsmove: {
     to: 'international@bishopsmove.com',
-    subject: 'Exclusive International Moving Channel — London (Decision Today)',
+    subject: 'Exclusive International Moving Channel - London (Decision Today)',
     html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
   <div style="background: #0B1B2B; color: white; padding: 20px; text-align: center;">
@@ -194,7 +194,7 @@ const EMAIL_TEMPLATES = {
   },
   blackbrick: {
     to: 'camilla.dell@black-brick.com',
-    subject: 'Exclusive HNW Buyer Channel — London Relocations (Approval Today)',
+    subject: 'Exclusive HNW Buyer Channel - London Relocations (Approval Today)',
     html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
   <div style="background: #0B1B2B; color: white; padding: 20px; text-align: center;">
@@ -242,7 +242,7 @@ const EMAIL_TEMPLATES = {
   },
   lauradevine: {
     to: 'enquiries@lauradevine.com',
-    subject: 'Exclusive HNW Immigration Channel — London (Decision Today)',
+    subject: 'Exclusive HNW Immigration Channel - London (Decision Today)',
     html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
   <div style="background: #0B1B2B; color: white; padding: 20px; text-align: center;">
@@ -289,7 +289,7 @@ const EMAIL_TEMPLATES = {
   },
   davidsonmorris: {
     to: 'hello@davidsonmorris.com',
-    subject: 'Exclusive Immigration Channel — London Relocations (Confirmation Today)',
+    subject: 'Exclusive Immigration Channel - London Relocations (Confirmation Today)',
     html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
   <div style="background: #0B1B2B; color: white; padding: 20px; text-align: center;">
@@ -326,7 +326,7 @@ const EMAIL_TEMPLATES = {
   },
   gherson: {
     to: 'info@gherson.com',
-    subject: 'Exclusive HNWI Immigration Channel — London (Decision Today)',
+    subject: 'Exclusive HNWI Immigration Channel - London (Decision Today)',
     html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
   <div style="background: #0B1B2B; color: white; padding: 20px; text-align: center;">

@@ -7,7 +7,7 @@ export default function Page() {
       <EditorialPage
         label="ABOUT"
         title="THE PEOPLE BEHIND THE MOVE."
-        intro="The hardest part of moving to London is not finding a property. It is understanding a city of eight million people well enough to choose where your life should sit inside it."
+        intro="Finding a property is only one part of moving to London. We help you understand the city well enough to choose where your life can work."
         image="/images/editorial/london-street-hero.webp"
         sectionTitle="HOW WE WORK"
         items={[
@@ -19,12 +19,12 @@ export default function Page() {
           {
             number: '02',
             title: 'Evidence-led',
-            text: 'Commutes, schools and market context inform each recommendation.',
+            text: 'We check commutes, schools and current market information before making a recommendation.',
           },
           {
             number: '03',
             title: 'Present',
-            text: 'One connected conversation from first call to first dinner party.',
+            text: 'You have one clear conversation from the first call through the first weeks in London.',
           },
         ]}
       />

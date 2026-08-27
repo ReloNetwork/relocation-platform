@@ -45,11 +45,11 @@ export default function NewsletterPage() {
             <span className="brief-eyebrow">THE LONDON BRIEF</span>
             <h1>A CITY WORTH READING.</h1>
             <p>
-              Neighbourhood intelligence, relocation guidance and selected expertise for people making London home.
+              Clear neighbourhood notes, practical moving advice and useful London ideas for people making the city home.
             </p>
           </div>
           <form onSubmit={subscribe} className="brief-signup">
-            <label htmlFor="brief-email">Delivered thoughtfully, never noisily.</label>
+            <label htmlFor="brief-email">Useful London notes, sent with care.</label>
             <div>
               <input
                 id="brief-email"
@@ -73,7 +73,7 @@ export default function NewsletterPage() {
         <section className="brief-archive">
           <div className="brief-archive__heading">
             <span>01</span>
-            <h2>THE ARCHIVE</h2>
+            <h2>READ THE LATEST</h2>
           </div>
           <div className="brief-archive__grid">
             {editorialArticles.map((article) => (

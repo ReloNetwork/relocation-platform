@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
       from,
       to: [process.env.EXECUTIVE_INTAKE_EMAIL || 'hello@therelonetwork.com'],
       reply_to: intake.email,
-      subject: `${qualification.quality.toUpperCase()} relocation brief — ${intake.name} — ${referenceId}`,
+      subject: `${qualification.quality.toUpperCase()} relocation brief - ${intake.name} - ${referenceId}`,
       html: `<h1>New private relocation brief</h1>
         <p><strong>Reference:</strong> ${referenceId}</p>
         <p><strong>Lead quality:</strong> ${qualification.quality} (${qualification.score}/10)</p>
@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
     const confirmation = await resend.emails.send({
       from,
       to: [intake.email],
-      subject: `We received your London relocation brief — ${referenceId}`,
+      subject: `We received your London relocation brief - ${referenceId}`,
       html: `<p>Dear ${safe.name},</p>
         <p>Thank you for sharing your London relocation brief. Your reference is <strong>${referenceId}</strong>.</p>
         <p>We will review the timing, household needs and level of support required, then reply within one business day with the most appropriate next step.</p>

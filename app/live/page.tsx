@@ -7,21 +7,21 @@ export default function Page() {
       <EditorialPage
         label="LIVE"
         title="WHERE LONDON ACTUALLY WORKS."
-        intro="Neighbourhoods compared on the measures that decide a week: the commute, the school run, what is open on Sunday and how the street feels in February."
+        intro="Compare neighbourhoods through daily life: your commute, the school run, weekends and how each street feels throughout the year."
         image="/images/editorial/london-street-hero.webp"
         sectionTitle="PRACTICAL LONDON"
         items={[
           {
             title: 'Schooling',
-            text: 'Admissions, catchments and the timelines that decide both.',
+            text: 'Understand school choices, application dates and the daily journey.',
           },
           {
             title: 'Healthcare',
-            text: 'Registering with a GP, private cover and trusted practices.',
+            text: 'Plan GP registration, private care and the support your family needs.',
           },
           {
             title: 'Getting around',
-            text: 'Zones, the Elizabeth line, cycling and when a car is worth keeping.',
+            text: 'Compare public transport, walking, cycling and whether you need a car.',
           },
         ]}
       />

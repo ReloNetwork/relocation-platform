@@ -354,13 +354,13 @@ export default function ReloSolutionsPage() {
                   <tr key={idx} className="border-b border-gray-100">
                     <td className="py-4 px-6 text-[#0B1B2B]">{row.feature}</td>
                     <td className="text-center py-4 px-6">
-                      {row.executive ? <CheckCircle className="w-5 h-5 text-[#C9A24A] mx-auto" /> : <span className="text-gray-300">—</span>}
+                      {row.executive ? <CheckCircle className="w-5 h-5 text-[#C9A24A] mx-auto" /> : <span className="text-gray-300"> - </span>}
                     </td>
                     <td className="text-center py-4 px-6">
-                      {row.enterprise ? <CheckCircle className="w-5 h-5 text-[#0B1B2B] mx-auto" /> : <span className="text-gray-300">—</span>}
+                      {row.enterprise ? <CheckCircle className="w-5 h-5 text-[#0B1B2B] mx-auto" /> : <span className="text-gray-300"> - </span>}
                     </td>
                     <td className="text-center py-4 px-6">
-                      {row.showcase ? <CheckCircle className="w-5 h-5 text-[#C9A24A] mx-auto" /> : <span className="text-gray-300">—</span>}
+                      {row.showcase ? <CheckCircle className="w-5 h-5 text-[#C9A24A] mx-auto" /> : <span className="text-gray-300"> - </span>}
                     </td>
                   </tr>
                 ))}

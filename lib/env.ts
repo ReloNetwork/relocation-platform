@@ -6,7 +6,7 @@ const schema = z.object({
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(20),
   STRIPE_SECRET_KEY: z.string().startsWith('sk_').optional(),
   STRIPE_WEBHOOK_SECRET: z.string().startsWith('whsec_').optional(),
-  NEXT_PUBLIC_CAL_USERNAME: z.string().min(1).optional(),
+  NEXT_PUBLIC_CAL_COM_EMBED_ID: z.string().min(1).optional(),
   RESEND_API_KEY: z.string().startsWith('re_').optional(),
 });
 

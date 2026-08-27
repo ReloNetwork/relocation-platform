@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import { articleUrl, editorialArticles } from '@/lib/editorial-articles'
+import { SITE_URL } from '@/lib/site-url'
 
-const baseUrl = 'https://www.therelonetwork.com'
+const baseUrl = SITE_URL
 
 function escapeXml(value: string) {
   return value.replace(/[<>&'\"]/g, (character) => ({

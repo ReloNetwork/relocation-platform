@@ -1,0 +1,46 @@
+import { describe, expect, it } from 'vitest'
+import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { join } from 'node:path'
+
+const roots = ['app', 'components', 'lib']
+const sourcePattern = /\.(?:ts|tsx)$/
+
+function sourceFiles(directory: string): string[] {
+  return readdirSync(directory).flatMap((name) => {
+    const path = join(directory, name)
+    return statSync(path).isDirectory()
+      ? sourceFiles(path)
+      : sourcePattern.test(path)
+        ? [path]
+        : []
+  })
+}
+
+describe('website copy', () => {
+  it('contains no em dash characters', () => {
+    const offenders = roots
+      .flatMap(sourceFiles)
+      .filter((path) => readFileSync(path, 'utf8').includes('\u2014'))
+
+    expect(offenders).toEqual([])
+  })
+
+  it('does not repeat unsupported launch claims on approved public pages', () => {
+    const publicFiles = [
+      'app/page.tsx',
+      'app/contact/page.tsx',
+      'app/ask-relo/page.tsx',
+      'app/executive-intake/page.tsx',
+      'app/newsletter/page.tsx',
+      'app/partner-application/page.tsx',
+      'components/editorial/CinematicJourney.tsx',
+      'components/editorial/HorizontalIntelligence.tsx',
+    ]
+    const copy = publicFiles.map((path) => readFileSync(path, 'utf8')).join('\n')
+
+    expect(copy).not.toMatch(/24\s*\/\s*7/i)
+    expect(copy).not.toMatch(/fortune 500/i)
+    expect(copy).not.toMatch(/2,500\+?\s+(?:readers|subscribers|members)/i)
+    expect(copy).not.toMatch(/reply within (?:two|2) hours/i)
+  })
+})

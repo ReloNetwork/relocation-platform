@@ -17,7 +17,7 @@ function verify(raw: string, sigHeader: string | null, secret: string) {
 
 export async function POST(req: NextRequest) {
   const secret = process.env.CAL_WEBHOOK_SECRET || '';
-  const sig = req.headers.get('x-cal-signature-256'); // <— MUST be in quotes
+  const sig = req.headers.get('x-cal-signature-256'); // < - MUST be in quotes
   const raw = await req.text();
 
   if (!verify(raw, sig, secret)) {

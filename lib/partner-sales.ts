@@ -62,16 +62,16 @@ export const partnerInventory = [
   {
     name: 'The London Brief lead sponsor',
     availability: 'One lead sponsor per issue',
-    includes: 'Opening sponsor credit, one useful brand message, one tracked link and post-send reporting.',
+    includes: 'A sponsor credit at the start, one useful message, one tracked link and a report after the issue is sent.',
   },
   {
-    name: 'Sponsored Journal briefing',
+    name: 'Sponsored Journal article',
     availability: 'Up to two commissioned briefings per month',
-    includes: 'Editorial development, disclosure, permanent article page, newsletter distribution and tracked links.',
+    includes: 'Planning, writing support, clear sponsorship labelling, a permanent article page, newsletter distribution and tracked links.',
   },
   {
     name: 'Editorial Partner Pilot',
     availability: 'A limited launch cohort',
-    includes: 'One sponsored briefing, two newsletter placements, a reviewed network profile and campaign report.',
+    includes: 'One sponsored article, two newsletter placements, a reviewed Network profile and a final report.',
   },
 ] as const

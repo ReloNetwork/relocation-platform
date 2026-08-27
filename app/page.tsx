@@ -19,11 +19,9 @@ export default function HomePage() {
               EDITED.
             </h2>
             <p>
-              London is not difficult because it lacks choices. It is difficult
-              because the best choice depends on the life you are building. We
-              combine independent guidance, live city intelligence and trusted
-              people—so your first London decisions feel considered, not
-              improvised.
+              London gives you endless choices. The hard part is knowing which
+              ones fit your life. We give you clear advice, current local insight
+              and trusted people, so you can make your first decisions with confidence.
             </p>
           </div>
           <Image
@@ -45,10 +43,10 @@ export default function HomePage() {
               [
                 '01',
                 'UNDERSTAND',
-                'We listen, assess and map your priorities.',
+                'Tell us what matters and when you need to move.',
               ],
-              ['02', 'SHORTLIST', 'We curate options matched to your life.'],
-              ['03', 'SETTLE IN', 'We handle the details so you feel at home.'],
+              ['02', 'SHORTLIST', 'See a focused list of areas and homes that fit.'],
+              ['03', 'SETTLE IN', 'We coordinate the practical details and help you settle in.'],
             ].map(([n, t, p]) => (
               <article key={n}>
                 <span>{n}</span>
@@ -67,26 +65,26 @@ export default function HomePage() {
               'KENSINGTON',
               'CLERKENWELL',
               'BATTERSEA',
-              'COMMUTE',
-              '22 mins to Bank',
-              '18 mins to Bank',
-              '16 mins to Bank',
-              '24 mins to Bank',
-              'SCHOOLS',
-              '★★★★★',
-              '★★★★★',
-              '★★★★☆',
-              '★★★★☆',
-              'LIFESTYLE',
-              'Village feel',
-              'Museums & green space',
-              'Creative & connected',
-              'Riverside & parks',
-              'OVERALL',
-              '9.2',
-              '8.8',
-              '8.3',
-              '8.0',
+              'FEEL',
+              'Colourful and relaxed',
+              'Classic and central',
+              'Creative and walkable',
+              'Modern and riverside',
+              'GOOD FOR',
+              'Families and weekends',
+              'Museums and green space',
+              'Short City journeys',
+              'New homes and parks',
+              'CHECK',
+              'Crowds and transport',
+              'Rent and building type',
+              'Noise street by street',
+              'Your exact commute',
+              'NEXT STEP',
+              'Walk your daily route',
+              'Compare the side streets',
+              'Visit after work',
+              'Try a full weekend',
             ].map((v, i) => (
               <div className={i % 5 === 0 ? 'row-label' : ''} key={`${v}-${i}`}>
                 {v}

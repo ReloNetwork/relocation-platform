@@ -97,6 +97,7 @@ const RETIRED_API_PREFIXES = [
   '/api/ai-demo',
   '/api/client/validate',
   '/api/consultations/book',
+  '/api/contact',
   '/api/docs/interpret',
   '/api/lindy/calls',
   '/api/partners/feedback',
@@ -111,6 +112,19 @@ const RETIRED_API_PREFIXES = [
   '/api/retell/llm-websocket',
   '/api/submit-ai-talent',
   '/api/tasks',
+]
+
+const PRIVATE_PAGE_PREFIXES = [
+  '/account',
+  '/admin',
+  '/auth',
+  '/case',
+  '/client',
+  '/dashboard',
+  '/executive-intake/success',
+  '/login',
+  '/onboarding',
+  '/partner-application/media-pack',
 ]
 
 const NON_DOCUMENT_EXTENSIONS = /\.[a-z0-9]{2,8}$/i
@@ -156,9 +170,19 @@ export function getRouteDecision(
     return { action: 'allow', indexable: false }
   }
 
+  if (pathname.startsWith('/api/')) {
+    return { action: 'allow', indexable: false }
+  }
+
   const indexable =
     INDEXABLE_ROUTES.has(pathname) ||
     INDEXABLE_PREFIXES.some((prefix) => pathname.startsWith(prefix))
 
-  return { action: 'allow', indexable }
+  if (indexable || matchesPrefix(pathname, PRIVATE_PAGE_PREFIXES)) {
+    return { action: 'allow', indexable }
+  }
+
+  return options.isProduction
+    ? { action: 'gone' }
+    : { action: 'allow', indexable: false }
 }

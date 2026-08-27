@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { editorialArticles } from '@/lib/editorial-articles'
+import { absoluteUrl } from '@/lib/site-url'
 
 export default function JournalArticle({ slug }: { slug: string }) {
   const article = editorialArticles.find((entry) => entry.slug === slug)
   if (!article) return null
 
   const published = new Intl.DateTimeFormat('en-GB', { dateStyle: 'long', timeZone: 'Europe/London' }).format(new Date(article.publishedAt))
-  const canonical = `https://askrelo.com/newsletter/${article.slug}`
+  const canonical = absoluteUrl(`/newsletter/${article.slug}`)
   const schema = {
     '@context': 'https://schema.org', '@type': 'Article', headline: article.title,
     description: article.excerpt, datePublished: article.publishedAt, dateModified: article.publishedAt,

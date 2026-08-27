@@ -120,7 +120,7 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
 
 I can help you compare neighbourhoods, frame housing and school decisions, and plan the practical sequence of your move.
 
-You have three complimentary questions. Please do not share passport numbers, payment details or sensitive records.
+You can ask three questions for free. Please do not share passport numbers, payment details or sensitive records.
 
 What would you like to understand about relocating to London?`,
           timestamp: new Date().toISOString(),
@@ -364,7 +364,7 @@ What would you like to understand about relocating to London?`,
               {
                 role: 'assistant',
                 content:
-                  'Your complimentary preview is complete. For a move-specific plan and human review, share your private relocation brief.',
+                  'You have used your three free questions. If you would like personal help, share your private relocation brief for human review.',
                 timestamp: new Date().toISOString(),
               },
             ]);
@@ -440,7 +440,7 @@ What would you like to understand about relocating to London?`,
                         ? 'Ask Relo - Voice'
                         : 'Ask Relo - Text'}
                     </h3>
-                    <p className="text-xs text-white/90">24/7 AI Assistant</p>
+                    <p className="text-xs text-white/90">Ask Relo beta</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -735,7 +735,7 @@ What would you like to understand about relocating to London?`,
                       <p className="text-xs text-[#6B7280] mt-2 text-center">
                         {limitReached
                           ? 'Complimentary preview complete'
-                          : `${remainingQuestions} complimentary question${remainingQuestions === 1 ? '' : 's'} remaining`}
+                          : `${remainingQuestions} free question${remainingQuestions === 1 ? '' : 's'} left`}
                       </p>
                       {limitReached && (
                         <a
@@ -905,7 +905,7 @@ What would you like to understand about relocating to London?`,
                 <p className="text-xs text-[#6B7280] mt-2 text-center">
                   {limitReached
                     ? 'Complimentary preview complete'
-                    : `${remainingQuestions} complimentary question${remainingQuestions === 1 ? '' : 's'} remaining`}
+                    : `${remainingQuestions} free question${remainingQuestions === 1 ? '' : 's'} left`}
                 </p>
                 {limitReached && (
                   <a

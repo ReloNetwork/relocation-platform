@@ -21,7 +21,7 @@ export default function IntegrationsPage(){
                 {s.ok ? 'OK' : s.configured ? 'Configured · failing' : 'Not configured'}
               </span>
             </div>
-            <div className="mt-1 text-sm text-gray-500">{s.detail || '—'}</div>
+            <div className="mt-1 text-sm text-gray-500">{s.detail || ' - '}</div>
           </div>
         ))}
       </div>

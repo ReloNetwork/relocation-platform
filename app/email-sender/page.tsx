@@ -8,7 +8,7 @@ const EMAIL_TEMPLATES = {
   cheval: {
     name: 'Cheval Collection (Serviced Residences)',
     to: 'info@chevalcollection.com',
-    subject: 'Exclusive Serviced Residences Placement — Confirmation by 17:00 BST, 15 Oct',
+    subject: 'Exclusive Serviced Residences Placement - Confirmation by 17:00 BST, 15 Oct',
     category: 'Serviced Residences',
     company: 'Cheval Collection',
     salutation: 'Dear Global/Regional Sales Director'
@@ -16,7 +16,7 @@ const EMAIL_TEMPLATES = {
   otherhouse: {
     name: 'The Other House (Luxury Accommodations)',
     to: 'sales@otherhouse.com',
-    subject: 'Exclusive Luxury Accommodations Placement — Confirmation by 17:00 BST, 15 Oct',
+    subject: 'Exclusive Luxury Accommodations Placement - Confirmation by 17:00 BST, 15 Oct',
     category: 'Luxury Accommodations',
     company: 'The Other House',
     salutation: 'Dear Group Sales Team'
@@ -24,7 +24,7 @@ const EMAIL_TEMPLATES = {
   cadogan: {
     name: 'Cadogan Tate (Fine Art Storage)',
     to: 'enquiries@cadogantate.com',
-    subject: 'Exclusive Fine Art Storage Placement — Confirmation by 17:00 BST, 15 Oct',
+    subject: 'Exclusive Fine Art Storage Placement - Confirmation by 17:00 BST, 15 Oct',
     category: 'Fine Art Storage',
     company: 'Cadogan Tate',
     salutation: 'Dear BD/Partnerships Team'
@@ -32,7 +32,7 @@ const EMAIL_TEMPLATES = {
   bishops: {
     name: 'Bishop\'s Move (International Division)',
     to: 'corporate@bishopsmove.com',
-    subject: 'Exclusive International Relocation Placement — Confirmation by 17:00 BST, 15 Oct',
+    subject: 'Exclusive International Relocation Placement - Confirmation by 17:00 BST, 15 Oct',
     category: 'International Relocation Services',
     company: 'Bishop\'s Move',
     salutation: 'Dear International Director'
@@ -40,7 +40,7 @@ const EMAIL_TEMPLATES = {
   blackbrick: {
     name: 'Black Brick (Prime Property)',
     to: 'camilla.dell@black-brick.com',
-    subject: 'Exclusive Prime Property Placement — Confirmation by 17:00 BST, 15 Oct',
+    subject: 'Exclusive Prime Property Placement - Confirmation by 17:00 BST, 15 Oct',
     category: 'Prime Property Services',
     company: 'Black Brick',
     salutation: 'Dear Camilla Dell'
@@ -48,7 +48,7 @@ const EMAIL_TEMPLATES = {
   laura: {
     name: 'Laura Devine Immigration',
     to: 'enquiries@lauradevine.com',
-    subject: 'Exclusive Immigration Services Placement — Confirmation by 17:00 BST, 15 Oct',
+    subject: 'Exclusive Immigration Services Placement - Confirmation by 17:00 BST, 15 Oct',
     category: 'Immigration Services',
     company: 'Laura Devine Immigration',
     salutation: 'Dear Laura Devine Immigration Team'
@@ -56,7 +56,7 @@ const EMAIL_TEMPLATES = {
   davidson: {
     name: 'DavidsonMorris (Immigration Law)',
     to: 'hello@davidsonmorris.com',
-    subject: 'Exclusive Immigration Law Placement — Confirmation by 17:00 BST, 15 Oct',
+    subject: 'Exclusive Immigration Law Placement - Confirmation by 17:00 BST, 15 Oct',
     category: 'Immigration Law',
     company: 'DavidsonMorris',
     salutation: 'Dear Anne Morris'
@@ -64,7 +64,7 @@ const EMAIL_TEMPLATES = {
   gherson: {
     name: 'Gherson Solicitors (HNWI Immigration)',
     to: 'info@gherson.com',
-    subject: 'Exclusive HNWI Immigration Placement — Confirmation by 17:00 BST, 15 Oct',
+    subject: 'Exclusive HNWI Immigration Placement - Confirmation by 17:00 BST, 15 Oct',
     category: 'HNWI Immigration Services',
     company: 'Gherson Solicitors',
     salutation: 'Dear Gherson Solicitors Team'
