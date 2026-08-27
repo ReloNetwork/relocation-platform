@@ -12,6 +12,9 @@ create index if not exists ask_relo_usage_ip_idx
 
 alter table public.ask_relo_usage enable row level security;
 
+revoke all on table public.ask_relo_usage from anon, authenticated;
+grant select, insert, update, delete on table public.ask_relo_usage to service_role;
+
 create or replace function public.consume_ask_relo_question(
   p_session_id uuid,
   p_ip_hash text,

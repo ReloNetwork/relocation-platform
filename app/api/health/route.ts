@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 import { beehiiv } from '@/lib/beehiiv';
+import { createServiceClient } from '@/lib/supabase/service';
 
 export const runtime = 'nodejs';
 const has = (s?: string | null) => !!(s && s.trim().length > 0);
@@ -19,12 +20,13 @@ export async function GET() {
     askReloVoice:{configured:false,ok:false,detail:''},
     partnerSales:{configured:false,ok:false,detail:''},
     commercialAnalytics:{configured:false,ok:false,detail:''},
+    databaseSchema:{configured:false,ok:false,detail:''},
   };
 
   const commercialAnalyticsConfigured = has(process.env.NEXT_PUBLIC_SUPABASE_URL) && has(process.env.SUPABASE_SERVICE_ROLE_KEY);
   out.commercialAnalytics = {
     configured: commercialAnalyticsConfigured,
-    ok: commercialAnalyticsConfigured,
+    ok: false,
     detail: commercialAnalyticsConfigured
       ? 'privacy-minimised conversion storage configured'
       : 'Supabase service configuration missing',
@@ -39,7 +41,7 @@ export async function GET() {
   const partnerSalesConfigured = Object.values(partnerSalesConfiguration).every(Boolean);
   out.partnerSales = {
     configured: partnerSalesConfigured,
-    ok: partnerSalesConfigured,
+    ok: false,
     detail: partnerSalesConfigured
       ? 'durable partner pipeline and media-pack delivery configured'
       : `missing ${Object.entries(partnerSalesConfiguration)
@@ -57,7 +59,7 @@ export async function GET() {
   const askReloConfigured = Object.values(askReloConfiguration).every(Boolean);
   out.askRelo = {
     configured: askReloConfigured,
-    ok: askReloConfigured,
+    ok: false,
     detail: askReloConfigured
       ? 'answer generation and privacy-preserving usage limits configured'
       : `missing ${Object.entries(askReloConfiguration)
@@ -90,7 +92,7 @@ export async function GET() {
   const intakeConfigured = Object.values(intakeConfiguration).every(Boolean);
   out.executiveIntake = {
     configured: intakeConfigured,
-    ok: intakeConfigured,
+    ok: false,
     detail: intakeConfigured
       ? 'durable lead storage and email handoff configured'
       : `missing ${Object.entries(intakeConfiguration)
@@ -127,6 +129,41 @@ export async function GET() {
     } catch (e:any) {
       out.supabase.detail = e?.message ?? 'error';
     }
+  }
+
+  const schemaConfigured = has(SB_URL) && has(process.env.SUPABASE_SERVICE_ROLE_KEY);
+  out.databaseSchema.configured = schemaConfigured;
+  if (schemaConfigured) {
+    try {
+      const service = createServiceClient();
+      const requiredTables = [
+        'executive_intake_leads',
+        'ask_relo_usage',
+        'partner_sales_leads',
+        'commercial_events',
+      ] as const;
+      const tableResults = await Promise.all(requiredTables.map(async (table) => {
+        const { error } = await service.from(table).select('id', { head: true, count: 'exact' }).limit(1);
+        return { table, error };
+      }));
+      const missingTables = tableResults
+        .filter(({ error }) => error)
+        .map(({ table }) => table);
+
+      out.databaseSchema.ok = missingTables.length === 0;
+      out.databaseSchema.detail = missingTables.length === 0
+        ? 'all four launch tables reachable'
+        : `unavailable ${missingTables.join(', ')}`;
+
+      out.executiveIntake.ok = intakeConfigured && !missingTables.includes('executive_intake_leads');
+      out.askRelo.ok = askReloConfigured && !missingTables.includes('ask_relo_usage');
+      out.partnerSales.ok = partnerSalesConfigured && !missingTables.includes('partner_sales_leads');
+      out.commercialAnalytics.ok = commercialAnalyticsConfigured && !missingTables.includes('commercial_events');
+    } catch (error: any) {
+      out.databaseSchema.detail = error?.message ?? 'schema check failed';
+    }
+  } else {
+    out.databaseSchema.detail = 'Supabase service configuration missing';
   }
 
   // Stripe

@@ -34,5 +34,8 @@ create index if not exists commercial_events_campaign_idx
 
 alter table public.commercial_events enable row level security;
 
+revoke all on table public.commercial_events from anon, authenticated;
+grant select, insert, update, delete on table public.commercial_events to service_role;
+
 comment on table public.commercial_events is
   'Privacy-minimised conversion events without contact details, chat text or form content.';

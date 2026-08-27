@@ -9,6 +9,8 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "test": "vitest run",
+    "launch:check": "node scripts/check-launch-readiness.mjs",
+    "launch:smoke": "node scripts/smoke-launch.mjs",
     "supabase:types": "test -n \"$SUPABASE_PROJECT_ID\" && npx --yes supabase@latest gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" --schema public > lib/supabase/database.types.ts",
     "stripe:seed": "node scripts/stripe-seed.js",
     "analyze": "ANALYZE=true next build",

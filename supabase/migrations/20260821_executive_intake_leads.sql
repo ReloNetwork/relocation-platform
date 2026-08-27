@@ -31,5 +31,8 @@ create index if not exists executive_intake_leads_email_idx
 
 alter table public.executive_intake_leads enable row level security;
 
+revoke all on table public.executive_intake_leads from anon, authenticated;
+grant select, insert, update, delete on table public.executive_intake_leads to service_role;
+
 comment on table public.executive_intake_leads is
   'Qualification-first relocation briefs submitted through the public executive intake.';

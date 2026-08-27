@@ -4,6 +4,20 @@ Updated: 27 August 2026
 
 This is the launch checklist for the redesigned website. A checked item needs evidence, not only a configured setting.
 
+Run the automated configuration check against the current target at any time:
+
+```bash
+npm run launch:check -- https://your-preview-or-production-domain
+```
+
+The command returns a failing exit code until every qualification-first launch service and required database table reports ready. Stripe and Ask Relo voice are shown separately as optional.
+
+Run the public route, redirect, rendered-copy and sitemap checks with:
+
+```bash
+npm run launch:smoke -- https://your-preview-or-production-domain
+```
+
 ## Fastest safe launch
 
 The public website can launch with a qualification-first commercial model:

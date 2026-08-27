@@ -39,5 +39,8 @@ create index if not exists partner_sales_leads_email_idx
 
 alter table public.partner_sales_leads enable row level security;
 
+revoke all on table public.partner_sales_leads from anon, authenticated;
+grant select, insert, update, delete on table public.partner_sales_leads to service_role;
+
 comment on table public.partner_sales_leads is
   'Qualified editorial and professional-network partnership enquiries and their sales status.';
