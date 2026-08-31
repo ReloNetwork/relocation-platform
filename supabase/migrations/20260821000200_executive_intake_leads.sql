@@ -1,3 +1,4 @@
+-- Active launch migration. The full timestamp is unique in Supabase migration history.
 create table if not exists public.executive_intake_leads (
   id uuid primary key default gen_random_uuid(),
   reference_id text unique not null,

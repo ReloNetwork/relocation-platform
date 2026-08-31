@@ -1,3 +1,4 @@
+-- Active launch migration. The full timestamp is unique in Supabase migration history.
 create table if not exists public.commercial_events (
   id uuid primary key default gen_random_uuid(),
   event text not null check (event in (

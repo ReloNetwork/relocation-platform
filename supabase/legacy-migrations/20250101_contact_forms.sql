@@ -1,3 +1,4 @@
+-- Historical migration retained for reference. It is not part of the redesigned launch schema.
 -- Create partner_applications table
 CREATE TABLE IF NOT EXISTS partner_applications (
   id BIGSERIAL PRIMARY KEY,

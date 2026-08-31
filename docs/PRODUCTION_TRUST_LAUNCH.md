@@ -4,7 +4,7 @@ This pass aligns the public promises, data handling, editorial inventory and com
 
 ## Apply before production
 
-1. Apply `20260826_commercial_events.sql` after the existing intake, partner-sales and Ask Relo migrations.
+1. Apply `20260826000200_commercial_events.sql` after the existing intake, partner-sales and Ask Relo migrations.
 2. Confirm `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` and `CRON_SECRET` are set in Vercel Production.
 3. Review `/api/health`; `commercialAnalytics` should be configured.
 4. Submit one controlled event in each journey and verify `/admin/launch-metrics` contains no contact details or question/form text.

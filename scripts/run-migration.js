@@ -16,7 +16,7 @@ async function runMigration() {
 
   try {
     // Read the migration file
-    const migrationPath = path.join(__dirname, '../supabase/migrations/20250101_contact_forms.sql')
+    const migrationPath = path.join(__dirname, '../supabase/legacy-migrations/20250101_contact_forms.sql')
     const migrationSQL = fs.readFileSync(migrationPath, 'utf8')
 
     console.log('Running database migration...')

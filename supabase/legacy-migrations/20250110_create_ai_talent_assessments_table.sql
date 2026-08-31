@@ -1,3 +1,4 @@
+-- Historical migration retained for reference. The production table predates CLI migration tracking.
 -- Create ai_talent_assessments table for storing AI talent relocation assessment submissions
 CREATE TABLE IF NOT EXISTS ai_talent_assessments (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,

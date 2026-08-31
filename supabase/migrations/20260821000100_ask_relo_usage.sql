@@ -1,3 +1,4 @@
+-- Active launch migration. The full timestamp is unique in Supabase migration history.
 create table if not exists public.ask_relo_usage (
   id uuid primary key default gen_random_uuid(),
   session_id uuid not null,

@@ -1,3 +1,4 @@
+-- Historical migration retained for reference. It is not part of the redesigned launch schema.
 -- Create directory_signups table for directory access signups
 CREATE TABLE IF NOT EXISTS directory_signups (
   id SERIAL PRIMARY KEY,

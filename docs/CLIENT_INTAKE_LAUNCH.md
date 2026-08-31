@@ -6,7 +6,7 @@ any payment link.
 
 ## Required configuration
 
-1. Apply `supabase/migrations/20260821_executive_intake_leads.sql` to the
+1. Apply `supabase/migrations/20260821000200_executive_intake_leads.sql` to the
    production Supabase project.
 2. Configure these Vercel Preview variables:
    - `NEXT_PUBLIC_SUPABASE_URL`

@@ -32,10 +32,10 @@ Stripe checkout and Ask Relo voice can remain disabled for the first release. Th
 ## 1. Production database
 
 - [ ] Confirm the correct Supabase production project.
-- [ ] Apply `20260821_executive_intake_leads.sql`.
-- [ ] Apply `20260821_ask_relo_usage.sql`.
-- [ ] Apply `20260826_partner_sales_leads.sql`.
-- [ ] Apply `20260826_commercial_events.sql`.
+- [ ] Apply `20260821000100_ask_relo_usage.sql`.
+- [ ] Apply `20260821000200_executive_intake_leads.sql`.
+- [ ] Apply `20260826000100_partner_sales_leads.sql`.
+- [ ] Apply `20260826000200_commercial_events.sql`.
 - [ ] Generate authoritative Supabase types from the production project.
 - [ ] Verify row-level security and service-role access.
 - [ ] Confirm backups and a tested recovery route.

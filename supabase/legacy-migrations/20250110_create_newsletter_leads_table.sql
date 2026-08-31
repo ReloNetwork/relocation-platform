@@ -1,3 +1,4 @@
+-- Historical migration retained for reference. The production table predates CLI migration tracking.
 -- Create newsletter_leads table for capturing London Relocation Index requests
 CREATE TABLE IF NOT EXISTS newsletter_leads (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,

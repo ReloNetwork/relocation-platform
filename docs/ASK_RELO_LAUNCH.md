@@ -7,7 +7,7 @@ complimentary preview to qualified private brief, not an unproven price menu.
 
 ## Required Preview configuration
 
-1. Apply `supabase/migrations/20260821_ask_relo_usage.sql`.
+1. Apply `supabase/migrations/20260821000100_ask_relo_usage.sql`.
 2. Add these Vercel Preview variables:
    - `OPENAI_API_KEY`
    - `OPENAI_MODEL` (the current default is `gpt-5-mini`)

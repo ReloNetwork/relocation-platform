@@ -1,3 +1,4 @@
+-- Historical migration retained for reference. It is not part of the redesigned launch schema.
 -- Partner Directory and Access Management System
 
 -- Create partners table

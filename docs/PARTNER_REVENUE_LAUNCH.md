@@ -9,7 +9,7 @@ client introductions, undisclosed coverage or priority in Ask Relo answers.
 
 ## Configuration
 
-1. Apply `supabase/migrations/20260826_partner_sales_leads.sql`.
+1. Apply `supabase/migrations/20260826000100_partner_sales_leads.sql`.
 2. Configure these Vercel Preview variables:
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `SUPABASE_SERVICE_ROLE_KEY`
