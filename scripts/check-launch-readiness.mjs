@@ -22,14 +22,12 @@ const required = [
   'supabase',
   'databaseSchema',
   'resend',
-  'beehiiv',
   'executiveIntake',
   'askRelo',
   'partnerSales',
   'commercialAnalytics',
-  'cal',
 ]
-const optional = ['stripe', 'askReloVoice']
+const optional = ['stripe', 'beehiiv', 'cal', 'askReloVoice']
 
 const healthUrl = new URL('/api/health', baseUrl)
 let response

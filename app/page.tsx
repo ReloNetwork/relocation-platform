@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Layout from '@/components/Layout';
 import CinematicJourney from '@/components/editorial/CinematicJourney';
 import HorizontalIntelligence from '@/components/editorial/HorizontalIntelligence';
@@ -23,6 +24,14 @@ export default function HomePage() {
               ones fit your life. We give you clear advice, current local insight
               and trusted people, so you can make your first decisions with confidence.
             </p>
+            <div className="home-intro__actions">
+              <Link className="button button--gold" href="/move">
+                EXPLORE YOUR MOVE
+              </Link>
+              <Link className="button button--ink" href="/journal">
+                READ THE JOURNAL
+              </Link>
+            </div>
           </div>
           <Image
             src="/images/editorial/london-interior.webp"
@@ -44,14 +53,31 @@ export default function HomePage() {
                 '01',
                 'UNDERSTAND',
                 'Tell us what matters and when you need to move.',
+                '/ask-relo',
+                'Ask Relo',
               ],
-              ['02', 'SHORTLIST', 'See a focused list of areas and homes that fit.'],
-              ['03', 'SETTLE IN', 'We coordinate the practical details and help you settle in.'],
-            ].map(([n, t, p]) => (
+              [
+                '02',
+                'GET ORIENTED',
+                'Use the Journal and The London Brief to sharpen your view.',
+                '/journal',
+                'Read the Journal',
+              ],
+              [
+                '03',
+                'START THE PLAN',
+                'Send a private brief when you are ready for a human review.',
+                '/executive-intake',
+                'Start Your Move',
+              ],
+            ].map(([n, t, p, href, action]) => (
               <article key={n}>
                 <span>{n}</span>
                 <h3>{t}</h3>
                 <p>{p}</p>
+                <Link className="editorial-grid__link" href={href}>
+                  {action} <span aria-hidden="true">→</span>
+                </Link>
               </article>
             ))}
           </div>
@@ -98,7 +124,13 @@ export default function HomePage() {
             <br />
             READY.
           </h2>
-          <LandingListSignup />
+          <LandingListSignup
+            enabled={Boolean(
+              process.env.BEEHIIV_API_KEY &&
+                process.env.BEEHIIV_PUBLICATION_ID &&
+                process.env.BEEHIIV_LANDING_LIST_AUTOMATION_ID
+            )}
+          />
         </section>
         <AskReloBand />
       </main>

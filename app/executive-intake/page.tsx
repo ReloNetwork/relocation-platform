@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Layout from '../../components/Layout'
-import { Crown, ArrowRight, CheckCircle, Calendar, Users, MapPin, GraduationCap } from 'lucide-react'
+import { ArrowRight, CheckCircle, Calendar, MapPin } from 'lucide-react'
 import { trackCommercialEvent } from '@/lib/commercial-analytics'
 
 export default function ExecutiveIntakePage() {
@@ -156,23 +156,28 @@ export default function ExecutiveIntakePage() {
   const isStep1Complete = formData.moveDate && formData.budget && formData.preferredAreas.length > 0 && formData.name && formData.email
 
   return (
-    <Layout className="bg-[#FAFAF9] min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
-            <Crown className="h-4 w-4 text-[#C9A24A] mr-2" />
-            <span className="text-[#C9A24A] text-sm font-medium">Executive Service</span>
+    <Layout className="intake-page">
+      <main>
+        <section className="intake-hero">
+          <span className="vertical-label">START YOUR MOVE</span>
+          <div>
+            <p className="eyebrow">PRIVATE RELOCATION BRIEF</p>
+            <h1>YOUR MOVE, PROPERLY UNDERSTOOD.</h1>
+            <p>
+              Give us the shape of your London move. A person will review your
+              brief and recommend the clearest next step.
+            </p>
           </div>
-          <h1 className="text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            Begin Your London Move
-          </h1>
-          <p className="text-xl text-[#6B7280] mb-8">
-            Tell us about your move. We will review it and suggest the clearest next step.
-          </p>
-          
-          {/* Progress */}
-          <div className="flex items-center justify-center gap-4 mb-8">
+          <aside>
+            <span>WHAT HAPPENS NEXT</span>
+            <p>Human review before any service is proposed.</p>
+            <p>No payment is taken with this form.</p>
+            <p>A clear response within one business day.</p>
+          </aside>
+        </section>
+
+        <section className="intake-workspace">
+          <div className="intake-progress" aria-label={`Step ${step} of 2`}>
             <div className={`flex items-center gap-2 ${step >= 1 ? 'text-[#C9A24A]' : 'text-[#6B7280]'}`}>
               <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${step >= 1 ? 'border-[#C9A24A] bg-[#C9A24A] text-white' : 'border-[#6B7280]'}`}>1</div>
               <span className="font-medium">Brief</span>
@@ -183,11 +188,10 @@ export default function ExecutiveIntakePage() {
               <span className="font-medium">Review</span>
             </div>
           </div>
-        </div>
 
         {/* Step 1: Brief Form */}
         {step === 1 && (
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#E5E7EB]">
+          <div className="intake-card bg-white p-8 border border-[#E5E7EB]">
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
               <Calendar className="w-6 h-6 text-[#C9A24A]" />
               Share your relocation brief
@@ -454,7 +458,7 @@ export default function ExecutiveIntakePage() {
 
         {/* Step 2: Review and consent */}
         {step === 2 && (
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#E5E7EB]">
+          <div className="intake-card bg-white p-8 border border-[#E5E7EB]">
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
               <CheckCircle className="w-6 h-6 text-[#C9A24A]" />
               Check and send
@@ -550,7 +554,8 @@ export default function ExecutiveIntakePage() {
             )}
           </div>
         )}
-      </div>
+        </section>
+      </main>
     </Layout>
   )
 }

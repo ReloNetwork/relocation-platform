@@ -1,9 +1,10 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import Link from 'next/link';
 import { trackCommercialEvent } from '@/lib/commercial-analytics';
 
-export default function LandingListSignup() {
+export default function LandingListSignup({ enabled = true }: { enabled?: boolean }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<
     'idle' | 'loading' | 'success' | 'error'
@@ -26,6 +27,14 @@ export default function LandingListSignup() {
   if (status === 'success')
     return (
       <p className="signup-success">Your London Landing List is on its way.</p>
+    );
+  if (!enabled)
+    return (
+      <div className="landing-signup landing-signup--paused">
+        <label>THE LONDON LANDING LIST</label>
+        <p>The list is being prepared. Explore the Journal while subscriptions are closed.</p>
+        <Link href="/journal">READ THE JOURNAL →</Link>
+      </div>
     );
   return (
     <form className="landing-signup" onSubmit={submit}>

@@ -89,7 +89,13 @@ export default function Page() {
           <div
             style={{ background: '#142e50', padding: '55px', color: 'white' }}
           >
-            <LandingListSignup />
+            <LandingListSignup
+              enabled={Boolean(
+                process.env.BEEHIIV_API_KEY &&
+                  process.env.BEEHIIV_PUBLICATION_ID &&
+                  process.env.BEEHIIV_LANDING_LIST_AUTOMATION_ID
+              )}
+            />
           </div>
         </section>
         <section className="discover-section">

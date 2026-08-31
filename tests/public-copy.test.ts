@@ -28,6 +28,7 @@ describe('website copy', () => {
   it('does not repeat unsupported launch claims on approved public pages', () => {
     const publicFiles = [
       'app/page.tsx',
+      'app/move/page.tsx',
       'app/contact/page.tsx',
       'app/ask-relo/page.tsx',
       'app/executive-intake/page.tsx',
@@ -42,5 +43,21 @@ describe('website copy', () => {
     expect(copy).not.toMatch(/fortune 500/i)
     expect(copy).not.toMatch(/2,500\+?\s+(?:readers|subscribers|members)/i)
     expect(copy).not.toMatch(/reply within (?:two|2) hours/i)
+  })
+
+  it('connects the commercial funnel without collapsing the editorial layer', () => {
+    const move = readFileSync('app/move/page.tsx', 'utf8')
+    const intake = readFileSync('app/executive-intake/page.tsx', 'utf8')
+    const home = readFileSync('app/page.tsx', 'utf8')
+
+    expect(move).toContain('href="/executive-intake"')
+    expect(move).toContain('href="/ask-relo"')
+    expect(move).toContain('href="/journal"')
+    expect(intake).toContain('PRIVATE RELOCATION BRIEF')
+    expect(home).toContain('<CinematicJourney />')
+    expect(home).toContain('href="/move"')
+    expect(home).toContain("'/executive-intake'")
+    expect(home).toContain("'/ask-relo'")
+    expect(home).toContain('href="/journal"')
   })
 })
