@@ -1,68 +1,58 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 import {
   createExecutiveReference,
   executiveIntakeSchema,
   scoreExecutiveIntake,
-} from '@/lib/executive-intake'
-import { createServiceClient } from '@/lib/supabase/service'
+} from '@/lib/executive-intake';
+import { createServiceClient } from '@/lib/supabase/service';
+import {
+  executiveConfirmationEmail,
+  executiveNotificationEmail,
+} from '@/lib/transactional-emails';
 
-export const runtime = 'nodejs'
-
-function escapeHtml(value: string) {
-  return value.replace(
-    /[&<>'"]/g,
-    (character) =>
-      ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        "'": '&#039;',
-        '"': '&quot;',
-      })[character] as string,
-  )
-}
+export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
-  let body: unknown
+  let body: unknown;
 
   try {
-    body = await request.json()
+    body = await request.json();
   } catch {
     return NextResponse.json(
       { success: false, error: 'A valid form submission is required' },
-      { status: 400 },
-    )
+      { status: 400 }
+    );
   }
 
-  const parsed = executiveIntakeSchema.safeParse(body)
+  const parsed = executiveIntakeSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
       { success: false, error: 'Please check every required field' },
-      { status: 400 },
-    )
+      { status: 400 }
+    );
   }
 
-  const intake = parsed.data
-  const referenceId = createExecutiveReference()
-  const qualification = scoreExecutiveIntake(intake)
-  let supabase
+  const intake = parsed.data;
+  const referenceId = createExecutiveReference();
+  const qualification = scoreExecutiveIntake(intake);
+  let supabase;
 
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
       { success: false, error: 'Client intake is temporarily unavailable' },
-      { status: 503 },
-    )
+      { status: 503 }
+    );
   }
 
   try {
-    supabase = createServiceClient()
+    supabase = createServiceClient();
   } catch (error) {
-    console.error('Executive intake storage is not configured', error)
+    console.error('Executive intake storage is not configured', error);
     return NextResponse.json(
       { success: false, error: 'Client intake is temporarily unavailable' },
-      { status: 503 },
-    )
+      { status: 503 }
+    );
   }
 
   const { error: storageError } = await supabase
@@ -82,35 +72,24 @@ export async function POST(request: NextRequest) {
       urgency: intake.urgency,
       brief: intake,
       consented_at: new Date().toISOString(),
-    })
+    });
 
   if (storageError) {
-    console.error('Executive intake could not be stored', storageError)
+    console.error('Executive intake could not be stored', storageError);
     return NextResponse.json(
       { success: false, error: 'We could not save your relocation brief' },
-      { status: 502 },
-    )
+      { status: 502 }
+    );
   }
 
-  let notificationStatus = 'not_configured'
-  let confirmationStatus = 'not_configured'
+  let notificationStatus = 'not_configured';
+  let confirmationStatus = 'not_configured';
 
-  const resend = new Resend(process.env.RESEND_API_KEY)
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const from =
     process.env.RESEND_FROM_EMAIL ||
-    'The Relo Network <hello@therelonetwork.com>'
-  const safe = {
-    name: escapeHtml(intake.name),
-    email: escapeHtml(intake.email),
-    phone: escapeHtml(intake.phone || 'Not provided'),
-    location: escapeHtml(intake.currentLocation || 'Not provided'),
-    moveDate: escapeHtml(intake.moveDate),
-    budget: escapeHtml(intake.budget),
-    areas: escapeHtml(intake.preferredAreas.join(', ')),
-    requirements: escapeHtml(
-      intake.otherRequirements || intake.specialRequirements || 'Not provided',
-    ).replace(/\n/g, '<br />'),
-  }
+    'The Relo Network <hello@therelonetwork.com>';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || request.nextUrl.origin;
 
   try {
     const notification = await resend.emails.send({
@@ -118,27 +97,20 @@ export async function POST(request: NextRequest) {
       to: [process.env.EXECUTIVE_INTAKE_EMAIL || 'hello@therelonetwork.com'],
       reply_to: intake.email,
       subject: `${qualification.quality.toUpperCase()} relocation brief - ${intake.name} - ${referenceId}`,
-      html: `<h1>New private relocation brief</h1>
-        <p><strong>Reference:</strong> ${referenceId}</p>
-        <p><strong>Lead quality:</strong> ${qualification.quality} (${qualification.score}/10)</p>
-        <p><strong>Name:</strong> ${safe.name}</p>
-        <p><strong>Email:</strong> ${safe.email}</p>
-        <p><strong>Phone:</strong> ${safe.phone}</p>
-        <p><strong>Current location:</strong> ${safe.location}</p>
-        <p><strong>Move date:</strong> ${safe.moveDate}</p>
-        <p><strong>Monthly housing budget:</strong> ${safe.budget}</p>
-        <p><strong>Preferred areas:</strong> ${safe.areas}</p>
-        <p><strong>Urgency:</strong> ${intake.urgency}</p>
-        <p><strong>Additional requirements:</strong><br />${safe.requirements}</p>
-        <p>Review the brief and respond within one business day.</p>`,
-    })
-    notificationStatus = notification.error ? 'failed' : 'sent'
+      html: executiveNotificationEmail({
+        intake,
+        referenceId,
+        quality: qualification.quality,
+        score: qualification.score,
+      }),
+    });
+    notificationStatus = notification.error ? 'failed' : 'sent';
     if (notification.error) {
-      console.error('Executive intake notification failed', notification.error)
+      console.error('Executive intake notification failed', notification.error);
     }
   } catch (error) {
-    notificationStatus = 'failed'
-    console.error('Executive intake notification failed', error)
+    notificationStatus = 'failed';
+    console.error('Executive intake notification failed', error);
   }
 
   try {
@@ -146,19 +118,19 @@ export async function POST(request: NextRequest) {
       from,
       to: [intake.email],
       subject: `We received your London relocation brief - ${referenceId}`,
-      html: `<p>Dear ${safe.name},</p>
-        <p>Thank you for sharing your London relocation brief. Your reference is <strong>${referenceId}</strong>.</p>
-        <p>We will review the timing, household needs and level of support required, then reply within one business day with the most appropriate next step.</p>
-        <p>No payment has been taken. If there is a strong fit, we will recommend a private briefing call or the relevant relocation engagement before sending a payment link.</p>
-        <p>The Relo Network<br />London</p>`,
-    })
-    confirmationStatus = confirmation.error ? 'failed' : 'sent'
+      html: executiveConfirmationEmail({
+        intake,
+        referenceId,
+        journalUrl: new URL('/journal', siteUrl).toString(),
+      }),
+    });
+    confirmationStatus = confirmation.error ? 'failed' : 'sent';
     if (confirmation.error) {
-      console.error('Executive intake confirmation failed', confirmation.error)
+      console.error('Executive intake confirmation failed', confirmation.error);
     }
   } catch (error) {
-    confirmationStatus = 'failed'
-    console.error('Executive intake confirmation failed', error)
+    confirmationStatus = 'failed';
+    console.error('Executive intake confirmation failed', error);
   }
 
   const { error: statusError } = await supabase
@@ -168,15 +140,18 @@ export async function POST(request: NextRequest) {
       confirmation_status: confirmationStatus,
       updated_at: new Date().toISOString(),
     })
-    .eq('reference_id', referenceId)
+    .eq('reference_id', referenceId);
 
   if (statusError) {
-    console.error('Executive intake delivery status could not be recorded', statusError)
+    console.error(
+      'Executive intake delivery status could not be recorded',
+      statusError
+    );
   }
 
   return NextResponse.json({
     success: true,
     referenceId,
     message: 'Your private relocation brief has been received',
-  })
+  });
 }
