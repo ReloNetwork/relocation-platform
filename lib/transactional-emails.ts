@@ -78,12 +78,12 @@ function formatTiming(value: PartnerApplication['timing']) {
 }
 
 function detailTable(rows: EmailRow[]) {
-  return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;margin:28px 0;background:#ffffff;border:1px solid #d9d6cd;">
+  return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;margin:28px 0;background:#fffdf8;border:1px solid #ddd8cc;">
     ${rows
       .map(
         ({ label, value }) => `<tr>
-          <td class="detail-label" width="34%" valign="top" style="padding:15px 18px;border-bottom:1px solid #e8e5dc;color:#777166;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1.2px;line-height:1.5;text-transform:uppercase;">${escapeEmailHtml(label)}</td>
-          <td valign="top" style="padding:15px 18px;border-bottom:1px solid #e8e5dc;color:#142e50;font-family:Arial,sans-serif;font-size:14px;line-height:1.65;">${value}</td>
+          <td class="detail-label" width="34%" valign="top" style="padding:15px 18px;border-bottom:1px solid #e9e3d7;color:#746f66;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1.2px;line-height:1.5;text-transform:uppercase;">${escapeEmailHtml(label)}</td>
+          <td valign="top" style="padding:15px 18px;border-bottom:1px solid #e9e3d7;color:#142e50;font-family:Arial,sans-serif;font-size:14px;line-height:1.65;">${value}</td>
         </tr>`
       )
       .join('')}
@@ -93,7 +93,7 @@ function detailTable(rows: EmailRow[]) {
 function callout(title: string, copy: string) {
   return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:28px 0;border-collapse:collapse;">
     <tr>
-      <td style="padding:22px 24px;background:#e8edf3;border-left:4px solid #c9a24a;">
+      <td style="padding:22px 24px;background:#dceaf6;border-left:4px solid #be8431;">
         <p style="margin:0 0 7px;color:#142e50;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;line-height:1.4;text-transform:uppercase;">${escapeEmailHtml(title)}</p>
         <p style="margin:0;color:#3e4b59;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;">${copy}</p>
       </td>
@@ -104,7 +104,7 @@ function callout(title: string, copy: string) {
 function button(label: string, href: string) {
   return `<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:30px 0 8px;">
     <tr>
-      <td bgcolor="#c9a24a" style="background:#c9a24a;">
+      <td bgcolor="#be8431" style="background:#be8431;">
         <a href="${escapeEmailHtml(href)}" style="display:inline-block;padding:15px 24px;color:#081627;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.4px;line-height:1;text-decoration:none;text-transform:uppercase;">${escapeEmailHtml(label)} &nbsp;→</a>
       </td>
     </tr>
@@ -136,43 +136,43 @@ function layout({
       }
     </style>
   </head>
-  <body style="margin:0;padding:0;background:#ece9e1;">
+  <body style="margin:0;padding:0;background:#f0ede5;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeEmailHtml(preheader)}</div>
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#ece9e1;border-collapse:collapse;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#f0ede5;border-collapse:collapse;">
       <tr>
         <td align="center" style="padding:28px 12px;">
-          <table class="email-shell" role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" style="width:640px;max-width:640px;background:#f8f6f0;border-collapse:collapse;">
+          <table class="email-shell" role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" style="width:640px;max-width:640px;background:#fffdf8;border-collapse:collapse;box-shadow:0 18px 50px rgba(20,46,80,0.08);">
             <tr>
-              <td class="email-pad" style="padding:28px 42px;background:#081627;border-bottom:4px solid #c9a24a;">
+              <td class="email-pad" style="padding:28px 42px;background:#f7f4ed;border-top:4px solid #be8431;border-bottom:1px solid #ddd8cc;">
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                   <tr>
                     <td valign="middle">
-                      <span style="display:inline-block;width:34px;height:34px;border:1px solid #c9a24a;color:#c9a24a;font-family:Georgia,serif;font-size:22px;line-height:34px;text-align:center;">R</span>
-                      <span style="padding-left:12px;color:#ffffff;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;vertical-align:9px;">RELO NETWORK</span>
+                      <span style="display:inline-block;width:34px;height:34px;border:1px solid #be8431;color:#be8431;font-family:Georgia,serif;font-size:22px;line-height:34px;text-align:center;">R</span>
+                      <span style="padding-left:12px;color:#142e50;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;vertical-align:9px;">RELO NETWORK</span>
                     </td>
-                    <td align="right" valign="middle" style="color:#b8c1cd;font-family:Arial,sans-serif;font-size:9px;letter-spacing:1.4px;text-transform:uppercase;">London</td>
+                    <td align="right" valign="middle" style="color:#746f66;font-family:Arial,sans-serif;font-size:9px;letter-spacing:1.4px;text-transform:uppercase;">London</td>
                   </tr>
                 </table>
               </td>
             </tr>
             <tr>
-              <td class="email-pad" style="padding:54px 42px 24px;background:#142e50;">
-                <p style="margin:0 0 18px;color:#c9a24a;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;line-height:1.4;text-transform:uppercase;">${escapeEmailHtml(eyebrow)}</p>
-                <h1 class="email-title" style="margin:0 0 28px;color:#ffffff;font-family:Georgia,'Times New Roman',serif;font-size:52px;font-weight:400;letter-spacing:-1.5px;line-height:0.96;">${escapeEmailHtml(title)}</h1>
+              <td class="email-pad" style="padding:54px 42px 30px;background:#dceaf6;border-bottom:1px solid #c8d9e7;">
+                <p style="margin:0 0 18px;color:#9b6823;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;line-height:1.4;text-transform:uppercase;">${escapeEmailHtml(eyebrow)}</p>
+                <h1 class="email-title" style="margin:0 0 28px;color:#142e50;font-family:Georgia,'Times New Roman',serif;font-size:52px;font-weight:400;letter-spacing:-1.5px;line-height:0.96;">${escapeEmailHtml(title)}</h1>
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                   <tr>
-                    <td style="padding:9px 12px;border:1px solid #8290a2;color:#ffffff;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">Reference &nbsp; ${escapeEmailHtml(referenceId)}</td>
+                    <td style="padding:9px 12px;background:#fffdf8;border:1px solid #aebfcd;color:#142e50;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">Reference &nbsp; ${escapeEmailHtml(referenceId)}</td>
                   </tr>
                 </table>
               </td>
             </tr>
             <tr>
-              <td class="email-pad" style="padding:34px 42px 48px;color:#303944;font-family:Arial,sans-serif;font-size:15px;line-height:1.75;">
+              <td class="email-pad" style="padding:34px 42px 48px;background:#fffdf8;color:#303944;font-family:Arial,sans-serif;font-size:15px;line-height:1.75;">
                 ${body}
               </td>
             </tr>
             <tr>
-              <td class="email-pad" style="padding:26px 42px;background:#081627;color:#9da8b5;font-family:Arial,sans-serif;font-size:11px;line-height:1.7;">
+              <td class="email-pad" style="padding:26px 42px;background:#142e50;color:#c7cfda;font-family:Arial,sans-serif;font-size:11px;line-height:1.7;">
                 <p style="margin:0 0 7px;color:#ffffff;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">The Relo Network</p>
                 <p style="margin:0;">Relocation, intelligently guided. London first, always.</p>
                 ${footerNote ? `<p style="margin:12px 0 0;color:#7f8b98;">${footerNote}</p>` : ''}

@@ -1605,8 +1605,8 @@ h3,
   margin-top: 0.65rem;
 }
 .partner-pack {
-  background: #f4f0e7;
-  color: #14291f;
+  background: var(--ivory);
+  color: var(--ink);
 }
 .partner-pack__cover,
 .partner-pack__section,
@@ -1614,33 +1614,51 @@ h3,
   padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 8vw, 8rem);
 }
 .partner-pack__cover {
-  background: #14291f;
-  color: #f4ead2;
-  min-height: 78vh;
+  background: var(--blue);
+  color: var(--navy);
+  min-height: 72vh;
+  position: relative;
+  overflow: hidden;
+}
+.partner-pack__cover::after {
+  content: 'PARTNER NETWORK / LONDON';
+  position: absolute;
+  right: -5.5rem;
+  top: 50%;
+  color: rgba(20, 46, 80, 0.45);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  transform: rotate(90deg);
 }
 .partner-pack__cover h1 {
-  font-family: var(--font-cormorant), Georgia, serif;
+  color: var(--navy);
+  font-family: var(--font-playfair), Georgia, serif;
   font-size: clamp(3.6rem, 8vw, 8rem);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.04em;
-  line-height: 0.82;
+  line-height: 0.88;
   margin: 3rem 0;
+  max-width: 70rem;
 }
 .partner-pack__lede {
+  color: #394c5f;
   font-size: clamp(1.1rem, 2vw, 1.55rem);
   line-height: 1.55;
   max-width: 44rem;
 }
 .partner-pack__principle {
-  border-left: 1px solid #8a5e52;
-  color: #d9d0bc;
+  background: var(--paper);
+  border-left: 3px solid var(--gold);
+  color: #4f5962;
   margin-top: 4rem;
   max-width: 43rem;
-  padding-left: 1.5rem;
+  padding: 1.35rem 1.5rem;
 }
 .partner-pack__section h2,
 .partner-pack__cta h2 {
-  font-family: var(--font-cormorant), Georgia, serif;
+  color: var(--navy);
+  font-family: var(--font-playfair), Georgia, serif;
   font-size: clamp(2.8rem, 5vw, 5.5rem);
   font-weight: 500;
   letter-spacing: -0.035em;
@@ -1652,7 +1670,7 @@ h3,
 }
 .partner-pack__intro > p:last-child,
 .partner-pack__cta > p {
-  color: #5d685f;
+  color: #58616b;
   line-height: 1.7;
   max-width: 42rem;
 }
@@ -1660,22 +1678,24 @@ h3,
 .partner-pack__columns,
 .partner-pack__fit {
   display: grid;
-  gap: 1px;
+  gap: 1rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 4rem;
 }
 .partner-pack__inventory article {
-  border-top: 1px solid #a9a395;
-  padding: 1.5rem 1.5rem 2rem 0;
+  background: var(--paper);
+  border-top: 3px solid var(--gold);
+  padding: 2rem;
 }
 .partner-pack__inventory span {
-  color: #8a5e52;
+  color: var(--gold);
   font-size: 0.7rem;
   letter-spacing: 0.15em;
 }
 .partner-pack__inventory h3,
 .partner-pack__columns h3 {
-  font-family: var(--font-cormorant), Georgia, serif;
+  color: var(--navy);
+  font-family: var(--font-playfair), Georgia, serif;
   font-size: 1.8rem;
   font-weight: 500;
   margin: 1.2rem 0 0.8rem;
@@ -1689,16 +1709,17 @@ h3,
 }
 .partner-pack__inventory p,
 .partner-pack__columns li {
-  color: #5d685f;
+  color: #58616b;
   font-size: 0.92rem;
   line-height: 1.65;
 }
 .partner-pack__section--ivory {
-  background: #e9e1d2;
+  background: var(--blue);
 }
 .partner-pack__columns > div {
-  border-top: 1px solid #9f988b;
-  padding-right: 2rem;
+  background: rgba(255, 253, 248, 0.82);
+  border-top: 1px solid rgba(20, 46, 80, 0.24);
+  padding: 0 2rem 2rem;
 }
 .partner-pack__columns ul {
   list-style: none;
@@ -1706,25 +1727,29 @@ h3,
   padding: 0;
 }
 .partner-pack__columns li {
-  border-bottom: 1px solid rgba(20, 41, 31, 0.12);
+  border-bottom: 1px solid rgba(20, 46, 80, 0.12);
   padding: 0.7rem 0;
 }
 .partner-pack__fit p {
-  border-bottom: 1px solid #b9b2a5;
-  font-family: var(--font-cormorant), Georgia, serif;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  color: var(--navy);
+  font-family: var(--font-playfair), Georgia, serif;
   font-size: clamp(1.35rem, 2.5vw, 2.2rem);
   margin: 0;
-  padding: 1.2rem 1.2rem 1.2rem 0;
+  padding: 1.4rem;
 }
 .partner-pack__cta {
-  background: #725449;
-  color: #f4ead2;
+  background: var(--red);
+  color: white;
 }
 .partner-pack__cta > p {
-  color: #eadfce;
+  color: rgba(255, 255, 255, 0.82);
 }
 .partner-pack__cta a {
-  border: 1px solid #f4ead2;
+  background: var(--ivory);
+  border: 1px solid var(--ivory);
+  color: var(--navy);
   display: inline-block;
   font-size: 0.72rem;
   font-weight: 700;

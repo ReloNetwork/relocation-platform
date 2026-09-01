@@ -56,6 +56,21 @@ const application: PartnerApplication = {
 };
 
 describe('transactional email templates', () => {
+  it('uses the lighter homepage palette for the shared email shell', () => {
+    const html = partnerConfirmationEmail({
+      application,
+      referenceId: 'PR-TEST1234',
+      mediaPackUrl:
+        'https://preview.example.com/partner-application/media-pack',
+    });
+
+    expect(html).toContain('background:#f7f4ed');
+    expect(html).toContain('background:#dceaf6');
+    expect(html).toContain('background:#fffdf8');
+    expect(html).toContain('color:#142e50');
+    expect(html).not.toContain('padding:54px 42px 24px;background:#142e50');
+  });
+
   it('renders a branded executive notification with useful internal detail', () => {
     const html = executiveNotificationEmail({
       intake,

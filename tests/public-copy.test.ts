@@ -60,4 +60,15 @@ describe('website copy', () => {
     expect(home).toContain("'/ask-relo'")
     expect(home).toContain('href="/journal"')
   })
+
+  it('keeps the partner media pack inside the homepage brand palette', () => {
+    const css = readFileSync('app/globals.css', 'utf8')
+    const mediaPackCss = css.slice(css.indexOf('.partner-pack {'), css.indexOf('@media (max-width: 760px)'))
+
+    expect(mediaPackCss).toContain('background: var(--blue)')
+    expect(mediaPackCss).toContain('color: var(--navy)')
+    expect(mediaPackCss).toContain('background: var(--red)')
+    expect(mediaPackCss).not.toContain('#14291f')
+    expect(mediaPackCss).not.toContain('#725449')
+  })
 })
