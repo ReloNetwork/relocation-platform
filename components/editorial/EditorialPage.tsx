@@ -7,6 +7,8 @@ import EditorialPartnershipBand, {
   type EditorialPartnership,
 } from './EditorialPartnershipBand';
 import FlightFilm from './FlightFilm';
+import EditorialSubjectNav from './EditorialSubjectNav';
+import type { EditorialSubjectId } from '@/lib/editorial-subjects';
 
 type Item = {
   title: string;
@@ -24,6 +26,7 @@ export default function EditorialPage({
   sectionTitle,
   items,
   partnership,
+  activeSubject,
 }: {
   label: string;
   title: string;
@@ -32,6 +35,7 @@ export default function EditorialPage({
   sectionTitle: string;
   items: Item[];
   partnership?: EditorialPartnership;
+  activeSubject?: EditorialSubjectId;
 }) {
   const heroRef = useRef<HTMLElement>(null);
   const [heroProgress, setHeroProgress] = useState(0);
@@ -84,9 +88,28 @@ export default function EditorialPage({
           <span>{label} / LONDON</span>
         </div>
       </section>
+      {activeSubject ? (
+        <EditorialSubjectNav
+          activeSubject={activeSubject}
+          basePath="/journal"
+        />
+      ) : null}
       <section className="editorial-grid">
         <h2>{sectionTitle}</h2>
         <div>
+          {items.length === 0 ? (
+            <article className="editorial-grid__empty">
+              <span>IN PRODUCTION</span>
+              <h3>The first briefing is being prepared.</h3>
+              <p>
+                This subject is part of the editorial programme. Explore another
+                section now or join The London Brief for new editions.
+              </p>
+              <Link className="editorial-grid__link" href="/newsletter">
+                Visit The London Brief <span aria-hidden="true">↗</span>
+              </Link>
+            </article>
+          ) : null}
           {items.map((item) => (
             <article key={item.title}>
               {item.number && <span>{item.number}</span>}

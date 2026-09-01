@@ -1,16 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
-import CinematicJourney from '@/components/editorial/CinematicJourney';
+import HomepageLead from '@/components/editorial/HomepageLead';
 import HorizontalIntelligence from '@/components/editorial/HorizontalIntelligence';
 import AskReloBand from '@/components/editorial/AskReloBand';
 import LandingListSignup from '@/components/editorial/LandingListSignup';
+import {
+  getActiveHomepageEditorialCampaign,
+  homepageEditorialCampaign,
+} from '@/lib/homepage-editorial';
 
 export default function HomePage() {
+  const activeCampaign = getActiveHomepageEditorialCampaign(
+    homepageEditorialCampaign
+  );
+
   return (
     <Layout>
       <main>
-        <CinematicJourney />
+        <HomepageLead campaign={activeCampaign} />
         <section className="home-intro">
           <div>
             <p className="eyebrow">THE RELO NETWORK</p>
@@ -21,8 +29,9 @@ export default function HomePage() {
             </h2>
             <p>
               London gives you endless choices. The hard part is knowing which
-              ones fit your life. We give you clear advice, current local insight
-              and trusted people, so you can make your first decisions with confidence.
+              ones fit your life. We give you clear advice, current local
+              insight and trusted people, so you can make your first decisions
+              with confidence.
             </p>
             <div className="home-intro__actions">
               <Link className="button button--gold" href="/move">
@@ -127,8 +136,8 @@ export default function HomePage() {
           <LandingListSignup
             enabled={Boolean(
               process.env.BEEHIIV_API_KEY &&
-                process.env.BEEHIIV_PUBLICATION_ID &&
-                process.env.BEEHIIV_LANDING_LIST_AUTOMATION_ID
+              process.env.BEEHIIV_PUBLICATION_ID &&
+              process.env.BEEHIIV_LANDING_LIST_AUTOMATION_ID
             )}
           />
         </section>

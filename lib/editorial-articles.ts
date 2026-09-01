@@ -1,8 +1,11 @@
+import type { ArticleSubjectId } from '@/lib/editorial-subjects';
+
 export type EditorialArticle = {
   slug: string;
   title: string;
   excerpt: string;
   category: string;
+  subject: ArticleSubjectId;
   publishedAt: string;
   standfirst: string;
   sections: Array<{ heading: string; body: string[] }>;
@@ -20,6 +23,7 @@ export const editorialArticles: EditorialArticle[] = [
     excerpt:
       'Homes, private clubs, culture and the quieter rhythms behind London’s most recognised address.',
     category: 'Neighbourhoods',
+    subject: 'homes-areas',
     publishedAt: '2026-08-26T09:00:00.000Z',
     standfirst:
       'Mayfair rewards careful street-by-street selection. This briefing sets out the questions that matter before a viewing list is assembled.',
@@ -53,6 +57,7 @@ export const editorialArticles: EditorialArticle[] = [
     excerpt:
       'A practical neighbourhood briefing for families and professionals considering the area.',
     category: 'Neighbourhoods',
+    subject: 'homes-areas',
     publishedAt: '2026-08-26T09:00:00.000Z',
     standfirst:
       'Marylebone combines a central address with a neighbourhood rhythm. The useful question is whether its particular trade-offs match your routine.',
@@ -86,6 +91,7 @@ export const editorialArticles: EditorialArticle[] = [
     excerpt:
       'What the district offers when the office closes, from new homes to schools and waterside life.',
     category: 'Neighbourhoods',
+    subject: 'homes-areas',
     publishedAt: '2026-08-26T09:00:00.000Z',
     standfirst:
       'Canary Wharf is more than a commute calculation. Evaluate the home, waterside connections and weekend routine as one system.',
@@ -119,6 +125,7 @@ export const editorialArticles: EditorialArticle[] = [
     excerpt:
       'Questions for families managing admissions, timing and continuity when relocating to London.',
     category: 'Education',
+    subject: 'schools-family',
     publishedAt: '2026-08-26T09:00:00.000Z',
     standfirst:
       'School planning should begin with the child’s learning path and the family’s timing, not with a list of supposedly prestigious names.',
@@ -152,6 +159,7 @@ export const editorialArticles: EditorialArticle[] = [
     excerpt:
       'A relocation-focused view of timing, supply and decision-making in the capital.',
     category: 'Property',
+    subject: 'homes-areas',
     publishedAt: '2026-08-26T09:00:00.000Z',
     standfirst:
       'A relocation search is a decision under time pressure. A disciplined brief is more useful than trying to predict the market from headlines.',

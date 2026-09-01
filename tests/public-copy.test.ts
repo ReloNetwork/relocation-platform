@@ -51,12 +51,25 @@ describe('website copy', () => {
     const move = readFileSync('app/move/page.tsx', 'utf8');
     const intake = readFileSync('app/executive-intake/page.tsx', 'utf8');
     const home = readFileSync('app/page.tsx', 'utf8');
+    const homepageLead = readFileSync(
+      'components/editorial/HomepageLead.tsx',
+      'utf8'
+    );
+    const homepageCampaign = readFileSync('lib/homepage-editorial.ts', 'utf8');
 
     expect(move).toContain('href="/executive-intake"');
     expect(move).toContain('href="/ask-relo"');
     expect(move).toContain('href="/journal"');
     expect(intake).toContain('PRIVATE RELOCATION BRIEF');
-    expect(home).toContain('<CinematicJourney />');
+    expect(home).toContain('<HomepageLead campaign={activeCampaign} />');
+    expect(homepageLead).toContain('return <CinematicJourney />');
+    expect(homepageLead).toContain('{campaign.disclosure} with');
+    expect(homepageLead).toMatch(
+      /Partnership does not\s+influence Ask Relo recommendations\./
+    );
+    expect(homepageCampaign).toContain(
+      'homepageEditorialCampaign: HomepageEditorialCampaign | null = null'
+    );
     expect(home).toContain('href="/move"');
     expect(home).toContain("'/executive-intake'");
     expect(home).toContain("'/ask-relo'");
