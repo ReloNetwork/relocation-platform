@@ -50,8 +50,7 @@ export default function BriefSignup({ enabled }: { enabled: boolean }) {
       <div className="brief-signup brief-signup--paused">
         <label>THE LONDON BRIEF</label>
         <p>
-          Email subscriptions will open shortly. The complete Journal remains
-          available now.
+          Email sign-ups will open shortly. You can read the Journal now.
         </p>
         <Link href="/journal">BROWSE THE JOURNAL →</Link>
       </div>
@@ -60,7 +59,7 @@ export default function BriefSignup({ enabled }: { enabled: boolean }) {
 
   return (
     <form onSubmit={subscribe} className="brief-signup">
-      <label htmlFor="brief-email">Useful London notes, sent with care.</label>
+      <label htmlFor="brief-email">Useful London advice and ideas, sent by email.</label>
       <div>
         <input
           id="brief-email"

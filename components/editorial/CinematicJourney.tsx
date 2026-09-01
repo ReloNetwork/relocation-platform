@@ -29,7 +29,7 @@ const scenes = [
     id: 'live',
     number: '03',
     label: 'LIVE',
-    eyebrow: 'THE LIVING INDEX',
+    eyebrow: 'EVERYDAY LONDON',
     title: 'WHERE LONDON\nACTUALLY WORKS.',
     body: 'Compare commutes, school runs, weekends and the small details that shape daily life.',
     prompt: 'Which areas give us a 30-minute school run?',
@@ -39,7 +39,7 @@ const scenes = [
     id: 'discover',
     number: '04',
     label: 'DISCOVER',
-    eyebrow: 'THE CITY, EDITED',
+    eyebrow: 'LONDON LIFE',
     title: 'LIVE LIKE YOU\nBELONG HERE.',
     body: 'Find the places and people our advisers would recommend to a friend.',
     prompt: 'Plan our first perfect Saturday in London',
@@ -223,7 +223,7 @@ export default function CinematicJourney() {
         <form className="cinematic-ask" onSubmit={submit}>
           <div>
             <small>ASK RELO</small>
-            <span>YOUR LONDON, INTELLIGENTLY ANSWERED</span>
+            <span>ASK A QUESTION ABOUT MOVING TO LONDON</span>
           </div>
           <label className="sr-only" htmlFor="cinematic-question">
             Ask Relo

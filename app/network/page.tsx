@@ -6,8 +6,8 @@ export default function Page() {
     <Layout>
       <EditorialPage
         label="NETWORK"
-        title="A CITY RUNS ON PEOPLE."
-        intro="Find carefully reviewed specialists across property, education, law and design. Paid partnerships never decide who we recommend to a client."
+        title="FIND THE RIGHT PEOPLE."
+        intro="Browse specialists in property, education, law, tax and household services. A paid partnership never decides who we suggest to a client."
         image="/images/editorial/london-interior.webp"
         sectionTitle="EXPERTISE"
         items={[
@@ -43,13 +43,13 @@ export default function Page() {
           },
         ]}
         partnership={{
-          eyebrow: 'THE EDITORIAL PARTNER PILOT',
-          title: 'BRING USEFUL EXPERTISE.',
-          text: 'Selected businesses can help make a complex relocation decision clearer through a supported guide, a reviewed profile or The London Brief.',
+          eyebrow: 'WORK WITH THE RELO NETWORK',
+          title: 'SHARE USEFUL EXPERTISE.',
+          text: 'Selected businesses can sponsor a practical guide, create a reviewed business profile or place a clear partner message in The London Brief.',
           formats: [
-            'Supported practical guide',
-            'Reviewed Network profile',
-            'Expert Desk',
+            'Sponsored practical guide',
+            'Reviewed business profile',
+            'Expert Q&A series',
           ],
         }}
       />

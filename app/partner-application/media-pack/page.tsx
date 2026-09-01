@@ -21,25 +21,24 @@ export default function PartnerMediaPackPage() {
             clearer decisions about moving to and living in London.
           </p>
           <div className="partner-pack__principle">
-            Partners pay for clearly described placements. They do not pay for positive
-            recommendations, hidden coverage or access to client data.
+            Partners pay for clearly described articles, profiles or promotional spaces.
+            They cannot buy a positive recommendation, hidden coverage or client data.
           </div>
         </section>
 
         <section className="partner-pack__section">
           <div className="partner-pack__intro">
-            <p className="brief-eyebrow">PLACES AVAILABLE AT LAUNCH</p>
-            <h2>Starting small on purpose.</h2>
+            <p className="brief-eyebrow">PARTNERSHIP OPTIONS</p>
+            <h2>Choose one clear place to start.</h2>
             <p>
-              We are offering a small number of placements while we build reliable
-              audience and campaign data. Every proposal lists what we will publish,
-              when it will appear and what we will report.
+              Every proposal explains what we will make, where it will appear,
+              how long it will run and what results we will report.
             </p>
           </div>
           <div className="partner-pack__inventory">
             {partnerInventory.map((item, index) => (
               <article key={item.name}>
-                <span>0{index + 1}</span>
+                <span>{String(index + 1).padStart(2, '0')}</span>
                 <h3>{item.name}</h3>
                 <strong>{item.availability}</strong>
                 <p>{item.includes}</p>
@@ -50,18 +49,18 @@ export default function PartnerMediaPackPage() {
 
         <section className="partner-pack__section partner-pack__section--ivory">
           <div>
-            <p className="brief-eyebrow">EDITORIAL PARTNER PILOT</p>
-            <h2>From £2,500</h2>
+            <p className="brief-eyebrow">EXAMPLE PACKAGE</p>
+            <h2>Practical guide campaign · £2,500</h2>
           </div>
           <div className="partner-pack__columns">
             <div>
               <h3>Included</h3>
               <ul>
-                <li>A planning call and fit check</li>
-                <li>One clearly labelled sponsored Journal article</li>
-                <li>Two agreed placements in The London Brief</li>
-                <li>A reviewed Network profile when suitable</li>
-                <li>Tracked links and a final report</li>
+                <li>A planning call</li>
+                <li>One clearly labelled practical guide</li>
+                <li>One downloadable checklist or reader tool</li>
+                <li>Two mentions in The London Brief</li>
+                <li>A suitable business profile and final report</li>
               </ul>
             </div>
             <div>
@@ -69,17 +68,17 @@ export default function PartnerMediaPackPage() {
               <ul>
                 <li>How many emails were delivered</li>
                 <li>Opens and clicks</li>
-                <li>Article views and engaged visits</li>
-                <li>Tracked partner-site visits</li>
-                <li>Enquiries linked to the campaign when available</li>
+                <li>Article views and time spent reading</li>
+                <li>Tracked visits to your website</li>
+                <li>Relevant enquiries when we can trace them</li>
               </ul>
             </div>
             <div>
               <h3>Never sold</h3>
               <ul>
                 <li>Undisclosed editorial coverage</li>
-                <li>Promises of enquiries or revenue</li>
-                <li>Paid priority in Ask Relo recommendations</li>
+                <li>Promises of enquiries or sales</li>
+                <li>Paid priority in Ask Relo answers</li>
                 <li>Audience or performance claims we cannot prove</li>
                 <li>Use of subscriber personal data</li>
               </ul>
@@ -90,7 +89,7 @@ export default function PartnerMediaPackPage() {
         <section className="partner-pack__section">
           <div className="partner-pack__intro">
             <p className="brief-eyebrow">A GOOD FIT</p>
-            <h2>Businesses that make moving easier.</h2>
+            <h2>Businesses that can help people move and settle in.</h2>
           </div>
           <div className="partner-pack__fit">
             <p>Property and accommodation</p>
@@ -104,10 +103,10 @@ export default function PartnerMediaPackPage() {
 
         <section className="partner-pack__cta">
           <p className="brief-eyebrow">NEXT STEP</p>
-          <h2>We check the fit before suggesting a package.</h2>
+          <h2>Tell us about your business and what you want to achieve.</h2>
           <p>
-            Tell us who you help, what you want to achieve and when you want to begin.
-            If there is a good fit, we will suggest a clear plan and price.
+            We will check whether your expertise is useful for our readers. If it is,
+            we will suggest a clear option, schedule and price.
           </p>
           <Link href="/partner-application">SEND A PARTNER ENQUIRY</Link>
           <small>Questions: hello@therelonetwork.com</small>

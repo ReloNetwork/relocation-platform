@@ -23,18 +23,18 @@ export default function EditorialPartnershipBand({
       </div>
       <div className="editorial-partnership__body">
         <p>{partnership.text}</p>
-        <ul aria-label="Available editorial formats">
+        <ul aria-label="Ways to work with us">
           {partnership.formats.map((format) => (
             <li key={format}>{format}</li>
           ))}
         </ul>
         <div className="editorial-partnership__action">
           <Link href="/partner-application">
-            Explore an editorial partnership <span aria-hidden="true">↗</span>
+            See partnership options <span aria-hidden="true">↗</span>
           </Link>
           <small>
-            Paid work is clearly labelled. Partners cannot buy a recommendation
-            or influence Ask Relo.
+            Paid content is clearly labelled. A partner cannot buy a
+            recommendation or change an Ask Relo answer.
           </small>
         </div>
       </div>

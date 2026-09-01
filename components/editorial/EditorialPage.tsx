@@ -99,14 +99,14 @@ export default function EditorialPage({
         <div>
           {items.length === 0 ? (
             <article className="editorial-grid__empty">
-              <span>IN PRODUCTION</span>
-              <h3>The first briefing is being prepared.</h3>
+              <span>COMING SOON</span>
+              <h3>We are working on the first guide.</h3>
               <p>
-                This subject is part of the editorial programme. Explore another
-                section now or join The London Brief for new editions.
+                Choose another subject now or join The London Brief to hear
+                when the guide is ready.
               </p>
               <Link className="editorial-grid__link" href="/newsletter">
-                Visit The London Brief <span aria-hidden="true">↗</span>
+                Join The London Brief <span aria-hidden="true">↗</span>
               </Link>
             </article>
           ) : null}

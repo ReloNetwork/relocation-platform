@@ -39,24 +39,24 @@ export default function Page({
     <Layout>
       <EditorialPage
         label="JOURNAL"
-        title="NOTES FROM THE CITY."
-        intro="Reporting for people moving to London and those who want to understand it better."
+        title="PRACTICAL LONDON GUIDES."
+        intro="Clear guides for people moving to London and anyone who wants to understand the city better."
         image="/images/editorial/london-street-hero.webp"
         sectionTitle={
           activeSubject === 'all'
-            ? 'LATEST'
+            ? 'LATEST GUIDES'
             : editorialSubjectLabel(activeSubject).toUpperCase()
         }
         items={items}
         activeSubject={activeSubject}
         partnership={{
-          eyebrow: 'SUPPORTED EDITORIAL',
-          title: 'USEFUL SERIES, BUILT TO LAST.',
-          text: 'Selected partners can support practical reporting for professionals, founders and families moving to London. The reader question comes first, and The Relo Network keeps editorial control.',
+          eyebrow: 'PARTNER WITH THE JOURNAL',
+          title: 'HELP US ANSWER A USEFUL QUESTION.',
+          text: 'Selected businesses can sponsor a practical guide for people moving to London. We choose the question and keep control of the final article.',
           formats: [
-            'The London Landing Plan',
-            'Area Decoder',
-            'Family and Founder Landing',
+            'Sponsored practical guide',
+            'Sponsored neighbourhood guide',
+            'Three-month content series',
           ],
         }}
       />

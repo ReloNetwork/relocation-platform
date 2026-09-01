@@ -49,15 +49,15 @@ export default function ScrollFlightHero() {
         <div className="flight-hero__veil" />
         <div className="flight-hero__copy">
           <span className="vertical-label">THE LONDON EDIT</span>
-          <p className="eyebrow">THE RELO NETWORK · CITY INTELLIGENCE</p>
+          <p className="eyebrow">THE RELO NETWORK · LONDON MADE CLEARER</p>
           <h1>
             LONDON,
             <br />
             BUT BETTER.
           </h1>
           <p>
-            Relocation guidance, neighbourhood intelligence and trusted
-            introductions for people whose time matters.
+            Clear help with areas, homes, schools and the people you may need
+            for your move.
           </p>
           <div>
             <Link className="button button--gold" href="/ask-relo">
@@ -71,7 +71,7 @@ export default function ScrollFlightHero() {
         <span className="flight-hero__index">
           01
           <br />
-          <small>CITY INTELLIGENCE</small>
+          <small>YOUR LONDON MOVE</small>
         </span>
       </div>
     </section>

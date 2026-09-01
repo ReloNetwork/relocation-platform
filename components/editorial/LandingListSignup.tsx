@@ -32,14 +32,14 @@ export default function LandingListSignup({ enabled = true }: { enabled?: boolea
     return (
       <div className="landing-signup landing-signup--paused">
         <label>THE LONDON LANDING LIST</label>
-        <p>The list is being prepared. Explore the Journal while subscriptions are closed.</p>
+        <p>We are preparing the list. Read the Journal while sign-ups are closed.</p>
         <Link href="/journal">READ THE JOURNAL →</Link>
       </div>
     );
   return (
     <form className="landing-signup" onSubmit={submit}>
       <label htmlFor="landing-email">THE LONDON LANDING LIST</label>
-      <p>Thirty decisions to make before London starts making them for you.</p>
+      <p>Thirty things to decide before you move to London.</p>
       <div>
         <input
           required

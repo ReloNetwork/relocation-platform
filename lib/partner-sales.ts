@@ -56,22 +56,57 @@ export function createPartnerReference() {
   return `PR-${crypto.randomUUID().split('-')[0].toUpperCase()}`
 }
 
-export const PARTNER_MEDIA_PACK_VERSION = '2026.08'
+export const PARTNER_MEDIA_PACK_VERSION = '2026.09'
 
 export const partnerInventory = [
   {
-    name: 'The London Brief lead sponsor',
-    availability: 'One lead sponsor per issue',
-    includes: 'A sponsor credit at the start, one useful message, one tracked link and a report after the issue is sent.',
+    name: 'Reviewed business profile',
+    availability: '£650 a year',
+    includes: 'A checked page about your services in the Network directory, one contact link, an annual update and tracked visits.',
+  },
+  {
+    name: 'London Brief partner message',
+    availability: '£750 an issue',
+    includes: 'One short, clearly labelled message in the newsletter, with one link and click reporting.',
   },
   {
     name: 'Sponsored Journal article',
-    availability: 'Up to two commissioned briefings per month',
-    includes: 'Planning, writing support, clear sponsorship labelling, a permanent article page, newsletter distribution and tracked links.',
+    availability: '£1,750',
+    includes: 'One permanent sponsored article, one newsletter mention and a report after publication.',
   },
   {
-    name: 'Editorial Partner Pilot',
-    availability: 'A limited launch cohort',
-    includes: 'One sponsored article, two newsletter placements, a reviewed Network profile and a final report.',
+    name: 'Sponsored practical guide',
+    availability: '£2,500',
+    includes: 'One detailed guide, a downloadable reader tool, two newsletter mentions, a suitable profile and a final report.',
+  },
+  {
+    name: 'Sponsored neighbourhood guide',
+    availability: '£3,500',
+    includes: 'A balanced guide to one London area, including research, alternatives, two newsletter mentions and reporting.',
+  },
+  {
+    name: 'Expert Q&A series',
+    availability: '£4,500 for three months',
+    includes: 'An expert profile, three edited question-and-answer articles, promotion and a quarterly report.',
+  },
+  {
+    name: 'Homepage lead story',
+    availability: '£1,500 for seven days',
+    includes: 'An approved sponsored story shown at the top of the homepage for one week, with one link and reporting.',
+  },
+  {
+    name: 'Three-month content series',
+    availability: '£9,500',
+    includes: 'Three detailed articles, newsletter support, a reviewed profile, one homepage week and a final report.',
+  },
+  {
+    name: 'Ask Relo partner card',
+    availability: '£900 a month after launch testing',
+    includes: 'A labelled partner box beside relevant answers, linking to one approved guide or service page. It never changes the answer.',
+  },
+  {
+    name: 'Ask Relo subject partner',
+    availability: '£3,500 for three months after launch testing',
+    includes: 'Support for one useful subject area, with checked resources, one partner card and reporting. Relo controls every answer.',
   },
 ] as const

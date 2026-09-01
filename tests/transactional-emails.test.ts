@@ -126,6 +126,6 @@ describe('transactional email templates', () => {
     expect(html).toContain(
       'https://preview.example.com/partner-application/media-pack'
     );
-    expect(html).toContain('Version 2026.08');
+    expect(html).toContain('Version 2026.09');
   });
 });

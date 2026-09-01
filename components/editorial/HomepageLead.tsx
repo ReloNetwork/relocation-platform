@@ -74,8 +74,8 @@ export default function HomepageLead({
           {campaign.action}
         </Link>
         <small>
-          The Relo Network retains editorial control. Partnership does not
-          influence Ask Relo recommendations.
+          The Relo Network chooses the subject and final wording. Partner
+          payment never changes an Ask Relo answer.
         </small>
       </div>
     </section>

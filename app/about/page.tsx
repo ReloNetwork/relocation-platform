@@ -6,8 +6,8 @@ export default function Page() {
     <Layout>
       <EditorialPage
         label="ABOUT"
-        title="THE PEOPLE BEHIND THE MOVE."
-        intro="Finding a property is only one part of moving to London. We help you understand the city well enough to choose where your life can work."
+        title="HELP FOR THE WHOLE MOVE."
+        intro="Finding a home is only one part of moving to London. We help you understand your choices and plan the move in a sensible order."
         image="/images/editorial/london-street-hero.webp"
         sectionTitle="HOW WE WORK"
         items={[
@@ -18,13 +18,13 @@ export default function Page() {
           },
           {
             number: '02',
-            title: 'Evidence-led',
-            text: 'We check commutes, schools and current market information before making a recommendation.',
+            title: 'Carefully checked',
+            text: 'We check journeys, schools and current market information before making a recommendation.',
           },
           {
             number: '03',
-            title: 'Present',
-            text: 'You have one clear conversation from the first call through the first weeks in London.',
+            title: 'Easy to reach',
+            text: 'You have one clear point of contact from the first call through your first weeks in London.',
           },
         ]}
       />

@@ -5,7 +5,7 @@ export default function EditorialFooter() {
     <footer className="editorial-footer">
       <div className="editorial-footer__brand">
         <span>R</span> RELO NETWORK
-        <p>Relocation, intelligently guided. London first, always.</p>
+        <p>Clear help for moving to and living in London.</p>
       </div>
       <div>
         <b>EXPLORE</b>
@@ -29,7 +29,7 @@ export default function EditorialFooter() {
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>
         <Link href="/cookies">Cookies</Link>
-        <Link href="/editorial-policy">Editorial standard</Link>
+        <Link href="/editorial-policy">How we publish</Link>
       </div>
     </footer>
   );

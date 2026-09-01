@@ -28,10 +28,10 @@ export default function NewsletterPage({
           <span className="vertical-label">JOURNAL</span>
           <div>
             <span className="brief-eyebrow">THE LONDON BRIEF</span>
-            <h1>A CITY WORTH READING.</h1>
+            <h1>LONDON, MADE CLEARER.</h1>
             <p>
-              Clear neighbourhood notes, practical moving advice and useful
-              London ideas for people making the city home.
+              Neighbourhood guides, moving advice and useful London ideas for
+              people making the city home.
             </p>
           </div>
           <BriefSignup
@@ -49,16 +49,15 @@ export default function NewsletterPage({
         <section className="brief-archive">
           <div className="brief-archive__heading">
             <span>01</span>
-            <h2>READ THE LATEST</h2>
+            <h2>LATEST LONDON GUIDES</h2>
           </div>
           <div className="brief-archive__grid">
             {visibleArticles.length === 0 ? (
               <article className="brief-archive__empty">
-                <span>IN PRODUCTION</span>
-                <h3>The first briefing is being prepared.</h3>
+                <span>COMING SOON</span>
+                <h3>We are working on the first guide.</h3>
                 <p>
-                  Join The London Brief to receive new reporting in this
-                  subject.
+                  Join The London Brief to hear when it is ready.
                 </p>
               </article>
             ) : null}
@@ -68,7 +67,7 @@ export default function NewsletterPage({
                 <h3>{article.title}</h3>
                 <p>{article.excerpt}</p>
                 <Link href={articleUrl(article.slug)}>
-                  Read the briefing <span aria-hidden="true">↗</span>
+                  Read the guide <span aria-hidden="true">↗</span>
                 </Link>
               </article>
             ))}
@@ -77,13 +76,13 @@ export default function NewsletterPage({
 
         <EditorialPartnershipBand
           partnership={{
-            eyebrow: 'ONE PARTNER PER EDITION',
-            title: 'THE LONDON BRIEF, SUPPORTED WITH CARE.',
-            text: 'A relevant partner may support an edition of The London Brief. The editorial subject, conclusions and recommendations remain ours.',
+            eyebrow: 'SPONSOR THE LONDON BRIEF',
+            title: 'ONE CLEAR PARTNER MESSAGE PER EDITION.',
+            text: 'One relevant business may sponsor an edition of The London Brief. The partner message is clearly labelled and kept separate from our articles and recommendations.',
             formats: [
-              'Lead issue partner',
-              'Useful expert contribution',
-              'Tracked campaign report',
+              'One partner message',
+              'One tracked link',
+              'Results after the email is sent',
             ],
           }}
         />

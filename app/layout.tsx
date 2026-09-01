@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s | The Relo Network',
   },
   description:
-    'Independent London relocation guidance, neighbourhood intelligence and trusted introductions for international professionals and families.',
+    'Clear, independent help for international professionals and families moving to and living in London.',
   openGraph: {
     title: 'The Relo Network',
     description: 'London, intelligently answered.',

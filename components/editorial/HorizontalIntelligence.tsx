@@ -34,9 +34,9 @@ const chapters = [
   },
   {
     number: '04',
-    kicker: 'CITY INTELLIGENCE',
-    title: 'Every answer\nchanges the next.',
-    text: 'Ask Relo keeps your questions together, so each answer has more useful context.',
+    kicker: 'ASK RELO',
+    title: 'Ask one question,\nthen the next.',
+    text: 'Ask Relo remembers the questions in your conversation, so its answers can be more useful.',
     image: '/images/editorial/london-arrival-cinematic.webp',
     ask: 'Ask Relo now',
     href: '/ask-relo',
@@ -73,8 +73,8 @@ export default function HorizontalIntelligence() {
       <div className="intelligence-world__sticky">
         <header>
           <span className="vertical-label">THE LONDON INDEX</span>
-          <p className="eyebrow">LIVE CITY INTELLIGENCE</p>
-          <h2>THE LONDON YOU CAME FOR.</h2>
+          <p className="eyebrow">EXPLORE LONDON</p>
+          <h2>FIND THE LONDON THAT FITS YOU.</h2>
           <div className="intelligence-world__progress">
             <i style={{ width: `${progress * 100}%` }} />
           </div>

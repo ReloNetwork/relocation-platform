@@ -65,8 +65,8 @@ export default function JournalArticle({ slug }: { slug: string }) {
                 <span>Published {published}</span>
                 <span>
                   {article.sponsor
-                    ? 'Commercial relationship disclosed above'
-                    : 'Independent editorial'}
+                    ? 'Paid partnership labelled above'
+                    : 'Written independently'}
                 </span>
               </div>
             </div>
@@ -86,12 +86,12 @@ export default function JournalArticle({ slug }: { slug: string }) {
               </section>
             ))}
             <aside className="mt-16 border-y border-[#ddd8cc] py-8 text-sm leading-6 text-[#666]">
-              This briefing is general information, reviewed on {published}.
-              Verify availability, terms and regulated advice with the relevant
-              provider. Commercial relationships do not determine our
-              recommendations. Read our{' '}
+              This guide gives general information and was reviewed on {published}.
+              Check current availability, terms and regulated advice with the
+              relevant provider. Paid partnerships do not decide our
+              recommendations. Read{' '}
               <Link className="underline" href="/editorial-policy">
-                editorial standard
+                how we publish
               </Link>
               .
             </aside>
@@ -111,10 +111,10 @@ export default function JournalArticle({ slug }: { slug: string }) {
             </div>
             <aside>
               <span>FOR PARTNERS</span>
-              <h3>Support useful relocation journalism.</h3>
+              <h3>Sponsor a useful relocation guide.</h3>
               <p>
-                Selected partners can support a guide or series. Every placement
-                is labelled, and editorial control stays with The Relo Network.
+                Selected businesses can sponsor a guide or series. Every paid
+                article is labelled, and The Relo Network chooses the final wording.
               </p>
               <Link href="/partner-application">
                 Explore a partnership <span aria-hidden="true">↗</span>

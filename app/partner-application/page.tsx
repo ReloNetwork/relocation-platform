@@ -61,23 +61,23 @@ export default function PartnerApplicationPage() {
           <span className="vertical-label">PARTNERS</span>
           <div>
             <span className="brief-eyebrow">THE RELO NETWORK</span>
-            <h1>BE USEFUL.<br />BE REMEMBERED.</h1>
+            <h1>REACH PEOPLE<br />MOVING TO LONDON.</h1>
           </div>
           <p>
-            We work with selected businesses whose expertise helps international professionals and families make better decisions about London.
+            We work with selected businesses that can give useful information or services to professionals and families moving to London.
           </p>
         </section>
 
         <section className="partner-editorial-body">
           <div className="partner-editorial-notes">
-            <span>WAYS TO WORK TOGETHER</span>
-            <h2>Useful work comes first.</h2>
-            <p>We offer clearly labelled sponsored articles and newsletter placements for businesses that genuinely help people moving to London. Launch pilots begin at £2,500.</p>
+            <span>WAYS TO WORK WITH US</span>
+            <h2>Choose a clear place to start.</h2>
+            <p>Options include business profiles, newsletter messages, sponsored guides and longer content series. Prices start at £650.</p>
             <ul>
-              <li>One lead sponsor per London Brief issue</li>
-              <li>Up to two sponsored Journal articles per month</li>
-              <li>Limited Editorial Partner Pilot places</li>
-              <li>Tracked links and a report after the campaign</li>
+              <li>Reviewed business profile from £650 a year</li>
+              <li>London Brief partner message from £750 an issue</li>
+              <li>Sponsored Journal article from £1,750</li>
+              <li>Clear reporting after the work is published</li>
             </ul>
             <small>Every paid feature is labelled. Payment does not guarantee a client introduction and never changes our independent recommendations.</small>
           </div>
@@ -125,7 +125,7 @@ export default function PartnerApplicationPage() {
                 <option value="editorial">Sponsored Journal article</option>
                 <option value="newsletter">The London Brief sponsorship</option>
                 <option value="network">A reviewed Network profile</option>
-                <option value="ask-relo">Providing checked information for Ask Relo</option>
+                <option value="ask-relo">Ask Relo partner space</option>
                 <option value="unsure">Not sure yet</option>
               </select>
             </label>
@@ -146,8 +146,8 @@ export default function PartnerApplicationPage() {
                   <option value="authority">Build trust in our area of expertise</option>
                   <option value="reach">Reach the right audience</option>
                   <option value="enquiries">Receive relevant enquiries</option>
-                  <option value="thought-leadership">Share useful expertise</option>
-                  <option value="knowledge">Provide information we can check</option>
+                  <option value="thought-leadership">Explain our expertise clearly</option>
+                  <option value="knowledge">Share useful information Relo can check</option>
                 </select>
               </label>
               <label>
@@ -173,7 +173,7 @@ export default function PartnerApplicationPage() {
               </select>
             </label>
             <label>
-              Why could this be useful for our readers?
+              How could this help our readers?
               <textarea name="message" rows={6} required placeholder="Tell us who you help, what you know well and what you would like to create with us." />
             </label>
             <label className="partner-editorial-form__consent">

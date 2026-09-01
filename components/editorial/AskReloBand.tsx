@@ -24,7 +24,7 @@ export default function AskReloBand({
       className={`ask-relo-band ${compact ? 'ask-relo-band--compact' : ''}`}
     >
       <span className="ask-relo-band__wheel" aria-hidden="true" />
-      <p>DON’T SEARCH LONDON. ASK IT.</p>
+      <p>ASK A QUESTION ABOUT LONDON.</p>
       <form onSubmit={submit}>
         <label className="sr-only" htmlFor="ask-relo-question">
           Ask Relo a London relocation question

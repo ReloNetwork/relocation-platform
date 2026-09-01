@@ -23,22 +23,21 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">THE RELO NETWORK</p>
             <h2>
-              THE CITY,
+              LONDON,
               <br />
-              EDITED.
+              MADE CLEARER.
             </h2>
             <p>
-              London gives you endless choices. The hard part is knowing which
-              ones fit your life. We give you clear advice, current local
-              insight and trusted people, so you can make your first decisions
-              with confidence.
+              Moving to London brings a lot of choices. We help you understand
+              the areas, plan what to do first and find the right people when
+              you need them.
             </p>
             <div className="home-intro__actions">
               <Link className="button button--gold" href="/move">
-                EXPLORE YOUR MOVE
+                PLAN YOUR MOVE
               </Link>
               <Link className="button button--ink" href="/journal">
-                READ THE JOURNAL
+                READ LONDON GUIDES
               </Link>
             </div>
           </div>
@@ -60,22 +59,22 @@ export default function HomePage() {
             {[
               [
                 '01',
-                'UNDERSTAND',
-                'Tell us what matters and when you need to move.',
+                'ASK ONE QUESTION',
+                'Ask about an area, a school, housing or what to do first.',
                 '/ask-relo',
                 'Ask Relo',
               ],
               [
                 '02',
-                'GET ORIENTED',
-                'Use the Journal and The London Brief to sharpen your view.',
+                'LEARN ABOUT LONDON',
+                'Read practical guides and get The London Brief by email.',
                 '/journal',
                 'Read the Journal',
               ],
               [
                 '03',
-                'START THE PLAN',
-                'Send a private brief when you are ready for a human review.',
+                'TELL US ABOUT YOUR MOVE',
+                'Send your details when you are ready for a person to review them.',
                 '/executive-intake',
                 'Start Your Move',
               ],

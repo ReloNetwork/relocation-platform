@@ -11,12 +11,12 @@ function AskReloContent() {
         <section className="editorial-hero">
           <span className="vertical-label">ASK RELO</span>
           <div>
-            <p className="eyebrow">ASK RELO BETA</p>
-            <h1>ASK THE CITY.</h1>
+            <p className="eyebrow">ASK RELO / BETA</p>
+            <h1>ASK A QUESTION ABOUT MOVING TO LONDON.</h1>
             <i />
             <p>
-              Ask about neighbourhoods, schools, housing or the order of your
-              move. You can ask three questions for free.
+              Ask about areas, schools, housing or what to do first. You can ask
+              three questions for free.
             </p>
           </div>
           <div style={{ minHeight: 560 }}>
@@ -30,13 +30,13 @@ function AskReloContent() {
               [
                 '01',
                 'COMPARE',
-                'Compare neighbourhoods, commutes and everyday life.',
+                'Compare areas, journeys to work and everyday life.',
               ],
-              ['02', 'PLAN', 'Put schools, housing and practical tasks in the right order.'],
+              ['02', 'PLAN', 'Put schools, housing and moving tasks in the right order.'],
               [
                 '03',
                 'CONNECT',
-                'Know when your question needs a qualified professional or human adviser.',
+                'Know when you need an official source or a qualified professional.',
               ],
             ].map(([n, t, p]) => (
               <article key={n}>

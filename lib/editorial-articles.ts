@@ -26,12 +26,12 @@ export const editorialArticles: EditorialArticle[] = [
     subject: 'homes-areas',
     publishedAt: '2026-08-26T09:00:00.000Z',
     standfirst:
-      'Mayfair rewards careful street-by-street selection. This briefing sets out the questions that matter before a viewing list is assembled.',
+      'Mayfair can feel very different from one street to the next. These are the questions to ask before you book viewings.',
     sections: [
       {
         heading: 'Begin with the week, not the postcode',
         body: [
-          'Mayfair can place work, dining, galleries and parks within a compact area, but convenience depends on the exact address. Map the journeys that happen every week, including the office, school, airport and regular appointments, before choosing a search radius.',
+          'Mayfair can put work, restaurants, galleries and parks close together, but the exact address matters. Map the journeys you make every week, including the office, school, airport and regular appointments, before choosing where to look.',
           'A polished listing cannot show evening noise, servicing activity or how a route feels in poor weather. Return to a preferred street at different times and walk the journeys that will shape daily life.',
         ],
       },
@@ -39,7 +39,7 @@ export const editorialArticles: EditorialArticle[] = [
         heading: 'Treat the building as part of the decision',
         body: [
           'Two homes on the same street can offer very different experiences. Ask about management, lift reliability, porter coverage, deliveries, planned works, cooling and what is included in the service charge or rent.',
-          'For a rental, confirm the inventory, deposit arrangements, break terms and responsibility for maintenance in writing. Independent legal advice may be appropriate before making a substantial commitment.',
+          'For a rental, get the inventory, deposit arrangements, break terms and responsibility for repairs in writing. Consider independent legal advice before making a large commitment.',
         ],
       },
       {
@@ -55,17 +55,17 @@ export const editorialArticles: EditorialArticle[] = [
     slug: 'marylebone-guide',
     title: 'Marylebone: village life, central London',
     excerpt:
-      'A practical neighbourhood briefing for families and professionals considering the area.',
+      'A practical guide for families and professionals considering the area.',
     category: 'Neighbourhoods',
     subject: 'homes-areas',
     publishedAt: '2026-08-26T09:00:00.000Z',
     standfirst:
-      'Marylebone combines a central address with a neighbourhood rhythm. The useful question is whether its particular trade-offs match your routine.',
+      'Marylebone feels local while keeping you close to central London. The question is whether it works for your daily routine.',
     sections: [
       {
         heading: 'Test the daily geography',
         body: [
-          'Marylebone covers several distinct pockets. A home near the high street, a major station or the park edge will produce a different daily pattern, even when the postcode looks similar.',
+          'Marylebone has several distinct pockets. Life near the high street, a major station or the edge of the park will feel different, even when the postcode looks similar.',
           'Plot work and school journeys at the times you will actually make them. Include the walk to transport, not only the time shown on a route planner.',
         ],
       },
@@ -80,7 +80,7 @@ export const editorialArticles: EditorialArticle[] = [
         heading: 'Choose for the whole household',
         body: [
           'A successful relocation balances the office commute with groceries, healthcare, exercise, social life and school logistics. Give each household member a small number of non-negotiables and score the shortlist together.',
-          'If two options remain close, prefer the one that reduces recurring friction. The small journey repeated every day matters more than an occasional amenity.',
+          'If two homes are close, choose the one that makes everyday life easier. A short journey you make every day often matters more than a feature you rarely use.',
         ],
       },
     ],
@@ -94,7 +94,7 @@ export const editorialArticles: EditorialArticle[] = [
     subject: 'homes-areas',
     publishedAt: '2026-08-26T09:00:00.000Z',
     standfirst:
-      'Canary Wharf is more than a commute calculation. Evaluate the home, waterside connections and weekend routine as one system.',
+      'Canary Wharf is about more than the journey to work. Consider the home, transport and your weekend routine together.',
     sections: [
       {
         heading: 'Separate access from commute time',
@@ -106,7 +106,7 @@ export const editorialArticles: EditorialArticle[] = [
       {
         heading: 'Compare developments carefully',
         body: [
-          'Newer buildings may offer concierge services, shared spaces and cooling, but management quality and charges vary. Ask what is operational today, what requires booking and what may change during the tenancy.',
+          'Newer buildings may offer a concierge, shared spaces and air conditioning, but service and charges vary. Ask what is available now, what needs to be booked and what may change during the tenancy.',
           'Check aspect, construction nearby, mobile reception, broadband options, parcel handling and guest arrangements. These details often matter more than a long amenities list.',
         ],
       },
@@ -134,20 +134,20 @@ export const editorialArticles: EditorialArticle[] = [
         heading: 'Document the current learning path',
         body: [
           'Collect recent reports, curriculum details, subjects, support plans and intended graduation route. Admissions teams need a clear picture of where a child is now and what continuity means for them.',
-          'For older students, subject sequencing and qualification plans deserve particular attention. Ask each school to explain how prior work would map into its programme.',
+          'For older students, pay close attention to subject choices and exam plans. Ask each school how your child’s previous work will fit its curriculum.',
         ],
       },
       {
         heading: 'Ask schools directly',
         body: [
           'Availability, admissions requirements and deadlines change. Treat school websites and admissions offices as the authoritative source, and record the date of every answer.',
-          'Ask about year placement, assessment, references, learning support, transport and what happens if the family’s move date changes. Do not commit to a home based on assumed admission.',
+          'Ask which year your child would join, what assessments and references are needed, what learning support is available, how transport works and what happens if your move date changes. Do not choose a home until you know the school place is confirmed.',
         ],
       },
       {
         heading: 'Plan the household logistics',
         body: [
-          'Model the school journey at realistic times and consider who will handle it during travel or busy work periods. A manageable routine can be more valuable than a marginal difference in distance.',
+          'Test the school journey at the time you would actually make it. Think about who will handle it during work trips or busy weeks. An easy routine may matter more than a slightly shorter distance.',
           'Keep a parallel housing shortlist until the school position is clear. Where education, immigration or legal questions arise, use an appropriately qualified adviser.',
         ],
       },
@@ -162,7 +162,7 @@ export const editorialArticles: EditorialArticle[] = [
     subject: 'homes-areas',
     publishedAt: '2026-08-26T09:00:00.000Z',
     standfirst:
-      'A relocation search is a decision under time pressure. A disciplined brief is more useful than trying to predict the market from headlines.',
+      'A London home search often happens under time pressure. A clear list of needs is more useful than trying to predict the market from headlines.',
     sections: [
       {
         heading: 'Define the decision before reading the market',
@@ -179,7 +179,7 @@ export const editorialArticles: EditorialArticle[] = [
         ],
       },
       {
-        heading: 'Protect the execution window',
+        heading: 'Be ready when the right home appears',
         body: [
           'Prepare identification, references and proof of funds before the search becomes urgent. Confirm what due diligence is required and who can approve an offer while travelling.',
           'Before signing, verify the parties, property, deposit arrangements, inventory and contract terms. Market commentary is general information, not financial, legal or property advice.',

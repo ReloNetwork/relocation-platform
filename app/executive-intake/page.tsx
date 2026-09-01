@@ -108,7 +108,7 @@ export default function ExecutiveIntakePage() {
   const handleSubmit = async () => {
     // Validate required fields
     if (!formData.name || !formData.email || !formData.moveDate || !formData.budget || formData.preferredAreas.length === 0) {
-      alert('Please complete all required fields before proceeding.')
+      alert('Please complete all required fields before continuing.')
       return
     }
 
@@ -161,18 +161,18 @@ export default function ExecutiveIntakePage() {
         <section className="intake-hero">
           <span className="vertical-label">START YOUR MOVE</span>
           <div>
-            <p className="eyebrow">PRIVATE RELOCATION BRIEF</p>
-            <h1>YOUR MOVE, PROPERLY UNDERSTOOD.</h1>
+            <p className="eyebrow">TELL US ABOUT YOUR MOVE</p>
+            <h1>HELP US UNDERSTAND YOUR LONDON MOVE.</h1>
             <p>
-              Give us the shape of your London move. A person will review your
-              brief and recommend the clearest next step.
+              Share your timing, budget and priorities. A person from our team
+              will read your details and reply with a clear next step.
             </p>
           </div>
           <aside>
             <span>WHAT HAPPENS NEXT</span>
-            <p>Human review before any service is proposed.</p>
+            <p>A person reviews your information.</p>
             <p>No payment is taken with this form.</p>
-            <p>A clear response within one business day.</p>
+            <p>We reply within one business day.</p>
           </aside>
         </section>
 
@@ -194,7 +194,7 @@ export default function ExecutiveIntakePage() {
           <div className="intake-card bg-white p-8 border border-[#E5E7EB]">
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
               <Calendar className="w-6 h-6 text-[#C9A24A]" />
-              Share your relocation brief
+              Tell us about your move
             </h2>
             
             <div className="space-y-8">
@@ -212,16 +212,16 @@ export default function ExecutiveIntakePage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Flexibility</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">How flexible is the date?</label>
                     <select
                       value={formData.flexibility}
                       onChange={(e) => handleInputChange('flexibility', e.target.value)}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     >
-                      <option value="">Select flexibility</option>
-                      <option value="exact">Must be exact date</option>
-                      <option value="1week">±1 week</option>
-                      <option value="1month">±1 month</option>
+                      <option value="">Choose one</option>
+                      <option value="exact">The date is fixed</option>
+                      <option value="1week">About one week either side</option>
+                      <option value="1month">About one month either side</option>
                       <option value="flexible">Very flexible</option>
                     </select>
                   </div>
@@ -233,13 +233,13 @@ export default function ExecutiveIntakePage() {
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Budget</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Monthly rental budget</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Monthly rent budget</label>
                     <select
                       value={formData.budget}
                       onChange={(e) => handleInputChange('budget', e.target.value)}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     >
-                      <option value="">Select budget</option>
+                      <option value="">Choose a budget</option>
                       <option value="2000-3000">£2,000 - £3,000</option>
                       <option value="3000-5000">£3,000 - £5,000</option>
                       <option value="5000-7500">£5,000 - £7,500</option>
@@ -266,7 +266,7 @@ export default function ExecutiveIntakePage() {
               <div>
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4 flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-[#C9A24A]" />
-                  Areas you are considering (choose up to 5)
+                  Areas you may want to live in (choose up to 5)
                 </h3>
                 <div className="grid grid-cols-3 md:grid-cols-4 gap-2 mb-4">
                   {londonAreas.map((area) => (
@@ -301,16 +301,16 @@ export default function ExecutiveIntakePage() {
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">What kind of home do you need?</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Property type preference</label>
+                  <label className="block text-sm font-medium text-[#6B7280] mb-2">Type of home</label>
                     <select
                       value={formData.propertyType}
                       onChange={(e) => handleInputChange('propertyType', e.target.value)}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     >
                       <option value="">Any type</option>
-                      <option value="flat">Flat/Apartment</option>
+                      <option value="flat">Flat or apartment</option>
                       <option value="house">House</option>
-                      <option value="serviced">Serviced Apartment</option>
+                      <option value="serviced">Serviced apartment</option>
                       <option value="penthouse">Penthouse</option>
                       <option value="townhouse">Townhouse</option>
                     </select>
@@ -397,7 +397,7 @@ export default function ExecutiveIntakePage() {
 
               {/* Contact Details */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Contact Details</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Your contact details</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#6B7280] mb-2">Name *</label>
@@ -449,7 +449,7 @@ export default function ExecutiveIntakePage() {
                 disabled={!isStep1Complete}
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
-                Review Your Brief
+                Check your answers
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
@@ -466,7 +466,7 @@ export default function ExecutiveIntakePage() {
             
             {/* Service Summary */}
             <div className="bg-[#FAFAF9] rounded-xl p-6 mb-8">
-              <h3 className="text-lg font-bold text-[#0B1B2B] mb-4">Your private relocation review</h3>
+              <h3 className="text-lg font-bold text-[#0B1B2B] mb-4">What we will do</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
@@ -474,7 +474,7 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>We decide whether a call, a focused review or full relocation support would help</span>
+                  <span>We decide whether a call, a focused review or more complete support would help</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
@@ -486,7 +486,7 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>We send a secure payment link only after we agree what you need and what it will cost</span>
+                  <span>We send a secure payment link only after we agree the work and price</span>
                 </div>
               </div>
               
