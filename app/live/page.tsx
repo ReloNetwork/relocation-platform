@@ -24,6 +24,16 @@ export default function Page() {
             text: 'Compare public transport, walking, cycling and whether you need a car.',
           },
         ]}
+        partnership={{
+          eyebrow: 'FAMILY LANDING',
+          title: 'PRACTICAL SUPPORT, CLEARLY LABELLED.',
+          text: 'Schools, healthcare and family routines need careful, current information. Suitable organisations may support this reporting without buying a ranking or recommendation.',
+          formats: [
+            'Expert-reviewed guide',
+            'Family checklist',
+            'London Brief edition',
+          ],
+        }}
       />
     </Layout>
   );

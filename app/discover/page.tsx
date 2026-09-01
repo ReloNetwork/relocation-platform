@@ -32,6 +32,16 @@ export default function Page() {
             text: 'Hampstead, Primrose Hill and Islington.',
           },
         ]}
+        partnership={{
+          eyebrow: 'AREA DECODER',
+          title: 'NEIGHBOURHOODS, PROPERLY EXAMINED.',
+          text: 'Property, accommodation and destination partners may support on-the-ground neighbourhood reporting. Every guide keeps the same comparison criteria and names the trade-offs.',
+          formats: [
+            'Area briefing',
+            'Reader itinerary',
+            'Newsletter placement',
+          ],
+        }}
       />
     </Layout>
   );

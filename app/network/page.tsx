@@ -9,7 +9,7 @@ export default function Page() {
         title="A CITY RUNS ON PEOPLE."
         intro="Find carefully reviewed specialists across property, education, law and design. Paid partnerships never decide who we recommend to a client."
         image="/images/editorial/london-interior.webp"
-        sectionTitle="PARTNERS"
+        sectionTitle="EXPERTISE"
         items={[
           {
             title: 'Property & search',
@@ -42,6 +42,16 @@ export default function Page() {
             action: 'Request the partner brief',
           },
         ]}
+        partnership={{
+          eyebrow: 'THE EDITORIAL PARTNER PILOT',
+          title: 'BRING USEFUL EXPERTISE.',
+          text: 'Selected businesses can help make a complex relocation decision clearer through a supported guide, a reviewed profile or The London Brief.',
+          formats: [
+            'Supported practical guide',
+            'Reviewed Network profile',
+            'Expert Desk',
+          ],
+        }}
       />
     </Layout>
   );

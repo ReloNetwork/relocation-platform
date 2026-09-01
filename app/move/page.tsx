@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import Layout from '@/components/Layout'
-import AskReloBand from '@/components/editorial/AskReloBand'
+import Image from 'next/image';
+import Link from 'next/link';
+import Layout from '@/components/Layout';
+import AskReloBand from '@/components/editorial/AskReloBand';
 
 export const metadata = {
-  title: 'Move to London | The Relo Network',
+  title: 'Move to London',
   description:
     'A guided London relocation journey, shaped around your home, family, work and arrival.',
-}
+};
 
 const programme = [
   {
@@ -30,7 +30,7 @@ const programme = [
     title: 'Make London work',
     text: 'Where we are the right fit, we coordinate the people and practical details that bring the move together.',
   },
-]
+];
 
 export default function MovePage() {
   return (
@@ -145,5 +145,5 @@ export default function MovePage() {
         />
       </main>
     </Layout>
-  )
+  );
 }

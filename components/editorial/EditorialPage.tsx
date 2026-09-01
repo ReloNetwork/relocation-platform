@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import AskReloBand from './AskReloBand';
+import EditorialPartnershipBand, {
+  type EditorialPartnership,
+} from './EditorialPartnershipBand';
 import FlightFilm from './FlightFilm';
 
 type Item = {
@@ -20,6 +23,7 @@ export default function EditorialPage({
   image,
   sectionTitle,
   items,
+  partnership,
 }: {
   label: string;
   title: string;
@@ -27,6 +31,7 @@ export default function EditorialPage({
   image: string;
   sectionTitle: string;
   items: Item[];
+  partnership?: EditorialPartnership;
 }) {
   const heroRef = useRef<HTMLElement>(null);
   const [heroProgress, setHeroProgress] = useState(0);
@@ -48,7 +53,10 @@ export default function EditorialPage({
       const hero = heroRef.current;
       if (!hero) return;
       const rect = hero.getBoundingClientRect();
-      const distance = Math.max(1, hero.offsetHeight + window.innerHeight * 0.25);
+      const distance = Math.max(
+        1,
+        hero.offsetHeight + window.innerHeight * 0.25
+      );
       setHeroProgress(Math.min(1, Math.max(0, -rect.top / distance + 0.18)));
     };
     const onScroll = () => {
@@ -93,6 +101,9 @@ export default function EditorialPage({
           ))}
         </div>
       </section>
+      {partnership ? (
+        <EditorialPartnershipBand partnership={partnership} />
+      ) : null}
       <AskReloBand
         compact
         placeholder={`Ask Relo about ${label.toLowerCase()} in London`}

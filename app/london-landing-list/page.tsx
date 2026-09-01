@@ -82,18 +82,16 @@ export default function Page() {
             <h1>LAND READY.</h1>
             <i />
             <p>
-              Thirty practical decisions in a clear order, so you can avoid missed
-              steps and costly changes later.
+              Thirty practical decisions in a clear order, so you can avoid
+              missed steps and costly changes later.
             </p>
           </div>
-          <div
-            style={{ background: '#142e50', padding: '55px', color: 'white' }}
-          >
+          <div className="landing-list__signup-panel">
             <LandingListSignup
               enabled={Boolean(
                 process.env.BEEHIIV_API_KEY &&
-                  process.env.BEEHIIV_PUBLICATION_ID &&
-                  process.env.BEEHIIV_LANDING_LIST_AUTOMATION_ID
+                process.env.BEEHIIV_PUBLICATION_ID &&
+                process.env.BEEHIIV_LANDING_LIST_AUTOMATION_ID
               )}
             />
           </div>
@@ -105,45 +103,12 @@ export default function Page() {
             LANDING LIST
           </h2>
           {sections.map(([title, items]) => (
-            <section
-              key={title}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 3fr',
-                borderTop: '1px solid #ddd',
-                padding: '35px 0',
-              }}
-            >
-              <h3
-                style={{
-                  color: '#142e50',
-                  letterSpacing: '.16em',
-                  fontFamily: 'var(--font-inter)',
-                  fontSize: 12,
-                }}
-              >
-                {title}
-              </h3>
+            <section key={title} className="landing-list__section">
+              <h3>{title}</h3>
               <div>
                 {(items as string[]).map((item) => (
-                  <p
-                    key={item}
-                    style={{
-                      fontFamily: 'var(--font-playfair)',
-                      fontSize: 25,
-                      borderBottom: '1px solid #e5e0d7',
-                      paddingBottom: 18,
-                    }}
-                  >
-                    <span
-                      style={{
-                        color: '#be8431',
-                        fontSize: 14,
-                        marginRight: 20,
-                      }}
-                    >
-                      {String(++n).padStart(2, '0')}
-                    </span>
+                  <p key={item}>
+                    <span>{String(++n).padStart(2, '0')}</span>
                     {item}
                   </p>
                 ))}
