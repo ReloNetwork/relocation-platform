@@ -219,6 +219,12 @@ What would you like to understand about relocating to London?`,
       }
 
       try {
+        const activeSessionId = sessionId || crypto.randomUUID();
+        if (!sessionId) {
+          setSessionId(activeSessionId);
+          localStorage.setItem('ask_relo_session_id', activeSessionId);
+        }
+
         const response = await fetch('/api/retell/call', {
           method: 'POST',
           headers: {
@@ -226,26 +232,24 @@ What would you like to understand about relocating to London?`,
           },
           body: JSON.stringify({
             type: 'web',
+            sessionId: activeSessionId,
           }),
         });
 
         const data = await response.json();
 
         if (data.success && data.accessToken) {
+          setRemainingQuestions(data.remaining);
           setCallId(data.callId);
           setCallStatus('connecting');
           setCallDuration(0);
           setMode('voice');
 
-          console.log('Using initialized Retell client:', retellClient);
-
-          retellClient.on('conversationStarted', () => {
-            console.log('Conversation started - audio should be working now');
+          retellClient.on('call_started', () => {
             setCallStatus('connected');
           });
 
-          retellClient.on('conversationEnded', () => {
-            console.log('Conversation ended');
+          retellClient.on('call_ended', () => {
             setCallStatus('ended');
           });
 
@@ -255,17 +259,10 @@ What would you like to understand about relocating to London?`,
             setCallStatus('ended');
           });
 
-          retellClient.on('update', (update: any) => {
-            console.log('Retell update:', update);
-          });
-
           try {
-            console.log('Starting call with access token');
             await retellClient.startCall({
               accessToken: data.accessToken,
-              callId: data.callId,
               sampleRate: 24000,
-              enableUpdate: true,
             });
           } catch (startError) {
             console.error('Failed to start call:', startError);
@@ -275,6 +272,11 @@ What would you like to understand about relocating to London?`,
 
           retellClientRef.current = retellClient;
         } else {
+          if (data.limitReached) {
+            trackCommercialEvent('ask_relo_limit_reached', 'ask_relo');
+            setLimitReached(true);
+            setRemainingQuestions(0);
+          }
           setError(data.error || 'Failed to start web call');
         }
       } catch (error) {

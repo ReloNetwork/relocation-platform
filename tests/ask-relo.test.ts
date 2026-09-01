@@ -7,6 +7,7 @@ import {
 } from '@/lib/ask-relo'
 import { POST as askRelo } from '@/app/api/ai/chat/route'
 import { POST as askReloVoice } from '@/app/api/retell/call/route'
+import { createWebVoiceCall } from '@/lib/retell'
 
 const sessionId = 'd87c9d13-05cd-4ec0-a270-646ea1988586'
 
@@ -95,9 +96,48 @@ describe('Ask Relo answer engine', () => {
 })
 
 describe('Ask Relo voice boundary', () => {
+  it('creates a browser call only through the configured published agent', async () => {
+    process.env.RETELL_API_KEY = 'retell-test-key'
+    process.env.RETELL_AGENT_ID = 'agent-test'
+    const fetcher = vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response(
+        JSON.stringify({ access_token: 'short-lived-token', call_id: 'call-test' }),
+        { status: 200, headers: { 'content-type': 'application/json' } },
+      ),
+    )
+
+    await expect(createWebVoiceCall()).resolves.toEqual({
+      accessToken: 'short-lived-token',
+      callId: 'call-test',
+    })
+    expect(fetcher).toHaveBeenCalledWith(
+      'https://api.retellai.com/v2/create-web-call',
+      expect.objectContaining({
+        method: 'POST',
+        headers: expect.objectContaining({ Authorization: 'Bearer retell-test-key' }),
+      }),
+    )
+    expect(JSON.parse(fetcher.mock.calls[0][1]?.body as string)).toEqual({
+      agent_id: 'agent-test',
+      metadata: { source: 'ask_relo_web' },
+    })
+  })
+
   it('does not create a simulated call when voice is disabled', async () => {
     const response = await askReloVoice(
-      request('https://example.test/api/retell/call', { type: 'web' }),
+      request('https://example.test/api/retell/call', { type: 'web', sessionId }),
+    )
+    expect(response.status).toBe(503)
+    await expect(response.json()).resolves.toMatchObject({ success: false })
+  })
+
+  it('fails closed when voice usage protection is unavailable', async () => {
+    process.env.NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED = '1'
+    process.env.RETELL_API_KEY = 'retell-test-key'
+    process.env.RETELL_AGENT_ID = 'agent-test'
+
+    const response = await askReloVoice(
+      request('https://example.test/api/retell/call', { type: 'web', sessionId }),
     )
     expect(response.status).toBe(503)
     await expect(response.json()).resolves.toMatchObject({ success: false })

@@ -52,7 +52,9 @@ Stripe checkout and Ask Relo voice can remain disabled for the first release. Th
 - [ ] Add `OPENAI_API_KEY` and a long random `ASK_RELO_USAGE_SECRET`.
 - [ ] Add `NEXT_PUBLIC_CAL_COM_EMBED_ID` and confirm the public booking page.
 - [ ] Add `NEXT_PUBLIC_SITE_URL` using the final canonical domain.
-- [ ] Keep `NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED=0` for the first release.
+- [ ] Add `RETELL_API_KEY` and the published `RETELL_AGENT_ID` as server-side values.
+- [ ] Set `NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED=1` after the controlled voice test passes.
+- [ ] Confirm the Retell knowledge base, scope boundaries, AI disclosure, five-minute call limit and privacy settings.
 - [ ] Add and verify the internal and cron secrets used by protected routes.
 - [ ] Confirm that no preview or test value is present in the Production environment.
 

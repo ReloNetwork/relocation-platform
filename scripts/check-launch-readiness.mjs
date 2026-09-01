@@ -24,10 +24,11 @@ const required = [
   'resend',
   'executiveIntake',
   'askRelo',
+  'askReloVoice',
   'partnerSales',
   'commercialAnalytics',
 ]
-const optional = ['stripe', 'beehiiv', 'cal', 'askReloVoice']
+const optional = ['stripe', 'beehiiv', 'cal']
 
 const healthUrl = new URL('/api/health', baseUrl)
 let response
@@ -62,4 +63,4 @@ if (!requiredPassed) {
   process.exit(1)
 }
 
-console.log('\nAll qualification-first launch services report ready. Complete the controlled journey tests before announcing publicly.')
+console.log('\nAll launch services report ready. Complete the controlled journey tests before announcing publicly.')

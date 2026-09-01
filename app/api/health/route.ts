@@ -69,19 +69,44 @@ export async function GET() {
   };
 
   const voiceEnabled = process.env.NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED === '1';
-  const voiceConfigured =
-    voiceEnabled &&
-    has(process.env.RETELL_API_KEY) &&
-    has(process.env.RETELL_AGENT_ID);
+  const voiceConfiguration = {
+    enabled: voiceEnabled,
+    retellApi: has(process.env.RETELL_API_KEY),
+    retellAgent: has(process.env.RETELL_AGENT_ID),
+    usageSecret: has(process.env.ASK_RELO_USAGE_SECRET),
+    supabaseUrl: has(process.env.NEXT_PUBLIC_SUPABASE_URL),
+    serviceRole: has(process.env.SUPABASE_SERVICE_ROLE_KEY),
+  };
+  const voiceConfigured = Object.values(voiceConfiguration).every(Boolean);
   out.askReloVoice = {
     configured: voiceConfigured,
-    ok: voiceConfigured,
+    ok: false,
     detail: voiceConfigured
-      ? 'published browser voice agent configured'
-      : voiceEnabled
-        ? 'voice enabled but Retell configuration is incomplete'
-        : 'voice intentionally disabled',
+      ? 'published browser voice agent and usage limits configured'
+      : `missing ${Object.entries(voiceConfiguration)
+          .filter(([, configured]) => !configured)
+          .map(([name]) => name)
+          .join(', ')}`,
   };
+
+  if (voiceConfigured) {
+    try {
+      const response = await fetch(
+        `https://api.retellai.com/get-agent/${encodeURIComponent(process.env.RETELL_AGENT_ID!)}`,
+        {
+          headers: { Authorization: `Bearer ${process.env.RETELL_API_KEY}` },
+          cache: 'no-store',
+          signal: AbortSignal.timeout(7_000),
+        },
+      );
+      out.askReloVoice.ok = response.ok;
+      out.askReloVoice.detail = response.ok
+        ? 'published browser voice agent reachable with usage limits configured'
+        : 'Retell agent could not be reached';
+    } catch {
+      out.askReloVoice.detail = 'Retell agent reachability check failed';
+    }
+  }
 
   const intakeConfiguration = {
     supabaseUrl: has(process.env.NEXT_PUBLIC_SUPABASE_URL),
