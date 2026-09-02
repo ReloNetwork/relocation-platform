@@ -20,6 +20,9 @@ import {
   MicOff,
   Volume2,
   VolumeX,
+  Mail,
+  CalendarDays,
+  ClipboardList,
 } from 'lucide-react';
 import { useRetellClient } from '@/hooks/useRetellClient';
 import { trackCommercialEvent } from '@/lib/commercial-analytics';
@@ -51,6 +54,14 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
     const [sessionId, setSessionId] = useState<string>('');
     const [remainingQuestions, setRemainingQuestions] = useState(3);
     const [limitReached, setLimitReached] = useState(false);
+    const [showSummaryForm, setShowSummaryForm] = useState(false);
+    const [summaryEmail, setSummaryEmail] = useState('');
+    const [summaryConsent, setSummaryConsent] = useState(false);
+    const [summaryStatus, setSummaryStatus] = useState<
+      'idle' | 'sending' | 'sent' | 'failed'
+    >('idle');
+    const calPath = process.env.NEXT_PUBLIC_CAL_COM_EMBED_ID || '';
+    const calUrl = calPath ? `https://cal.com/${calPath.replace(/^\/+/, '')}` : '';
     const voiceEnabled =
       process.env.NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED === '1';
 
@@ -116,7 +127,7 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
       if ((isOpen || variant === 'embedded') && messages.length === 0) {
         const welcomeMessage: ChatMessage = {
           role: 'assistant',
-          content: `Hello. I'm Relo, your London relocation guide.
+          content: `Hello. I'm Relo, an AI London relocation guide.
 
 I can help you compare neighbourhoods, frame housing and school decisions, and plan the practical sequence of your move.
 
@@ -379,7 +390,7 @@ What would you like to understand about relocating to London?`,
         const errorMessage: ChatMessage = {
           role: 'assistant',
           content:
-            "I apologize, but I'm experiencing technical difficulties. Please try again in a moment, or contact our support team for immediate assistance.",
+            "Sorry, Ask Relo is temporarily unavailable. Please try again in a moment or start your move for help from our team.",
           timestamp: new Date().toISOString(),
         };
         setMessages((prev) => [...prev, errorMessage]);
@@ -394,6 +405,175 @@ What would you like to understand about relocating to London?`,
         sendMessage();
       }
     };
+
+    const usefulConversation = messages.filter(
+      (message) => message.role === 'user' || message.role === 'assistant'
+    );
+    const hasUsefulAnswer =
+      usefulConversation.some((message) => message.role === 'user') &&
+      usefulConversation.filter((message) => message.role === 'assistant').length > 1;
+
+    const prepareStartYourMove = () => {
+      const notes = usefulConversation
+        .filter((message, index) => !(index === 0 && message.role === 'assistant'))
+        .slice(-6)
+        .map((message) =>
+          `${message.role === 'user' ? 'Client' : 'Ask Relo'}: ${message.content}`
+        )
+        .join('\n\n')
+        .slice(0, 2600);
+
+      sessionStorage.setItem(
+        'ask_relo_transfer_data',
+        JSON.stringify({
+          otherRequirements: notes
+            ? `Notes transferred at your request from Ask Relo:\n\n${notes}`
+            : 'I spoke with Ask Relo Voice and would like a person to review my move.',
+        })
+      );
+      trackCommercialEvent('ask_relo_move_handoff_started', 'ask_relo');
+      window.location.assign('/executive-intake?source=ask-relo');
+    };
+
+    const sendSummary = async () => {
+      if (!summaryEmail.trim() || !summaryConsent || !sessionId) return;
+      setSummaryStatus('sending');
+
+      try {
+        const response = await fetch('/api/ask-relo/summary', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId,
+            email: summaryEmail.trim(),
+            consent: true,
+            messages: usefulConversation.slice(-12).map(({ role, content }) => ({
+              role,
+              content,
+            })),
+          }),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.success) throw new Error(data.error);
+        trackCommercialEvent('ask_relo_summary_requested', 'ask_relo');
+        setSummaryStatus('sent');
+      } catch (error) {
+        console.error('Ask Relo summary request failed', error);
+        setSummaryStatus('failed');
+      }
+    };
+
+    const followUpActions = hasUsefulAnswer ? (
+      <div className="mt-4 border-t border-[#E5E7EB] pt-4">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#6B7280]">
+          Keep moving
+        </p>
+        <div className="grid gap-2 sm:grid-cols-2">
+          <button
+            type="button"
+            onClick={() => setShowSummaryForm((current) => !current)}
+            className="flex items-center justify-center gap-2 border border-[#C9A24A] px-3 py-2 text-xs font-semibold text-[#0B1B2B] transition-colors hover:bg-[#F7F4ED]"
+          >
+            <Mail className="h-4 w-4" /> Email my notes
+          </button>
+          <button
+            type="button"
+            onClick={prepareStartYourMove}
+            className="flex items-center justify-center gap-2 bg-[#0B1B2B] px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#183553]"
+          >
+            <ClipboardList className="h-4 w-4" /> Start Your Move
+          </button>
+          {calUrl && (
+            <a
+              href={calUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() =>
+                trackCommercialEvent('move_review_opened', 'relocation', {
+                  source: 'ask_relo',
+                })
+              }
+              className="flex items-center justify-center gap-2 border border-[#D8D1C4] px-3 py-2 text-xs font-semibold text-[#0B1B2B] transition-colors hover:bg-[#F7F4ED] sm:col-span-2"
+            >
+              <CalendarDays className="h-4 w-4" /> Book a 20-minute Move Review
+            </a>
+          )}
+        </div>
+        {showSummaryForm && summaryStatus !== 'sent' && (
+          <div className="mt-3 bg-[#F7F4ED] p-3">
+            <label className="block text-xs font-semibold text-[#0B1B2B]">
+              Email address
+              <input
+                type="email"
+                value={summaryEmail}
+                onChange={(event) => setSummaryEmail(event.target.value)}
+                className="mt-2 w-full border border-[#D8D1C4] bg-white px-3 py-2 font-normal outline-none focus:border-[#C9A24A]"
+                autoComplete="email"
+              />
+            </label>
+            <label className="mt-3 flex items-start gap-2 text-xs leading-5 text-[#4B5563]">
+              <input
+                type="checkbox"
+                checked={summaryConsent}
+                onChange={(event) => setSummaryConsent(event.target.checked)}
+                className="mt-1"
+              />
+              Send this conversation to this address as a one-off email. This does
+              not subscribe me to marketing.
+            </label>
+            <button
+              type="button"
+              onClick={sendSummary}
+              disabled={
+                summaryStatus === 'sending' ||
+                !summaryEmail.trim() ||
+                !summaryConsent
+              }
+              className="mt-3 w-full bg-[#C9A24A] px-3 py-2 text-xs font-semibold text-[#081627] disabled:opacity-50"
+            >
+              {summaryStatus === 'sending' ? 'Sending…' : 'Send my notes'}
+            </button>
+            {summaryStatus === 'failed' && (
+              <p className="mt-2 text-xs text-red-700">
+                We could not send your notes just now. Please try again.
+              </p>
+            )}
+          </div>
+        )}
+        {summaryStatus === 'sent' && (
+          <p className="mt-3 bg-[#E8F1EA] px-3 py-2 text-xs text-[#285C35]">
+            Your Ask Relo notes are on their way.
+          </p>
+        )}
+      </div>
+    ) : null;
+
+    const voiceFollowUpActions = (
+      <div className="grid gap-2 pt-2">
+        <button
+          type="button"
+          onClick={prepareStartYourMove}
+          className="flex items-center justify-center gap-2 bg-[#0B1B2B] px-4 py-3 text-sm font-semibold text-white"
+        >
+          <ClipboardList className="h-4 w-4" /> Start Your Move
+        </button>
+        {calUrl && (
+          <a
+            href={calUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() =>
+              trackCommercialEvent('move_review_opened', 'relocation', {
+                source: 'ask_relo_voice',
+              })
+            }
+            className="flex items-center justify-center gap-2 border border-[#C9A24A] px-4 py-3 text-sm font-semibold text-[#0B1B2B]"
+          >
+            <CalendarDays className="h-4 w-4" /> Book a Move Review
+          </a>
+        )}
+      </div>
+    );
 
     const formatMessage = (content: string) => {
       return content
@@ -701,10 +881,11 @@ What would you like to understand about relocating to London?`,
                                   Call Ended
                                 </h3>
                                 <p className="text-[#6B7280] text-sm">
-                                  Thank you for speaking with Relo! We'll follow
-                                  up with the information discussed.
+                                  Thank you for speaking with Relo. Choose the
+                                  next step that is useful to you.
                                 </p>
                               </div>
+                              {voiceFollowUpActions}
                             </div>
                           )}
                         </div>
@@ -747,6 +928,7 @@ What would you like to understand about relocating to London?`,
                           Share my private relocation brief
                         </a>
                       )}
+                      {followUpActions}
                     </div>
                   )}
                 </>
@@ -917,6 +1099,7 @@ What would you like to understand about relocating to London?`,
                     Share my private relocation brief
                   </a>
                 )}
+                {followUpActions}
               </div>
             </>
           ) : (
@@ -1010,10 +1193,11 @@ What would you like to understand about relocating to London?`,
                       Call Ended
                     </h3>
                     <p className="text-[#6B7280] text-sm">
-                      Thank you for speaking with Relo! We'll follow up with the
-                      information discussed.
-                    </p>
-                  </div>
+                        Thank you for speaking with Relo. Choose the next step
+                        that is useful to you.
+                      </p>
+                    </div>
+                    {voiceFollowUpActions}
                   <button
                     onClick={() => setCallStatus('idle')}
                     className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-4 py-2 rounded-lg text-sm"

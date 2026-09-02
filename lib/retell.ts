@@ -10,7 +10,7 @@ export interface WebVoiceCall {
   callId: string
 }
 
-export async function createWebVoiceCall(): Promise<WebVoiceCall> {
+export async function createWebVoiceCall(sessionId?: string): Promise<WebVoiceCall> {
   const apiKey = process.env.RETELL_API_KEY
   const agentId = process.env.RETELL_AGENT_ID
 
@@ -26,7 +26,10 @@ export async function createWebVoiceCall(): Promise<WebVoiceCall> {
     },
     body: JSON.stringify({
       agent_id: agentId,
-      metadata: { source: 'ask_relo_web' },
+      metadata: {
+        source: 'ask_relo_web',
+        ...(sessionId ? { session_id: sessionId } : {}),
+      },
     }),
     cache: 'no-store',
     signal: AbortSignal.timeout(10_000),

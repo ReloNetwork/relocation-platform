@@ -8,6 +8,7 @@ const expectedMigrations = [
   '20260821000200_executive_intake_leads.sql',
   '20260826000100_partner_sales_leads.sql',
   '20260826000200_commercial_events.sql',
+  '20260902000100_ask_relo_followups.sql',
 ]
 
 describe('production migration contract', () => {
@@ -15,7 +16,7 @@ describe('production migration contract', () => {
     .filter((file) => file.endsWith('.sql'))
     .sort()
 
-  it('contains only the four redesigned launch migrations', () => {
+  it('contains only the active redesigned migrations', () => {
     expect(migrationFiles).toEqual(expectedMigrations)
   })
 

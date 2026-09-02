@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  askReloSummaryEmail,
   executiveConfirmationEmail,
   executiveNotificationEmail,
   partnerConfirmationEmail,
@@ -56,6 +57,23 @@ const application: PartnerApplication = {
 };
 
 describe('transactional email templates', () => {
+  it('renders a consented Ask Relo recap without turning it into marketing', () => {
+    const html = askReloSummaryEmail({
+      conversation: [
+        { role: 'user', content: 'Compare Greenwich and <Southwark>' },
+        { role: 'assistant', content: 'Start with the weekday journey.' },
+      ],
+      referenceId: 'AR-TEST1234',
+      startMoveUrl: 'https://preview.example.com/executive-intake',
+      journalUrl: 'https://preview.example.com/journal',
+    });
+
+    expect(html).toContain('KEEP THE THREAD.');
+    expect(html).toContain('Greenwich and &lt;Southwark&gt;');
+    expect(html).toContain('Start Your Move');
+    expect(html).toContain('does not subscribe you to marketing');
+  });
+
   it('uses the lighter homepage palette for the shared email shell', () => {
     const html = partnerConfirmationEmail({
       application,

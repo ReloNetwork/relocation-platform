@@ -166,6 +166,8 @@ export async function GET() {
         'ask_relo_usage',
         'partner_sales_leads',
         'commercial_events',
+        'ask_relo_followups',
+        'retell_call_events',
       ] as const;
       const tableResults = await Promise.all(requiredTables.map(async (table) => {
         const { error } = await service.from(table).select('id', { head: true, count: 'exact' }).limit(1);
@@ -177,11 +179,15 @@ export async function GET() {
 
       out.databaseSchema.ok = missingTables.length === 0;
       out.databaseSchema.detail = missingTables.length === 0
-        ? 'all four launch tables reachable'
+        ? 'all six launch tables reachable'
         : `unavailable ${missingTables.join(', ')}`;
 
       out.executiveIntake.ok = intakeConfigured && !missingTables.includes('executive_intake_leads');
-      out.askRelo.ok = askReloConfigured && !missingTables.includes('ask_relo_usage');
+      out.askRelo.ok = askReloConfigured &&
+        !missingTables.includes('ask_relo_usage') &&
+        !missingTables.includes('ask_relo_followups');
+      out.askReloVoice.ok = out.askReloVoice.ok &&
+        !missingTables.includes('retell_call_events');
       out.partnerSales.ok = partnerSalesConfigured && !missingTables.includes('partner_sales_leads');
       out.commercialAnalytics.ok = commercialAnalyticsConfigured && !missingTables.includes('commercial_events');
     } catch (error: any) {

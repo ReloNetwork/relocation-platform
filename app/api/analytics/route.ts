@@ -11,6 +11,7 @@ const metadataSchema = z.object({
   urgency: z.string().trim().max(40).optional(),
   budget: z.string().trim().max(40).optional(),
   interest: z.string().trim().max(40).optional(),
+  source: z.string().trim().max(40).optional(),
 }).strict().default({})
 const eventSchema = z.object({
   event: z.enum(commercialEventNames),

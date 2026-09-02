@@ -106,7 +106,7 @@ describe('Ask Relo voice boundary', () => {
       ),
     )
 
-    await expect(createWebVoiceCall()).resolves.toEqual({
+    await expect(createWebVoiceCall(sessionId)).resolves.toEqual({
       accessToken: 'short-lived-token',
       callId: 'call-test',
     })
@@ -119,7 +119,7 @@ describe('Ask Relo voice boundary', () => {
     )
     expect(JSON.parse(fetcher.mock.calls[0][1]?.body as string)).toEqual({
       agent_id: 'agent-test',
-      metadata: { source: 'ask_relo_web' },
+      metadata: { source: 'ask_relo_web', session_id: sessionId },
     })
   })
 

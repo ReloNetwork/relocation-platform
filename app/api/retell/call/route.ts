@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const webCall = await createWebVoiceCall()
+    const webCall = await createWebVoiceCall(parsed.data.sessionId)
     return NextResponse.json({
       success: true,
       accessToken: webCall.accessToken,

@@ -1,4 +1,5 @@
 import type { ExecutiveIntake } from '@/lib/executive-intake';
+import type { AskReloMessage } from '@/lib/ask-relo';
 import {
   PARTNER_MEDIA_PACK_VERSION,
   type PartnerApplication,
@@ -277,6 +278,41 @@ export function executiveConfirmationEmail(options: {
     body,
     footerNote:
       'You received this email because a relocation brief was submitted using this address.',
+  });
+}
+
+export function askReloSummaryEmail(options: {
+  conversation: AskReloMessage[];
+  referenceId: string;
+  startMoveUrl: string;
+  journalUrl: string;
+}) {
+  const { conversation, referenceId, startMoveUrl, journalUrl } = options;
+  const exchanges = conversation
+    .map(({ role, content }) => {
+      const label = role === 'user' ? 'You asked' : 'Relo replied';
+      return `<div style="margin:0 0 18px;padding:18px 20px;background:${role === 'user' ? '#f7f4ed' : '#dceaf6'};border-left:3px solid ${role === 'user' ? '#d7cdbc' : '#be8431'};">
+        <p style="margin:0 0 7px;color:#746f66;font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">${label}</p>
+        <p style="margin:0;color:#303944;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;">${formatText(content)}</p>
+      </div>`;
+    })
+    .join('');
+
+  const body = `<p style="margin:0 0 18px;color:#142e50;font-family:Georgia,'Times New Roman',serif;font-size:25px;line-height:1.35;">Your London move, made easier to revisit.</p>
+    <p style="margin:0 0 24px;">Here are the notes you asked Relo to send. They are general guidance rather than legal, tax, immigration, school, financial or property advice.</p>
+    ${exchanges}
+    ${callout('A sensible next step', 'If your dates, household needs and priorities are taking shape, share the private Start Your Move brief for human review.')}
+    ${button('Start Your Move', startMoveUrl)}
+    <p style="margin:24px 0 0;font-size:13px;"><a href="${escapeEmailHtml(journalUrl)}" style="color:#9b6823;">Read practical London guidance in the Journal →</a></p>`;
+
+  return layout({
+    preheader: 'The notes from your Ask Relo conversation',
+    eyebrow: 'Ask Relo / Your notes',
+    title: 'KEEP THE THREAD.',
+    referenceId,
+    body,
+    footerNote:
+      'You received this one-off email because you asked Relo to send these notes. It does not subscribe you to marketing.',
   });
 }
 

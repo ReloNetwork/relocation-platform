@@ -36,6 +36,7 @@ Stripe checkout and Ask Relo voice can remain disabled for the first release. Th
 - [ ] Apply `20260821000200_executive_intake_leads.sql`.
 - [ ] Apply `20260826000100_partner_sales_leads.sql`.
 - [ ] Apply `20260826000200_commercial_events.sql`.
+- [ ] Apply `20260902000100_ask_relo_followups.sql`.
 - [ ] Generate authoritative Supabase types from the production project.
 - [ ] Verify row-level security and service-role access.
 - [ ] Confirm backups and a tested recovery route.
@@ -53,6 +54,7 @@ Stripe checkout and Ask Relo voice can remain disabled for the first release. Th
 - [ ] Add `NEXT_PUBLIC_CAL_COM_EMBED_ID` and confirm the public booking page.
 - [ ] Add `NEXT_PUBLIC_SITE_URL` using the final canonical domain.
 - [ ] Add `RETELL_API_KEY` and the published `RETELL_AGENT_ID` as server-side values.
+- [ ] Add `RETELL_WEBHOOK_KEY` if Retell provides a separate webhook-badged key.
 - [ ] Set `NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED=1` after the controlled voice test passes.
 - [ ] Confirm the Retell knowledge base, scope boundaries, AI disclosure, five-minute call limit and privacy settings.
 - [ ] Add and verify the internal and cron secrets used by protected routes.
@@ -99,6 +101,8 @@ Stripe checkout and Ask Relo voice can remain disabled for the first release. Th
 - [ ] Confirm questions are not stored in Supabase and OpenAI requests use `store: false`.
 - [ ] Confirm usage limiting works without storing a raw IP address.
 - [ ] Test the human handoff to the relocation brief.
+- [ ] Request a one-off Ask Relo email summary and confirm it arrives once.
+- [ ] Configure the signed Retell webhook and confirm events are stored without transcripts or audio.
 - [ ] Keep voice hidden until the agent, recording notice, consent, transcripts and escalation path are separately approved.
 
 ## 7. Partner revenue journey

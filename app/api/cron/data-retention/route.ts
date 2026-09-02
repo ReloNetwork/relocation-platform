@@ -15,6 +15,8 @@ export async function GET(request: Request) {
   const results = await Promise.all([
     supabase.from('commercial_events').delete().lt('created_at', analyticsCutoff),
     supabase.from('ask_relo_usage').delete().lt('created_at', askReloCutoff),
+    supabase.from('ask_relo_followups').delete().lt('created_at', askReloCutoff),
+    supabase.from('retell_call_events').delete().lt('created_at', askReloCutoff),
     supabase.from('partner_sales_leads').delete().in('status', ['nurture', 'declined']).lt('updated_at', prospectCutoff),
     supabase.from('executive_intake_leads').delete().in('status', ['nurture', 'closed']).lt('updated_at', prospectCutoff),
   ])

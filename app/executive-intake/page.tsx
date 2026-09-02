@@ -83,6 +83,20 @@ export default function ExecutiveIntakePage() {
         console.error('Error loading transfer data:', error)
       }
     }
+
+    const askReloData = sessionStorage.getItem('ask_relo_transfer_data')
+    if (askReloData) {
+      try {
+        const data = JSON.parse(askReloData)
+        setFormData(prev => ({
+          ...prev,
+          otherRequirements: data.otherRequirements || prev.otherRequirements,
+        }))
+        sessionStorage.removeItem('ask_relo_transfer_data')
+      } catch (error) {
+        console.error('Error loading Ask Relo handoff:', error)
+      }
+    }
   }, [])
 
   const handleAreaToggle = (area: string) => {
