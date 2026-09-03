@@ -73,6 +73,7 @@ export async function GET() {
     enabled: voiceEnabled,
     retellApi: has(process.env.RETELL_API_KEY),
     retellAgent: has(process.env.RETELL_AGENT_ID),
+    retellWebhookSigning: has(process.env.RETELL_WEBHOOK_KEY),
     usageSecret: has(process.env.ASK_RELO_USAGE_SECRET),
     supabaseUrl: has(process.env.NEXT_PUBLIC_SUPABASE_URL),
     serviceRole: has(process.env.SUPABASE_SERVICE_ROLE_KEY),

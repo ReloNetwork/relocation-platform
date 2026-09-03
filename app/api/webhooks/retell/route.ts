@@ -10,13 +10,18 @@ import {
 export const runtime = 'nodejs'
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RETELL_WEBHOOK_KEY || process.env.RETELL_API_KEY
-  if (!apiKey) {
+  const apiKeys = [process.env.RETELL_WEBHOOK_KEY, process.env.RETELL_API_KEY]
+    .map((key) => key?.trim())
+    .filter((key): key is string => Boolean(key))
+    .filter((key, index, keys) => keys.indexOf(key) === index)
+
+  if (apiKeys.length === 0) {
     return NextResponse.json({ success: false }, { status: 503 })
   }
 
   const rawBody = await request.text()
-  if (!verifyRetellWebhook(rawBody, request.headers.get('x-retell-signature'), apiKey)) {
+  const signature = request.headers.get('x-retell-signature')
+  if (!apiKeys.some((apiKey) => verifyRetellWebhook(rawBody, signature, apiKey))) {
     return NextResponse.json({ success: false }, { status: 401 })
   }
 
