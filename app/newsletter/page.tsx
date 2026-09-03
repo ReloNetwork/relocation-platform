@@ -30,8 +30,9 @@ export default function NewsletterPage({
             <span className="brief-eyebrow">THE LONDON BRIEF</span>
             <h1>LONDON, MADE CLEARER.</h1>
             <p>
-              Neighbourhood guides, moving advice and useful London ideas for
-              people making the city home.
+              Make better London decisions, sooner. Get trusted neighbourhood
+              guides, practical moving advice and places worth knowing,
+              thoughtfully chosen for people making the city home.
             </p>
           </div>
           <BriefSignup

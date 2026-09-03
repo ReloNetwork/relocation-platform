@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'The London Brief',
-  description: 'Neighbourhood intelligence, relocation guidance and selected expertise for people making London home.',
+  description: 'Trusted neighbourhood guides, practical moving advice and places worth knowing for people making London home.',
   keywords: [
     'executive relocation newsletter London',
     'London relocation newsletter',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   ].join(', '),
   openGraph: {
     title: 'The London Brief | The Relo Network',
-    description: 'Neighbourhood intelligence and relocation guidance for people making London home.',
+    description: 'Trusted neighbourhood guides, practical moving advice and places worth knowing for people making London home.',
     type: 'website',
     url: 'https://www.therelonetwork.com/newsletter',
     siteName: 'The Relo Network',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'The London Brief | The Relo Network',
-    description: 'Neighbourhood intelligence and relocation guidance for people making London home.',
+    description: 'Trusted neighbourhood guides, practical moving advice and places worth knowing for people making London home.',
     images: ['/images/editorial/london-street-hero.webp']
   },
   alternates: {

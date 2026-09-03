@@ -32,7 +32,7 @@ export default function BriefSignup({ enabled }: { enabled: boolean }) {
       trackCommercialEvent('newsletter_submitted', 'newsletter')
       setStatus({
         state: 'success',
-        message: 'You’re on the list. Look out for The London Brief.',
+        message: 'You’re in. The next London Brief will arrive in your inbox.',
       })
     } catch (error) {
       setStatus({
@@ -59,7 +59,9 @@ export default function BriefSignup({ enabled }: { enabled: boolean }) {
 
   return (
     <form onSubmit={subscribe} className="brief-signup">
-      <label htmlFor="brief-email">Useful London advice and ideas, sent by email.</label>
+      <label htmlFor="brief-email">
+        The London email you will actually look forward to.
+      </label>
       <div>
         <input
           id="brief-email"
@@ -71,14 +73,14 @@ export default function BriefSignup({ enabled }: { enabled: boolean }) {
           required
         />
         <button type="submit" disabled={status.state === 'submitting'}>
-          {status.state === 'submitting' ? 'JOINING' : 'SUBSCRIBE'}
+          {status.state === 'submitting' ? 'JOINING' : 'JOIN THE BRIEF'}
         </button>
       </div>
       <p
         className={`brief-signup__status is-${status.state}`}
         aria-live="polite"
       >
-        {status.message || 'Free to join. Unsubscribe at any time.'}
+        {status.message || 'Thoughtfully chosen. Delivered directly to your inbox.'}
       </p>
     </form>
   )
