@@ -39,7 +39,10 @@ export async function POST(request: Request) {
 
   const { event, call } = parsed.data
   if (process.env.RETELL_AGENT_ID && call.agent_id !== process.env.RETELL_AGENT_ID) {
-    return NextResponse.json({ success: false }, { status: 403 })
+    // Retell's dashboard test may omit or substitute the agent ID. Once the
+    // request signature is valid, acknowledge unrelated events without storing
+    // them so Retell does not retry and no other agent data enters this pipeline.
+    return new NextResponse(null, { status: 204 })
   }
 
   const rawSessionId = call.metadata?.session_id
