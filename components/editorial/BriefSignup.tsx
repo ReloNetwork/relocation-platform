@@ -29,6 +29,7 @@ export default function BriefSignup({ enabled }: { enabled: boolean }) {
       }
 
       setEmail('')
+      window.localStorage.setItem('relo_london_brief_subscribed', 'true')
       trackCommercialEvent('newsletter_submitted', 'newsletter')
       setStatus({
         state: 'success',

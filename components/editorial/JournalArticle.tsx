@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Layout from '@/components/Layout';
+import ArticleSubscriptionPrompt from '@/components/editorial/ArticleSubscriptionPrompt';
 import { editorialArticles } from '@/lib/editorial-articles';
 import { absoluteUrl } from '@/lib/site-url';
 
@@ -126,6 +127,12 @@ export default function JournalArticle({ slug }: { slug: string }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <ArticleSubscriptionPrompt
+        slug={article.slug}
+        enabled={Boolean(
+          process.env.BEEHIIV_API_KEY && process.env.BEEHIIV_PUBLICATION_ID
+        )}
       />
     </Layout>
   );
