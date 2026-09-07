@@ -28,7 +28,7 @@ export default function NewsletterPage({
           <span className="vertical-label">JOURNAL</span>
           <div>
             <span className="brief-eyebrow">THE LONDON BRIEF</span>
-            <h1>LONDON, MADE CLEARER.</h1>
+            <h1>LONDON, MADE YOURS.</h1>
             <p>
               Make better London decisions, sooner. Get trusted neighbourhood
               guides, practical moving advice and places worth knowing,
