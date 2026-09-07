@@ -4,6 +4,7 @@ import { articleUrl, editorialArticles } from '@/lib/editorial-articles';
 import {
   editorialSubjectLabel,
   isEditorialSubjectId,
+  type EditorialSubjectId,
 } from '@/lib/editorial-subjects';
 export const metadata = { title: 'Journal' };
 
@@ -15,9 +16,18 @@ export default function Page({
   const requestedSubject = Array.isArray(searchParams?.subject)
     ? searchParams?.subject[0]
     : searchParams?.subject;
-  const activeSubject = isEditorialSubjectId(requestedSubject)
+  const availableSubjects = new Set(
+    editorialArticles.map((article) => article.subject)
+  );
+  const activeSubject =
+    isEditorialSubjectId(requestedSubject) &&
+    (requestedSubject === 'all' || availableSubjects.has(requestedSubject))
     ? requestedSubject
     : 'all';
+  const visibleSubjectIds: EditorialSubjectId[] = [
+    'all',
+    ...Array.from(availableSubjects),
+  ];
   const visibleArticles = editorialArticles.filter(
     (article) => activeSubject === 'all' || article.subject === activeSubject
   );
@@ -49,6 +59,7 @@ export default function Page({
         }
         items={items}
         activeSubject={activeSubject}
+        subjectIds={visibleSubjectIds}
         partnership={{
           eyebrow: 'PARTNER WITH THE JOURNAL',
           title: 'HELP US ANSWER A USEFUL QUESTION.',

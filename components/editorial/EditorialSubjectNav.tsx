@@ -7,15 +7,21 @@ import {
 export default function EditorialSubjectNav({
   activeSubject,
   basePath,
+  subjectIds,
 }: {
   activeSubject: EditorialSubjectId;
   basePath: '/journal' | '/newsletter';
+  subjectIds?: readonly EditorialSubjectId[];
 }) {
+  const visibleSubjects = subjectIds
+    ? editorialSubjects.filter((subject) => subjectIds.includes(subject.id))
+    : editorialSubjects;
+
   return (
     <nav className="editorial-subjects" aria-label="Editorial subjects">
       <span>EXPLORE BY SUBJECT</span>
       <div>
-        {editorialSubjects.map((subject) => (
+        {visibleSubjects.map((subject) => (
           <Link
             key={subject.id}
             className={subject.id === activeSubject ? 'is-active' : ''}

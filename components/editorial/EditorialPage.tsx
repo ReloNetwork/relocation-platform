@@ -27,6 +27,7 @@ export default function EditorialPage({
   items,
   partnership,
   activeSubject,
+  subjectIds,
 }: {
   label: string;
   title: string;
@@ -36,6 +37,7 @@ export default function EditorialPage({
   items: Item[];
   partnership?: EditorialPartnership;
   activeSubject?: EditorialSubjectId;
+  subjectIds?: readonly EditorialSubjectId[];
 }) {
   const heroRef = useRef<HTMLElement>(null);
   const [heroProgress, setHeroProgress] = useState(0);
@@ -92,6 +94,7 @@ export default function EditorialPage({
         <EditorialSubjectNav
           activeSubject={activeSubject}
           basePath="/journal"
+          subjectIds={subjectIds}
         />
       ) : null}
       <section className="editorial-grid">
