@@ -593,18 +593,69 @@ What would you like to understand about relocating to London?`,
         <>
           {/* Floating Assistant Button */}
           {!isOpen && (
-            <button
-              onClick={() => setIsOpen(true)}
-              className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-[#C9A24A] to-[#B8923D] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center z-50 animate-pulse"
-            >
-              <MessageCircle className="w-6 h-6" />
-            </button>
+            <aside className="ask-relo-launcher" aria-label="Ask Relo assistant">
+              <button
+                type="button"
+                className="ask-relo-launcher__brand"
+                onClick={() => {
+                  setMode('chat');
+                  setIsOpen(true);
+                }}
+                aria-label="Open Ask Relo text chat"
+              >
+                <strong>ASK RELO</strong>
+                <small>TEXT OR VOICE</small>
+              </button>
+              <input
+                type="text"
+                className="ask-relo-launcher__prompt"
+                value={inputValue}
+                onChange={(event) => setInputValue(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    event.preventDefault();
+                    setMode('chat');
+                    setIsOpen(true);
+                    if (inputValue.trim()) void sendMessage();
+                  }
+                }}
+                placeholder="What would you like to know about London?"
+                aria-label="Ask Relo a question about London"
+              />
+              <button
+                type="button"
+                className="ask-relo-launcher__action"
+                onClick={() => {
+                  setMode('chat');
+                  setIsOpen(true);
+                  if (inputValue.trim()) void sendMessage();
+                }}
+                aria-label="Chat to Relo by text"
+                title="Chat by text"
+              >
+                <MessageCircle aria-hidden="true" />
+              </button>
+              {voiceEnabled && (
+                <button
+                  type="button"
+                  className="ask-relo-launcher__action ask-relo-launcher__action--voice"
+                  onClick={() => {
+                    setMode('voice');
+                    setIsOpen(true);
+                  }}
+                  aria-label="Talk to Relo by voice"
+                  title="Talk by voice"
+                >
+                  <Mic aria-hidden="true" />
+                </button>
+              )}
+            </aside>
           )}
 
           {/* Assistant Window */}
           {isOpen && (
             <div
-              className={`fixed bottom-6 right-6 w-96 bg-white rounded-xl shadow-2xl border border-[#E5E7EB] z-50 flex flex-col ${isMinimized ? 'h-16' : 'h-[600px]'} transition-all duration-300`}
+              className={`fixed bottom-4 right-4 w-[calc(100vw-2rem)] max-w-[400px] bg-white rounded-xl shadow-2xl border border-[#E5E7EB] z-[60] flex flex-col ${isMinimized ? 'h-16' : 'h-[min(650px,calc(100dvh-2rem))]'} transition-all duration-300`}
             >
               {/* Header */}
               <div className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white p-4 rounded-t-xl flex items-center justify-between">
