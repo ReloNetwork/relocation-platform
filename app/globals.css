@@ -1000,13 +1000,29 @@ h3,
   right: 24px;
   bottom: 24px;
   z-index: 60;
-  width: min(720px, calc(100vw - 48px));
-  min-height: 92px;
+  width: min(274px, calc(100vw - 48px));
+  min-height: 64px;
   display: grid;
-  grid-template-columns: 190px minmax(250px, 1fr) 72px 72px;
-  background: var(--paper);
+  grid-template-columns: 170px 52px 52px;
+  background: rgba(255, 253, 248, 0.84);
   border: 1px solid rgba(190, 132, 49, 0.55);
   box-shadow: 0 22px 70px rgba(10, 28, 50, 0.28);
+  backdrop-filter: blur(18px);
+  transition:
+    bottom 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease;
+}
+.ask-relo-launcher:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 75px rgba(10, 28, 50, 0.34);
+}
+.ask-relo-launcher--text-only {
+  width: min(222px, calc(100vw - 48px));
+  grid-template-columns: 170px 52px;
+}
+.ask-relo-launcher.is-footer-visible {
+  bottom: 112px;
 }
 .ask-relo-launcher button {
   border: 0;
@@ -1014,37 +1030,25 @@ h3,
   cursor: pointer;
 }
 .ask-relo-launcher__brand {
-  padding: 19px 24px;
+  padding: 13px 18px;
   background: var(--red);
   color: white;
   text-align: left;
 }
 .ask-relo-launcher__brand strong {
   display: block;
-  font: 30px/1 var(--font-playfair), Georgia, serif;
+  font: 24px/1 var(--font-playfair), Georgia, serif;
   letter-spacing: -0.02em;
 }
 .ask-relo-launcher__brand small {
   display: block;
-  margin-top: 10px;
-  font-size: 8px;
+  margin-top: 7px;
+  font-size: 7px;
   font-weight: 700;
   letter-spacing: 0.2em;
 }
 .ask-relo-launcher__prompt {
-  padding: 20px 26px;
-  background: var(--paper);
-  color: var(--ink);
-  text-align: left;
-  font-size: 16px;
-  border: 0;
-  border-radius: 0;
-  min-width: 0;
-  outline: 0;
-}
-.ask-relo-launcher__prompt::placeholder {
-  color: #4a4a4a;
-  opacity: 1;
+  display: none;
 }
 .ask-relo-launcher__action {
   display: grid;
@@ -1057,8 +1061,8 @@ h3,
   background: var(--navy);
 }
 .ask-relo-launcher__action svg {
-  width: 23px;
-  height: 23px;
+  width: 20px;
+  height: 20px;
 }
 .ask-relo-launcher button:focus-visible {
   outline: 3px solid white;
@@ -1069,6 +1073,17 @@ h3,
   outline-style: solid;
   outline-width: 3px;
   outline-offset: -5px;
+}
+.ask-relo-window {
+  background: rgba(255, 253, 248, 0.94);
+  border-color: rgba(190, 132, 49, 0.5);
+  backdrop-filter: blur(22px) saturate(120%);
+  transition:
+    bottom 250ms ease,
+    height 300ms ease;
+}
+.ask-relo-window.is-footer-visible {
+  bottom: 32px;
 }
 .editorial-hero {
   display: grid;
@@ -2587,22 +2602,26 @@ h3,
   .ask-relo-launcher {
     right: 12px;
     bottom: 12px;
-    width: min(340px, calc(100vw - 24px));
-    min-height: 62px;
-    grid-template-columns: 1fr 62px 62px;
+    width: min(250px, calc(100vw - 24px));
+    min-height: 58px;
+    grid-template-columns: 142px 54px 54px;
   }
   .ask-relo-launcher__brand {
-    padding: 13px 17px;
+    padding: 12px 14px;
   }
   .ask-relo-launcher__brand strong {
-    font-size: 23px;
+    font-size: 21px;
   }
   .ask-relo-launcher__brand small {
     margin-top: 6px;
     font-size: 7px;
   }
-  .ask-relo-launcher__prompt {
-    display: none;
+  .ask-relo-launcher.is-footer-visible {
+    bottom: 84px;
+  }
+  .ask-relo-launcher--text-only {
+    width: min(196px, calc(100vw - 24px));
+    grid-template-columns: 142px 54px;
   }
 }
 @media (max-width: 560px) {
