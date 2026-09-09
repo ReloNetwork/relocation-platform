@@ -57,6 +57,7 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
     const [showSummaryForm, setShowSummaryForm] = useState(false);
     const [summaryEmail, setSummaryEmail] = useState('');
     const [summaryConsent, setSummaryConsent] = useState(false);
+    const [isFooterVisible, setIsFooterVisible] = useState(false);
     const [summaryStatus, setSummaryStatus] = useState<
       'idle' | 'sending' | 'sent' | 'failed'
     >('idle');
@@ -148,6 +149,19 @@ What would you like to understand about relocating to London?`,
     useEffect(() => {
       if (initialQuestion) setInputValue(initialQuestion);
     }, [initialQuestion]);
+
+    useEffect(() => {
+      if (variant !== 'floating') return;
+      const footer = document.querySelector('.editorial-footer');
+      if (!footer) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => setIsFooterVisible(entry.isIntersecting),
+        { threshold: 0.05 }
+      );
+      observer.observe(footer);
+      return () => observer.disconnect();
+    }, [variant]);
 
     // Format call duration
     const formatDuration = (seconds: number) => {
@@ -593,7 +607,10 @@ What would you like to understand about relocating to London?`,
         <>
           {/* Floating Assistant Button */}
           {!isOpen && (
-            <aside className="ask-relo-launcher" aria-label="Ask Relo assistant">
+            <aside
+              className={`ask-relo-launcher ${voiceEnabled ? '' : 'ask-relo-launcher--text-only'} ${isFooterVisible ? 'is-footer-visible' : ''}`}
+              aria-label="Ask Relo assistant"
+            >
               <button
                 type="button"
                 className="ask-relo-launcher__brand"
@@ -655,7 +672,7 @@ What would you like to understand about relocating to London?`,
           {/* Assistant Window */}
           {isOpen && (
             <div
-              className={`fixed bottom-4 right-4 w-[calc(100vw-2rem)] max-w-[400px] bg-white rounded-xl shadow-2xl border border-[#E5E7EB] z-[60] flex flex-col ${isMinimized ? 'h-16' : 'h-[min(650px,calc(100dvh-2rem))]'} transition-all duration-300`}
+              className={`ask-relo-window fixed bottom-4 right-4 w-[calc(100vw-2rem)] max-w-[400px] rounded-xl shadow-2xl border z-[60] flex flex-col ${isFooterVisible ? 'is-footer-visible' : ''} ${isMinimized ? 'h-16' : 'h-[min(650px,calc(100dvh-2rem))]'} transition-all duration-300`}
             >
               {/* Header */}
               <div className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white p-4 rounded-t-xl flex items-center justify-between">
