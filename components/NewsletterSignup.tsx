@@ -177,7 +177,7 @@ export default function NewsletterSignup({
           </form>
           
           <div className="mt-4 text-white/60 text-sm text-center space-y-2">
-            <p>Join 2,500+ professionals • Unsubscribe anytime • Weekly delivery</p>
+            <p>Thoughtful London intelligence • Unsubscribe anytime • Weekly delivery</p>
             <p className="text-white/40">© 2024 Relo Network Ltd. All rights reserved. London, United Kingdom.</p>
           </div>
           
@@ -245,7 +245,7 @@ export default function NewsletterSignup({
           )}
           
           <p className="text-[#6B7280] text-sm mt-3">
-            Join 2,500+ professionals • Unsubscribe anytime • Weekly delivery
+            Thoughtful London intelligence • Unsubscribe anytime • Weekly delivery
           </p>
         </form>
       </div>

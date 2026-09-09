@@ -14,7 +14,7 @@ interface DashboardAccess {
 export function useDashboardAccess(): DashboardAccess {
   const [hasAccess, setHasAccess] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [activeMoveCase, setActiveMoveCase] = useState(null)
+  const [activeMoveCase, setActiveMoveCase] = useState<Record<string, any> | null>(null)
   const [user, setUser] = useState<User | null>(null)
   const supabase = createClient()
 

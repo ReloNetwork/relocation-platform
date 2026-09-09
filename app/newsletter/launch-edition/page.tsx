@@ -234,7 +234,7 @@ export default function LaunchEditionNewsletter() {
                     
                     <div className="prose prose-lg max-w-none">
                       <p className="text-[#6B7280] leading-relaxed mb-6 text-lg">
-                        Offering something beyond prestige, their non-domicile structuring expertise can deliver substantial tax optimization for relocating professionals. For those with significant assets, proper banking setup isn't just convenient—it's financially essential.
+                        Offering something beyond prestige, their non-domicile structuring expertise can deliver substantial tax optimization for relocating professionals. For those with significant assets, proper banking setup isn't just convenient - it's financially essential.
                       </p>
                       
                       <p className="text-[#6B7280] leading-relaxed text-lg">

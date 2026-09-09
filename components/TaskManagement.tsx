@@ -360,7 +360,7 @@ export function CreateTaskModal({ isOpen, onClose, onCreate, newTask, setNewTask
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onCreate()
+    onCreate(newTask)
   }
 
   return (

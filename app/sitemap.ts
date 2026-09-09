@@ -1,56 +1,35 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
+import { articleUrl, editorialArticles } from '@/lib/editorial-articles';
+import { SITE_URL } from '@/lib/site-url';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://askrelo.com'
-  
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/guides/london-relocation-cost-guide`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/partners`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/case`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/ask-relo`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/newsletter`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/corporate`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/concierge`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    }
-  ]
+  const coreRoutes = [
+    '',
+    '/move',
+    '/live',
+    '/discover',
+    '/network',
+    '/journal',
+    '/about',
+    '/ask-relo',
+    '/london-landing-list',
+    '/executive-intake',
+    '/newsletter',
+    '/partner-application',
+    '/contact',
+  ].map((path, index) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: new Date(),
+    changeFrequency: index === 0 ? ('daily' as const) : ('weekly' as const),
+    priority: index === 0 ? 1 : path === '/london-landing-list' ? 0.9 : 0.8,
+  }));
+
+  const articleRoutes = editorialArticles.map((article) => ({
+    url: `${SITE_URL}${articleUrl(article.slug)}`,
+    lastModified: new Date(article.publishedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...coreRoutes, ...articleRoutes];
 }

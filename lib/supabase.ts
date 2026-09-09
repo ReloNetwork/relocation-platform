@@ -1,6 +1,6 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { createClientComponentClient, createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import { createServiceClient } from '@/lib/supabase/service';
 
 export type Database = {
   public: {
@@ -302,30 +302,27 @@ export type Database = {
 };
 
 // Client-side Supabase client  
-export function createClientSupabase(): SupabaseClient<Database> {
+export function createClientSupabase() {
   return createClientComponentClient<Database>();
 }
 
 // Server-side Supabase client
 export function createServerSupabase() {
   const cookieStore = cookies();
-  return createServerComponentClient<Database>({ cookies: () => cookieStore });
+  // Several authenticated routes still use legacy tables and relationships that
+  // are not represented by the handwritten Database type above. Avoid applying
+  // that incomplete type to the shared server client until generated production
+  // types replace it.
+  return createServerComponentClient({ cookies: () => cookieStore });
 }
 
 // Re-export the new SSR clients for consistency
 export { createClient as createBrowserClient } from '@/lib/supabase/client';
 export { createClient as createServerClient } from '@/lib/supabase/server';
 
-// Service role client for admin operations
-export function createServiceSupabase(): SupabaseClient<Database> {
-  return createClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    }
-  );
+// Service-role routes currently span several legacy schemas that are not
+// represented by the stale handwritten Database type above. Keep this client
+// untyped until the type is regenerated from the live Supabase project.
+export function createServiceSupabase() {
+  return createServiceClient();
 }

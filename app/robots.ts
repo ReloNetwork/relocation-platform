@@ -1,44 +1,40 @@
-import { MetadataRoute } from 'next'
-
+import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site-url';
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://askrelo.com'
-  
+  const privateRoutes = [
+    '/api/',
+    '/account/',
+    '/admin/',
+    '/auth/',
+    '/case/',
+    '/checkout/',
+    '/client/',
+    '/dashboard/',
+    '/login',
+    '/onboarding/',
+    '/partner-dashboard/',
+    '/supplier/',
+  ];
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: [
-          '/api/',
-          '/_next/',
-          '/admin/',
-          '/private/',
-          '*.pdf',
-          '/temp/'
+        disallow: privateRoutes,
+      },
+      {
+        userAgent: [
+          'OAI-SearchBot',
+          'ChatGPT-User',
+          'PerplexityBot',
+          'ClaudeBot',
+          'GoogleOther',
         ],
-      },
-      {
-        userAgent: 'ChatGPT-User',
         allow: '/',
-        crawlDelay: 1,
+        disallow: privateRoutes,
       },
-      {
-        userAgent: 'PerplexityBot', 
-        allow: '/',
-        crawlDelay: 1,
-      },
-      {
-        userAgent: 'ClaudeBot',
-        allow: '/',
-        crawlDelay: 1,
-      },
-      {
-        userAgent: 'GoogleOther',
-        allow: '/',
-        crawlDelay: 2,
-      }
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
-  }
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
+  };
 }

@@ -277,7 +277,8 @@ export default function ConciergePage() {
       }
     } catch (error) {
       console.error('Checkout error:', error)
-      alert(`Sorry, there was an error processing your request: ${error.message}. Please try again or contact support.`)
+      const message = error instanceof Error ? error.message : 'Unknown error'
+      alert(`Sorry, there was an error processing your request: ${message}. Please try again or contact support.`)
     } finally {
       setLoading(false)
     }

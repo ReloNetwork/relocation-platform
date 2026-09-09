@@ -15,7 +15,7 @@ interface ExecutiveIntakeNudgeProps {
 export default function ExecutiveIntakeNudge({ 
   trigger, 
   nudgeText, 
-  ctaText = "Start Executive Intake — £1,500",
+  ctaText = "Start Executive Intake - £1,500",
   showCredit = false,
   creditAmount = 0
 }: ExecutiveIntakeNudgeProps) {

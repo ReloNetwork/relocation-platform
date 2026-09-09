@@ -1,4 +1,6 @@
 # RELO NETWORK MEDIA PACK 2025
+
+> **ARCHIVED — DO NOT SEND.** This draft contains unverified legacy claims and pricing. Use `/partner-application/media-pack` and the current sales pipeline instead.
 ## PARTNER WITH LONDON'S PREMIUM RELOCATION PLATFORM
 
 ---

@@ -3,10 +3,10 @@
  * Premium schema markup for maximum SEO and AI discoverability
  */
 
-import { Thing, WithContext, Organization, LocalBusiness, WebSite, BreadcrumbList, Service, Offer, Review, AggregateRating } from 'schema-dts'
+import type { Schema } from './types'
 
 // Base organization schema with luxury positioning
-export const organizationSchema: WithContext<Organization> = {
+export const organizationSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': 'https://relocation-platform.vercel.app/#organization',
@@ -49,7 +49,7 @@ export const organizationSchema: WithContext<Organization> = {
 }
 
 // Local business schema for London market dominance
-export const localBusinessSchema: WithContext<LocalBusiness> = {
+export const localBusinessSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': 'https://relocation-platform.vercel.app/#localbusiness',
@@ -98,7 +98,7 @@ export const localBusinessSchema: WithContext<LocalBusiness> = {
 }
 
 // Website schema with sitelinks search box
-export const websiteSchema: WithContext<WebSite> = {
+export const websiteSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': 'https://relocation-platform.vercel.app/#website',
@@ -120,7 +120,7 @@ export const websiteSchema: WithContext<WebSite> = {
 }
 
 // Service schemas for different offerings
-export const relocationServiceSchema: WithContext<Service> = {
+export const relocationServiceSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': 'https://relocation-platform.vercel.app/#relocation-service',
@@ -187,7 +187,7 @@ export const relocationServiceSchema: WithContext<Service> = {
 }
 
 // Partner network service schema
-export const partnerNetworkSchema: WithContext<Service> = {
+export const partnerNetworkSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': 'https://relocation-platform.vercel.app/#partner-network',
@@ -218,7 +218,7 @@ export const partnerNetworkSchema: WithContext<Service> = {
 }
 
 // Breadcrumb schema generator
-export const generateBreadcrumbSchema = (items: Array<{name: string, url: string}>): WithContext<BreadcrumbList> => ({
+export const generateBreadcrumbSchema = (items: Array<{name: string, url: string}>): Schema => ({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: items.map((item, index) => ({
@@ -230,7 +230,7 @@ export const generateBreadcrumbSchema = (items: Array<{name: string, url: string
 })
 
 // FAQ schema for common relocation questions
-export const faqSchema: WithContext<any> = {
+export const faqSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
@@ -275,7 +275,7 @@ export const generateReviewSchema = (reviews: Array<{
   rating: number
   text: string
   date: string
-}>): WithContext<any> => ({
+}>): Schema => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'Relo Network Relocation Services',
@@ -304,7 +304,7 @@ export const generateReviewSchema = (reviews: Array<{
 })
 
 // How-to schema for relocation process
-export const howToRelocateSchema: WithContext<any> = {
+export const howToRelocateSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
   name: 'How to Relocate to London with Relo Network',
@@ -347,7 +347,7 @@ export const howToRelocateSchema: WithContext<any> = {
 export type SchemaType = 'organization' | 'localBusiness' | 'website' | 'service' | 'breadcrumb' | 'faq' | 'review' | 'howTo'
 
 // Schema utility functions
-export const getSchemaForPage = (page: string): WithContext<Thing>[] => {
+export const getSchemaForPage = (page: string): Schema[] => {
   const baseSchemas = [organizationSchema, websiteSchema, localBusinessSchema]
   
   switch (page) {

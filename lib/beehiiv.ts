@@ -1,105 +1,152 @@
-// Beehiiv integration utility
+import 'server-only';
+
+export type BeehiivCustomFieldValue = string | number | boolean;
 
 export interface BeehiivSubscriber {
-  email: string
-  name?: string
-  source?: string
-  utmSource?: string
-  utmMedium?: string
-  utmCampaign?: string
-  customFields?: Record<string, any>
+  email: string;
+  name?: string;
+  source?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmTerm?: string;
+  utmContent?: string;
+  referringSite?: string;
+  automationIds?: string[];
+  newsletterListIds?: string[];
+  sendWelcomeEmail?: boolean;
+  reactivateExisting?: boolean;
+  customFields?: Record<string, BeehiivCustomFieldValue>;
 }
+
+export type BeehiivSubscriptionResult =
+  | {
+      success: true;
+      subscriptionId?: string;
+      status?: string;
+    }
+  | {
+      success: false;
+      code: 'not_configured' | 'request_failed' | 'network_error';
+      error: string;
+      status?: number;
+    };
+
+type BeehiivSubscriptionResponse = {
+  data?: {
+    id?: string;
+    status?: string;
+  };
+};
+
+type BeehiivClientOptions = {
+  apiKey?: string;
+  publicationId?: string;
+  fetcher?: typeof fetch;
+};
+
+const BEEHIIV_API_BASE_URL = 'https://api.beehiiv.com/v2';
 
 export class BeehiivAPI {
-  private apiKey: string
-  private publicationId: string
-  private baseUrl = 'https://api.beehiiv.com/v2'
+  private readonly configuredApiKey?: string;
+  private readonly configuredPublicationId?: string;
+  private readonly configuredFetcher?: typeof fetch;
 
-  constructor(apiKey?: string, publicationId?: string) {
-    this.apiKey = apiKey || process.env.BEEHIIV_API_KEY || ''
-    this.publicationId = publicationId || process.env.BEEHIIV_PUBLICATION_ID || ''
+  constructor(options: BeehiivClientOptions = {}) {
+    this.configuredApiKey = options.apiKey;
+    this.configuredPublicationId = options.publicationId;
+    this.configuredFetcher = options.fetcher;
   }
 
-  async subscribe(subscriber: BeehiivSubscriber): Promise<{ success: boolean; error?: string }> {
-    try {
-      // For demo purposes, we'll simulate the API call
-      // In production, you would replace this with actual Beehiiv API integration
-      
-      if (!this.apiKey || !this.publicationId) {
-        console.log('Demo mode: Newsletter subscription simulation for:', subscriber.email)
-        return { success: true }
-      }
+  private get apiKey() {
+    return this.configuredApiKey || process.env.BEEHIIV_API_KEY || '';
+  }
 
-      const response = await fetch(`${this.baseUrl}/publications/${this.publicationId}/subscriptions`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: subscriber.email,
-          reactivate_existing: false,
-          send_welcome_email: true,
-          utm_source: subscriber.utmSource,
-          utm_medium: subscriber.utmMedium,
-          utm_campaign: subscriber.utmCampaign,
-          referring_site: subscriber.source,
-          custom_fields: subscriber.customFields,
-        }),
-      })
+  private get publicationId() {
+    return (
+      this.configuredPublicationId || process.env.BEEHIIV_PUBLICATION_ID || ''
+    );
+  }
 
-      if (!response.ok) {
-        const error = await response.text()
-        return { success: false, error }
-      }
+  isConfigured() {
+    return Boolean(this.apiKey && this.publicationId);
+  }
 
-      return { success: true }
-    } catch (error) {
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : 'Unknown error' 
-      }
+  async subscribe(
+    subscriber: BeehiivSubscriber
+  ): Promise<BeehiivSubscriptionResult> {
+    if (!this.isConfigured()) {
+      return {
+        success: false,
+        code: 'not_configured',
+        error: 'Beehiiv is not configured',
+      };
     }
-  }
 
-  async getSubscriberCount(): Promise<number> {
+    const customFields = Object.entries({
+      ...(subscriber.name ? { 'First Name': subscriber.name } : {}),
+      ...subscriber.customFields,
+    }).map(([name, value]) => ({ name, value }));
+
+    const payload = {
+      email: subscriber.email.trim().toLowerCase(),
+      reactivate_existing: subscriber.reactivateExisting ?? false,
+      send_welcome_email: subscriber.sendWelcomeEmail ?? true,
+      double_opt_override: 'not_set',
+      utm_source: subscriber.utmSource || subscriber.source,
+      utm_medium: subscriber.utmMedium,
+      utm_campaign: subscriber.utmCampaign,
+      utm_term: subscriber.utmTerm,
+      utm_content: subscriber.utmContent,
+      referring_site: subscriber.referringSite,
+      automation_ids: subscriber.automationIds,
+      newsletter_list_ids: subscriber.newsletterListIds,
+      custom_fields: customFields.length ? customFields : undefined,
+    };
+
     try {
-      // For demo purposes, return a simulated count
-      if (!this.apiKey || !this.publicationId) {
-        return 2547 // Simulated subscriber count
-      }
-
-      const response = await fetch(`${this.baseUrl}/publications/${this.publicationId}/stats/subscriptions`, {
-        headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
-        },
-      })
+      const response = await (this.configuredFetcher || fetch)(
+        `${BEEHIIV_API_BASE_URL}/publications/${encodeURIComponent(this.publicationId)}/subscriptions`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${this.apiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+          signal: AbortSignal.timeout(10_000),
+        }
+      );
 
       if (!response.ok) {
-        return 0
+        const responseBody = await response.text();
+        console.error('Beehiiv subscription request failed', {
+          status: response.status,
+          response: responseBody.slice(0, 500),
+        });
+        return {
+          success: false,
+          code: 'request_failed',
+          error: 'Beehiiv rejected the subscription request',
+          status: response.status,
+        };
       }
 
-      const data = await response.json()
-      return data.data?.total_subscriptions || 0
+      const body = (await response.json()) as BeehiivSubscriptionResponse;
+      return {
+        success: true,
+        subscriptionId: body.data?.id,
+        status: body.data?.status,
+      };
     } catch (error) {
-      return 0
+      console.error('Beehiiv subscription request failed', error);
+      return {
+        success: false,
+        code: 'network_error',
+        error: 'Beehiiv could not be reached',
+      };
     }
   }
 }
 
-// Singleton instance
-export const beehiiv = new BeehiivAPI()
-
-// Utility function for easy subscription
-export async function subscribeToNewsletter(
-  email: string, 
-  options: Omit<BeehiivSubscriber, 'email'> = {}
-): Promise<{ success: boolean; error?: string }> {
-  return beehiiv.subscribe({
-    email,
-    source: 'relo-network-website',
-    utmSource: 'website',
-    utmMedium: 'organic',
-    ...options
-  })
-}
+export const beehiiv = new BeehiivAPI();

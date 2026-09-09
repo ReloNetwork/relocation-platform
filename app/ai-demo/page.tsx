@@ -165,7 +165,7 @@ export default function AIDemoPage() {
                 <p className="text-sm text-[#6B7280] italic">
                   "This AI system has transformed how we handle client inquiries. It's like having a premium receptionist available 24/7."
                 </p>
-                <div className="text-xs text-[#6B7280] mt-2">— Premium law firm partner</div>
+                <div className="text-xs text-[#6B7280] mt-2"> - Premium law firm partner</div>
               </div>
             </div>
 

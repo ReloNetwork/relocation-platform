@@ -182,7 +182,7 @@ export async function POST(request: NextRequest) {
     const data: PartnerApplicationData = await request.json()
     
     // Validate required fields
-    const requiredFields = ['companyName', 'serviceType', 'contactName', 'contactTitle', 'phone', 'email', 'territory', 'monthlyLeads', 'marketingSpend', 'preferredTier']
+    const requiredFields: (keyof PartnerApplicationData)[] = ['companyName', 'serviceType', 'contactName', 'contactTitle', 'phone', 'email', 'territory', 'monthlyLeads', 'marketingSpend', 'preferredTier']
     for (const field of requiredFields) {
       if (!data[field]) {
         return NextResponse.json(

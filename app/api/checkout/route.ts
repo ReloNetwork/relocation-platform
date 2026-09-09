@@ -65,7 +65,7 @@ async function createAICheckoutSession(plan: string, email: string, siteUrl: str
       }, { status: 200 });
     }
 
-    const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
+    const stripe = new Stripe(stripeKey, { apiVersion: '2023-10-16' });
     const aiPlan = AI_PLANS[plan as keyof typeof AI_PLANS];
     
     if (!aiPlan) {
@@ -237,7 +237,7 @@ export async function POST(req: NextRequest) {
       }, { status: 200 });
     }
     
-    const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
+    const stripe = new Stripe(stripeKey, { apiVersion: '2023-10-16' });
     
     if (!plan || !(plan in VALID_PLANS)) {
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 });

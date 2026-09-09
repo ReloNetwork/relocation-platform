@@ -2,11 +2,14 @@
 
 import React, { useState, useEffect } from 'react'
 import Layout from '../../components/Layout'
-import { Crown, ArrowRight, CheckCircle, Calendar, Users, MapPin, GraduationCap, CreditCard } from 'lucide-react'
+import { ArrowRight, CheckCircle, Calendar, MapPin } from 'lucide-react'
+import { trackCommercialEvent } from '@/lib/commercial-analytics'
 
 export default function ExecutiveIntakePage() {
   const [step, setStep] = useState(1)
-  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [consentAccepted, setConsentAccepted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const [formData, setFormData] = useState({
     // Move window
     moveDate: '',
@@ -80,6 +83,20 @@ export default function ExecutiveIntakePage() {
         console.error('Error loading transfer data:', error)
       }
     }
+
+    const askReloData = sessionStorage.getItem('ask_relo_transfer_data')
+    if (askReloData) {
+      try {
+        const data = JSON.parse(askReloData)
+        setFormData(prev => ({
+          ...prev,
+          otherRequirements: data.otherRequirements || prev.otherRequirements,
+        }))
+        sessionStorage.removeItem('ask_relo_transfer_data')
+      } catch (error) {
+        console.error('Error loading Ask Relo handoff:', error)
+      }
+    }
   }, [])
 
   const handleAreaToggle = (area: string) => {
@@ -97,6 +114,7 @@ export default function ExecutiveIntakePage() {
 
   const handleNext = () => {
     if (step < 2) {
+      trackCommercialEvent('relocation_intake_started', 'relocation')
       setStep(step + 1)
     }
   }
@@ -104,61 +122,76 @@ export default function ExecutiveIntakePage() {
   const handleSubmit = async () => {
     // Validate required fields
     if (!formData.name || !formData.email || !formData.moveDate || !formData.budget || formData.preferredAreas.length === 0) {
-      alert('Please complete all required fields before proceeding.')
+      alert('Please complete all required fields before continuing.')
       return
     }
 
-    // Store form data for checkout
-    sessionStorage.setItem('executive_intake_data', JSON.stringify(formData))
-    
-    // Redirect to Stripe checkout
+    if (!consentAccepted) {
+      setSubmitError('Please confirm that we may review and respond to your brief.')
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitError('')
+
     try {
-      const response = await fetch('/api/checkout', {
+      const response = await fetch('/api/executive-intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          plan: '72hour_audit',
-          cadence: 'one_time',
-          email: formData.email,
-          formData: formData // Include form data for webhook processing
+          ...formData,
+          consent: true,
         }),
       })
 
       const data = await response.json()
       
-      if (response.ok && data.checkoutUrl) {
-        window.location.href = data.checkoutUrl
+      if (response.ok && data.success && data.referenceId) {
+        trackCommercialEvent('relocation_intake_submitted', 'relocation', {
+          urgency: formData.urgency,
+          budget: formData.budget,
+        })
+        sessionStorage.setItem('executive_intake_data', JSON.stringify({
+          ...formData,
+          referenceId: data.referenceId,
+        }))
+        window.location.href = `/executive-intake/success?reference=${encodeURIComponent(data.referenceId)}`
       } else {
-        console.error('Checkout error:', data)
-        alert('Unable to start checkout. Please try again or contact support at hello@therelonetwork.com')
+        setSubmitError(data.error || 'We could not receive your brief. Please email hello@therelonetwork.com.')
       }
     } catch (error) {
-      console.error('Checkout request failed:', error)
-      alert('Unable to start checkout. Please check your connection and try again.')
+      console.error('Executive intake request failed:', error)
+      setSubmitError('We could not receive your brief. Please check your connection and try again.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
   const isStep1Complete = formData.moveDate && formData.budget && formData.preferredAreas.length > 0 && formData.name && formData.email
-  const isStep2Complete = true // Step 2 has no required fields, all optional
 
   return (
-    <Layout className="bg-[#FAFAF9] min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-full px-4 py-2 mb-6">
-            <Crown className="h-4 w-4 text-[#C9A24A] mr-2" />
-            <span className="text-[#C9A24A] text-sm font-medium">Executive Service</span>
+    <Layout className="intake-page">
+      <main>
+        <section className="intake-hero">
+          <span className="vertical-label">START YOUR MOVE</span>
+          <div>
+            <p className="eyebrow">TELL US ABOUT YOUR MOVE</p>
+            <h1>HELP US UNDERSTAND YOUR LONDON MOVE.</h1>
+            <p>
+              Share your timing, budget and priorities. A person from our team
+              will read your details and reply with a clear next step.
+            </p>
           </div>
-          <h1 className="text-5xl font-bold text-[#0B1B2B] mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            72-Hour Setup Audit
-          </h1>
-          <p className="text-xl text-[#6B7280] mb-8">
-            Area fit analysis, property shortlist, viewings itinerary, tenancy agreement review
-          </p>
-          
-          {/* Progress */}
-          <div className="flex items-center justify-center gap-4 mb-8">
+          <aside>
+            <span>WHAT HAPPENS NEXT</span>
+            <p>A person reviews your information.</p>
+            <p>No payment is taken with this form.</p>
+            <p>We reply within one business day.</p>
+          </aside>
+        </section>
+
+        <section className="intake-workspace">
+          <div className="intake-progress" aria-label={`Step ${step} of 2`}>
             <div className={`flex items-center gap-2 ${step >= 1 ? 'text-[#C9A24A]' : 'text-[#6B7280]'}`}>
               <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${step >= 1 ? 'border-[#C9A24A] bg-[#C9A24A] text-white' : 'border-[#6B7280]'}`}>1</div>
               <span className="font-medium">Brief</span>
@@ -166,28 +199,22 @@ export default function ExecutiveIntakePage() {
             <div className={`w-12 h-0.5 ${step >= 2 ? 'bg-[#C9A24A]' : 'bg-[#E5E7EB]'}`} />
             <div className={`flex items-center gap-2 ${step >= 2 ? 'text-[#C9A24A]' : 'text-[#6B7280]'}`}>
               <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${step >= 2 ? 'border-[#C9A24A] bg-[#C9A24A] text-white' : 'border-[#6B7280]'}`}>2</div>
-              <span className="font-medium">Payment</span>
-            </div>
-            <div className={`w-12 h-0.5 ${step >= 3 ? 'bg-[#C9A24A]' : 'bg-[#E5E7EB]'}`} />
-            <div className={`flex items-center gap-2 ${step >= 3 ? 'text-[#C9A24A]' : 'text-[#6B7280]'}`}>
-              <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${step >= 3 ? 'border-[#C9A24A] bg-[#C9A24A] text-white' : 'border-[#6B7280]'}`}>3</div>
-              <span className="font-medium">Confirmation</span>
+              <span className="font-medium">Review</span>
             </div>
           </div>
-        </div>
 
         {/* Step 1: Brief Form */}
         {step === 1 && (
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#E5E7EB]">
+          <div className="intake-card bg-white p-8 border border-[#E5E7EB]">
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
               <Calendar className="w-6 h-6 text-[#C9A24A]" />
-              Setup your audit (90 seconds)
+              Tell us about your move
             </h2>
             
             <div className="space-y-8">
               {/* Move Window */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Move Window</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">When are you moving?</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#6B7280] mb-2">Target move date</label>
@@ -199,16 +226,16 @@ export default function ExecutiveIntakePage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Flexibility</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">How flexible is the date?</label>
                     <select
                       value={formData.flexibility}
                       onChange={(e) => handleInputChange('flexibility', e.target.value)}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     >
-                      <option value="">Select flexibility</option>
-                      <option value="exact">Must be exact date</option>
-                      <option value="1week">±1 week</option>
-                      <option value="1month">±1 month</option>
+                      <option value="">Choose one</option>
+                      <option value="exact">The date is fixed</option>
+                      <option value="1week">About one week either side</option>
+                      <option value="1month">About one month either side</option>
                       <option value="flexible">Very flexible</option>
                     </select>
                   </div>
@@ -220,13 +247,13 @@ export default function ExecutiveIntakePage() {
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Budget</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Monthly rental budget</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Monthly rent budget</label>
                     <select
                       value={formData.budget}
                       onChange={(e) => handleInputChange('budget', e.target.value)}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     >
-                      <option value="">Select budget</option>
+                      <option value="">Choose a budget</option>
                       <option value="2000-3000">£2,000 - £3,000</option>
                       <option value="3000-5000">£3,000 - £5,000</option>
                       <option value="5000-7500">£5,000 - £7,500</option>
@@ -253,7 +280,7 @@ export default function ExecutiveIntakePage() {
               <div>
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4 flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-[#C9A24A]" />
-                  Preferred Areas (select up to 5)
+                  Areas you may want to live in (choose up to 5)
                 </h3>
                 <div className="grid grid-cols-3 md:grid-cols-4 gap-2 mb-4">
                   {londonAreas.map((area) => (
@@ -285,19 +312,19 @@ export default function ExecutiveIntakePage() {
 
               {/* Key Requirements */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Key Requirements</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">What kind of home do you need?</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Property type preference</label>
+                  <label className="block text-sm font-medium text-[#6B7280] mb-2">Type of home</label>
                     <select
                       value={formData.propertyType}
                       onChange={(e) => handleInputChange('propertyType', e.target.value)}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     >
                       <option value="">Any type</option>
-                      <option value="flat">Flat/Apartment</option>
+                      <option value="flat">Flat or apartment</option>
                       <option value="house">House</option>
-                      <option value="serviced">Serviced Apartment</option>
+                      <option value="serviced">Serviced apartment</option>
                       <option value="penthouse">Penthouse</option>
                       <option value="townhouse">Townhouse</option>
                     </select>
@@ -320,7 +347,7 @@ export default function ExecutiveIntakePage() {
 
               {/* Additional Support Requirements */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Additional Support Requirements</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">What else would help?</h3>
                 <div className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
                     <label className="flex items-center gap-3 cursor-pointer">
@@ -330,7 +357,7 @@ export default function ExecutiveIntakePage() {
                         onChange={(e) => handleInputChange('visaSupport', e.target.checked)}
                         className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
                       />
-                      <span className="text-[#6B7280]">Visa & immigration guidance</span>
+                      <span className="text-[#6B7280]">Help finding regulated immigration advice</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -339,7 +366,7 @@ export default function ExecutiveIntakePage() {
                         onChange={(e) => handleInputChange('taxationSupport', e.target.checked)}
                         className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
                       />
-                      <span className="text-[#6B7280]">UK taxation advice</span>
+                      <span className="text-[#6B7280]">Help finding regulated UK tax advice</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -348,7 +375,7 @@ export default function ExecutiveIntakePage() {
                         onChange={(e) => handleInputChange('bankingSupport', e.target.checked)}
                         className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
                       />
-                      <span className="text-[#6B7280]">Banking & finance setup</span>
+                      <span className="text-[#6B7280]">Help setting up banking</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -366,7 +393,7 @@ export default function ExecutiveIntakePage() {
                         onChange={(e) => handleInputChange('lifestyleSupport', e.target.checked)}
                         className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
                       />
-                      <span className="text-[#6B7280]">Lifestyle integration (clubs, healthcare, social connections)</span>
+                      <span className="text-[#6B7280]">Healthcare, clubs and getting to know the city</span>
                     </label>
                   </div>
                   <div>
@@ -374,7 +401,7 @@ export default function ExecutiveIntakePage() {
                     <textarea
                       value={formData.otherRequirements}
                       onChange={(e) => handleInputChange('otherRequirements', e.target.value)}
-                      placeholder="Any other specific needs, preferences, or circumstances we should know about..."
+                      placeholder="Tell us anything else that could affect your move."
                       rows={3}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     />
@@ -384,7 +411,7 @@ export default function ExecutiveIntakePage() {
 
               {/* Contact Details */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Contact Details</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Your contact details</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#6B7280] mb-2">Name *</label>
@@ -436,87 +463,71 @@ export default function ExecutiveIntakePage() {
                 disabled={!isStep1Complete}
                 className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
-                Continue to Payment
+                Check your answers
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           </div>
         )}
 
-        {/* Step 2: Payment Confirmation */}
+        {/* Step 2: Review and consent */}
         {step === 2 && (
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#E5E7EB]">
+          <div className="intake-card bg-white p-8 border border-[#E5E7EB]">
             <h2 className="text-2xl font-bold text-[#0B1B2B] mb-6 flex items-center gap-3">
-              <CreditCard className="w-6 h-6 text-[#C9A24A]" />
-              Confirm & Pay
+              <CheckCircle className="w-6 h-6 text-[#C9A24A]" />
+              Check and send
             </h2>
             
             {/* Service Summary */}
             <div className="bg-[#FAFAF9] rounded-xl p-6 mb-8">
-              <h3 className="text-lg font-bold text-[#0B1B2B] mb-4">72-Hour Setup Audit</h3>
+              <h3 className="text-lg font-bold text-[#0B1B2B] mb-4">What we will do</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Area fit analysis (150+ data points)</span>
+                  <span>We review your timing, household needs and housing brief</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Curated property shortlist with investment analysis</span>
+                  <span>We decide whether a call, a focused review or more complete support would help</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Optimized viewing itinerary with pre-negotiated slots</span>
+                  <span>We reply with a clear next step</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Tenancy agreement review with legal recommendations</span>
+                  <span>No payment is taken at this stage</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>Written report + 60-min strategy call</span>
+                  <span>We send a secure payment link only after we agree the work and price</span>
                 </div>
               </div>
               
-              <div className="border-t border-[#E5E7EB] mt-6 pt-6">
-                <div className="flex justify-between items-center text-lg">
-                  <span className="font-semibold">Total</span>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-[#0B1B2B]">£3,497</div>
-                    <div className="text-sm text-[#6B7280]">One-time payment</div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Micro-FAQ */}
             <div className="bg-[#F8F9FA] rounded-xl p-6 mb-8">
-              <h4 className="font-bold text-[#0B1B2B] mb-4">Quick Questions</h4>
+              <h4 className="font-bold text-[#0B1B2B] mb-4">A few useful answers</h4>
               <div className="space-y-4 text-sm">
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-1">What happens after I pay?</div>
-                  <div className="text-[#6B7280]">We begin your area analysis immediately. Written report delivered within 72 hours, call scheduled within 24h.</div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">What happens after I send this?</div>
+                  <div className="text-[#6B7280]">We review your brief and reply within one business day with the right next step.</div>
                 </div>
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-1">What if I want the full relocation service?</div>
-                  <div className="text-[#6B7280]">The audit fee is fully credited toward our Complete Executive Relocation service. Contact us for detailed pricing information.</div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">Will I be asked to pay now?</div>
+                  <div className="text-[#6B7280]">No. We first agree what you need, when you need it and what it will cost.</div>
                 </div>
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-3">Refunds & Cancellations</div>
-                  <div className="text-[#6B7280] space-y-2 text-sm">
-                    <div><strong>Cash refund:</strong> Available until we begin your area analysis (typically within 2-4 hours of payment).</div>
-                    <div><strong>After analysis begins:</strong> No cash refunds. We issue account credit valid for 12 months (usable on any Relo service).</div>
-                    <div><strong>After report delivery:</strong> Non-refundable. We may offer account credit only at our discretion.</div>
-                    <div className="text-xs text-[#6B7280] mt-2">
-                      <strong>Note:</strong> Credit is non-transferable and not redeemable for cash.
-                    </div>
-                  </div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">Is every brief accepted?</div>
+                  <div className="text-[#6B7280]">No. We only suggest paid help when we believe it will be useful and we have the right people available.</div>
                 </div>
               </div>
               
               <div className="mt-4 pt-4 border-t border-[#E5E7EB]">
                 <div className="text-xs text-[#6B7280]">
-                  By booking, you ask us to begin services immediately, which may affect statutory cooling-off rights. 
-                  <a href="/terms" className="text-[#C9A24A] hover:underline ml-1">View complete terms</a>
+                  Your information is used only to assess and respond to this relocation enquiry.
+                  <a href="/privacy" className="text-[#C9A24A] hover:underline ml-1">Read our privacy notice</a>
                 </div>
               </div>
             </div>
@@ -526,28 +537,39 @@ export default function ExecutiveIntakePage() {
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={termsAccepted}
-                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                  checked={consentAccepted}
+                  onChange={(e) => setConsentAccepted(e.target.checked)}
                   className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded mt-0.5"
                   required
                 />
                 <span className="text-sm text-[#6B7280]">
-                  I've read the Refunds & Cancellations policy and I want Relo to begin services immediately.
+                  I agree that The Relo Network may review this information and contact me about my relocation enquiry.
                 </span>
               </label>
             </div>
 
             <button
+              type="button"
+              onClick={() => setStep(1)}
+              className="mb-4 text-sm font-medium text-[#0B1B2B] underline underline-offset-4"
+            >
+              Edit my brief
+            </button>
+
+            <button
               onClick={handleSubmit}
-              disabled={!termsAccepted}
+              disabled={!consentAccepted || isSubmitting}
               className="w-full bg-[#C9A24A] hover:bg-[#B8923D] text-white py-4 rounded-lg font-semibold text-lg hover:scale-105 transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
-              <CreditCard className="w-5 h-5" />
-              Complete Payment
+              {isSubmitting ? 'SENDING…' : 'SEND MY PRIVATE BRIEF'}
             </button>
+            {submitError && (
+              <p className="mt-4 text-sm text-red-700" role="alert">{submitError}</p>
+            )}
           </div>
         )}
-      </div>
+        </section>
+      </main>
     </Layout>
   )
 }

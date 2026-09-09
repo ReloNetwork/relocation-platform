@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { hasInternalAccess } from '@/lib/api-auth'
 
 export async function GET(request: NextRequest) {
+  if (!hasInternalAccess(request)) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     // Return configuration info for Lindy AI integration
     const config = {
@@ -40,6 +45,10 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  if (!hasInternalAccess(request)) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     const { action } = await request.json()
     

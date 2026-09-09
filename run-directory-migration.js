@@ -18,7 +18,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function runMigration() {
   try {
-    const migrationSQL = fs.readFileSync('supabase/migrations/20250103_directory_signups.sql', 'utf8');
+    const migrationSQL = fs.readFileSync('supabase/legacy-migrations/20250103_directory_signups.sql', 'utf8');
     
     console.log('Running directory_signups migration...');
     

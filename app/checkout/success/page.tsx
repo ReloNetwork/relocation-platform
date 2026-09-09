@@ -213,7 +213,7 @@ export default function CheckoutSuccessPage() {
       {plan === 'day_pass' && (
         <DayPassUpgrade 
           trigger="post_purchase" 
-          nudgeText="Convert your pass into full service — we'll quarterback the whole move."
+          nudgeText="Convert your pass into full service - we'll quarterback the whole move."
         />
       )}
     </Layout>

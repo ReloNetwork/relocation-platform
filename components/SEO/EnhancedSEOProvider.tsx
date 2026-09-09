@@ -9,7 +9,7 @@ import React from 'react'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import { Analytics } from '@vercel/analytics/react'
 import { DEFAULT_SEO, PAGE_SEO_CONFIG, generateCanonicalUrl } from '../../lib/seo/config'
-import { getAllCoreSchemas, createBreadcrumbSchema } from '../../lib/seo/core-schemas'
+import { getAllCoreSchemas, breadcrumbSchema as createBreadcrumbSchema } from '../../lib/seo/core-schemas'
 import { getAllEnhancedSchemas } from '../../lib/seo/enhanced-schemas'
 
 interface EnhancedSEOProviderProps {
@@ -18,6 +18,14 @@ interface EnhancedSEOProviderProps {
   customSEO?: Partial<NextSeoProps>
   breadcrumbs?: Array<{name: string, url: string}>
   structuredData?: Record<string, any>[]
+}
+
+interface PageSEOConfig {
+  title: string
+  description: string
+  keywords: string
+  ogTitle: string
+  ogDescription: string
 }
 
 export default function EnhancedSEOProvider({ 
@@ -31,7 +39,7 @@ export default function EnhancedSEOProvider({
   const getPageSEO = (): NextSeoProps => {
     if (!page) return DEFAULT_SEO
     
-    const pageConfig = PAGE_SEO_CONFIG[page]
+    const pageConfig: PageSEOConfig = PAGE_SEO_CONFIG[page]
     const canonical = generateCanonicalUrl(page === 'home' ? '/' : `/${page}`)
     
     return {
@@ -124,7 +132,7 @@ export default function EnhancedSEOProvider({
 
 // Utility hook for page-specific SEO
 export const useSEO = (page: keyof typeof PAGE_SEO_CONFIG) => {
-  const pageConfig = PAGE_SEO_CONFIG[page]
+  const pageConfig: PageSEOConfig = PAGE_SEO_CONFIG[page]
   const canonical = generateCanonicalUrl(page === 'home' ? '/' : `/${page}`)
   
   return {

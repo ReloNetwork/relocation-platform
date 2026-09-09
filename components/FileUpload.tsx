@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { Upload, File, X, CheckCircle, AlertCircle, Download, Eye } from 'lucide-react';
 
 interface Document {
@@ -53,9 +53,9 @@ export default function FileUpload({
   }, [caseId]);
 
   // Load documents on mount
-  useState(() => {
-    loadDocuments();
-  });
+  useEffect(() => {
+    void loadDocuments();
+  }, [loadDocuments]);
 
   const uploadFile = async (file: File) => {
     const formData = new FormData();

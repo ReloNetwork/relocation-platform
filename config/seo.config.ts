@@ -1,5 +1,5 @@
 import { DefaultSeoProps } from 'next-seo';
-import { Organization, WebSite, BreadcrumbList } from 'schema-dts';
+import type { Schema } from '../lib/seo/types';
 
 // Luxury brand colors - navy/gold theme
 export const BRAND_COLORS = {
@@ -196,7 +196,7 @@ export const defaultSEO: DefaultSeoProps = {
 };
 
 // Organization Schema with luxury positioning
-export const organizationSchema: Organization = {
+export const organizationSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${SITE_CONFIG.url}#organization`,
@@ -296,7 +296,7 @@ export const organizationSchema: Organization = {
 };
 
 // Website Schema with sitelinks search box
-export const websiteSchema: WebSite = {
+export const websiteSchema: Schema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${SITE_CONFIG.url}#website`,
@@ -324,7 +324,7 @@ export const websiteSchema: WebSite = {
 };
 
 // Generate breadcrumb schema for navigation
-export const generateBreadcrumbSchema = (items: Array<{name: string, url: string}>): BreadcrumbList => {
+export const generateBreadcrumbSchema = (items: Array<{name: string, url: string}>): Schema => {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

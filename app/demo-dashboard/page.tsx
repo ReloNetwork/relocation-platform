@@ -23,6 +23,15 @@ interface ReloRecommendation {
   taskId?: number
 }
 
+interface PartnerService {
+  name: string
+  rating: number
+  reviews: number
+  speciality: string
+  location: string
+  verified: boolean
+}
+
 export default function DemoDashboard() {
   const [showPartnerModal, setShowPartnerModal] = useState(false)
   const [selectedPartnerType, setSelectedPartnerType] = useState('')
@@ -100,7 +109,7 @@ export default function DemoDashboard() {
     }
   ])
 
-  const [selectedTaskForPartners, setSelectedTaskForPartners] = useState(null)
+  const [selectedTaskForPartners, setSelectedTaskForPartners] = useState<number | null>(null)
   
   const connectWithPartners = (taskType: string) => {
     setSelectedPartnerType(taskType)
@@ -122,7 +131,7 @@ export default function DemoDashboard() {
 
   // Task Management Functions
   const addTask = () => {
-    const task = {
+    const task: Task = {
       id: Date.now(),
       ...newTask,
       status: 'todo',
@@ -337,7 +346,7 @@ export default function DemoDashboard() {
     setShowReloPanel(true)
   }
 
-  const partnerServices = {
+  const partnerServices: Record<string, PartnerService[]> = {
     education: [
       { name: 'BrightStart Education', rating: 4.9, reviews: 127, speciality: 'International School Placement', location: 'Central London', verified: true },
       { name: 'London Schools Advisory', rating: 4.8, reviews: 89, speciality: 'Private & State School Guidance', location: 'Kensington', verified: true },
@@ -913,7 +922,7 @@ export default function DemoDashboard() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Priority</label>
                   <select
                     value={newTask.priority}
-                    onChange={(e) => setNewTask({ ...newTask, priority: e.target.value })}
+                    onChange={(e) => setNewTask({ ...newTask, priority: e.target.value as Task['priority'] })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A]"
                   >
                     <option value="low">Low</option>

@@ -20,11 +20,11 @@ export default function HomePage() {
           </p>
           
           <div className="bg-white rounded-2xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">Start Executive Intake — £1,500</h2>
+            <h2 className="text-3xl font-bold text-[#0B1B2B] mb-4">Start Executive Intake - £1,500</h2>
             <p className="text-lg text-[#6B7280] mb-6">60-min strategy call, bespoke shortlist, 3 warm intros, 30-day execution window</p>
             
             <button className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-12 py-4 rounded-lg text-lg font-semibold">
-              Start Executive Intake — £1,500
+              Start Executive Intake - £1,500
             </button>
           </div>
         </div>

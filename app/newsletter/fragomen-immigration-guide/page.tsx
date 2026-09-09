@@ -76,7 +76,7 @@ The Relo Network Team
               </p>
               
               <p className="text-[#6B7280] leading-relaxed mb-6">
-                These aren't unusual occurrences—they represent the standard of service that has made Fragomen the global leader in corporate immigration, with their London team specializing in the complex visa requirements that define executive relocations.
+                These aren't unusual occurrences - they represent the standard of service that has made Fragomen the global leader in corporate immigration, with their London team specializing in the complex visa requirements that define executive relocations.
               </p>
               
               <p className="text-xl font-semibold text-[#0B1B2B] text-center">
@@ -113,7 +113,7 @@ The Relo Network Team
               </h2>
               
               <p className="text-[#6B7280] leading-relaxed mb-6">
-                UK immigration law has become increasingly complex, with frequent policy changes and heightened scrutiny on high-value applications. For executives, immigration isn't just about compliance—it's about optimizing tax status, ensuring family continuity, and maintaining business operations across multiple jurisdictions.
+                UK immigration law has become increasingly complex, with frequent policy changes and heightened scrutiny on high-value applications. For executives, immigration isn't just about compliance - it's about optimizing tax status, ensuring family continuity, and maintaining business operations across multiple jurisdictions.
               </p>
               
               <div className="bg-[#F8F9FA] rounded-lg p-6 mb-6">
@@ -349,7 +349,7 @@ The Relo Network Team
               </h2>
               
               <p className="text-[#6B7280] leading-relaxed mb-6">
-                Immigration excellence isn't about paperwork—it's about enabling global executives to deploy effectively while optimizing tax exposure and ensuring family stability.
+                Immigration excellence isn't about paperwork - it's about enabling global executives to deploy effectively while optimizing tax exposure and ensuring family stability.
               </p>
               
               <p className="text-lg font-semibold text-[#0B1B2B] mb-6">

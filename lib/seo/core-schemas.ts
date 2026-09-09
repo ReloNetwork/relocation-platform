@@ -1,11 +1,11 @@
-import { Organization, WebSite, BreadcrumbList, Service, LocalBusiness } from 'schema-dts'
+import type { Schema } from './types'
 
 /**
  * Core Schema.org markup for Relo Network
  * Optimized for luxury positioning and AI citation
  */
 
-export const organizationSchema: Organization = {
+export const organizationSchema: Schema = {
   "@type": "Organization",
   "@id": "https://askrelo.com/#organization",
   name: "Relo Network",
@@ -137,7 +137,7 @@ export const organizationSchema: Organization = {
   ]
 }
 
-export const websiteSchema: WebSite = {
+export const websiteSchema: Schema = {
   "@type": "WebSite",
   "@id": "https://askrelo.com/#website",
   url: "https://askrelo.com",
@@ -161,7 +161,7 @@ export const websiteSchema: WebSite = {
   }
 }
 
-export const breadcrumbSchema = (items: Array<{ name: string; url: string }>): BreadcrumbList => ({
+export const breadcrumbSchema = (items: Array<{ name: string; url: string }>): Schema => ({
   "@type": "BreadcrumbList",
   itemListElement: items.map((item, index) => ({
     "@type": "ListItem",
@@ -171,7 +171,7 @@ export const breadcrumbSchema = (items: Array<{ name: string; url: string }>): B
   }))
 })
 
-export const relocationServiceSchema: Service = {
+export const relocationServiceSchema: Schema = {
   "@type": "Service",
   "@id": "https://askrelo.com/#relocation-service",
   name: "Executive Relocation Services",
@@ -236,7 +236,7 @@ export const relocationServiceSchema: Service = {
   additionalType: "https://schema.org/ProfessionalService"
 }
 
-export const localBusinessSchema: LocalBusiness = {
+export const localBusinessSchema: Schema = {
   "@type": "LocalBusiness",
   "@id": "https://askrelo.com/#local-business",
   name: "Relo Network",

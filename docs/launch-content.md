@@ -1,5 +1,7 @@
 # 🚀 RELO NETWORK LAUNCH CONTENT
 
+> **ARCHIVED — DO NOT PUBLISH.** This legacy copy contains unsupported claims. Current public copy and editorial policy are authoritative.
+
 *Complete content library for launch week and ongoing marketing*
 
 ---

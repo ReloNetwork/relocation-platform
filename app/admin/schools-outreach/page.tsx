@@ -40,7 +40,7 @@ export default function SchoolsOutreachAdmin() {
 
 I'm the Founder of The Relo Network, a private relocation concierge and editorial platform that supports internationally mobile professionals and families moving to London.
 
-Each month, our guides help families explore London's key neighbourhoods, property options, and schools that align with their values and lifestyle. We're now curating a limited number of Education Partner features for the upcoming term — highlighting schools that stand out for academic excellence, community ethos, and support for relocating families.
+Each month, our guides help families explore London's key neighbourhoods, property options, and schools that align with their values and lifestyle. We're now curating a limited number of Education Partner features for the upcoming term - highlighting schools that stand out for academic excellence, community ethos, and support for relocating families.
 
 I've attached a short overview of the programme. There are three remaining placements for this intake, each including a complimentary editorial feature and homepage exposure.
 

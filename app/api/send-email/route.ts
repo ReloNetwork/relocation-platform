@@ -1,23 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { hasBasicAdminAccess } from '@/lib/api-auth';
 
 export const runtime = 'nodejs';
-
-// Security: Basic Auth check for admin endpoints
-function checkBasicAuth(req: NextRequest): boolean {
-  const auth = req.headers.get("authorization");
-  if (!auth) return false;
-  
-  const [type, value] = auth.split(" ");
-  if (type !== "Basic" || !value) return false;
-  
-  try {
-    const [user, pass] = atob(value).split(":");
-    return user === process.env.BASIC_AUTH_USER && pass === process.env.BASIC_AUTH_PASS;
-  } catch {
-    return false;
-  }
-}
 
 // Rate limiting: Simple in-memory rate limiter
 const emailAttempts = new Map<string, { count: number; resetTime: number }>();
@@ -42,11 +27,12 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
-  // TEMPORARILY DISABLED FOR PARTNERSHIP OUTREACH
-  // SECURITY: Require authentication for email sending
-  // if (!checkBasicAuth(req)) {
-  //   return NextResponse.json({ error: 'Unauthorized - Admin access required' }, { status: 401, headers: { 'WWW-Authenticate': 'Basic realm="Admin"' } });
-  // }
+  if (!hasBasicAdminAccess(req)) {
+    return NextResponse.json(
+      { error: 'Unauthorized - Admin access required' },
+      { status: 401, headers: { 'WWW-Authenticate': 'Basic realm="Admin"' } }
+    );
+  }
 
   // SECURITY: Rate limiting
   const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';

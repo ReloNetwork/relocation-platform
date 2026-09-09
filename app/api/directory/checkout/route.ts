@@ -1,36 +1,43 @@
-import { NextRequest, NextResponse } from 'next/server'
-import Stripe from 'stripe'
-import { reloNetworkAppearance, reloBrandingConfig } from '@/lib/stripe-appearance'
+import { NextRequest, NextResponse } from 'next/server';
+import Stripe from 'stripe';
+import {
+  reloNetworkAppearance,
+  reloBrandingConfig,
+} from '@/lib/stripe-appearance';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16'
-})
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2023-10-16',
+    })
+  : null;
 
 const PRICE_MAP = {
-  'basic_access': null, // Free plan
-  'premium_directory': process.env.STRIPE_PRICE_PREMIUM_DIRECTORY!,
-  'vip_concierge': process.env.STRIPE_PRICE_VIP_CONCIERGE!
-}
+  basic_access: null, // Free plan
+  premium_directory: process.env.STRIPE_PRICE_PREMIUM_DIRECTORY!,
+  vip_concierge: process.env.STRIPE_PRICE_VIP_CONCIERGE!,
+};
 
 export async function POST(request: NextRequest) {
   try {
-    const { plan } = await request.json()
+    if (!stripe)
+      return NextResponse.json(
+        { error: 'Payment processing is not configured' },
+        { status: 503 }
+      );
+    const { plan } = await request.json();
 
     // Handle free plan
     if (plan === 'basic_access' || plan === 'free') {
-      return NextResponse.json({ 
+      return NextResponse.json({
         url: '/account?trial=directory',
-        message: 'Free access activated'
-      })
+        message: 'Free access activated',
+      });
     }
 
-    const stripePriceId = PRICE_MAP[plan as keyof typeof PRICE_MAP]
-    
+    const stripePriceId = PRICE_MAP[plan as keyof typeof PRICE_MAP];
+
     if (!stripePriceId) {
-      return NextResponse.json(
-        { error: 'Invalid plan' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
     }
 
     // Define plan details
@@ -48,7 +55,7 @@ export async function POST(request: NextRequest) {
 • Exclusive deals and partnerships
 
 Perfect for businesses with regular relocation needs.`,
-        unit_amount: 4700 // £47/month
+        unit_amount: 4700, // £47/month
       },
       vip_concierge: {
         name: 'VIP Concierge Service',
@@ -65,11 +72,11 @@ Perfect for businesses with regular relocation needs.`,
 • Quarterly strategy reviews
 
 The ultimate solution for enterprise clients.`,
-        unit_amount: 14700 // £147/month
-      }
-    }
+        unit_amount: 14700, // £147/month
+      },
+    };
 
-    const planInfo = planDetails[plan as keyof typeof planDetails]
+    const planInfo = planDetails[plan as keyof typeof planDetails];
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -79,7 +86,8 @@ The ultimate solution for enterprise clients.`,
             currency: 'gbp',
             product_data: {
               name: planInfo?.name || 'Directory Access',
-              description: planInfo?.description || 'Access to our premium directory',
+              description:
+                planInfo?.description || 'Access to our premium directory',
             },
             recurring: {
               interval: 'month',
@@ -94,32 +102,33 @@ The ultimate solution for enterprise clients.`,
       cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/directory`,
       metadata: {
         product_type: 'directory_access',
-        plan: plan
+        plan: plan,
       },
       subscription_data: {
         metadata: {
           product_type: 'directory_access',
-          plan: plan
-        }
+          plan: plan,
+        },
       },
       allow_promotion_codes: true,
       billing_address_collection: 'required',
       ui_mode: 'hosted',
       custom_text: {
         submit: {
-          message: plan === 'vip_concierge' 
-            ? 'Unlock VIP access with your personal account manager and priority support.'
-            : 'Access our premium directory of verified service providers.'
-        }
+          message:
+            plan === 'vip_concierge'
+              ? 'Unlock VIP access with your personal account manager and priority support.'
+              : 'Access our premium directory of verified service providers.',
+        },
       },
-    })
+    });
 
-    return NextResponse.json({ url: session.url })
+    return NextResponse.json({ url: session.url });
   } catch (error) {
-    console.error('Directory checkout error:', error)
+    console.error('Directory checkout error:', error);
     return NextResponse.json(
       { error: 'Failed to create checkout session' },
       { status: 500 }
-    )
+    );
   }
 }

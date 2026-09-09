@@ -3,6 +3,13 @@
  * Vercel Analytics + Google Analytics with luxury positioning insights
  */
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void
+    va?: { track: (event: string, properties?: Record<string, unknown>) => void }
+  }
+}
+
 // Analytics Events for Luxury Brand Tracking
 export const luxuryTrackingEvents = {
   // Premium engagement tracking
@@ -71,8 +78,8 @@ export const GA4_CONFIG = {
 // Track luxury brand interactions
 export const trackLuxuryEvent = (event: LuxuryAnalyticsEvent) => {
   // Google Analytics 4
-  if (typeof gtag !== 'undefined') {
-    gtag('event', event.event, {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', event.event, {
       event_category: event.properties.category,
       event_label: event.properties.label,
       value: event.properties.value,
@@ -85,8 +92,8 @@ export const trackLuxuryEvent = (event: LuxuryAnalyticsEvent) => {
   }
   
   // Vercel Analytics
-  if (typeof va !== 'undefined') {
-    va.track(event.event, event.properties)
+  if (typeof window !== 'undefined' && window.va) {
+    window.va.track(event.event, event.properties)
   }
   
   // Console logging in development
@@ -115,8 +122,8 @@ export const trackConversion = (
   })
   
   // Enhanced e-commerce tracking
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'purchase', {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'purchase', {
       transaction_id: `luxury_${Date.now()}`,
       value,
       currency,
@@ -138,8 +145,8 @@ export const trackLuxuryPageView = (
   category: 'luxury' | 'corporate' | 'partner' | 'directory' | 'ai'
 ) => {
   // Google Analytics 4
-  if (typeof gtag !== 'undefined') {
-    gtag('config', GA4_CONFIG.measurementId, {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('config', GA4_CONFIG.measurementId, {
       page_title: title,
       page_location: window.location.href,
       custom_dimension_2: category
@@ -147,8 +154,8 @@ export const trackLuxuryPageView = (
   }
   
   // Vercel Analytics
-  if (typeof va !== 'undefined') {
-    va.track('pageview', {
+  if (typeof window !== 'undefined' && window.va) {
+    window.va.track('pageview', {
       page,
       title,
       category,
@@ -184,52 +191,18 @@ export const trackABTest = (
 // Performance monitoring for luxury UX
 export const trackPerformanceMetrics = () => {
   if (typeof window !== 'undefined' && 'performance' in window) {
-    // Core Web Vitals tracking
-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-      getCLS((metric) => trackLuxuryEvent({
-        event: 'core_web_vitals',
-        properties: {
-          category: 'luxury',
-          label: 'CLS',
-          value: Math.round(metric.value * 1000)
-        }
-      }))
-      
-      getFID((metric) => trackLuxuryEvent({
-        event: 'core_web_vitals',
-        properties: {
-          category: 'luxury',
-          label: 'FID',
-          value: Math.round(metric.value)
-        }
-      }))
-      
-      getFCP((metric) => trackLuxuryEvent({
-        event: 'core_web_vitals',
-        properties: {
-          category: 'luxury',
-          label: 'FCP',
-          value: Math.round(metric.value)
-        }
-      }))
-      
-      getLCP((metric) => trackLuxuryEvent({
-        event: 'core_web_vitals',
-        properties: {
-          category: 'luxury',
-          label: 'LCP',
-          value: Math.round(metric.value)
-        }
-      }))
-      
-      getTTFB((metric) => trackLuxuryEvent({
-        event: 'core_web_vitals',
+    const navigation = performance.getEntriesByType('navigation')[0] as
+      | PerformanceNavigationTiming
+      | undefined
+    if (navigation) {
+      trackLuxuryEvent({
+        event: 'navigation_timing',
         properties: {
           category: 'luxury',
           label: 'TTFB',
-          value: Math.round(metric.value)
+          value: Math.round(navigation.responseStart)
         }
-      }))
-    })
+      })
+    }
   }
 }

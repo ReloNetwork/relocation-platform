@@ -117,7 +117,7 @@ The Relo Network Team
               </h2>
               
               <p className="text-[#6B7280] leading-relaxed mb-6">
-                For senior executives, transport isn't just about getting from point A to point B—it's about maximizing productivity, maintaining professional image, and ensuring reliable timing for critical business activities. In London's complex transport landscape, professional chauffeur services become essential business infrastructure.
+                For senior executives, transport isn't just about getting from point A to point B - it's about maximizing productivity, maintaining professional image, and ensuring reliable timing for critical business activities. In London's complex transport landscape, professional chauffeur services become essential business infrastructure.
               </p>
               
               <div className="bg-[#F8F9FA] rounded-lg p-6 mb-6">
@@ -364,7 +364,7 @@ The Relo Network Team
               </h2>
               
               <p className="text-[#6B7280] leading-relaxed mb-6">
-                Professional transport isn't about luxury—it's about effectiveness, reliability, and maintaining the standards that reflect your professional success while maximizing your productive time.
+                Professional transport isn't about luxury - it's about effectiveness, reliability, and maintaining the standards that reflect your professional success while maximizing your productive time.
               </p>
               
               <p className="text-lg font-semibold text-[#0B1B2B] mb-6">

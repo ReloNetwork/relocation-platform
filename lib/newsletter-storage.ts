@@ -29,7 +29,7 @@ export interface NewsletterSubscription {
 
 export async function storeNewsletterSubscription(subscription: NewsletterSubscription) {
   if (!supabase) {
-    return { success: true, message: 'Subscription received' }
+    return { success: false, message: 'Newsletter service is unavailable' }
   }
 
   try {
@@ -38,7 +38,7 @@ export async function storeNewsletterSubscription(subscription: NewsletterSubscr
       .from('newsletter_subscriptions')
       .select('email')
       .eq('email', subscription.email)
-      .single()
+      .maybeSingle()
 
     if (existing) {
       return { success: true, message: 'Already subscribed' }
@@ -64,15 +64,13 @@ export async function storeNewsletterSubscription(subscription: NewsletterSubscr
 
     if (error) {
       console.error('Error storing newsletter subscription:', error)
-      // Don't fail the user experience if database is having issues
-      return { success: true, message: 'Subscription received' }
+      return { success: false, message: 'Unable to save subscription' }
     }
 
     return { success: true, message: 'Successfully subscribed', data }
   } catch (error) {
     console.error('Newsletter storage error:', error)
-    // Don't fail the user experience
-    return { success: true, message: 'Subscription received' }
+    return { success: false, message: 'Unable to save subscription' }
   }
 }
 
@@ -102,7 +100,7 @@ export async function getNewsletterSubscriptions() {
 
 export async function getNewsletterCount() {
   if (!supabase) {
-    return 2500 // Default count when service is unavailable
+    return 0
   }
 
   try {
@@ -113,12 +111,12 @@ export async function getNewsletterCount() {
 
     if (error) {
       console.error('Error counting newsletter subscriptions:', error)
-      return 2500 // Default count
+      return 0
     }
 
-    return count || 2500
+    return count || 0
   } catch (error) {
     console.error('Newsletter count error:', error)
-    return 2500 // Default count
+    return 0
   }
 }

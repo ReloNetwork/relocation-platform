@@ -9,7 +9,7 @@ function challenge() {
     status: 401,
     headers: { "WWW-Authenticate": 'Basic realm="Relo Portal"' },
   });
-
+}
 
 function basicAuthCheck(req: NextRequest) {
   const { pathname } = new URL(req.url);
@@ -55,4 +55,3 @@ export default function middleware(req: NextRequest) {
   // ...keep your existing dev-route guard below...
   return NextResponse.next();
 }
-

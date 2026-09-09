@@ -70,7 +70,7 @@ export default function PartnershipOutreach() {
 
 I run The Relo Network. We act as the single point of accountability for executives and their families landing in London on short notice (typically under 30 days).
 
-We take full responsibility for their first 14 days in the city — accommodation, schooling path, driver, childcare, banking and day-to-day stability — so neither HR nor the executive is left managing 10–12 separate vendors at 2am.
+We take full responsibility for their first 14 days in the city - accommodation, schooling path, driver, childcare, banking and day-to-day stability - so neither HR nor the executive is left managing 10–12 separate vendors at 2am.
 
 We are finalising our "First 14 Days in London" pipeline for Q4, and I am appointing one serviced accommodation / short-stay housing partner for that critical arrival window.${companyReference}
 
