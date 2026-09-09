@@ -146,5 +146,11 @@ describe('website copy', () => {
     expect(floatingMounts).toEqual([
       'components/editorial/PublicExperienceLayer.tsx',
     ]);
+
+    const homepageJourney = readFileSync(
+      'components/editorial/CinematicJourney.tsx',
+      'utf8'
+    );
+    expect(homepageJourney).not.toContain('cinematic-ask');
   });
 });

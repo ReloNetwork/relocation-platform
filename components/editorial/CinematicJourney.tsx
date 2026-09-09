@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FlightFilm from './FlightFilm';
 
 const scenes = [
@@ -12,7 +12,6 @@ const scenes = [
     eyebrow: 'YOUR LONDON, BEFORE YOU LAND',
     title: 'LONDON,\nBUT BETTER.',
     body: 'Clear London guidance and one person who understands your move.',
-    prompt: 'Where should we live if I work in Mayfair?',
     image: '/images/editorial/london-arrival-cinematic.webp',
   },
   {
@@ -22,7 +21,6 @@ const scenes = [
     eyebrow: 'ARRIVE ALREADY SETTLED',
     title: 'THE SEARCH\nSTARTS WITH YOU.',
     body: 'We narrow down areas, homes and schools around the way you want to live.',
-    prompt: 'Compare Notting Hill and Hampstead for our family',
     image: '/images/editorial/london-street-hero.webp',
   },
   {
@@ -32,7 +30,6 @@ const scenes = [
     eyebrow: 'EVERYDAY LONDON',
     title: 'WHERE LONDON\nACTUALLY WORKS.',
     body: 'Compare commutes, school runs, weekends and the small details that shape daily life.',
-    prompt: 'Which areas give us a 30-minute school run?',
     image: '/images/editorial/london-interior.webp',
   },
   {
@@ -42,7 +39,6 @@ const scenes = [
     eyebrow: 'LONDON LIFE',
     title: 'LIVE LIKE YOU\nBELONG HERE.',
     body: 'Find the places and people our advisers would recommend to a friend.',
-    prompt: 'Plan our first perfect Saturday in London',
     image: '/images/editorial/london-table.webp',
   },
   {
@@ -52,7 +48,6 @@ const scenes = [
     eyebrow: 'ASK RELO BETA',
     title: 'DON’T SEARCH\nLONDON. ASK IT.',
     body: 'Ask three questions for free. Bring in a human when your decision needs more care.',
-    prompt: 'What have we not thought about yet?',
     image: '/images/editorial/london-arrival-cinematic.webp',
   },
 ];
@@ -74,7 +69,6 @@ const filmLegs = [
 export default function CinematicJourney() {
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
-  const [question, setQuestion] = useState(scenes[0].prompt);
 
   const active = chapterStarts.reduce(
     (chapter, start, index) => (progress >= start ? index : chapter),
@@ -109,16 +103,6 @@ export default function CinematicJourney() {
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, [active]);
-
-  useEffect(() => setQuestion(scene.prompt), [scene.prompt]);
-
-  function submit(event: FormEvent) {
-    event.preventDefault();
-    const query = question.trim();
-    window.location.assign(
-      query ? `/ask-relo?q=${encodeURIComponent(query)}` : '/ask-relo'
-    );
-  }
 
   function goToScene(index: number) {
     const section = sectionRef.current;
@@ -219,24 +203,6 @@ export default function CinematicJourney() {
             ))}
           </div>
         </nav>
-
-        <form className="cinematic-ask" onSubmit={submit}>
-          <div>
-            <small>ASK RELO</small>
-            <span>ASK A QUESTION ABOUT MOVING TO LONDON</span>
-          </div>
-          <label className="sr-only" htmlFor="cinematic-question">
-            Ask Relo
-          </label>
-          <input
-            id="cinematic-question"
-            value={question}
-            onChange={(event) => setQuestion(event.target.value)}
-          />
-          <button type="submit" aria-label="Ask Relo">
-            →
-          </button>
-        </form>
 
         <span className="cinematic-world__hint">SCROLL TO ENTER LONDON</span>
       </div>
