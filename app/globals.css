@@ -368,7 +368,6 @@ h3,
 .cinematic-world__rail,
 .cinematic-world__copy,
 .cinematic-world__chapter,
-.cinematic-ask,
 .cinematic-world__hint {
   position: absolute;
   z-index: 6;
@@ -561,54 +560,6 @@ h3,
 .cinematic-film-map button.is-active i {
   background: #f0c285;
   transform: scaleY(2);
-}
-.cinematic-ask {
-  left: 50%;
-  bottom: 4.5%;
-  transform: translateX(-50%);
-  width: min(870px, 72vw);
-  display: grid;
-  grid-template-columns: auto 1fr 62px;
-  align-items: stretch;
-  background: rgba(255, 253, 248, 0.95);
-  color: var(--ink);
-  box-shadow: 0 22px 70px rgba(4, 14, 27, 0.24);
-  backdrop-filter: blur(14px);
-}
-.cinematic-ask > div {
-  width: 230px;
-  padding: 14px 20px;
-  color: white;
-  background: var(--red);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.cinematic-ask small {
-  font:
-    25px var(--font-playfair),
-    Georgia,
-    serif;
-}
-.cinematic-ask span {
-  font-size: 7px;
-  letter-spacing: 0.16em;
-  margin-top: 3px;
-}
-.cinematic-ask input {
-  min-width: 0;
-  border: 0;
-  outline: 0;
-  padding: 0 24px;
-  font-size: 14px;
-  background: transparent;
-}
-.cinematic-ask button {
-  border: 0;
-  background: var(--gold);
-  color: white;
-  font-size: 25px;
-  cursor: pointer;
 }
 .cinematic-world__hint {
   right: 4.5vw;
@@ -2441,21 +2392,6 @@ h3,
   .cinematic-film-map__status small,
   .cinematic-film-map button span {
     font-size: 6px;
-  }
-  .cinematic-ask {
-    left: 5vw;
-    right: 5vw;
-    bottom: 4%;
-    transform: none;
-    width: auto;
-    grid-template-columns: 1fr 48px;
-  }
-  .cinematic-ask > div {
-    display: none;
-  }
-  .cinematic-ask input {
-    padding: 17px;
-    font-size: 12px;
   }
   .cinematic-world__hint {
     display: none;
