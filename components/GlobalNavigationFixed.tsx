@@ -8,7 +8,7 @@ const links = [
   ['Discover', '/discover'],
   ['Network', '/network'],
   ['Journal', '/journal'],
-  ['About', '/about'],
+  ['Join The Brief', '/newsletter'],
 ];
 export default function GlobalNavigationFixed() {
   const [open, setOpen] = useState(false);

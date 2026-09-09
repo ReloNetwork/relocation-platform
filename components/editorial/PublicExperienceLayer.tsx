@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import UnifiedAssistant from '@/components/UnifiedAssistant';
 
 const privatePrefixes = [
   '/admin',
@@ -30,10 +30,5 @@ export default function PublicExperienceLayer() {
 
   if (isPrivate || pathname === '/ask-relo' || pathname === '/ask') return null;
 
-  return (
-    <Link className="ask-relo-orbit" href="/ask-relo" aria-label="Open Ask Relo">
-      <span>ASK RELO</span>
-      <i>→</i>
-    </Link>
-  );
+  return <UnifiedAssistant variant="floating" />;
 }
