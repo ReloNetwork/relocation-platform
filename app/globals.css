@@ -1044,37 +1044,6 @@ h3,
 .ask-relo-band__wheel:after {
   transform: rotate(90deg);
 }
-.ask-relo-orbit {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  z-index: 40;
-  transform: translateY(-50%);
-  width: 42px;
-  min-height: 148px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 0 0;
-  color: white;
-  background: var(--red);
-  box-shadow: 0 18px 50px rgba(111, 18, 23, 0.24);
-}
-.ask-relo-orbit span {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: 9px;
-  letter-spacing: 0.22em;
-}
-.ask-relo-orbit i {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  background: var(--gold);
-  font-style: normal;
-}
 .ask-relo-launcher {
   position: fixed;
   right: 24px;
@@ -2678,26 +2647,6 @@ h3,
   }
   .index-table {
     min-width: 760px;
-  }
-  .ask-relo-orbit {
-    top: auto;
-    right: 14px;
-    bottom: 14px;
-    transform: none;
-    width: 50px;
-    min-height: 50px;
-    height: 50px;
-    padding: 0;
-    border-radius: 50%;
-  }
-  .ask-relo-orbit span {
-    display: none;
-  }
-  .ask-relo-orbit i {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: transparent;
   }
   .ask-relo-launcher {
     right: 12px;

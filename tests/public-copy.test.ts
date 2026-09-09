@@ -133,4 +133,18 @@ describe('website copy', () => {
       expect(page).toContain(`canonical: '/newsletter/${slug}'`);
     }
   });
+
+  it('mounts exactly one floating Ask Relo assistant', () => {
+    const floatingMounts = roots
+      .flatMap(sourceFiles)
+      .filter((path) =>
+        readFileSync(path, 'utf8').includes(
+          '<UnifiedAssistant variant="floating" />'
+        )
+      );
+
+    expect(floatingMounts).toEqual([
+      'components/editorial/PublicExperienceLayer.tsx',
+    ]);
+  });
 });
