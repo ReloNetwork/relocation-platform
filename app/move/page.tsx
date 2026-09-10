@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
-import AskReloBand from '@/components/editorial/AskReloBand';
 
 export const metadata = {
   title: 'Move to London',
@@ -54,9 +53,6 @@ export default function MovePage() {
               <Link className="button button--gold" href="/executive-intake">
                 TELL US ABOUT YOUR MOVE
               </Link>
-              <Link className="button button--ink" href="/ask-relo">
-                ASK RELO
-              </Link>
             </div>
           </div>
           <div className="move-hero__image">
@@ -106,15 +102,6 @@ export default function MovePage() {
             <Link href="/executive-intake">Start Your Move →</Link>
           </article>
           <article>
-            <span>ONE QUESTION FIRST</span>
-            <h3>Ask Relo</h3>
-            <p>
-              Compare areas, sort out your priorities or work out what to ask
-              next.
-            </p>
-            <Link href="/ask-relo">Ask a question →</Link>
-          </article>
-          <article>
             <span>STILL EXPLORING</span>
             <h3>Read our London guides</h3>
             <p>
@@ -136,11 +123,6 @@ export default function MovePage() {
             TELL US ABOUT YOUR MOVE
           </Link>
         </section>
-
-        <AskReloBand
-          compact
-          placeholder="Ask Relo what to plan first for your London move"
-        />
       </main>
     </Layout>
   );

@@ -25,6 +25,14 @@ describe('website copy', () => {
     expect(offenders).toEqual([]);
   });
 
+  it('does not present Ask Relo as a beta product', () => {
+    const offenders = roots
+      .flatMap(sourceFiles)
+      .filter((path) => /ask relo\s*(?:\/\s*)?beta/i.test(readFileSync(path, 'utf8')));
+
+    expect(offenders).toEqual([]);
+  });
+
   it('does not repeat unsupported launch claims on approved public pages', () => {
     const publicFiles = [
       'app/page.tsx',
@@ -58,7 +66,7 @@ describe('website copy', () => {
     const homepageCampaign = readFileSync('lib/homepage-editorial.ts', 'utf8');
 
     expect(move).toContain('href="/executive-intake"');
-    expect(move).toContain('href="/ask-relo"');
+    expect(move).not.toContain('href="/ask-relo"');
     expect(move).toContain('href="/journal"');
     expect(intake).toContain('TELL US ABOUT YOUR MOVE');
     expect(home).toContain('<HomepageLead campaign={activeCampaign} />');

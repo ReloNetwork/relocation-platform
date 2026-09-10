@@ -42,7 +42,7 @@ export default function PartnerApplicationPage() {
       })
       setStatus({
         state: 'success',
-        message: 'Thank you. We have your application. You can now view the partner brief.',
+        message: 'Thank you. We have your enquiry. Your media pack has been emailed to you and is also available below.',
         referenceId: body.referenceId,
         mediaPackUrl: body.mediaPackUrl,
       })
@@ -72,14 +72,14 @@ export default function PartnerApplicationPage() {
           <div className="partner-editorial-notes">
             <span>WAYS TO WORK WITH US</span>
             <h2>Choose a clear place to start.</h2>
-            <p>Options include business profiles, newsletter messages, sponsored guides and longer content series. Prices start at £650.</p>
+            <p>Options include selected business profiles, London Brief partnerships, sponsored guides and longer editorial campaigns. Each proposal is shaped around audience fit, format, timing and scope.</p>
             <ul>
-              <li>Reviewed business profile from £650 a year</li>
-              <li>London Brief partner message from £750 an issue</li>
-              <li>Sponsored Journal article from £1,750</li>
-              <li>Clear reporting after the work is published</li>
+              <li>Selected Network business profiles</li>
+              <li>London Brief partner messages</li>
+              <li>Sponsored Journal features and reader tools</li>
+              <li>Editorial campaigns with clear reporting</li>
             </ul>
-            <small>Every paid feature is labelled. Payment does not guarantee a client introduction and never changes our independent recommendations.</small>
+            <small>Every partnership is clearly identified, and our editorial recommendations remain independent.</small>
           </div>
 
           <form className="partner-editorial-form" onSubmit={submit} onFocusCapture={markStarted}>
@@ -181,7 +181,7 @@ export default function PartnerApplicationPage() {
               <span>I agree that The Relo Network may use these details to respond to this enquiry.</span>
             </label>
             <button type="submit" disabled={status.state === 'submitting'}>
-              {status.state === 'submitting' ? 'SENDING' : 'REQUEST THE PARTNER BRIEF'}
+              {status.state === 'submitting' ? 'SENDING' : 'SEND ENQUIRY & VIEW MEDIA PACK'}
             </button>
             <p className={`partner-editorial-form__status is-${status.state}`} aria-live="polite">
               {status.message}

@@ -19,13 +19,15 @@ export default function GlobalNavigationFixed() {
       </Link>
       <nav className={open ? 'is-open' : ''}>
         {links.map(([label, href]) => (
-          <Link key={href} href={href} onClick={() => setOpen(false)}>
+          <Link
+            key={href}
+            href={href}
+            className={href === '/newsletter' ? 'nav-brief' : undefined}
+            onClick={() => setOpen(false)}
+          >
             {label}
           </Link>
         ))}
-        <Link className="nav-ask" href="/ask-relo">
-          ASK RELO
-        </Link>
         <Link className="nav-move" href="/executive-intake">
           START YOUR MOVE
         </Link>

@@ -11,7 +11,7 @@ function AskReloContent() {
         <section className="editorial-hero">
           <span className="vertical-label">ASK RELO</span>
           <div>
-            <p className="eyebrow">ASK RELO / BETA</p>
+            <p className="eyebrow">ASK RELO</p>
             <h1>ASK A QUESTION ABOUT MOVING TO LONDON.</h1>
             <i />
             <p>
