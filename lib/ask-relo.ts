@@ -64,37 +64,53 @@ export async function createAskReloAnswer(
   messages: AskReloMessage[],
   options: AskReloClientOptions,
 ) {
-  const response = await (options.fetcher || fetch)(
-    'https://api.openai.com/v1/responses',
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${options.apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: options.model,
-        instructions: ASK_RELO_INSTRUCTIONS,
-        input: messages.slice(-10).map(({ role, content }) => ({
-          role,
-          content,
-        })),
-        max_output_tokens: 700,
-        store: false,
-      }),
-      signal: AbortSignal.timeout(20_000),
-    },
-  )
+  const fetcher = options.fetcher || fetch
+  let lastError: unknown
 
-  if (!response.ok) {
-    const detail = await response.text()
-    throw new Error(
-      `OpenAI Responses API returned ${response.status}: ${detail.slice(0, 300)}`,
-    )
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      const response = await fetcher('https://api.openai.com/v1/responses', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${options.apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: options.model,
+          instructions: ASK_RELO_INSTRUCTIONS,
+          input: messages.slice(-10).map(({ role, content }) => ({
+            role,
+            content,
+          })),
+          max_output_tokens: 1200,
+          store: false,
+        }),
+        signal: AbortSignal.timeout(20_000),
+      })
+
+      if (!response.ok) {
+        const detail = await response.text()
+        const error = new Error(
+          `OpenAI Responses API returned ${response.status}: ${detail.slice(0, 300)}`,
+        )
+        if (attempt === 0 && (response.status === 429 || response.status >= 500)) {
+          lastError = error
+          continue
+        }
+        throw error
+      }
+
+      const answer = extractResponseText((await response.json()) as OpenAIResponse)
+      if (!answer) throw new Error('OpenAI response did not contain answer text')
+      return answer
+    } catch (error) {
+      lastError = error
+      const message = error instanceof Error ? error.message : ''
+      const retryable = /abort|timeout|fetch failed|network/i.test(message)
+      if (attempt === 0 && retryable) continue
+      throw error
+    }
   }
 
-  const answer = extractResponseText((await response.json()) as OpenAIResponse)
-  if (!answer) throw new Error('OpenAI response did not contain answer text')
-
-  return answer
+  throw lastError || new Error('Ask Relo answer generation failed')
 }

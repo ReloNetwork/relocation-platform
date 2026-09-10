@@ -79,8 +79,29 @@ describe('Ask Relo answer engine', () => {
     expect(JSON.parse(init.body)).toMatchObject({
       model: 'test-model',
       instructions: ASK_RELO_INSTRUCTIONS,
+      max_output_tokens: 1200,
       store: false,
     })
+  })
+
+  it('retries one temporary upstream failure without consuming another question', async () => {
+    const fetcher = vi
+      .fn()
+      .mockResolvedValueOnce(new Response('Unavailable', { status: 503 }))
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ output_text: 'Try Marylebone or Soho.' }), {
+          status: 200,
+          headers: { 'content-type': 'application/json' },
+        }),
+      )
+
+    await expect(
+      createAskReloAnswer(
+        [{ role: 'user', content: 'Where should I have lunch?' }],
+        { apiKey: 'test-key', model: 'test-model', fetcher },
+      ),
+    ).resolves.toBe('Try Marylebone or Soho.')
+    expect(fetcher).toHaveBeenCalledTimes(2)
   })
 
   it('fails closed when production services are unavailable', async () => {
