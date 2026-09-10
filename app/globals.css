@@ -563,7 +563,8 @@ h3,
 }
 .cinematic-world__hint {
   right: 1.25vw;
-  bottom: 5.5%;
+  top: 12%;
+  bottom: auto;
   color: rgba(255, 255, 255, 0.75);
   font-size: 8px;
   letter-spacing: 0.2em;
@@ -1090,12 +1091,55 @@ h3,
   outline-offset: -5px;
 }
 .ask-relo-window {
-  background: rgba(255, 253, 248, 0.94);
-  border-color: rgba(190, 132, 49, 0.5);
-  backdrop-filter: blur(22px) saturate(120%);
+  overflow: hidden;
+  background: rgba(255, 253, 248, 0.22);
+  border-color: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 24px 80px rgba(10, 28, 50, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px) saturate(190%) contrast(108%);
+  -webkit-backdrop-filter: blur(6px) saturate(190%) contrast(108%);
   transition:
     bottom 250ms ease,
     height 300ms ease;
+}
+.ask-relo-window__header {
+  background: linear-gradient(
+    110deg,
+    rgba(0, 38, 82, 0.82),
+    rgba(0, 38, 82, 0.68)
+  ) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px) saturate(180%);
+  -webkit-backdrop-filter: blur(6px) saturate(180%);
+}
+.ask-relo-window__content {
+  background: rgba(255, 253, 248, 0.3);
+}
+.ask-relo-window__messages {
+  background: rgba(255, 253, 248, 0.16);
+}
+.ask-relo-message--user {
+  background: rgba(213, 128, 10, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(6px) saturate(175%);
+  -webkit-backdrop-filter: blur(6px) saturate(175%);
+}
+.ask-relo-message--assistant {
+  background: rgba(255, 253, 248, 0.46) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px) saturate(155%);
+  -webkit-backdrop-filter: blur(6px) saturate(155%);
+}
+.ask-relo-window__composer {
+  background: rgba(255, 253, 248, 0.36);
+  border-color: rgba(255, 255, 255, 0.52) !important;
+  backdrop-filter: blur(6px) saturate(170%);
+  -webkit-backdrop-filter: blur(6px) saturate(170%);
+}
+.ask-relo-window__composer input {
+  background: rgba(255, 255, 255, 0.48);
+  border-color: rgba(255, 255, 255, 0.7) !important;
 }
 .ask-relo-window.is-footer-visible {
   bottom: 32px;
