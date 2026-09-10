@@ -178,14 +178,14 @@ export default function ExecutiveIntakePage() {
             <p className="eyebrow">TELL US ABOUT YOUR MOVE</p>
             <h1>HELP US UNDERSTAND YOUR LONDON MOVE.</h1>
             <p>
-              Share your timing, budget and priorities. A person from our team
-              will read your details and reply with a clear next step.
+              Share your timing, budget and priorities. Our team will bring the
+              full picture together and recommend a clear way forward.
             </p>
           </div>
           <aside>
             <span>WHAT HAPPENS NEXT</span>
             <p>A person reviews your information.</p>
-            <p>No payment is taken with this form.</p>
+            <p>We identify the priorities and pressure points.</p>
             <p>We reply within one business day.</p>
           </aside>
         </section>
@@ -488,7 +488,7 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>We decide whether a call, a focused review or more complete support would help</span>
+                  <span>We identify the level of support that will make the greatest difference</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
@@ -496,11 +496,11 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>No payment is taken at this stage</span>
+                  <span>We shape a plan around the decisions that matter most</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>We send a secure payment link only after we agree the work and price</span>
+                  <span>We recommend the right support, sequence and specialists</span>
                 </div>
               </div>
               
@@ -515,12 +515,12 @@ export default function ExecutiveIntakePage() {
                   <div className="text-[#6B7280]">We review your brief and reply within one business day with the right next step.</div>
                 </div>
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-1">Will I be asked to pay now?</div>
-                  <div className="text-[#6B7280]">No. We first agree what you need, when you need it and what it will cost.</div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">What will I receive?</div>
+                  <div className="text-[#6B7280]">A considered recommendation shaped around your timing, priorities and the decisions ahead.</div>
                 </div>
                 <div>
-                  <div className="font-medium text-[#0B1B2B] mb-1">Is every brief accepted?</div>
-                  <div className="text-[#6B7280]">No. We only suggest paid help when we believe it will be useful and we have the right people available.</div>
+                  <div className="font-medium text-[#0B1B2B] mb-1">What if my plans are still changing?</div>
+                  <div className="text-[#6B7280]">That is fine. Your brief helps us identify what is fixed, what is flexible and what to resolve first.</div>
                 </div>
               </div>
               

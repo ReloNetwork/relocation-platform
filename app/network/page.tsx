@@ -7,7 +7,7 @@ export default function Page() {
       <EditorialPage
         label="NETWORK"
         title="FIND THE RIGHT PEOPLE."
-        intro="Browse specialists in property, education, law, tax and household services. A paid partnership never decides who we suggest to a client."
+        intro="Browse specialists in property, education, law, tax and household services, selected for their expertise and relevance to life in London."
         image="/images/editorial/london-interior.webp"
         sectionTitle="EXPERTISE"
         items={[

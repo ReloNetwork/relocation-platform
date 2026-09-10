@@ -346,7 +346,7 @@ export default function PremiumConsultationPage() {
               <div className="bg-[#C9A24A]/10 border border-[#C9A24A]/20 rounded-lg p-6">
                 <div className="text-center mb-4">
                   <h4 className="text-lg font-semibold text-[#0B1220] mb-2">Start Your Premium Consultation</h4>
-                  <p className="text-[#6B7280]">Complimentary consultation • 2-hour response guarantee • No obligation</p>
+                  <p className="text-[#6B7280]">Private consultation • Personal response within two hours • Clear next steps</p>
                 </div>
                 <Button
                   type="submit"

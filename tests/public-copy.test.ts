@@ -73,8 +73,10 @@ describe('website copy', () => {
     expect(homepageLead).toContain('return <CinematicJourney />');
     expect(homepageLead).toContain('{campaign.disclosure} with');
     expect(homepageLead).toMatch(
-      /Partner\s+payment never changes an Ask Relo answer\./
+      /Ask Relo recommendations\s+remain guided by each reader's needs\./
     );
+    expect(move).toContain('LET US UNDERSTAND YOUR MOVE.');
+    expect(move).not.toContain('YOU DO NOT PAY BEFORE WE UNDERSTAND YOUR MOVE.');
     expect(homepageCampaign).toContain(
       'homepageEditorialCampaign: HomepageEditorialCampaign | null = null'
     );
@@ -122,7 +124,7 @@ describe('website copy', () => {
     expect(clientJourney).not.toMatch(/Executive London Setup/i);
     expect(clientJourney).not.toMatch(/£5,000 (?:service|concierge)/i);
     expect(editorialJourney).toContain('EditorialPartnershipBand');
-    expect(editorialJourney).toContain('Paid content is clearly labelled');
+    expect(editorialJourney).toContain('Partnerships are clearly identified');
     expect(editorialJourney).toContain('href="/executive-intake"');
     expect(editorialJourney).toContain('href="/partner-application"');
   });

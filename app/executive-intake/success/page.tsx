@@ -69,7 +69,8 @@ export default function ExecutiveIntakeSuccessPage() {
                 Human review first
               </h2>
               <p className="text-sm text-[#6B7280]">
-                No service has started and no payment has been taken.
+                A member of our team is reviewing your priorities, timing and
+                the decisions that need attention first.
               </p>
             </div>
             <div className="border-t border-[#E5E7EB] pt-5">
@@ -78,7 +79,8 @@ export default function ExecutiveIntakeSuccessPage() {
                 A clear recommendation
               </h2>
               <p className="text-sm text-[#6B7280]">
-                We will only suggest paid help when we believe it will be useful.
+                We will reply with the clearest route forward and the support
+                best placed to make a meaningful difference.
               </p>
             </div>
           </div>

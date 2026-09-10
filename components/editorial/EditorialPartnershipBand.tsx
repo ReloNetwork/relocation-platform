@@ -33,8 +33,8 @@ export default function EditorialPartnershipBand({
             See partnership options <span aria-hidden="true">↗</span>
           </Link>
           <small>
-            Paid content is clearly labelled. A partner cannot buy a
-            recommendation or change an Ask Relo answer.
+            Partnerships are clearly identified. Recommendations and Ask Relo
+            answers remain independent.
           </small>
         </div>
       </div>

@@ -135,13 +135,13 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
       if ((isOpen || variant === 'embedded') && messages.length === 0) {
         const welcomeMessage: ChatMessage = {
           role: 'assistant',
-          content: `Hello. I'm Relo, an AI London relocation guide.
+          content: `Hello. I'm Relo, your AI London Guide.
 
-I can help you compare neighbourhoods, frame housing and school decisions, and plan the practical sequence of your move.
+I can help you compare neighbourhoods, frame housing and school decisions, and make more confident choices about moving to or living in London.
 
-You can ask three questions for free. Please do not share passport numbers, payment details or sensitive records.
+You can ask three introductory questions. Please do not share passport numbers, payment details or sensitive records.
 
-What would you like to understand about relocating to London?`,
+What would you like to understand about London?`,
           timestamp: new Date().toISOString(),
         };
         setMessages([welcomeMessage]);
@@ -406,7 +406,7 @@ What would you like to understand about relocating to London?`,
               {
                 role: 'assistant',
                 content:
-                  'You have used your three free questions. If you would like personal help, share your private relocation brief for human review.',
+                  'You have used your three introductory questions. If you would like personal help, share your private relocation brief for human review.',
                 timestamp: new Date().toISOString(),
               },
             ]);
@@ -845,8 +845,8 @@ What would you like to understand about relocating to London?`,
                                 Voice Chat with Relo
                               </h3>
                               <p className="text-[#6B7280] text-sm">
-                                Start a natural conversation about your London
-                                relocation
+                                Start a natural conversation about moving to or
+                                living in London
                               </p>
 
                               <button
@@ -986,7 +986,7 @@ What would you like to understand about relocating to London?`,
                           value={inputValue}
                           onChange={(e) => setInputValue(e.target.value)}
                           onKeyPress={handleKeyPress}
-                          placeholder="Ask about your London relocation..."
+                          placeholder="Ask about moving to or living in London..."
                           className="flex-1 px-3 py-2 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm"
                           disabled={isLoading || limitReached}
                         />
@@ -1001,7 +1001,7 @@ What would you like to understand about relocating to London?`,
                       <p className="text-xs text-[#6B7280] mt-2 text-center">
                         {limitReached
                           ? 'Complimentary preview complete'
-                          : `${remainingQuestions} free question${remainingQuestions === 1 ? '' : 's'} left`}
+                          : `${remainingQuestions} introductory question${remainingQuestions === 1 ? '' : 's'} left`}
                       </p>
                       {limitReached && (
                         <a
@@ -1074,9 +1074,9 @@ What would you like to understand about relocating to London?`,
                       Welcome to Ask Relo!
                     </h3>
                     <p className="text-[#6B7280] text-sm max-w-sm mx-auto">
-                      I'm here to help with your London relocation questions.
-                      Ask me about housing, schools, visas, neighbourhoods, or
-                      anything else!
+                      I'm here to help with questions about moving to or living
+                      in London. Ask me about housing, schools, visas,
+                      neighbourhoods, or anything else.
                     </p>
                   </div>
                 ) : (
@@ -1157,7 +1157,7 @@ What would you like to understand about relocating to London?`,
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Ask about your London relocation..."
+                    placeholder="Ask about moving to or living in London..."
                     className="flex-1 px-3 py-2 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent text-sm"
                     disabled={isLoading || limitReached}
                   />
@@ -1172,7 +1172,7 @@ What would you like to understand about relocating to London?`,
                 <p className="text-xs text-[#6B7280] mt-2 text-center">
                   {limitReached
                     ? 'Complimentary preview complete'
-                    : `${remainingQuestions} free question${remainingQuestions === 1 ? '' : 's'} left`}
+                    : `${remainingQuestions} introductory question${remainingQuestions === 1 ? '' : 's'} left`}
                 </p>
                 {limitReached && (
                   <a
