@@ -705,7 +705,7 @@ What would you like to understand about relocating to London?`,
                         ? 'Ask Relo - Voice'
                         : 'Ask Relo - Text'}
                     </h3>
-                    <p className="text-xs text-white/90">London relocation guide</p>
+                    <p className="text-xs text-white/90">London Guide</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">

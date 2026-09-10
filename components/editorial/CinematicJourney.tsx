@@ -45,7 +45,7 @@ const scenes = [
     id: 'ask',
     number: '05',
     label: 'ASK RELO',
-    eyebrow: 'ASK RELO BETA',
+    eyebrow: 'ASK RELO',
     title: 'DON’T SEARCH\nLONDON. ASK IT.',
     body: 'Ask three questions for free. Bring in a human when your decision needs more care.',
     image: '/images/editorial/london-arrival-cinematic.webp',
