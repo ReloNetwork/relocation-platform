@@ -21,13 +21,13 @@ const programme = [
   },
   {
     number: '03',
-    title: 'Agree the right help',
-    text: 'After reading your brief, we explain how we can help and agree the work and price before anything is paid.',
+    title: 'Shape the right plan',
+    text: 'We turn your brief into a clear recommendation, with the right support, sequence and specialists for your move.',
   },
   {
     number: '04',
-    title: 'Put the move into action',
-    text: 'If we are the right fit, we help organise the people and practical tasks needed for your move.',
+    title: 'Move forward with confidence',
+    text: 'We help coordinate the people and practical details that turn your plan into a well-managed move.',
   },
 ];
 
@@ -72,8 +72,8 @@ export default function MovePage() {
             <span>01</span>
             <h2>HOW IT WORKS.</h2>
             <p>
-              Start with a few details about your move. We will tell you whether
-              a call, a focused review or more complete support would be useful.
+              Start with a few details about your move. We identify what matters
+              most and shape the clearest route from first decision to settled life.
             </p>
           </header>
           <div className="move-programme__grid">
@@ -113,11 +113,12 @@ export default function MovePage() {
         </section>
 
         <section className="move-commitment">
-          <p className="eyebrow">TELL US WHAT YOU NEED FIRST</p>
-          <h2>YOU DO NOT PAY BEFORE WE UNDERSTAND YOUR MOVE.</h2>
+          <p className="eyebrow">BUILT AROUND YOUR PRIORITIES</p>
+          <h2>LET US UNDERSTAND YOUR MOVE.</h2>
           <p>
-            We read your details before suggesting paid help. If we are not the
-            right fit, we will still try to point you in a useful direction.
+            The better we understand your priorities, pressures and ambitions,
+            the more precisely we can solve what stands between you and a
+            confident life in London.
           </p>
           <Link className="button button--gold" href="/executive-intake">
             TELL US ABOUT YOUR MOVE

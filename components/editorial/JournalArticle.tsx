@@ -103,8 +103,8 @@ export default function JournalArticle({ slug }: { slug: string }) {
               <h2>Turn your questions into a clear brief.</h2>
               <p>
                 Tell us about your timing, household and priorities. A person
-                will review the whole picture before any paid support is
-                proposed.
+                will review the whole picture and turn it into a recommended
+                next step.
               </p>
               <Link href="/executive-intake">
                 Start your move <span aria-hidden="true">→</span>
