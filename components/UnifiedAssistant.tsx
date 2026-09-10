@@ -43,6 +43,13 @@ interface UnifiedAssistantRef {
   openAssistant: () => void;
 }
 
+const ASK_RELO_SESSION_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+function validAskReloSession(value: string) {
+  return ASK_RELO_SESSION_PATTERN.test(value);
+}
+
 const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
   ({ variant = 'floating', className = '', initialQuestion = '' }, ref) => {
     // Chat state
@@ -143,7 +150,11 @@ What would you like to understand about relocating to London?`,
 
     useEffect(() => {
       const storedSession = localStorage.getItem('ask_relo_session_id');
-      if (storedSession) setSessionId(storedSession);
+      if (storedSession && validAskReloSession(storedSession)) {
+        setSessionId(storedSession);
+      } else if (storedSession) {
+        localStorage.removeItem('ask_relo_session_id');
+      }
     }, []);
 
     useEffect(() => {
@@ -244,8 +255,10 @@ What would you like to understand about relocating to London?`,
       }
 
       try {
-        const activeSessionId = sessionId || crypto.randomUUID();
-        if (!sessionId) {
+        const activeSessionId = validAskReloSession(sessionId)
+          ? sessionId
+          : crypto.randomUUID();
+        if (activeSessionId !== sessionId) {
           setSessionId(activeSessionId);
           localStorage.setItem('ask_relo_session_id', activeSessionId);
         }
@@ -344,8 +357,10 @@ What would you like to understand about relocating to London?`,
     const sendMessage = async () => {
       if (!inputValue.trim() || isLoading || limitReached) return;
 
-      const activeSessionId = sessionId || crypto.randomUUID();
-      if (!sessionId) {
+      const activeSessionId = validAskReloSession(sessionId)
+        ? sessionId
+        : crypto.randomUUID();
+      if (activeSessionId !== sessionId) {
         setSessionId(activeSessionId);
         localStorage.setItem('ask_relo_session_id', activeSessionId);
       }
@@ -675,7 +690,7 @@ What would you like to understand about relocating to London?`,
               className={`ask-relo-window fixed bottom-4 right-4 w-[calc(100vw-2rem)] max-w-[400px] rounded-xl shadow-2xl border z-[60] flex flex-col ${isFooterVisible ? 'is-footer-visible' : ''} ${isMinimized ? 'h-16' : 'h-[min(650px,calc(100dvh-2rem))]'} transition-all duration-300`}
             >
               {/* Header */}
-              <div className="bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white p-4 rounded-t-xl flex items-center justify-between">
+              <div className="ask-relo-window__header bg-gradient-to-r from-[#0B1B2B] to-[#0B1B2B]/90 text-white p-4 rounded-t-xl flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#C9A24A] rounded-full flex items-center justify-center">
                     {mode === 'voice' ? (
@@ -690,7 +705,7 @@ What would you like to understand about relocating to London?`,
                         ? 'Ask Relo - Voice'
                         : 'Ask Relo - Text'}
                     </h3>
-                    <p className="text-xs text-white/90">Ask Relo beta</p>
+                    <p className="text-xs text-white/90">London relocation guide</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -743,11 +758,11 @@ What would you like to understand about relocating to London?`,
               {!isMinimized && (
                 <>
                   {/* Content */}
-                  <div className="flex-1 overflow-hidden">
+                  <div className="ask-relo-window__content flex-1 overflow-hidden">
                     {mode === 'chat' ? (
                       <>
                         {/* Chat Messages */}
-                        <div className="h-full overflow-y-auto p-4 space-y-4">
+                        <div className="ask-relo-window__messages h-full overflow-y-auto p-4 space-y-4">
                           {messages.map((message, index) => (
                             <div
                               key={index}
@@ -759,10 +774,10 @@ What would you like to understand about relocating to London?`,
                                 </div>
                               )}
                               <div
-                                className={`max-w-[80%] p-3 rounded-lg ${
+                                className={`ask-relo-message max-w-[80%] p-3 rounded-lg ${
                                   message.role === 'user'
-                                    ? 'bg-[#C9A24A] text-white'
-                                    : 'bg-[#F3F4F6] text-[#0B1B2B]'
+                                    ? 'ask-relo-message--user bg-[#C9A24A] text-white'
+                                    : 'ask-relo-message--assistant bg-[#F3F4F6] text-[#0B1B2B]'
                                 }`}
                               >
                                 <div
@@ -963,7 +978,7 @@ What would you like to understand about relocating to London?`,
 
                   {/* Input (only for chat mode) */}
                   {mode === 'chat' && (
-                    <div className="p-4 border-t border-[#E5E7EB]">
+                    <div className="ask-relo-window__composer p-4 border-t border-[#E5E7EB]">
                       <div className="flex gap-2">
                         <input
                           ref={inputRef}

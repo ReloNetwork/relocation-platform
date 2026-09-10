@@ -85,7 +85,7 @@ export async function createAskReloAnswer(
           max_output_tokens: 1200,
           store: false,
         }),
-        signal: AbortSignal.timeout(20_000),
+        signal: AbortSignal.timeout(30_000),
       })
 
       if (!response.ok) {
