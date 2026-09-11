@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import Layout from '@/components/Layout';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Move to London',
   description:
     'A clear way to plan your London move, from choosing an area to settling in.',
+  alternates: { canonical: '/move' },
 };
 
 const programme = [

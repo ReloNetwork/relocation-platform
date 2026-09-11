@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import Layout from '@/components/Layout';
 import HomepageLead from '@/components/editorial/HomepageLead';
 import HorizontalIntelligence from '@/components/editorial/HorizontalIntelligence';
@@ -9,6 +10,10 @@ import {
   getActiveHomepageEditorialCampaign,
   homepageEditorialCampaign,
 } from '@/lib/homepage-editorial';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
 
 export default function HomePage() {
   const activeCampaign = getActiveHomepageEditorialCampaign(

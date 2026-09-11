@@ -144,6 +144,25 @@ describe('website copy', () => {
     }
   });
 
+  it('gives every core public page a self-referencing canonical address', () => {
+    const routes = [
+      ['app/page.tsx', '/'],
+      ['app/move/page.tsx', '/move'],
+      ['app/live/page.tsx', '/live'],
+      ['app/discover/page.tsx', '/discover'],
+      ['app/network/page.tsx', '/network'],
+      ['app/journal/page.tsx', '/journal'],
+      ['app/about/page.tsx', '/about'],
+      ['app/contact/page.tsx', '/contact'],
+    ];
+
+    for (const [path, canonical] of routes) {
+      expect(readFileSync(path, 'utf8')).toContain(
+        `alternates: { canonical: '${canonical}' }`
+      );
+    }
+  });
+
   it('mounts exactly one floating Ask Relo assistant', () => {
     const floatingMounts = roots
       .flatMap(sourceFiles)

@@ -1,6 +1,10 @@
 import Layout from '@/components/Layout';
 import EditorialPage from '@/components/editorial/EditorialPage';
-export const metadata = { title: 'Discover London' };
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Discover London',
+  alternates: { canonical: '/discover' },
+};
 export default function Page() {
   return (
     <Layout>

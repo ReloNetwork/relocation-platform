@@ -1,12 +1,16 @@
 import Layout from '@/components/Layout';
 import EditorialPage from '@/components/editorial/EditorialPage';
+import type { Metadata } from 'next';
 import { articleUrl, editorialArticles } from '@/lib/editorial-articles';
 import {
   editorialSubjectLabel,
   isEditorialSubjectId,
   type EditorialSubjectId,
 } from '@/lib/editorial-subjects';
-export const metadata = { title: 'Journal' };
+export const metadata: Metadata = {
+  title: 'Journal',
+  alternates: { canonical: '/journal' },
+};
 
 export default function Page({
   searchParams,
