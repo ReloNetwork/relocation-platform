@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import Layout from '@/components/Layout';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Contact',
   description:
     'Choose the right way to contact The Relo Network about a London move, editorial partnership or general question.',
+  alternates: { canonical: '/contact' },
 };
 
 const routes = [
