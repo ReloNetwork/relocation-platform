@@ -7,7 +7,11 @@ import {
 } from '@/lib/ask-relo'
 import { POST as askRelo } from '@/app/api/ai/chat/route'
 import { POST as askReloVoice } from '@/app/api/retell/call/route'
-import { createWebVoiceCall } from '@/lib/retell'
+import {
+  ASK_RELO_VOICE_GREETING,
+  ASK_RELO_VOICE_INSTRUCTIONS,
+  createWebVoiceCall,
+} from '@/lib/retell'
 
 const sessionId = 'd87c9d13-05cd-4ec0-a270-646ea1988586'
 
@@ -140,8 +144,25 @@ describe('Ask Relo voice boundary', () => {
     )
     expect(JSON.parse(fetcher.mock.calls[0][1]?.body as string)).toEqual({
       agent_id: 'agent-test',
+      agent_override: {
+        retell_llm: {
+          general_prompt: ASK_RELO_VOICE_INSTRUCTIONS,
+          begin_message: ASK_RELO_VOICE_GREETING,
+        },
+      },
       metadata: { source: 'ask_relo_web', session_id: sessionId },
     })
+  })
+
+  it('front-loads specific value in every complimentary voice call', () => {
+    expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain(
+      "Answer the caller's question immediately",
+    )
+    expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain('name suitable London areas')
+    expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain('60 to 110 words')
+    expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain(
+      'Ask at most one focused follow-up question',
+    )
   })
 
   it('does not create a simulated call when voice is disabled', async () => {
