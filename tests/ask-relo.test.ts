@@ -12,6 +12,10 @@ import {
   ASK_RELO_VOICE_INSTRUCTIONS,
   createWebVoiceCall,
 } from '@/lib/retell'
+import {
+  ASK_RELO_SESSION_LIMIT,
+  ASK_RELO_VOICE_MAX_DURATION_MS,
+} from '@/lib/ask-relo-config'
 
 const sessionId = 'd87c9d13-05cd-4ec0-a270-646ea1988586'
 
@@ -145,9 +149,19 @@ describe('Ask Relo voice boundary', () => {
     expect(JSON.parse(fetcher.mock.calls[0][1]?.body as string)).toEqual({
       agent_id: 'agent-test',
       agent_override: {
+        agent: {
+          max_call_duration_ms: ASK_RELO_VOICE_MAX_DURATION_MS,
+          pronunciation_dictionary: [
+            { word: 'Greenwich', alphabet: 'ipa', phoneme: 'ˈɡrɛnɪtʃ' },
+            { word: 'Southwark', alphabet: 'ipa', phoneme: 'ˈsʌðək' },
+          ],
+        },
         retell_llm: {
           general_prompt: ASK_RELO_VOICE_INSTRUCTIONS,
           begin_message: ASK_RELO_VOICE_GREETING,
+        },
+        conversation_flow: {
+          global_prompt: ASK_RELO_VOICE_INSTRUCTIONS,
         },
       },
       metadata: { source: 'ask_relo_web', session_id: sessionId },
@@ -163,6 +177,8 @@ describe('Ask Relo voice boundary', () => {
     expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain(
       'Ask at most one focused follow-up question',
     )
+    expect(ASK_RELO_SESSION_LIMIT).toBe(5)
+    expect(ASK_RELO_VOICE_MAX_DURATION_MS).toBe(420_000)
   })
 
   it('does not create a simulated call when voice is disabled', async () => {

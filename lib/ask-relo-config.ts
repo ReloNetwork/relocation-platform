@@ -1,0 +1,2 @@
+export const ASK_RELO_SESSION_LIMIT = 5
+export const ASK_RELO_VOICE_MAX_DURATION_MS = 7 * 60 * 1000

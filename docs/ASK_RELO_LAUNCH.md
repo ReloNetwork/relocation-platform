@@ -24,11 +24,11 @@ complimentary preview to qualified private brief, not an unproven price menu.
    - `RETELL_WEBHOOK_KEY` if Retell marks a separate key for webhook verification
    - `NEXT_PUBLIC_CAL_COM_EMBED_ID` using the public Cal.com booking path
 4. In Retell, connect the approved Relo knowledge base, enable scope boundaries
-   and AI disclosure, and limit calls to five minutes. Set the agent webhook to
+   and AI disclosure, and limit calls to seven minutes. Set the agent webhook to
    `https://your-preview-domain/api/webhooks/retell` and enable `call_started`,
    `call_ended` and `call_analyzed`.
 
-The public preview allows three questions per browser session and applies a
+The public preview allows five questions per browser session and applies a
 hashed-IP daily ceiling. It stores usage counters only, not question content.
 OpenAI requests set `store: false`.
 
@@ -41,8 +41,8 @@ Use a clean browser session on Preview and confirm:
    time-sensitive and points to official or qualified verification.
 3. Ask Relo never invents a provider, property, live availability or result.
 4. A voice call connects only after microphone permission and counts as one of
-   the same three complimentary Ask Relo interactions.
-5. The fourth text or voice interaction is blocked and links to
+   the same five complimentary Ask Relo interactions.
+5. The sixth text or voice interaction is blocked and links to
    `/executive-intake`.
 6. End the voice call and confirm the page offers Start Your Move and the Move
    Review without promising an automatic follow-up.

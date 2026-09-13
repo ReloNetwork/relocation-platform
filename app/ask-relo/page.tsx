@@ -16,7 +16,7 @@ function AskReloContent() {
             <i />
             <p>
               Ask about areas, schools, housing or what to do first. You can ask
-              three questions for free.
+              five questions for free.
             </p>
           </div>
           <div style={{ minHeight: 560 }}>
