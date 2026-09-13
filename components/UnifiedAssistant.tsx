@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { useRetellClient } from '@/hooks/useRetellClient';
 import { trackCommercialEvent } from '@/lib/commercial-analytics';
+import { ASK_RELO_SESSION_LIMIT } from '@/lib/ask-relo-config';
 
 interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
@@ -59,7 +60,9 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [sessionId, setSessionId] = useState<string>('');
-    const [remainingQuestions, setRemainingQuestions] = useState(3);
+    const [remainingQuestions, setRemainingQuestions] = useState(
+      ASK_RELO_SESSION_LIMIT
+    );
     const [limitReached, setLimitReached] = useState(false);
     const [showSummaryForm, setShowSummaryForm] = useState(false);
     const [summaryEmail, setSummaryEmail] = useState('');
@@ -139,7 +142,7 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
 
 I can help you compare neighbourhoods, frame housing and school decisions, and make more confident choices about moving to or living in London.
 
-You can ask three introductory questions. Please do not share passport numbers, payment details or sensitive records.
+You can ask five introductory questions. Please do not share passport numbers, payment details or sensitive records.
 
 What would you like to understand about London?`,
           timestamp: new Date().toISOString(),
@@ -406,7 +409,7 @@ What would you like to understand about London?`,
               {
                 role: 'assistant',
                 content:
-                  'You have used your three introductory questions. If you would like personal help, share your private relocation brief for human review.',
+                  'You have used your five introductory questions. If you would like personal help, share your private relocation brief for human review.',
                 timestamp: new Date().toISOString(),
               },
             ]);

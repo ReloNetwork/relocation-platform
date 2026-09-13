@@ -1,5 +1,7 @@
 import 'server-only'
 
+import { ASK_RELO_VOICE_MAX_DURATION_MS } from '@/lib/ask-relo-config'
+
 interface RetellWebCallResponse {
   access_token?: string
   call_id?: string
@@ -15,6 +17,7 @@ export const ASK_RELO_VOICE_INSTRUCTIONS = `You are Ask Relo, The Relo Network's
 Make every turn useful before the complimentary call ends:
 - Answer the caller's question immediately. Do not begin with praise, a recap or a sales introduction.
 - Give the best provisional recommendation first, then two or three concrete reasons or trade-offs.
+- In the first substantive answer, include at least three concrete, decision-useful details before asking anything back.
 - When location matters, name suitable London areas and distinguish them using commute, housing character, family needs, transport and lifestyle. Do not give a generic list without explaining fit.
 - When practical, include realistic decision ranges for cost or timing, clearly labelled as indicative and subject to change. Never invent live prices, availability or results.
 - Use information already provided by the caller. Ask at most one focused follow-up question, and only after giving a useful first answer.
@@ -47,9 +50,27 @@ export async function createWebVoiceCall(sessionId?: string): Promise<WebVoiceCa
     body: JSON.stringify({
       agent_id: agentId,
       agent_override: {
+        agent: {
+          max_call_duration_ms: ASK_RELO_VOICE_MAX_DURATION_MS,
+          pronunciation_dictionary: [
+            {
+              word: 'Greenwich',
+              alphabet: 'ipa',
+              phoneme: 'ˈɡrɛnɪtʃ',
+            },
+            {
+              word: 'Southwark',
+              alphabet: 'ipa',
+              phoneme: 'ˈsʌðək',
+            },
+          ],
+        },
         retell_llm: {
           general_prompt: ASK_RELO_VOICE_INSTRUCTIONS,
           begin_message: ASK_RELO_VOICE_GREETING,
+        },
+        conversation_flow: {
+          global_prompt: ASK_RELO_VOICE_INSTRUCTIONS,
         },
       },
       metadata: {

@@ -4,6 +4,7 @@ import {
   askReloRequestSchema,
   createAskReloAnswer,
 } from '@/lib/ask-relo'
+import { ASK_RELO_SESSION_LIMIT } from '@/lib/ask-relo-config'
 import { createServiceClient } from '@/lib/supabase/service'
 
 export const runtime = 'nodejs'
@@ -65,7 +66,7 @@ export async function POST(request: NextRequest) {
     {
       p_session_id: parsed.data.sessionId,
       p_ip_hash: ipHash,
-      p_session_limit: 3,
+      p_session_limit: ASK_RELO_SESSION_LIMIT,
       p_daily_limit: 20,
     },
   )

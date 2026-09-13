@@ -24,7 +24,7 @@ The public website can launch with a qualification-first commercial model:
 
 - Relocation clients submit a private brief, then book a qualification call.
 - Newsletter readers subscribe through Beehiiv.
-- Ask Relo offers three complimentary beta questions, then directs people to the private brief.
+- Ask Relo offers five complimentary questions, then directs people to the private brief.
 - Partners apply for an editorial pilot, receive the media pack and move into a reviewed sales pipeline.
 
 Stripe checkout and Ask Relo voice can remain disabled for the first release. They are separate launch gates and should not delay the website if no public page promises them.
@@ -56,7 +56,7 @@ Stripe checkout and Ask Relo voice can remain disabled for the first release. Th
 - [ ] Add `RETELL_API_KEY` and the published `RETELL_AGENT_ID` as server-side values.
 - [ ] Add `RETELL_WEBHOOK_KEY` if Retell provides a separate webhook-badged key.
 - [ ] Set `NEXT_PUBLIC_ASK_RELO_VOICE_ENABLED=1` after the controlled voice test passes.
-- [ ] Confirm the Retell knowledge base, scope boundaries, AI disclosure, five-minute call limit and privacy settings.
+- [ ] Confirm the Retell knowledge base, scope boundaries, AI disclosure, seven-minute call limit and privacy settings.
 - [ ] Add and verify the internal and cron secrets used by protected routes.
 - [ ] Confirm that no preview or test value is present in the Production environment.
 

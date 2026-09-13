@@ -47,7 +47,7 @@ const scenes = [
     label: 'ASK RELO',
     eyebrow: 'ASK RELO',
     title: 'DON’T SEARCH\nLONDON. ASK IT.',
-    body: 'Ask three questions for free. Bring in a human when your decision needs more care.',
+    body: 'Ask five questions for free. Bring in a human when your decision needs more care.',
     image: '/images/editorial/london-arrival-cinematic.webp',
   },
 ];
