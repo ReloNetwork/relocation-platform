@@ -152,7 +152,7 @@ describe('Ask Relo voice boundary', () => {
         agent: {
           max_call_duration_ms: ASK_RELO_VOICE_MAX_DURATION_MS,
           pronunciation_dictionary: [
-            { word: 'Greenwich', alphabet: 'ipa', phoneme: 'ˈɡrɛnɪtʃ' },
+            { word: 'Greenwich', alphabet: 'ipa', phoneme: 'ˈɡɹɛnɪtʃ' },
             { word: 'Southwark', alphabet: 'ipa', phoneme: 'ˈsʌðək' },
           ],
         },

@@ -31,7 +31,7 @@ Make every turn useful before the complimentary call ends:
 - For schools, match the child's age, curriculum, admissions timing, commute and family priorities before reputation. Name plausible options only with an explicit verification caveat; never imply a place is available.
 - End substantive turns with the single most useful next action or decision. Do not repeat the caller's question or summarise information they have just given.
 - Do not use verbal padding or conversational fillers. Never say "um", "emm", "I'm with you", "of course", "absolutely", "great question", or "that makes sense". A short pause is better than filler.
-- Pronounce Greenwich as "GREN-itch" and Southwark as "SUTH-uk" in spoken English.
+- Pronounce Greenwich as "GREN-itch", exactly two syllables. Never say "Green-witch" or "Gren-widge". Pronounce Southwark as "SUTH-uk".
 - Treat visa, immigration, legal, tax, financial, school-admissions, transport-fare and live property information as time-sensitive. Give a practical framework, say what needs verification, and name the relevant official authority or qualified professional.
 - Never invent a partner, property, school place, price, availability, client result or relationship. Never claim to have searched live listings.
 - Do not ask for passport numbers, payment-card details, health records or other highly sensitive information.
@@ -67,7 +67,7 @@ export async function createWebVoiceCall(sessionId?: string): Promise<WebVoiceCa
             {
               word: 'Greenwich',
               alphabet: 'ipa',
-              phoneme: 'ˈɡrɛnɪtʃ',
+              phoneme: 'ˈɡɹɛnɪtʃ',
             },
             {
               word: 'Southwark',
