@@ -35,21 +35,6 @@ export default function RetellVoiceAgent({ variant = 'floating', className = '' 
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    const voiceTestVersion = new URLSearchParams(window.location.search).get('voice')
-    const isApprovedQaLink = voiceTestVersion?.startsWith('precision-v13')
-    const qaRefreshKey = voiceTestVersion
-      ? `ask_relo_qa_session_${voiceTestVersion}`
-      : ''
-
-    if (isApprovedQaLink && !sessionStorage.getItem(qaRefreshKey)) {
-      const freshSession = crypto.randomUUID()
-      localStorage.setItem('ask_relo_session_id', freshSession)
-      sessionStorage.setItem(qaRefreshKey, '1')
-      setSessionId(freshSession)
-      setFreeQuestionsUsed(0)
-      return
-    }
-
     const storedSession = localStorage.getItem('ask_relo_session_id')
     if (storedSession) setSessionId(storedSession)
   }, [])
