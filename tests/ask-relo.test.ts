@@ -175,6 +175,10 @@ describe('Ask Relo voice boundary', () => {
     expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain('name suitable London areas')
     expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain('45 to 80 words')
     expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain('Recommendation deadline')
+    expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain('School-name deadline')
+    expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain(
+      'the very next reply must name plausible schools',
+    )
     expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain(
       'Ask at most one focused follow-up question',
     )
