@@ -254,7 +254,7 @@ export function executiveConfirmationEmail(options: {
 }) {
   const { intake, referenceId, journalUrl } = options;
   const body = `<p style="margin:0 0 18px;color:#142e50;font-family:Georgia,'Times New Roman',serif;font-size:25px;line-height:1.35;">Dear ${formatText(intake.name)},</p>
-    <p style="margin:0 0 18px;">Thank you for sharing the shape of your London move. Your private brief has arrived safely and will be reviewed by a person.</p>
+    <p style="margin:0 0 18px;">Thank you for sharing the details of your London move. Your private brief has arrived safely and will be reviewed by a consultant.</p>
     ${callout('What happens next', 'We will consider your timing, household needs and the level of support required, then reply within one business day with the clearest next step.')}
     ${detailTable([
       { label: 'Move date', value: formatText(intake.moveDate) },
