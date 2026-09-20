@@ -9,6 +9,7 @@ export default function ExecutiveIntakePage() {
   const [step, setStep] = useState(1)
   const [consentAccepted, setConsentAccepted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [step1Error, setStep1Error] = useState('')
   const [submitError, setSubmitError] = useState('')
   const [formData, setFormData] = useState({
     // Move window
@@ -100,6 +101,7 @@ export default function ExecutiveIntakePage() {
   }, [])
 
   const handleAreaToggle = (area: string) => {
+    setStep1Error('')
     setFormData(prev => ({
       ...prev,
       preferredAreas: prev.preferredAreas.includes(area)
@@ -109,11 +111,25 @@ export default function ExecutiveIntakePage() {
   }
 
   const handleInputChange = (field: string, value: any) => {
+    setStep1Error('')
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
   const handleNext = () => {
+    const missing: string[] = []
+    if (!formData.moveDate) missing.push('target move date')
+    if (!formData.budget) missing.push('monthly rent budget')
+    if (formData.preferredAreas.length === 0) missing.push('at least one preferred area')
+    if (!formData.name.trim()) missing.push('name')
+    if (!formData.email.trim()) missing.push('email address')
+
+    if (missing.length > 0) {
+      setStep1Error(`Please add ${missing.join(', ')} before checking your answers.`)
+      return
+    }
+
     if (step < 2) {
+      setStep1Error('')
       trackCommercialEvent('relocation_intake_started', 'relocation')
       setStep(step + 1)
     }
@@ -167,8 +183,6 @@ export default function ExecutiveIntakePage() {
     }
   }
 
-  const isStep1Complete = formData.moveDate && formData.budget && formData.preferredAreas.length > 0 && formData.name && formData.email
-
   return (
     <Layout className="intake-page">
       <main>
@@ -217,7 +231,7 @@ export default function ExecutiveIntakePage() {
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">When are you moving?</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Target move date</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Target move date *</label>
                     <input
                       type="date"
                       value={formData.moveDate}
@@ -247,7 +261,7 @@ export default function ExecutiveIntakePage() {
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Budget</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Monthly rent budget</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Monthly rent budget *</label>
                     <select
                       value={formData.budget}
                       onChange={(e) => handleInputChange('budget', e.target.value)}
@@ -280,7 +294,7 @@ export default function ExecutiveIntakePage() {
               <div>
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4 flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-[#C9A24A]" />
-                  Areas you may want to live in (choose up to 5)
+                  Areas you may want to live in (choose 1–5) *
                 </h3>
                 <div className="grid grid-cols-3 md:grid-cols-4 gap-2 mb-4">
                   {londonAreas.map((area) => (
@@ -458,14 +472,22 @@ export default function ExecutiveIntakePage() {
             </div>
 
             <div className="flex justify-end mt-8">
-              <button
-                onClick={handleNext}
-                disabled={!isStep1Complete}
-                className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-              >
-                Check your answers
-                <ArrowRight className="w-5 h-5" />
-              </button>
+              <div className="w-full">
+                {step1Error && (
+                  <p className="mb-4 text-sm text-red-700 text-right" role="alert">
+                    {step1Error}
+                  </p>
+                )}
+                <div className="flex justify-end">
+                  <button
+                    onClick={handleNext}
+                    className="bg-[#C9A24A] hover:bg-[#B8923D] text-white px-8 py-3 rounded-lg font-semibold flex items-center gap-2"
+                  >
+                    Check your answers
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
