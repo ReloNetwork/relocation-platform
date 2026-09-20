@@ -86,15 +86,20 @@ export async function POST(request: NextRequest) {
   let confirmationStatus = 'not_configured';
 
   const resend = new Resend(process.env.RESEND_API_KEY);
-  const from =
+  const configuredFrom =
     process.env.RESEND_FROM_EMAIL ||
-    'The Relo Network <hello@therelonetwork.com>';
+    'hello@therelonetwork.com';
+  const from = configuredFrom.includes('<')
+    ? configuredFrom
+    : `The Relo Network <${configuredFrom}>`;
+  const teamEmail =
+    process.env.EXECUTIVE_INTAKE_EMAIL || 'hello@therelonetwork.com';
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || request.nextUrl.origin;
 
   try {
     const notification = await resend.emails.send({
       from,
-      to: [process.env.EXECUTIVE_INTAKE_EMAIL || 'hello@therelonetwork.com'],
+      to: [teamEmail],
       reply_to: intake.email,
       subject: `${qualification.quality.toUpperCase()} relocation brief - ${intake.name} - ${referenceId}`,
       html: executiveNotificationEmail({
@@ -117,6 +122,7 @@ export async function POST(request: NextRequest) {
     const confirmation = await resend.emails.send({
       from,
       to: [intake.email],
+      reply_to: teamEmail,
       subject: `We received your London relocation brief - ${referenceId}`,
       html: executiveConfirmationEmail({
         intake,
