@@ -15,6 +15,11 @@ type IntakeReceipt = {
 export default function ExecutiveIntakeSuccessPage() {
   const [receipt, setReceipt] = useState<IntakeReceipt>({})
   const calendarLink = process.env.NEXT_PUBLIC_CAL_COM_EMBED_ID
+  const consultationLink = calendarLink
+    ? calendarLink.includes('/')
+      ? calendarLink
+      : `${calendarLink}/30min`
+    : null
 
   useEffect(() => {
     const saved = sessionStorage.getItem('executive_intake_data')
@@ -27,8 +32,8 @@ export default function ExecutiveIntakeSuccessPage() {
     }
   }, [])
 
-  const bookingUrl = calendarLink
-    ? `https://cal.com/${calendarLink}?name=${encodeURIComponent(receipt.name || '')}&email=${encodeURIComponent(receipt.email || '')}`
+  const bookingUrl = consultationLink
+    ? `https://cal.com/${consultationLink}?name=${encodeURIComponent(receipt.name || '')}&email=${encodeURIComponent(receipt.email || '')}`
     : null
 
   return (
@@ -94,7 +99,7 @@ export default function ExecutiveIntakeSuccessPage() {
                 onClick={() => trackCommercialEvent('qualification_call_booked', 'relocation')}
                 className="bg-[#C9A24A] text-white px-6 py-3 font-semibold inline-flex items-center justify-center gap-2"
               >
-                Book a private call
+                Book a private relocation consultation
                 <ArrowRight className="w-4 h-4" />
               </a>
             )}

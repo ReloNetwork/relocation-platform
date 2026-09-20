@@ -113,6 +113,8 @@ describe('transactional email templates', () => {
     });
 
     expect(html).toContain('YOUR MOVE IS NOW IN VIEW.');
+    expect(html).toContain('Thank you for sharing the details of your London move.');
+    expect(html).toContain('reviewed by a consultant.');
     expect(html).toContain('No payment has been taken.');
     expect(html).toContain('https://preview.example.com/journal');
   });
