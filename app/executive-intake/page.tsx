@@ -286,8 +286,8 @@ export default function ExecutiveIntakePage() {
                   This local preview cannot save your brief. You can still <a href={buildConsultationUrl(process.env.NEXT_PUBLIC_CAL_COM_EMBED_ID, formData.name, formData.email)} target="_blank" rel="noreferrer">view the live call calendar</a>, but these answers will not be sent to our team.
                 </p>
               )}
-              <button className="professional-button" type="submit" disabled={isSubmitting || !consentAccepted}>{isSubmitting ? 'SAVING YOUR DETAILS…' : 'CONTINUE TO AVAILABLE CALL TIMES'} <span aria-hidden="true">→</span></button>
-              <p className="professional-handoff__fineprint">Your details are saved before you choose a time. A call is booked only after you select a slot and confirm it on the calendar.</p>
+              <button className="professional-button" type="submit" disabled={isSubmitting || !consentAccepted}>{isSubmitting ? 'SENDING YOUR DETAILS…' : submitError ? 'TRY SENDING AGAIN' : 'CONTINUE TO AVAILABLE CALL TIMES'} <span aria-hidden="true">→</span></button>
+              <p className="professional-handoff__fineprint">{submitError ? 'We have not confirmed receipt of your details. Please try again before choosing a call time.' : 'We will send your details to our team before you choose a time. A call is booked only after you select a slot and confirm it on the calendar.'}</p>
             </form>
           </div>
         </div>
