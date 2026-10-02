@@ -38,8 +38,8 @@ export default function HomePage() {
               you need them.
             </p>
             <div className="home-intro__actions">
-              <Link className="button button--gold" href="/move">
-                PLAN YOUR MOVE
+              <Link className="button button--gold" href="/international-professionals">
+                GET YOUR LONDON STARTING PLAN
               </Link>
               <Link className="button button--ink" href="/journal">
                 READ LONDON GUIDES

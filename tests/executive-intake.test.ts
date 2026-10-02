@@ -57,6 +57,15 @@ afterEach(() => {
 })
 
 describe('executive intake qualification', () => {
+  it('accepts people who need advice on which areas to investigate', () => {
+    expect(executiveIntakeSchema.safeParse({
+      ...baseIntake,
+      preferredAreas: [],
+      journeyStage: 'already-here',
+      workArea: 'Canary Wharf',
+      commuteLimit: '45',
+    }).success).toBe(true)
+  })
   it('identifies a time-sensitive, complex executive family as priority', () => {
     const intake = executiveIntakeSchema.parse(baseIntake)
     expect(

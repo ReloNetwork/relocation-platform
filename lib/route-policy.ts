@@ -13,6 +13,7 @@ const INDEXABLE_ROUTES = new Set([
   '/discover',
   '/editorial-policy',
   '/executive-intake',
+  '/international-professionals',
   '/journal',
   '/live',
   '/london-landing-list',

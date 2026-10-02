@@ -36,7 +36,8 @@ export async function POST(request: NextRequest) {
   const intake = parsed.data;
   const referenceId = createExecutiveReference();
   const qualification = scoreExecutiveIntake(intake);
-  let supabase;
+  let supabase: ReturnType<typeof createServiceClient> | null = null;
+  let stored = false;
 
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
@@ -47,39 +48,31 @@ export async function POST(request: NextRequest) {
 
   try {
     supabase = createServiceClient();
+    const { error: storageError } = await supabase
+      .from('executive_intake_leads')
+      .insert({
+        reference_id: referenceId,
+        status: 'new',
+        lead_quality: qualification.quality,
+        fit_score: qualification.score,
+        name: intake.name,
+        email: intake.email.toLowerCase(),
+        phone: intake.phone || null,
+        current_location: intake.currentLocation || null,
+        move_date: intake.moveDate,
+        budget: intake.budget,
+        preferred_areas: intake.preferredAreas,
+        urgency: intake.urgency,
+        brief: intake,
+        consented_at: new Date().toISOString(),
+      });
+    if (storageError) {
+      console.error('Executive intake could not be stored', storageError);
+    } else {
+      stored = true;
+    }
   } catch (error) {
-    console.error('Executive intake storage is not configured', error);
-    return NextResponse.json(
-      { success: false, error: 'Client intake is temporarily unavailable' },
-      { status: 503 }
-    );
-  }
-
-  const { error: storageError } = await supabase
-    .from('executive_intake_leads')
-    .insert({
-      reference_id: referenceId,
-      status: 'new',
-      lead_quality: qualification.quality,
-      fit_score: qualification.score,
-      name: intake.name,
-      email: intake.email.toLowerCase(),
-      phone: intake.phone || null,
-      current_location: intake.currentLocation || null,
-      move_date: intake.moveDate,
-      budget: intake.budget,
-      preferred_areas: intake.preferredAreas,
-      urgency: intake.urgency,
-      brief: intake,
-      consented_at: new Date().toISOString(),
-    });
-
-  if (storageError) {
-    console.error('Executive intake could not be stored', storageError);
-    return NextResponse.json(
-      { success: false, error: 'We could not save your relocation brief' },
-      { status: 502 }
-    );
+    console.error('Executive intake storage is unavailable', error);
   }
 
   let notificationStatus = 'not_configured';
@@ -118,6 +111,16 @@ export async function POST(request: NextRequest) {
     console.error('Executive intake notification failed', error);
   }
 
+  // Email is the fallback receipt when preview storage has not been provisioned.
+  // Never invite someone to book a call if neither the database nor the team inbox
+  // received their brief.
+  if (!stored && notificationStatus !== 'sent') {
+    return NextResponse.json(
+      { success: false, error: 'We could not receive your brief. Please try again or email hello@therelonetwork.com.' },
+      { status: 502 }
+    );
+  }
+
   try {
     const confirmation = await resend.emails.send({
       from,
@@ -139,25 +142,25 @@ export async function POST(request: NextRequest) {
     console.error('Executive intake confirmation failed', error);
   }
 
-  const { error: statusError } = await supabase
-    .from('executive_intake_leads')
-    .update({
-      notification_status: notificationStatus,
-      confirmation_status: confirmationStatus,
-      updated_at: new Date().toISOString(),
-    })
-    .eq('reference_id', referenceId);
+  if (stored && supabase) {
+    const { error: statusError } = await supabase
+      .from('executive_intake_leads')
+      .update({
+        notification_status: notificationStatus,
+        confirmation_status: confirmationStatus,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('reference_id', referenceId);
 
-  if (statusError) {
-    console.error(
-      'Executive intake delivery status could not be recorded',
-      statusError
-    );
+    if (statusError) {
+      console.error('Executive intake delivery status could not be recorded', statusError);
+    }
   }
 
   return NextResponse.json({
     success: true,
     referenceId,
+    delivery: stored ? 'database' : 'team-email',
     message: 'Your private relocation brief has been received',
   });
 }

@@ -80,7 +80,7 @@ describe('website copy', () => {
     expect(homepageCampaign).toContain(
       'homepageEditorialCampaign: HomepageEditorialCampaign | null = null'
     );
-    expect(home).toContain('href="/move"');
+    expect(home).toContain('href="/international-professionals"');
     expect(home).toContain("'/executive-intake'");
     expect(home).toContain("'/ask-relo'");
     expect(home).toContain('href="/journal"');
