@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { ArrowRight, CheckCircle, Calendar, MapPin } from 'lucide-react'
 import { trackCommercialEvent } from '@/lib/commercial-analytics'
+import { buildConsultationUrl } from '@/lib/consultation-link'
+import type { ProfessionalBrief } from '@/lib/professional-brief'
+import { mapProfessionalBriefToIntake } from '@/lib/professional-intake-handoff'
 
 export default function ExecutiveIntakePage() {
   const [step, setStep] = useState(1)
@@ -11,6 +14,9 @@ export default function ExecutiveIntakePage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [step1Error, setStep1Error] = useState('')
   const [submitError, setSubmitError] = useState('')
+  const [handoffMode, setHandoffMode] = useState<'loading' | 'professional' | 'standard'>('loading')
+  const [professionalBrief, setProfessionalBrief] = useState<ProfessionalBrief | null>(null)
+  const [isLocalPreview, setIsLocalPreview] = useState(false)
   const [formData, setFormData] = useState({
     // Move window
     moveDate: '',
@@ -52,7 +58,10 @@ export default function ExecutiveIntakePage() {
     name: '',
     email: '',
     phone: '',
-    currentLocation: ''
+    currentLocation: '',
+    journeyStage: undefined as 'moving' | 'already-here' | undefined,
+    workArea: '',
+    commuteLimit: '',
   })
 
   const londonAreas = [
@@ -64,6 +73,7 @@ export default function ExecutiveIntakePage() {
 
   // Load transferred data from AI Talent Assessment form
   useEffect(() => {
+    setIsLocalPreview(window.location.hostname === 'localhost')
     const transferData = sessionStorage.getItem('ai_talent_transfer_data')
     if (transferData) {
       try {
@@ -98,6 +108,26 @@ export default function ExecutiveIntakePage() {
         console.error('Error loading Ask Relo handoff:', error)
       }
     }
+
+    const professionalData = new URLSearchParams(window.location.search).get('from') === 'professional-plan'
+      ? sessionStorage.getItem('professional_brief_transfer_data')
+      : null
+    if (professionalData) {
+      try {
+        const data = JSON.parse(professionalData) as ProfessionalBrief
+        setFormData(prev => ({
+          ...prev,
+          ...mapProfessionalBriefToIntake(data),
+        }))
+        setProfessionalBrief(data)
+        setHandoffMode('professional')
+      } catch (error) {
+        console.error('Error loading starting plan:', error)
+        setHandoffMode('standard')
+      }
+    } else {
+      setHandoffMode('standard')
+    }
   }, [])
 
   const handleAreaToggle = (area: string) => {
@@ -119,9 +149,9 @@ export default function ExecutiveIntakePage() {
     const missing: string[] = []
     if (!formData.moveDate) missing.push('target move date')
     if (!formData.budget) missing.push('monthly rent budget')
-    if (formData.preferredAreas.length === 0) missing.push('at least one preferred area')
     if (!formData.name.trim()) missing.push('name')
     if (!formData.email.trim()) missing.push('email address')
+    if (!formData.children) missing.push('number of children')
 
     if (missing.length > 0) {
       setStep1Error(`Please add ${missing.join(', ')} before checking your answers.`)
@@ -137,7 +167,7 @@ export default function ExecutiveIntakePage() {
 
   const handleSubmit = async () => {
     // Validate required fields
-    if (!formData.name || !formData.email || !formData.moveDate || !formData.budget || formData.preferredAreas.length === 0) {
+    if (!formData.name || !formData.email || !formData.moveDate || !formData.budget || !formData.children) {
       alert('Please complete all required fields before continuing.')
       return
     }
@@ -171,7 +201,17 @@ export default function ExecutiveIntakePage() {
           ...formData,
           referenceId: data.referenceId,
         }))
-        window.location.href = `/executive-intake/success?reference=${encodeURIComponent(data.referenceId)}`
+        if (handoffMode === 'professional') {
+          sessionStorage.removeItem('professional_brief_transfer_data')
+          const bookingUrl = buildConsultationUrl(
+            process.env.NEXT_PUBLIC_CAL_COM_EMBED_ID,
+            formData.name,
+            formData.email,
+          )
+          window.location.href = bookingUrl || `/executive-intake/success?reference=${encodeURIComponent(data.referenceId)}`
+        } else {
+          window.location.href = `/executive-intake/success?reference=${encodeURIComponent(data.referenceId)}`
+        }
       } else {
         setSubmitError(data.error || 'We could not receive your brief. Please email hello@therelonetwork.com.')
       }
@@ -181,6 +221,78 @@ export default function ExecutiveIntakePage() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (handoffMode === 'loading') {
+    return <main className="professional-handoff professional-handoff--loading">Preparing your details…</main>
+  }
+
+  if (handoffMode === 'professional' && professionalBrief) {
+    const budgetLabels: Record<string, string> = {
+      '2000-3000': '£2,000–£3,000',
+      '3000-5000': '£3,000–£5,000',
+      '5000-7500': '£5,000–£7,500',
+      '7500-10000': '£7,500–£10,000',
+      '10000+': '£10,000+',
+    }
+
+    return (
+      <main className="professional-handoff">
+        <header className="professional-header">
+          <a href="/" aria-label="The Relo Network home">THE RELO NETWORK</a>
+          <a href="/international-professionals#start">EDIT MY STARTING ANSWERS</a>
+        </header>
+        <div className="professional-handoff__wrap">
+          <p className="professional-kicker">ONE LAST STEP</p>
+          <h1>Choose a time to talk.</h1>
+          <p className="professional-handoff__lead">We’ve carried your answers across. Add your contact details, then we’ll take you to the calendar. No need to fill in the move form again.</p>
+          {isLocalPreview && <p className="professional-handoff__preview-note">Preview only: this local page does not have the live email and database connections. You can inspect the journey, but your answers cannot be saved here.</p>}
+          <div className="professional-handoff__grid">
+            <section className="professional-handoff__summary" aria-label="Your starting answers">
+              <h2>Your answers</h2>
+              <dl>
+                <div><dt>Situation</dt><dd>{professionalBrief.situation === 'moving' ? 'Moving to London' : 'Already living in London'}</dd></div>
+                <div><dt>Work area</dt><dd>{formData.workArea}</dd></div>
+                <div><dt>Commute limit</dt><dd>{formData.commuteLimit} minutes</dd></div>
+                <div><dt>Monthly rent budget</dt><dd>{budgetLabels[formData.budget]}</dd></div>
+                <div><dt>Target date</dt><dd>{formData.moveDate}</dd></div>
+                <div><dt>Household</dt><dd>{professionalBrief.household === 'family' ? 'Family with children' : professionalBrief.household === 'couple' ? 'Couple' : 'Just me'}</dd></div>
+                <div><dt>Main concern</dt><dd>{professionalBrief.priority === 'area' ? 'Choosing an area' : professionalBrief.priority === 'home' ? 'Finding a home' : professionalBrief.priority === 'school' ? 'Schools' : 'Settling in'}</dd></div>
+              </dl>
+            </section>
+            <form className="professional-handoff__form" onSubmit={(event) => { event.preventDefault(); void handleSubmit() }}>
+              <h2>Your contact details</h2>
+              <label htmlFor="professional-name">Name <span>*</span></label>
+              <input id="professional-name" type="text" autoComplete="name" value={formData.name} onChange={(event) => handleInputChange('name', event.target.value)} required />
+              <label htmlFor="professional-email">Email <span>*</span></label>
+              <input id="professional-email" type="email" autoComplete="email" value={formData.email} onChange={(event) => handleInputChange('email', event.target.value)} required />
+              {professionalBrief.household === 'family' && (
+                <>
+                  <label htmlFor="professional-children">How many children? <span>*</span></label>
+                  <select id="professional-children" value={formData.children} onChange={(event) => handleInputChange('children', event.target.value)} required>
+                    <option value="">Choose one</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3+">3 or more</option>
+                  </select>
+                </>
+              )}
+              <label htmlFor="professional-notes">Anything else we should know? <small>(optional)</small></label>
+              <textarea id="professional-notes" rows={3} maxLength={2000} placeholder="For example, a school deadline or a fixed arrival date" onChange={(event) => handleInputChange('specialRequirements', event.target.value)} value={formData.specialRequirements} />
+              <label className="professional-handoff__consent"><input type="checkbox" checked={consentAccepted} onChange={(event) => setConsentAccepted(event.target.checked)} required /> <span>I agree that The Relo Network may use these details to prepare for my call and contact me about my enquiry. <a href="/privacy" target="_blank" rel="noreferrer">Privacy notice</a></span></label>
+              {submitError && <p className="professional-error" role="alert">{submitError}</p>}
+              {submitError && isLocalPreview && (
+                <p className="professional-handoff__preview-note">
+                  This local preview cannot save your brief. You can still <a href={buildConsultationUrl(process.env.NEXT_PUBLIC_CAL_COM_EMBED_ID, formData.name, formData.email)} target="_blank" rel="noreferrer">view the live call calendar</a>, but these answers will not be sent to our team.
+                </p>
+              )}
+              <button className="professional-button" type="submit" disabled={isSubmitting || !consentAccepted}>{isSubmitting ? 'SAVING YOUR DETAILS…' : 'CONTINUE TO AVAILABLE CALL TIMES'} <span aria-hidden="true">→</span></button>
+              <p className="professional-handoff__fineprint">Your details are saved before you choose a time. A call is booked only after you select a slot and confirm it on the calendar.</p>
+            </form>
+          </div>
+        </div>
+      </main>
+    )
   }
 
   return (
@@ -231,7 +343,7 @@ export default function ExecutiveIntakePage() {
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">When are you moving?</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Target move date *</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Target move or decision date *</label>
                     <input
                       type="date"
                       value={formData.moveDate}
@@ -294,7 +406,7 @@ export default function ExecutiveIntakePage() {
               <div>
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4 flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-[#C9A24A]" />
-                  Areas you may want to live in (choose 1–5) *
+                  Areas you may want to live in (optional, choose up to 5)
                 </h3>
                 <div className="grid grid-cols-3 md:grid-cols-4 gap-2 mb-4">
                   {londonAreas.map((area) => (
@@ -350,6 +462,7 @@ export default function ExecutiveIntakePage() {
                       onChange={(e) => handleInputChange('children', e.target.value)}
                       className="w-full px-3 py-2 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#C9A24A] focus:border-transparent"
                     >
+                      <option value="" disabled>Choose number of children</option>
                       <option value="0">No children</option>
                       <option value="1">1 child</option>
                       <option value="2">2 children</option>

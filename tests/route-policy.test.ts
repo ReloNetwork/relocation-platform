@@ -7,6 +7,7 @@ describe('route lifecycle policy', () => {
   it('keeps the redesigned public and conversion journeys indexable', () => {
     expect(getRouteDecision('/move', production)).toEqual({ action: 'allow', indexable: true })
     expect(getRouteDecision('/executive-intake', production)).toEqual({ action: 'allow', indexable: true })
+    expect(getRouteDecision('/international-professionals', production)).toEqual({ action: 'allow', indexable: true })
     expect(getRouteDecision('/newsletter/mayfair-guide', production)).toEqual({ action: 'allow', indexable: true })
     expect(getRouteDecision('/partner-application/', production)).toEqual({ action: 'allow', indexable: true })
     expect(getRouteDecision('/editorial-policy', production)).toEqual({ action: 'allow', indexable: true })

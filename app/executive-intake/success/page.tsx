@@ -5,36 +5,40 @@ import Link from 'next/link'
 import { ArrowRight, CheckCircle, Clock, Mail } from 'lucide-react'
 import Layout from '@/components/Layout'
 import { trackCommercialEvent } from '@/lib/commercial-analytics'
+import { buildConsultationUrl } from '@/lib/consultation-link'
 
 type IntakeReceipt = {
   name?: string
   email?: string
   referenceId?: string
+  journeyStage?: 'moving' | 'already-here'
 }
 
 export default function ExecutiveIntakeSuccessPage() {
   const [receipt, setReceipt] = useState<IntakeReceipt>({})
-  const calendarLink = process.env.NEXT_PUBLIC_CAL_COM_EMBED_ID
-  const consultationLink = calendarLink
-    ? calendarLink.includes('/')
-      ? calendarLink
-      : `${calendarLink}/30min`
-    : null
+  const [receiptLoaded, setReceiptLoaded] = useState(false)
 
   useEffect(() => {
     const saved = sessionStorage.getItem('executive_intake_data')
-    if (!saved) return
+    if (!saved) {
+      setReceiptLoaded(true)
+      return
+    }
 
     try {
       setReceipt(JSON.parse(saved))
     } catch (error) {
       console.error('Unable to read executive intake receipt', error)
+    } finally {
+      setReceiptLoaded(true)
     }
   }, [])
 
-  const bookingUrl = consultationLink
-    ? `https://cal.com/${consultationLink}?name=${encodeURIComponent(receipt.name || '')}&email=${encodeURIComponent(receipt.email || '')}`
-    : null
+  const bookingUrl = buildConsultationUrl(
+    process.env.NEXT_PUBLIC_CAL_COM_EMBED_ID,
+    receipt.name || '',
+    receipt.email || '',
+  )
 
   return (
     <Layout className="bg-[#FAFAF9] min-h-screen">
@@ -53,9 +57,9 @@ export default function ExecutiveIntakeSuccessPage() {
             YOUR BRIEF IS WITH US.
           </h1>
           <p className="text-lg text-[#6B7280] max-w-2xl mb-8">
-            We will review the timing, household needs and level of support
-            required, then reply within one business day with the most
-            appropriate next step.
+            {receipt.journeyStage
+              ? 'We have your starting answers. Choose an available time below to talk through your next step.'
+              : 'We will review the timing, household needs and level of support required, then reply within one business day with the most appropriate next step.'}
           </p>
 
           {receipt.referenceId && (
@@ -91,7 +95,7 @@ export default function ExecutiveIntakeSuccessPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            {bookingUrl && (
+            {bookingUrl && receiptLoaded && (
               <a
                 href={bookingUrl}
                 target="_blank"
