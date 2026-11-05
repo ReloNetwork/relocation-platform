@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
+import { fulfilMoveMapOrder } from '@/lib/london-move-map-server';
 
 export const runtime = 'nodejs';
 
@@ -21,6 +22,16 @@ export async function POST(req: NextRequest) {
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object as Stripe.Checkout.Session;
       
+      if (session.metadata?.type === 'london-move-map') {
+        try {
+          await fulfilMoveMapOrder(session, stripe);
+          return NextResponse.json({ ok: true });
+        } catch (error) {
+          console.error('Move map order notification failed', error instanceof Error ? error.name : 'unknown');
+          return NextResponse.json({ error: 'Order processing failed; retry required' }, { status: 500 });
+        }
+      }
+
       // Handle corporate emergency packages
       if (session.metadata?.type === 'corporate-emergency-package') {
         await handleCorporateEmergencyPayment(session);

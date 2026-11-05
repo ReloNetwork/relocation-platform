@@ -106,6 +106,12 @@ export default function MovePage() {
             <Link href="/executive-intake">Start Your Move →</Link>
           </article>
           <article>
+            <span>CHOOSING WHERE TO LIVE</span>
+            <h3>London Home &amp; Life Map</h3>
+            <p>A personalised location consultation for solo movers, couples and families. £249 total, one-time payment.</p>
+            <Link href="/london-move-map">See the consultation →</Link>
+          </article>
+          <article>
             <span>ONE QUESTION FIRST</span>
             <h3>Ask Relo</h3>
             <p>
@@ -127,10 +133,10 @@ export default function MovePage() {
 
         <section className="move-commitment">
           <p className="eyebrow">TELL US WHAT YOU NEED FIRST</p>
-          <h2>YOU DO NOT PAY BEFORE WE UNDERSTAND YOUR MOVE.</h2>
+          <h2>START WITH THE QUESTION IN FRONT OF YOU.</h2>
           <p>
-            We read your details before suggesting paid help. If we are not the
-            right fit, we will still try to point you in a useful direction.
+            Share your wider move for a personal response, or choose the focused
+            consultation when deciding where to live.
           </p>
           <Link className="button button--gold" href="/executive-intake">
             TELL US ABOUT YOUR MOVE
