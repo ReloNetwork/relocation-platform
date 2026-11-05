@@ -104,6 +104,12 @@ export default function MovePage() {
             <Link href="/executive-intake">Start Your Move →</Link>
           </article>
           <article>
+            <span>CHOOSING WHERE TO LIVE</span>
+            <h3>London Home &amp; Life Map</h3>
+            <p>A personalised location consultation for solo movers, couples and families. £249 total, one-time payment.</p>
+            <Link href="/london-move-map">See the consultation →</Link>
+          </article>
+          <article>
             <span>STILL EXPLORING</span>
             <h3>Read our London guides</h3>
             <p>
