@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const coreRoutes = [
     '',
     '/move',
+    '/london-move-map',
     '/live',
     '/discover',
     '/network',

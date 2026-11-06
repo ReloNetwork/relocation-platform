@@ -19,7 +19,7 @@ const scenes = [
     number: '02',
     label: 'MOVE',
     eyebrow: 'FIND THE RIGHT PLACE',
-    title: 'FIND YOUR\nRIGHT HOME.',
+    title: 'FIND A HOME\nTHAT FITS.',
     body: 'We help you compare areas, homes and schools around your work, budget and daily life.',
     image: '/images/editorial/london-street-hero.webp',
   },

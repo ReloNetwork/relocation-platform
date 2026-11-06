@@ -65,7 +65,7 @@ export default function MovePage() {
               priority
               sizes="(max-width: 900px) 100vw, 48vw"
             />
-            <span>YOUR LONDON / CONSIDERED</span>
+            <span>FIND YOUR PLACE IN LONDON</span>
           </div>
         </section>
 
@@ -98,10 +98,16 @@ export default function MovePage() {
             <span>READY TO PLAN</span>
             <h3>Tell us about your move</h3>
             <p>
-              Best when your move is active and you want a person to review the
+              Best when your move is active and you want a consultant to review the
               full picture.
             </p>
             <Link href="/executive-intake">Start Your Move →</Link>
+          </article>
+          <article>
+            <span>CHOOSING WHERE TO LIVE</span>
+            <h3>London Home &amp; Life Map</h3>
+            <p>A personalised location consultation for solo movers, couples and families. £249 in total.</p>
+            <Link href="/london-move-map">See the consultation →</Link>
           </article>
           <article>
             <span>STILL EXPLORING</span>
