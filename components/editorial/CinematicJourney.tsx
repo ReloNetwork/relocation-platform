@@ -9,18 +9,18 @@ const scenes = [
     id: 'arrive',
     number: '01',
     label: 'ARRIVE',
-    eyebrow: 'YOUR LONDON, BEFORE YOU LAND',
-    title: 'LONDON,\nBUT BETTER.',
-    body: 'Clear London guidance and one person who understands your move.',
+    eyebrow: 'FOR INTERNATIONAL PROFESSIONALS',
+    title: 'MOVE TO LONDON.\nLIVE WELL HERE.',
+    body: 'Expert support for your move to London and your life here. We help you make clear decisions about areas, homes, schools and what to do first.',
     image: '/images/editorial/london-arrival-cinematic.webp',
   },
   {
     id: 'move',
     number: '02',
     label: 'MOVE',
-    eyebrow: 'ARRIVE ALREADY SETTLED',
-    title: 'THE SEARCH\nSTARTS WITH YOU.',
-    body: 'We narrow down areas, homes and schools around the way you want to live.',
+    eyebrow: 'FIND THE RIGHT PLACE',
+    title: 'FIND YOUR\nRIGHT HOME.',
+    body: 'We help you compare areas, homes and schools around your work, budget and daily life.',
     image: '/images/editorial/london-street-hero.webp',
   },
   {
@@ -28,8 +28,8 @@ const scenes = [
     number: '03',
     label: 'LIVE',
     eyebrow: 'EVERYDAY LONDON',
-    title: 'WHERE LONDON\nACTUALLY WORKS.',
-    body: 'Compare commutes, school runs, weekends and the small details that shape daily life.',
+    title: 'PLAN FOR\nDAILY LIFE.',
+    body: 'Check the journeys, routines and local services you will rely on each week.',
     image: '/images/editorial/london-interior.webp',
   },
   {
@@ -37,8 +37,8 @@ const scenes = [
     number: '04',
     label: 'DISCOVER',
     eyebrow: 'LONDON LIFE',
-    title: 'LIVE LIKE YOU\nBELONG HERE.',
-    body: 'Find the places and people our advisers would recommend to a friend.',
+    title: 'GET TO KNOW\nYOUR LONDON.',
+    body: 'Find places to enjoy and local people you can rely on.',
     image: '/images/editorial/london-table.webp',
   },
   {
@@ -46,8 +46,8 @@ const scenes = [
     number: '05',
     label: 'ASK RELO',
     eyebrow: 'ASK RELO',
-    title: 'DON’T SEARCH\nLONDON. ASK IT.',
-    body: 'Ask five questions for free. Bring in a human when your decision needs more care.',
+    title: 'ASK ABOUT\nLONDON.',
+    body: 'Ask five questions for free. If you need personal help, talk to our team.',
     image: '/images/editorial/london-arrival-cinematic.webp',
   },
 ];
@@ -154,7 +154,11 @@ export default function CinematicJourney() {
           </div>
         </aside>
 
-        <div className="cinematic-world__copy" key={scene.id} id={scene.id}>
+        <div
+          className={`cinematic-world__copy${active === 0 ? ' cinematic-world__copy--arrive' : ''}`}
+          key={scene.id}
+          id={scene.id}
+        >
           <p className="eyebrow">{scene.eyebrow}</p>
           <h1>
             {scene.title.split('\n').map((line) => (

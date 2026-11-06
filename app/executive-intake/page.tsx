@@ -310,7 +310,7 @@ export default function ExecutiveIntakePage() {
           </div>
           <aside>
             <span>WHAT HAPPENS NEXT</span>
-            <p>A person reviews your information.</p>
+            <p>A consultant reviews your information.</p>
             <p>We identify the priorities and pressure points.</p>
             <p>We reply within one business day.</p>
           </aside>
@@ -651,7 +651,7 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">What will I receive?</div>
-                  <div className="text-[#6B7280]">A considered recommendation shaped around your timing, priorities and the decisions ahead.</div>
+                  <div className="text-[#6B7280]">A practical recommendation based on your timing, priorities and questions.</div>
                 </div>
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">What if my plans are still changing?</div>

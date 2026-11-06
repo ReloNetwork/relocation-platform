@@ -59,7 +59,7 @@ export default function ExecutiveIntakeSuccessPage() {
           <p className="text-lg text-[#6B7280] max-w-2xl mb-8">
             {receipt.journeyStage
               ? 'We have your starting answers. Choose an available time below to talk through your next step.'
-              : 'We will review the timing, household needs and level of support required, then reply within one business day with the most appropriate next step.'}
+              : 'We will review your timing, household needs and questions, then reply within one business day with what we recommend next.'}
           </p>
 
           {receipt.referenceId && (
@@ -75,7 +75,7 @@ export default function ExecutiveIntakeSuccessPage() {
             <div className="border-t border-[#E5E7EB] pt-5">
               <Clock className="w-5 h-5 text-[#C9A24A] mb-3" />
               <h2 className="font-semibold text-[#0B1B2B] mb-2">
-                Human review first
+                Our team reviews your brief
               </h2>
               <p className="text-sm text-[#6B7280]">
                 A member of our team is reviewing your priorities, timing and
@@ -88,8 +88,8 @@ export default function ExecutiveIntakeSuccessPage() {
                 A clear recommendation
               </h2>
               <p className="text-sm text-[#6B7280]">
-                We will reply with the clearest route forward and the support
-                best placed to make a meaningful difference.
+                We will tell you what we recommend doing next and how we can
+                help.
               </p>
             </div>
           </div>

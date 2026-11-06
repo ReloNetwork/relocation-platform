@@ -28,14 +28,14 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">THE RELO NETWORK</p>
             <h2>
-              LONDON,
+              MAKE LONDON
               <br />
-              MADE CLEARER.
+              WORK FOR YOU.
             </h2>
             <p>
-              Moving to London brings a lot of choices. We help you understand
-              the areas, plan what to do first and find the right people when
-              you need them.
+              Whether you are moving to London or already here, we can help
+              you choose an area, find a home, handle school decisions and
+              plan what to do next.
             </p>
             <div className="home-intro__actions">
               <Link className="button button--gold" href="/international-professionals">
@@ -55,31 +55,27 @@ export default function HomePage() {
         </section>
         <HorizontalIntelligence />
         <section className="programme">
-          <h2>
-            MAKE THE
-            <br />
-            MOVE.
-          </h2>
+          <h2>HOW WE CAN HELP.</h2>
           <div>
             {[
               [
                 '01',
-                'ASK ONE QUESTION',
+                'ASK RELO',
                 'Ask about an area, a school, housing or what to do first.',
                 '/ask-relo',
                 'Ask Relo',
               ],
               [
                 '02',
-                'LEARN ABOUT LONDON',
+                'READ ABOUT LONDON',
                 'Read practical guides and get The London Brief by email.',
                 '/journal',
                 'Read the Journal',
               ],
               [
                 '03',
-                'TELL US ABOUT YOUR MOVE',
-                'Send your details when you are ready for a person to review them.',
+                'TELL US WHAT YOU NEED',
+                'Share your plans and questions when you are ready for a consultant to review them.',
                 '/executive-intake',
                 'Start Your Move',
               ],

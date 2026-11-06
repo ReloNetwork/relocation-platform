@@ -33,6 +33,26 @@ describe('website copy', () => {
     expect(offenders).toEqual([]);
   });
 
+  it('leads with plain language and keeps AI claims out of the main public copy', () => {
+    const film = readFileSync('components/editorial/CinematicJourney.tsx', 'utf8');
+    const landing = readFileSync('app/international-professionals/page.tsx', 'utf8');
+    const mainCopy = [
+      'app/page.tsx',
+      'app/move/page.tsx',
+      'app/live/page.tsx',
+      'app/discover/page.tsx',
+      'app/newsletter/page.tsx',
+      'app/ask-relo/page.tsx',
+      'app/international-professionals/page.tsx',
+      'components/editorial/CinematicJourney.tsx',
+      'components/editorial/HorizontalIntelligence.tsx',
+    ].map((path) => readFileSync(path, 'utf8')).join('\n');
+
+    expect(film).toContain('MOVE TO LONDON.\\nLIVE WELL HERE.');
+    expect(landing).toContain('Expert support for your move to London and your life here.');
+    expect(mainCopy).not.toMatch(/BUT BETTER|AI-powered|AI assistant/i);
+  });
+
   it('does not repeat unsupported launch claims on approved public pages', () => {
     const publicFiles = [
       'app/page.tsx',

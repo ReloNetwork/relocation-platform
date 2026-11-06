@@ -10,8 +10,8 @@ export default function Page() {
     <Layout>
       <EditorialPage
         label="LIVE"
-        title="WHERE LONDON ACTUALLY WORKS."
-        intro="Compare neighbourhoods through daily life: your commute, the school run, weekends and how each street feels throughout the year."
+        title="PLAN DAILY LIFE IN LONDON."
+        intro="Compare neighbourhoods by the journeys you will make, the schools you may need and the places you will use each week."
         image="/images/editorial/london-street-hero.webp"
         sectionTitle="PRACTICAL LONDON"
         items={[

@@ -12,7 +12,7 @@ function AskReloContent() {
           <span className="vertical-label">ASK RELO</span>
           <div>
             <p className="eyebrow">ASK RELO</p>
-            <h1>ASK A QUESTION ABOUT MOVING TO LONDON.</h1>
+            <h1>ASK ABOUT MOVING TO OR LIVING IN LONDON.</h1>
             <i />
             <p>
               Ask about areas, schools, housing or what to do first. You can ask

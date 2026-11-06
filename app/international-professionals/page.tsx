@@ -65,8 +65,8 @@ export default function InternationalProfessionalsPage() {
       <section className="professional-hero">
         <div className="professional-wrap">
           <p className="professional-kicker">FOR INTERNATIONAL PROFESSIONALS</p>
-          <h1>Make your next London decision with a clear plan.</h1>
-          <p>Moving to London, or already here and considering a change? Tell us what matters. Get a useful starting plan now, then decide whether you want our team to help you carry it out.</p>
+          <h1>Expert support for your move to London and your life here.</h1>
+          <p>Moving to London or already here? Tell us what matters to you. We’ll show you what to check first. If you want more help, you can book a call with our team.</p>
           <a className="professional-button" href="#start">GET MY STARTING PLAN <span aria-hidden="true">→</span></a>
           <span className="professional-note">About 3 minutes · No email required to see your plan</span>
         </div>
@@ -83,7 +83,7 @@ export default function InternationalProfessionalsPage() {
           <div className="professional-form-intro">
             <p className="professional-kicker">YOUR LONDON STARTING PLAN</p>
             <h2>What decision are you trying to make?</h2>
-            <p>We’ll use your answers to show what to check first. This is a starting point, not a claim that a particular home or school is available.</p>
+            <p>We’ll use your answers to show what to check first. Please check current property and school availability before making plans.</p>
           </div>
           <div className="professional-form-card">
             <fieldset>
@@ -151,7 +151,7 @@ export default function InternationalProfessionalsPage() {
           <div className="professional-wrap">
             <p className="professional-kicker">YOUR STARTING PLAN</p>
             <h2>{result.firstDecision}</h2>
-            <p className="professional-result-lead">Based on your work area, {brief.commute}-minute commute limit, rent budget and household. Here are three decisions to make next:</p>
+            <p className="professional-result-lead">Based on your work area, travel time, rent budget and household, here are three things to do next:</p>
             <p className="professional-timing-note">{result.timingNote}</p>
             <ol>{result.steps.map((step) => <li key={step}>{step}</li>)}</ol>
             <p className="professional-caveat">Area suggestions are starting points, not confirmed commute times or property availability. Check live routes, listings and school admissions before making a commitment.</p>

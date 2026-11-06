@@ -16,14 +16,14 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'The Relo Network | London, intelligently answered',
+    default: 'The Relo Network | Help for moving to and living in London',
     template: '%s | The Relo Network',
   },
   description:
     'Clear, independent help for international professionals and families moving to and living in London.',
   openGraph: {
     title: 'The Relo Network',
-    description: 'London, intelligently answered.',
+    description: 'Expert support for your move to London and your life here.',
     siteName: 'The Relo Network',
     type: 'website',
     images: ['/images/editorial/london-street-hero.webp'],

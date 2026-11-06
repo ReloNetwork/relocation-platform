@@ -138,7 +138,7 @@ const UnifiedAssistant = forwardRef<UnifiedAssistantRef, UnifiedAssistantProps>(
       if ((isOpen || variant === 'embedded') && messages.length === 0) {
         const welcomeMessage: ChatMessage = {
           role: 'assistant',
-          content: `Hello. I'm Relo, your AI London Guide.
+          content: `Hello. I'm Relo, a digital London guide.
 
 I can help you compare neighbourhoods, frame housing and school decisions, and make more confident choices about moving to or living in London.
 
@@ -1057,7 +1057,7 @@ What would you like to understand about London?`,
             <div>
               <h3 className="font-semibold text-[#0B1B2B]">Ask Relo</h3>
               <p className="text-sm text-[#6B7280]">
-                AI Assistant for London Relocation
+                Questions about London, answered
               </p>
             </div>
           </div>

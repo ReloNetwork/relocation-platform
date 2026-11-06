@@ -8,7 +8,7 @@ const chapters = [
   {
     number: '01',
     kicker: 'NEIGHBOURHOODS',
-    title: 'Choose a life,\nnot a postcode.',
+    title: 'Find an area\nthat fits your day.',
     text: 'Compare areas by commute, schools, pace and the way everyday life feels.',
     image: '/images/editorial/london-street-hero.webp',
     ask: 'Compare neighbourhoods',
@@ -17,8 +17,8 @@ const chapters = [
   {
     number: '02',
     kicker: 'CULTURE & LIFESTYLE',
-    title: 'The city,\nproperly edited.',
-    text: 'Restaurants worth booking, galleries worth the detour and places you will want to return to.',
+    title: 'Find places\nyou will enjoy.',
+    text: 'Explore restaurants, galleries and local places you will want to return to.',
     image: '/images/editorial/london-table.webp',
     ask: 'Build my London weekend',
     href: '/discover',
@@ -36,7 +36,7 @@ const chapters = [
     number: '04',
     kicker: 'ASK RELO',
     title: 'Ask one question,\nthen the next.',
-    text: 'Ask Relo remembers the questions in your conversation, so its answers can be more useful.',
+    text: 'Ask about areas, schools or daily life. You can follow up if you need more detail.',
     image: '/images/editorial/london-arrival-cinematic.webp',
     ask: 'Ask Relo now',
     href: '/ask-relo',

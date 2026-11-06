@@ -10,8 +10,8 @@ export default function Page() {
     <Layout>
       <EditorialPage
         label="DISCOVER"
-        title="THE CITY, EDITED."
-        intro="Explore neighbourhoods, restaurants, galleries and interiors through shortlists shaped by people who know the city."
+        title="GET TO KNOW LONDON."
+        intro="Explore neighbourhoods, restaurants, galleries and local places with practical guides from people who know the city."
         image="/images/editorial/london-table.webp"
         sectionTitle="WHERE TO START"
         items={[

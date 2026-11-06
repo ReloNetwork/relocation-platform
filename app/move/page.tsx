@@ -47,8 +47,8 @@ export default function MovePage() {
               WITH A CLEAR PLAN.
             </h1>
             <p>
-              A London move involves choices about your home, school, work,
-              timing and daily life. We help you decide what matters and what
+              Moving to London means finding a home, planning work and school
+              journeys, and getting the timing right. We help you decide what
               to do first.
             </p>
             <div className="move-hero__actions">
@@ -74,8 +74,8 @@ export default function MovePage() {
             <span>01</span>
             <h2>HOW IT WORKS.</h2>
             <p>
-              Start with a few details about your move. We identify what matters
-              most and shape the clearest route from first decision to settled life.
+              Tell us about your move. We’ll review your priorities and suggest
+              a practical plan for what to do next.
             </p>
           </header>
           <div className="move-programme__grid">
@@ -118,9 +118,8 @@ export default function MovePage() {
           <p className="eyebrow">BUILT AROUND YOUR PRIORITIES</p>
           <h2>LET US UNDERSTAND YOUR MOVE.</h2>
           <p>
-            The better we understand your priorities, pressures and ambitions,
-            the more precisely we can solve what stands between you and a
-            confident life in London.
+            Tell us what is happening, what feels difficult and what you need.
+            We’ll review your answers and suggest the best next step.
           </p>
           <Link className="button button--gold" href="/executive-intake">
             TELL US ABOUT YOUR MOVE

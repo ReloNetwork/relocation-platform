@@ -40,11 +40,10 @@ export default function NewsletterPage({
           <span className="vertical-label">JOURNAL</span>
           <div>
             <span className="brief-eyebrow">THE LONDON BRIEF</span>
-            <h1>LONDON, MADE YOURS.</h1>
+            <h1>USEFUL LONDON ADVICE IN YOUR INBOX.</h1>
             <p>
-              Make better London decisions, sooner. Get trusted neighbourhood
-              guides, practical moving advice and places worth knowing,
-              thoughtfully chosen for people making the city home.
+              Get practical guides on neighbourhoods, moving, schools and
+              everyday life. We send The London Brief by email.
             </p>
           </div>
           <BriefSignup
