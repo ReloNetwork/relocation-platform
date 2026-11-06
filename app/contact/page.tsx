@@ -13,14 +13,14 @@ const routes = [
   {
     number: '01',
     title: 'I am moving to London',
-    text: 'Tell us when you are moving, who is coming and what support you need. We turn the full picture into a clear, considered next step.',
+    text: 'Tell us when you are moving, who is coming and what help you need. We will review your answers and suggest what to do next.',
     action: 'Start your private brief',
     href: '/executive-intake',
   },
   {
     number: '02',
     title: 'I want to partner with you',
-    text: 'Share your business, audience and campaign goal. We will recommend the format, scope and next step best suited to the opportunity.',
+    text: 'Tell us about your business and what you would like to achieve. We will suggest a suitable way to work together.',
     action: 'Send a partner enquiry',
     href: '/partner-application',
   },

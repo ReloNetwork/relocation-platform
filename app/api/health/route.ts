@@ -113,7 +113,7 @@ export async function GET() {
     supabaseUrl: has(process.env.NEXT_PUBLIC_SUPABASE_URL),
     serviceRole: has(process.env.SUPABASE_SERVICE_ROLE_KEY),
     resend: has(process.env.RESEND_API_KEY),
-    destination: has(process.env.EXECUTIVE_INTAKE_EMAIL),
+    destination: has(process.env.EXECUTIVE_INTAKE_EMAIL || 'hello@therelonetwork.com'),
   };
   const intakeConfigured = Object.values(intakeConfiguration).every(Boolean);
   out.executiveIntake = {

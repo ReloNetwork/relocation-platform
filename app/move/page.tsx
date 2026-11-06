@@ -47,8 +47,8 @@ export default function MovePage() {
               WITH A CLEAR PLAN.
             </h1>
             <p>
-              A London move involves choices about your home, school, work,
-              timing and daily life. We help you decide what matters and what
+              Moving to London means finding a home, planning work and school
+              journeys, and getting the timing right. We help you decide what
               to do first.
             </p>
             <div className="move-hero__actions">
@@ -65,7 +65,7 @@ export default function MovePage() {
               priority
               sizes="(max-width: 900px) 100vw, 48vw"
             />
-            <span>YOUR LONDON / CONSIDERED</span>
+            <span>FIND YOUR PLACE IN LONDON</span>
           </div>
         </section>
 
@@ -74,8 +74,8 @@ export default function MovePage() {
             <span>01</span>
             <h2>HOW IT WORKS.</h2>
             <p>
-              Start with a few details about your move. We identify what matters
-              most and shape the clearest route from first decision to settled life.
+              Tell us about your move. We’ll review your priorities and suggest
+              a practical plan for what to do next.
             </p>
           </header>
           <div className="move-programme__grid">
@@ -98,7 +98,7 @@ export default function MovePage() {
             <span>READY TO PLAN</span>
             <h3>Tell us about your move</h3>
             <p>
-              Best when your move is active and you want a person to review the
+              Best when your move is active and you want a consultant to review the
               full picture.
             </p>
             <Link href="/executive-intake">Start Your Move →</Link>
@@ -106,7 +106,7 @@ export default function MovePage() {
           <article>
             <span>CHOOSING WHERE TO LIVE</span>
             <h3>London Home &amp; Life Map</h3>
-            <p>A personalised location consultation for solo movers, couples and families. £249 total, one-time payment.</p>
+            <p>A personalised location consultation for solo movers, couples and families. £249 in total.</p>
             <Link href="/london-move-map">See the consultation →</Link>
           </article>
           <article>
@@ -124,9 +124,8 @@ export default function MovePage() {
           <p className="eyebrow">BUILT AROUND YOUR PRIORITIES</p>
           <h2>LET US UNDERSTAND YOUR MOVE.</h2>
           <p>
-            The better we understand your priorities, pressures and ambitions,
-            the more precisely we can solve what stands between you and a
-            confident life in London.
+            Tell us what is happening, what feels difficult and what you need.
+            We’ll review your answers and suggest the best next step.
           </p>
           <Link className="button button--gold" href="/executive-intake">
             TELL US ABOUT YOUR MOVE

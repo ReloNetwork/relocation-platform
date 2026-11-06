@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/ask-relo',
     '/london-landing-list',
     '/executive-intake',
+    '/international-professionals',
     '/newsletter',
     '/partner-application',
     '/contact',

@@ -209,14 +209,16 @@ export function executiveNotificationEmail(options: {
       { label: 'Email', value: formatText(intake.email) },
       { label: 'Phone', value: formatText(intake.phone) },
       { label: 'Current location', value: formatText(intake.currentLocation) },
-      { label: 'Move date', value: formatText(intake.moveDate) },
+      { label: intake.journeyStage === 'already-here' ? 'Decision date' : 'Move date', value: formatText(intake.moveDate) },
+      { label: 'Work area', value: formatText(intake.workArea) },
+      { label: 'Commute limit', value: intake.commuteLimit ? `${formatText(intake.commuteLimit)} minutes` : 'Not provided' },
       {
         label: 'Housing budget',
         value: escapeEmailHtml(formatBudget(intake.budget)),
       },
       {
         label: 'Preferred areas',
-        value: formatText(intake.preferredAreas.join(', ')),
+        value: formatText(intake.preferredAreas.join(', '), 'Open to suggestions'),
       },
       {
         label: 'Household',
@@ -257,10 +259,10 @@ export function executiveConfirmationEmail(options: {
     <p style="margin:0 0 18px;">Thank you for sharing the details of your London move. Your private brief has arrived safely and will be reviewed by a consultant.</p>
     ${callout('What happens next', 'We will consider your timing, household needs and the level of support required, then reply within one business day with the clearest next step.')}
     ${detailTable([
-      { label: 'Move date', value: formatText(intake.moveDate) },
+      { label: intake.journeyStage === 'already-here' ? 'Decision date' : 'Move date', value: formatText(intake.moveDate) },
       {
         label: 'Preferred areas',
-        value: formatText(intake.preferredAreas.join(', ')),
+        value: formatText(intake.preferredAreas.join(', '), 'Open to suggestions'),
       },
       {
         label: 'Housing budget',
