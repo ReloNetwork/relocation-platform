@@ -234,7 +234,7 @@ export function executiveNotificationEmail(options: {
         ),
       },
     ])}
-    ${callout('Internal next step', 'Review the brief and respond personally within one business day. This message is an enquiry, not a confirmed engagement.')}`;
+    ${callout('Internal next step', 'Review the brief and respond personally as soon as practical. This message is an enquiry, not a confirmed engagement.')}`;
 
   return layout({
     preheader: `${titleCase(quality)} relocation brief from ${intake.name}`,
@@ -255,7 +255,7 @@ export function executiveConfirmationEmail(options: {
   const { intake, referenceId, journalUrl } = options;
   const body = `<p style="margin:0 0 18px;color:#142e50;font-family:Georgia,'Times New Roman',serif;font-size:25px;line-height:1.35;">Dear ${formatText(intake.name)},</p>
     <p style="margin:0 0 18px;">Thank you for sharing the details of your London move. Your private brief has arrived safely and will be reviewed by a consultant.</p>
-    ${callout('What happens next', 'We will consider your timing, household needs and the level of support required, then reply within one business day with the clearest next step.')}
+    ${callout('What happens next', 'We will review the details you shared and contact you about appropriate next steps for hands-on relocation support.')}
     ${detailTable([
       { label: 'Move date', value: formatText(intake.moveDate) },
       {
@@ -267,7 +267,7 @@ export function executiveConfirmationEmail(options: {
         value: escapeEmailHtml(formatBudget(intake.budget)),
       },
     ])}
-    <p style="margin:24px 0 0;"><strong>No payment has been taken.</strong> If there is a strong fit, we will recommend a private briefing call or the appropriate relocation engagement before any payment link is issued.</p>
+    <p style="margin:24px 0 0;"><strong>No payment has been taken.</strong> We will discuss the relevant service and its scope before any payment is required.</p>
     ${button('Read the London Journal', journalUrl)}`;
 
   return layout({
@@ -380,7 +380,7 @@ export function partnerConfirmationEmail(options: {
   const { application, referenceId, mediaPackUrl } = options;
   const body = `<p style="margin:0 0 18px;color:#142e50;font-family:Georgia,'Times New Roman',serif;font-size:25px;line-height:1.35;">Dear ${formatText(application.name)},</p>
     <p style="margin:0 0 18px;">Thank you for applying to work with The Relo Network. We have received the partnership brief for <strong>${formatText(application.company)}</strong>.</p>
-    ${callout('What we review', 'We consider expertise, audience fit, timing and campaign purpose before recommending a placement. If there is a strong fit, we will reply with the most relevant next step.')}
+    ${callout('What we review', application.partnershipInterest === 'property-live' ? 'We will review the property details, suitability for internationally mobile viewers, filming permissions and timing. A viewing proposal is not a paid sponsorship commitment.' : 'We consider expertise, audience fit, timing and campaign purpose before recommending a placement. If there is a strong fit, we will reply with the most relevant next step.')}
     ${detailTable([
       {
         label: 'Interest',
@@ -395,7 +395,7 @@ export function partnerConfirmationEmail(options: {
         value: `Version ${escapeEmailHtml(PARTNER_MEDIA_PACK_VERSION)}`,
       },
     ])}
-    ${button('View the partner media pack', mediaPackUrl)}
+    ${application.partnershipInterest === 'property-live' ? '' : button('View the partner media pack', mediaPackUrl)}
     <p style="margin:26px 0 0;color:#5e6670;font-size:13px;line-height:1.7;">No payment has been taken. Paid placement never guarantees a client introduction and never changes an independent Ask Relo recommendation.</p>`;
 
   return layout({
