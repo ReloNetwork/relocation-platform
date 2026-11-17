@@ -9,7 +9,7 @@ export const partnerApplicationSchema = z.object({
   company: z.string().trim().min(2).max(160),
   website: optionalUrl,
   serviceCategory: z.string().trim().min(2).max(160),
-  partnershipInterest: z.enum(['editorial', 'newsletter', 'network', 'ask-relo', 'unsure']),
+  partnershipInterest: z.enum(['editorial', 'newsletter', 'network', 'ask-relo', 'property-live', 'unsure']),
   audienceFit: z.enum(['yes', 'partly', 'not-yet']),
   objective: z.enum(['authority', 'reach', 'enquiries', 'thought-leadership', 'knowledge']),
   budget: z.enum(['under-2500', '2500-5000', '5000-15000', '15000-plus', 'unsure']),
