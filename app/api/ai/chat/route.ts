@@ -37,7 +37,8 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const apiKey = process.env.OPENAI_API_KEY
+  const provider = process.env.ASK_RELO_AI_PROVIDER === 'xai' ? 'xai' : 'openai'
+  const apiKey = provider === 'xai' ? process.env.XAI_API_KEY : process.env.OPENAI_API_KEY
   const usageSecret = process.env.ASK_RELO_USAGE_SECRET
   if (!apiKey || !usageSecret) {
     return NextResponse.json(
@@ -95,7 +96,8 @@ export async function POST(request: NextRequest) {
   try {
     const answer = await createAskReloAnswer(parsed.data.messages, {
       apiKey,
-      model: process.env.OPENAI_MODEL || 'gpt-5-mini',
+      provider,
+      model: provider === 'xai' ? (process.env.XAI_MODEL || 'grok-4.7') : (process.env.OPENAI_MODEL || 'gpt-5-mini'),
     })
 
     return NextResponse.json({
