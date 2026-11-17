@@ -56,8 +56,8 @@ export default function ExecutiveIntakePage() {
   })
 
   const londonAreas = [
-    'Marylebone', 'Kensington', 'Chelsea', 'Mayfair', 'Belgravia',
-    'Canary Wharf', 'Shoreditch', 'Clapham', 'Battersea', 'Greenwich',
+    'Open to recommendations', 'Marylebone', 'Kensington', 'Chelsea', 'Mayfair', 'Belgravia',
+    'Canary Wharf', 'Liverpool Street', 'Shoreditch', 'Hampstead', 'Blackheath', 'Clapham', 'Battersea', 'Greenwich',
     'Hammersmith', 'Fulham', 'Islington', 'Camden', 'Notting Hill',
     'South Kensington', 'Paddington', 'King\'s Cross', 'Bermondsey', 'Wimbledon'
   ]
@@ -118,8 +118,8 @@ export default function ExecutiveIntakePage() {
   const handleNext = () => {
     const missing: string[] = []
     if (!formData.moveDate) missing.push('target move date')
-    if (!formData.budget) missing.push('monthly rent budget')
-    if (formData.preferredAreas.length === 0) missing.push('at least one preferred area')
+    if (!formData.budget) missing.push('indicative monthly accommodation budget')
+    if (formData.preferredAreas.length === 0) missing.push('an area or Open to recommendations')
     if (!formData.name.trim()) missing.push('name')
     if (!formData.email.trim()) missing.push('email address')
 
@@ -192,15 +192,14 @@ export default function ExecutiveIntakePage() {
             <p className="eyebrow">TELL US ABOUT YOUR MOVE</p>
             <h1>HELP US UNDERSTAND YOUR LONDON MOVE.</h1>
             <p>
-              Share your timing, budget and priorities. Our team will bring the
-              full picture together and recommend a clear way forward.
+              Share your timing, budget and priorities. We review your enquiry and get back to you about the most useful next step. This form is for people considering hands-on property search and relocation support. There is no payment at this stage.
             </p>
           </div>
           <aside>
             <span>WHAT HAPPENS NEXT</span>
             <p>A person reviews your information.</p>
-            <p>We identify the priorities and pressure points.</p>
-            <p>We reply within one business day.</p>
+            <p>We consider your timing, requirements and the type of support you need.</p>
+            <p>We respond by email about next steps.</p>
           </aside>
         </section>
 
@@ -258,10 +257,10 @@ export default function ExecutiveIntakePage() {
 
               {/* Budget */}
               <div>
-                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Budget</h3>
+                <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">Accommodation budget</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Monthly rent budget *</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Indicative monthly rental or accommodation budget *</label>
                     <select
                       value={formData.budget}
                       onChange={(e) => handleInputChange('budget', e.target.value)}
@@ -284,7 +283,7 @@ export default function ExecutiveIntakePage() {
                       className="h-4 w-4 text-[#C9A24A] focus:ring-[#C9A24A] border-[#E5E7EB] rounded"
                     />
                     <label htmlFor="budget-flexible" className="ml-2 text-sm text-[#6B7280]">
-                      Budget is flexible for the right property
+                      Budget is flexible for the right home
                     </label>
                   </div>
                 </div>
@@ -294,7 +293,7 @@ export default function ExecutiveIntakePage() {
               <div>
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4 flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-[#C9A24A]" />
-                  Areas you may want to live in (choose 1–5) *
+                  Areas you are considering (choose up to five, or select Open to recommendations) *
                 </h3>
                 <div className="grid grid-cols-3 md:grid-cols-4 gap-2 mb-4">
                   {londonAreas.map((area) => (
@@ -329,7 +328,7 @@ export default function ExecutiveIntakePage() {
                 <h3 className="text-lg font-semibold text-[#0B1B2B] mb-4">What kind of home do you need?</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                  <label className="block text-sm font-medium text-[#6B7280] mb-2">Type of home</label>
+                  <label className="block text-sm font-medium text-[#6B7280] mb-2">Preferred accommodation type</label>
                     <select
                       value={formData.propertyType}
                       onChange={(e) => handleInputChange('propertyType', e.target.value)}
@@ -339,12 +338,13 @@ export default function ExecutiveIntakePage() {
                       <option value="flat">Flat or apartment</option>
                       <option value="house">House</option>
                       <option value="serviced">Serviced apartment</option>
+                      <option value="hotel">Hotel / initial temporary stay</option>
                       <option value="penthouse">Penthouse</option>
                       <option value="townhouse">Townhouse</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Family situation</label>
+                    <label className="block text-sm font-medium text-[#6B7280] mb-2">Children moving with you</label>
                     <select
                       value={formData.children}
                       onChange={(e) => handleInputChange('children', e.target.value)}
@@ -518,11 +518,11 @@ export default function ExecutiveIntakePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>We shape a plan around the decisions that matter most</span>
+                  <span>We identify the next decision and discuss suitable support options</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#C9A24A]" />
-                  <span>We recommend the right support, sequence and specialists</span>
+                  <span>We explain any recommended next steps before services are agreed</span>
                 </div>
               </div>
               
@@ -534,15 +534,15 @@ export default function ExecutiveIntakePage() {
               <div className="space-y-4 text-sm">
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">What happens after I send this?</div>
-                  <div className="text-[#6B7280]">We review your brief and reply within one business day with the right next step.</div>
+                  <div className="text-[#6B7280]">We review your brief and respond by email about the most appropriate next step.</div>
                 </div>
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">What will I receive?</div>
-                  <div className="text-[#6B7280]">A considered recommendation shaped around your timing, priorities and the decisions ahead.</div>
+                  <div className="text-[#6B7280]">A response about your enquiry and possible next steps. A personalised area report is a separate £249 consultation.</div>
                 </div>
                 <div>
                   <div className="font-medium text-[#0B1B2B] mb-1">What if my plans are still changing?</div>
-                  <div className="text-[#6B7280]">That is fine. Your brief helps us identify what is fixed, what is flexible and what to resolve first.</div>
+                  <div className="text-[#6B7280]">That is fine. Choose an approximate date and Open to recommendations for areas; tell us what is still uncertain in your notes.</div>
                 </div>
               </div>
               
