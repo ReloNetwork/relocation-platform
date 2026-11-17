@@ -46,9 +46,9 @@ export default function PartnerApplicationPage() {
       })
       setStatus({
         state: 'success',
-        message: 'Thank you. Your enquiry has been received. We will review the details and contact you about suitable next steps.',
+        message: 'Thank you. Your enquiry has been received. We will review your proposal and contact you about suitable next steps.',
         referenceId: body.referenceId,
-        mediaPackUrl: body.mediaPackUrl,
+        mediaPackUrl: String(data.partnershipInterest) === 'property-live' ? undefined : body.mediaPackUrl,
       })
     } catch (error) {
       setStatus({
