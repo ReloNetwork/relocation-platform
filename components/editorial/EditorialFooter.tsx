@@ -11,6 +11,7 @@ export default function EditorialFooter() {
         <b>EXPLORE</b>
         <Link href="/move">Move</Link>
         <Link href="/live">Live</Link>
+        <Link href="/property-hunt-live">Property Hunt LIVE</Link>
         <Link href="/discover">Discover</Link>
         <Link href="/executive-intake">Start your move</Link>
       </div>
