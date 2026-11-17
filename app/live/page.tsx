@@ -11,31 +11,33 @@ export default function Page() {
       <EditorialPage
         label="LIVE"
         title="WHERE LONDON ACTUALLY WORKS."
-        intro="Compare neighbourhoods through daily life: your commute, the school run, weekends and how each street feels throughout the year."
+        intro="Discover London through neighbourhood perspectives, real property viewings and the details that make a home work for you. Our Property Hunt LIVE programme invites viewers into the conversation."
         image="/images/editorial/london-street-hero.webp"
-        sectionTitle="PRACTICAL LONDON"
+        sectionTitle="GO BEYOND THE LISTING"
         items={[
           {
-            title: 'Schooling',
-            text: 'Understand school choices, application dates and the daily journey.',
+            title: 'Property Hunt LIVE',
+            text: 'Explore the homes, neighbourhoods and real-life trade-offs that matter to people relocating to London.',
+            href: '/property-hunt-live',
           },
           {
-            title: 'Healthcare',
-            text: 'Plan GP registration, private care and the support your family needs.',
+            title: 'A neighbourhood-first search',
+            text: 'Make sense of commuting, housing character, parks, restaurants and daily routines before committing.',
           },
           {
-            title: 'Getting around',
-            text: 'Compare public transport, walking, cycling and whether you need a car.',
+            title: 'For estate agents and developers',
+            text: 'Propose a suitable home for an interactive Property Hunt LIVE viewing.',
+            href: '/partner-application?interest=property-live',
           },
         ]}
         partnership={{
-          eyebrow: 'FAMILY LANDING',
-          title: 'PRACTICAL SUPPORT, CLEARLY LABELLED.',
-          text: 'Schools, healthcare and family routines need careful, current information. Suitable organisations may support this reporting without buying a ranking or recommendation.',
+          eyebrow: 'PROPERTY HUNT LIVE',
+          title: 'YOUR PROPERTY. A MORE INFORMED CONVERSATION.',
+          text: 'A property collaboration starts with a conversation about audience fit, filming access and useful property details. Any paid content is clearly disclosed, and editorial recommendations remain independent.',
           formats: [
-            'Expert-reviewed guide',
-            'Family checklist',
-            'London Brief edition',
+            'Interactive viewing concept',
+            'Neighbourhood context',
+            'Permitted short-form highlights',
           ],
         }}
       />

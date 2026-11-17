@@ -10,25 +10,25 @@ export default function Page() {
     <Layout>
       <EditorialPage
         label="ABOUT"
-        title="HELP FOR THE WHOLE MOVE."
-        intro="Finding a home is only one part of moving to London. We help you understand your choices and plan the move in a sensible order."
+        title="LONDON, SEEN THROUGH YOUR LIFE."
+        intro="Relo Network is a founder-led London relocation service for international professionals, individuals, couples and families. We help you identify the right neighbourhood, find a home that fits your life and connect with useful local expertise. Our Property Hunt LIVE programme brings that same perspective to real London homes and the streets around them."
         image="/images/editorial/london-street-hero.webp"
         sectionTitle="HOW WE WORK"
         items={[
           {
             number: '01',
-            title: 'Independent',
-            text: 'Our advice answers to you and nobody else.',
+            title: 'Founder-led',
+            text: 'A personal, practical approach to home search and settling in, grounded in international relocation experience.',
           },
           {
             number: '02',
-            title: 'Carefully checked',
-            text: 'We check journeys, schools and current market information before making a recommendation.',
+            title: 'Thoughtful trade-offs',
+            text: 'We consider homes alongside commutes, schools when relevant, community and everyday routines. Time-sensitive details require fresh verification.',
           },
           {
             number: '03',
-            title: 'Easy to reach',
-            text: 'You have one clear point of contact from the first call through your first weeks in London.',
+            title: 'See London for yourself',
+            text: 'Property Hunt LIVE brings homes and neighbourhoods to international audiences through honest, interactive exploration. Property representatives can propose viewing collaborations through our dedicated programme.',
           },
         ]}
       />

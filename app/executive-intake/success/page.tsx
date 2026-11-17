@@ -53,9 +53,7 @@ export default function ExecutiveIntakeSuccessPage() {
             YOUR BRIEF IS WITH US.
           </h1>
           <p className="text-lg text-[#6B7280] max-w-2xl mb-8">
-            We will review the timing, household needs and level of support
-            required, then reply within one business day with the most
-            appropriate next step.
+            We will review your enquiry and contact you by email about the next step and any suitable hands-on relocation support.
           </p>
 
           {receipt.referenceId && (
@@ -74,8 +72,7 @@ export default function ExecutiveIntakeSuccessPage() {
                 Human review first
               </h2>
               <p className="text-sm text-[#6B7280]">
-                A member of our team is reviewing your priorities, timing and
-                the decisions that need attention first.
+                Your details have been received for review. We will consider your priorities and timing before recommending next steps.
               </p>
             </div>
             <div className="border-t border-[#E5E7EB] pt-5">
@@ -84,8 +81,7 @@ export default function ExecutiveIntakeSuccessPage() {
                 A clear recommendation
               </h2>
               <p className="text-sm text-[#6B7280]">
-                We will reply with the clearest route forward and the support
-                best placed to make a meaningful difference.
+                We will explain any recommended service and scope before you decide whether to proceed.
               </p>
             </div>
           </div>
@@ -99,7 +95,7 @@ export default function ExecutiveIntakeSuccessPage() {
                 onClick={() => trackCommercialEvent('qualification_call_booked', 'relocation')}
                 className="bg-[#C9A24A] text-white px-6 py-3 font-semibold inline-flex items-center justify-center gap-2"
               >
-                Book a private relocation consultation
+                Explore a private discussion
                 <ArrowRight className="w-4 h-4" />
               </a>
             )}

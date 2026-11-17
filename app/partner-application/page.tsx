@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useRef, useState } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 import Layout from '@/components/Layout'
 import { trackCommercialEvent } from '@/lib/commercial-analytics'
 
@@ -14,6 +14,10 @@ type Status = {
 export default function PartnerApplicationPage() {
   const [status, setStatus] = useState<Status>({ state: 'idle', message: '' })
   const started = useRef(false)
+  const [interest, setInterest] = useState('')
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('interest') === 'property-live') setInterest('property-live')
+  }, [])
 
   const markStarted = () => {
     if (started.current) return
@@ -42,9 +46,9 @@ export default function PartnerApplicationPage() {
       })
       setStatus({
         state: 'success',
-        message: 'Thank you. We have your enquiry. Your media pack has been emailed to you and is also available below.',
+        message: 'Thank you. Your enquiry has been received. We will review your proposal and contact you about suitable next steps.',
         referenceId: body.referenceId,
-        mediaPackUrl: body.mediaPackUrl,
+        mediaPackUrl: String(data.partnershipInterest) === 'property-live' ? undefined : body.mediaPackUrl,
       })
     } catch (error) {
       setStatus({
@@ -64,7 +68,7 @@ export default function PartnerApplicationPage() {
             <h1>REACH PEOPLE<br />MOVING TO LONDON.</h1>
           </div>
           <p>
-            We work with selected businesses that can give useful information or services to professionals and families moving to London.
+            We collaborate with property professionals and selected businesses serving individuals, couples and families relocating to or living in London.
           </p>
         </section>
 
@@ -72,14 +76,15 @@ export default function PartnerApplicationPage() {
           <div className="partner-editorial-notes">
             <span>WAYS TO WORK WITH US</span>
             <h2>Choose a clear place to start.</h2>
-            <p>Options include selected business profiles, London Brief partnerships, sponsored guides and longer editorial campaigns. Each proposal is shaped around audience fit, format, timing and scope.</p>
+            <p>Options include Property Hunt LIVE collaborations, selected business profiles, London Brief partnerships, sponsored guides and longer editorial campaigns. Each proposal is shaped around audience fit, format, timing and scope.</p>
             <ul>
+              <li><a href="/property-hunt-live" className="underline">Property Hunt LIVE viewing collaborations</a></li>
               <li>Selected Network business profiles</li>
               <li>London Brief partner messages</li>
               <li>Sponsored Journal features and reader tools</li>
               <li>Editorial campaigns with clear reporting</li>
             </ul>
-            <small>Every partnership is clearly identified, and our editorial recommendations remain independent.</small>
+            <small>Paid collaborations are disclosed, and editorial recommendations remain independent. Property viewings can begin as editorial collaborations without a sponsorship commitment.</small>
           </div>
 
           <form className="partner-editorial-form" onSubmit={submit} onFocusCapture={markStarted}>
@@ -120,8 +125,9 @@ export default function PartnerApplicationPage() {
             </label>
             <label>
               What are you interested in?
-              <select name="partnershipInterest" required defaultValue="">
+              <select name="partnershipInterest" required value={interest} onChange={event => setInterest(event.target.value)}>
                 <option value="" disabled>Select one</option>
+                <option value="property-live">Property Hunt LIVE viewing collaboration</option>
                 <option value="editorial">Sponsored Journal article</option>
                 <option value="newsletter">The London Brief sponsorship</option>
                 <option value="network">A reviewed Network profile</option>
@@ -151,14 +157,14 @@ export default function PartnerApplicationPage() {
                 </select>
               </label>
               <label>
-                Working budget
-                <select name="budget" required defaultValue="">
+                Proposed marketing budget (optional for Property Hunt LIVE)
+                <select key={interest === 'property-live' ? 'property-live' : 'other'} name="budget" required defaultValue={interest === 'property-live' ? 'unsure' : ''}>
                   <option value="" disabled>Select one</option>
                   <option value="under-2500">Under £2,500</option>
                   <option value="2500-5000">£2,500–£5,000</option>
                   <option value="5000-15000">£5,000–£15,000</option>
                   <option value="15000-plus">£15,000+</option>
-                  <option value="unsure">Not yet defined</option>
+                  <option value="unsure">No budget agreed / not applicable</option>
                 </select>
               </label>
             </div>
@@ -173,15 +179,15 @@ export default function PartnerApplicationPage() {
               </select>
             </label>
             <label>
-              How could this help our readers?
-              <textarea name="message" rows={6} required placeholder="Tell us who you help, what you know well and what you would like to create with us." />
+              Tell us about the property or collaboration
+              <textarea name="message" rows={6} required placeholder="For property viewings, include location, rental or sales guide price, property type, expected availability and whether filming can be authorised. For other partnerships, tell us about your audience and proposal." />
             </label>
             <label className="partner-editorial-form__consent">
               <input name="consent" type="checkbox" value="yes" required />
               <span>I agree that The Relo Network may use these details to respond to this enquiry.</span>
             </label>
             <button type="submit" disabled={status.state === 'submitting'}>
-              {status.state === 'submitting' ? 'SENDING' : 'SEND ENQUIRY & VIEW MEDIA PACK'}
+              {status.state === 'submitting' ? 'SENDING' : 'SEND PARTNER ENQUIRY'}
             </button>
             <p className={`partner-editorial-form__status is-${status.state}`} aria-live="polite">
               {status.message}

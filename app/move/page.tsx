@@ -24,12 +24,12 @@ const programme = [
   {
     number: '03',
     title: 'Shape the right plan',
-    text: 'We turn your brief into a clear recommendation, with the right support, sequence and specialists for your move.',
+    text: 'For a paid consultation, we compare your area options. For hands-on help, we discuss a suitable scope of support.',
   },
   {
     number: '04',
     title: 'Move forward with confidence',
-    text: 'We help coordinate the people and practical details that turn your plan into a well-managed move.',
+    text: 'Where you need hands-on support, we can discuss home search, offers and introductions to suitable specialists.',
   },
 ];
 
@@ -74,8 +74,7 @@ export default function MovePage() {
             <span>01</span>
             <h2>HOW IT WORKS.</h2>
             <p>
-              Start with a few details about your move. We identify what matters
-              most and shape the clearest route from first decision to settled life.
+              Choose the level of help you need. Ask Relo is a free introduction. The £249 Home & Life Map is a personalised digital consultation. Start Your Move is an enquiry about hands-on support.
             </p>
           </header>
           <div className="move-programme__grid">
@@ -98,25 +97,23 @@ export default function MovePage() {
             <span>READY TO PLAN</span>
             <h3>Tell us about your move</h3>
             <p>
-              Best when your move is active and you want a person to review the
-              full picture.
+              For active moves where you need hands-on home search, negotiation or settling-in support. Send a private enquiry and we will discuss the next step.
             </p>
             <Link href="/executive-intake">Start Your Move →</Link>
           </article>
           <article>
             <span>CHOOSING WHERE TO LIVE</span>
             <h3>London Home &amp; Life Map</h3>
-            <p>A personalised location consultation for solo movers, couples and families. £249 total, one-time payment.</p>
+            <p>A £249 digital consultation comparing up to three London areas with a recommended starting point, short video walkthrough and one email follow-up.</p>
             <Link href="/london-move-map">See the consultation →</Link>
           </article>
           <article>
             <span>STILL EXPLORING</span>
             <h3>Read our London guides</h3>
             <p>
-              Use the Journal and The London Brief to learn about the city at
-              your own pace.
+              Read the Journal and The London Brief at your own pace, or ask Ask Relo an introductory London question.
             </p>
-            <Link href="/journal">Explore the Journal →</Link>
+            <Link href="/journal">Read the Journal →</Link>
           </article>
         </section>
 
@@ -124,9 +121,7 @@ export default function MovePage() {
           <p className="eyebrow">BUILT AROUND YOUR PRIORITIES</p>
           <h2>LET US UNDERSTAND YOUR MOVE.</h2>
           <p>
-            The better we understand your priorities, pressures and ambitions,
-            the more precisely we can solve what stands between you and a
-            confident life in London.
+            Have an active search or a more complex move? Share your brief for a human review of the support you might need. There is no payment or commitment when you enquire.
           </p>
           <Link className="button button--gold" href="/executive-intake">
             TELL US ABOUT YOUR MOVE
