@@ -29,7 +29,7 @@ const programme = [
   {
     number: '04',
     title: 'Move forward with confidence',
-    text: 'We help coordinate the people and practical details that turn your plan into a well-managed move.',
+    text: 'Where you need hands-on support, we can discuss home search, offers and introductions to suitable specialists.',
   },
 ];
 
@@ -106,7 +106,7 @@ export default function MovePage() {
           <article>
             <span>CHOOSING WHERE TO LIVE</span>
             <h3>London Home &amp; Life Map</h3>
-            <p>A personalised location consultation for solo movers, couples and families. £249 total, one-time payment.</p>
+            <p>A £249 digital consultation comparing up to three London areas with a recommended starting point, short video walkthrough and one email follow-up.</p>
             <Link href="/london-move-map">See the consultation →</Link>
           </article>
           <article>
@@ -116,7 +116,7 @@ export default function MovePage() {
               Use the Journal and The London Brief to learn about the city at
               your own pace.
             </p>
-            <Link href="/journal">Explore the Journal →</Link>
+            <Link href="/journal">Read the Journal →</Link>
           </article>
         </section>
 
