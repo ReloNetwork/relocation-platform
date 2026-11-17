@@ -11,7 +11,7 @@ const scenes = [
     label: 'ARRIVE',
     eyebrow: 'YOUR LONDON, BEFORE YOU LAND',
     title: 'LONDON,\nBUT BETTER.',
-    body: 'Clear London guidance and one person who understands your move.',
+    body: 'London neighbourhood insight, home-search guidance and personal support when you need it.',
     image: '/images/editorial/london-arrival-cinematic.webp',
   },
   {
@@ -20,7 +20,7 @@ const scenes = [
     label: 'MOVE',
     eyebrow: 'ARRIVE ALREADY SETTLED',
     title: 'THE SEARCH\nSTARTS WITH YOU.',
-    body: 'We narrow down areas, homes and schools around the way you want to live.',
+    body: 'Explore neighbourhoods and homes around your priorities, commute and everyday life.',
     image: '/images/editorial/london-street-hero.webp',
   },
   {
@@ -29,7 +29,7 @@ const scenes = [
     label: 'LIVE',
     eyebrow: 'EVERYDAY LONDON',
     title: 'WHERE LONDON\nACTUALLY WORKS.',
-    body: 'Compare commutes, school runs, weekends and the small details that shape daily life.',
+    body: 'Property Hunt LIVE brings London homes and their neighbourhoods into focus through interactive viewings.',
     image: '/images/editorial/london-interior.webp',
   },
   {
@@ -38,7 +38,7 @@ const scenes = [
     label: 'DISCOVER',
     eyebrow: 'LONDON LIFE',
     title: 'LIVE LIKE YOU\nBELONG HERE.',
-    body: 'Find the places and people our advisers would recommend to a friend.',
+    body: 'Discover useful London places, practical guides and specialists relevant to your move.',
     image: '/images/editorial/london-table.webp',
   },
   {
@@ -47,7 +47,7 @@ const scenes = [
     label: 'ASK RELO',
     eyebrow: 'ASK RELO',
     title: 'DON’T SEARCH\nLONDON. ASK IT.',
-    body: 'Ask five questions for free. Bring in a human when your decision needs more care.',
+    body: 'Ask five introductory questions for free. Personalised consultations and human support are separate services.',
     image: '/images/editorial/london-arrival-cinematic.webp',
   },
 ];
