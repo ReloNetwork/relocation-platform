@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 const steps = [
   ['01', 'Choose the property', 'Tell us about a London home or development that suits internationally mobile renters or buyers. We discuss fit, access and any filming restrictions first.'],
   ['02', 'Shape the viewing', 'Agree the property details, areas we can film, timing, on-camera permissions and the questions that matter to prospective movers.'],
-  ['03', 'Bring the home to life', 'We guide viewers through the property and its neighbourhood, discussing genuine strengths and trade-offs rather than reading out a listing.'],
-  ['04', 'Review what follows', 'We agree any permitted clips, partner attribution and appropriate enquiry handling in advance. Performance reporting depends on available platform data.'],
+  ['03', 'Bring the home to life', 'The proposed format guides viewers through the property and its neighbourhood, discussing genuine strengths and trade-offs rather than reading out a listing.'],
+  ['04', 'Review what follows', 'Before filming, we would agree permitted clips, partner attribution and appropriate enquiry handling. Performance reporting depends on available platform data.'],
 ];
 
 export default function PropertyHuntLivePage() {
@@ -22,7 +22,7 @@ export default function PropertyHuntLivePage() {
       <div>
         <p className="mb-5 text-xs font-semibold uppercase tracking-[.25em] text-[#8B6C2F]">RELO NETWORK / PROPERTY HUNT LIVE</p>
         <h1 className="font-serif text-5xl leading-[1.06] md:text-7xl">London homes.<br/>Real conversations.<br/>Live from the property.</h1>
-        <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#374151]">A considered way to introduce London homes to international professionals and families. We explore properties on camera, answer practical questions and show how a home fits into everyday London life.</p>
+        <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#374151]">A considered way to introduce London homes to international professionals and families. Property Hunt LIVE is our developing series of interactive property viewings. The aim is to explore homes on camera, answer practical questions and show how a home fits into everyday London life.</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="/partner-application?interest=property-live" className="bg-[#0B1B2B] px-6 py-4 text-sm font-semibold uppercase tracking-wide text-white">Propose a property</Link>
           <Link href="/move" className="border border-[#0B1B2B] px-6 py-4 text-sm font-semibold uppercase tracking-wide">Planning your move?</Link>
@@ -58,7 +58,7 @@ export default function PropertyHuntLivePage() {
     <section className="mx-auto max-w-5xl px-6 py-20 text-center">
       <p className="text-xs font-semibold uppercase tracking-[.22em] text-[#8B6C2F]">WORK WITH RELO NETWORK</p>
       <h2 className="mt-4 font-serif text-4xl md:text-5xl">Have a property worth showing properly?</h2>
-      <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-[#4B5563]">Tell us about the home, who it suits and when a viewing might be possible. We will discuss whether a Property Hunt LIVE collaboration makes sense.</p>
+      <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-[#4B5563]">Tell us about the home, who it suits and when a viewing might be possible. We will review your proposal and discuss whether a Property Hunt LIVE viewing is a good fit.</p>
       <div className="mt-8 flex flex-wrap justify-center gap-3"><Link href="/partner-application?interest=property-live" className="bg-[#0B1B2B] px-7 py-4 font-semibold text-white">PROPOSE A PROPERTY</Link><a href="mailto:hello@therelonetwork.com?subject=Property%20Hunt%20LIVE%20enquiry" className="border border-[#0B1B2B] px-7 py-4 font-semibold">EMAIL RELO NETWORK</a></div>
     </section>
   </main></Layout>;
