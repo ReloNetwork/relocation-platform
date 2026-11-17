@@ -29,7 +29,7 @@ export default function MoveMapPage() {
         <div className="mt-9 border-t border-[#D7C8A6] pt-6 text-sm leading-relaxed text-[#4B5563]">
           <p><strong>Delivery:</strong> your written map and video are emailed within three working days after payment and a complete brief. If clarification is needed, the delivery period begins when we have that information.</p>
           <p className="mt-4">A focused consultation, delivered by email. It does not include a live call, school admissions, live accommodation availability, bookings, viewings or a property search. Check availability and journeys directly before committing.</p>
-          <p className="mt-4">For hands-on search and coordination, we can discuss a separate Executive London Setup after you receive your map.</p>
+          <p className="mt-4">For hands-on property search, offer negotiation and relocation coordination, use Start Your Move to enquire about a separate service. That is not included in this £249 consultation.</p>
         </div>
         <details className="mt-7 border-t border-[#D7C8A6] pt-5 text-sm leading-relaxed" id="order-terms">
           <summary className="cursor-pointer font-medium">Order terms and cancellation</summary>
