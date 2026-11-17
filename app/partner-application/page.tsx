@@ -157,8 +157,8 @@ export default function PartnerApplicationPage() {
                 </select>
               </label>
               <label>
-                Working budget (if applicable)
-                <select name="budget" required defaultValue="">
+                Working budget (if applicable; choose not yet defined for an editorial viewing)
+                <select key={interest === 'property-live' ? 'property-live' : 'other'} name="budget" required defaultValue={interest === 'property-live' ? 'unsure' : ''}>
                   <option value="" disabled>Select one</option>
                   <option value="under-2500">Under £2,500</option>
                   <option value="2500-5000">£2,500–£5,000</option>
