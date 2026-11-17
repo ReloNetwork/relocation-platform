@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 const links = [
   ['Move', '/move'],
+  ['Property Hunt LIVE', '/property-hunt-live'],
   ['Live', '/live'],
   ['Discover', '/discover'],
   ['Network', '/network'],
