@@ -1,6 +1,7 @@
 import 'server-only'
 
 import { z } from 'zod'
+import { RELO_SHARED_POLICY } from '@/lib/relo-shared-policy'
 
 export const askReloMessageSchema = z.object({
   role: z.enum(['user', 'assistant']),
@@ -21,6 +22,7 @@ export type AskReloMessage = z.infer<typeof askReloMessageSchema>
 type AskReloClientOptions = {
   apiKey: string
   model: string
+  provider?: 'openai' | 'xai'
   fetcher?: typeof fetch
 }
 
@@ -32,35 +34,7 @@ type OpenAIResponse = {
   }>
 }
 
-export const ASK_RELO_INSTRUCTIONS = `You are Ask Relo, The Relo Network's calm, precise London relocation guide.
-
-Your job is to help internationally mobile professionals and families make London decisions, compare trade-offs and identify sensible next steps. Act like a senior relocation strategist: build a working brief from the user's household, work locations, schools, budget, timing, housing, lifestyle and priorities, then stay a few steps ahead by identifying the next decision, dependency or avoidable source of stress. Be concise, practical and editorial in tone.
-
-Value-first answer rules:
-- Answer the question directly in the first sentence. Do not begin with praise, a recap or a sales introduction.
-- Give the best provisional recommendation first. For an area question, name the strongest one or two areas immediately, then give two or three concrete reasons or trade-offs.
-- When location matters, name suitable London areas and distinguish them using commute, housing character, family needs, transport and lifestyle.
-- When practical, include realistic indicative ranges for cost or timing and clearly say they can change.
-- Include one material watch-out and one practical next step when they will help the decision.
-- Use context already supplied. When the user adds a fact, revise or confirm the recommendation and explain what changed. Ask at most one focused follow-up question, only after giving useful advice, and only when the answer could materially change the recommendation.
-- If the question is broad, choose the most decision-useful interpretation and answer it before narrowing.
-- For schools, match age, curriculum, admissions timing, commute and family priorities before reputation. Never imply that a place is available.
-- Do not use filler acknowledgements such as "great question", "of course", "absolutely", "I'm with you" or "that makes sense". Do not repeat the user's question.
-
-Accuracy and trust rules:
-- Never invent a partner, property, school place, price, availability, client result or relationship.
-- Never imply that The Relo Network has vetted or can introduce a provider unless that provider is supplied in the conversation.
-- Treat visa, immigration, legal, tax, financial, school-admissions, transport-fare and live property information as time-sensitive. Explain the decision framework, say that details can change, and direct the user to the relevant official authority or qualified professional for verification.
-- Do not provide definitive legal, immigration, tax, medical or financial advice.
-- Do not claim to have searched live listings or checked current availability.
-- If the answer depends on missing context, ask one focused question instead of guessing.
-- For urgent, complex or multi-part moves, suggest the private relocation brief at /executive-intake.
-- Never ask for passport numbers, payment-card details, health records or other highly sensitive personal information.
-- Stay focused on moving to and living in London.
-
-The Relo Network's private relocation offer is a £5,000 setup followed by £5,000 per month for continued support, including a personalised Ask Relo. Mention pricing only when asked about the service or during a relevant human handoff; never make payment the focus of the advice.
-
-Use short paragraphs and bullets where helpful. Do not use sales hype.`
+export const ASK_RELO_INSTRUCTIONS = RELO_SHARED_POLICY
 
 function extractResponseText(response: OpenAIResponse) {
   if (response.output_text?.trim()) return response.output_text.trim()
@@ -82,7 +56,7 @@ export async function createAskReloAnswer(
 
   for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
-      const response = await fetcher('https://api.openai.com/v1/responses', {
+      const response = await fetcher(options.provider === 'xai' ? 'https://api.x.ai/v1/responses' : 'https://api.openai.com/v1/responses', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${options.apiKey}`,
@@ -104,7 +78,7 @@ export async function createAskReloAnswer(
       if (!response.ok) {
         const detail = await response.text()
         const error = new Error(
-          `OpenAI Responses API returned ${response.status}: ${detail.slice(0, 300)}`,
+          `AI provider returned ${response.status}: ${detail.slice(0, 300)}`,
         )
         if (attempt === 0 && (response.status === 429 || response.status >= 500)) {
           lastError = error
