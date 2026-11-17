@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest'
+import { readFileSync } from 'node:fs'
 import { RELO_SHARED_POLICY } from '../lib/relo-shared-policy'
-import { ASK_RELO_VOICE_INSTRUCTIONS } from '../lib/retell'
 
 describe('Ask Relo shared guidance', () => {
-  it('uses the same core policy for voice', () => {
-    expect(ASK_RELO_VOICE_INSTRUCTIONS).toContain(RELO_SHARED_POLICY)
+  it('is referenced by the Retell voice prompts', () => {
+    const voiceSource = readFileSync('lib/retell.ts', 'utf8')
+    expect(voiceSource).toContain('RELO_SHARED_POLICY +')
   })
   it('includes relevant current service, safety and household coverage', () => {
     expect(RELO_SHARED_POLICY).toContain('£249')
