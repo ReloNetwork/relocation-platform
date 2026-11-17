@@ -46,7 +46,7 @@ export default function PartnerApplicationPage() {
       })
       setStatus({
         state: 'success',
-        message: 'Thank you. We have your enquiry. Your enquiry has been received. You can also review our general media pack below.',
+        message: 'Thank you. Your enquiry has been received. We will review the details and contact you about suitable next steps.',
         referenceId: body.referenceId,
         mediaPackUrl: body.mediaPackUrl,
       })
@@ -68,7 +68,7 @@ export default function PartnerApplicationPage() {
             <h1>REACH PEOPLE<br />MOVING TO LONDON.</h1>
           </div>
           <p>
-            We work with selected businesses that can give useful information or services to professionals and families moving to London.
+            We collaborate with property professionals and selected businesses serving individuals, couples and families relocating to or living in London.
           </p>
         </section>
 
@@ -84,7 +84,7 @@ export default function PartnerApplicationPage() {
               <li>Sponsored Journal features and reader tools</li>
               <li>Editorial campaigns with clear reporting</li>
             </ul>
-            <small>Every partnership is clearly identified, and our editorial recommendations remain independent.</small>
+            <small>Paid collaborations are disclosed, and editorial recommendations remain independent. Property viewings can begin as editorial collaborations without a sponsorship commitment.</small>
           </div>
 
           <form className="partner-editorial-form" onSubmit={submit} onFocusCapture={markStarted}>
@@ -157,14 +157,14 @@ export default function PartnerApplicationPage() {
                 </select>
               </label>
               <label>
-                Working budget (if applicable; choose not yet defined for an editorial viewing)
+                Proposed marketing budget (optional for Property Hunt LIVE)
                 <select key={interest === 'property-live' ? 'property-live' : 'other'} name="budget" required defaultValue={interest === 'property-live' ? 'unsure' : ''}>
                   <option value="" disabled>Select one</option>
                   <option value="under-2500">Under £2,500</option>
                   <option value="2500-5000">£2,500–£5,000</option>
                   <option value="5000-15000">£5,000–£15,000</option>
                   <option value="15000-plus">£15,000+</option>
-                  <option value="unsure">Not yet defined</option>
+                  <option value="unsure">No budget agreed / not applicable</option>
                 </select>
               </label>
             </div>
