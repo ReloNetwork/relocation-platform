@@ -53,6 +53,16 @@ export default function HomePage() {
             height={1200}
           />
         </section>
+        <section className="bg-[#0B1B2B] px-6 py-16 text-white">
+          <div className="mx-auto flex max-w-6xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[.22em] text-[#D9BB71]">PROPERTY HUNT LIVE</p>
+              <h2 className="mt-3 font-serif text-4xl">London homes. Live from the property.</h2>
+              <p className="mt-4 max-w-2xl leading-relaxed text-white/75">Interactive home viewings and neighbourhood insight for people moving to London. Estate agents and developers can propose properties to feature.</p>
+            </div>
+            <Link href="/property-hunt-live" className="shrink-0 border border-white/60 px-6 py-4 text-center text-sm font-semibold uppercase tracking-wide text-white">Explore Property Hunt LIVE</Link>
+          </div>
+        </section>
         <HorizontalIntelligence />
         <section className="programme">
           <h2>
