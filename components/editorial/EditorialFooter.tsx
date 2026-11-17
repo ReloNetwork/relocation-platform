@@ -21,6 +21,7 @@ export default function EditorialFooter() {
         <Link href="/journal">Journal</Link>
         <Link href="/newsletter">The London Brief</Link>
         <Link href="/partner-application">Partner with us</Link>
+        <Link href="/property-hunt-live">Collaborate on a viewing</Link>
       </div>
       <div>
         <b>CONTACT</b>
