@@ -390,10 +390,10 @@ export function partnerConfirmationEmail(options: {
         label: 'Timing',
         value: escapeEmailHtml(formatTiming(application.timing)),
       },
-      {
+      ...(application.partnershipInterest === 'property-live' ? [] : [{
         label: 'Media pack',
         value: `Version ${escapeEmailHtml(PARTNER_MEDIA_PACK_VERSION)}`,
-      },
+      }]),
     ])}
     ${application.partnershipInterest === 'property-live' ? '' : button('View the partner media pack', mediaPackUrl)}
     <p style="margin:26px 0 0;color:#5e6670;font-size:13px;line-height:1.7;">No payment has been taken. Paid placement never guarantees a client introduction and never changes an independent Ask Relo recommendation.</p>`;
