@@ -28,7 +28,7 @@ export default function Page() {
           {
             number: '03',
             title: 'See London for yourself',
-            text: 'Property Hunt LIVE brings homes and neighbourhoods to international audiences through honest, interactive exploration. Learn how to collaborate at /property-hunt-live.',
+            text: 'Property Hunt LIVE brings homes and neighbourhoods to international audiences through honest, interactive exploration. Property representatives can propose viewing collaborations through our dedicated programme.',
           },
         ]}
       />
